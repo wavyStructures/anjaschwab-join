@@ -1,0 +1,42 @@
+
+
+:root{
+    --clr-main: #4589ff;
+    --clr-text: #ffffff;
+}
+
+.header-content{
+    height:100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--clr-text);
+    background-color: var(--clr-main);
+    padding: 25px;
+    img{
+        width: 40px
+    }
+}
+
+.header-inner-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* background-color: red; */
+}
+
+#username{
+    .kreis {
+        fill: white;
+        stroke: white;
+        stroke-width: 10px;
+      }
+      .text {
+        font-size: 48px;
+        font-family: Arial;
+        fill: var(--clr-main);
+        text-anchor:middle;
+      }
+}
