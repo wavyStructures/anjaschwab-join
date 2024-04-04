@@ -1,3 +1,11 @@
+async function init(){
+  await includeHTML();
+  dynamicallyLoadScriptsFromFolder("./js");
+}
+
+/**
+ * Includes HTML-Files into container containing "w3-include-html"-attribute 
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -11,3 +19,29 @@ async function includeHTML() {
       }
     }
   }
+
+  
+/**
+ * 
+ * @param {String} folderPath 
+ */
+function dynamicallyLoadScriptsFromFolder(folderPath) {
+  var scripts = [
+    'allTasks.js',
+    'board.js',
+    'contacts.js',
+    'contact_list.js',
+    'contact_popups.js',
+    'login.js',
+    'register.js',
+    'storage.js',
+    'summary.js'
+  ];
+
+  scripts.forEach(function(script) {
+      var scriptElement = document.createElement("script");
+      scriptElement.src = folderPath + "/" + script;
+      document.head.appendChild(scriptElement);
+  });
+  console.log("JS imported")
+}
