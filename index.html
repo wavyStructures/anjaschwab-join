@@ -4,19 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/navigation.css">
     <script src="script.js"></script>
+    <script src="./assets/templates/html_templates.js"></script>
 
     <title>Join</title>
 </head>
 
 <body onload="init()">
-    <header w3-include-html="./assets/templates/header.html" id="header" class="header">
+    <header id="header" class="header">
     </header>
-    <div class="main-wrapper">
-        <nav w3-include-html="./navigation.html" class="navigation-container"></nav>
-        <main class="main">MAIN</main>
+    <div id="main-wrapper" class="main-wrapper">
+        <nav id="navigation-container" class="navigation-container"></nav>
+        <main id="main" class="main">MAIN</main>
     </div>
 </body>
 
