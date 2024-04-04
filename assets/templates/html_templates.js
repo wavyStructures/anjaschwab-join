@@ -28,3 +28,12 @@ function renderHeaderHTML(){
 function renderSummaryHTML(){
     return `<div class="summary-content">Content Of Summary</div>`
 }
+function renderAddTaskHTML(){
+    return `<div class="summary-content">Content Of AddTask</div>`
+}
+function renderBoardHTML(){
+    return `<div class="summary-content">Content Of Board</div>`
+}
+function renderContactsHTML(){
+    return `<div class="summary-content">Content Of Contacts</div>`
+}

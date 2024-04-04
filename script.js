@@ -46,6 +46,26 @@ function renderSummary(){
 }
 
 
+function renderAddTask(){
+  let content = getDiv('main');
+  content.innerHTML = renderAddTaskHTML();
+}
+
+
+function renderBoard(){
+  let content = getDiv('main');
+  content.innerHTML = renderBoardHTML();
+}
+
+
+function renderContacts(){
+  let content = getDiv('main');
+  content.innerHTML = renderContactsHTML();
+}
+
+
+
+
 // /**
 //  * 
 //  * @param {String} folderPath 
