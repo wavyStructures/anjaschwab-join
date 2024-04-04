@@ -1,23 +1,43 @@
 let cards = [
     {
-        'topic':'User Story',
+        'id': 1,
+        'type':'User Story',
         'title':'Kochwelt Page & Recipe Recommender',
-        'text': 'Build start page with recipe recommendation',
+        'text': 'Build start page with recipe recommendation...',
         'subtasks': 2,
-        'assignedTo': ['SS','MM',"AS"]
+        'assignedTo': ['SS','MM',"AS"],
+        'category': 'todo'
     },
     {
-        'topic':'User Story',
-        'title':'Kochwelt Page & Recipe Recommender',
-        'text': 'Build start page with recipe recommendation',
-        'subtasks': 2,
-        'assignedTo': ['SS','MM',"AS"]
+        'id': 2,
+        'type':'Technical Task',
+        'title':'HTML Base Template Creation',
+        'text': 'Create reusable HTML base templates...',
+        'subtasks': 0,
+        'assignedTo': ['SS','MM',"AS"],
+        'category': 'inProgress'
     },
     {
-        'topic':'User Story',
-        'title':'Kochwelt Page & Recipe Recommender',
-        'text': 'Build start page with recipe recommendation',
+        'id': 3,
+        'type':'User Story',
+        'title':'Daily Kochwelt Recipe',
+        'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
-        'assignedTo': ['SS','MM',"AS"]
+        'assignedTo': ['SS'],
+        'category': 'awaitFeedback'
+    },
+    {
+        'id': 4,
+        'type':'Technical Task',
+        'title':'CSS Architecture Planning',
+        'text': 'Define CSS naming conventions and structure...',
+        'subtasks': 2,
+        'assignedTo': ['AS'],
+        'category': 'done'
     }
 ]
+
+
+function renderCards(){
+    
+}

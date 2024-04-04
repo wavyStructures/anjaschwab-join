@@ -35,16 +35,35 @@ function renderAddTaskHTML(){
 }
 
 
-function renderBoardHTML(){
-    return /*html*/`
+function renderBoardHTML() {
+	return /*html*/ `
     <div class="board-content">
-        <div class="tasks">
-            <div draggable="true" id="task_1" class="task"></div>
-            <div draggable="true" id="task_2" class="task"></div>
-            <div draggable="true" id="task_3" class="task"></div>
+        <div class="category">
+            <h2>To Do</h2>
+            <div class="tasks">
+                <div draggable="true" id="task_1" class="card"></div>
+                <div draggable="true" id="task_2" class="card"></div>
+                <div draggable="true" id="task_3" class="card"></div>
+            </div>
         </div>
-        <div class="target"></div>
-    </div>`
+        <div class="category">
+            <h2>In progress</h2>
+            <div class="tasks">
+                <div draggable="true" id="task_3" class="card"></div>
+            </div>
+        </div>
+        <div class="category">
+            <h2>Await feedback</h2>
+            <div class="tasks">
+                <div draggable="true" id="task_3" class="card"></div>
+            </div>
+        </div>
+        <div class="category">
+            <h2>Done</h2>
+            <div class="tasks">
+            <div draggable="true" id="task_3" class="card"></div>
+        </div>
+    </div>`;
 }
 
 
