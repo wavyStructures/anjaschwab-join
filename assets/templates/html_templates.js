@@ -26,14 +26,28 @@ function renderHeaderHTML(){
 
 
 function renderSummaryHTML(){
-    return `<div class="summary-content">Content Of Summary</div>`
+    return /*html*/`<div class="summary-content">Content Of Summary</div>`
 }
+
+
 function renderAddTaskHTML(){
-    return `<div class="summary-content">Content Of AddTask</div>`
+    return /*html*/`<div class="addTask-content">Content Of AddTask</div>`
 }
+
+
 function renderBoardHTML(){
-    return `<div class="summary-content">Content Of Board</div>`
+    return /*html*/`
+    <div class="board-content">
+        <div class="tasks">
+            <div draggable="true" id="task_1" class="task"></div>
+            <div draggable="true" id="task_2" class="task"></div>
+            <div draggable="true" id="task_3" class="task"></div>
+        </div>
+        <div class="target"></div>
+    </div>`
 }
+
+
 function renderContactsHTML(){
-    return `<div class="summary-content">Content Of Contacts</div>`
+    return /*html*/`<div class="contacts-content">Content Of Contacts</div>`
 }

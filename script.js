@@ -1,6 +1,7 @@
 async function init(){
   renderHeader();
   renderNavigation();
+  renderBoard();
 }
 
 
