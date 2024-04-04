@@ -33,6 +33,7 @@ function dynamicallyLoadScriptsFromFolder(folderPath) {
     'contact_list.js',
     'contact_popups.js',
     'login.js',
+    'navigation.js',
     'register.js',
     'storage.js',
     'summary.js'
