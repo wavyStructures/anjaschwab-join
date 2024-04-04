@@ -41,6 +41,7 @@ function dynamicallyLoadScriptsFromFolder(folderPath) {
   scripts.forEach(function(script) {
       var scriptElement = document.createElement("script");
       scriptElement.src = folderPath + "/" + script;
+      scriptElement.setAttribute("defer","");
       document.head.appendChild(scriptElement);
   });
   console.log("JS imported")
