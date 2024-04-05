@@ -1,25 +1,35 @@
-.board-content{
-    display: flex;
+.board-content {
+    display: grid;
     width: 100%;
-    flex-grow: 1;
     flex-direction: row;
     padding: 10px;
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.tasks{
-    display: flex;
-    gap: 10px;
-}
-
-.card{
-    height: 100px;
-    width: 100px;
-    border-radius: 10px;
-    background-color: green;
-}
-
-.category{
+.category {
     display: flex;
     flex-direction: column;
+    padding: 5px;
     border: 2px dotted gray;
+    text-align: center;
+    flex:1;
+
+    h2{
+        padding-bottom: 5px;
+    }
+}
+
+.tasks {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: green;
 }

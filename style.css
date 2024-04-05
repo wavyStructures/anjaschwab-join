@@ -23,6 +23,6 @@ body{
 
 .main{
     display: flex;
-    flex: 2;
     background-color: lightblue;
+    width: 1208px;
 }

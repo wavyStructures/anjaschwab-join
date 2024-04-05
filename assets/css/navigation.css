@@ -1,8 +1,8 @@
 .navigation-container{
     display: flex;
     flex-direction: column;
-    flex: .5;
     width: 232px;
+    max-width: 232px;
 }
 
 .navigation-content{
