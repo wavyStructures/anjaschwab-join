@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,41 +9,58 @@
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/navigation.css">
     <link rel="stylesheet" href="./assets/css/board.css">
-    <link rel="stylesheet" href="assets/css/summary.css">
+    <!-- <link rel="stylesheet" href="assets/css/summary.css"> -->
     <link rel="stylesheet" href="assets/css/button.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/discard.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div class="board-content">
-        <div class="category">
-            <h2>To Do</h2>
-            <div class="tasks">
+    <div class="boardTopContainer">
+        <input class="searchTaskInput" type="text" onclick="searchTask()">
+    </div>
+    </div>
+    <div class="category-container">
+        <div id="categoryTodo" class="category">
+            <div class="categoryTitle">
+                <h2>To Do</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_1" class="card"></div>
                 <div draggable="true" id="task_2" class="card"></div>
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>In progress</h2>
-            <div class="tasks">
+        <div id="categoryInProgress" class="category">
+            <div class="categoryTitle">
+                <h2>In progress</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>Await feedback</h2>
-            <div class="tasks">
+        <div id="categoryAwaitFeedback" class="category">
+            <div class="categoryTitle">
+                <h2>Await feedback</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>Done</h2>
-            <div class="tasks">
-            <div draggable="true" id="task_3" class="card"></div>
+        <div id="categoryDone" class="category">
+            <div class="categoryTitle">
+                <h2>Done</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
+                <div draggable="true" id="task_3" class="card"></div>
+            </div>
         </div>
-    </div>
 </body>
+
 </html>
-    

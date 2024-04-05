@@ -1,4 +1,26 @@
-.board-content {
+.boardTopContainer{
+    background-color: lightcoral;
+    padding: 10px;
+}
+
+
+.categoryTitle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        width: 24px;
+        height: 24px;
+    }
+}
+.searchTaskInput{
+    border: none;
+    background-color: green;
+}
+
+.category-container {
     display: grid;
     width: 100%;
     flex-direction: row;
@@ -11,7 +33,7 @@
     flex-direction: column;
     padding: 5px;
     border: 2px dotted gray;
-    text-align: center;
+    text-align: left;
     flex:1;
 
     h2{
@@ -19,9 +41,9 @@
     }
 }
 
-.tasks {
+.categoryTasks {
     display: flex;
-    gap: 10px;
+    gap: 16px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -29,7 +51,8 @@
 
 .card {
     height: 200px;
-    width: 200px;
+    width: 100%;
     border-radius: 10px;
     background-color: green;
 }
+
