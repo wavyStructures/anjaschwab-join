@@ -6,7 +6,8 @@ let cards = [
         'text': 'Build start page with recipe recommendation...',
         'subtasks': 2,
         'assignedTo': ['SS','MM',"AS"],
-        'category': 'todo'
+        'category': 'todo',
+        'priority': 'low'
     },
     {
         'id': 2,
@@ -15,7 +16,8 @@ let cards = [
         'text': 'Create reusable HTML base templates...',
         'subtasks': 0,
         'assignedTo': ['SS','MM',"AS"],
-        'category': 'inProgress'
+        'category': 'inProgress',
+        'priority': 'medium'
     },
     {
         'id': 3,
@@ -24,7 +26,8 @@ let cards = [
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
         'assignedTo': ['SS'],
-        'category': 'awaitFeedback'
+        'category': 'awaitFeedback',
+        'priority': 'urgend'
     },
     {
         'id': 4,
@@ -33,7 +36,8 @@ let cards = [
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'assignedTo': ['AS'],
-        'category': 'done'
+        'category': 'done',
+        'priority': 'low'
     }
 ]
 
