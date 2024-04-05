@@ -1,0 +1,14 @@
+.square-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 204px;
+  height: 219px;
+  border: 1px solid lightgrey;
+  top: -0.5px;
+  margin-right: 32px;
+  padding: 40px 0px 0px 0px;
+  gap: 0px;
+  border-radius: 30px;
+  /* opacity: 0px; */
+}
