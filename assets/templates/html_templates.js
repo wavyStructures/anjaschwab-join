@@ -26,75 +26,75 @@ function renderHeaderHTML() {
 function renderSummaryHTML() {
   return /*html*/ `
   <div class="sub-main-summary">
-        <div class="summary-box box-shadow">
-            <div class="h1-box">
-                <h1>Good morning</h1>
-            </div>
-            <div class="line1">
-                <div class="urgentAndDate" id="urgentAndDate" onclick="loadBoard()">
-                    <div class="urgentBox">
-                        <div class="image-and-amount">
-                            <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
-                            <span>1</span>
-                        </div>
-                        <span>Tasks Urgent</span>
+    <div class="summary-box box-shadow">
+        <div class="h1-box">
+            <h1>Good morning</h1>
+        </div>
+        <div class="line1">
+            <div class="urgentAndDate" id="urgentAndDate" onclick="loadBoard()">
+                <div class="urgentBox">
+                    <div class="image-and-amount">
+                        <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
+                        <span>1</span>
                     </div>
-                    <div class="verticalSeparaterLine"></div>
-                    <div class="dateBox">
-                        <div class="date">${getDate()}</div>
-                        <span>Upcoming Deadline</span>
-                    </div>
+                    <span>Tasks Urgent</span>
                 </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
-                            <div class="amount">5</div>
-                        </div>
-                        <span>Task in Bord</span>
-                    </div>
+                <div class="verticalSeparaterLine"></div>
+                <div class="dateBox">
+                    <div class="date">${getDate()}</div>
+                    <span>Upcoming Deadline</span>
                 </div>
             </div>
-            <div class="line2">
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="./assets/img/icon-blue-todo.png" alt="todo list">
-                            <div class="amount">1</div>
-                        </div>
-                        <span>Tasks To-do</span>
+            <div class="square-button">
+                <div class="inner-square-button">
+                    <div class="image-and-amount flex">
+                        <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
+                        <div class="amount">5</div>
                     </div>
+                    <span>Task in Bord</span>
                 </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-in_progress.png" alt="rising chart">
-                            <div class="amount">2</div>
-                        </div>
-                        <span>Task in Progress</span>
+            </div>
+        </div>
+        <div class="line2">
+            <div class="square-button">
+                <div class="inner-square-button">
+                    <div class="image-and-amount flex">
+                        <img src="./assets/img/icon-blue-todo.png" alt="todo list">
+                        <div class="amount">1</div>
                     </div>
+                    <span>Tasks To-do</span>
                 </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
-                            <div class="amount">2</div>
-                        </div>
-                        <span>Awaiting Feedback</span>
+            </div>
+            <div class="square-button">
+                <div class="inner-square-button">
+                    <div class="image-and-amount flex">
+                        <img src="/assets/img/icon-blue-in_progress.png" alt="rising chart">
+                        <div class="amount">2</div>
                     </div>
+                    <span>Task in Progress</span>
                 </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
-                            <div class="amount">1</div>
-                        </div>
-                        <span>Tasks Done</span>
+            </div>
+            <div class="square-button">
+                <div class="inner-square-button">
+                    <div class="image-and-amount flex">
+                        <img src="/assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
+                        <div class="amount">2</div>
                     </div>
+                    <span>Awaiting Feedback</span>
+                </div>
+            </div>
+            <div class="square-button">
+                <div class="inner-square-button">
+                    <div class="image-and-amount flex">
+                        <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
+                        <div class="amount">1</div>
+                    </div>
+                    <span>Tasks Done</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 `;
 }
 
