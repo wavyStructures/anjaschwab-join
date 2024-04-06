@@ -26,7 +26,7 @@ let cards = [
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
         'assignedTo': ['SS'],
-        'category': 'todo',
+        'category': 'inProgress',
         'priority': 'urgend'
     },
     {
@@ -36,29 +36,31 @@ let cards = [
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'assignedTo': ['AS'],
-        'category': 'inProgress',
+        'category': 'todo',
         'priority': 'low'
     }
 ]
 
 /**
- * render Cards to each category
+ * All available cards will be filtered for the category
+ * @param {string} toFilterFor the category's name (e.g. 'done')
+ * @returns array with cards fitting category
  */
-function renderCards(){
-    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
-    let card;
-    
-    for (let i=0; i<categories.length; i++){
-        let category = categories[i];
-        let categoryContainer = document.getElementById(category);
-
-        let cardsIds = filterCardsForCategory(category);
-        console.log (category, cardsIds)
-    }
-}
-
-
 function filterCardsForCategory(toFilterFor){
     let card = cards.filter(c => c['category'] == toFilterFor);
     return card;
+}
+
+/**
+ * render the cards inside each category
+ */
+function renderCategories(){
+    let categories = ['todo','inProgress','awaitFeedback','done']
+
+    categories.forEach(category => {
+        let content = document.getElementById(category);
+        let filteredCards = cards.filter(card => card['category'] == category);
+        clearDiv(category);
+        renderCardsHTML(content, filteredCards)
+    });
 }

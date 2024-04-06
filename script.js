@@ -56,6 +56,7 @@ function renderAddTask() {
 function renderBoard() {
   let content = getDiv('main');
   content.innerHTML = renderBoardHTML();
+  renderCategories();
 }
 
 
