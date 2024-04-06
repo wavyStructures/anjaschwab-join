@@ -175,7 +175,7 @@ function renderCardsHTML(content, toDoCards) {
                 <div class="cardText">${card["text"]}</div>
                 <div class="cardSubtasks">Subtasks: ${card["subtasks"]}</div>
                 <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
-                <div class="cardPriority">${card["priority"]}</div>
+                <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
             </div>`;
 		}
 	} else {

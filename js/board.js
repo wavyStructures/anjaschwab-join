@@ -84,3 +84,10 @@ function getAssignedToButtons(arrAssignedTo){
     console.log(assignedToButtons);
     return assignedToButtons;
 }
+
+
+function setPriorityImage(cardPriority){
+    if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
+    else if (cardPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
+    else return `<img src="assets/img/icon-priority_high.png">`
+}
