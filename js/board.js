@@ -15,7 +15,7 @@ let cards = [
         'title':'HTML Base Template Creation',
         'text': 'Create reusable HTML base templates...',
         'subtasks': 0,
-        'assignedTo': ['SS','MM',"AS"],
+        'assignedTo': ['SS', 'MM', "AS"],
         'category': 'todo',
         'priority': 'medium'
     },
@@ -73,4 +73,14 @@ function renderCategories(){
         clearDiv(category);
         renderCardsHTML(content, filteredCards)
     });
+}
+
+function getAssignedToButtons(arrAssignedTo){
+    let assignedToButtons = [];
+    console.log(arrAssignedTo.length);
+    for (let i=0; i<arrAssignedTo.length; i++){
+        assignedToButtons.push(`<div class="assignedToButton">${arrAssignedTo[i]}</div>`)
+    }
+    console.log(assignedToButtons);
+    return assignedToButtons;
 }

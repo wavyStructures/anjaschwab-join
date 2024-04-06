@@ -170,7 +170,12 @@ function renderCardsHTML(content, toDoCards) {
 		for (let i = 0; i < toDoCards.length; i++) {
 			let card = toDoCards[i];
 			content.innerHTML += /*html*/`<div draggable="true" id="${card["id"]}" class="card">
+                <div class="cardType">${card["type"]}</div>
                 <div class="cardTitle">${card["title"]}</div>
+                <div class="cardText">${card["text"]}</div>
+                <div class="cardSubtasks">Subtasks: ${card["subtasks"]}</div>
+                <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
+                <div class="cardPriority">${card["priority"]}</div>
             </div>`;
 		}
 	} else {
