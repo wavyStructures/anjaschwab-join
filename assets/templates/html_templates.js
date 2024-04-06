@@ -1,15 +1,14 @@
-function renderNavigationHTML(){
-    return `<div class="navigation-content">
+function renderNavigationHTML() {
+  return `<div class="navigation-content">
     <div id="summary" class="nav-btn" onclick="renderSummary()"><img src="./assets/img/icon-summary.png" alt="summary">Summary</div>
     <div id="addTask" class="nav-btn" onclick="renderAddTask()"><img src="./assets/img/icon-addTask.png" alt="add task">Add Task</div>
     <div id="board" class="nav-btn" onclick="renderBoard()"><img src="./assets/img/icon-board.png" alt="board">Board</div>
     <div id="contacts" class="nav-btn" onclick="renderContacts()"><img src="./assets/img/icon-contacts.png" alt="contacts">Contacts</div>
-</div>`
+</div>`;
 }
 
-
-function renderHeaderHTML(){
-    return `<div class="header-content">
+function renderHeaderHTML() {
+  return `<div class="header-content">
         <img src="/assets/img/logo-small_white.png" alt="join-logo">
         <div class="header-inner-right">
             <span>Kanban Project Management Tool</span>
@@ -21,18 +20,18 @@ function renderHeaderHTML(){
                 </text>
             </svg>
         </div>
-    </div>`
+    </div>`;
 }
 
-
-function renderSummaryHTML(){
-    return /*html*/`
+function renderSummaryHTML() {
+  return /*html*/ `
+    <div class="sub-main-summary">    
         <div class="summary-box box-shadow">
-                <div class="h1-box">
-                    <h1>Good morning</h1>
-                </div>
+            <div class="h1-box">
+                <h1>Good morning</h1>
+            </div>
                 <div class="line1">
-                    <div class="urgentAndDate" id="urgentAndDate">
+                    <div class="urgentAndDate" id="urgentAndDate" onclick="renderBoard()">
                         <div class="urgentBox">
                             <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
                             <span>1</span>
@@ -93,17 +92,16 @@ function renderSummaryHTML(){
                     </div>
                 </div>
             </div>
-    `
+        </div>
+    `;
 }
 
-
-function renderAddTaskHTML(){
-    return /*html*/`<div class="addTask-content">Content Of AddTask</div>`
+function renderAddTaskHTML() {
+  return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
 }
-
 
 function renderBoardHTML() {
-	return /*html*/ `
+  return /*html*/ `
     <div class="board-content">
         <div class="category">
             <h2>To Do</h2>
@@ -133,7 +131,6 @@ function renderBoardHTML() {
     </div>`;
 }
 
-
-function renderContactsHTML(){
-    return /*html*/`<div class="contacts-content">Content Of Contacts</div>`
+function renderContactsHTML() {
+  return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 }

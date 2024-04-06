@@ -1,28 +1,29 @@
-:root{
-    --clr-main: #4589ff;
-    --clr-text-menu: #42526e;
-    --clr-text-menu-hover: #e3eeff;
+:root {
+  --clr-main: #4589ff;
+  --clr-text-menu: #42526e;
+  --clr-text-menu-hover: #e3eeff;
 }
 
-*{
-    margin: 0;
-    box-sizing: border-box;
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-body{
-    margin: 0 auto auto 0;
-    max-width: 1440px;
+body {
+  margin: 0 auto auto 0;
+  max-width: 1440px;
 }
 
-.main-wrapper{
-    display: flex;
-    flex-direction: row;
-    height: calc(100vh - 100px);
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 100px);
 }
 
-.main{
-    display: flex;
-    background-color: lightblue;
-    width: 1208px;
+.main {
+  display: flex;
+  background-color: lightblue;
+  width: 1208px;
 }

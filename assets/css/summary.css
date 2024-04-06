@@ -20,8 +20,14 @@
   position: relative;
 }
 
+.sub-main-summary {
+  display: grid;
+  place-items: center;
+  align-items: center;
+}
+
 .summary-box {
-  position: absolute;
+  /* position: absolute; */
   background-color: rgba(39, 134, 22, 0.4);
   width: 912px;
   height: 591px;
@@ -67,6 +73,14 @@ h1 {
 
 .inner-square-button {
   display: inline-grid;
+}
+
+.urgentAndDate {
+  background-color: var(--clr-main);
+  border-radius: 30px;
+  padding: 28px 48px;
+  gap: 35px;
+  cursor: pointer;
 }
 
 .amount {
