@@ -1,12 +1,16 @@
-let today = new Date();
-let options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-};
-let formattedDate = today.toLocaleDateString("en-US", options);
+/**
+ * get the actual date
+ * @returns English (US) formatted Date
+ */
+function getDate(){
+    let today = new Date();
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
 
-document.querySelector('.date').textContent = formattedDate;
-
+    return today.toLocaleDateString("en-US", options);;
+  }
 
 
