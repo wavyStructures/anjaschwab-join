@@ -71,16 +71,28 @@ h1 {
   margin-right: 0;
 }
 
-.inner-square-button {
+.square-button {
+  background-color: #fff;
   display: inline-grid;
+  align-content: center;
 }
 
 .urgentAndDate {
   background-color: var(--clr-main);
+  height: 191px;
+  width: 672px;
   border-radius: 30px;
   padding: 28px 48px;
   gap: 35px;
   cursor: pointer;
+  color: #fff;
+}
+
+.date {
+  font: open sans;
+  font-weight: 700;
+  font-size: 33px;
+  color: #fff;
 }
 
 .amount {
@@ -94,6 +106,7 @@ h1 {
 }
 
 .inner-square-button span {
+  color: var(--clr-main);
   font-family: Open Sans;
   font-size: 23px;
   font-weight: 400;
