@@ -1,3 +1,6 @@
+/**
+ * the init-function in body onload
+ */
 async function init() {
   renderHeader();
   renderNavigation();
@@ -22,44 +25,61 @@ async function includeHTML() {
   }
 }
 
-
+/**
+ * 
+ * @param {string} id id eines divs
+ * @returns div with given id
+ */
 function getDiv(id) {
   let content = document.getElementById(id);
   return content;
 }
 
-
+/**
+ * rendering the navigation on on the left side 
+ */
 function renderNavigation() {
   let content = getDiv('navigation-container');
   content.innerHTML = renderNavigationHTML();
 }
 
-
+/**
+ * rendering the header
+ */
 function renderHeader() {
   let content = getDiv('header');
   content.innerHTML = renderHeaderHTML();
 }
 
-
+/**
+ * rendering the summary-page
+ */
 function renderSummary() {
   let content = getDiv('main');
   content.innerHTML = renderSummaryHTML();
 }
 
-
+/**
+ * rendering the addTask-page
+ */
 function renderAddTask() {
   let content = getDiv('main');
   content.innerHTML = renderAddTaskHTML();
 }
 
-
+/**
+ * rendering the board-page,
+ * calling renderCategories to render all available tasks to each category
+ */
 function renderBoard() {
   let content = getDiv('main');
   content.innerHTML = renderBoardHTML();
   renderCategories();
 }
 
-
+/**
+ * rendering contacts-page
+ */
 function renderContacts() {
   let content = getDiv('main');
   content.innerHTML = renderContactsHTML();

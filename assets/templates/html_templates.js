@@ -7,6 +7,7 @@ function renderNavigationHTML() {
 </div>`;
 }
 
+
 function renderHeaderHTML() {
   return `<div class="header-content">
         <img src="/assets/img/logo-small_white.png" alt="join-logo">
@@ -22,6 +23,7 @@ function renderHeaderHTML() {
         </div>
     </div>`;
 }
+
 
 function renderSummaryHTML() {
   return /*html*/ `
@@ -98,9 +100,11 @@ function renderSummaryHTML() {
 `;
 }
 
+
 function renderAddTaskHTML() {
   return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
 }
+
 
 function renderBoardHTML() {
   return /*html*/ `

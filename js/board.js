@@ -38,6 +38,16 @@ let cards = [
         'assignedTo': ['AS'],
         'category': 'todo',
         'priority': 'low'
+    },
+    {
+        'id': 5,
+        'type':'Technical Task',
+        'title':'Cooking lunch',
+        'text': 'Define CSS naming conventions and structure...',
+        'subtasks': 0,
+        'assignedTo': ['MM'],
+        'category': 'done',
+        'priority': 'low'
     }
 ]
 
