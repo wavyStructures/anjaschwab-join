@@ -1,0 +1,75 @@
+.main {
+    font-family: OpenSans, sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+
+}
+
+.contacts-container {
+    margin-left: 232px;
+    margin-top: 96px;
+    width: 456px;
+    height: 928px;
+    align-items: center;
+    justify-content: center;
+    /* animation: moveInRight 100ms ease-out forwards; */
+}
+
+/* onclick Add new Contact */
+@keyframes moveInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 100ms ease-out, right 100ms ease-out;
+}
+
+.overlay.show {
+    opacity: 1;
+} */
+
+.button-add-contact-card {
+    display: flex;
+    width: 456px;
+    padding: 32px 24px 16px 24px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button-add-contact {
+    display: flex;
+    width: 357px;
+    height: 56px;
+    border: 1px;
+    border-radius: 10px;
+    border-color: #4589FF;
+    padding: 16px 10px 16px 10px;
+    background-color: #4589FF;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-add-contact img {
+    width: 32px;
+    height: 32px;
+}
+
+.add-new-contact {
+    color: white;
+    line-height: 27.6px;
+    font-weight: 400;
+    font-size: 23px;
+}
