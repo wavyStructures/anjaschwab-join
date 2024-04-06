@@ -153,6 +153,7 @@ function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 }
 
-function renderCardsHTML() {
-  console.log("aktualisiert!");
+function renderCardsHTML(category){
+    console.log("CATEGORY: ", category.innerHTML)
+    document.getElementById(category).innerHTML += /*html*/`<div draggable="true" id="task_1" class="card"></div>`
 }

@@ -1,3 +1,8 @@
+.board-Container{
+    display: flex;
+    flex-direction: column;
+}
+
 .boardTopContainer{
     background-color: lightcoral;
     padding: 10px;

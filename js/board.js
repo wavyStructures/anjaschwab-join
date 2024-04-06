@@ -16,7 +16,7 @@ let cards = [
         'text': 'Create reusable HTML base templates...',
         'subtasks': 0,
         'assignedTo': ['SS','MM',"AS"],
-        'category': 'inProgress',
+        'category': 'todo',
         'priority': 'medium'
     },
     {
@@ -26,7 +26,7 @@ let cards = [
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
         'assignedTo': ['SS'],
-        'category': 'awaitFeedback',
+        'category': 'todo',
         'priority': 'urgend'
     },
     {
@@ -36,7 +36,7 @@ let cards = [
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'assignedTo': ['AS'],
-        'category': 'done',
+        'category': 'inProgress',
         'priority': 'low'
     }
 ]
@@ -45,16 +45,21 @@ let cards = [
  * render Cards to each category
  */
 function renderCards(){
-    let categories = ['categoryTodo', 'categoryInProgress', 'categoryAwaitFeedback', 'categoryDone'];
+    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
     
     categories.forEach(c => {
         let category = document.getElementById(c);
         let cardsInCategorie = filterCardsForCategory(c);
         category.innerHTML = "";
-        cardsInCategorie.forEach(card => category.innerHTML += renderCardsHTML())
+
+        for(let i=0; i<cardsInCategorie; i++){
+  
+        }
+        // cardsInCategorie.forEach(card => category.innerHTML += renderCardsHTML(c))
     });
 }
 
 function filterCardsForCategory(toFilterFor){
-    return cards.filter(c => c['category'] == toFilterFor);
+    let card = cards.filter(c => c['category'] == toFilterFor);
+    return card;
 }
