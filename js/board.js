@@ -46,18 +46,17 @@ let cards = [
  */
 function renderCards(){
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    let card;
     
-    categories.forEach(c => {
-        let category = document.getElementById(c);
-        let cardsInCategorie = filterCardsForCategory(c);
-        category.innerHTML = "";
+    for (let i=0; i<categories.length; i++){
+        let category = categories[i];
+        let categoryContainer = document.getElementById(category);
 
-        for(let i=0; i<cardsInCategorie; i++){
-  
-        }
-        // cardsInCategorie.forEach(card => category.innerHTML += renderCardsHTML(c))
-    });
+        let cardsIds = filterCardsForCategory(category);
+        console.log (category, cardsIds)
+    }
 }
+
 
 function filterCardsForCategory(toFilterFor){
     let card = cards.filter(c => c['category'] == toFilterFor);
