@@ -41,7 +41,20 @@ let cards = [
     }
 ]
 
+/**
+ * render Cards to each category
+ */
+function renderCards(category, filteredCards){
+    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    categories.forEach(c => {
+        let categorie = document.getElementById(c);
+        let cardsInCategorie = filterCardsForCategory(c);
+        categorie.innerHTML = "";
 
-function renderCards(){
-    
+        cardsInCategorie.forEach(card => categorie.innerHTML += renderCardsHTML())
+    });
+}
+
+function filterCardsForCategory(toFilterFor){
+    return cards.filter(c => c['category'] == toFilterFor);
 }
