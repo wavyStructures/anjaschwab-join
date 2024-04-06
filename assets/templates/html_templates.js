@@ -35,7 +35,7 @@ function renderSummaryHTML() {
                 <div class="urgentBox">
                     <div class="image-and-amount">
                         <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
-                        <span>1</span>
+                        <span class="amount">1</span>
                     </div>
                     <span>Tasks Urgent</span>
                 </div>
@@ -153,6 +153,6 @@ function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 }
 
-function renderCardsHTML(){
-    console.log('aktualisiert!')
+function renderCardsHTML() {
+  console.log("aktualisiert!");
 }
