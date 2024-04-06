@@ -31,7 +31,7 @@ function renderSummaryHTML() {
             <h1>Good morning</h1>
         </div>
         <div class="line1">
-            <div class="urgentAndDate" id="urgentAndDate" onclick="loadBoard()">
+            <div class="urgentAndDate" id="urgentAndDate">
                 <div class="urgentBox">
                     <div class="image-and-amount">
                         <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
