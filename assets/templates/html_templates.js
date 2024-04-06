@@ -104,35 +104,55 @@ function renderAddTaskHTML() {
 
 function renderBoardHTML() {
   return /*html*/ `
-    <div class="board-content">
-        <div class="category">
-            <h2>To Do</h2>
-            <div class="tasks">
+    <div class="boardTopContainer">
+        <input class="searchTaskInput" type="text" onclick="searchTask()">
+    </div>
+    </div>
+    <div class="category-container">
+        <div id="categoryTodo" class="category">
+            <div class="categoryTitle">
+                <h2>To Do</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_1" class="card"></div>
                 <div draggable="true" id="task_2" class="card"></div>
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>In progress</h2>
-            <div class="tasks">
+        <div id="categoryInProgress" class="category">
+            <div class="categoryTitle">
+                <h2>In progress</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>Await feedback</h2>
-            <div class="tasks">
+        <div id="categoryAwaitFeedback" class="category">
+            <div class="categoryTitle">
+                <h2>Await feedback</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
                 <div draggable="true" id="task_3" class="card"></div>
             </div>
         </div>
-        <div class="category">
-            <h2>Done</h2>
-            <div class="tasks">
-            <div draggable="true" id="task_3" class="card"></div>
-        </div>
-    </div>`;
+        <div id="categoryDone" class="category">
+            <div class="categoryTitle">
+                <h2>Done</h2>
+                <img src="./assets/img/icon-plus button.png">
+            </div>
+            <div class="categoryTasks">
+                <div draggable="true" id="task_3" class="card"></div>
+            </div>
+        </div>`;
 }
 
 function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
+}
+
+function renderCardsHTML(){
+    console.log('aktualisiert!')
 }

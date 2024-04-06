@@ -44,14 +44,14 @@ let cards = [
 /**
  * render Cards to each category
  */
-function renderCards(category, filteredCards){
-    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+function renderCards(){
+    let categories = ['categoryTodo', 'categoryInProgress', 'categoryAwaitFeedback', 'categoryDone'];
+    
     categories.forEach(c => {
-        let categorie = document.getElementById(c);
+        let category = document.getElementById(c);
         let cardsInCategorie = filterCardsForCategory(c);
-        categorie.innerHTML = "";
-
-        cardsInCategorie.forEach(card => categorie.innerHTML += renderCardsHTML())
+        category.innerHTML = "";
+        cardsInCategorie.forEach(card => category.innerHTML += renderCardsHTML())
     });
 }
 
