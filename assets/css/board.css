@@ -22,7 +22,7 @@
 }
 .searchTaskInput{
     border: none;
-    background-color: green;
+    background-color: red;
 }
 
 .category-container {
@@ -58,6 +58,9 @@
     height: 200px;
     width: 100%;
     border-radius: 10px;
-    background-color: green;
+    background-color: yellow;
 }
 
+.assignedToButton{
+    background-color: red;
+}
