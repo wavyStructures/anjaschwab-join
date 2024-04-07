@@ -15,59 +15,72 @@
     <link rel="stylesheet" href="assets/css/discard.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
 
+    <script src="script.js"></script>
     <script src="js/board.js"></script>
+    <script src="js/helper.js"></script>
     <script src="assets/templates/html_templates.js"></script>
 
 
     <title>Board</title>
 </head>
 
-<body>
+<body onload="renderCategories()">
     <div class="board-Container">
         <div class="boardTopContainer">
-            <input class="searchTaskInput" type="text" onclick="searchTask()">
+            <div class="searchTaskContainer">
+                <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text"
+                        onclick="searchTask()">
+                    <div class="searchImg"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="category-container">
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>To Do</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="todo" class="categoryTasks">
+                    <div draggable="true" id="task_1" class="card"></div>
+                    <div draggable="true" id="task_2" class="card"></div>
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
+            </div>
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>In progress</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="inProgress" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
+            </div>
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>Await feedback</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="awaitFeedback" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
+            </div>
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>Done</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="done" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="category-container">
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>To Do</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="todo" class="categoryTasks">
-                <div draggable="true" id="task_1" class="card"></div>
-                <div draggable="true" id="task_2" class="card"></div>
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
-        </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>In progress</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="inProgress" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
-        </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>Await feedback</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="awaitFeedback" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
-        </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>Done</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="done" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
-        </div>
-    </div>
+
+
+    <script>
+        let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+        categories.forEach(c => document.getElementById(c).innerHTML = '');
+    </script>
 </body>
 
 </html>

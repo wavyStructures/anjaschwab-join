@@ -112,45 +112,44 @@ function renderBoardHTML() {
 	return /*html*/ `
     <div class="board-Container">
         <div class="boardTopContainer">
-            <input class="searchTaskInput" type="text" onclick="searchTask()">
+            <div class="searchTaskContainer">
+                <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text">
+                    <div class="searchImg" onclick="searchTask()"> </div>
+                </div>
+            </div>
         </div>
         <div class="category-container">
             <div class="category">
                 <div class="categoryTitle">
                     <h2>To Do</h2>
-                    <img src="./assets/img/icon-plus_button.png">
+                    <div class="addTaskButton" onclick="addTask('todo')"></div>
                 </div>
                 <div id="todo" class="categoryTasks">
-                    <div draggable="true" id="task_1" class="card"></div>
-                    <div draggable="true" id="task_2" class="card"></div>
-                    <div draggable="true" id="task_3" class="card"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>In progress</h2>
-                    <img src="./assets/img/icon-plus_button.png">
-                </div>
-                <div id="inProgress" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
+                <div class="category">
+                    <div class="categoryTitle">
+                        <h2>In progress</h2>
+                        <div class="addTaskButton" onclick="addTask('inProgress')"></div>
+                    </div>
+                    <div id="inProgress" class="categoryTasks">
+
                 </div>
             </div>
             <div class="category">
                 <div class="categoryTitle">
                     <h2>Await feedback</h2>
-                    <img src="./assets/img/icon-plus_button.png">
+                    <div class="addTaskButton" onclick="addTask('awaitFeedback')"></div>
                 </div>
                 <div id="awaitFeedback" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
                 </div>
             </div>
             <div class="category">
                 <div class="categoryTitle">
                     <h2>Done</h2>
-                    <img src="./assets/img/icon-plus_button.png">
+                    <div class="addTaskButton" onclick="addTask('done')"></div>
                 </div>
                 <div id="done" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
                 </div>
             </div>
         </div>
@@ -162,26 +161,26 @@ function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 }
 
+
 /**
  *
  * @param {object} content the div the cards will be rendered in
- * @param {array} toDoCards JSON of cards (fitting to the category)
+ * @param {array} categoryCards JSON of cards (fitting to the category)
  */
-function renderCardsHTML(content, toDoCards) {
+function renderCardsHTML(content, categoryCards) {
 
-  if (toDoCards.length != 0) {
-    for (let i = 0; i < toDoCards.length; i++) {
-      let card = toDoCards[i];
-      content.innerHTML += /*html*/ `<div draggable="true" id="${card["id"]}" class="card">
-                <div class="cardType">${card["type"]}</div>
-                <div class="cardTitle">${card["title"]}</div>
-                <div class="cardText">${card["text"]}</div>
-                <div class="cardSubtasks">Subtasks: ${card["subtasks"]}</div>
-                <div class="cardAssignedTo">Assigned To: ${
-                  card["assignedTo"]
-                }</div>
-                <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
-            </div>`;
+  if (categoryCards.length != 0) {
+    for (let i = 0; i < categoryCards.length; i++) {
+      let card = categoryCards[i];
+      content.innerHTML += /*html*/ `
+        <div draggable="true" id="${card["id"]}" class="card">
+            <div class="cardType">${card["type"]}</div>
+            <div class="cardTitle">${card["title"]}</div>
+            <div class="cardText">${card["text"]}</div>
+            <div class="cardSubtasks">${renderSubtaskBar(card)}Subtasks: ${card["subtasks"]}</div>
+            <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
+            <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+        </div>`;
     }
   } else {
     content.innerHTML += `<div class="emptyCategory">Nothing to do</div>`;
