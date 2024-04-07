@@ -86,7 +86,7 @@ function createContactCard(main, color, initials, name, mail) {
 
 function generateContactCardHTML(color, initials, name, mail, shorterMail) {
     return `
-        <div class="contact-list">
+        <div class="contact-card choosenContact" id="contact-card">
             <div class="profile-badge-group" style="background-color: ${color};">${initials}</div>
             <div class="">
                 <span class="contact-card-name">${name}</span><br>
