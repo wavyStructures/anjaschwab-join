@@ -37,17 +37,16 @@
                     <div class="parting-line-container" id="parting-line-container">
                         <div class="parting-line" id="parting-line"></div>
                     </div>
-                    <div class="contact-card" id="contact-card">
+                    <div class="contact-card choosenContact" id="contact-card">
                         <div class="profile-badge" id="profile-badge">
-                            <div class="profile-badge-icon" id="profile-badge-icon">
-                                <div class="profile-initials" id="profile-initials">AM</div>
-                                <div class="badge" id="badge"></div>
+                            <div class="profile-badge-group profileBadgeChoosen" id="profile-badge-icon">
+                                AM
                             </div>
                 
                         </div>
                         <div class="contact-card-overview" id="contact-card-overview">
-                            <div class="contact-card-name" id="contact-card-name">Anton Mayer</div>
-                            <div class="contact-card-email" id="contact-card-email">antom@gmail.com</div>
+                            <div class="contact-card-name choosenContact" id="contact-card-name">Anton Mayer</div>
+                            <div class="contact-card-email choosenContact" id="contact-card-email">antom@gmail.com</div>
                         </div>
                     </div>
                 </div>
