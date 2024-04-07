@@ -1,0 +1,16 @@
+.login-page {
+  padding: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 500px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}

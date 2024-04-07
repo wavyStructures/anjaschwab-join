@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/button.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <script src="script.js"></script>
     <title>Register</title>
 </head>
+
 <body>
-    
+
+    <div class="login-page">
+
+
+        <div class="login-box">
+            <form action="">
+                <div class="loginEmailBox">
+                    <input type="email" id="loginEmailInput" placeholder="Email">
+                    <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                </div>
+
+                <div class="loginPasswordBox">
+                    <input type="password" id="loginPasswordInput" placeholder="Password">
+                    <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                </div>
+
+                <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
+                <input type="submit" value="Login" onclick="lsRememberMe()">
+
+
+                Log in
+
+                Guest log in
+
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
 </body>
+
 </html>
