@@ -7,7 +7,6 @@ function renderNavigationHTML() {
 </div>`;
 }
 
-
 function renderHeaderHTML() {
   return `<div class="header-content">
         <img src="/assets/img/logo-small_white.png" alt="join-logo">
@@ -24,18 +23,21 @@ function renderHeaderHTML() {
     </div>`;
 }
 
-
 function renderSummaryHTML() {
   return /*html*/ `
   <div class="sub-main-summary">
     <div class="summary-box box-shadow">
-        <div class="h1-box">
-            <h1>Good morning</h1>
+        <div id="h1GreetingUser" class="h1-box">
+            <h1 class="no-wrap">Good morning,</h1>
+            <h1 id="usernameForGreeting">Sofia XXX</h1>
+        </div>
+        <div id="h1GreetingGuest" class="h1-box" style="display: none;">
+            <h1 class="no-wrap">Good morning</h1>
         </div>
         <div class="line1">
             <div class="urgentAndDate" id="urgentAndDate">
                 <div class="urgentBox">
-                    <div class="image-and-amount">
+                    <div class="image-and-amount flex">
                         <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
                         <span class="amount">1</span>
                     </div>
@@ -53,7 +55,7 @@ function renderSummaryHTML() {
                         <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
                         <div class="amount">5</div>
                     </div>
-                    <span>Task in Bord</span>
+                    <span>Task in Board</span>
                 </div>
             </div>
         </div>
@@ -64,7 +66,7 @@ function renderSummaryHTML() {
                         <img src="./assets/img/icon-blue-todo.png" alt="todo list">
                         <div class="amount">1</div>
                     </div>
-                    <span>Tasks To-do</span>
+                    <span class="no-wrap">Tasks To-do</span>
                 </div>
             </div>
             <div class="square-button">
@@ -91,20 +93,19 @@ function renderSummaryHTML() {
                         <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
                         <div class="amount">1</div>
                     </div>
-                    <span>Tasks Done</span>
+                    <span>Tasks<br>Done</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 `;
 }
-
 
 function renderAddTaskHTML() {
   return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
 }
-
 
 function renderBoardHTML() {
   return /*html*/ `
@@ -159,26 +160,31 @@ function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 }
 
-
 /**
- * 
+ *
  * @param {object} content the div the cards will be rendered in
  * @param {array} toDoCards JSON of cards (fitting to the category)
  */
 function renderCardsHTML(content, toDoCards) {
-	if (toDoCards.length != 0) {
-		for (let i = 0; i < toDoCards.length; i++) {
-			let card = toDoCards[i];
-			content.innerHTML += /*html*/`<div draggable="true" id="${card["id"]}" class="card">
+  if (toDoCards.length != 0) {
+    for (let i = 0; i < toDoCards.length; i++) {
+      let card = toDoCards[i];
+      content.innerHTML += /*html*/ `<div draggable="true" id="${
+        card["id"]
+      }" class="card">
                 <div class="cardType">${card["type"]}</div>
                 <div class="cardTitle">${card["title"]}</div>
                 <div class="cardText">${card["text"]}</div>
                 <div class="cardSubtasks">Subtasks: ${card["subtasks"]}</div>
-                <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
-                <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+                <div class="cardAssignedTo">Assigned To: ${
+                  card["assignedTo"]
+                }</div>
+                <div class="cardPriority">${setPriorityImage(
+                  card["priority"]
+                )}</div>
             </div>`;
-		}
-	} else {
-		content.innerHTML += `<div class="emptyCategory">Nothing to do</div>`;
-	}
+    }
+  } else {
+    content.innerHTML += `<div class="emptyCategory">Nothing to do</div>`;
+  }
 }

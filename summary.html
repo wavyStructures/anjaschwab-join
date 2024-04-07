@@ -16,19 +16,23 @@
 <body>
     <div class="sub-main-summary">
         <div class="summary-box box-shadow">
-            <div class="h1-box">
-                <h1>Good morning</h1>
+            <div id="h1GreetingUser" class="h1-box">
+                <h1 class="no-wrap">Good morning,</h1>
+                <h1 id="usernameForGreeting">Sofia XXX</h1>
+            </div>
+            <div id="h1GreetingGuest" class="h1-box" style="display: none;">
+                <h1 class="no-wrap">Good morning</h1>
             </div>
             <div class="line1">
                 <div class="urgentAndDate" id="urgentAndDate">
                     <div class="urgentBox">
-                        <div class="image-and-amount">
+                        <div class="image-and-amount flex">
                             <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
                             <span class="amount">1</span>
                         </div>
                         <span>Tasks Urgent</span>
                     </div>
-                    <div class="verticalSeparatorLine"></div>
+                    <div class="verticalSeparaterLine"></div>
                     <div class="dateBox">
                         <div class="date">${getDate()}</div>
                         <span>Upcoming Deadline</span>
@@ -40,7 +44,7 @@
                             <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
                             <div class="amount">5</div>
                         </div>
-                        <span>Task in Bord</span>
+                        <span>Task in Board</span>
                     </div>
                 </div>
             </div>
@@ -51,7 +55,7 @@
                             <img src="./assets/img/icon-blue-todo.png" alt="todo list">
                             <div class="amount">1</div>
                         </div>
-                        <span>Tasks To-do</span>
+                        <span class="no-wrap">Tasks To-do</span>
                     </div>
                 </div>
                 <div class="square-button">
@@ -78,15 +82,12 @@
                             <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
                             <div class="amount">1</div>
                         </div>
-                        <span>Tasks Done</span>
+                        <span>Tasks<br>Done</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
 </body>
 
