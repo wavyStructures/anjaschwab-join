@@ -27,25 +27,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 450px;
-  height: 500px;
   border: 1px solid grey;
   border-radius: 30px;
+  width: fit-content;
   /* top: 266.5px;
   left: 394px; */
-  padding: 48px 115px 48px 115px;
+  padding: 48px 115px;
   gap: 39px;
 }
 
 .h1LoginBox {
-  width: 315px;
+  width: 422px;
   display: flex;
   justify-content: center;
 }
 
 .loginH1 {
   font-size: 48px;
-  font-weight: 700px;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 16px;
 }
@@ -75,6 +74,25 @@
 
 .loginButtons {
   border: none;
+  border-radius: 8px;
+  padding: 10px 35px;
+  gap: 10px;
+  font-size: 23px;
+}
+
+.loginButtonUser,
+.signUpButton {
+  color: #fff;
+  background-color: var(--clr-main);
+}
+
+.loginButtonGuest {
+  color: #647188;
+  margin-left: 35px;
+}
+#rememberMe {
+  margin-top: 20px;
+  margin-bottom: 39px; /*TODO checkbox color or png*/
 }
 
 .loginFooter {
@@ -82,5 +100,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-top: 188, 8px;
   margin-bottom: 42.7px;
 }
