@@ -107,54 +107,56 @@ function renderAddTaskHTML() {
   return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
 }
 
+
 function renderBoardHTML() {
-  return /*html*/ `
+	return /*html*/ `
     <div class="board-Container">
-    <div class="boardTopContainer">
-        <input class="searchTaskInput" type="text" onclick="searchTask()">
-    </div>
-    </div>
-    <div class="category-container">
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>To Do</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="todo" class="categoryTasks">
-                <div draggable="true" id="task_1" class="card"></div>
-                <div draggable="true" id="task_2" class="card"></div>
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
+        <div class="boardTopContainer">
+            <input class="searchTaskInput" type="text" onclick="searchTask()">
         </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>In progress</h2>
-                <img src="./assets/img/icon-plus button.png">
+        <div class="category-container">
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>To Do</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="todo" class="categoryTasks">
+                    <div draggable="true" id="task_1" class="card"></div>
+                    <div draggable="true" id="task_2" class="card"></div>
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
             </div>
-            <div id="inProgress" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>In progress</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="inProgress" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
             </div>
-        </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>Await feedback</h2>
-                <img src="./assets/img/icon-plus button.png">
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>Await feedback</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="awaitFeedback" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
             </div>
-            <div id="awaitFeedback" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
-            </div>
-        </div>
-        <div class="category">
-            <div class="categoryTitle">
-                <h2>Done</h2>
-                <img src="./assets/img/icon-plus button.png">
-            </div>
-            <div id="done" class="categoryTasks">
-                <div draggable="true" id="task_3" class="card"></div>
+            <div class="category">
+                <div class="categoryTitle">
+                    <h2>Done</h2>
+                    <img src="./assets/img/icon-plus_button.png">
+                </div>
+                <div id="done" class="categoryTasks">
+                    <div draggable="true" id="task_3" class="card"></div>
+                </div>
             </div>
         </div>
     </div>`;
 }
+
 
 function renderContactsHTML() {
   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
@@ -166,12 +168,11 @@ function renderContactsHTML() {
  * @param {array} toDoCards JSON of cards (fitting to the category)
  */
 function renderCardsHTML(content, toDoCards) {
+
   if (toDoCards.length != 0) {
     for (let i = 0; i < toDoCards.length; i++) {
       let card = toDoCards[i];
-      content.innerHTML += /*html*/ `<div draggable="true" id="${
-        card["id"]
-      }" class="card">
+      content.innerHTML += /*html*/ `<div draggable="true" id="${card["id"]}" class="card">
                 <div class="cardType">${card["type"]}</div>
                 <div class="cardTitle">${card["title"]}</div>
                 <div class="cardText">${card["text"]}</div>
@@ -179,9 +180,7 @@ function renderCardsHTML(content, toDoCards) {
                 <div class="cardAssignedTo">Assigned To: ${
                   card["assignedTo"]
                 }</div>
-                <div class="cardPriority">${setPriorityImage(
-                  card["priority"]
-                )}</div>
+                <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
             </div>`;
     }
   } else {

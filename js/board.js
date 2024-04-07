@@ -70,7 +70,7 @@ function renderCategories(){
     categories.forEach(category => {
         let content = document.getElementById(category);
         let filteredCards = cards.filter(card => card['category'] == category);
-        clearDiv(category);
+        
         renderCardsHTML(content, filteredCards)
     });
 }
