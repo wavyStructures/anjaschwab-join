@@ -157,9 +157,9 @@ function renderBoardHTML() {
 }
 
 
-function renderContactsHTML() {
-  return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
-}
+// function renderContactsHTML() {
+//   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
+// }
 
 
 /**

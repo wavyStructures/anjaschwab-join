@@ -81,8 +81,7 @@ function renderBoard() {
  * rendering contacts-page
  */
 function renderContacts() {
-  let content = getDiv('main');
-  content.innerHTML = renderContactsHTML();
+  loadContacts();
 }
 
 

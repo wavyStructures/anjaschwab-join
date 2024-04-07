@@ -112,32 +112,23 @@
     display: flex;
     border-radius: 45px;
     gap: 10px;
-}
-
-.profile-badge-icon {
-    height: 42px;
-    width: 42px;
-    border: 2px;
-    border-color: #FFFFFF;
-}
-
-.profile-initials {
-    width: 28px;
-    height: 10px;
-    padding-left: 7px;
-    padding-top: 16px;
     align-items: center;
-    /* font-family: inter; */
-    line-height: 14.4px;
-    color: #FFFFFF;
 }
 
-.badge {
-    height: 42px;
-    width: 42px;
-    border: 2px;
-    background-color: #FF7A00;
-    /* Inner alignment?? laut figma Ellipse 5 contactname/profile_badge/group9 */
+.profileBadgeChoosen {
+    border-color: white;
+}
+
+.profile-badge-group {
+    display: flex;
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    color: white;
+    font-size: 12px;
+    background-color: #FF7A00; /*Platzhalter, noch zu löschen*/
 }
 
 .contact-card-overview {
@@ -153,4 +144,10 @@
     font-size: 16px;
     line-height: 19.2px;
     color: #4589FF;
+}
+
+.choosenContact {
+    background-color: #4589FF;
+    color: white;
+    
 }
