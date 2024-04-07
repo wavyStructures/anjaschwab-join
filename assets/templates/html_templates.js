@@ -112,7 +112,9 @@ function renderBoardHTML() {
 	return /*html*/ `
     <div class="board-Container">
         <div class="boardTopContainer">
-            <input class="searchTaskInput" type="text" onclick="searchTask()">
+            <div class="searchTaskContainer">
+                <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text" onclick="searchTask()"><div class="searchImg"> </div></div>
+            </div>
         </div>
         <div class="category-container">
             <div class="category">
