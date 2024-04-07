@@ -38,7 +38,7 @@ function renderSummaryHTML() {
             <div class="urgentAndDate" id="urgentAndDate">
                 <div class="urgentBox">
                     <div class="image-and-amount flex">
-                        <img src="./assets/img/icon-blue-urgent_clock.png" alt="clock symbol" class="white-border">
+                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol"
                         <span class="amount">1</span>
                     </div>
                     <span>Tasks Urgent</span>
@@ -107,9 +107,8 @@ function renderAddTaskHTML() {
   return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
 }
 
-
 function renderBoardHTML() {
-	return /*html*/ `
+  return /*html*/ `
     <div class="board-Container">
         <div class="boardTopContainer">
             <div class="searchTaskContainer">
@@ -156,11 +155,9 @@ function renderBoardHTML() {
     </div>`;
 }
 
-
 // function renderContactsHTML() {
 //   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
 // }
-
 
 /**
  *
@@ -168,7 +165,6 @@ function renderBoardHTML() {
  * @param {array} categoryCards JSON of cards (fitting to the category)
  */
 function renderCardsHTML(content, categoryCards) {
-
   if (categoryCards.length != 0) {
     for (let i = 0; i < categoryCards.length; i++) {
       let card = categoryCards[i];
@@ -177,9 +173,13 @@ function renderCardsHTML(content, categoryCards) {
             <div class="cardType">${card["type"]}</div>
             <div class="cardTitle">${card["title"]}</div>
             <div class="cardText">${card["text"]}</div>
-            <div class="cardSubtasks">${renderSubtaskBar(card)}Subtasks: ${card["subtasks"]}</div>
+            <div class="cardSubtasks">${renderSubtaskBar(card)}Subtasks: ${
+        card["subtasks"]
+      }</div>
             <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
-            <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+            <div class="cardPriority">${setPriorityImage(
+              card["priority"]
+            )}</div>
         </div>`;
     }
   } else {

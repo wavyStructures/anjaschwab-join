@@ -37,10 +37,16 @@
   gap: 39px;
 }
 
+.h1LoginBox {
+  width: 315px;
+  display: flex;
+  justify-content: center;
+}
+
 .loginH1 {
   font-size: 48px;
   font-weight: 700px;
-  margin-top: ;
+  margin-top: 0;
   margin-bottom: 16px;
 }
 
@@ -48,9 +54,27 @@
   display: flex;
   justify-content: space-between;
   width: 422px;
-  border: 1px solid #d1d1d1;
+  border-bottom: 1px solid #d1d1d1;
   padding: 12px 21px;
   gap: 10px;
+}
+
+.loginPasswordBox {
+  display: flex;
+  justify-content: space-between;
+  width: 422px;
+  border-bottom: 1px solid #d1d1d1;
+  padding: 12px 21px;
+  gap: 10px;
+}
+
+#loginEmailInput,
+#loginPasswordInput {
+  border: none;
+}
+
+.loginButtons {
+  border: none;
 }
 
 .loginFooter {
