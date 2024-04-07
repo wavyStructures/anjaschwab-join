@@ -5,6 +5,7 @@ let cards = [
         'title':'Kochwelt Page & Recipe Recommender',
         'text': 'Build start page with recipe recommendation...',
         'subtasks': 2,
+        'completedSubtasks': 1,
         'assignedTo': ['SS','MM',"AS"],
         'category': 'todo',
         'priority': 'low'
@@ -14,7 +15,8 @@ let cards = [
         'type':'Technical Task',
         'title':'HTML Base Template Creation',
         'text': 'Create reusable HTML base templates...',
-        'subtasks': 0,
+        'subtasks': 2,
+        'completedSubtasks': 0,
         'assignedTo': ['SS', 'MM', "AS"],
         'category': 'todo',
         'priority': 'medium'
@@ -25,6 +27,7 @@ let cards = [
         'title':'Daily Kochwelt Recipe',
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
+        'completedSubtasks': 0,
         'assignedTo': ['SS'],
         'category': 'inProgress',
         'priority': 'urgend'
@@ -35,6 +38,7 @@ let cards = [
         'title':'CSS Architecture Planning',
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
+        'completedSubtasks': 1,
         'assignedTo': ['AS'],
         'category': 'todo',
         'priority': 'low'
@@ -44,7 +48,8 @@ let cards = [
         'type':'Technical Task',
         'title':'Cooking lunch',
         'text': 'Define CSS naming conventions and structure...',
-        'subtasks': 0,
+        'subtasks': 2,
+        'completedSubtasks': 2,
         'assignedTo': ['MM'],
         'category': 'done',
         'priority': 'low'
@@ -90,4 +95,24 @@ function setPriorityImage(cardPriority){
     if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
     else if (cardPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
     else return `<img src="assets/img/icon-priority_high.png">`
+}
+
+
+function searchTask(){
+    console.log('TBD');
+}
+
+
+function renderSubtaskBar(card){
+    let countSubtasks = card['subtasks'];
+    let completedSubtasks = card['completedSubtasks'];
+    let completedPercent = completedSubtasks * 100 / countSubtasks;
+
+    console.log(countSubtasks);
+    if (countSubtasks == 0){
+        return `Nothing`
+    }else{
+        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress>`
+    }
+
 }
