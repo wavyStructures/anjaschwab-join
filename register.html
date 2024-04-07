@@ -14,10 +14,20 @@
 
 <body>
 
+
+    <header class="loginHeader">
+        <div class="joinLogoBlue">
+            <img src="./assets/img/logo-medium_blue.png" alt="logo">
+        </div>
+        <div class="signUpField">
+            <span>Not a join user yet?</span>
+            <button class="loginButtons" onclick="">Sign up</button> <!--TODO-->
+
+        </div>
+    </header>
     <div class="login-page">
-
-
         <div class="login-box">
+            <h1 class="loginH1">Log in</h1>
             <form action="">
                 <div class="loginEmailBox">
                     <input type="email" id="loginEmailInput" placeholder="Email">
@@ -29,15 +39,18 @@
                     <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
                 </div>
 
-                <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
-                <input type="submit" value="Login" onclick="lsRememberMe()">
+                <input type="checkbox" value="lsRememberMe" id="rememberMe">
 
-
-                Log in
-
-                Guest log in
+                <label for="rememberMe">Remember me</label><br>
+                <input class="loginButtons" type="submit" value="Login" onclick="lsRememberMe()"> <!--TODO-->
+                <input class="loginButtons" type="submit" value="Guest log in" onclick="lsRememberMe()"> <!--TODO-->
 
             </form>
+        </div>
+
+        <div class="loginFooter">
+            <div class="privacyPolicy"><span>Privacy policy</span></div>
+            <div class="legalNotice"><span>Legal notice</span></div>
         </div>
 
 

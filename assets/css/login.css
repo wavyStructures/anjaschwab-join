@@ -1,16 +1,62 @@
+.loginHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.joinLogoBlue {
+  margin-top: 80px;
+  margin-left: 77px;
+}
+
+.signUpField {
+  margin-top: 67px;
+  margin-right: 86px;
+}
+
+.signUpField span {
+  font-size: 23px;
+  font-weight: 400;
+}
+
 .login-page {
   padding: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* height: calc(100vh - 100px); */
 }
 
 .login-box {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 450px;
   height: 500px;
   border: 1px solid grey;
-  border-radius: 5px;
+  border-radius: 30px;
+  /* top: 266.5px;
+  left: 394px; */
+  padding: 48px 115px 48px 115px;
+  gap: 39px;
+}
+
+.loginH1 {
+  font-size: 48px;
+  font-weight: 700px;
+  margin-top: ;
+  margin-bottom: 16px;
+}
+
+.loginEmailBox {
+  display: flex;
+  justify-content: space-between;
+  width: 422px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 21px;
+  gap: 10px;
+}
+
+.loginFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 42.7px;
 }
