@@ -26,6 +26,7 @@
 .signUpButton {
   padding: 10px 16px;
   gap: 10px;
+  cursor: pointer;
 }
 
 .login-page {

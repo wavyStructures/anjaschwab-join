@@ -13,57 +13,58 @@
 </head>
 
 <body>
+    <div id="main-register">
 
-
-    <header class="loginHeader">
-        <div class="joinLogoBlue">
-            <img src="./assets/img/logo-medium_blue.png" alt="logo">
-        </div>
-        <div class="signUpField">
-            <span>Not a join user yet?</span>
-            <button class="loginButtons signUpButton" onclick="">Sign up</button> <!--TODO-->
-        </div>
-    </header>
-    <div class="login-page">
-        <div class="login-box">
-            <div class="h1LoginBox">
-                <h1 class="loginH1">Log in</h1>
-                <div class="horizontalH1Underline"></div>
+        <header class="loginHeader">
+            <div class="joinLogoBlue">
+                <img src="./assets/img/logo-medium_blue.png" alt="logo">
             </div>
-            <div class="formDiv">
-                <form action="">
-                    <div class="innerLoginBox">
-                        <div class="loginEmailBox">
-                            <input type="email" id="loginEmailInput" placeholder="Email">
-                            <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
-                        </div>
-
-                        <div class="loginPasswordBox">
-                            <input type="password" id="loginPasswordInput" placeholder="Password">
-                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
-                        </div>
-                    </div>
-                    <input type="checkbox" value="lsRememberMe" id="rememberMe">
-                    <label for="rememberMe">Remember me</label><br>
-
-
-                    <input class="loginButtons loginButtonUser" type="submit" value="Login" onclick="lsRememberMe()">
-                    <!--TODO-->
-                    <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
-                        onclick="lsRememberMe()"> <!--TODO-->
-
-                </form>
+            <div class="signUpField">
+                <span>Not a join user yet?</span>
+                <button class="loginButtons signUpButton" onclick="openSignUpPage()">Sign up</button> <!--TODO-->
             </div>
+        </header>
+        <div class="login-page">
+            <div class="login-box">
+                <div class="h1LoginBox">
+                    <h1 class="loginH1">Log in</h1>
+                    <div class="horizontalH1Underline"></div>
+                </div>
+                <div class="formDiv">
+                    <form action="">
+                        <div class="innerLoginBox">
+                            <div class="loginEmailBox">
+                                <input type="email" id="loginEmailInput" placeholder="Email">
+                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                            </div>
+
+                            <div class="loginPasswordBox">
+                                <input type="password" id="loginPasswordInput" placeholder="Password">
+                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                            </div>
+                        </div>
+                        <input type="checkbox" value="lsRememberMe" id="rememberMe">
+                        <label for="rememberMe">Remember me</label><br>
+
+
+                        <input class="loginButtons loginButtonUser" type="submit" value="Login"
+                            onclick="lsRememberMe()">
+                        <!--TODO-->
+                        <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
+                            onclick="lsRememberMe()"> <!--TODO-->
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="loginFooter">
+                <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
+                <div class="legalNotice" onclick=""><span>Legal notice</span></div>
+            </div>
+
+
         </div>
-
-        <div class="loginFooter">
-            <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
-            <div class="legalNotice" onclick=""><span>Legal notice</span></div>
-        </div>
-
-
     </div>
-
 
 
 

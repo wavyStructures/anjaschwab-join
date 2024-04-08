@@ -3,7 +3,7 @@ let users = [];
 /**
  * init-function run at on loading the body
  */
-async function init(){
+async function init() {
     await loadUsers();
     console.log("USERS: ", users)
 }
@@ -12,10 +12,10 @@ async function init(){
 /**
  * get the users from remote storage
  */
-async function loadUsers(){
-    try{
+async function loadUsers() {
+    try {
         users = JSON.parse(await getItem('users'));
-    }catch(e){
+    } catch (e) {
         console.error('Loading error: ', e);
     }
 }
@@ -24,7 +24,7 @@ async function loadUsers(){
 /**
  * add new user to users and save it to remote storage
  */
-async function register(){
+async function register() {
     registerBtn.disabled = true;
     users.push({
         email: email.value,
@@ -39,7 +39,7 @@ async function register(){
 /**
  * reseting the register form
  */
-function resetForm(){
+function resetForm() {
     email.value = '';
     password.value = '';
     registerBtn.disabled = false;
@@ -49,8 +49,36 @@ function resetForm(){
 /**
  * deleting all users - local and remote
  */
-async function delAllUsers(){
+async function delAllUsers() {
     users = [];
     await setItem('users', JSON.stringify(users));
     console.log("USERS: ", users)
 }
+
+
+/**
+ * open the page for signing up
+ */
+function openSignUpPage() {
+    changeJoinLogo();
+    changeSiteColor();
+    changeFooterColor();
+    document.querySelector('signUpField').classList.add('d-none');
+    document.querySelector('login-page').classList.add('d-none');
+    generateSignUpBox();
+}
+
+function changeJoinLogo() {
+    let imgElement = document.querySelector('joinLogoBlue img');
+    imgElement.src = "./assets/img/logo-small_white.png";
+};
+
+
+function changeSiteColor() {
+    document.getElementById('main-register').style.backgroundColor = "red";
+}
+
+// changeFooterColor();
+// document.querySelector('signUpField').classList.add('d-none');
+// document.querySelector('login-page').classList.add('d-none');
+// generateSignUpBox();
