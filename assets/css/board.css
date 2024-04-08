@@ -125,6 +125,7 @@
 .addTaskButton:hover{
     background-image: url("../img/icon-plus_button_hover.png");
 }
+
 .assignedToButton{
     background-color: red;
 }
@@ -159,4 +160,18 @@
     position: absolute;
     right: 16px;
     bottom: 16px;
+}
+
+.cardSubtasks{
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+
+}
+
+.cardSubtaskText{
+    
 }

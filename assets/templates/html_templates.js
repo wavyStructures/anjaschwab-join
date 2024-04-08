@@ -173,9 +173,7 @@ function renderCardsHTML(content, categoryCards) {
             <div class="cardType">${card["type"]}</div>
             <div class="cardTitle">${card["title"]}</div>
             <div class="cardText">${card["text"]}</div>
-            <div class="cardSubtasks">${renderSubtaskBar(card)}Subtasks: ${
-        card["subtasks"]
-      }</div>
+            <div class="cardSubtasks">${renderSubtask(card)}</div>
             <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
             <div class="cardPriority">${setPriorityImage(
               card["priority"]

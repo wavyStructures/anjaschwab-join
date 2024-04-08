@@ -103,7 +103,7 @@ function searchTask(){
 }
 
 
-function renderSubtaskBar(card){
+function renderSubtask(card){
     let countSubtasks = card['subtasks'];
     let completedSubtasks = card['completedSubtasks'];
     let completedPercent = completedSubtasks * 100 / countSubtasks;
@@ -112,7 +112,7 @@ function renderSubtaskBar(card){
     if (countSubtasks == 0){
         return `Nothing`
     }else{
-        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress>`
+        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtaskText">${card['completedSubtasks']}/${card["subtasks"]} Subtasks</div>`
     }
 
 }
