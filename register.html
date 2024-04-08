@@ -22,27 +22,27 @@
         <div class="signUpField">
             <span>Not a join user yet?</span>
             <button class="loginButtons signUpButton" onclick="">Sign up</button> <!--TODO-->
-
         </div>
     </header>
     <div class="login-page">
         <div class="login-box">
             <div class="h1LoginBox">
                 <h1 class="loginH1">Log in</h1>
+                <div class="horizontalH1Underline"></div>
             </div>
             <div class="formDiv">
                 <form action="">
+                    <div class="innerLoginBox">
+                        <div class="loginEmailBox">
+                            <input type="email" id="loginEmailInput" placeholder="Email">
+                            <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                        </div>
 
-                    <div class="loginEmailBox">
-                        <input type="email" id="loginEmailInput" placeholder="Email">
-                        <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                        <div class="loginPasswordBox">
+                            <input type="password" id="loginPasswordInput" placeholder="Password">
+                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                        </div>
                     </div>
-
-                    <div class="loginPasswordBox">
-                        <input type="password" id="loginPasswordInput" placeholder="Password">
-                        <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
-                    </div>
-
                     <input type="checkbox" value="lsRememberMe" id="rememberMe">
                     <label for="rememberMe">Remember me</label><br>
 
@@ -57,8 +57,8 @@
         </div>
 
         <div class="loginFooter">
-            <div class="privacyPolicy"><span>Privacy policy</span></div>
-            <div class="legalNotice"><span>Legal notice</span></div>
+            <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
+            <div class="legalNotice" onclick=""><span>Legal notice</span></div>
         </div>
 
 

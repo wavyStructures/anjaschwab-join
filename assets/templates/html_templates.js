@@ -38,7 +38,7 @@ function renderSummaryHTML() {
             <div class="urgentAndDate" id="urgentAndDate">
                 <div class="urgentBox">
                     <div class="image-and-amount flex">
-                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol"
+                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol">
                         <span class="amount">1</span>
                     </div>
                     <span>Tasks Urgent</span>
