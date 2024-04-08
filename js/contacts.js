@@ -85,14 +85,14 @@ function createContactCard(main, color, initials, name, mail) {
 }
 
 function generateContactCardHTML(color, initials, name, mail, shorterMail) {
+    const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase()); // Ersetzt jeden Anfangsbuchstaben jedes Wortes im Namen durch den Großbuchstaben
     return `
-        <div class="contact-card choosenContact" id="contact-card">
+        <div class="contact-card" id="contact-card">
             <div class="profile-badge-group" style="background-color: ${color};">${initials}</div>
             <div class="">
-                <span class="contact-card-name">${name}</span><br>
+                <span class="contact-card-name">${upperCaseName}</span><br>
                 <a class="contact-card-email" href="mailto:${mail}">${shorterMail}</a>
             </div>
         </div>
     `;
 }
-
