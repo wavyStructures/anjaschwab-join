@@ -31,3 +31,10 @@ async function getItem(key){
         } throw `Could not find data with the key "${key}`;
     });
 }
+
+
+/*
+TODO:
+- setItem und getItem für Kontakte (contacts[])
+- setItem und getItem für cards (cards[])
+*/

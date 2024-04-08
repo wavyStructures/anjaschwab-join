@@ -5,6 +5,8 @@ async function init() {
   renderHeader();
   renderNavigation();
   renderBoard();
+  renderLoginPage();
+  renderSignUpPage();
 }
 
 
@@ -25,6 +27,7 @@ async function includeHTML() {
   }
 }
 
+
 /**
  * 
  * @param {string} id id eines divs
@@ -35,6 +38,7 @@ function getDiv(id) {
   return content;
 }
 
+
 /**
  * rendering the navigation on on the left side 
  */
@@ -42,6 +46,7 @@ function renderNavigation() {
   let content = getDiv('navigation-container');
   content.innerHTML = renderNavigationHTML();
 }
+
 
 /**
  * rendering the header

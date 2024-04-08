@@ -54,9 +54,6 @@
     textarea:focus,
     button:focus {
         outline: none;
-
-
-   
 }
 
 
@@ -170,8 +167,4 @@
     gap: 16px;
     align-items: center;
 
-}
-
-.cardSubtaskText{
-    
 }

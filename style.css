@@ -28,3 +28,7 @@ body {
   background-color: lightblue;
   width: 1208px;
 }
+
+.d-none{
+  display: none;
+}

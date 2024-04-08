@@ -59,26 +59,6 @@ async function delAllUsers() {
 /**
  * open the page for signing up
  */
-function openSignUpPage() {
-    changeJoinLogo();
-    changeSiteColor();
-    changeFooterColor();
-    document.querySelector('signUpField').classList.add('d-none');
-    document.querySelector('login-page').classList.add('d-none');
-    generateSignUpBox();
+function renderSignUpPage() {
+    document.getElementById('signUpPage').innerHTML = renderSignUpPageHTML();
 }
-
-function changeJoinLogo() {
-    let imgElement = document.querySelector('joinLogoBlue img');
-    imgElement.src = "./assets/img/logo-small_white.png";
-};
-
-
-function changeSiteColor() {
-    document.getElementById('main-register').style.backgroundColor = "red";
-}
-
-// changeFooterColor();
-// document.querySelector('signUpField').classList.add('d-none');
-// document.querySelector('login-page').classList.add('d-none');
-// generateSignUpBox();

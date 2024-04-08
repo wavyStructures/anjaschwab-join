@@ -1,7 +1,18 @@
+.loginMainContainer{
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+}
+
 .loginHeader {
   display: flex;
   justify-content: space-between;
 }
+
 .joinLogoBlue {
   margin-top: 80px;
   margin-left: 77px;
