@@ -108,12 +108,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    /* height: 200px; */
     width: 100%;
     border-radius: 10px;
-    background-color: yellow;
     gap: 24px;
     padding: 16px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
 }
 
 .addTaskButton{
