@@ -193,13 +193,11 @@
 }
 
 .contact-details-name-group {
-  background-color: #4589ff;
   height: auto;
-  width: auto;;
+  width: auto;
 }
 
 .contact-details-name {
-  background-color: green;
   padding: 5px;
   font-weight: 500;
   font-size: 47px;
@@ -209,7 +207,39 @@
 
 .contact-details-icons {
   display: flex;
-  background-color: red;
+  gap: 8px;
+}
+
+.icon-edit {
+  display: flex;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  align-items: center;
+  color: #2A3647;
+  ;
+}
+
+.icon-edit img {
+  height: 24px;
+  width: 24px;
+}
+
+.icon-delete {
+  display: flex;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  align-items: center;
+  color: #2A3647;
+  ;
+}
+
+.icon-delete img {
+  height: 24px;
+  width: 24px;
 }
 
 .contact-information {
@@ -226,10 +256,27 @@
   flex-direction: column;
   font-size: 16px;
   line-height: 19.2px;
-  gap: 15px
+  gap: 15px;
 }
 
-.contact-information-mail-header {
-  /* display: flex;
-  gap: 21px; */
+.contact-information-mail {
+  font-weight: 400;
+  color: #005dff;
+}
+
+.contact-phone-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 19.2px;
+  gap: 15px;
+  line-height: 19.2px;
+}
+
+.contact-phone-container-header {
+  font-weight: 700;
+}
+
+.contact-phone-container-phone {
+  font-weight: 400;
 }
