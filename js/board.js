@@ -112,7 +112,7 @@ function renderSubtask(card){
     if (countSubtasks == 0){
         return `Nothing`
     }else{
-        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtaskText">${card['completedSubtasks']}/${card["subtasks"]} Subtasks</div>`
+        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${card['completedSubtasks']}/${card["subtasks"]} Subtasks</div>`
     }
 
 }
