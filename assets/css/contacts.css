@@ -1,28 +1,27 @@
 .main {
-    font-family: OpenSans, sans-serif;
-    font-weight: 400;
-    font-size: 23px;
-
+  font-family: OpenSans, sans-serif;
+  font-weight: 400;
+  font-size: 23px;
 }
 
 .contacts-container {
-    padding-left: 27.5px;
-    width: 456px;
-    height: 928px;
-    align-items: center;
-    justify-content: center;
-    /* animation: moveInRight 100ms ease-out forwards; */
+  padding-left: 27.5px;
+  width: 456px;
+  height: 928px;
+  align-items: center;
+  justify-content: center;
+  /* animation: moveInRight 100ms ease-out forwards; */
 }
 
 /* onclick Add new Contact */
 @keyframes moveInRight {
-    from {
-        transform: translateX(100%);
-    }
+  from {
+    transform: translateX(100%);
+  }
 
-    to {
-        transform: translateX(0);
-    }
+  to {
+    transform: translateX(0);
+  }
 }
 
 /* .overlay {
@@ -40,113 +39,111 @@
 } */
 
 .button-add-contact-card {
-    display: flex;
-    width: 456px;
-    padding: 32px 24px 16px 24px;
-    gap: 10px;
-    justify-content: center;
+  display: flex;
+  width: 456px;
+  padding: 32px 24px 16px 24px;
+  gap: 10px;
 }
 
 .button-add-contact {
-    display: flex;
-    width: 357px;
-    height: 56px;
-    border: 1px;
-    border-radius: 10px;
-    border-color: #4589FF;
-    padding: 16px 10px 16px 10px;
-    background-color: #4589FF;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 357px;
+  height: 56px;
+  border: 1px;
+  border-radius: 10px;
+  border-color: #4589ff;
+  padding: 16px 10px 16px 10px;
+  background-color: #4589ff;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-add-contact img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .add-new-contact {
-    color: white;
-    line-height: 27.6px;
-    font-weight: 400;
-    font-size: 23px;
+  color: white;
+  line-height: 27.6px;
+  font-weight: 400;
+  font-size: 23px;
 }
 
 .contact-list {
-    padding: 32px 24px 32px 24px;
+  padding: 32px 24px 32px 24px;
 }
 
 .contact-list-letter {
-    width: 352px;
-    padding: 17px 36px 17px 36px;
-    gap: 8px;
-    font-size: 18px;
-    line-height: 21.6px;
+  width: 352px;
+  padding: 17px 36px 17px 36px;
+  gap: 8px;
+  font-size: 18px;
+  line-height: 21.6px;
 }
 
 .parting-line-container {
-    width: 352px;
-    padding: 8px 0 8px 0;
-    gap: 10px;
+  width: 352px;
+  padding: 8px 0 8px 0;
+  gap: 10px;
 }
 
 .parting-line {
-    display: flex;
-    width: 352px;
-    border: 1px solid;
-    border-color: #D1D1D1 !important;
-    align-items: center;
+  display: flex;
+  width: 352px;
+  border: 1px solid;
+  border-color: #d1d1d1 !important;
+  align-items: center;
 }
 
 .contact-card {
-    display: flex;
-    width: 352px;
-    border-radius: 10px;
-    padding: 15px 24px 15px 24px;
-    gap: 35px;
+  display: flex;
+  width: 352px;
+  border-radius: 10px;
+  padding: 15px 24px 15px 24px;
+  gap: 35px;
 }
 
 .profile-badge {
-    display: flex;
-    border-radius: 45px;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  border-radius: 45px;
+  gap: 10px;
+  align-items: center;
 }
 
 .profileBadgeChoosen {
-    border-color: white;
+  border-color: white;
 }
 
 .profile-badge-group {
-    display: flex;
-    height: 32px;
-    width: 32px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    color: white;
-    font-size: 12px;
-    background-color: #FF7A00; /*Platzhalter, noch zu löschen*/
+  display: flex;
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: white;
+  font-size: 12px;
+  background-color: #ff7a00; /*Platzhalter, noch zu löschen*/
 }
 
 .contact-card-overview {
-    gap: 5px;
+  gap: 5px;
 }
 
 .contact-card-name {
-    font-size: 19px;
-    line-height: 22.8px;
+  font-size: 19px;
+  line-height: 22.8px;
 }
 
 .contact-card-email {
-    font-size: 16px;
-    line-height: 19.2px;
-    color: #4589FF;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: #4589ff;
 }
 
 .choosenContact {
-    background-color: #4589FF;
-    color: white;
-    
+  background-color: #4589ff;
+  color: white;
 }

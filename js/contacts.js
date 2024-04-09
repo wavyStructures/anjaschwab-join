@@ -1,66 +1,66 @@
 let contacts = [
-    {
-        name: 'anton mayer',
-        mail: 'antom@gmail.com',
-        contactColor: '',
-    },
-    {
-        name: 'anja schulz',
-        mail: 'schulz@hotmail.com',
-        contactColor: '#c2e59c',
-    },
-    {
-        name: 'benedikt ziegler',
-        mail: 'benedikt@gmail.com',
-        contactColor: '#ffcc80',
-    }
+  {
+    name: "anton mayer",
+    mail: "antom@gmail.com",
+    contactColor: "",
+  },
+  {
+    name: "anja schulz",
+    mail: "schulz@hotmail.com",
+    contactColor: "#c2e59c",
+  },
+  {
+    name: "benedikt ziegler",
+    mail: "benedikt@gmail.com",
+    contactColor: "#ffcc80",
+  },
 ];
 
 function loadContacts() {
-    let main = document.getElementById('main');
-    main.innerHTML = ``;
-    createContactsContainer(main);
+  let main = document.getElementById("main");
+  main.innerHTML = ``;
+  createContactsContainer(main);
 
-    let currentFirstLetters = [];
+  let currentFirstLetters = [];
 
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
-        const name = contact.name;
-        const mail = contact.mail;
-        const initials = getInitials(name);
-        const firstLetter = name.charAt(0).toUpperCase();
-        const color = contact.contactColor;
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    const name = contact.name;
+    const mail = contact.mail;
+    const initials = getInitials(name);
+    const firstLetter = name.charAt(0).toUpperCase();
+    const color = contact.contactColor;
 
-        if (!currentFirstLetters.includes(firstLetter)) {
-            createFirstLetter(main, firstLetter);
-            currentFirstLetters.push(firstLetter);
-        }
-
-        createContactCard(main, color, initials, name, mail);
+    if (!currentFirstLetters.includes(firstLetter)) {
+      createFirstLetter(main, firstLetter);
+      currentFirstLetters.push(firstLetter);
     }
+
+    createContactCard(main, color, initials, name, mail);
+  }
 }
 
 function getInitials(name) {
-    let [firstName, lastName] = name.split(' ');
-    let firstInitial = firstName.charAt(0).toUpperCase();
-    let lastInitial = lastName.charAt(0).toUpperCase();
-    return firstInitial + lastInitial;
+  let [firstName, lastName] = name.split(" ");
+  let firstInitial = firstName.charAt(0).toUpperCase();
+  let lastInitial = lastName.charAt(0).toUpperCase();
+  return firstInitial + lastInitial;
 }
 
 function createFirstLetter(main, firstLetter) {
-    const letterDiv = document.createElement('div');
-    letterDiv.classList.add('contact-list-letter');
-    letterDiv.textContent = firstLetter;
-    main.querySelector('.contact-list').appendChild(letterDiv);
+  const letterDiv = document.createElement("div");
+  letterDiv.classList.add("contact-list-letter");
+  letterDiv.textContent = firstLetter;
+  main.querySelector(".contact-list").appendChild(letterDiv);
 }
 
 function createContactsContainer(main) {
-    const containerHTML = generateContactsContainerHTML();
-    main.innerHTML += containerHTML;
+  const containerHTML = generateContactsContainerHTML();
+  main.innerHTML += containerHTML;
 }
 
 function generateContactsContainerHTML() {
-    return `
+  return `
         <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
             <div class="button-add-contact-card" id="button-add-contact-card"> <!-- Button-->
                 <div onclick="addContactCard()" class="button-add-contact"> <!-- secondary contact -->
@@ -78,15 +78,23 @@ function generateContactsContainerHTML() {
 }
 
 function createContactCard(main, color, initials, name, mail) {
-    const shorterMail = mail.length > 20 ? mail.substring(0, 20) + '...' : mail;
-    const cardHTML = generateContactCardHTML(color, initials, name, mail, shorterMail);
-    const container = main.querySelector('.contacts-container');
-    container.querySelector('.contact-list').insertAdjacentHTML('beforeend', cardHTML);
+  const shorterMail = mail.length > 20 ? mail.substring(0, 20) + "..." : mail;
+  const cardHTML = generateContactCardHTML(
+    color,
+    initials,
+    name,
+    mail,
+    shorterMail
+  );
+  const container = main.querySelector(".contacts-container");
+  container
+    .querySelector(".contact-list")
+    .insertAdjacentHTML("beforeend", cardHTML);
 }
 
 function generateContactCardHTML(color, initials, name, mail, shorterMail) {
-    const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase()); // Ersetzt jeden Anfangsbuchstaben jedes Wortes im Namen durch den Großbuchstaben
-    return `
+  const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase()); // Ersetzt jeden Anfangsbuchstaben jedes Wortes im Namen durch den Großbuchstaben
+  return `
         <div class="contact-card" id="contact-card">
             <div class="profile-badge-group" style="background-color: ${color};">${initials}</div>
             <div class="">
