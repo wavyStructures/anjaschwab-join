@@ -1,10 +1,13 @@
-.main {
+.contact-main {
+  display: flex;
   font-family: OpenSans, sans-serif;
   font-weight: 400;
   font-size: 23px;
 }
 
 .contacts-container {
+  margin-top: 96px;
+  margin-left: 232px;
   padding-left: 27.5px;
   width: 456px;
   height: 928px;
@@ -146,4 +149,87 @@
 .choosenContact {
   background-color: #4589ff;
   color: white;
+}
+
+.right-side {
+  margin-top: 168px;
+  left: 750px;
+  padding-left: 21px;
+  color: black;
+}
+
+.contact-Details {
+  display: flex;
+  flex-direction: column;
+  width: 461px;
+  height: 318px;
+  color: black;
+  gap: 21px;
+}
+
+.contact-details-header {
+  display: flex;
+  height: 120px;
+  width: 461px;
+  gap: 54px;
+}
+
+.contact-details-badge {
+  display: flex;
+  background-color: #ff7a00;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-details-badge-initials {
+  color: white;
+  font-weight: 500;
+  line-height: 56.4px;
+  font-size: 47px;
+}
+
+.contact-details-name-group {
+  background-color: #4589ff;
+  height: auto;
+  width: auto;;
+}
+
+.contact-details-name {
+  background-color: green;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 56.4px;
+  width: 287px;
+}
+
+.contact-details-icons {
+  display: flex;
+  background-color: red;
+}
+
+.contact-information {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  line-height: 27.6px;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.contact-email-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 19.2px;
+  gap: 15px
+}
+
+.contact-information-mail-header {
+  /* display: flex;
+  gap: 21px; */
 }
