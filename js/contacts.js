@@ -1,17 +1,23 @@
 let contacts = [
   {
+    id: 1,
     name: "anton mayer",
     mail: "antom@gmail.com",
+    phone: "+49 1111 111 11 1",
     contactColor: "",
   },
   {
+    id: 2,
     name: "anja schulz",
     mail: "schulz@hotmail.com",
+    phone: "+49 1111 111 11 2",
     contactColor: "#c2e59c",
   },
   {
+    id: 3,
     name: "benedikt ziegler",
     mail: "benedikt@gmail.com",
+    phone: "+49 1111 111 11 3",
     contactColor: "#ffcc80",
   },
 ];
@@ -25,8 +31,10 @@ function loadContacts() {
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
+    const id = contact.id;
     const name = contact.name;
     const mail = contact.mail;
+    const phone = contact.phone;
     const initials = getInitials(name);
     const firstLetter = name.charAt(0).toUpperCase();
     const color = contact.contactColor;
@@ -36,7 +44,7 @@ function loadContacts() {
       currentFirstLetters.push(firstLetter);
     }
 
-    createContactCard(main, color, initials, name, mail);
+    createContactCard(main, id, color, initials, name, mail);
   }
 }
 
@@ -74,12 +82,15 @@ function generateContactsContainerHTML() {
                 </div>
             </div>
         </div>
+        <section class="right-side d-none" id="rightSide">
+        </section>
     `;
 }
 
-function createContactCard(main, color, initials, name, mail) {
+function createContactCard(main, id, color, initials, name, mail) {
   const shorterMail = mail.length > 20 ? mail.substring(0, 20) + "..." : mail;
   const cardHTML = generateContactCardHTML(
+    id,
     color,
     initials,
     name,
@@ -92,10 +103,10 @@ function createContactCard(main, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
-function generateContactCardHTML(color, initials, name, mail, shorterMail) {
-  const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase()); // Ersetzt jeden Anfangsbuchstaben jedes Wortes im Namen durch den Großbuchstaben
+function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
+  const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase());
   return `
-        <div class="contact-card" id="contact-card">
+        <div class="contact-card" id="contact-card-${id}" onclick="openContactDetails(${id})">
             <div class="profile-badge-group" style="background-color: ${color};">${initials}</div>
             <div class="">
                 <span class="contact-card-name">${upperCaseName}</span><br>
@@ -103,4 +114,74 @@ function generateContactCardHTML(color, initials, name, mail, shorterMail) {
             </div>
         </div>
     `;
+}
+
+function openContactDetails(id) {
+  const contact = contacts.find((contact) => contact.id === id);
+  const { name, mail, phone } = contact;
+
+  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone);
+
+  const rightSideElement = document.getElementById("rightSide");
+  if (rightSideElement) {
+    rightSideElement.innerHTML = contactDetailsHTML;
+
+    rightSideElement.classList.remove("d-none");
+
+    highlightSelectedContact(id);
+  } else {
+    console.error("Element with ID 'rightSide' not found.");
+  }
+}
+
+function highlightSelectedContact(id) {
+  const allContactCards = document.querySelectorAll(".contact-card");
+  allContactCards.forEach((card) => {
+    card.style.backgroundColor = "";
+  });
+
+  const selectedContactCard = document.getElementById(`contact-card-${id}`);
+  if (selectedContactCard) {
+    selectedContactCard.style.backgroundColor = "#4589ff";
+  }
+}
+
+function generateContactDetailsHTML(name, email, phone) {
+  return `
+    <div class="contact-Details">
+      <div class="contact-details-header" id="contactDetailsHeader">
+        <div class="contact-details-badge-group">
+          <div class="contact-details-badge">
+            <div class="contact-details-badge-initials">${getInitials(
+              name
+            )}</div>
+          </div>
+        </div>
+        <div class="contact-details-name-group">
+          <div class="contact-details-name">${name}</div>
+          <div class="contact-details-icons">
+            <div class="icon-edit">
+              <img src="./assets/img/icon-edit.png" alt="">Edit
+            </div>
+            <div class="icon-delete">
+              <img src="./assets/img/icon-delete.png" alt="">Delete
+            </div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <div class="contact-information">Contact Information
+        <div class="contact-email-container" id="contactEmailContainer">
+          <div class="contact-information-mail-header">Email</div>
+          <div class="contact-information-mail">${email}</div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-phone-container">
+          <div class="contact-phone-container-header">Phone</div>
+          <div class="contact-phone-container-phone">${phone}</div>
+        </div>
+      </div>
+    </div>
+  `;
 }

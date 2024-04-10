@@ -1,3 +1,7 @@
+.right-side {
+  animation: moveInRight 100ms ease-out forwards;
+}
+
 .contact-main {
   display: flex;
   font-family: OpenSans, sans-serif;
@@ -7,17 +11,14 @@
 }
 
 .contacts-container {
-  /* margin-top: 6rem;
-  margin-left: 14.5rem; */
   padding-left: 1.719rem;
   width: 28.5rem;
   height: 58rem;
   align-items: center;
   justify-content: center;
-  /* animation: moveInRight 100ms ease-out forwards; */
 }
 
-/* onclick Add new Contact */
+/* onclick Add new Contact remove d-none right-side */
 @keyframes moveInRight {
   from {
     transform: translateX(100%);
@@ -27,20 +28,6 @@
     transform: translateX(0);
   }
 }
-
-/* .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 100ms ease-out, right 100ms ease-out;
-}
-
-.overlay.show {
-    opacity: 1;
-} */
 
 .button-add-contact-card {
   display: flex;
@@ -143,6 +130,7 @@
 .contact-card-name {
   font-size: 1.188rem;
   line-height: 1.425rem;
+  text-transform: capitalize;
 }
 
 .contact-card-email {
@@ -208,6 +196,7 @@
   font-size: 2.938rem;
   line-height: 3.525rem;
   width: 17.938rem;
+  text-transform: capitalize;
 }
 
 .contact-details-icons {
@@ -222,8 +211,7 @@
   font-size: 1rem;
   line-height: 1.2rem;
   align-items: center;
-  color: #2A3647;
-  ;
+  color: #2a3647;
 }
 
 .icon-edit img {
@@ -238,8 +226,7 @@
   font-size: 1rem;
   line-height: 1.2rem;
   align-items: center;
-  color: #2A3647;
-  ;
+  color: #2a3647;
 }
 
 .icon-delete img {
