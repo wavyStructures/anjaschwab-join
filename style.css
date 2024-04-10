@@ -26,7 +26,7 @@ body {
 .main {
   display: flex;
   background-color: lightblue;
-  width: 1208px;
+  width: 	100%;
 }
 
 .d-none{
