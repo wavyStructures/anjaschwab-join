@@ -7,8 +7,8 @@
 }
 
 .contacts-container {
-  margin-top: 6rem;
-  margin-left: 14.5rem;
+  /* margin-top: 6rem;
+  margin-left: 14.5rem; */
   padding-left: 1.719rem;
   width: 28.5rem;
   height: 58rem;
@@ -107,6 +107,10 @@
   border-radius: 0.625rem;
   padding: 0.938rem 1.5rem 0.938rem 1.5rem;
   gap: 2.188rem;
+}
+
+.contact-card:hover {
+  background-color: #4589ff;
 }
 
 .profile-badge {
