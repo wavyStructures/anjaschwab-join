@@ -1,4 +1,4 @@
-.loginMainContainer{
+.loginMainContainer {
   z-index: 100;
   position: absolute;
   top: 0;
@@ -164,3 +164,19 @@
   font-weight: 400;
   color: var(--clr-text-menu);
 }
+
+/* .logo-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: move-logo 2s ease-in-out;
+} 
+
+@keyframes move-logo{
+  from {transform: translate(0px, 0px)}
+  to {translate(-720px, -330px}
+}
+
+
+*/
