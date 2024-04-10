@@ -20,6 +20,139 @@ let contacts = [
     phone: "+49 1111 111 11 3",
     contactColor: "#ffcc80",
   },
+  {
+    id: 4,
+    name: "carolin schmidt",
+    mail: "carolin@gmail.com",
+    phone: "+49 1111 111 11 4",
+    contactColor: "#ff9999",
+  },
+  {
+    id: 5,
+    name: "daniel huber",
+    mail: "daniel@gmail.com",
+    phone: "+49 1111 111 11 5",
+    contactColor: "#99ccff",
+  },
+  {
+    id: 6,
+    name: "emily wagner",
+    mail: "emily@gmail.com",
+    phone: "+49 1111 111 11 6",
+    contactColor: "#ffb3b3",
+  },
+  {
+    id: 7,
+    name: "fabian koch",
+    mail: "fabian@gmail.com",
+    phone: "+49 1111 111 11 7",
+    contactColor: "#b3d9ff",
+  },
+  {
+    id: 8,
+    name: "gabriela müller",
+    mail: "gabriela@gmail.com",
+    phone: "+49 1111 111 11 8",
+    contactColor: "#ffcc99",
+  },
+  {
+    id: 9,
+    name: "hans schneider",
+    mail: "hans@gmail.com",
+    phone: "+49 1111 111 11 9",
+    contactColor: "#ccffcc",
+  },
+  {
+    id: 10,
+    name: "irene fischer",
+    mail: "irene@gmail.com",
+    phone: "+49 1111 111 11 10",
+    contactColor: "#ff9999",
+  },
+  {
+    id: 11,
+    name: "johann weber",
+    mail: "johann@gmail.com",
+    phone: "+49 1111 111 11 11",
+    contactColor: "#99ccff",
+  },
+  {
+    id: 12,
+    name: "karolina schwarz",
+    mail: "karolina@gmail.com",
+    phone: "+49 1111 111 11 12",
+    contactColor: "#ffb3b3",
+  },
+  {
+    id: 13,
+    name: "lisa meier",
+    mail: "lisa@gmail.com",
+    phone: "+49 1111 111 11 13",
+    contactColor: "#b3d9ff",
+  },
+  {
+    id: 14,
+    name: "max schwarz",
+    mail: "max@gmail.com",
+    phone: "+49 1111 111 11 14",
+    contactColor: "#ffcc99",
+  },
+  {
+    id: 15,
+    name: "nina kramer",
+    mail: "nina@gmail.com",
+    phone: "+49 1111 111 11 15",
+    contactColor: "#ccffcc",
+  },
+  {
+    id: 16,
+    name: "oscar richter",
+    mail: "oscar@gmail.com",
+    phone: "+49 1111 111 11 16",
+    contactColor: "#ff9999",
+  },
+  {
+    id: 17,
+    name: "paula vogel",
+    mail: "paula@gmail.com",
+    phone: "+49 1111 111 11 17",
+    contactColor: "#99ccff",
+  },
+  {
+    id: 18,
+    name: "quinn hartmann",
+    mail: "quinn@gmail.com",
+    phone: "+49 1111 111 11 18",
+    contactColor: "#ffb3b3",
+  },
+  {
+    id: 19,
+    name: "robin jung",
+    mail: "robin@gmail.com",
+    phone: "+49 1111 111 11 19",
+    contactColor: "#b3d9ff",
+  },
+  {
+    id: 20,
+    name: "sophie lehmann",
+    mail: "sophie@gmail.com",
+    phone: "+49 1111 111 11 20",
+    contactColor: "#ffcc99",
+  },
+  {
+    id: 21,
+    name: "timo müller",
+    mail: "timo@gmail.com",
+    phone: "+49 1111 111 11 21",
+    contactColor: "#ccffcc",
+  },
+  {
+    id: 22,
+    name: "ulrich fuchs",
+    mail: "ulrich@gmail.com",
+    phone: "+49 1111 111 11 22",
+    contactColor: "#ff9999",
+  },
 ];
 
 function loadContacts() {
@@ -76,7 +209,7 @@ function generateContactsContainerHTML() {
                     <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
                 </div>
             </div>
-            <div class="contact-list" id="contact-list">
+            <div class="contact-list" id="contactList">
                 <div class="parting-line-container" id="parting-line-container">
                     <div class="parting-line" id="parting-line"></div>
                 </div>
