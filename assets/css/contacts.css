@@ -123,6 +123,12 @@
   background-color: #4589ff;
 }
 
+.contact-card:hover .contact-card-name,
+.contact-card:hover .contact-card-email {
+  background-color: #4589ff;
+  color: white;
+}
+
 .profile-badge {
   display: flex;
   border-radius: 2.813rem;
