@@ -175,7 +175,7 @@ function renderCardsHTML(content, categoryCards) {
             <div class="cardText">${card["text"]}</div>
             <div class="cardSubtasks">${renderSubtask(card)}</div>
             <div class="cardBottomContainer">
-                <div class="cardAssignedTo">Assigned To: ${card["assignedTo"]}</div>
+                <div class="cardAssignedToContainer">${card["assignedTo"]}</div>
                 <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
             </div>
         </div>`;

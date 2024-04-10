@@ -9,6 +9,7 @@
 
 }
 
+
 .searchTaskContainer{
     display: flex;
     font-size: 16px;
@@ -151,17 +152,20 @@
     font-weight: 400;
     font-size: 16px;
 }
+
 .cardBottomContainer{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.cardPriority{
 
+.cardPriority{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cardSubtasks{
-    font-size: 13px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -169,6 +173,22 @@
     align-items: center;
 }
 
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 8px;
+    color:#4589FF;
+    background:#F4F4F4;
+  }
+
 .cardSubtasksText{
-    word-wrap: nowrap;
+    font-size: 13px;
+    text-wrap: nowrap;
+}
+
+.cardAssignedToContainer{
+    display: flex;;
+    align-items: center;
 }
