@@ -173,15 +173,20 @@
     align-items: center;
 }
 
-progress[value] {
-    /* Reset the default appearance */
-    -webkit-appearance: none;
+/*progress-bar*/
+progress{
     appearance: none;
     height: 8px;
-    border-radius: 8px;
-    color:#4589FF;
-    background:#F4F4F4;
-  }
+}
+
+::-webkit-progress-bar{
+    background: #F4F4F4;
+    border-radius: 10px;
+}
+::-webkit-progress-value{
+    background: #4589FF;
+    border-radius: 10px;
+}
 
 .cardSubtasksText{
     font-size: 13px;
@@ -189,6 +194,6 @@ progress[value] {
 }
 
 .cardAssignedToContainer{
-    display: flex;;
+    display: flex;
     align-items: center;
 }
