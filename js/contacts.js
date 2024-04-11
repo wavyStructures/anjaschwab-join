@@ -219,6 +219,7 @@ function createPartingLine(main) {
 function generateContactsContainerHTML() {
   return `
         <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
+        
             <div class="button-add-contact-card" id="button-add-contact-card"> <!-- Button-->
                 <div onclick="addContactCard()" class="button-add-contact"> <!-- secondary contact -->
                     <div class="add-new-contact">Add new contact</div>
@@ -284,18 +285,28 @@ function highlightSelectedContact(id) {
   const allContactCards = document.querySelectorAll(".contact-card");
   allContactCards.forEach((card) => {
     card.style.backgroundColor = "";
+    card.style.color = "";
     const badgeGroup = card.querySelector('.profile-badge-group');
     if (badgeGroup) {
       badgeGroup.classList.remove('profileBadgeChoosen');
+    }
+    const emailElement = card.querySelector('.contact-card-email');
+    if (emailElement) {
+      emailElement.style.color = "";
     }
   });
 
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
   if (selectedContactCard) {
     selectedContactCard.style.backgroundColor = "#4589ff";
+    selectedContactCard.style.color = "white";
     const selectedBadgeGroup = selectedContactCard.querySelector('.profile-badge-group');
     if (selectedBadgeGroup) {
       selectedBadgeGroup.classList.add('profileBadgeChoosen');
+    }
+    const selectedEmailElement = selectedContactCard.querySelector('.contact-card-email');
+    if (selectedEmailElement) {
+      selectedEmailElement.style.color = "white";
     }
   }
 }
