@@ -18,6 +18,7 @@
   justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
+  margin: 32px 0;
 }
 
 .contacts-container::-webkit-scrollbar {
@@ -206,7 +207,7 @@
 .contact-Details {
   display: flex;
   flex-direction: column;
-  width: 28.813rem;
+  
   height: 19.875rem;
   color: black;
   gap: 1.313rem;
@@ -215,7 +216,7 @@
 .contact-details-header {
   display: flex;
   height: 7.5rem;
-  width: 28.813rem;
+  
   gap: 3.375rem;
 }
 
@@ -247,7 +248,7 @@
   font-weight: 500;
   font-size: 2.938rem;
   line-height: 3.525rem;
-  width: 17.938rem;
+  
   text-transform: capitalize;
 }
 
