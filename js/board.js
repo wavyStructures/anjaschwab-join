@@ -1,6 +1,5 @@
-let cards = [
-    {
-        'id': 1,
+let cards = {
+    1: {
         'type':'User Story',
         'title':'Kochwelt Page & Recipe Recommender',
         'text': 'Build start page with recipe recommendation...',
@@ -10,8 +9,7 @@ let cards = [
         'category': 'todo',
         'priority': 'low'
     },
-    {
-        'id': 2,
+    2: {
         'type':'Technical Task',
         'title':'HTML Base Template Creation',
         'text': 'Create reusable HTML base templates...',
@@ -21,8 +19,7 @@ let cards = [
         'category': 'todo',
         'priority': 'medium'
     },
-    {
-        'id': 3,
+    3: {
         'type':'User Story',
         'title':'Daily Kochwelt Recipe',
         'text': 'Implement daily recipe and portion calculator...',
@@ -32,8 +29,7 @@ let cards = [
         'category': 'inProgress',
         'priority': 'urgend'
     },
-    {
-        'id': 4,
+    4: {
         'type':'Technical Task',
         'title':'CSS Architecture Planning',
         'text': 'Define CSS naming conventions and structure...',
@@ -43,8 +39,7 @@ let cards = [
         'category': 'todo',
         'priority': 'low'
     },
-    {
-        'id': 5,
+    5: {
         'type':'Technical Task',
         'title':'Cooking lunch',
         'text': 'Define CSS naming conventions and structure...',
@@ -54,7 +49,8 @@ let cards = [
         'category': 'done',
         'priority': 'low'
     }
-]
+}
+
 
 /**
  * All available cards will be filtered for the category
@@ -66,6 +62,7 @@ function filterCardsForCategory(toFilterFor){
     return card;
 }
 
+
 /**
  * render the cards inside each category
  */
@@ -73,35 +70,40 @@ function renderCategories(){
     let categories = ['todo','inProgress','awaitFeedback','done']
 
     categories.forEach(category => {
-        let content = document.getElementById(category);
-        let filteredCards = cards.filter(card => card['category'] == category);
-        
-        renderCardsHTML(content, filteredCards)
+        let categoryContainer = document.getElementById(category);
+        let filteredCards = filterCards(category);
+        if (filteredCards.length != 0){
+            renderCards(categoryContainer, filteredCards);
+        }else{
+            renderEmptyCategory(categoryContainer);
+        }
     });
 }
 
-function getAssignedToButtons(arrAssignedTo){
 
-    let assignedToButtons = [];
-    console.log(arrAssignedTo.length);
-    for (let i=0; i<arrAssignedTo.length; i++){
-        assignedToButtons.push(`<div class="assignedToButton">${arrAssignedTo[i]}</div>`)
+function filterCards(category){
+    let filteredCards = [];
+    for (let id in cards){
+        if(cards[id]['category'] == category){
+            filteredCards.push(cards[id]);
+        }
     }
-    console.log(assignedToButtons);
-    return assignedToButtons;
+    return filteredCards;
 }
 
 
-function getContactInformationsForAssignedToButtons(id){
-    contacts.forEach(c => {
-        if(c.id == id){ 
-            console.log(getInitials(c.name));
-        }
-        else{
-            return '??'
-        }
-    })
+function renderCards(categoryContainer, filteredCards){
+    for (let i = 0; i < filteredCards.length; i++) {
+        let card = filteredCards[i];
+        categoryContainer.innerHTML += renderCardsHTML(card);
+    }
 }
+
+
+function renderEmptyCategory(categoryContainer){
+    categoryContainer.innerHTML = renderEmptyCategoryHTML();
+}
+
 
 function setPriorityImage(cardPriority){
     if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
@@ -120,7 +122,6 @@ function renderSubtask(card){
     let completedSubtasks = card['completedSubtasks'];
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
-    console.log(countSubtasks);
     if (countSubtasks == 0){
         return `Nothing`
     }else{

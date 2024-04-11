@@ -164,28 +164,24 @@ function renderBoardHTML() {
  * @param {object} content the div the cards will be rendered in
  * @param {array} categoryCards JSON of cards (fitting to the category)
  */
-function renderCardsHTML(content, categoryCards) {
-  if (categoryCards.length != 0) {
-    for (let i = 0; i < categoryCards.length; i++) {
-      let card = categoryCards[i];
-      content.innerHTML += /*html*/ `
-        <div draggable="true" id="${card["id"]}" class="card">
-            <div class="cardType">${card["type"]}</div>
-            <div class="cardTitle">${card["title"]}</div>
-            <div class="cardText">${card["text"]}</div>
-            <div class="cardSubtasks">${renderSubtask(card)}</div>
-            <div class="cardBottomContainer">
-                <div class="cardAssignedToContainer">${card["assignedTo"]}</div>
-                <div class="cardPriority">${setPriorityImage(
-                  card["priority"]
-                )}</div>
-            </div>
-        </div>`;
-    }
-  } else {
-    content.innerHTML += `<div class="emptyCategory">Nothing to do</div>`;
-  }
+function renderCardsHTML(card) {
+    return /*html*/ `
+    <div draggable="true" id="${card["id"]}" class="card">
+        <div class="cardType">${card["type"]}</div>
+        <div class="cardTitle">${card["title"]}</div>
+        <div class="cardText">${card["text"]}</div>
+        <div class="cardSubtasks">${renderSubtask(card)}</div>
+        <div class="cardBottomContainer">
+            <div class="cardAssignedToContainer">${card["assignedTo"]}</div>
+            <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+        </div>
+    </div>`;
 }
+
+function renderEmptyCategoryHTML(){
+    return /*html*/`<div class="empty-category">Keine Karte!</div>`
+}
+
 
 function renderLoginPageHTML() {
   return /*html*/ `     
