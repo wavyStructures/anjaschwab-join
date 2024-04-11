@@ -39,14 +39,22 @@
   background-color: #A8A8A8; 
 }
 
+.contacts-container::-webkit-scrollbar-button {
+  height: 4px; 
+  width: 10px; 
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .contacts-container::-webkit-scrollbar-button:decrement {
-  background-image: url('../img/icon-arrow_up.png');
-  background-size: cover;
+  background-image: url('../img/arrow_up.png');
+  scroll-padding-top:  20px;
 }
 
 .contacts-container::-webkit-scrollbar-button:increment {
-  background-image: url('../img/icon-arrow_drop_down.png');
-  background-size: cover;
+  background-image: url('../img/arrow_down.png');
+  margin-bottom: 20px;
 }
 
 /* onclick Add new Contact remove d-none right-side */
@@ -131,6 +139,7 @@
 .contact-card:hover {
   background-color: #4589ff;
   color: white;
+  cursor: pointer;
 }
 
 .contact-card:hover .profile-badge-group{
