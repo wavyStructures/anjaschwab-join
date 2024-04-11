@@ -17,7 +17,7 @@ let cards = [
         'text': 'Create reusable HTML base templates...',
         'subtasks': 2,
         'completedSubtasks': 0,
-        'assignedTo': ['SS', 'MM', "AS"],
+        'assignedTo': [21, 2, 5],
         'category': 'todo',
         'priority': 'medium'
     },
@@ -28,7 +28,7 @@ let cards = [
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
         'completedSubtasks': 0,
-        'assignedTo': ['SS'],
+        'assignedTo': [17],
         'category': 'inProgress',
         'priority': 'urgend'
     },
@@ -39,7 +39,7 @@ let cards = [
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'completedSubtasks': 1,
-        'assignedTo': ['AS'],
+        'assignedTo': [9, 18],
         'category': 'todo',
         'priority': 'low'
     },
@@ -50,7 +50,7 @@ let cards = [
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'completedSubtasks': 2,
-        'assignedTo': ['MM'],
+        'assignedTo': [9],
         'category': 'done',
         'priority': 'low'
     }
@@ -81,6 +81,7 @@ function renderCategories(){
 }
 
 function getAssignedToButtons(arrAssignedTo){
+
     let assignedToButtons = [];
     console.log(arrAssignedTo.length);
     for (let i=0; i<arrAssignedTo.length; i++){
@@ -93,8 +94,11 @@ function getAssignedToButtons(arrAssignedTo){
 
 function getContactInformationsForAssignedToButtons(id){
     contacts.forEach(c => {
-        if(c.id == id){
+        if(c.id == id){ 
             console.log(getInitials(c.name));
+        }
+        else{
+            return '??'
         }
     })
 }
