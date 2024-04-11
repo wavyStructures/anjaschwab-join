@@ -193,11 +193,27 @@ function createFirstLetter(main, firstLetter) {
   letterDiv.classList.add("contact-list-letter");
   letterDiv.textContent = firstLetter;
   main.querySelector(".contact-list").appendChild(letterDiv);
+
+  createPartingLine(main);
 }
 
 function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
+}
+
+
+function createPartingLine(main) {
+  const partingLineContainer = document.createElement("div");
+  partingLineContainer.classList.add("parting-line-container");
+  partingLineContainer.id = "parting-line-container";
+
+  const partingLine = document.createElement("div");
+  partingLine.classList.add("parting-line");
+  partingLine.id = "parting-line";
+
+  partingLineContainer.appendChild(partingLine);
+  main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
 
 function generateContactsContainerHTML() {
@@ -210,9 +226,6 @@ function generateContactsContainerHTML() {
                 </div>
             </div>
             <div class="contact-list" id="contactList">
-                <div class="parting-line-container" id="parting-line-container">
-                    <div class="parting-line" id="parting-line"></div>
-                </div>
             </div>
         </div>
         <section class="right-side d-none" id="rightSide">
@@ -271,11 +284,19 @@ function highlightSelectedContact(id) {
   const allContactCards = document.querySelectorAll(".contact-card");
   allContactCards.forEach((card) => {
     card.style.backgroundColor = "";
+    const badgeGroup = card.querySelector('.profile-badge-group');
+    if (badgeGroup) {
+      badgeGroup.classList.remove('profileBadgeChoosen');
+    }
   });
 
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
   if (selectedContactCard) {
     selectedContactCard.style.backgroundColor = "#4589ff";
+    const selectedBadgeGroup = selectedContactCard.querySelector('.profile-badge-group');
+    if (selectedBadgeGroup) {
+      selectedBadgeGroup.classList.add('profileBadgeChoosen');
+    }
   }
 }
 

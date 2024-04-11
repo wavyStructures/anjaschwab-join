@@ -22,15 +22,14 @@
 
 .contacts-container::-webkit-scrollbar {
   width: 1.5rem; 
-  padding-left: 0.5rem;
 }
 
 .contacts-container::-webkit-scrollbar-track {
-  background-color: #f1f1f1; 
+  background: transparent;
 }
 
 .contacts-container::-webkit-scrollbar-thumb {
-  border: 0.5rem;
+  border: 0.5rem solid hsl(0 100% 100% / 1);
   height: 3.3125rem;
   background-color: #A8A8A8; 
   border-radius: 0.75rem; 
@@ -38,6 +37,16 @@
 
 .contacts-container::-webkit-scrollbar-thumb:hover {
   background-color: #A8A8A8; 
+}
+
+.contacts-container::-webkit-scrollbar-button:decrement {
+  background-image: url('../img/icon-arrow_up.png');
+  background-size: cover;
+}
+
+.contacts-container::-webkit-scrollbar-button:increment {
+  background-image: url('../img/icon-arrow_drop_down.png');
+  background-size: cover;
 }
 
 /* onclick Add new Contact remove d-none right-side */
@@ -121,6 +130,11 @@
 
 .contact-card:hover {
   background-color: #4589ff;
+  color: white;
+}
+
+.contact-card:hover .profile-badge-group{
+  border: 2px solid white;
 }
 
 .contact-card:hover .contact-card-name,
@@ -137,7 +151,7 @@
 }
 
 .profileBadgeChoosen {
-  border-color: white;
+  border: 2px solid white;
 }
 
 .profile-badge-group {
