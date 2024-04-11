@@ -2,6 +2,7 @@
  * the init-function in body onload
  */
 async function init() {
+  // startAnimation();
   renderHeader();
   renderNavigation();
   renderBoard();

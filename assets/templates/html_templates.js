@@ -176,7 +176,9 @@ function renderCardsHTML(content, categoryCards) {
             <div class="cardSubtasks">${renderSubtask(card)}</div>
             <div class="cardBottomContainer">
                 <div class="cardAssignedToContainer">${card["assignedTo"]}</div>
-                <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+                <div class="cardPriority">${setPriorityImage(
+                  card["priority"]
+                )}</div>
             </div>
         </div>`;
     }
@@ -185,63 +187,70 @@ function renderCardsHTML(content, categoryCards) {
   }
 }
 
-
-function renderLoginPageHTML(){
-    return /*html*/`     
-    <div class="loginMainContainer">
+function renderLoginPageHTML() {
+  return /*html*/ `     
+    <div id="loginMainContainer" class="loginMainContainer">
+        <div class="blue-overlay" id="blue-overlay" style="display: none;">
+            <div class="joinLogoWhite logo-animation" id="logo">
+                <img src="./assets/img/logo-big_white.png" alt="logo">
+            </div>
+        </div>
         <header class="loginHeader">
-    <div class="joinLogoBlue">
-        <img src="./assets/img/logo-medium_blue.png" alt="logo">
-    </div>
-    <div class="signUpField">
-        <span>Not a join user yet?</span>
-        <button class="loginButtons signUpButton" onclick="openSignUpPage()">Sign up</button> <!--TODO-->
-    </div>
-</header>
-<div class="login-page">
-    <div class="login-box">
-        <div class="h1LoginBox">
-            <h1 class="loginH1">Log in</h1>
-            <div class="horizontalH1Underline"></div>
-        </div>
-        <div class="formDiv">
-            <form action="">
-                <div class="innerLoginBox">
-                    <div class="loginEmailBox">
-                        <input type="email" id="loginEmailInput" placeholder="Email">
-                        <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
-                    </div>
-
-                    <div class="loginPasswordBox">
-                        <input type="password" id="loginPasswordInput" placeholder="Password">
-                        <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
-                    </div>
+            <div class="joinLogoBlue">
+                <img src="./assets/img/logo-medium_blue.png" alt="logo">
+            </div>
+            <div class="signUpField">
+                <span>Not a join user yet?</span>
+                <button class="loginButtons signUpButton" onclick="renderSignUpPage()">Sign up</button> <!--TODO-->
+            </div>
+        </header>
+        <div class="login-page">
+            <div class="login-box">
+                <div class="h1LoginBox">
+                    <h1 class="loginH1">Log in</h1>
+                    <div class="horizontalH1Underline"></div>
                 </div>
-                <input type="checkbox" value="lsRememberMe" id="rememberMe">
-                <label for="rememberMe">Remember me</label><br>
+                <div class="formDiv">
+                    <form action="">
+                        <div class="innerLoginBox">
+                            <div class="loginEmailBox">
+                                <input type="email" id="loginEmailInput" placeholder="Email">
+                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                            </div>
+
+                            <div class="loginPasswordBox">
+                                <input type="password" id="loginPasswordInput" placeholder="Password">
+                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                            </div>
+                        </div>
+                        <input type="checkbox" value="lsRememberMe" id="rememberMe">
+                        <label for="rememberMe">Remember me</label><br>
 
 
-                <input class="loginButtons loginButtonUser" type="submit" value="Login"
-                    onclick="lsRememberMe()">
-                <!--TODO-->
-                <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
-                    onclick="lsRememberMe()"> <!--TODO-->
+                        <input class="loginButtons loginButtonUser" type="submit" value="Login"
+                            onclick="lsRememberMe()">
+                        <!--TODO-->
+                        <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
+                            onclick="lsRememberMe()"> <!--TODO-->
 
-            </form>
+                    </form>
+                </div>
+            </div>
+
+            <div class="loginFooter">
+                <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
+                <div class="legalNotice" onclick=""><span>Legal notice</span></div>
+            </div>
+
+
         </div>
     </div>
 
-    <div class="loginFooter">
-        <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
-        <div class="legalNotice" onclick=""><span>Legal notice</span></div>
-    </div>
-</div>
-</div>`;
+    `;
 }
 
-
-function renderSignUpPageHTML(){
-    return /*html*/`<div class="signUpMainContainer"><form onsubmit="register(); return false;">
+function renderSignUpPageHTML() {
+  return /*html*/ `<div class="signUpMainContainer"><form onsubmit="register(); return false;">
         <input type="text" id="email">
         <input type="password" id="password">
         <button id="registerBtn">Registrieren</button>
