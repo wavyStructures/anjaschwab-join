@@ -6,7 +6,7 @@ let cards = [
         'text': 'Build start page with recipe recommendation...',
         'subtasks': 2,
         'completedSubtasks': 1,
-        'assignedTo': ['SS','MM',"AS"],
+        'assignedTo': [21],
         'category': 'todo',
         'priority': 'low'
     },
@@ -90,6 +90,14 @@ function getAssignedToButtons(arrAssignedTo){
     return assignedToButtons;
 }
 
+
+function getContactInformationsForAssignedToButtons(id){
+    contacts.forEach(c => {
+        if(c.id == id){
+            console.log(getInitials(c.name));
+        }
+    })
+}
 
 function setPriorityImage(cardPriority){
     if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
