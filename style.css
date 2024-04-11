@@ -13,8 +13,11 @@
 }
 
 body {
-  margin: 0 auto auto 0;
-  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    /* margin: 0 auto auto 0; */
+  
 }
 
 .main-wrapper {
@@ -31,4 +34,10 @@ body {
 
 .d-none{
   display: none;
+}
+
+.bodyContent{
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
 }
