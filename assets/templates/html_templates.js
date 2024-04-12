@@ -172,7 +172,7 @@ function renderCardsHTML(card) {
         <div class="cardText">${card["text"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
-            <div class="cardAssignedToContainer">${card["assignedTo"]}</div>
+        <div class="cardAssignedToContainer">${renderAssignedToButtons(card["assignedTo"])}</div>
             <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
         </div>
     </div>`;
@@ -183,8 +183,13 @@ function renderEmptyCategoryHTML(){
 }
 
 
+function renderAssignedToButtonsHTML(contact){
+    return /*html*/`
+    <div class="" style="background-color: ${contact.contactColor}>${contact.mail}</div>`
+}
+
 function renderLoginPageHTML() {
-  return /*html*/ `     
+  return /*html*/ `
     <div id="loginMainContainer" class="loginMainContainer">
         <div class="blue-overlay" id="blue-overlay" style="display: none;">
             <div class="joinLogoWhite logo-animation" id="logo">

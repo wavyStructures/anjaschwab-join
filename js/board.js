@@ -73,7 +73,7 @@ function renderCategories(){
         let categoryContainer = document.getElementById(category);
         let filteredCards = filterCards(category);
         if (filteredCards.length != 0){
-            renderCards(categoryContainer, filteredCards);
+            renderCardsInCategory(categoryContainer, filteredCards);
         }else{
             renderEmptyCategory(categoryContainer);
         }
@@ -92,7 +92,7 @@ function filterCards(category){
 }
 
 
-function renderCards(categoryContainer, filteredCards){
+function renderCardsInCategory(categoryContainer, filteredCards){
     for (let i = 0; i < filteredCards.length; i++) {
         let card = filteredCards[i];
         categoryContainer.innerHTML += renderCardsHTML(card);
@@ -103,6 +103,23 @@ function renderCards(categoryContainer, filteredCards){
 function renderEmptyCategory(categoryContainer){
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
 }
+
+
+function renderAssignedToButtons(ids){
+    let assignedToDivs = [];
+
+    for(let i=0; i<ids.length; i++){
+        let contact = contacts[ids[i]];
+        assignedToDivs.push(getAssignedToDivs(contact));
+    }
+    return assignedToDivs;
+}
+
+
+function getAssignedToDivs(contact){
+    let initials = getInitials(contact.name);
+    return /*html*/`<div class="profile-badge-group">${initials}</div>`
+} 
 
 
 function setPriorityImage(cardPriority){
