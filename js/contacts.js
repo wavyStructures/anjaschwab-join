@@ -1,3 +1,13 @@
+/**
+ * Array containing contact objects.
+ * 
+ * @type {Object[]}
+ * @property {number} id - The unique identifier of the contact.
+ * @property {string} name - The name of the contact.
+ * @property {string} mail - The email address of the contact.
+ * @property {string} phone - The phone number of the contact.
+ * @property {string} contactColor - The color associated with the contact.
+ */
 let contacts = [
   {
     id: 1,
