@@ -172,29 +172,24 @@ let contacts = [
  * @returns {void}
  */
 function loadContacts() {
-  let main = document.getElementById("main");
+  const main = document.getElementById("main");
   main.innerHTML = ``;
   createContactsContainer(main);
 
-  let currentFirstLetters = [];
+  const currentFirstLetters = [];
 
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    const id = contact.id;
-    const name = contact.name;
-    const mail = contact.mail;
-    const phone = contact.phone;
+  contacts.forEach(contact => {
+    const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
     const firstLetter = name.charAt(0).toUpperCase();
-    const color = contact.contactColor;
-
+    
     if (!currentFirstLetters.includes(firstLetter)) {
       createFirstLetter(main, firstLetter);
       currentFirstLetters.push(firstLetter);
     }
-
-    createContactCard(main, id, color, initials, name, mail);
-  }
+    
+    createContactCard(main, id, contactColor, initials, name, mail);
+  });
 }
 
 
