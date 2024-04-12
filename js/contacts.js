@@ -155,6 +155,12 @@ let contacts = [
   },
 ];
 
+/**
+ * Loads the contacts and renders them into the main element.
+ * 
+ * @function loadContacts
+ * @returns {void}
+ */
 function loadContacts() {
   let main = document.getElementById("main");
   main.innerHTML = ``;
@@ -181,6 +187,13 @@ function loadContacts() {
   }
 }
 
+
+/**
+ * Generates initials from a full name.
+ * 
+ * @param {string} name - The full name from which to generate initials.
+ * @returns {string} The initials generated from the provided full name.
+ */
 function getInitials(name) {
   let [firstName, lastName] = name.split(" ");
   let firstInitial = firstName.charAt(0).toUpperCase();
@@ -188,6 +201,15 @@ function getInitials(name) {
   return firstInitial + lastInitial;
 }
 
+
+/**
+ * Creates a letter element representing the first letter of a group of contacts.
+ * 
+ * @function createFirstLetter
+ * @param {HTMLElement} main - The main element where the letter element will be appended.
+ * @param {string} firstLetter - The first letter to be displayed.
+ * @returns {void}
+ */
 function createFirstLetter(main, firstLetter) {
   const letterDiv = document.createElement("div");
   letterDiv.classList.add("contact-list-letter");
@@ -197,12 +219,27 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
+
+/**
+ * Creates a container for displaying contacts and appends it to the main element.
+ * 
+ * @function createContactsContainer
+ * @param {HTMLElement} main - The main element where the container will be appended.
+ * @returns {void}
+ */
 function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
 
 
+/**
+ * Creates a parting line element and appends it to the contact list within the main element.
+ * 
+ * @function createPartingLine
+ * @param {HTMLElement} main - The main element containing the contact list.
+ * @returns {void}
+ */
 function createPartingLine(main) {
   const partingLineContainer = document.createElement("div");
   partingLineContainer.classList.add("parting-line-container");
@@ -216,6 +253,13 @@ function createPartingLine(main) {
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
 
+
+/**
+ * Generates HTML code for the contacts container.
+ * 
+ * @function generateContactsContainerHTML
+ * @returns {string} The HTML code for the contacts container.
+ */
 function generateContactsContainerHTML() {
   return `
         <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
@@ -234,6 +278,19 @@ function generateContactsContainerHTML() {
     `;
 }
 
+
+/**
+ * Creates a contact card element and appends it to the contact list within the main element.
+ * 
+ * @function createContactCard
+ * @param {HTMLElement} main - The main element containing the contacts container.
+ * @param {number} id - The unique identifier for the contact.
+ * @param {string} color - The color associated with the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @returns {void}
+ */
 function createContactCard(main, id, color, initials, name, mail) {
   const shorterMail = mail.length > 20 ? mail.substring(0, 20) + "..." : mail;
   const cardHTML = generateContactCardHTML(
@@ -250,6 +307,19 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
+
+/**
+ * Generates HTML code for a contact card with specified details.
+ * 
+ * @function generateContactCardHTML
+ * @param {number} id - The unique identifier for the contact.
+ * @param {string} color - The color associated with the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @param {string} shorterMail - The shortened version of the email address.
+ * @returns {string} The HTML code for the contact card.
+ */
 function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
   const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase());
   return `
@@ -263,6 +333,14 @@ function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
     `;
 }
 
+
+/**
+ * Opens the details of a contact specified by its ID.
+ * 
+ * @function openContactDetails
+ * @param {number} id - The unique identifier of the contact.
+ * @returns {void}
+ */
 function openContactDetails(id) {
   const contact = contacts.find((contact) => contact.id === id);
   const { name, mail, phone } = contact;
@@ -281,6 +359,14 @@ function openContactDetails(id) {
   }
 }
 
+
+/**
+ * Resets the styles of a contact card to their default values.
+ * 
+ * @function resetContactCard
+ * @param {HTMLElement} card - The contact card element to be reset.
+ * @returns {void}
+ */
 function resetContactCard(card) {
   card.style.backgroundColor = "";
   card.style.color = "";
@@ -294,11 +380,26 @@ function resetContactCard(card) {
   }
 }
 
+
+/**
+ * Resets the styles of all contact cards to their default values.
+ * 
+ * @function resetAllContactCards
+ * @returns {void}
+ */
 function resetAllContactCards() {
   const allContactCards = document.querySelectorAll(".contact-card");
   allContactCards.forEach(resetContactCard);
 }
 
+
+/**
+ * Highlights a contact card by applying specific styles.
+ * 
+ * @function highlightContactCard
+ * @param {HTMLElement} card - The contact card element to be highlighted.
+ * @returns {void}
+ */
 function highlightContactCard(card) {
   card.style.backgroundColor = "#4589ff";
   card.style.color = "white";
@@ -312,20 +413,37 @@ function highlightContactCard(card) {
   }
 }
 
+
+/**
+ * Highlights the selected contact card and resets all others if already highlighted.
+ * 
+ * @function highlightSelectedContact
+ * @param {number} id - The unique identifier of the selected contact.
+ * @returns {void}
+ */
 function highlightSelectedContact(id) {
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
   if (!selectedContactCard) return;
 
   if (selectedContactCard.style.backgroundColor === "rgb(69, 137, 255)") {
-    // Wenn die Karte bereits ausgewählt ist, setze sie zurück und beende die Funktion
     resetContactCard(selectedContactCard);
     return;
   }
 
-  resetAllContactCards(); // Erst alle Karten zurücksetzen
-  highlightContactCard(selectedContactCard); // Dann die ausgewählte Karte hervorheben
+  resetAllContactCards(); 
+  highlightContactCard(selectedContactCard); 
 }
 
+
+/**
+ * Generates HTML code for displaying contact details.
+ * 
+ * @function generateContactDetailsHTML
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {string} The HTML code for displaying contact details.
+ */
 function generateContactDetailsHTML(name, email, phone) {
   return `
     <div class="contact-Details">
