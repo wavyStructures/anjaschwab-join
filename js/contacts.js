@@ -281,34 +281,49 @@ function openContactDetails(id) {
   }
 }
 
-function highlightSelectedContact(id) {
-  const allContactCards = document.querySelectorAll(".contact-card");
-  allContactCards.forEach((card) => {
-    card.style.backgroundColor = "";
-    card.style.color = "";
-    const badgeGroup = card.querySelector('.profile-badge-group');
-    if (badgeGroup) {
-      badgeGroup.classList.remove('profileBadgeChoosen');
-    }
-    const emailElement = card.querySelector('.contact-card-email');
-    if (emailElement) {
-      emailElement.style.color = "";
-    }
-  });
-
-  const selectedContactCard = document.getElementById(`contact-card-${id}`);
-  if (selectedContactCard) {
-    selectedContactCard.style.backgroundColor = "#4589ff";
-    selectedContactCard.style.color = "white";
-    const selectedBadgeGroup = selectedContactCard.querySelector('.profile-badge-group');
-    if (selectedBadgeGroup) {
-      selectedBadgeGroup.classList.add('profileBadgeChoosen');
-    }
-    const selectedEmailElement = selectedContactCard.querySelector('.contact-card-email');
-    if (selectedEmailElement) {
-      selectedEmailElement.style.color = "white";
-    }
+function resetContactCard(card) {
+  card.style.backgroundColor = "";
+  card.style.color = "";
+  const badgeGroup = card.querySelector('.profile-badge-group');
+  if (badgeGroup) {
+    badgeGroup.classList.remove('profileBadgeChoosen');
   }
+  const emailElement = card.querySelector('.contact-card-email');
+  if (emailElement) {
+    emailElement.style.color = "";
+  }
+}
+
+function resetAllContactCards() {
+  const allContactCards = document.querySelectorAll(".contact-card");
+  allContactCards.forEach(resetContactCard);
+}
+
+function highlightContactCard(card) {
+  card.style.backgroundColor = "#4589ff";
+  card.style.color = "white";
+  const badgeGroup = card.querySelector('.profile-badge-group');
+  if (badgeGroup) {
+    badgeGroup.classList.add('profileBadgeChoosen');
+  }
+  const emailElement = card.querySelector('.contact-card-email');
+  if (emailElement) {
+    emailElement.style.color = "white";
+  }
+}
+
+function highlightSelectedContact(id) {
+  const selectedContactCard = document.getElementById(`contact-card-${id}`);
+  if (!selectedContactCard) return;
+
+  if (selectedContactCard.style.backgroundColor === "rgb(69, 137, 255)") {
+    // Wenn die Karte bereits ausgewählt ist, setze sie zurück und beende die Funktion
+    resetContactCard(selectedContactCard);
+    return;
+  }
+
+  resetAllContactCards(); // Erst alle Karten zurücksetzen
+  highlightContactCard(selectedContactCard); // Dann die ausgewählte Karte hervorheben
 }
 
 function generateContactDetailsHTML(name, email, phone) {
