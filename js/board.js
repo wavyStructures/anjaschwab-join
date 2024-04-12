@@ -118,7 +118,7 @@ function renderAssignedToButtons(ids){
 
 function getAssignedToDivs(contact){
     let initials = getInitials(contact.name);
-    return /*html*/`<div class="profile-badge-group">${initials}</div>`
+    return /*html*/`<div class="profile-badge-group" style="background-color: ${contact.contactColor}">${initials}</div>`
 } 
 
 
