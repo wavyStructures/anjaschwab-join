@@ -1,5 +1,6 @@
-let cards = {
-    1: {
+let cards = [
+    {
+        'id': 0,
         'type': 'User Story',
         'title': 'Kochwelt Page & Recipe Recommender',
         'text': 'Build start page with recipe recommendation...',
@@ -9,7 +10,8 @@ let cards = {
         'category': 'todo',
         'priority': 'low'
     },
-    2: {
+    {
+        'id': 1,
         'type': 'Technical Task',
         'title': 'HTML Base Template Creation',
         'text': 'Create reusable HTML base templates...',
@@ -19,7 +21,8 @@ let cards = {
         'category': 'todo',
         'priority': 'medium'
     },
-    3: {
+    {
+        'id': 2,
         'type': 'User Story',
         'title': 'Daily Kochwelt Recipe',
         'text': 'Implement daily recipe and portion calculator...',
@@ -29,7 +32,8 @@ let cards = {
         'category': 'inProgress',
         'priority': 'urgend'
     },
-    4: {
+    {
+        'id': 3,
         'type': 'Technical Task',
         'title': 'CSS Architecture Planning',
         'text': 'Define CSS naming conventions and structure...',
@@ -39,7 +43,8 @@ let cards = {
         'category': 'todo',
         'priority': 'low'
     },
-    5: {
+    {
+        'id': 4,
         'type': 'Technical Task',
         'title': 'Cooking lunch',
         'text': 'Define CSS naming conventions and structure...',
@@ -49,7 +54,7 @@ let cards = {
         'category': 'done',
         'priority': 'low'
     }
-}
+];
 
 
 /**
@@ -69,15 +74,34 @@ function filterCardsForCategory(toFilterFor) {
 function renderCategories() {
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
 
-    categories.forEach(category => {
+    for(let i=0; i<categories.length; i++){
+        let category = categories[i];
         let categoryContainer = document.getElementById(category);
         let filteredCards = filterCards(category);
         if (filteredCards.length != 0) {
-            renderCardsInCategory(categoryContainer, filteredCards);
+            for (let j=0; j<filteredCards.length; j++){
+                let card = filteredCards[j];
+                categoryContainer.innerHTML += renderCardsHTML(card);
+                renderAssignedToButtons(card);
+            }
         } else {
             renderEmptyCategory(categoryContainer);
         }
-    });
+    };
+
+}
+
+function renderAssignedToButtons(card){
+    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + card['id']);
+    let assignedToContacts = card['assignedTo'];
+
+    for (let i=0; i<assignedToContacts.length; i++){
+        for (let j=0; j<contacts.length; j++){
+            if (contacts[j]['id'] == assignedToContacts[i]) 
+                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
+        }
+    }
+
 }
 
 
@@ -102,23 +126,6 @@ function renderCardsInCategory(categoryContainer, filteredCards) {
 
 function renderEmptyCategory(categoryContainer) {
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
-}
-
-
-function renderAssignedToButtons(ids) {
-    let assignedToDivs = [];
-
-    for (let i = 0; i < ids.length; i++) {
-        let contact = contacts[ids[i]];
-        assignedToDivs.push(getAssignedToDivs(contact));
-    }
-    return assignedToDivs;
-}
-
-
-function getAssignedToDivs(contact) {
-    let initials = getInitials(contact.name);
-    return /*html*/`<div class="profile-badge-group" style="background-color: ${contact.contactColor}">${initials}</div>`
 }
 
 

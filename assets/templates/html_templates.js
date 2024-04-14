@@ -173,9 +173,7 @@ function renderCardsHTML(card) {
         <div class="cardText">${card["text"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
-        <div class="cardAssignedToContainer">${renderAssignedToButtons(
-          card["assignedTo"]
-        )}</div>
+        <div id="cardAssignedToContainerId${card['id']}" class="cardAssignedToContainer"></div>
             <div class="cardPriority">${setPriorityImage(
               card["priority"]
             )}</div>
@@ -188,8 +186,8 @@ function renderEmptyCategoryHTML() {
 }
 
 function renderAssignedToButtonsHTML(contact) {
-  return /*html*/ `
-    <div class="" style="background-color: ${contact.contactColor}>${contact.mail}</div>`;
+    console.log(contact.contactColor);
+  return /*html*/ `<div class="profile-badge-group" style="background-color: ${contact.contactColor}">${getInitials(contact.name)}</div>`;
 }
 
 function renderLoginPageHTML() {
