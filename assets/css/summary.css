@@ -149,6 +149,11 @@ h1 {
   color: #fff;
 }
 
+.urgentAndDate:hover {
+  transform: scale(1.05);
+  background-color: var(--clr-text-medium-blue);
+}
+
 .urgentAndDate .amount {
   height: 58px;
   width: 28px;

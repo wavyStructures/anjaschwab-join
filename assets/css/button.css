@@ -13,3 +13,8 @@
   /* opacity: 0px; */
   cursor: pointer;
 }
+
+.square-button:hover {
+  transform: scale(1.06);
+  background-color: var(--clr-text-menu-hover);
+}
