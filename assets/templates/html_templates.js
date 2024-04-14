@@ -28,7 +28,7 @@ function renderSummaryHTML() {
   <div class="sub-main-summary">
     <div class="summary-box box-shadow">
         <div id="h1GreetingUser" class="h1-box">
-            <h1 class="no-wrap">Good morning,</h1>
+            <h1 id="daytimeGreeting" class="no-wrap">Good morning,</h1>
             <h1 id="usernameForGreeting">Sofia XXX</h1>
         </div>
         <div id="h1GreetingGuest" class="h1-box" style="display: none;">
@@ -38,7 +38,8 @@ function renderSummaryHTML() {
             <div class="urgentAndDate" id="urgentAndDate">
                 <div class="urgentBox">
                     <div class="image-and-amount flex">
-                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol">
+                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol"
+                            class="white-border">
                         <span class="amount">1</span>
                     </div>
                     <span>Tasks Urgent</span>
@@ -165,27 +166,30 @@ function renderBoardHTML() {
  * @param {array} categoryCards JSON of cards (fitting to the category)
  */
 function renderCardsHTML(card) {
-    return /*html*/ `
+  return /*html*/ `
     <div draggable="true" id="${card["id"]}" class="card">
         <div class="cardType">${card["type"]}</div>
         <div class="cardTitle">${card["title"]}</div>
         <div class="cardText">${card["text"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
-        <div class="cardAssignedToContainer">${renderAssignedToButtons(card["assignedTo"])}</div>
-            <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
+        <div class="cardAssignedToContainer">${renderAssignedToButtons(
+          card["assignedTo"]
+        )}</div>
+            <div class="cardPriority">${setPriorityImage(
+              card["priority"]
+            )}</div>
         </div>
     </div>`;
 }
 
-function renderEmptyCategoryHTML(){
-    return /*html*/`<div class="empty-category">Keine Karte!</div>`
+function renderEmptyCategoryHTML() {
+  return /*html*/ `<div class="empty-category">Keine Karte!</div>`;
 }
 
-
-function renderAssignedToButtonsHTML(contact){
-    return /*html*/`
-    <div class="" style="background-color: ${contact.contactColor}>${contact.mail}</div>`
+function renderAssignedToButtonsHTML(contact) {
+  return /*html*/ `
+    <div class="" style="background-color: ${contact.contactColor}>${contact.mail}</div>`;
 }
 
 function renderLoginPageHTML() {

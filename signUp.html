@@ -35,21 +35,20 @@
                     <form onsubmit="addUser(); return false">
                         <div class="innerSignUpBox">
                             <div class="signUpEmailBox">
-                                <input type="email" id="signUpEmailInput" placeholder="Email">
+                                <input type="email" id="signUpEmailInput" placeholder="Email" required>
                                 <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
                             </div>
 
                             <div class="signUpPasswordBox">
-                                <input type="password" id="signUpPasswordInput" placeholder="Password">
+                                <input type="password" id="signUpPasswordInput" placeholder="Password" required>
                                 <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
                             </div>
                         </div>
-                        <input type="checkbox" value="lsRememberMe" id="rememberMe">
-                        <label for="rememberMe">Remember me</label><br>
+                        <input type="checkbox" value="acceptingPrivacyPolicy" id="acceptingPrivacyPolicy">
+                        <label for="acceptingPrivacyPolicy">I accept the <a href="#">Privacy Policy</a> </label><br>
 
 
-                        <input class="signUpButtons signUpButtonUser" type="submit" value="signUp"
-                            onclick="lsRememberMe()">
+                        <input class="signUpButtons signUpButtonUser" type="submit" value="signUp" onclick="">
                         <!--TODO-->
                     </form>
                 </div>
@@ -72,16 +71,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-///////////// original signUP //////////////////////////
-div class="signUpMainContainer"><form onsubmit="register(); return false;">
-    <input type="text" id="email">
-    <input type="password" id="password">
-    <button id="registerBtn">Registrieren</button>
-</form>
-</div>

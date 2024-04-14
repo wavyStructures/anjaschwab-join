@@ -1,10 +1,10 @@
 .signUpMainContainer {
   z-index: 100;
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   background-color: var(--clr-main);
 }
 
@@ -118,10 +118,15 @@
   color: #647188;
   margin-left: 35px;
 }
-#rememberMe {
+#acceptingPrivacyPolicy {
   margin-top: 20px;
   margin-bottom: 38px; /*TODO checkbox color or png*/
   margin-left: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-text-light-blue);
 }
 
 .signUpFooter {
