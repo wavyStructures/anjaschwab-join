@@ -57,6 +57,25 @@ function renderHeader() {
   content.innerHTML = renderHeaderHTML();
 }
 
+
+/**
+ * rendering the login-page
+ */
+function renderLogin() {
+  let content = getDiv('loginMainContainer');
+  content.innerHTML = renderLoginPageHTML();
+}
+
+
+/**
+ * rendering the signUp-page
+ */
+function renderSignUp() {
+  let content = getDiv('signUpMainContainer');
+  content.innerHTML = renderSignUpPageHTML();
+}
+
+
 /**
  * rendering the summary-page
  */

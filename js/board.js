@@ -1,7 +1,7 @@
 let cards = {
     1: {
-        'type':'User Story',
-        'title':'Kochwelt Page & Recipe Recommender',
+        'type': 'User Story',
+        'title': 'Kochwelt Page & Recipe Recommender',
         'text': 'Build start page with recipe recommendation...',
         'subtasks': 2,
         'completedSubtasks': 1,
@@ -10,8 +10,8 @@ let cards = {
         'priority': 'low'
     },
     2: {
-        'type':'Technical Task',
-        'title':'HTML Base Template Creation',
+        'type': 'Technical Task',
+        'title': 'HTML Base Template Creation',
         'text': 'Create reusable HTML base templates...',
         'subtasks': 2,
         'completedSubtasks': 0,
@@ -20,8 +20,8 @@ let cards = {
         'priority': 'medium'
     },
     3: {
-        'type':'User Story',
-        'title':'Daily Kochwelt Recipe',
+        'type': 'User Story',
+        'title': 'Daily Kochwelt Recipe',
         'text': 'Implement daily recipe and portion calculator...',
         'subtasks': 2,
         'completedSubtasks': 0,
@@ -30,8 +30,8 @@ let cards = {
         'priority': 'urgend'
     },
     4: {
-        'type':'Technical Task',
-        'title':'CSS Architecture Planning',
+        'type': 'Technical Task',
+        'title': 'CSS Architecture Planning',
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'completedSubtasks': 1,
@@ -40,8 +40,8 @@ let cards = {
         'priority': 'low'
     },
     5: {
-        'type':'Technical Task',
-        'title':'Cooking lunch',
+        'type': 'Technical Task',
+        'title': 'Cooking lunch',
         'text': 'Define CSS naming conventions and structure...',
         'subtasks': 2,
         'completedSubtasks': 2,
@@ -57,7 +57,7 @@ let cards = {
  * @param {string} toFilterFor the category's name (e.g. 'done')
  * @returns array with cards fitting category
  */
-function filterCardsForCategory(toFilterFor){
+function filterCardsForCategory(toFilterFor) {
     let card = cards.filter(c => c['category'] == toFilterFor);
     return card;
 }
@@ -66,25 +66,25 @@ function filterCardsForCategory(toFilterFor){
 /**
  * render the cards inside each category
  */
-function renderCategories(){
-    let categories = ['todo','inProgress','awaitFeedback','done']
+function renderCategories() {
+    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
 
     categories.forEach(category => {
         let categoryContainer = document.getElementById(category);
         let filteredCards = filterCards(category);
-        if (filteredCards.length != 0){
+        if (filteredCards.length != 0) {
             renderCardsInCategory(categoryContainer, filteredCards);
-        }else{
+        } else {
             renderEmptyCategory(categoryContainer);
         }
     });
 }
 
 
-function filterCards(category){
+function filterCards(category) {
     let filteredCards = [];
-    for (let id in cards){
-        if(cards[id]['category'] == category){
+    for (let id in cards) {
+        if (cards[id]['category'] == category) {
             filteredCards.push(cards[id]);
         }
     }
@@ -92,7 +92,7 @@ function filterCards(category){
 }
 
 
-function renderCardsInCategory(categoryContainer, filteredCards){
+function renderCardsInCategory(categoryContainer, filteredCards) {
     for (let i = 0; i < filteredCards.length; i++) {
         let card = filteredCards[i];
         categoryContainer.innerHTML += renderCardsHTML(card);
@@ -100,15 +100,15 @@ function renderCardsInCategory(categoryContainer, filteredCards){
 }
 
 
-function renderEmptyCategory(categoryContainer){
+function renderEmptyCategory(categoryContainer) {
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
 }
 
 
-function renderAssignedToButtons(ids){
+function renderAssignedToButtons(ids) {
     let assignedToDivs = [];
 
-    for(let i=0; i<ids.length; i++){
+    for (let i = 0; i < ids.length; i++) {
         let contact = contacts[ids[i]];
         assignedToDivs.push(getAssignedToDivs(contact));
     }
@@ -116,32 +116,32 @@ function renderAssignedToButtons(ids){
 }
 
 
-function getAssignedToDivs(contact){
+function getAssignedToDivs(contact) {
     let initials = getInitials(contact.name);
     return /*html*/`<div class="profile-badge-group" style="background-color: ${contact.contactColor}">${initials}</div>`
-} 
+}
 
 
-function setPriorityImage(cardPriority){
+function setPriorityImage(cardPriority) {
     if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
     else if (cardPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
     else return `<img src="assets/img/icon-priority_high.png">`
 }
 
 
-function searchTask(){
+function searchTask() {
     console.log('TBD');
 }
 
 
-function renderSubtask(card){
+function renderSubtask(card) {
     let countSubtasks = card['subtasks'];
     let completedSubtasks = card['completedSubtasks'];
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
-    if (countSubtasks == 0){
+    if (countSubtasks == 0) {
         return `Nothing`
-    }else{
+    } else {
         return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${card['completedSubtasks']}/${card["subtasks"]} Subtasks</div>`
     }
 

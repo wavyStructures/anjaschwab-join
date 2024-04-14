@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
     <script src="script.js"></script>
-    <title>Register</title>
+
+    <title>Join Log In</title>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
             </div>
             <div class="signUpField">
                 <span>Not a join user yet?</span>
-                <button class="loginButtons signUpButton" onclick="renderSignUpPage()">Sign up</button> <!--TODO-->
+                <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button> <!--TODO-->
             </div>
         </header>
         <div class="login-page">
@@ -58,6 +59,23 @@
                             onclick="lsRememberMe()"> <!--TODO-->
 
                     </form>
+
+                    <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
+                    <div id="msgBox"></div>
+
+                    <script>
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const msg = urlParams.get('msg');
+
+                        if (msg) {
+                            msgBox.innerHTML = msg;
+                        } else {
+                            //TODO display: none
+                        }
+                    </script>
+
+
+
                 </div>
             </div>
 
@@ -69,6 +87,7 @@
 
         </div>
     </div>
+
 
 
 
