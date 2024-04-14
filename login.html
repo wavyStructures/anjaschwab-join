@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
     <script src="script.js"></script>
+    <script src="./js/signUp.js"></script>
 
     <title>Join Log In</title>
 </head>
@@ -26,10 +27,10 @@
             </div>
             <div class="signUpField">
                 <span>Not a join user yet?</span>
-                <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button> <!--TODO-->
+                <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button>
             </div>
         </header>
-        <div class="login-page">
+        <div class=" login-page">
             <div class="login-box">
                 <div class="h1LoginBox">
                     <h1 class="loginH1">Log in</h1>
@@ -52,11 +53,9 @@
                         <label for="rememberMe">Remember me</label><br>
 
 
-                        <input class="loginButtons loginButtonUser" type="submit" value="Login"
-                            onclick="lsRememberMe()">
+                        <button class="loginButtons loginButtonUser" onclick="login()">Log in</button>
                         <!--TODO-->
-                        <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
-                            onclick="lsRememberMe()"> <!--TODO-->
+                        <button class="loginButtons loginButtonGuest">Guest log in</button>
 
                     </form>
 
@@ -64,6 +63,16 @@
                     <div id="msgBox"></div>
 
                     <script>
+                        function login() {
+                            let email = document.getElementById('loginEmailInput');
+                            let password = document.getElementById('loginPasswordInput');
+                            let user = users.find(user => user.email == email.value && user.password == password);
+                            console.log(user);
+                        }
+
+
+
+
                         const urlParams = new URLSearchParams(window.location.search);
                         const msg = urlParams.get('msg');
 

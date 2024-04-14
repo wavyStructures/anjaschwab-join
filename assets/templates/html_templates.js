@@ -173,7 +173,9 @@ function renderCardsHTML(card) {
         <div class="cardText">${card["text"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
-        <div id="cardAssignedToContainerId${card['id']}" class="cardAssignedToContainer"></div>
+        <div id="cardAssignedToContainerId${
+          card["id"]
+        }" class="cardAssignedToContainer"></div>
             <div class="cardPriority">${setPriorityImage(
               card["priority"]
             )}</div>
@@ -186,77 +188,140 @@ function renderEmptyCategoryHTML() {
 }
 
 function renderAssignedToButtonsHTML(contact) {
-    console.log(contact.contactColor);
-  return /*html*/ `<div class="profile-badge-group" style="background-color: ${contact.contactColor}">${getInitials(contact.name)}</div>`;
+  console.log(contact.contactColor);
+  return /*html*/ `<div class="profile-badge-group" style="background-color: ${
+    contact.contactColor
+  }">${getInitials(contact.name)}</div>`;
 }
 
 function renderLoginPageHTML() {
   return /*html*/ `
-    <div id="loginMainContainer" class="loginMainContainer">
-        <div class="blue-overlay" id="blue-overlay" style="display: none;">
-            <div class="joinLogoWhite logo-animation" id="logo">
-                <img src="./assets/img/logo-big_white.png" alt="logo">
-            </div>
-        </div>
-        <header class="loginHeader">
-            <div class="joinLogoBlue">
-                <img src="./assets/img/logo-medium_blue.png" alt="logo">
-            </div>
-            <div class="signUpField">
-                <span>Not a join user yet?</span>
-                <button class="loginButtons signUpButton" onclick="renderSignUpPage()">Sign up</button> <!--TODO-->
-            </div>
-        </header>
-        <div class="login-page">
-            <div class="login-box">
-                <div class="h1LoginBox">
-                    <h1 class="loginH1">Log in</h1>
-                    <div class="horizontalH1Underline"></div>
-                </div>
-                <div class="formDiv">
-                    <form action="">
-                        <div class="innerLoginBox">
-                            <div class="loginEmailBox">
-                                <input type="email" id="loginEmailInput" placeholder="Email">
-                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
-                            </div>
-
-                            <div class="loginPasswordBox">
-                                <input type="password" id="loginPasswordInput" placeholder="Password">
-                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
-                            </div>
-                        </div>
-                        <input type="checkbox" value="lsRememberMe" id="rememberMe">
-                        <label for="rememberMe">Remember me</label><br>
-
-
-                        <input class="loginButtons loginButtonUser" type="submit" value="Login"
-                            onclick="lsRememberMe()">
-                        <!--TODO-->
-                        <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
-                            onclick="lsRememberMe()"> <!--TODO-->
-
-                    </form>
-                </div>
-            </div>
-
-            <div class="loginFooter">
-                <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
-                <div class="legalNotice" onclick=""><span>Legal notice</span></div>
-            </div>
-
-
+  <div id="loginMainContainer" class="loginMainContainer">
+    <div class="blue-overlay d-none" id="blue-overlay">
+        <div class="joinLogoWhite logo-animation" id="logo">
+            <img src="./assets/img/logo-big_white.png" alt="logo">
         </div>
     </div>
+    <header class="loginHeader">
+        <div class="joinLogoBlue">
+            <img src="./assets/img/logo-medium_blue.png" alt="logo">
+        </div>
+        <div class="signUpField">
+            <span>Not a join user yet?</span>
+            <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button>
+        </div>
+    </header>
+    <div class=" login-page">
+        <div class="login-box">
+            <div class="h1LoginBox">
+                <h1 class="loginH1">Log in</h1>
+                <div class="horizontalH1Underline"></div>
+            </div>
+            <div class="formDiv">
+                <form onsubmit="loginUser(); return false">
+                    <div class=" innerLoginBox">
+                        <div class="loginEmailBox">
+                            <input type="email" id="loginEmailInput" placeholder="Email" required>
+                            <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                        </div>
+
+                        <div class="loginPasswordBox">
+                            <input type="password" id="loginPasswordInput" placeholder="Password" required>
+                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                        </div>
+                    </div>
+                    <input type="checkbox" value="lsRememberMe" id="rememberMe">
+                    <label for="rememberMe">Remember me</label><br>
+
+
+                    <input class="loginButtons loginButtonUser" type="submit" value="Login"
+                        onclick="lsRememberMe()">
+                    <!--TODO-->
+                    <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
+                        onclick="lsRememberMe()"> <!--TODO-->
+
+                </form>
+
+                <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
+                <div id="msgBox"></div>
+
+                <script>
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const msg = urlParams.get('msg');
+
+                    if (msg) {
+                        msgBox.innerHTML = msg;
+                    } else {
+                        //TODO display: none
+                    }
+                </script>
+
+
+
+            </div>
+        </div>
+
+        <div class="loginFooter">
+            <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
+            <div class="legalNotice" onclick=""><span>Legal notice</span></div>
+        </div>
+
+
+    </div>
+</div>
 
     `;
 }
 
 function renderSignUpPageHTML() {
-  return /*html*/ `<div class="signUpMainContainer"><form onsubmit="register(); return false;">
-        <input type="text" id="email">
-        <input type="password" id="password">
-        <button id="registerBtn">Registrieren</button>
-        </form>
-    </div>`;
+  return /*html*/ `
+    <div id="signUpMainContainer" class="signUpMainContainer">
+
+        <header class="loginHeader">
+            <div class="joinLogoSignUpWhite">
+                <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
+            </div>
+
+        </header>
+        <div class="signUp-page">
+            <div class="signUp-box">
+                <div class="arrowLeft"><img src="./assets/img/icon-arrow_left.png" alt="arrow left"></div>
+
+                <div class="h1SignUpBox">
+                    <h1 class="signUpH1">Sign up</h1>
+                    <div class="horizontalH1UnderlineSignUp"></div>
+                </div>
+
+                <div class="formDiv">
+                    <form onsubmit="addUser(); return false">
+                        <div class="innerSignUpBox">
+                            <div class="signUpEmailBox">
+                                <input type="email" id="signUpEmailInput" placeholder="Email" required>
+                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                            </div>
+
+                            <div class="signUpPasswordBox">
+                                <input type="password" id="signUpPasswordInput" placeholder="Password" required>
+                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                            </div>
+                        </div>
+                        <input type="checkbox" value="acceptingPrivacyPolicy" id="acceptingPrivacyPolicy">
+                        <label for="acceptingPrivacyPolicy">I accept the <a href="#">Privacy Policy</a> </label><br>
+
+                        <button class="signUpButtons signUpButtonUser">Sign up</button>
+
+                        <!--TODO-->
+                    </form>
+                </div>
+            </div>
+
+            <div class="signUpFooter">
+                <div class="privacyPolicySignUp" onclick=""><span>Privacy policy</span></div>
+                <div class="legalNoticeSignUp" onclick=""><span>Legal notice</span></div>
+            </div>
+
+
+        </div>
+    </div>
+    `;
 }

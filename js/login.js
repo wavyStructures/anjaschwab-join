@@ -9,6 +9,3 @@ function startAnimation() {
     // }, 30000); // 30 seconds
 }
 
-function renderLoginPage() {
-    document.getElementById('loginPage').innerHTML = renderLoginPageHTML();
-}

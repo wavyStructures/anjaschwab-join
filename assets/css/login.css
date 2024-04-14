@@ -127,6 +127,7 @@
   padding: 10px 35px;
   gap: 10px;
   font-size: 23px;
+  cursor: pointer;
 }
 
 .loginButtonUser {

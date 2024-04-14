@@ -6,8 +6,8 @@ async function init() {
   renderHeader();
   renderNavigation();
   renderBoard();
-  renderLoginPage();
-  renderSignUpPage();
+  // renderLogin();
+  // renderSignUp();
 }
 
 
@@ -62,7 +62,7 @@ function renderHeader() {
  * rendering the login-page
  */
 function renderLogin() {
-  let content = getDiv('loginMainContainer');
+  let content = getDiv('bodyContent');
   content.innerHTML = renderLoginPageHTML();
 }
 
@@ -71,7 +71,7 @@ function renderLogin() {
  * rendering the signUp-page
  */
 function renderSignUp() {
-  let content = getDiv('signUpMainContainer');
+  let content = getDiv('bodyContent');
   content.innerHTML = renderSignUpPageHTML();
 }
 
