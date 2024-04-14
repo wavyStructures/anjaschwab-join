@@ -2,6 +2,7 @@
   --clr-main: #4589ff;
   --clr-text-menu: #42526e;
   --clr-text-menu-hover: #e3eeff;
+  --clr-text-light-blue: #005dff;
 }
 
 * {
@@ -16,8 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-    /* margin: 0 auto auto 0; */
-  
+  /* margin: 0 auto auto 0; */
 }
 
 .main-wrapper {
@@ -29,14 +29,14 @@ body {
 .main {
   display: flex;
   background-color: lightblue;
-  width: 	100%;
+  width: 100%;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
-.bodyContent{
+.bodyContent {
   display: flex;
   flex-direction: column;
   max-width: 1440px;

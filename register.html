@@ -14,7 +14,7 @@
 
 <body>
     <div id="loginMainContainer" class="loginMainContainer">
-        <div class="blue-overlay" id="blue-overlay">
+        <div class="blue-overlay d-none" id="blue-overlay">
             <div class="joinLogoWhite logo-animation" id="logo">
                 <img src="./assets/img/logo-big_white.png" alt="logo">
             </div>
@@ -35,8 +35,8 @@
                     <div class="horizontalH1Underline"></div>
                 </div>
                 <div class="formDiv">
-                    <form action="">
-                        <div class="innerLoginBox">
+                    <form onsubmit="loginUser(); return false">
+                        <div class=" innerLoginBox">
                             <div class="loginEmailBox">
                                 <input type="email" id="loginEmailInput" placeholder="Email">
                                 <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>

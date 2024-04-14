@@ -1,9 +1,143 @@
-.signUpMainContainer{
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-  }
+.signUpMainContainer {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--clr-main);
+}
+
+.joinLogoSignUpWhite {
+  filter: invert();
+}
+
+.signUp-box {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 30px;
+  width: 600px; /* TODO   eigentl. hug */
+  /* top: 266.5px;                    top und left für position absolute?
+  left: 394px; */
+  padding: 48px 115px;
+  gap: 39px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.arrowLeft {
+  position: absolute;
+  left: 50.5px;
+  top: 66.5px;
+  color: var(--clr-text-light-blue);
+  width: 32px;
+  height: 32px;
+}
+
+.h1SignUpBox {
+  width: 422px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUpH1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.horizontalH1UnderlineSignUp {
+  height: 150px;
+  border: 3px solid var(--clr-main);
+  rotate: -90deg;
+  position: absolute;
+
+  z-index: 1;
+  /* left: 50%; */
+}
+
+.innerSignUpBox {
+  width: 200px;
+}
+
+.signUpEmailBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-end;
+  width: 422px;
+  border-bottom: 1px solid #d1d1d1;
+  margin-bottom: 24px;
+  padding: 12px 21px;
+  gap: 10px;
+}
+
+.signUpPasswordBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-end;
+  width: 422px;
+  border-bottom: 1px solid #d1d1d1;
+  margin-bottom: 24px;
+  padding: 12px 21px;
+  gap: 10px;
+}
+
+#signUpEmailInput,
+#signUpPasswordInput {
+  border: none;
+  font-size: 19px;
+  font-weight: 400;
+  padding-top: 12.5px;
+}
+
+.signUpButtons {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 35px;
+  gap: 10px;
+  font-size: 23px;
+}
+
+.signUpButtonUser {
+  margin-left: 27.5px;
+}
+
+.signUpButtonUser,
+.signUpButton {
+  color: #fff;
+  background-color: var(--clr-main);
+}
+
+.signUpButtonGuest {
+  color: #647188;
+  margin-left: 35px;
+}
+#rememberMe {
+  margin-top: 20px;
+  margin-bottom: 38px; /*TODO checkbox color or png*/
+  margin-left: 8px;
+}
+
+.signUpFooter {
+  background-color: var(--clr-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 188.8px;
+  margin-bottom: 42.7px;
+  gap: 16px;
+}
+
+.privacyPolicySignUp,
+.legalNoticeSignUp {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
