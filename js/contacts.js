@@ -221,11 +221,11 @@ function addContactCard() {
 function closeAddContact() {
   const addContactContainer = document.getElementById("addContact");
   if (!addContactContainer.classList.contains("d-none")) {
-    addContactContainer.classList.add("move-out-right"); // Füge die move-out-right-Klasse hinzu
+    addContactContainer.classList.add("move-out-right"); 
     setTimeout(() => {
       addContactContainer.classList.add("d-none");
-      addContactContainer.classList.remove("move-out-right"); // Entferne die move-out-right-Klasse nach der Animation
-    }, 200); // Die Dauer der Animation in Millisekunden
+      addContactContainer.classList.remove("move-out-right"); 
+    }, 750); 
     const overlay = document.querySelector(".overlay");
     if (overlay) {
       overlay.remove();
