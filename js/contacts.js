@@ -324,7 +324,7 @@ function generateContactsContainerHTML() {
               <img src="./assets/img/add.contact-badge.png" alt="">
           </div>
       </div>
-      <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+      <form action="" onsubmit="createContact(); return false" class="add-contact-input-group">
       <div class="input-frame">
           <input id="contactName" type="text" placeholder="Name" autofocus required>
           <img src="./assets/img/icon-person.png" alt="">
@@ -570,11 +570,68 @@ function generateContactDetailsHTML(name, email, phone) {
   `;
 }
 
+
+/**
+ * Changes the cancel icon to its hover state by updating its source.
+ * 
+ * @function changeCancelIcon
+ * @returns {void}
+ */
 function changeCancelIcon() {
   document.getElementById("cancelIcon").src = "../assets/img/icon-cancel_hover.png";
 }
 
+
+/**
+ * Restores the cancel icon to its default state by updating its source.
+ * 
+ * @function restoreCancelIcon
+ * @returns {void}
+ */
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "../assets/img/icon-cancel.png";
 }
 
+
+/**
+ * Creates a new contact based on the input values from the form,
+ * assigns a random color to the contact, adds it to the contacts array,
+ * clears the form inputs, and reloads the contacts.
+ * 
+ * @function createContact
+ * @returns {void}
+ */
+function createContact() {
+  const name = document.getElementById("contactName").value;
+  const mail = document.getElementById("contactMail").value;
+  const phone = document.getElementById("ContactPhone").value;
+
+  const newContact = {
+    id: contacts.length + 1, 
+    name: name.trim(), 
+    mail: mail.trim(),
+    phone: phone.trim(),
+    contactColor: generateRandomColor(), 
+  };
+
+  contacts.push(newContact);
+
+  document.getElementById("contactName").value = "";
+  document.getElementById("contactMail").value = "";
+  document.getElementById("ContactPhone").value = "";
+
+  loadContacts();
+}
+
+
+/**
+ * Generates a random color from a predefined list of colors.
+ * 
+ * @function generateRandomColor
+ * @returns {string} A randomly selected color.
+ */
+function generateRandomColor() {
+  const colors = ['#c2e59c', '#ffcc80', '#ff9999', '#99ccff', '#ffb3b3', '#b3d9ff', '#ffcc99', '#ccffcc', '#4589ff', '#d9b3ff'];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
