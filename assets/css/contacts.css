@@ -24,7 +24,6 @@
 .contacts-container {
   padding-left: 1.719rem;
   width: 28.5rem;
-  height: 58rem;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
@@ -81,7 +80,7 @@
 }
 
 .add-contact.move-out-right {
-  animation: moveOutRight 0.75s ease-out forwards;
+  animation: moveOutRight 125ms ease-out forwards;
 }
 
 @keyframes moveOutRight {
@@ -101,7 +100,7 @@
   margin-left: 159px;
   position: fixed;
   border-radius: 30px 0px 30px 30px;
-  animation: moveInRight 0.75s ease-in-out;
+  animation: moveInRight 125ms ease-in-out;
 }
 
 .add-contact-header-close {
@@ -146,7 +145,7 @@
   align-items: center;
   background-color: white;
   border: solid 1px #e3e3e3;
-  border-radius: 0px 30px 30px 30px;
+  border-radius: 0px 0px 30px 30px;
   border-bottom: none;
 }
 
