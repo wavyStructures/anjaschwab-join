@@ -225,7 +225,7 @@ function closeAddContact() {
     setTimeout(() => {
       addContactContainer.classList.add("d-none");
       addContactContainer.classList.remove("move-out-right"); 
-    }, 750); 
+    }, 125); 
     const overlay = document.querySelector(".overlay");
     if (overlay) {
       overlay.remove();
