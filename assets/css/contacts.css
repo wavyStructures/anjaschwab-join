@@ -81,6 +81,7 @@
 }
 
 .add-contact {
+  top: 0;
   width: 584px;
   right: 0px;
   margin-left: 159px;
@@ -187,7 +188,7 @@ input {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 76px;
+  margin-top: 35px;
   margin-bottom: 63px;
 }
 

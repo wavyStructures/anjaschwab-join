@@ -1,6 +1,6 @@
 /**
  * Array containing contact objects.
- * 
+ *
  * @type {Object[]}
  * @property {number} id - The unique identifier of the contact.
  * @property {string} name - The name of the contact.
@@ -167,7 +167,7 @@ let contacts = [
 
 /**
  * Loads the contacts and renders them into the main element.
- * 
+ *
  * @function loadContacts
  * @returns {void}
  */
@@ -178,24 +178,23 @@ function loadContacts() {
 
   const currentFirstLetters = [];
 
-  contacts.forEach(contact => {
+  contacts.forEach((contact) => {
     const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
     const firstLetter = name.charAt(0).toUpperCase();
-    
+
     if (!currentFirstLetters.includes(firstLetter)) {
       createFirstLetter(main, firstLetter);
       currentFirstLetters.push(firstLetter);
     }
-    
+
     createContactCard(main, id, contactColor, initials, name, mail);
   });
 }
 
-
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
- * 
+ *
  * @function addContactCard
  * @returns {void}
  */
@@ -203,7 +202,7 @@ function addContactCard() {
   const addContactContainer = document.getElementById("addContact");
   if (addContactContainer.classList.contains("d-none")) {
     addContactContainer.classList.remove("d-none");
-    
+
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
 
@@ -212,10 +211,9 @@ function addContactCard() {
   }
 }
 
-
 /**
  * Hides the add contact card by adding the d-none class to the corresponding container.
- * 
+ *
  * @function closeAddContact
  * @returns {void}
  */
@@ -231,10 +229,9 @@ function closeAddContact() {
   }
 }
 
-
 /**
  * Generates initials from a full name.
- * 
+ *
  * @param {string} name - The full name from which to generate initials.
  * @returns {string} The initials generated from the provided full name.
  */
@@ -245,10 +242,9 @@ function getInitials(name) {
   return firstInitial + lastInitial;
 }
 
-
 /**
  * Creates a letter element representing the first letter of a group of contacts.
- * 
+ *
  * @function createFirstLetter
  * @param {HTMLElement} main - The main element where the letter element will be appended.
  * @param {string} firstLetter - The first letter to be displayed.
@@ -263,10 +259,9 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
-
 /**
  * Creates a container for displaying contacts and appends it to the main element.
- * 
+ *
  * @function createContactsContainer
  * @param {HTMLElement} main - The main element where the container will be appended.
  * @returns {void}
@@ -276,10 +271,9 @@ function createContactsContainer(main) {
   main.innerHTML += containerHTML;
 }
 
-
 /**
  * Creates a parting line element and appends it to the contact list within the main element.
- * 
+ *
  * @function createPartingLine
  * @param {HTMLElement} main - The main element containing the contact list.
  * @returns {void}
@@ -297,10 +291,9 @@ function createPartingLine(main) {
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
 
-
 /**
  * Generates HTML code for the contacts container.
- * 
+ *
  * @function generateContactsContainerHTML
  * @returns {string} The HTML code for the contacts container.
  */
@@ -364,10 +357,9 @@ function generateContactsContainerHTML() {
     `;
 }
 
-
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
- * 
+ *
  * @function createContactCard
  * @param {HTMLElement} main - The main element containing the contacts container.
  * @param {number} id - The unique identifier for the contact.
@@ -393,10 +385,9 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
-
 /**
  * Generates HTML code for a contact card with specified details.
- * 
+ *
  * @function generateContactCardHTML
  * @param {number} id - The unique identifier for the contact.
  * @param {string} color - The color associated with the contact.
@@ -419,10 +410,9 @@ function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
     `;
 }
 
-
 /**
  * Opens the details of a contact specified by its ID.
- * 
+ *
  * @function openContactDetails
  * @param {number} id - The unique identifier of the contact.
  * @returns {void}
@@ -445,10 +435,9 @@ function openContactDetails(id) {
   }
 }
 
-
 /**
  * Resets the styles of a contact card to their default values.
- * 
+ *
  * @function resetContactCard
  * @param {HTMLElement} card - The contact card element to be reset.
  * @returns {void}
@@ -456,20 +445,19 @@ function openContactDetails(id) {
 function resetContactCard(card) {
   card.style.backgroundColor = "";
   card.style.color = "";
-  const badgeGroup = card.querySelector('.profile-badge-group');
+  const badgeGroup = card.querySelector(".profile-badge-group");
   if (badgeGroup) {
-    badgeGroup.classList.remove('profileBadgeChoosen');
+    badgeGroup.classList.remove("profileBadgeChoosen");
   }
-  const emailElement = card.querySelector('.contact-card-email');
+  const emailElement = card.querySelector(".contact-card-email");
   if (emailElement) {
     emailElement.style.color = "";
   }
 }
 
-
 /**
  * Resets the styles of all contact cards to their default values.
- * 
+ *
  * @function resetAllContactCards
  * @returns {void}
  */
@@ -478,10 +466,9 @@ function resetAllContactCards() {
   allContactCards.forEach(resetContactCard);
 }
 
-
 /**
  * Highlights a contact card by applying specific styles.
- * 
+ *
  * @function highlightContactCard
  * @param {HTMLElement} card - The contact card element to be highlighted.
  * @returns {void}
@@ -489,20 +476,19 @@ function resetAllContactCards() {
 function highlightContactCard(card) {
   card.style.backgroundColor = "#4589ff";
   card.style.color = "white";
-  const badgeGroup = card.querySelector('.profile-badge-group');
+  const badgeGroup = card.querySelector(".profile-badge-group");
   if (badgeGroup) {
-    badgeGroup.classList.add('profileBadgeChoosen');
+    badgeGroup.classList.add("profileBadgeChoosen");
   }
-  const emailElement = card.querySelector('.contact-card-email');
+  const emailElement = card.querySelector(".contact-card-email");
   if (emailElement) {
     emailElement.style.color = "white";
   }
 }
 
-
 /**
  * Highlights the selected contact card and resets all others if already highlighted.
- * 
+ *
  * @function highlightSelectedContact
  * @param {number} id - The unique identifier of the selected contact.
  * @returns {void}
@@ -516,14 +502,13 @@ function highlightSelectedContact(id) {
     return;
   }
 
-  resetAllContactCards(); 
-  highlightContactCard(selectedContactCard); 
+  resetAllContactCards();
+  highlightContactCard(selectedContactCard);
 }
-
 
 /**
  * Generates HTML code for displaying contact details.
- * 
+ *
  * @function generateContactDetailsHTML
  * @param {string} name - The name of the contact.
  * @param {string} email - The email address of the contact.
@@ -570,21 +555,20 @@ function generateContactDetailsHTML(name, email, phone) {
   `;
 }
 
-
 /**
  * Changes the cancel icon to its hover state by updating its source.
- * 
+ *
  * @function changeCancelIcon
  * @returns {void}
  */
 function changeCancelIcon() {
-  document.getElementById("cancelIcon").src = "../assets/img/icon-cancel_hover.png";
+  document.getElementById("cancelIcon").src =
+    "../assets/img/icon-cancel_hover.png";
 }
-
 
 /**
  * Restores the cancel icon to its default state by updating its source.
- * 
+ *
  * @function restoreCancelIcon
  * @returns {void}
  */
@@ -592,12 +576,11 @@ function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "../assets/img/icon-cancel.png";
 }
 
-
 /**
  * Creates a new contact based on the input values from the form,
  * assigns a random color to the contact, adds it to the contacts array,
  * clears the form inputs, and reloads the contacts.
- * 
+ *
  * @function createContact
  * @returns {void}
  */
@@ -607,11 +590,11 @@ function createContact() {
   const phone = document.getElementById("ContactPhone").value;
 
   const newContact = {
-    id: contacts.length + 1, 
-    name: name.trim(), 
+    id: contacts.length + 1,
+    name: name.trim(),
     mail: mail.trim(),
     phone: phone.trim(),
-    contactColor: generateRandomColor(), 
+    contactColor: generateRandomColor(),
   };
 
   contacts.push(newContact);
@@ -623,15 +606,25 @@ function createContact() {
   loadContacts();
 }
 
-
 /**
  * Generates a random color from a predefined list of colors.
- * 
+ *
  * @function generateRandomColor
  * @returns {string} A randomly selected color.
  */
 function generateRandomColor() {
-  const colors = ['#c2e59c', '#ffcc80', '#ff9999', '#99ccff', '#ffb3b3', '#b3d9ff', '#ffcc99', '#ccffcc', '#4589ff', '#d9b3ff'];
+  const colors = [
+    "#c2e59c",
+    "#ffcc80",
+    "#ff9999",
+    "#99ccff",
+    "#ffb3b3",
+    "#b3d9ff",
+    "#ffcc99",
+    "#ccffcc",
+    "#4589ff",
+    "#d9b3ff",
+  ];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
