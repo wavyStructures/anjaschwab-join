@@ -127,7 +127,6 @@ function filterCards(category) {
  * @param {object} categoryContainer html-object from the (emtpy) category
  */
 function renderEmptyCategory(categoryContainer) {
-    console.log(typeof categoryContainer);
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
 }
 
