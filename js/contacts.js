@@ -267,10 +267,10 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return `
-        <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
+        <div class="contacts-container" id="contacts-container"> 
         
-            <div class="button-add-contact-card" id="button-add-contact-card"> <!-- Button-->
-                <div onclick="addContactCard()" class="button-add-contact"> <!-- secondary contact -->
+            <div class="button-add-contact-card" id="button-add-contact-card"> 
+                <div onclick="addContactCard()" class="button-add-contact"> 
                     <div class="add-new-contact">Add new contact</div>
                     <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
                 </div>
@@ -488,3 +488,12 @@ function generateContactDetailsHTML(name, email, phone) {
     </div>
   `;
 }
+
+function changeCancelIcon() {
+  document.getElementById("cancelIcon").src = "../assets/img/icon-cancel_hover.png";
+}
+
+function restoreCancelIcon() {
+  document.getElementById("cancelIcon").src = "../assets/img/icon-cancel.png";
+}
+
