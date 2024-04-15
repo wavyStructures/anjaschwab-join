@@ -80,6 +80,10 @@
   }
 }
 
+.add-contact.move-out-right {
+  animation: moveOutRight 0.75s ease-out forwards;
+}
+
 @keyframes moveOutRight {
   from {
     transform: translateX(0);
@@ -97,7 +101,7 @@
   margin-left: 159px;
   position: fixed;
   border-radius: 30px 0px 30px 30px;
-  animation: moveInRight 0.2s ease-in-out;
+  animation: moveInRight 0.75s ease-in-out;
 }
 
 .add-contact-header-close {
