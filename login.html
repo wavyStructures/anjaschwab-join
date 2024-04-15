@@ -37,7 +37,7 @@
                     <div class="horizontalH1Underline"></div>
                 </div>
                 <div class="formDiv">
-                    <form onsubmit="loginUser(); return false">
+                    <form onsubmit="loginUser(); return false;">
                         <div class=" innerLoginBox">
                             <div class="loginEmailBox">
                                 <input type="email" id="loginEmailInput" placeholder="Email" required>
@@ -68,6 +68,9 @@
                             let password = document.getElementById('loginPasswordInput');
                             let user = users.find(user => user.email == email.value && user.password == password);
                             console.log(user);
+                            if (user) {
+                                console.log('user gefunden');
+                            }
                         }
 
 

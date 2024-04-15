@@ -1,5 +1,30 @@
-// let users = [];
-let users = contacts;
+let users = [
+    {
+        id: 1,
+        name: "anton mayer",
+        mail: "antom@gmail.com",
+        password: 'anton',
+        phone: "+49 1111 111 11 1",
+        contactColor: "",
+    },
+    {
+        id: 2,
+        name: "anja schulz",
+        mail: "schulz@hotmail.com",
+        password: 'anja',
+        phone: "+49 1111 111 11 2",
+        contactColor: "#c2e59c",
+    },
+    {
+        id: 3,
+        name: "benedikt ziegler",
+        mail: "benedikt@gmail.com",
+        password: 'benedikt',
+        phone: "+49 1111 111 11 3",
+        contactColor: "#ffcc80",
+    },
+];
+
 console.log('users = contacts are:', users);
 
 /**
@@ -26,8 +51,9 @@ async function loadUsers() {
 /**
  * add new user to users and save it to remote storage
  */
-async function register() {
-
+async function addUser() {
+    let email = document.getElementById('signUpEmailInput');
+    let password = document.getElementById('signUpPasswordInput');
 
     registerBtn.disabled = true;
     users.push(
@@ -40,9 +66,9 @@ async function register() {
 
     window.location.href = 'login.html?msg=you are signed up now!';
 
-    await setItem('users', JSON.stringify(users));
-    resetForm();
-    console.log("USERS: ", users)
+    // await setItem('users', JSON.stringify(users));
+    // resetForm();
+    // console.log("USERS: ", users)
 }
 
 
@@ -66,9 +92,3 @@ async function delAllUsers() {
 }
 
 
-/**
- * open the page for signing up
- */
-function renderSignUpPage() {
-    document.getElementById('signUpPage').innerHTML = renderSignUpPageHTML();
-}

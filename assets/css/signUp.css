@@ -98,14 +98,14 @@
   padding: 10px 35px;
   gap: 10px;
   font-size: 23px;
+  cursor: pointer;
 }
 
-.signUpButtonUser {
+.registerBtn {
   margin-left: 27.5px;
 }
 
-.signUpButtonUser,
-.signUpButton {
+.registerBtn {
   color: #fff;
   background-color: var(--clr-main);
 }
