@@ -173,12 +173,8 @@ function renderCardsHTML(card) {
         <div class="cardText">${card["text"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
-        <div id="cardAssignedToContainerId${
-          card["id"]
-        }" class="cardAssignedToContainer"></div>
-            <div class="cardPriority">${setPriorityImage(
-              card["priority"]
-            )}</div>
+        <div id="cardAssignedToContainerId${card["id"]}" class="cardAssignedToContainer"></div>
+            <div class="cardPriority">${setPriorityImage(card["priority"])}</div>
         </div>
     </div>`;
 }

@@ -196,4 +196,14 @@ progress{
 .cardAssignedToContainer{
     display: flex;
     align-items: center;
+    width: 100%;
+
+    .profile-badge-group {
+      margin-left: -10px
+    }
+
+    .profile-badge-group:first-child{
+        margin-left: 0px;
+    }
 }
+
