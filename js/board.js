@@ -18,7 +18,7 @@ let cards = [
         'subtasks': 2,
         'completedSubtasks': 0,
         'assignedTo': [21, 2, 5],
-        'category': 'todo',
+        'category': 'awaitFeedback',
         'priority': 'medium'
     },
     {
