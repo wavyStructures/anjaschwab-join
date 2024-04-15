@@ -267,6 +267,48 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return `
+  <div class="add-contact">
+  <div class="add-contact-header">
+      <div class="add-contact-header-close">
+          <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
+      </div>
+  </div>
+  <div class="add-contact-header-logo">
+      <img src="./assets/img/logo-medium_white.png" alt="">
+      <span>Add Contact</span>
+      <p>Tasks are better with a team!</p>
+  </div>
+  
+  <div class="add-contact-bottom">
+      <div class="profile-badge-group-add-contact">
+          <div class="profile-badge-add-contact">
+              <img src="./assets/img/add.contact-badge.png" alt="">
+          </div>
+      </div>
+      <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+      <div class="input-frame">
+          <input id="contactName" type="text" placeholder="Name" autofocus required>
+          <img src="./assets/img/icon-person.png" alt="">
+      </div>
+      <div class="input-frame">
+          <input id="contactMail" type="email" placeholder="Email" autofocus required>
+          <img src="./assets/img/icon-mail.png" alt="">
+      </div>
+      <div class="input-frame">
+          <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
+          <img src="./assets/img/icon-call.png" alt="">
+      </div>
+      <div id="addContactButton" class="addContactButton">
+          <button class="cancelButton" onmouseover="changeCancelIcon()" onmouseout="restoreCancelIcon()">Cancel
+              <img id="cancelIcon" onclick="closeAddContact()" src="./assets/img/icon-cancel.png" alt="">
+          </button>
+          <button class="createButton">Create contact
+          <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png" alt="">
+      </button>
+      </div>
+      </form>
+  </div>
+</div>
         <div class="contacts-container" id="contacts-container"> 
         
             <div class="button-add-contact-card" id="button-add-contact-card"> 
