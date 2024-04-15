@@ -90,7 +90,10 @@ function renderCategories() {
     };
 
 }
-
+/**
+ * render the icons with the initials of the users name on each card
+ * @param {object} card 
+ */
 function renderAssignedToButtons(card){
     let assignedToContainer = document.getElementById('cardAssignedToContainerId' + card['id']);
     let assignedToContacts = card['assignedTo'];
@@ -104,7 +107,11 @@ function renderAssignedToButtons(card){
 
 }
 
-
+/**
+ * 
+ * @param {string} category 
+ * @returns array with the cards for each category
+ */
 function filterCards(category) {
     let filteredCards = [];
     for (let id in cards) {
@@ -115,20 +122,20 @@ function filterCards(category) {
     return filteredCards;
 }
 
-
-function renderCardsInCategory(categoryContainer, filteredCards) {
-    for (let i = 0; i < filteredCards.length; i++) {
-        let card = filteredCards[i];
-        categoryContainer.innerHTML += renderCardsHTML(card);
-    }
-}
-
-
+/**
+ * 
+ * @param {object} categoryContainer html-object from the (emtpy) category
+ */
 function renderEmptyCategory(categoryContainer) {
+    console.log(typeof categoryContainer);
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
 }
 
-
+/**
+ * 
+ * @param {string} cardPriority 
+ * @returns html-image-tag
+ */
 function setPriorityImage(cardPriority) {
     if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
     else if (cardPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
