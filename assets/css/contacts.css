@@ -2,6 +2,17 @@
   animation: moveInRight 100ms ease-out forwards;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; 
+  background-color: rgba(0, 0, 0, 0.1); 
+  pointer-events: none; 
+}
+
 .contact-main {
   display: flex;
   font-family: OpenSans, sans-serif;
@@ -225,6 +236,7 @@ input {
   width: 28.5rem;
   padding: 2rem 1.5rem 1rem 1.5rem;
   gap: 0.625rem;
+  cursor: pointer;
 }
 
 .button-add-contact {

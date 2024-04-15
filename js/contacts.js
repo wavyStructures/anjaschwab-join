@@ -194,6 +194,45 @@ function loadContacts() {
 
 
 /**
+ * Displays the add contact card by removing the d-none class from the corresponding container.
+ * 
+ * @function addContactCard
+ * @returns {void}
+ */
+function addContactCard() {
+  const addContactContainer = document.getElementById("addContact");
+  if (addContactContainer.classList.contains("d-none")) {
+    addContactContainer.classList.remove("d-none");
+    
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+
+    document.body.appendChild(overlay);
+    document.body.style.overflow = "hidden";
+  }
+}
+
+
+/**
+ * Hides the add contact card by adding the d-none class to the corresponding container.
+ * 
+ * @function closeAddContact
+ * @returns {void}
+ */
+function closeAddContact() {
+  const addContactContainer = document.getElementById("addContact");
+  if (!addContactContainer.classList.contains("d-none")) {
+    addContactContainer.classList.add("d-none");
+    const overlay = document.querySelector(".overlay");
+    if (overlay) {
+      overlay.remove();
+    }
+    document.body.style.overflow = "auto";
+  }
+}
+
+
+/**
  * Generates initials from a full name.
  * 
  * @param {string} name - The full name from which to generate initials.
@@ -267,7 +306,7 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return `
-  <div class="add-contact">
+  <div id="addContact" class="add-contact d-none">
   <div class="add-contact-header">
       <div class="add-contact-header-close">
           <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
@@ -299,11 +338,11 @@ function generateContactsContainerHTML() {
           <img src="./assets/img/icon-call.png" alt="">
       </div>
       <div id="addContactButton" class="addContactButton">
-          <button class="cancelButton" onmouseover="changeCancelIcon()" onmouseout="restoreCancelIcon()">Cancel
-              <img id="cancelIcon" onclick="closeAddContact()" src="./assets/img/icon-cancel.png" alt="">
+          <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()" onmouseout="restoreCancelIcon()">Cancel
+              <img id="cancelIcon" src="./assets/img/icon-cancel.png" alt="">
           </button>
-          <button class="createButton">Create contact
-          <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png" alt="">
+          <button class="createButton" onclick="createContact()">Create contact
+          <img id="createIcon" src="./assets/img/icon-check.png" alt="">
       </button>
       </div>
       </form>
