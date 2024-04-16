@@ -218,7 +218,7 @@ function renderLoginPageHTML() {
                 <div class="horizontalH1Underline"></div>
             </div>
             <div class="formDiv">
-                <form onsubmit="loginUser(); return false">
+                <form onsubmit="loginUser(); return false;">
                     <div class=" innerLoginBox">
                         <div class="loginEmailBox">
                             <input type="email" id="loginEmailInput" placeholder="Email" required>
@@ -230,37 +230,26 @@ function renderLoginPageHTML() {
                             <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
                         </div>
                     </div>
-                    <input type="checkbox" value="lsRememberMe" id="rememberMe">
-                    <label for="rememberMe">Remember me</label><br>
-
-
-                    <input class="loginButtons loginButtonUser" type="submit" value="Login"
-                        onclick="lsRememberMe()">
-                    <!--TODO-->
-                    <input class="loginButtons loginButtonGuest" type="submit" value="Guest log in"
-                        onclick="lsRememberMe()"> <!--TODO-->
-
+                    <div class="checkboxBox">
+                        <label for="rememberMe" class="custom-checkbox">
+                            <img src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image">
+                            Remember me</label><br>
+                    </div>
+                    <div class="loginButtonsBox">
+                        <button class="loginButtons loginButtonUser" onclick="login()">Log in</button>
+                        <!--TODO-->
+                        <button class="loginButtons loginButtonGuest">Guest log in</button>
+                    </div>
                 </form>
-
                 <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
                 <div id="msgBox"></div>
-
-                <script>
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const msg = urlParams.get('msg');
-
-                    if (msg) {
-                        msgBox.innerHTML = msg;
-                    } else {
-                        //TODO display: none
-                    }
-                </script>
-
-
-
             </div>
         </div>
-
+        <div class="signUpField-mobile ">
+            <span>Not a join user yet?</span>
+            <button class="loginButtons signUpButton signUpButton-mobile" onclick="renderSignUpPage()">Sign
+                up</button>
+        </div>
         <div class="loginFooter">
             <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
             <div class="legalNotice" onclick=""><span>Legal notice</span></div>
