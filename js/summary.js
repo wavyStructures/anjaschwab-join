@@ -1,3 +1,10 @@
+function summaryInit() {
+    includeHTML();
+
+}
+
+
+
 /**
  * get the actual date
  * @returns English (US) formatted Date
