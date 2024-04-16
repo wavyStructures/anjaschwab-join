@@ -30,7 +30,7 @@ console.log('users = contacts are:', users);
 /**
  * init-function run at on loading the body
  */
-async function init() {
+async function signUpInit() {
     await loadUsers();
     console.log("USERS: ", users)
 }

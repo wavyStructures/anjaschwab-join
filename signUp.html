@@ -4,73 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/signUp.css">
-    <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <script src="./js/contacts.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/signUp.css">
     <script src="./js/signUp.js"></script>
 
-    <title>Join Sign Up</title>
+    <title>Join - AddTask</title>
 </head>
 
-<body>
-    <div id="signUpMainContainer" class="signUpMainContainer">
-
-        <header class="loginHeader">
-            <div class="joinLogoSignUpWhite">
-                <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
-            </div>
-
+<body onload="signUpInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
+        <header w3-include-html="./assets/templates/header.html" id="header" class="header">
         </header>
-        <div class="signUp-page">
-            <div class="signUp-box">
-                <div class="arrowLeft"><img src="./assets/img/icon-arrow_left.png" alt="arrow left"></div>
+        <div id="main-wrapper" class="main-wrapper">
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
+                class="navigation-container"></nav>
+            <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
+                <div id="signUpMainContainer" class="signUpMainContainer">
 
-                <div class="h1SignUpBox">
-                    <h1 class="signUpH1">Sign up</h1>
-                    <div class="horizontalH1UnderlineSignUp"></div>
-                </div>
+                    <header class="loginHeader">
+                        <div class="joinLogoSignUpWhite">
+                            <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
+                        </div>
 
-                <div class="formDiv">
-                    <form onsubmit="addUser(); return false">
-                        <div class="innerSignUpBox">
-                            <div class="signUpEmailBox">
-                                <input type="email" id="signUpEmailInput" placeholder="Email" required>
-                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+                    </header>
+                    <div class="signUp-page">
+                        <div class="signUp-box">
+                            <div class="arrowLeft"><img src="./assets/img/icon-arrow_left.png" alt="arrow left"></div>
+
+                            <div class="h1SignUpBox">
+                                <h1 class="signUpH1">Sign up</h1>
+                                <div class="horizontalH1UnderlineSignUp"></div>
                             </div>
 
-                            <div class="signUpPasswordBox">
-                                <input type="password" id="signUpPasswordInput" placeholder="Password" required>
-                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                            <div class="formDiv">
+                                <form onsubmit="addUser(); return false">
+                                    <div class="innerSignUpBox">
+                                        <div class="signUpEmailBox">
+                                            <input type="email" id="signUpEmailInput" placeholder="Email" required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
+                                            </div>
+                                        </div>
+
+                                        <div class="signUpPasswordBox">
+                                            <input type="password" id="signUpPasswordInput" placeholder="Password"
+                                                required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="checkbox" value="acceptingPrivacyPolicy" id="acceptingPrivacyPolicy">
+                                    <label for="acceptingPrivacyPolicy">I accept the <a href="#">Privacy Policy</a>
+                                    </label><br>
+
+                                    <button id="registerBtn" class="signUpButtons registerBtn">Sign up</button>
+
+                                    <!--TODO-->
+                                </form>
                             </div>
                         </div>
-                        <input type="checkbox" value="acceptingPrivacyPolicy" id="acceptingPrivacyPolicy">
-                        <label for="acceptingPrivacyPolicy">I accept the <a href="#">Privacy Policy</a> </label><br>
 
-                        <button id="registerBtn" class="signUpButtons registerBtn">Sign up</button>
-
-                        <!--TODO-->
-                    </form>
+                        <div class="signUpFooter">
+                            <div class="privacyPolicySignUp" onclick=""><span>Privacy policy</span></div>
+                            <div class="legalNoticeSignUp" onclick=""><span>Legal notice</span></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="signUpFooter">
-                <div class="privacyPolicySignUp" onclick=""><span>Privacy policy</span></div>
-                <div class="legalNoticeSignUp" onclick=""><span>Legal notice</span></div>
-            </div>
-
-
+            </main>
         </div>
     </div>
-
-
-
-
-
-
 </body>
 
 </html>

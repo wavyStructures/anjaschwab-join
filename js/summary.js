@@ -1,5 +1,6 @@
 function summaryInit() {
     includeHTML();
+    getDate();
 
 }
 
@@ -16,8 +17,7 @@ function getDate() {
         month: 'long',
         day: 'numeric'
     };
-
-    return today.toLocaleDateString("en-US", options);
+    document.getElementById("date").innerHTML = today.toLocaleDateString("en-US", options);
 }
 
 /*
