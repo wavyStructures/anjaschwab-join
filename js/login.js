@@ -1,3 +1,10 @@
+function loginInit(){
+    includeHTML();
+    startAnimation();
+    login();
+}
+
+
 function startAnimation() {
     // setTimeout(function () {
 
