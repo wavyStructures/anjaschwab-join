@@ -8,7 +8,8 @@ let cards = [
         'completedSubtasks': 1,
         'assignedTo': [21],
         'category': 'todo',
-        'priority': 'low'
+        'priority': 'low',
+        'dueDate': "welches Format?"
     },
     {
         'id': 1,
@@ -19,7 +20,8 @@ let cards = [
         'completedSubtasks': 0,
         'assignedTo': [21, 2, 5],
         'category': 'awaitFeedback',
-        'priority': 'medium'
+        'priority': 'medium',
+        'dueDate': "welches Format?"
     },
     {
         'id': 2,
@@ -30,7 +32,8 @@ let cards = [
         'completedSubtasks': 0,
         'assignedTo': [17],
         'category': 'inProgress',
-        'priority': 'urgend'
+        'priority': 'urgend',
+        'dueDate': "welches Format?"
     },
     {
         'id': 3,
@@ -41,7 +44,8 @@ let cards = [
         'completedSubtasks': 1,
         'assignedTo': [9, 18],
         'category': 'todo',
-        'priority': 'low'
+        'priority': 'low',
+        'dueDate': "welches Format?"
     },
     {
         'id': 4,
@@ -52,7 +56,8 @@ let cards = [
         'completedSubtasks': 2,
         'assignedTo': [9],
         'category': 'done',
-        'priority': 'low'
+        'priority': 'low',
+        'dueDate': "welches Format?"
     }
 ];
 
@@ -104,7 +109,6 @@ function renderAssignedToButtons(card){
                 assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
         }
     }
-
 }
 
 /**

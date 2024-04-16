@@ -19,8 +19,8 @@
         font-size: 19px;
     }
     
-    select{
-        border: unset;
+    select, input{
+        border: none;
         width: 100%
     }
 
@@ -28,7 +28,7 @@
 
 .addTaskBody{
     height: 769px;
-    background-color: green;
+    /* background-color: green; */
     padding: 64px 24px 0 24px;
 
 }
@@ -48,6 +48,10 @@
     flex-direction: column;
     padding-bottom: var(--addTaskPaddingBottom);
     gap: var(--addTaskGap);
+}
+
+#addTaskDescriptionInput{
+    max-width: 440px;
 }
 
 .addTaskDueDate{
@@ -70,7 +74,7 @@
 .addTaskTitles{
     width: 100%;
     font-weight: bold;
-    background-color: purple;
+    /* background-color: purple; */
 }
 
 .addTaskBodyBottom{

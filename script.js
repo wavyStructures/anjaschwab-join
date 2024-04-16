@@ -2,11 +2,12 @@
  * the init-function in body onload
  */
 async function init() {
+  includeHTML();
   // startAnimation();
-  renderHeader();
-  renderNavigation();
-  renderBoard();
-  renderLogin();
+  // renderHeader();
+  // renderNavigation();
+  // renderBoard();
+  // renderLogin();
   // renderSignUp();
 }
 
@@ -16,10 +17,12 @@ async function init() {
  */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
+  console.log("ELEMENTE: ", includeElements.length);
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
     file = element.getAttribute("w3-include-html");
     let resp = await fetch(file);
+    console.log("LOADED!!!!!");
     if (resp.ok) {
       element.innerHTML = await resp.text();
     } else {
