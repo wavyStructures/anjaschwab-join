@@ -502,14 +502,50 @@ function highlightSelectedContact(id) {
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
   if (!selectedContactCard) return;
 
-  if (selectedContactCard.style.backgroundColor === "rgb(69, 137, 255)") {
-    resetContactCard(selectedContactCard);
-    return;
-  }
+  const rightSideElement = document.getElementById("rightSide");
 
+  if (selectedContactCard.classList.contains("highlighted")) {
+    removeHighlight(selectedContactCard, rightSideElement);
+  } else {
+    applyHighlight(selectedContactCard, rightSideElement);
+  }
+}
+
+
+/**
+ * Removes the highlighting from the selected contact card and hides the right side element.
+ *
+ * @function removeHighlight
+ * @param {HTMLElement} selectedContactCard - The selected contact card element.
+ * @param {HTMLElement} rightSideElement - The right side element to be hidden.
+ * @returns {void}
+ */
+function removeHighlight(selectedContactCard, rightSideElement) {
+  if (rightSideElement) {
+    rightSideElement.classList.add("d-none");
+  }
+  resetContactCard(selectedContactCard);
+  selectedContactCard.classList.remove("highlighted");
+}
+
+
+/**
+ * Applies highlighting to the selected contact card and shows the right side element.
+ *
+ * @function applyHighlight
+ * @param {HTMLElement} selectedContactCard - The selected contact card element.
+ * @param {HTMLElement} rightSideElement - The right side element to be shown.
+ * @returns {void}
+ */
+function applyHighlight(selectedContactCard, rightSideElement) {
   resetAllContactCards();
   highlightContactCard(selectedContactCard);
+  selectedContactCard.classList.add("highlighted");
+  if (rightSideElement) {
+    rightSideElement.classList.remove("d-none");
+  }
 }
+
 
 /**
  * Generates HTML code for displaying contact details.
