@@ -33,7 +33,8 @@
                     </header>
                     <div class="signUp-page">
                         <div class="signUp-box">
-                            <div class="arrowLeft"><img src="./assets/img/icon-arrow_left.png" alt="arrow left"></div>
+                            <div class="arrowLeft" onclick="redirectToLogin()"><img
+                                    src="./assets/img/icon-arrow_left.png" alt="arrow left"></div>
 
                             <div class="h1SignUpBox">
                                 <h1 class="signUpH1">Sign up</h1>
@@ -43,23 +44,36 @@
                             <div class="formDiv">
                                 <form onsubmit="addUser(); return false">
                                     <div class="innerSignUpBox">
+                                        <div class="signUpNameBox">
+                                            <input type="name" id="signUpNameInput" placeholder="Name" required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-person.png" alt="letter">
+                                            </div>
+                                        </div>
                                         <div class="signUpEmailBox">
                                             <input type="email" id="signUpEmailInput" placeholder="Email" required>
                                             <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
                                             </div>
                                         </div>
-
                                         <div class="signUpPasswordBox">
                                             <input type="password" id="signUpPasswordInput" placeholder="Password"
                                                 required>
                                             <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
                                             </div>
                                         </div>
+                                        <div class="signUpPasswordBox">
+                                            <input type="password" id="signUpPasswordInput"
+                                                placeholder="Confirm password" required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <input type="checkbox" value="acceptingPrivacyPolicy" id="acceptingPrivacyPolicy">
-                                    <label for="acceptingPrivacyPolicy">I accept the <a href="#">Privacy Policy</a>
-                                    </label><br>
 
+                                    <div class="checkboxBox">
+                                        <label for="acceptingPrivacyPolicy" class="custom-checkbox">
+                                            <img src="./assets/img/icon-check_button_unchecked.png"
+                                                alt="checkbox image">
+                                            I accept the <a href="#">Privacy Policy</a></label><br>
+                                    </div>
                                     <button id="registerBtn" class="signUpButtons registerBtn">Sign up</button>
 
                                     <!--TODO-->
