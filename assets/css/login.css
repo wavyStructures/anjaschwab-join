@@ -41,12 +41,10 @@
 }
 
 .login-page {
-  padding: 200px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 100px);
 }
 
 .login-box {
@@ -57,11 +55,9 @@
   border: 1px solid grey;
   border-radius: 30px;
   width: fit-content;
-  /* top: 266.5px;                    top und left für position absolute?
-  left: 394px; */
   padding: 48px 115px;
   gap: 39px;
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 10px 3px #00000014;
 }
 
 .h1LoginBox {
@@ -121,6 +117,26 @@
   padding-top: 12.5px;
 }
 
+.custom-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  gap: 8px;
+  width: 24px;
+  height: 24px;
+  margin-top: 50px;
+  margin-bottom: 38px;
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.loginButtonsBox {
+  display: flex;
+  margin-bottom: 48px;
+}
+
 .loginButtons {
   border: none;
   border-radius: 8px;
@@ -143,14 +159,13 @@
 .loginButtonGuest {
   color: #647188;
   margin-left: 35px;
-}
-#rememberMe {
-  margin-top: 20px;
-  margin-bottom: 38px; /*TODO checkbox color or png*/
-  margin-left: 8px;
+  background-color: #fff;
+  border: 1px solid #647188;
 }
 
 .loginFooter {
+  width: 240px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,5 +240,99 @@
   to {
     transform: translate(-220px, -330px);
     filter: invert(1);
+  }
+}
+
+/*
+•	320px — 480px: Mobile devices
+•	481px — 768px: iPads, Tablets
+•	769px — 1024px: Small screens, laptops
+•	1025px — 1200px: Desktops, large screens
+•	1201px and more —  Extra large screens, TV
+*/
+
+@media (min-width: 481px) and (max-width: 769px) {
+  .login-box {
+    padding: 24px 56px;
+    width: -webkit-fill-available;
+    margin: 32px;
+  }
+
+  .loginEmailBox,
+  .loginPasswordBox {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  /* logo-animation-start {
+    width: 100px;
+    height: 122px;
+  } */
+
+  .joinLogoBlue {
+    margin-top: 37px;
+    margin-left: 38px;
+  }
+
+  .joinLogoBlue img {
+    width: 64px;
+    height: 78px;
+    /* margin-bottom: 90px; REALLY? */
+  }
+
+  .login-box {
+    padding: 32px 16px;
+    width: -webkit-fill-available;
+    margin: 16px;
+  }
+
+  .loginEmailBox,
+  .loginPasswordBox {
+    width: fit-content;
+  }
+
+  .loginButtonsBox {
+    flex-direction: column;
+    gap: 21px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginButtons {
+    width: 180px;
+    height: 48px;
+    font-size: 19px;
+    font-weight: 400;
+    /* border: none;
+    border-radius: 8px;
+    padding: 10px 35px;
+    gap: 10px;
+    font-size: 23px;
+    cursor: pointer; */
+  }
+
+  .signUpField {
+    display: none;
+  }
+
+  .signUpField-mobile {
+    margin-top: 60.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    gap: 16px;
+  }
+
+  .signUpField-mobile span,
+  .signUpButton-mobile {
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  .signUpButton-mobile {
+    min-width: 66px;
+    white-space: nowrap;
   }
 }

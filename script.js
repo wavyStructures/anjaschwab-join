@@ -6,7 +6,7 @@ async function init() {
   renderHeader();
   renderNavigation();
   renderBoard();
-  // renderLogin();
+  renderLogin();
   // renderSignUp();
 }
 
@@ -62,7 +62,10 @@ function renderHeader() {
  * rendering the login-page
  */
 function renderLogin() {
-  let content = getDiv('bodyContent');
+  let content = getDiv('loginPage');
+  content.classList.remove('d-none');
+  document.getElementById('signUpPage').classList.add('d-none');
+  document.getElementById('main-wrapper').classList.add('d-none');
   content.innerHTML = renderLoginPageHTML();
 }
 
@@ -71,7 +74,10 @@ function renderLogin() {
  * rendering the signUp-page
  */
 function renderSignUp() {
-  let content = getDiv('bodyContent');
+  let content = getDiv('signUpPage');
+  content.classList.remove('d-none');
+  document.getElementById('loginPage').classList.add('d-none');
+  document.getElementById('main-wrapper').classList.add('d-none');
   content.innerHTML = renderSignUpPageHTML();
 }
 

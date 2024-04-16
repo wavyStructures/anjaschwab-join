@@ -1,3 +1,7 @@
+button {
+  border: unset;
+}
+
 .square-button {
   display: flex;
   justify-content: center;
@@ -15,6 +19,7 @@
   cursor: pointer;
   background-color: #fff;
   /* display: inline-grid; */
+  border: unset;
 }
 
 .square-button:hover {
