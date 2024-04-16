@@ -328,7 +328,7 @@ function generateContactsContainerHTML() {
           <img src="./assets/img/icon-person.png" alt="">
       </div>
       <div class="input-frame">
-          <input id="contactMail" type="email" placeholder="Email" autofocus required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}">
+          <input id="contactMail" type="email" placeholder="Email" autofocus required>
           <img src="./assets/img/icon-mail.png" alt="">
       </div>
       <div class="input-frame">
@@ -703,3 +703,6 @@ async function saveContact(contact) {
     console.error("Fehler beim Speichern des Kontakts:", error);
   }
 }
+
+// load contacts()
+// email validierung wirft Fehlermeldung heraus
