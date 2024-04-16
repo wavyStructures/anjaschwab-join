@@ -322,17 +322,17 @@ function generateContactsContainerHTML() {
               <img src="./assets/img/add.contact-badge.png" alt="">
           </div>
       </div>
-      <form action="" onsubmit="createContact(); return false" class="add-contact-input-group">
+      <form action="#" onsubmit="createContact(); return false" class="add-contact-input-group">
       <div class="input-frame">
           <input id="contactName" type="text" placeholder="Name" autofocus required>
           <img src="./assets/img/icon-person.png" alt="">
       </div>
       <div class="input-frame">
-          <input id="contactMail" type="email" placeholder="Email" autofocus required>
+          <input id="contactMail" type="email" placeholder="Email" autofocus required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}">
           <img src="./assets/img/icon-mail.png" alt="">
       </div>
       <div class="input-frame">
-          <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
+          <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required pattern="[0-9]+">
           <img src="./assets/img/icon-call.png" alt="">
       </div>
       <div id="addContactButton" class="addContactButton">
@@ -604,7 +604,7 @@ function generateContactDetailsHTML(name, email, phone) {
  */
 function changeCancelIcon() {
   document.getElementById("cancelIcon").src =
-    "../assets/img/icon-cancel_hover.png";
+    "./assets/img/icon-cancel_hover.png";
 }
 
 /**
@@ -614,7 +614,7 @@ function changeCancelIcon() {
  * @returns {void}
  */
 function restoreCancelIcon() {
-  document.getElementById("cancelIcon").src = "../assets/img/icon-cancel.png";
+  document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
 
 /**
@@ -626,25 +626,32 @@ function restoreCancelIcon() {
  * @returns {void}
  */
 function createContact() {
-  const name = document.getElementById("contactName").value;
-  const mail = document.getElementById("contactMail").value;
-  const phone = document.getElementById("ContactPhone").value;
+  const nameInput = document.getElementById("contactName");
+  const mailInput = document.getElementById("contactMail");
+  const phoneInput = document.getElementById("ContactPhone");
 
-  const newContact = {
-    id: contacts.length + 1,
-    name: name.trim(),
-    mail: mail.trim(),
-    phone: phone.trim(),
-    contactColor: generateRandomColor(),
-  };
+  if (nameInput.checkValidity() && mailInput.checkValidity() && phoneInput.checkValidity()) {
+    const name = nameInput.value.trim();
+    const mail = mailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const newContact = {
+      id: contacts.length + 1,
+      name: name,
+      mail: mail,
+      phone: phone,
+      contactColor: generateRandomColor(),
+    };
+    contacts.push(newContact);
+    nameInput.value = "";
+    mailInput.value = "";
+    phoneInput.value = "";
 
-  contacts.push(newContact);
-
-  document.getElementById("contactName").value = "";
-  document.getElementById("contactMail").value = "";
-  document.getElementById("ContactPhone").value = "";
-
-  loadContacts();
+    loadContacts();
+    saveContact(newContact);
+  } else {
+    const notificationElement = document.getElementById("notification");
+    notificationElement.textContent = "Bitte füllen Sie alle Felder korrekt aus.";
+  }
 }
 
 /**
@@ -668,4 +675,31 @@ function generateRandomColor() {
   ];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
+}
+
+/**
+ * Saves a contact in the remote storage.
+ * 
+ * @param {object} contact - The contact to be saved.
+ */
+async function saveContact(contact) {
+  try {
+    const key = contact.id; 
+    const payload = {
+      key: key,
+      value: JSON.stringify(contact),
+      token: STORAGE_TOKEN 
+    };
+    const response = await fetch(STORAGE_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log("Kontakt erfolgreich gespeichert:", data);
+  } catch (error) {
+    console.error("Fehler beim Speichern des Kontakts:", error);
+  }
 }
