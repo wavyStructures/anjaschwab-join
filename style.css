@@ -28,7 +28,7 @@ body {
 
 .main {
   display: flex;
-  background-color: lightblue;
+  /* background-color: lightblue; */
   width: 100%;
 }
 
