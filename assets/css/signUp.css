@@ -1,24 +1,35 @@
-.signUpMainContainer {
-  z-index: 100;
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
+.main {
+  position: relative;
+  height: 100vh;
   background-color: var(--clr-main);
 }
 
-.signUp-box {
-  background-color: #fff;
+.signUpMainContainer {
+  z-index: 100;
+  background-color: var(--clr-main);
+  width: 100%;
+}
+
+.joinLogoSignUpWhite {
+  position: absolute;
+  top: 80px;
+  left: 77px;
+  z-index: 1;
+}
+
+.signUp-page {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.signUp-box {
+  background-color: #fff;
   border: 1px solid grey;
   border-radius: 30px;
-  width: 600px; /* TODO   eigentl. hug */
-  /* top: 266.5px;                    top und left für position absolute?
-  left: 394px; */
+  width: 600px;
   padding: 48px 115px;
   gap: 39px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
@@ -29,7 +40,7 @@
   position: absolute;
   left: 50.5px;
   top: 66.5px;
-  color: var(--clr-text-light-blue);
+  color: var(--clr-text-medium-blue);
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -59,8 +70,11 @@
   /* left: 50%; */
 }
 
-.innerSignUpBox {
-  width: 200px;
+.formDiv form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .signUpEmailBox,
@@ -95,6 +109,12 @@
   padding-top: 12.5px;
 }
 
+#signUpNameInput:focus,
+#signUpEmailInput:focus,
+#signUpPasswordInput:focus {
+  outline: none;
+}
+
 .signUpButtons {
   border: none;
   border-radius: 8px;
@@ -117,15 +137,30 @@
   color: #647188;
   margin-left: 35px;
 }
-#acceptingPrivacyPolicy {
+
+.checkboxBox label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+label.custom-checkbox {
   margin-top: 20px;
-  margin-bottom: 38px; /*TODO checkbox color or png*/
   margin-left: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--clr-text-menu);
+  gap: 8px;
+}
+
+.checkboxBox {
+  height: 24px;
+  margin-bottom: 35px;
 }
 
 a {
   text-decoration: none;
-  color: var(--clr-text-light-blue);
+  color: var(--clr-text-medium-blue);
 }
 
 .signUpFooter {

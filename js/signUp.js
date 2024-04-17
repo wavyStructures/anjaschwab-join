@@ -55,7 +55,7 @@ async function addUser() {
     let email = document.getElementById('signUpEmailInput');
     let password = document.getElementById('signUpPasswordInput');
 
-    registerBtn.disabled = true;
+    // registerBtn.disabled = true;
     users.push(
         {
             email: email.value,
