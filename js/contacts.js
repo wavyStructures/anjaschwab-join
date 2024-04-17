@@ -163,7 +163,7 @@ let contacts = [
     phone: "+49 1111 111 11 22",
     contactColor: "#ff9999",
   },
-  
+]
 
 function contactsInit(){
   includeHTML();
