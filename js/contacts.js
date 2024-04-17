@@ -394,30 +394,19 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
-/**
- * Generates HTML code for a contact card with specified details.
- *
- * @function generateContactCardHTML
- * @param {number} id - The unique identifier for the contact.
- * @param {string} color - The color associated with the contact.
- * @param {string} initials - The initials of the contact.
- * @param {string} name - The name of the contact.
- * @param {string} mail - The email address of the contact.
- * @param {string} shorterMail - The shortened version of the email address.
- * @returns {string} The HTML code for the contact card.
- */
-function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
-  const upperCaseName = name.replace(/\b\w/g, (char) => char.toUpperCase());
+function generateContactCardHTML(contactId, profileColor, initials, name, email, shortEmail) {
+  const formattedName = name.replace(/\b\w/g, letter => letter.toUpperCase());
   return `
-        <div class="contact-card" id="contact-card-${id}" onclick="openContactDetails(${id})">
-            <div class="profile-badge-group" style="background-color: ${color};">${initials}</div>
-            <div class="">
-                <span class="contact-card-name">${upperCaseName}</span><br>
-                <a class="contact-card-email" href="mailto:${mail}">${shorterMail}</a>
-            </div>
-        </div>
-    `;
+    <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
+      <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
+      <div>
+        <span class="contact-card-name">${formattedName}</span><br>
+        <a class="contact-card-email" href="mailto:${email}">${shortEmail}</a>
+      </div>
+    </div>
+  `;
 }
+
 
 /**
  * Displays details of the contact with the given ID.
@@ -435,11 +424,9 @@ function openContactDetails(id) {
 
 
 /**
- * Resets the styles of a contact card to their default values.
+ * Resets contact card styles to their default values.
  *
- * @function resetContactCard
- * @param {HTMLElement} card - The contact card element to be reset.
- * @returns {void}
+ * @param {HTMLElement} card The contact card element.
  */
 function resetContactCard(card) {
   card.style.backgroundColor = "";
@@ -448,11 +435,12 @@ function resetContactCard(card) {
   if (badgeGroup) {
     badgeGroup.classList.remove("profileBadgeChoosen");
   }
-  const emailElement = card.querySelector(".contact-card-email");
-  if (emailElement) {
-    emailElement.style.color = "";
+  const emailEl = card.querySelector(".contact-card-email");
+  if (emailEl) {
+    emailEl.style.color = "";
   }
 }
+
 
 /**
  * Resets the styles of all contact cards to their default values.
