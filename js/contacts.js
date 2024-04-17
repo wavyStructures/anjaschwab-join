@@ -212,8 +212,7 @@ function addContactCard() {
 }
 
 /**
- * Hides the add contact card by adding the d-none class to the corresponding container
- * and applying the move-out-right animation.
+ * Hides the add contact card by removing it from the DOM.
  *
  * @function closeAddContact
  * @returns {void}
@@ -221,11 +220,11 @@ function addContactCard() {
 function closeAddContact() {
   const addContactContainer = document.getElementById("addContact");
   if (!addContactContainer.classList.contains("d-none")) {
-    addContactContainer.classList.add("move-out-right"); 
+    addContactContainer.classList.add("move-out-right");
     setTimeout(() => {
       addContactContainer.classList.add("d-none");
-      addContactContainer.classList.remove("move-out-right"); 
-    }, 125); 
+      addContactContainer.classList.remove("move-out-right");
+    }, 125);
     const overlay = document.querySelector(".overlay");
     if (overlay) {
       overlay.remove();
