@@ -8,87 +8,102 @@
     <link rel="stylesheet" href="assets/css/summary.css">
     <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
-    <title>Join Summary</title>
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/summary.css">
+    <script src="./js/summary.js"></script>
+    <title>Join - Summary</title>
 </head>
 
-<body>
-    <div class="sub-main-summary">
-        <div class="summary-box box-shadow">
-            <div id="h1GreetingUser" class="h1-box">
-                <h1 id="daytimeGreeting" class="no-wrap">Good morning,</h1>
-                <h1 id="usernameForGreeting">Sofia XXX</h1>
-            </div>
-            <div id="h1GreetingGuest" class="h1-box" style="display: none;">
-                <h1 class="no-wrap">Good morning</h1>
-            </div>
-            <div class="line1">
-                <div class="urgentAndDate" id="urgentAndDate">
-                    <div class="urgentBox">
-                        <div class="image-and-amount flex">
-                            <img src="./assets/img/icon-blue-urgent_clock-with-border.png" alt="clock symbol"
-                                class="white-border">
-                            <span class="amount">1</span>
+<body onload="summaryInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, hier euer HTML-Code rein -->
+        <header w3-include-html="./assets/templates/header.html" id="header" class="header">
+        </header>
+        <div id="main-wrapper" class="main-wrapper">
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container" class="navigation-container"></nav>
+            <main id="main" class="main">
+                <div class="sub-main-summary">
+                    <div class="summary-box box-shadow">
+                        <div id="h1GreetingUser" class="h1-box">
+                            <h1 id="daytimeGreeting" class="no-wrap">Good morning,</h1>
+                            <h1 id="usernameForGreeting">Sofia XXX</h1>
                         </div>
-                        <span>Tasks Urgent</span>
-                    </div>
-                    <div class="verticalSeparaterLine"></div>
-                    <div class="dateBox">
-                        <div class="date">${getDate()}</div>
-                        <span>Upcoming Deadline</span>
+                        <div id="h1GreetingGuest" class="h1-box" style="display: none;">
+                            <h1 class="no-wrap">Good morning</h1>
+                        </div>
+                        <div class="line1">
+                            <div class="urgentAndDate" id="urgentAndDate">
+                                <div class="urgentBox">
+                                    <div class="image-and-amount flex">
+                                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png"
+                                            alt="clock symbol" class="white-border">
+                                        <span class="amount">1</span>
+                                    </div>
+                                    <span>Tasks Urgent</span>
+                                </div>
+                                <div class="verticalSeparaterLine"></div>
+                                <div class="dateBox">
+                                    <div id="date" class="date"></div>
+                                    <span>Upcoming Deadline</span>
+                                </div>
+                            </div>
+                            <div class="square-button">
+                                <div class="inner-square-button">
+                                    <div class="image-and-amount flex">
+                                        <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
+                                        <div class="amount">5</div>
+                                    </div>
+                                    <span>Task in Board</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line2">
+                            <div class="square-button">
+                                <div class="inner-square-button">
+                                    <div class="image-and-amount flex">
+                                        <img src="./assets/img/icon-blue-todo.png" alt="todo list">
+                                        <div class="amount">1</div>
+                                    </div>
+                                    <span class="no-wrap">Tasks To-do</span>
+                                </div>
+                            </div>
+                            <div class="square-button">
+                                <div class="inner-square-button">
+                                    <div class="image-and-amount flex">
+                                        <img src="/assets/img/icon-blue-in_progress.png" alt="rising chart">
+                                        <div class="amount">2</div>
+                                    </div>
+                                    <span>Task in Progress</span>
+                                </div>
+                            </div>
+                            <div class="square-button">
+                                <div class="inner-square-button">
+                                    <div class="image-and-amount flex">
+                                        <img src="/assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
+                                        <div class="amount">2</div>
+                                    </div>
+                                    <span>Awaiting Feedback</span>
+                                </div>
+                            </div>
+                            <div class="square-button">
+                                <div class="inner-square-button">
+                                    <div class="image-and-amount flex">
+                                        <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
+                                        <div class="amount">1</div>
+                                    </div>
+                                    <span>Tasks<br>Done</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
-                            <div class="amount">5</div>
-                        </div>
-                        <span>Task in Board</span>
-                    </div>
-                </div>
-            </div>
-            <div class="line2">
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="./assets/img/icon-blue-todo.png" alt="todo list">
-                            <div class="amount">1</div>
-                        </div>
-                        <span class="no-wrap">Tasks To-do</span>
-                    </div>
-                </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-in_progress.png" alt="rising chart">
-                            <div class="amount">2</div>
-                        </div>
-                        <span>Task in Progress</span>
-                    </div>
-                </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="/assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
-                            <div class="amount">2</div>
-                        </div>
-                        <span>Awaiting Feedback</span>
-                    </div>
-                </div>
-                <div class="square-button">
-                    <div class="inner-square-button">
-                        <div class="image-and-amount flex">
-                            <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
-                            <div class="amount">1</div>
-                        </div>
-                        <span>Tasks<br>Done</span>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
-    <script src="script.js"></script>
+
 
 </body>
 

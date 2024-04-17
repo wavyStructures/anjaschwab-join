@@ -30,8 +30,8 @@ console.log('users = contacts are:', users);
 /**
  * init-function run at on loading the body
  */
-async function init() {
-    await loadUsers();
+async function signUpInit() {
+    await loadUsers(); f
     console.log("USERS: ", users)
 }
 
@@ -91,4 +91,13 @@ async function delAllUsers() {
     console.log("USERS: ", users)
 }
 
+
+/**
+ * Redirects the user to the login page.
+ *
+ * @return {void}
+ */
+function redirectToLogin() {
+    window.location.href = 'login.html';
+}
 

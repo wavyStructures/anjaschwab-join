@@ -4,83 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./assets/css/header.css">
-    <link rel="stylesheet" href="./assets/css/navigation.css">
-    <link rel="stylesheet" href="./assets/css/board.css">
-    <!-- <link rel="stylesheet" href="assets/css/summary.css"> -->
-    <link rel="stylesheet" href="assets/css/button.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/discard.css">
-    <link rel="stylesheet" href="assets/css/fonts.css">
-
+    <link rel="stylesheet" href="./assets/css/contacts.css">
     <script src="script.js"></script>
-    <script src="js/board.js"></script>
-    <script src="js/helper.js"></script>
-    <script src="assets/templates/html_templates.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/board.css">
+    <script src="./js/board.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./assets/templates/html_templates.js"></script>
 
 
-    <title>Board</title>
+    <title>Join - AddTask</title>
 </head>
 
-<body onload="renderCategories()">
-    <div class="board-Container">
-        <div class="boardTopContainer">
-            <div class="searchTaskContainer">
-                <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text"
-                        onclick="searchTask()">
-                    <div class="searchImg"> </div>
+<body onload="boardInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
+        <header w3-include-html="./assets/templates/header.html" id="header" class="header">
+        </header>
+        <div id="main-wrapper" class="main-wrapper">
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
+                class="navigation-container"></nav>
+            <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
+                <div class="board-Container">
+                    <div class="boardTopContainer">
+                        <div class="searchTaskContainer">
+                            <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text">
+                                <div class="searchImg" onclick="searchTask()"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-container">
+                        <div class="category">
+                            <div class="categoryTitle">
+                                <h2>To Do</h2>
+                                <div class="addTaskButton" onclick="addTask('todo')"></div>
+                            </div>
+                            <div id="todo" class="categoryTasks">
+                                </div>
+                            </div>
+                            <div class="category">
+                                <div class="categoryTitle">
+                                    <h2>In progress</h2>
+                                    <div class="addTaskButton" onclick="addTask('inProgress')"></div>
+                                </div>
+                                <div id="inProgress" class="categoryTasks">
+            
+                            </div>
+                        </div>
+                        <div class="category">
+                            <div class="categoryTitle">
+                                <h2>Await feedback</h2>
+                                <div class="addTaskButton" onclick="addTask('awaitFeedback')"></div>
+                            </div>
+                            <div id="awaitFeedback" class="categoryTasks">
+                            </div>
+                        </div>
+                        <div class="category">
+                            <div class="categoryTitle">
+                                <h2>Done</h2>
+                                <div class="addTaskButton" onclick="addTask('done')"></div>
+                            </div>
+                            <div id="done" class="categoryTasks">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="category-container">
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>To Do</h2>
-                    <img src="./assets/img/icon-plus_button.png">
-                </div>
-                <div id="todo" class="categoryTasks">
-                    <div draggable="true" id="task_1" class="card"></div>
-                    <div draggable="true" id="task_2" class="card"></div>
-                    <div draggable="true" id="task_3" class="card"></div>
-                </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>In progress</h2>
-                    <img src="./assets/img/icon-plus_button.png">
-                </div>
-                <div id="inProgress" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
-                </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>Await feedback</h2>
-                    <img src="./assets/img/icon-plus_button.png">
-                </div>
-                <div id="awaitFeedback" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
-                </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>Done</h2>
-                    <img src="./assets/img/icon-plus_button.png">
-                </div>
-                <div id="done" class="categoryTasks">
-                    <div draggable="true" id="task_3" class="card"></div>
-                </div>
-            </div>
+            </main>
         </div>
     </div>
-
-
-    <script>
-        let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
-        categories.forEach(c => document.getElementById(c).innerHTML = '');
-    </script>
 </body>
 
 </html>

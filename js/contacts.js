@@ -165,6 +165,11 @@ let contacts = [
   },
   
 
+function contactsInit(){
+  includeHTML();
+  loadContacts();
+}
+
 /**
  * Loads the contacts and renders them into the main element.
  *

@@ -61,7 +61,10 @@ let cards = [
     }
 ];
 
-
+function boardInit(){
+    includeHTML();
+    renderCategories();
+}
 /**
  * All available cards will be filtered for the category
  * @param {string} toFilterFor the category's name (e.g. 'done')

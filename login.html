@@ -4,114 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
-    <script src="script.js"></script>
-    <script src="./js/signUp.js"></script>
 
-    <title>Join Log In</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <script src="./js/signUp.js"></script>
+    <script src="./js/login.js"></script>
+
+
+
+    <title>Join - Login</title>
 </head>
 
-<body>
-    <div id="loginMainContainer" class="loginMainContainer">
-        <div class="blue-overlay d-none" id="blue-overlay">
-            <div class="joinLogoWhite logo-animation" id="logo">
-                <img src="./assets/img/logo-big_white.png" alt="logo">
-            </div>
-        </div>
-        <header class="loginHeader">
-            <div class="joinLogoBlue">
-                <img src="./assets/img/logo-medium_blue.png" alt="logo">
-            </div>
-            <div class="signUpField">
-                <span>Not a join user yet?</span>
-                <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button>
-            </div>
+<body onload="loginInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
+        <header w3-include-html="./assets/templates/header.html" id="header" class="header">
         </header>
-        <div class=" login-page">
-            <div class="login-box">
-                <div class="h1LoginBox">
-                    <h1 class="loginH1">Log in</h1>
-                    <div class="horizontalH1Underline"></div>
-                </div>
-                <div class="formDiv">
-                    <form onsubmit="loginUser(); return false;">
-                        <div class=" innerLoginBox">
-                            <div class="loginEmailBox">
-                                <input type="email" id="loginEmailInput" placeholder="Email" required>
-                                <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter"></div>
+        <div id="main-wrapper" class="main-wrapper">
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
+                class="navigation-container"></nav>
+            <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
+                <div id="loginMainContainer" class="loginMainContainer">
+                    <div class="blue-overlay d-none" id="blue-overlay">
+                        <div class="joinLogoWhite logo-animation" id="logo">
+                            <img src="./assets/img/logo-big_white.png" alt="logo">
+                        </div>
+                    </div>
+                    <header class="loginHeader">
+                        <div class="joinLogoBlue">
+                            <img src="./assets/img/logo-medium_blue.png" alt="logo">
+                        </div>
+                        <div class="signUpField">
+                            <span>Not a join user yet?</span>
+                            <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button>
+                        </div>
+                    </header>
+                    <div class=" login-page">
+                        <div class="login-box">
+                            <div class="h1LoginBox">
+                                <h1 class="loginH1">Log in</h1>
+                                <div class="horizontalH1Underline"></div>
                             </div>
+                            <div class="formDiv">
+                                <form onsubmit="loginUser(); return false;">
+                                    <div class=" innerLoginBox">
+                                        <div class="loginEmailBox">
+                                            <input type="email" id="loginEmailInput" placeholder="Email" required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
+                                            </div>
+                                        </div>
 
-                            <div class="loginPasswordBox">
-                                <input type="password" id="loginPasswordInput" placeholder="Password" required>
-                                <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock"></div>
+                                        <div class="loginPasswordBox">
+                                            <input type="password" id="loginPasswordInput" placeholder="Password"
+                                                required>
+                                            <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="checkboxBox">
+                                        <label for="rememberMe" class="custom-checkbox">
+                                            <img src="./assets/img/icon-check_button_unchecked.png"
+                                                alt="checkbox image">
+                                            Remember me</label><br>
+                                    </div>
+
+                                    <div class="loginButtonsBox">
+                                        <button class="loginButtons loginButtonUser" onclick="login()">Log in</button>
+                                        <!--TODO-->
+                                        <button class="loginButtons loginButtonGuest">Guest log in</button>
+                                    </div>
+                                </form>
+
+
+
+                                <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
+                                <div id="msgBox"></div>
+
+                                <script>
+                                    function login() {
+                                        let email = document.getElementById('loginEmailInput');
+                                        let password = document.getElementById('loginPasswordInput');
+                                        let user = users.find(user => user.email == email.value && user.password == password);
+                                        console.log(user);
+                                        if (user) {
+                                            console.log('user gefunden');
+                                        }
+                                    }
+
+                                    const urlParams = new URLSearchParams(window.location.search);
+                                    const msg = urlParams.get('msg');
+
+                                    if (msg) {
+                                        msgBox.innerHTML = msg;
+                                    } else {
+                                        //TODO display: none
+                                    }
+                                </script>
+
+
+
                             </div>
                         </div>
-                        <div class="checkboxBox">
-                            <label for="rememberMe" class="custom-checkbox">
-                                <img src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image">
-                                Remember me</label><br>
+                        <div class="signUpField-mobile ">
+                            <span>Not a join user yet?</span>
+                            <button class="loginButtons signUpButton signUpButton-mobile"
+                                onclick="renderSignUpPage()">Sign
+                                up</button>
+                        </div>
+                        <div class="loginFooter">
+                            <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
+                            <div class="legalNotice" onclick=""><span>Legal notice</span></div>
                         </div>
 
-                        <div class="loginButtonsBox">
-                            <button class="loginButtons loginButtonUser" onclick="login()">Log in</button>
-                            <!--TODO-->
-                            <button class="loginButtons loginButtonGuest">Guest log in</button>
-                        </div>
-                    </form>
 
-
-
-                    <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
-                    <div id="msgBox"></div>
-
-                    <script>
-                        function login() {
-                            let email = document.getElementById('loginEmailInput');
-                            let password = document.getElementById('loginPasswordInput');
-                            let user = users.find(user => user.email == email.value && user.password == password);
-                            console.log(user);
-                            if (user) {
-                                console.log('user gefunden');
-                            }
-                        }
-
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const msg = urlParams.get('msg');
-
-                        if (msg) {
-                            msgBox.innerHTML = msg;
-                        } else {
-                            //TODO display: none
-                        }
-                    </script>
-
-
-
+                    </div>
                 </div>
-            </div>
-            <div class="signUpField-mobile ">
-                <span>Not a join user yet?</span>
-                <button class="loginButtons signUpButton signUpButton-mobile" onclick="renderSignUpPage()">Sign
-                    up</button>
-            </div>
-            <div class="loginFooter">
-                <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
-                <div class="legalNotice" onclick=""><span>Legal notice</span></div>
-            </div>
-
-
+            </main>
         </div>
     </div>
-
-
-
-
-
-
-
 </body>
 
 </html>
