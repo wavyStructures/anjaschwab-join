@@ -1,38 +1,49 @@
-
-:root{
+:root {
     --addTaskGap: 8px;
     --addTaskPaddingBottom: 20px;
 }
 
-.addTaskContainer{
-    display: flex;
-    flex-direction: column;
-    height: 928px;
-    width: 518px;
-    padding: 64ps 24px 0 24px;
-    *{
-        font-size: 19px;
-    }
-
-
-
-}
-select, input, textarea{
+select,
+input,
+textarea {
     border: none;
     width: 100%;
-    border-bottom: 1px solid rgba(0,0,0,.2);
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
 input:focus,
 select:focus,
-textarea:focus,
 button:focus {
     outline: none;
 }
 
-select{
+input:focus {
+    border-bottom: 1px solid var(--clr-input-focus);
+}
+
+select:hover {
+    border-bottom: 1px solid var(--clr-input-focus);
+}
+
+textarea {
+    height: 100px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0 10px 10px 10px
+}
+
+textarea:focus {
+    outline: none !important;
+    border: 1px solid var(--clr-input-focus);
+}
+
+textarea::-webkit-resizer {
+    appearance: none;
+}
+
+select {
     cursor: pointer;
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: url('../img/icon-event.png') no-repeat;
     background-position: center;
@@ -41,23 +52,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.addTaskBody{
+.addTaskBody {
     height: 769px;
-    /* background-color: green; */
+    max-width: 500px;
     padding: 64px 24px 0 24px;
 
 }
-.addTaskAddTitleContainer{
+
+.addTaskAddTitleContainer {
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.addTaskAddTitleContainer input{
+.addTaskAddTitleContainer input {
     width: 100%;
     padding: 13px 16px 13px 16px;
     font-size: 32px
 }
 
-.addTaskDescription{
+.addTaskDescription {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -65,74 +77,72 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     gap: var(--addTaskGap);
 }
 
-#addTaskDescriptionInput{
-    max-width: 440px;
+#addTaskDescriptionInput {
+    /* max-width: 440px; */
 }
 
-.addTaskDueDate{
+.addTaskDueDate {
     padding-bottom: var(--addTaskPaddingBottom);
     gap: var(--addTaskGap);
 }
 
-.addTaskBodyTop{
+.addTaskBodyTop {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    /* width: 440px; */
     gap: 12px;
 }
 
-#addTaskDescription{
+#addTaskDescription {
     width: 100%;
 
 }
 
-.addTaskTitles{
+.addTaskTitles {
     width: 100%;
     font-weight: bold;
 }
 
-.addTaskBodyBottom{
-    width: 440px;
+.addTaskBodyBottom {
+    /* width: 440px; */
 }
 
-.addTaskPriority{
+.addTaskPriority {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap);
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.addTaskPriorityButtonContainer{
+.addTaskPriorityButtonContainer {
     display: flex;
     gap: 16px;
-
 }
 
-.addTaskPriorityButton{
+.addTaskPriorityButton {
     display: flex;
     align-items: center;
     gap: 10px;
     justify-content: center;
-    width: 136px;
+    /* width: 136px; */
     height: 51px;
     border-radius: 10px;
     padding: 18px 10px 18px 10px;
     background-color: white;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2);
     cursor: pointer;
 }
 
-.addTaskAssignedTo{
+.addTaskAssignedTo {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap);
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.addTaskCategory{
+.addTaskCategory {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap);
     padding-bottom: var(--addTaskPaddingBottom);
 }
-
