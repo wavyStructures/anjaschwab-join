@@ -420,29 +420,19 @@ function generateContactCardHTML(id, color, initials, name, mail, shorterMail) {
 }
 
 /**
- * Opens the details of a contact specified by its ID.
- *
- * @function openContactDetails
+ * Displays details of the contact with the given ID.
  * @param {number} id - The unique identifier of the contact.
- * @returns {void}
  */
 function openContactDetails(id) {
-  const contact = contacts.find((contact) => contact.id === id);
-  const { name, mail, phone } = contact;
-
-  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone);
-
-  const rightSideElement = document.getElementById("rightSide");
-  if (rightSideElement) {
-    rightSideElement.innerHTML = contactDetailsHTML;
-
-    rightSideElement.classList.remove("d-none");
-
-    highlightSelectedContact(id);
-  } else {
-    console.error("Element with ID 'rightSide' not found.");
-  }
+  const contact = contacts.find(({ id: contactId }) => contactId === id);
+  const { name, email, phone } = contact;
+  const contactDetailsHTML = generateContactDetailsHTML(name, email, phone);
+  const rightSide = document.getElementById("rightSide");
+  rightSide.classList.remove("d-none");
+  rightSide.innerHTML = contactDetailsHTML;
+  highlightSelectedContact(id);
 }
+
 
 /**
  * Resets the styles of a contact card to their default values.
@@ -705,6 +695,16 @@ async function saveContact(contact) {
     console.log("Kontakt erfolgreich gespeichert:", data);
   } catch (error) {
     console.error("Fehler beim Speichern des Kontakts:", error);
+  }
+}
+
+async function loadContactsStorrage() {
+  try {
+    const response = await fetch(STORAGE_URL);
+    const data = await response.json();
+    contacts = data;
+  } catch (error) {
+    console.error("Fehler beim Laden der Kontakte:", error);
   }
 }
 
