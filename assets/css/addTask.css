@@ -1,6 +1,9 @@
 :root {
     --addTaskGap: 8px;
     --addTaskPaddingBottom: 20px;
+    --clr-prio-urgent: #ff3d00;
+    --clr-prio-medium: #ffa800;
+    --clr-prio-low: #7ae229;
 }
 
 select,
@@ -133,7 +136,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.addTaskPriorityButton:active {
+.active {
     background-color: green;
 }
 
