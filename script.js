@@ -68,13 +68,13 @@ function renderLogin() {
 /**
  * rendering the signUp-page
  */
-function renderSignUp() {
-	let content = getDiv("signUpPage");
-	content.classList.remove("d-none");
-	document.getElementById("loginPage").classList.add("d-none");
-	document.getElementById("main-wrapper").classList.add("d-none");
-	content.innerHTML = renderSignUpPageHTML();
-}
+// function renderSignUp() {
+// 	let content = getDiv("signUpPage");
+// 	content.classList.remove("d-none");
+// 	document.getElementById("loginPage").classList.add("d-none");
+// 	document.getElementById("main-wrapper").classList.add("d-none");
+// 	content.innerHTML = renderSignUpPageHTML();
+// }
 
 /**
  * rendering the summary-page

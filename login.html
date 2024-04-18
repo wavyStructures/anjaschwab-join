@@ -10,10 +10,9 @@
     <script src="script.js"></script>
 
     <link rel="stylesheet" href="./assets/css/login.css">
-    <script src="./js/signUp.js"></script>
     <script src="./js/login.js"></script>
-
-
+    <!-- <script src="./js/signUp.js"></script> -->
+    <script src="./js/contacts.js"></script>
 
     <title>Join - Login</title>
 </head>
@@ -27,18 +26,18 @@
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
                 <div id="loginMainContainer" class="loginMainContainer">
-                    <div class="blue-overlay d-none" id="blue-overlay">
+                    <!-- <div class="blue-overlay d-none" id="blue-overlay">
                         <div class="joinLogoWhite logo-animation" id="logo">
                             <img src="./assets/img/logo-big_white.png" alt="logo">
                         </div>
-                    </div>
+                    </div> -->
                     <header class="loginHeader">
                         <div class="joinLogoBlue">
                             <img src="./assets/img/logo-medium_blue.png" alt="logo">
                         </div>
                         <div class="signUpField">
                             <span>Not a join user yet?</span>
-                            <button class="loginButtons signUpButton" onclick="renderSignUp()">Sign up</button>
+                            <button class="loginButtons signUpButton" onclick="gotoSignUp()">Sign up</button>
                         </div>
                     </header>
                     <div class=" login-page">
@@ -48,7 +47,7 @@
                                 <div class="horizontalH1Underline"></div>
                             </div>
                             <div class="formDiv">
-                                <form onsubmit="loginUser(); return false;">
+                                <form onsubmit="login(); return false;">
                                     <div class=" innerLoginBox">
                                         <div class="loginEmailBox">
                                             <input type="email" id="loginEmailInput" placeholder="Email" required>
@@ -81,28 +80,6 @@
 
                                 <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
                                 <div id="msgBox"></div>
-
-                                <script>
-                                    function login() {
-                                        let email = document.getElementById('loginEmailInput');
-                                        let password = document.getElementById('loginPasswordInput');
-                                        let user = users.find(user => user.email == email.value && user.password == password);
-                                        console.log(user);
-                                        if (user) {
-                                            console.log('user gefunden');
-                                        }
-                                    }
-
-                                    const urlParams = new URLSearchParams(window.location.search);
-                                    const msg = urlParams.get('msg');
-
-                                    if (msg) {
-                                        msgBox.innerHTML = msg;
-                                    } else {
-                                        //TODO display: none
-                                    }
-                                </script>
-
 
 
                             </div>
