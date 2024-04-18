@@ -133,6 +133,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
+.addTaskPriorityButton:active {
+    background-color: green;
+}
+
 .addTaskAssignedTo {
     display: flex;
     flex-direction: column;

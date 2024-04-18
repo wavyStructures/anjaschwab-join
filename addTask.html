@@ -46,17 +46,17 @@
                         <div class="addTaskPriority">
                             <div class="addTaskTitles">Priority</div>
                             <div class="addTaskPriorityButtonContainer">
-                                <div class="addTaskPriorityButton">
+                                <div id="addTaskPriorityButtonUrgent" class="addTaskPriorityButton"  onclick="setPriority('Urgent')">
                                     <div class="priorityButtonText">Urgent</div>
-                                    <img src="./assets/img/icon-priority_high.png" alt="urgent">
+                                    <img src="./assets/img/icon-priority_high.png" alt="Priority urgent">
                                 </div>
-                                <div class="addTaskPriorityButton">
-                                    <div class="priorityButtonText">Urgent</div>
-                                    <img src="./assets/img/icon-priority_medium.png" alt="urgent">
+                                <div id="addTaskPriorityButtonMedium" class="addTaskPriorityButton"  onclick="setPriority('Medium')">
+                                    <div class="priorityButtonText">Medium</div>
+                                    <img src="./assets/img/icon-priority_medium.png" alt="Priority medium">
                                 </div>
-                                <div class="addTaskPriorityButton">
-                                    <div class="priorityButtonText">Urgent</div>
-                                    <img src="./assets/img/icon-priority_low.png" alt="urgent">
+                                <div id="addTaskPriorityButtonLow" class="addTaskPriorityButton"  onclick="setPriority('Low')">
+                                    <div class="priorityButtonText">Low</div>
+                                    <img src="./assets/img/icon-priority_low.png" alt="Priority low">
                                 </div>
 
                             </div>
