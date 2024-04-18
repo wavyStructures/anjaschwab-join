@@ -1,0 +1,59 @@
+.help-page {
+  margin: 0 88px;
+}
+
+.help-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+}
+
+img {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+}
+
+h2 {
+  color: var(--clr-main);
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 39.6px;
+  margin: 24px 0;
+}
+
+h3 {
+  font-size: 33px;
+  font-weight: 700;
+  color: var(--clr-text-medium-blue);
+}
+
+h4 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--clr-text-medium-blue);
+}
+
+.numberH3Box {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 35px;
+  margin: 16px 0;
+}
+
+.joinSpanBlue {
+  color: var(--clr-main);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.bottomGreetingHelp {
+  display: flex;
+  justify-content: center;
+}
