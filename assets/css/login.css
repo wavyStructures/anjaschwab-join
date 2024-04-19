@@ -180,6 +180,15 @@
   font-size: 16px;
   font-weight: 400;
   color: var(--clr-text-menu);
+  transition: transform 0.5s ease;
+}
+
+.privacyPolicy:hover,
+.legalNotice:hover {
+  color: var(--clr-main);
+  cursor: pointer;
+  transform: scaleX(1.2);
+  font-size: 1rem;
 }
 
 /* .logo-animation {

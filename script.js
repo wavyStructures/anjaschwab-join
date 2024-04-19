@@ -109,6 +109,13 @@ function renderContacts() {
 	loadContacts();
 }
 
+
+/**
+ * open help page
+ */
+function openHelp() {
+	window.location.href = 'help.html';
+}
 // /**
 //  *
 //  * @param {String} folderPath

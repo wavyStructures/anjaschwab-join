@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/header.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/header.css" />
     <title>Header</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="header-content">
-        <img src="/assets/img/logo-small_white.png" alt="join-logo">
-        <div class="header-inner-right">
-            <span>Kanban Project Management Tool</span>
-            <img src="assets/img/icon-help.png" alt="help">
-            <svg id="username" width="56px" height="56px" viewBox="0 0 100 100">
-                <circle class="kreis" cx="50" cy="50" r="40" />
-                <text class="text" x="50" y="55">
-                    <tspan id="buchstabe">A</tspan>
-                </text>
-            </svg>
-        </div>
+      <img src="/assets/img/logo-small_white.png" alt="join-logo" />
+      <div class="header-inner-right">
+        <span>Kanban Project Management Tool</span>
+        <img
+          id="helpIcon"
+          class="helpIcon"
+          src="assets/img/icon-help.png"
+          alt="help"
+          onclick="openHelp()"
+        />
+        <svg id="username" width="56px" height="56px" viewBox="0 0 100 100">
+          <circle class="kreis" cx="50" cy="50" r="40" />
+          <text class="text" x="50" y="55">
+            <tspan id="buchstabe">A</tspan>
+          </text>
+        </svg>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
