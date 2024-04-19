@@ -1,29 +1,4 @@
-let users = [
-    {
-        id: 1,
-        name: "anton mayer",
-        mail: "antom@gmail.com",
-        password: 'anton',
-        phone: "+49 1111 111 11 1",
-        contactColor: "",
-    },
-    {
-        id: 2,
-        name: "anja schulz",
-        mail: "schulz@hotmail.com",
-        password: 'anja',
-        phone: "+49 1111 111 11 2",
-        contactColor: "#c2e59c",
-    },
-    {
-        id: 3,
-        name: "benedikt ziegler",
-        mail: "benedikt@gmail.com",
-        password: 'benedikt',
-        phone: "+49 1111 111 11 3",
-        contactColor: "#ffcc80",
-    },
-];
+
 
 console.log('users = contacts are:', users);
 

@@ -41,19 +41,25 @@ function login() {
     console.log('login: ', email.value, password.value);
     if (user) {
         console.log('user gefunden');
+        getInitials(user.name)
+        window.location.href = `summary.html?msg=successfully_logged_in`;      // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
     } else {
         console.log('user NICHT gefunden');
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    if (msg) {
+        msgBox.innerHTML = msg;
+    } else {
+        //TODO display: none
+    }
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
 
-if (msg) {
-    msgBox.innerHTML = msg;
-} else {
-    //TODO display: none
-}
+
+
 
 function gotoSignUp() {
     window.location.href = 'signUp.html';

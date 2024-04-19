@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/button.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
+
     <script src="script.js"></script>
+    <script src="./js/login.js"></script>
     <script src="./js/signUp.js"></script>
 
     <title>Join Log In</title>
@@ -37,7 +39,7 @@
                     <div class="horizontalH1Underline"></div>
                 </div>
                 <div class="formDiv">
-                    <form onsubmit="loginUser(); return false;">
+                    <form onsubmit="login(); return false;">
                         <div class=" innerLoginBox">
                             <div class="loginEmailBox">
                                 <input type="email" id="loginEmailInput" placeholder="Email" required>
@@ -67,7 +69,7 @@
                     <!-- TODO darf nur angzeigt werden, wenn Nachricht wirklich da (z.B. you are signed up now!) -->
                     <div id="msgBox"></div>
 
-                    <script>
+                    <!-- <script>
                         function login() {
                             let email = document.getElementById('loginEmailInput');
                             let password = document.getElementById('loginPasswordInput');
@@ -86,7 +88,7 @@
                         } else {
                             //TODO display: none
                         }
-                    </script>
+                    </script> -->
 
 
 
