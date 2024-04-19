@@ -12,12 +12,14 @@ function addTask(category){
 function setPriority(priority) {
     document.querySelectorAll('.addTaskPriorityButton').forEach(button => {
         button.style.backgroundColor = 'white';
+        button.classList.remove('active');
         button.querySelector('.priorityButtonText').style.color = 'black';
         button.querySelector('img').src = `./assets/img/icon-priority_${button.id.toLowerCase().slice(21)}.png`;
     });
-
+    
     const button = document.getElementById(`addTaskPriorityButton${priority}`);
     button.style.backgroundColor = getButtonColor(priority);
+    button.classList.add('active');
     button.querySelector('.priorityButtonText').style.color = 'white';
     button.querySelector('img').src = `./assets/img/icon-priority_${priority.toLowerCase()}_white.png`;
 }

@@ -136,15 +136,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.addTaskPriorityButton:hover{
-    box-shadow: 0px 6px 5px -2px rgba(43,179,0,0.46);
-}
-
-
-
-.active {
-    background-color: green;
-}
 
 .addTaskAssignedTo {
     display: flex;
@@ -158,4 +149,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     gap: var(--addTaskGap);
     padding-bottom: var(--addTaskPaddingBottom);
+}
+
+#addTaskPriorityButtonLow:hover:not(.active){
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-low)
+}
+
+#addTaskPriorityButtonMedium:hover:not(.active){
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-medium)
+}
+
+#addTaskPriorityButtonUrgent:hover:not(.active){
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-urgent)
 }
