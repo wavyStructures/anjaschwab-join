@@ -39,9 +39,9 @@ textarea:focus {
     border: 1px solid var(--clr-input-focus);
 }
 
-textarea::-webkit-resizer {
+/* textarea::-webkit-resizer {
     appearance: none;
-}
+} */
 
 select {
     cursor: pointer;
