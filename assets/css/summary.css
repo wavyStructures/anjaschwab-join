@@ -61,25 +61,23 @@
   margin-bottom: 72px;
 }
 
-h1 {
+[data-user-type="guest"] h1 {
+  font-family: Open Sans;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 76.8px;
+  text-align: left;
+  color: var(--clr-text-guest-good-morning);
+  align-content: center;
+}
+
+[data-user-type="user"] h1 {
   max-width: fit-content;
   font-size: 48px;
   color: #2a3647;
   height: 58px;
   width: 338px;
   margin: 9.5px 0 9.5px 22px;
-}
-
-#usernameForGreeting {
-  font-size: 64px;
-  font-weight: 700;
-  color: var(--clr-main);
-  align-content: center;
-}
-
-#h1GreetingGuest {
-  font-size: 64px;
-  font-weight: 700;
 }
 
 /* .white-border {

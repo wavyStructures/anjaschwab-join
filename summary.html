@@ -22,12 +22,13 @@
         <header w3-include-html="./assets/templates/header.html" id="header" class="header">
         </header>
         <div id="main-wrapper" class="main-wrapper">
-            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container" class="navigation-container"></nav>
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
+                class="navigation-container"></nav>
             <main id="main" class="main">
                 <div class="sub-main-summary">
                     <div class="summary-box box-shadow">
-                        <div id="h1GreetingUser" class="h1-box">
-                            <h1 id="daytimeGreeting" class="no-wrap">Good morning,</h1>
+                        <div id="h1GreetingUser" class="h1-box" data-user-type="guest">
+                            <h1 id="daytimeGreeting" class="daytimeGreetingno-wrap">Good morning</h1>
                             <h1 id="usernameForGreeting">Sofia XXX</h1>
                         </div>
                         <div id="h1GreetingGuest" class="h1-box" style="display: none;">

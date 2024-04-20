@@ -12,9 +12,9 @@
   color: var(--clr-text);
   background-color: var(--clr-main);
   padding: 25px;
-  img {
-    width: 32px;
-    height: 32px;
+  .header-logo {
+    width: 46px;
+    height: 56px;
   }
 }
 
@@ -47,6 +47,7 @@
   border-radius: 50%;
   width: 46.12px;
   height: 46.12px;
+  cursor: pointer;
   /* viewbox: 0 0 100 100; */
 }
 

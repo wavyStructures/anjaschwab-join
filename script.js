@@ -117,6 +117,19 @@ function openHelp() {
 	window.location.href = 'help.html';
 }
 // /**
+
+
+/**
+ * opens small menu onclick on intials button inside header
+ */
+function openSmallMenu() {
+	let content = getDiv("smallMenu");
+	content.classList.toggle("d-none");
+}
+// /**
+
+
+
 //  *
 //  * @param {String} folderPath
 //  */

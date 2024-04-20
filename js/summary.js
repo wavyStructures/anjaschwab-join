@@ -5,6 +5,29 @@ function summaryInit() {
 }
 
 
+/**
+ * greet according to logged in user or guest
+ * @returns void
+ */
+
+// function greeting(name) {
+const isLoggedIn = false;
+console.log("isLoggedIn: ", isLoggedIn);
+
+const h1GreetingUser = document.getElementById("h1GreetingUser");
+const usernameForGreeting = document.getElementById("usernameForGreeting");
+
+
+if (isLoggedIn) {
+    h1GreetingUser.dataset.userType = "user";
+} else {
+    h1GreetingUser.dataset.userType = "guest";
+}
+
+// }
+
+
+
 
 /**
  * get the actual date
