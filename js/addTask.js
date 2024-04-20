@@ -1,3 +1,7 @@
+function addTaskInit(){
+    includeHTML();
+}
+
 function addTask(category){
     console.log("Task added to:", category);
     console.log("Add function to addTask-Buttons");
@@ -42,4 +46,16 @@ function getButtonColor(priority) {
         default:
             return 'white';
     }
+}
+
+function renderAssignedToContacts() {
+    const assignedToContactsList = document.getElementById('assignedToContactsList');
+    
+    contacts.forEach(contact => {
+        assignedToContactsList.innerHTML +=`
+        <li>
+            <input type="checkbox" id="${contact.name}" name="${contact.name}">
+            <span class="contactName">${contact.name}</span>
+        </li>`;
+    });
 }
