@@ -10,7 +10,7 @@ body{
     flex-direction: column;
     gap: 1rem;
     width: 200px;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .custom-select{
@@ -35,16 +35,15 @@ body{
     pointer-events: none;
 
 }
-.custom-arrow > img{
-    justify-content: center;
-    align-items: center;
-}
 
 .dropdown-content{
     display: flex;
     flex-direction: column;
     gap: .25rem;
     width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .d-none{
@@ -53,5 +52,13 @@ body{
 .assignetToContact{
     display: flex;
     justify-content: space-between;
+    padding: 5px;
+    /* border-radius: 5px; */
+    /* border-bottom: 1px solid lightgray; */
+    cursor: pointer;
+
+}
+.assignetToContact:hover{
+    background-color: #d2e3ff;
 }
 
