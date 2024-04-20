@@ -7,4 +7,5 @@ function renderArrow(){
     : arrowImg.dataset.direction = "down"
 
     arrowImg.src = `../../assets/img/arrow_${arrowImg.dataset.direction}.png`
+    document.getElementById('dropdown-content').classList.toggle('d-none')
 }

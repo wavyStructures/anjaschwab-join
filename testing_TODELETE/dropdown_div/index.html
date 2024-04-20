@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,27 @@
     <link rel="stylesheet" href="style.css">
     <title>Testing Div for Dropdown</title>
 </head>
+
 <body>
-
-<div class="custom-select" onclick="renderArrow()">
-    <select>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="4">Four</option>
-        <option value="5">Five</option>
-    </select>
-    <div class="custom-arrow" id="custom-arrow" >
-        <img data-direction="down" src="../../assets/img/arrow_down.png" alt="" class="src">
-    </div>
-   
-</div>
-
+    <div class="dropdown-contact">
+        <div class="custom-select" onclick="renderArrow()">
+            ...
+            <div class="custom-arrow" id="custom-arrow">
+                <img data-direction="down" src="../../assets/img/arrow_down.png" alt="" class="src">
+            </div>
+        </div>
+        <div class="dropdown-content" id="dropdown-content">
+            <div class="assignetToContact" id="1">One <input type="checkbox"></div>
+            <div class="assignetToContact" id="2">Two</div>
+            <div class="assignetToContact" id="3">Three</div>
+            <div class="assignetToContact" id="4">Four</div>
+            <div class="assignetToContact" id="5">Five</div>
+            </dropdown>
+        </div>
 
 
 
 
 </body>
+
 </html>

@@ -1,19 +1,24 @@
 body{
     height:50vh;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
     
 }
 
-select{
+.dropdown-contact{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 200px;
+    background-color: red;
+}
+
+.custom-select{
     box-shadow: 0 10px 25px rgba(0,0,0,.5);
     font-size: 1.5rem;
     padding: 1em 4em 1em 1.5em;
     background: #4d5061;
     color:white;
-}
-
-.custom-select{
     position: relative;
 
 }
@@ -33,5 +38,20 @@ select{
 .custom-arrow > img{
     justify-content: center;
     align-items: center;
+}
+
+.dropdown-content{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    width: 100%;
+}
+
+.d-none{
+    display: none;
+}
+.assignetToContact{
+    display: flex;
+    justify-content: space-between;
 }
 
