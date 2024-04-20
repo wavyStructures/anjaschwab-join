@@ -1,0 +1,41 @@
+body {
+    font-family: system-ui;
+    background: #f06d06;
+    color: white;
+  /*   text-align: center; */
+  }
+  
+  .boxes{
+    display:flex;
+    width: 200px;
+    justify-content: space-between;
+    border: 1px solid blue;
+  }
+  
+  .test{
+    position: relative;
+    padding: 10px;
+    border: 1px dotted green;
+  }
+  
+  .test[data-help]::after{
+    position: absolute;
+    top: 100px;
+  /*   left:0; */
+    content: attr(data-eingabe);
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+  
+  .test[roteBox]::after{
+    position: absolute;
+    top: 100px;
+  /*   left:200px; */
+    content: attr(data-eingabe);
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+  
+  
