@@ -25,20 +25,34 @@
   /* background-color: red; */
 }
 
-.user-initials {
+.header-initials-button {
   background-color: #fff;
   color: var(--clr-main);
-  font-size: 48px;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1.5px solid var(--clr-main);
+  padding: 10px;
+  gap: 10px;
   font-family: Open Sans;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
+  width: 46.12px;
+  height: 46.12px;
   /* viewbox: 0 0 100 100; */
 }
 
+.header-initials-button-outer-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-main);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+}
 /* #username {
   .kreis {
     fill: white;
