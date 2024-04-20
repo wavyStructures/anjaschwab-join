@@ -61,25 +61,6 @@
   margin-bottom: 72px;
 }
 
-[data-user-type="guest"] h1 {
-  font-family: Open Sans;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 76.8px;
-  text-align: left;
-  color: var(--clr-text-guest-good-morning);
-  align-content: center;
-}
-
-[data-user-type="user"] h1 {
-  max-width: fit-content;
-  font-size: 48px;
-  color: #2a3647;
-  height: 58px;
-  width: 338px;
-  margin: 9.5px 0 9.5px 22px;
-}
-
 /* .white-border {
   border: 3px solid #fff;
   border-radius: 50%;

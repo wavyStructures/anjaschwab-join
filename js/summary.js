@@ -11,7 +11,7 @@ function summaryInit() {
  */
 
 // function greeting(name) {
-const isLoggedIn = false;
+const isLoggedIn = false;        //TODO is loggedIn setting
 console.log("isLoggedIn: ", isLoggedIn);
 
 const h1GreetingUser = document.getElementById("h1GreetingUser");
@@ -20,8 +20,10 @@ const usernameForGreeting = document.getElementById("usernameForGreeting");
 
 if (isLoggedIn) {
     h1GreetingUser.dataset.userType = "user";
+    usernameForGreeting.innerText = `, ${currentUser.name}`;  //TODO currentUser anlegen
 } else {
     h1GreetingUser.dataset.userType = "guest";
+    usernameForGreeting.innerText = '';
 }
 
 // }
