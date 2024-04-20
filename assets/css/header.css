@@ -25,7 +25,21 @@
   /* background-color: red; */
 }
 
-#username {
+.user-initials {
+  background-color: #fff;
+  color: var(--clr-main);
+  font-size: 48px;
+  font-family: Open Sans;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  /* viewbox: 0 0 100 100; */
+}
+
+/* #username {
   .kreis {
     fill: white;
     stroke: white;
@@ -37,7 +51,7 @@
     fill: var(--clr-main);
     text-anchor: middle;
   }
-}
+} */
 
 .helpIcon {
   cursor: pointer;
