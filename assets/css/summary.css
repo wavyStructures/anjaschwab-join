@@ -61,6 +61,40 @@
   margin-bottom: 72px;
 }
 
+[data-user-type="guest"] h1 {
+  font-family: Open Sans;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 76.8px;
+  text-align: left;
+  color: var(--clr-text-good-morning);
+  align-content: center;
+}
+
+[data-user-type="user"] h1 {
+  max-width: fit-content;
+  font-size: 48px;
+  color: var(--clr-text-good-morning);
+  height: 58px;
+  width: 338px;
+  margin: 9.5px 0 9.5px 22px;
+}
+
+[data-user-type="user"] #usernameForGreeting {
+  max-width: fit-content;
+
+  color: var(--clr-main);
+  height: 58px;
+  width: 338px;
+  margin: 9.5px 0 9.5px 22px;
+
+  font-family: Open Sans;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 76.8px;
+  text-align: left;
+}
+
 /* .white-border {
   border: 3px solid #fff;
   border-radius: 50%;
