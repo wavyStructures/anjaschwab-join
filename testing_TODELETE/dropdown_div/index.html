@@ -9,7 +9,7 @@
     <title>Testing Div for Dropdown</title>
 </head>
 
-<body>
+<body onload="dropdownInit()">
     <div class="dropdown-contact">
         <div class="custom-select" onclick="renderArrow()">
             ...
@@ -17,7 +17,7 @@
                 <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
             </div>
         </div>
-        <div class="dropdown-content" id="dropdown-content">
+        <div class="dropdown-content d-none" id="dropdown-content" >
 
         </div>
 </body>

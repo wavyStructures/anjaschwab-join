@@ -1,3 +1,7 @@
+function dropdownInit(){
+    renderTestContacts();
+}
+
 let test_contacts = [
     {
       id: 1,
@@ -189,22 +193,37 @@ function renderArrow(){
     document.getElementById('dropdown-content').classList.toggle('d-none')
 }
 
+/**
+ * Renders the test contacts in the dropdown content.
+ *
+ * @return {void} This function does not return a value.
+ */
 function renderTestContacts(){
     let content = document.getElementById('dropdown-content');
+    content.innerHTML = '';
     test_contacts.forEach(contact => {
-        content.innerHTML += /*html*/`<div class="assignetToContact" id="assignedToContact${contact.id}" onclick="checkTestContact(${contact.id})">
+        content.innerHTML += /*html*/`<div class="assignetToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
     })
 }
 
 
-function checkTestContact(id){
-    let foundContact = test_contacts.find(contact => contact.id == id)
-    console.log(foundContact);
+function assignContactToTask(id){
+    // let contactToAssign = test_contacts.find(contact => contact.id == id);
+    let contactToAssignContainer = document.getElementById('assignedToContact' + id);
+    let contactToAssignCheckboxImage = contactToAssignContainer.lastElementChild;
+    // console.log(contactToAssignContainer.lastElementChild);
 
-    console.log(document.getElementById('assignedToContact'+id))
-    //TODO: check if already checked
-
-
+    if (contactToAssignContainer.getAttribute('marked') == 'false'){
+        contactToAssignContainer.setAttribute('marked', 'true');
+        contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
+        // console.log('CHECKED: ', contactToAssignContainer.lastElementChild);
+        
+        
+    }else{
+        contactToAssignContainer.setAttribute('marked', 'false');
+        contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_unchecked.png';
+        // console.log('UNCHECKED: ', contactToAssignContainer.lastElementChild);
+    }
 }
