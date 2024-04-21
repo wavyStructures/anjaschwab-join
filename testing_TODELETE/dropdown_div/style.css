@@ -16,7 +16,6 @@ body{
     flex-direction: column;
     gap: 1rem;
     width: 200px;
-    /* background-color: red; */
 }
 
 .custom-select{
@@ -26,8 +25,8 @@ body{
     background: #4d5061;
     color:white;
     position: relative;
-
 }
+
 .custom-arrow{
     display: flex;
     justify-content: center;
@@ -39,7 +38,6 @@ body{
     height:99%;
     width: 4rem;
     pointer-events: none;
-
 }
 
 .dropdown-content{
@@ -55,6 +53,7 @@ body{
 .d-none{
     display: none;
 }
+
 .assignetToContact{
     display: flex;
     justify-content: space-between;
