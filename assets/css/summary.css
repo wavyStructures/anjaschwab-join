@@ -40,15 +40,20 @@
 }
 
 .summary-box {
-  background-color: rgba(39, 134, 22, 0.4);
+  /* background-color: rgba(39, 134, 22, 0.4); */
   width: 912px;
   height: 591px;
-  /* margin-top: 172.5px;
-  margin-left: 147.79; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+}
+
+.usernameForGreeting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
 }
 
 .h1-box {
@@ -91,8 +96,8 @@
   font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
-  line-height: 76.8px;
-  text-align: left;
+  /* line-height: 76.8px;
+  text-align: left; */
 }
 
 /* .white-border {
