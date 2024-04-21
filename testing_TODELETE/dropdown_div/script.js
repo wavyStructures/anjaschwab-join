@@ -2,7 +2,7 @@ function dropdownInit(){
     renderTestContacts();
 }
 
-let test_contacts = [
+let contacts = [
     {
       id: 1,
       name: "anton mayer",
@@ -202,7 +202,7 @@ function renderArrow(){
 function renderTestContacts(){
     let content = document.getElementById('dropdown-content');
     content.innerHTML = '';
-    test_contacts.forEach(contact => {
+    contacts.forEach(contact => {
         content.innerHTML += /*html*/`<div class="assignetToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
