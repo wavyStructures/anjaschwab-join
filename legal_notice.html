@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/legalNotice.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+
+    <script src="script.js"></script>
+    <!-- <script src="script.js" defer></script> -->
+    <!-- defer anstelle von Eventlistener?? s. summary.js, damit alle JS-Dateien geladen werden -->
+
+    <link rel="stylesheet" href="./assets/css/summary.css">
+    <script src="./js/summary.js"></script>
+    <title>Join - Legal Notice</title>
+</head>
+
+<body onload="summaryInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, hier euer HTML-Code rein -->
+        <div class="header-content">
+            <img class="header-logo" src="/assets/img/logo-small_white.png" alt="join-logo" />
+            <div class="header-inner-right">
+                <span class="header-kanban-writing">Kanban Project Management Tool</span>
+            </div>
+        </div>
+        <div id="main-wrapper" class="main-wrapper">
+            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
+                class="navigation-container"></nav>
+            <main id="main" class="main">
+
+                <!--TODO legal notice erstellen  -->
+            </main>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
