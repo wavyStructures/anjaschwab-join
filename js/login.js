@@ -1,8 +1,11 @@
 function loginInit() {
     includeHTML();
-    startAnimation();
-    login();
+
+    // startAnimation();
+    // login();
 }
+
+let currentUser = "Gast";
 
 let users = [
     {
@@ -34,31 +37,21 @@ function login() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
 
-    let user = users.find(user => user.mail == email.value && user.password == password.value);
-    console.log('user is:', user);
-    console.log('users are:', users);
+    currentUser = users.find(user => user.mail == email.value && user.password == password.value);
+    console.log('user gefunden, user is:', user);
 
-    console.log('login: ', email.value, password.value);
-    if (user) {
-        console.log('user gefunden');
-        getInitials(user.name)
-        window.location.href = `summary.html?msg=successfully_logged_in`;      // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
+
+    if (currentUser) {
+        greeting(currentUser.name);
+        // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
+
     } else {
         console.log('user NICHT gefunden');
+        alert("user not found. please try again or use guest login.")
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get('msg');
-
-    if (msg) {
-        msgBox.innerHTML = msg;
-    } else {
-        //TODO display: none
-    }
+    window.location.href = `summary.html?msg=successfully_logged_in`;
 }
-
-
-
 
 
 function gotoSignUp() {
@@ -86,11 +79,14 @@ function gotoSignUp() {
 //     }
 // }
 
+
+
+
 // const urlParams = new URLSearchParams(window.location.search);
 // const msg = urlParams.get('msg');
 
 // if (msg) {
 //     msgBox.innerHTML = msg;
 // } else {
-//     //TODO display: none
+//     msgBox.style.display = 'none';
 // }
