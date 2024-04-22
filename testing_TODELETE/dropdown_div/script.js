@@ -181,6 +181,8 @@ let contacts = [
     },
   ];
 
+let contactsToAssignTask = [];
+
 /**
  * Toggles the visibility of the dropdown content and updates the arrow image based on its current direction.
  */
@@ -247,11 +249,27 @@ function checkIfAnyContactIsAssignedToTask(){
         if(contactCards[i].getAttribute('marked') == 'true'){
             assignedContactsContainer.classList.remove('d-none');
             empty = false;
-            return true;
+            // return true;
+            addContacTemp(contactCards[i]);
         }
     }
     if (empty){
         assignedContactsContainer.classList.add('d-none');
         return false;
     }
+}
+
+function addContacTemp(contact){
+  contactsToAssignTask.push(contact)
+}
+
+function renderToContainer(){
+ let container = document.getElementById('assignedContactsContainer');
+ container.innerHTML = "";
+ contactsToAssignTask.forEach(contact => {
+   container.innerHTML += contact.firstChildElement;
+   console.log(contact.firstChildElement);
+ })
+
+
 }
