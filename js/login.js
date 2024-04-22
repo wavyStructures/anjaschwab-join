@@ -1,6 +1,5 @@
 function loginInit() {
     includeHTML();
-
     // startAnimation();
     // login();
 }
@@ -37,21 +36,63 @@ function login() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
 
-    currentUser = users.find(user => user.mail == email.value && user.password == password.value);
+    let user = users.find(user => user.mail == email.value && user.password == password.value);
     console.log('user gefunden, user is:', user);
+    console.log('users are:', users);
 
 
-    if (currentUser) {
-        greeting(currentUser.name);
+    if (user) {
+        isLoggedIn: true;
+
+        currentUser = user;
+        console.log('currentUser inside login.js is:', currentUser);
+
+        let userInitials = getInitials(user.name);
+        // console.log('intials inside login.js are:', userInitials);
+
+        greeting(user.name);
         // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
-
     } else {
         console.log('user NICHT gefunden');
-        alert("user not found. please try again or use guest login.")
+        alert("user not found. please try again.")
+    }
+
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const msg = urlParams.get('msg');
+
+    // if (msg) {
+    //     msgBox.innerHTML = msg;
+    // } else {
+    //     msgBox.style.display = 'none';
+    // }
+}
+
+function greeting(userName) {
+    const isLoggedIn = true;        //TODO is loggedIn setting
+    let currentName = userName;
+
+
+    let findUser = users.find(user => user.name === currentName);
+    let greetingName = findUser.name;
+    console.log('greetingName is:', greetingName);
+
+    const h1GreetingUser = document.getElementById("h1GreetingUser");
+    const usernameForGreeting = document.getElementById("usernameForGreeting");
+
+    if (isLoggedIn) {
+        h1GreetingUser.dataset.userType = "user";
+        usernameForGreeting.innerText = `, ${greetingName}`;
+    } else {
+        h1GreetingUser.dataset.userType = "guest";
+        usernameForGreeting.innerText = '';
     }
 
     window.location.href = `summary.html?msg=successfully_logged_in`;
 }
+
+
+
+
 
 
 function gotoSignUp() {
@@ -77,16 +118,4 @@ function gotoSignUp() {
 //     if (user) {
 //         console.log('user gefunden');
 //     }
-// }
-
-
-
-
-// const urlParams = new URLSearchParams(window.location.search);
-// const msg = urlParams.get('msg');
-
-// if (msg) {
-//     msgBox.innerHTML = msg;
-// } else {
-//     msgBox.style.display = 'none';
 // }
