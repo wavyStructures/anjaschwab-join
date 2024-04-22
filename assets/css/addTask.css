@@ -173,7 +173,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.assignetToContact {
+.assignedToContact {
     display: flex;
     justify-content: space-between;
     padding: 5px;
@@ -194,15 +194,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-.assignetToContact:hover {
+.assignedToContact:hover {
     background-color: var(--clr-contact-hover);
 }
 
-.assignetToContact[marked=true] {
+.assignedToContact[marked=true] {
     background-color: var(--clr-contact-marked);
 }
 
-.assignetToContact[marked=true]:hover {
+.assignedToContact[marked=true]:hover {
     background-color: var(--clr-contact-marked-hover);
 }
 

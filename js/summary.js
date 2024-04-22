@@ -14,25 +14,58 @@
 function summaryInit() {
     includeHTML();
     getDate();
+    greeting(currentUser)
 }
 
 
+function greeting(userName) {
+    const isLoggedIn = true;        //TODO is loggedIn setting
 
-/**
- * greet according to logged in user or guest
- * @returns void
- */
+    console.log('greetingName is:', userName);
+
+    const h1GreetingUser = document.getElementById("h1GreetingUser");
+    const usernameForGreeting = document.getElementById("usernameForGreeting");
+
+    if (isLoggedIn) {
+        h1GreetingUser.dataset.userType = "user";
+        usernameForGreeting.innerText = `, ${userName}`;
+    } else {
+        h1GreetingUser.dataset.userType = "guest";
+        usernameForGreeting.innerText = '';
+    }
+    
+}
 
 
-// document.addEventListener("DOMContentLoaded", function greeting(name) {
-//     const isLoggedIn = true;
+function greetingSummary(user) {
+    console.log('currentUser 2 inside login.js is:', user);
+    // let currentName = userName;
 
 
-//     console.log("isLoggedIn summary.js: ", isLoggedIn);
-//     console.log('currentUser in summary.js is: ', currentUser);
+    // let findUser = users.find(user => user.name === currentName);
+    // let greetingName = findUser.name;
+    // console.log('greetingName is:', greetingName);
+
+    // const usernameForGreeting = document.getElementById("usernameForGreeting");
+    // const h1GreetingUser = document.getElementById("h1GreetingUser");
+    // if (h1GreetingUser) {
+    //     h1GreetingUser.dataset.userType = "user";
+    //     h1GreetingUser.dataset.userType = "user";
+    //     usernameForGreeting.innerText = `, ${greetingName}`;
+    //     // Rest of the code
+    // } else {
+    //     h1GreetingUser.dataset.userType = "guest";
+    //     usernameForGreeting.innerText = '';
+    //     console.error("Element with ID 'h1GreetingUser' not found.");
+    // }
 
 
-// });
+
+}
+
+// let userInitials = getInitials(user.name);
+
+
 
 
 
@@ -71,3 +104,20 @@ function greetAccordingToDayTime() {
 greetAccordingToDayTime();
 
 */
+
+/**
+ * greet according to logged in user or guest
+ * @returns void
+ */
+
+
+// document.addEventListener("DOMContentLoaded", function greeting(name) {
+//     const isLoggedIn = true;
+
+
+//     console.log("isLoggedIn summary.js: ", isLoggedIn);
+//     console.log('currentUser in summary.js is: ', currentUser);
+
+
+// });
+

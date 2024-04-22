@@ -72,7 +72,7 @@ function renderAssignedToContacts(){
     let content = document.getElementById('dropdown-content');
     content.innerHTML = '';
     contacts.forEach(contact => {
-        content.innerHTML += /*html*/`<div class="assignetToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
+        content.innerHTML += /*html*/`<div class="assignedToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
     })
@@ -94,7 +94,6 @@ function assignContactToTask(id){
         contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
     }else{
         contactToAssignContainer.setAttribute('marked', 'false');
-        // contactToAssignCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
         contactToAssignCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
     }
 
@@ -117,6 +116,7 @@ function checkIfAnyContactIsAssignedToTask(){
         if(contactCards[i].getAttribute('marked') == 'true'){
             assignedContactsContainer.classList.remove('d-none');
             empty = false;
+
             return true;
             // addContacTemp(contactCards[i]);
         }
