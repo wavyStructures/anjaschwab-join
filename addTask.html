@@ -62,14 +62,33 @@
 
                             </div>
                         </div>
-                        <div class="addTaskAssignedTo">
+                        <!-- BEGIN ASSIGNED TO -->
+
+                        <div class="addTaskAssignedToContainer">
+                            <div class="addTaskTitle">Assigned to (optional)</div>
+                            <div class="addTask-dropdown-contact">
+                                <div class="addTask-custom-select" onclick="renderArrow()">
+                                    <span>Select contacts to assign</span>
+                                    <div class="addTask-custom-arrow" id="custom-arrow">
+                                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="addTask-dropdown-content d-none" id="dropdown-content">
+                                </div>
+                                <div id="assignedContactsContainer" class="assignedContactsContainer d-none"> CONTACT 1, CONTACT 2</div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="addTaskAssignedTo">
                             <div class="addTaskTitles">Assigned to (optional)</div>
                             <div class="addTaskDropdownAssignedTo">
                                 <select name="addTaskAssignedTo" id="addTaskAssignedToDropdown">
                                     <option value="1">HIER DIE VERFÜGBAREN KONTAKTE REINRENDERN</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
+                        <!-- END ASSIGNED TO -->
                         <div class="addTaskCategory">
                             <div class="addTaskTitles">Category</div>
                             <div class="addTaskDropdownCategory">

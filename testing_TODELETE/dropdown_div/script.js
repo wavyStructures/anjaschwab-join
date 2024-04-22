@@ -229,7 +229,7 @@ function assignContactToTask(id){
         contactToAssignContainer.setAttribute('marked', 'false');
         contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_unchecked.png';
     }
-    
+
     checkIfAnyContactIsAssignedToTask();
 }
 

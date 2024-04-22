@@ -4,6 +4,9 @@
     --clr-prio-urgent: #ff3d00;
     --clr-prio-medium: #ffa800;
     --clr-prio-low: #7ae229;
+    --clr-contact-marked: #4589ff;
+    --clr-contact-marked-hover: #005dff;
+    --clr-contact-hover: #d2e3ff;
 }
 
 select,
@@ -101,7 +104,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-.addTaskTitles {
+.addTaskTitle {
     width: 100%;
     font-weight: bold;
 }
@@ -110,6 +113,100 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     /* width: 440px; */
 }
 
+
+/* Assigned To */
+
+
+.addTaskDropdownAssignedTo {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    width: 100%;
+
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.addTask-dropdown-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.addTask-custom-select {
+    /* background-color: red; */
+    font-size: 1.188rem;
+    /* background: #4d5061; */
+    /* color: white; */
+    position: relative;
+}
+
+.addTask-custom-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* background: #3b3c47; */
+    height: 99%;
+    width: 1.5rem;
+    pointer-events: none;
+}
+
+.addTask-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.addTaskAssignedToContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--addTaskGap);
+    padding-bottom: var(--addTaskPaddingBottom);
+}
+
+.assignetToContact {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    /* border-radius: 5px; */
+    /* border-bottom: 1px solid lightgray; */
+    cursor: pointer;
+
+}
+
+.addTaskCategory {
+    display: flex;
+    flex-direction: column;
+    gap: var(--addTaskGap);
+    padding-bottom: var(--addTaskPaddingBottom);
+}
+
+.d-none {
+    display: none;
+}
+
+.assignetToContact:hover {
+    background-color: var(--clr-contact-hover);
+}
+
+.assignetToContact[marked=true] {
+    background-color: var(--clr-contact-marked);
+}
+
+.assignetToContact[marked=true]:hover {
+    background-color: var(--clr-contact-marked-hover);
+}
+
+/* --- Priority buttons --- */
 .addTaskPriority {
     display: flex;
     flex-direction: column;
@@ -136,29 +233,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-
-.addTaskAssignedTo {
-    display: flex;
-    flex-direction: column;
-    gap: var(--addTaskGap);
-    padding-bottom: var(--addTaskPaddingBottom);
-}
-
-.addTaskCategory {
-    display: flex;
-    flex-direction: column;
-    gap: var(--addTaskGap);
-    padding-bottom: var(--addTaskPaddingBottom);
-}
-
-#addTaskPriorityButtonLow:hover:not(.active){
+#addTaskPriorityButtonLow:hover:not(.active) {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-low)
 }
 
-#addTaskPriorityButtonMedium:hover:not(.active){
+#addTaskPriorityButtonMedium:hover:not(.active) {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-medium)
 }
 
-#addTaskPriorityButtonUrgent:hover:not(.active){
+#addTaskPriorityButtonUrgent:hover:not(.active) {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-urgent)
 }

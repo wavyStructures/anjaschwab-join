@@ -48,14 +48,118 @@ function getButtonColor(priority) {
     }
 }
 
-function renderAssignedToContacts() {
-    const assignedToContactsList = document.getElementById('assignedToContactsList');
+
+/**
+ * Toggles the visibility of the dropdown content and updates the arrow image based on its current direction.
+ */
+function renderArrow(){
+    let customArrow = document.getElementById('custom-arrow')
+    let arrowImg = customArrow.childNodes[1];
     
-    contacts.forEach(contact => {
-        assignedToContactsList.innerHTML +=`
-        <li>
-            <input type="checkbox" id="${contact.name}" name="${contact.name}">
-            <span class="contactName">${contact.name}</span>
-        </li>`;
-    });
+    arrowImg.dataset.direction == "down"
+    ? arrowImg.dataset.direction = "up"
+    : arrowImg.dataset.direction = "down"
+
+    arrowImg.src = `../../assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
+    document.getElementById('dropdown-content').classList.toggle('d-none')
 }
+
+
+/**
+ * Renders the test contacts in the dropdown content.
+ */
+function renderAssignedToContacts(){
+    let content = document.getElementById('dropdown-content');
+    content.innerHTML = '';
+    contacts.forEach(contact => {
+        content.innerHTML += /*html*/`<div class="assignetToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
+            ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
+            </div>`
+    })
+    checkIfAnyContactIsAssignedToTask();
+}
+
+
+/**
+ * Assigns a contact to a task based on the provided id.
+ *
+ * @param {number} id - The id of the task to assign the contact to.
+ */
+function assignContactToTask(id){
+    let contactToAssignContainer = document.getElementById('assignedToContact' + id);
+    let contactToAssignCheckboxImage = contactToAssignContainer.lastElementChild;
+
+    if (contactToAssignContainer.getAttribute('marked') == 'false'){
+        contactToAssignContainer.setAttribute('marked', 'true');
+        contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
+    }else{
+        contactToAssignContainer.setAttribute('marked', 'false');
+        // contactToAssignCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
+        contactToAssignCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
+    }
+
+    checkIfAnyContactIsAssignedToTask();
+}
+
+
+/**
+ * Checks if any contact is assigned to a task by iterating through the child nodes of the 'dropdown-content' element.
+ * If any contact is marked as 'true', the 'assignedContactsContainer' element is made visible and the function returns true.
+ * If no contact is marked as 'true', the 'assignedContactsContainer' element is made hidden and the function returns false.
+ *
+ * @return {boolean} Returns true if any contact is assigned to a task, false otherwise.
+ */
+function checkIfAnyContactIsAssignedToTask(){
+    let contactCards = document.getElementById('dropdown-content').childNodes;
+    let assignedContactsContainer = document.getElementById('assignedContactsContainer');
+    let empty = true;
+    for(let i = 0; i < contactCards.length; i++){
+        if(contactCards[i].getAttribute('marked') == 'true'){
+            assignedContactsContainer.classList.remove('d-none');
+            empty = false;
+            return true;
+            // addContacTemp(contactCards[i]);
+        }
+    }
+    if (empty){
+        assignedContactsContainer.classList.add('d-none');
+        return false;
+    }
+}
+
+
+// function renderAssignedToContacts() {
+//     const assignedToContactsList = document.getElementById('assignedToContactsList');
+    
+//     contacts.forEach(contact => {
+//         assignedToContactsList.innerHTML +=`
+//         <li>
+//             <input type="checkbox" id="${contact.name}" name="${contact.name}">
+//             <span class="contactName">${contact.name}</span>
+//         </li>`;
+//     });
+// }
+/**
+ * Checks if any contact is assigned to a task by iterating through the child nodes of the 'dropdown-content' element.
+ * If any contact is marked as 'true', the 'assignedContactsContainer' element is made visible and the function returns true.
+ * If no contact is marked as 'true', the 'assignedContactsContainer' element is made hidden and the function returns false.
+ *
+ * @return {boolean} Returns true if any contact is assigned to a task, false otherwise.
+ */
+// function checkIfAnyContactIsAssignedToTask(){
+//     let contactCards = document.getElementById('dropdown-content').childNodes;
+//     let assignedContactsContainer = document.getElementById('assignedContactsContainer');
+//     let empty = true;
+//     for(let i = 0; i < contactCards.length; i++){
+//         if(contactCards[i].getAttribute('marked') == 'true'){
+//             assignedContactsContainer.classList.remove('d-none');
+//             empty = false;
+//             // return true;
+//             addContacTemp(contactCards[i]);
+//         }
+//     }
+//     if (empty){
+//         assignedContactsContainer.classList.add('d-none');
+//         return false;
+//     }
+// }
