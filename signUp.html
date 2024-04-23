@@ -59,16 +59,17 @@
                                         </div>
                                     </div>
                                     <div class="signUpPasswordBox">
-                                        <input type="password" id="signUpPasswordInput" placeholder="Confirm password"
-                                            required>
+                                        <input type="password" id="signUpPasswordConfirmInput"
+                                            placeholder="Confirm password" required>
                                         <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="checkboxBox">
+                                <div id="privacyCheckbox" class="checkboxBox">
                                     <label for="acceptingPrivacyPolicy" class="custom-checkbox">
-                                        <img src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image">
+                                        <img src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image"
+                                            onclick="togglePrivacyPolicyCheckbox()">
                                         I accept the <a href="#">Privacy Policy</a></label><br>
                                 </div>
                                 <button id="registerBtn" class="signUpButtons registerBtn">Sign up</button>

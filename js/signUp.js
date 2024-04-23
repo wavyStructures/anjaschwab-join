@@ -48,6 +48,24 @@ async function addUser() {
 
 
 /**
+ * Toggles the privacy policy confirmation checkbox checked to unchecked and vice versa 
+ */
+function togglePrivacyPolicyCheckbox() {
+    let privacyCheckbox = document.getElementById('privacyCheckbox');
+    let checkBoxImage = document.querySelector('.checkboxBox img');
+    checkBoxImage.src = `../../assets/img/icon-check_button_unchecked.png`;
+
+    privacyCheckbox.addEventListener('click', function () {
+        if (checkBoxImage.src.includes('unchecked.png')) {
+            checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
+        } else {
+            checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
+        }
+    });
+}
+
+
+/**
  * checking if the user has confirmed the privacy policy
  */
 function checkPrivacyPolicyConfirmation() {
@@ -61,6 +79,8 @@ function checkPrivacyPolicyConfirmation() {
     // privacyPolicyCheckbox.checked = true;
 
 }
+
+
 
 
 /**
