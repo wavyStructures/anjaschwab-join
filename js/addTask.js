@@ -1,11 +1,27 @@
 function addTaskInit(){
     includeHTML();
+    renderAssignedToContacts();
 }
 
 function addTask(category){
     console.log("Task added to:", category);
     console.log("Add function to addTask-Buttons");
 }
+
+let temporaryTask = 
+    {
+        'id': 999,
+        'type': '',
+        'title': '',
+        'text': '',
+        'subtasks': 0,
+        'completedSubtasks': 0,
+        'assignedTo': [],
+        'category': '',
+        'priority': '',
+        'dueDate': ""
+};
+
 
 
 /**
