@@ -1,3 +1,24 @@
+async function fetchStoredContacts() {
+  try {
+    const response = await fetch(STORAGE_URL, {
+      headers: {
+        Authorization: `Bearer ${STORAGE_TOKEN}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch stored contacts');
+    }
+
+    const data = await response.json();
+    console.log('Stored contacts:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching stored contacts:', error);
+    return null;
+  }
+}
+
 /**
  * Array containing contact objects.
  *
