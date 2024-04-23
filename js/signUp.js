@@ -48,6 +48,22 @@ async function addUser() {
 
 
 /**
+ * checking if the user has confirmed the privacy policy
+ */
+function checkPrivacyPolicyConfirmation() {
+    let privacyPolicyCheckbox = document.getElementById('privacyPolicyCheckbox');
+
+    if (!privacyPolicyCheckbox.checked) {
+        alert('please confirm the privacy policy');
+        return false;
+    }
+
+    // privacyPolicyCheckbox.checked = true;
+
+}
+
+
+/**
  * reseting the register form
  */
 function resetForm() {

@@ -33,7 +33,7 @@ let users = [
         contactColor: "#ffcc80",
     }];
 
-function setDefaultInputs(){
+function setDefaultInputs() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
     email.value = "benedikt@gmail.com";
@@ -46,20 +46,20 @@ function login() {
 
     let user = users.find(user => user.mail == email.value && user.password == password.value);
 
-    if (user) {
-    
-        isLoggedIn: true;
-        currentUser = user;        
-        
-        let userInitials = getInitials(user.name);
-        console.log(userInitials);
-        window.location.href = `summary.html`; // Weiterleitung funktioniert nicht?!
-        greeting(currentUser.name);
-        // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
-    } else {
-        console.log('user NICHT gefunden');
-        alert("user not found. please try again.")
-    }
+    // if (user) {
+
+    //     isLoggedIn: true;
+    //     currentUser = user;        
+
+    //     let userInitials = getInitials(user.name);
+    //     console.log(userInitials);
+    window.location.href = '/path/to/summary.html'; // Weiterleitung funktioniert nicht?!
+    //     greeting(currentUser.name);
+    //     // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
+    // } else {
+    //     console.log('user NICHT gefunden');
+    //     alert("user not found. please try again.")
+    // }
 }
 
 function gotoSignUp() {
