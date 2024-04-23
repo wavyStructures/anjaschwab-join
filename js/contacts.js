@@ -155,7 +155,7 @@ let contacts = [
   },
   {
     id: 19,
-    name: "anna Amanfang",
+    name: "zist amanfang",
     mail: "robin@gmail.com",
     password: "robin",
     phone: "+49 1111 111 11 19",
@@ -187,10 +187,17 @@ let contacts = [
   },
 ];
 
+
+/**
+ * Initializes the contacts by including the HTML and loading the contacts.
+ *
+ * @return {void} This function does not return anything.
+ */
 function contactsInit() {
   includeHTML();
   loadContacts();
 }
+
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -207,6 +214,7 @@ function loadContacts() {
   renderSortedContacts(main, sortedContacts);
 }
 
+
 /**
  * Sorts the contacts by last name.
  *
@@ -221,6 +229,7 @@ function sortContactsByName(contacts) {
     return lastNameA.localeCompare(lastNameB);
   });
 }
+
 
 /**
  * Renders the sorted contacts into the main element.
@@ -291,6 +300,7 @@ async function loadContacts() {
   }
 }*/
 
+
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
  *
@@ -309,6 +319,7 @@ function addContactCard() {
     document.body.style.overflow = "hidden";
   }
 }
+
 
 /**
  * Hides the add contact card by removing it from the DOM.
@@ -332,6 +343,7 @@ function closeAddContact() {
   }
 }
 
+
 /**
  * Generates initials from a full name.
  *
@@ -344,6 +356,7 @@ function getInitials(name) {
   let lastInitial = lastName.charAt(0).toUpperCase();
   return firstInitial + lastInitial;
 }
+
 
 /**
  * Creates a letter element representing the first letter of a group of contacts.
@@ -362,6 +375,7 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
+
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
@@ -373,6 +387,7 @@ function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
+
 
 /**
  * Creates a parting line element and appends it to the contact list within the main element.
@@ -393,6 +408,7 @@ function createPartingLine(main) {
   partingLineContainer.appendChild(partingLine);
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
+
 
 /**
  * Generates HTML code for the contacts container.
@@ -459,6 +475,7 @@ function generateContactsContainerHTML() {
         </section>
     `;
 }
+
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -547,6 +564,7 @@ function resetAllContactCards() {
   allContactCards.forEach(resetContactCard);
 }
 
+
 /**
  * Highlights a contact card by applying specific styles.
  *
@@ -566,6 +584,7 @@ function highlightContactCard(card) {
     emailElement.style.color = "white";
   }
 }
+
 
 /**
  * Highlights the selected contact card and resets all others if already highlighted.
@@ -672,6 +691,7 @@ function generateContactDetailsHTML(name, email, phone) {
   `;
 }
 
+
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -683,6 +703,7 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
+
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -692,6 +713,7 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
+
 
 /**
  * Creates a new contact based on the input values from the form,
@@ -730,6 +752,7 @@ function createContact() {
   }
 }
 
+
 /**
  * Generates a random color from a predefined list of colors.
  *
@@ -752,6 +775,7 @@ function generateRandomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
+
 
 /**
  * Saves a contact in the remote storage.
@@ -780,6 +804,7 @@ async function saveContact(contact) {
   }
 }
 
+
 async function loadContactsStorrage() {
   try {
     const response = await fetch(STORAGE_URL);
@@ -791,4 +816,3 @@ async function loadContactsStorrage() {
 }
 
 // load contacts()
-// email validierung wirft Fehlermeldung heraus
