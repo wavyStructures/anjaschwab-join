@@ -1,6 +1,6 @@
 function addTaskInit(){
     includeHTML();
-    renderAssignedToContacts();
+    renderContactsToDropdown();
 }
 
 function addTask(category){
@@ -71,7 +71,6 @@ function getButtonColor(priority) {
 function renderArrow(){
     let customArrow = document.getElementById('custom-arrow')
     let arrowImg = customArrow.childNodes[1];
-    
     arrowImg.dataset.direction == "down"
     ? arrowImg.dataset.direction = "up"
     : arrowImg.dataset.direction = "down"
@@ -84,7 +83,7 @@ function renderArrow(){
 /**
  * Renders the test contacts in the dropdown content.
  */
-function renderAssignedToContacts(){
+function renderContactsToDropdown(){
     let content = document.getElementById('dropdown-content');
     content.innerHTML = '';
     contacts.forEach(contact => {
@@ -102,18 +101,27 @@ function renderAssignedToContacts(){
  * @param {number} id - The id of the task to assign the contact to.
  */
 function assignContactToTask(id){
-    let contactToAssignContainer = document.getElementById('assignedToContact' + id);
-    let contactToAssignCheckboxImage = contactToAssignContainer.lastElementChild;
+    let dropdownContact = document.getElementById('assignedToContact' + id);
+    let dropdownCheckboxImage = dropdownContact.lastElementChild;
 
-    if (contactToAssignContainer.getAttribute('marked') == 'false'){
-        contactToAssignContainer.setAttribute('marked', 'true');
-        contactToAssignCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
+    setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
+
+}
+
+/**
+ * Sets the appearance of the dropdown contact based on the 'marked' attribute.
+ *
+ * @param {Element} dropdownContact - The dropdown contact element to modify.
+ * @param {Element} dropdownCheckboxImage - The image element representing the checkbox.
+ */
+function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
+    if (dropdownContact.getAttribute('marked') == 'false'){
+        dropdownContact.setAttribute('marked', 'true');
+        dropdownCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
     }else{
-        contactToAssignContainer.setAttribute('marked', 'false');
-        contactToAssignCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
+        dropdownContact.setAttribute('marked', 'false');
+        dropdownCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
     }
-
-    checkIfAnyContactIsAssignedToTask();
 }
 
 
