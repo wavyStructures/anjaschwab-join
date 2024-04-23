@@ -166,21 +166,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     overflow-y: scroll;
 }
 
-.addTaskAssignedToContainer {
+.addTaskContainer {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap);
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.assignedToContact {
+.dropdownOption {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 5px 0;
+    /* padding: 5px; */
     /* border-radius: 5px; */
     /* border-bottom: 1px solid lightgray; */
     cursor: pointer;
 
+}
+.dropdownOption:hover {
+    background-color: var(--clr-contact-hover);
+}
+
+.dropdownOption[marked=true] {
+    background-color: var(--clr-contact-marked);
+}
+
+.dropdownOption[marked=true]:hover {
+    background-color: var(--clr-contact-marked-hover);
 }
 
 .addTaskCategory {
@@ -194,17 +206,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-.assignedToContact:hover {
-    background-color: var(--clr-contact-hover);
-}
-
-.assignedToContact[marked=true] {
-    background-color: var(--clr-contact-marked);
-}
-
-.assignedToContact[marked=true]:hover {
-    background-color: var(--clr-contact-marked-hover);
-}
 
 /* --- Priority buttons --- */
 .addTaskPriority {
@@ -243,4 +244,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 #addTaskPriorityButtonUrgent:hover:not(.active) {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-urgent)
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.no-scroll{
+    overflow: visible;
 }
