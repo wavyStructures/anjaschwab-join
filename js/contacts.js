@@ -155,7 +155,7 @@ let contacts = [
   },
   {
     id: 19,
-    name: "robin jung",
+    name: "anna Amanfang",
     mail: "robin@gmail.com",
     password: "robin",
     phone: "+49 1111 111 11 19",
@@ -203,9 +203,37 @@ function loadContacts() {
   main.innerHTML = ``;
   createContactsContainer(main);
 
+  const sortedContacts = sortContactsByName(contacts);
+  renderSortedContacts(main, sortedContacts);
+}
+
+/**
+ * Sorts the contacts by last name.
+ *
+ * @function sortContactsByName
+ * @param {Array} contacts - The array of contacts to be sorted.
+ * @returns {Array} - The sorted array of contacts.
+ */
+function sortContactsByName(contacts) {
+  return contacts.slice().sort((a, b) => {
+    const lastNameA = a.name.split(" ")[1].toLowerCase();
+    const lastNameB = b.name.split(" ")[1].toLowerCase();
+    return lastNameA.localeCompare(lastNameB);
+  });
+}
+
+/**
+ * Renders the sorted contacts into the main element.
+ *
+ * @function renderSortedContacts
+ * @param {HTMLElement} main - The main element to render contacts into.
+ * @param {Array} sortedContacts - The sorted array of contacts.
+ * @returns {void}
+ */
+function renderSortedContacts(main, sortedContacts) {
   const currentFirstLetters = [];
 
-  contacts.forEach((contact) => {
+  sortedContacts.forEach((contact) => {
     const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
     const firstLetter = name.charAt(0).toUpperCase();
@@ -218,6 +246,50 @@ function loadContacts() {
     createContactCard(main, id, contactColor, initials, name, mail);
   });
 }
+
+
+/**
+ * Loads the contacts from remote storage and renders them into the main element.
+ *
+ * @function loadContacts
+ * @returns {void}
+ */
+/*
+async function loadContacts() {
+  try {
+    const contactsData = await getItem("contacts");
+    const contacts = JSON.parse(contactsData);
+
+    // Sort contacts by last name
+    const sortedContacts = contacts.sort((a, b) => {
+      const lastNameA = a.name.split(" ")[1].toLowerCase();
+      const lastNameB = b.name.split(" ")[1].toLowerCase();
+      return lastNameA.localeCompare(lastNameB);
+    });
+
+    // Clear existing contacts
+    const main = document.getElementById("main");
+    main.innerHTML = ``;
+    createContactsContainer(main);
+
+    const currentFirstLetters = [];
+
+    sortedContacts.forEach((contact) => {
+      const { id, name, mail, phone, contactColor } = contact;
+      const initials = getInitials(name);
+      const firstLetter = name.charAt(0).toUpperCase();
+
+      if (!currentFirstLetters.includes(firstLetter)) {
+        createFirstLetter(main, firstLetter);
+        currentFirstLetters.push(firstLetter);
+      }
+
+      createContactCard(main, id, contactColor, initials, name, mail);
+    });
+  } catch (error) {
+    console.error("Fehler beim Laden der Kontakte:", error);
+  }
+}*/
 
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
