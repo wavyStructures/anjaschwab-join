@@ -91,21 +91,20 @@ function renderContactsToDropdown(){
             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
     })
-    checkIfAnyContactIsAssignedToTask();
 }
 
 
 /**
  * Assigns a contact to a task based on the provided id.
- *
- * @param {number} id - The id of the task to assign the contact to.
- */
+*
+* @param {number} id - The id of the task to assign the contact to.
+*/
 function assignContactToTask(id){
     let dropdownContact = document.getElementById('assignedToContact' + id);
     let dropdownCheckboxImage = dropdownContact.lastElementChild;
-
+    
     setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
-
+    toggleAssignedContactsContainer();
 }
 
 /**
@@ -126,13 +125,9 @@ function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
 
 
 /**
- * Checks if any contact is assigned to a task by iterating through the child nodes of the 'dropdown-content' element.
- * If any contact is marked as 'true', the 'assignedContactsContainer' element is made visible and the function returns true.
- * If no contact is marked as 'true', the 'assignedContactsContainer' element is made hidden and the function returns false.
- *
- * @return {boolean} Returns true if any contact is assigned to a task, false otherwise.
+ * Toggles the visibility of the assigned contacts container based on the marked attribute of the contact cards.
  */
-function checkIfAnyContactIsAssignedToTask(){
+function toggleAssignedContactsContainer(){
     let contactCards = document.getElementById('dropdown-content').childNodes;
     let assignedContactsContainer = document.getElementById('assignedContactsContainer');
     let empty = true;
@@ -140,14 +135,11 @@ function checkIfAnyContactIsAssignedToTask(){
         if(contactCards[i].getAttribute('marked') == 'true'){
             assignedContactsContainer.classList.remove('d-none');
             empty = false;
-
-            return true;
-            // addContacTemp(contactCards[i]);
+            break;
         }
     }
     if (empty){
         assignedContactsContainer.classList.add('d-none');
-        return false;
     }
 }
 
