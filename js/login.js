@@ -53,7 +53,8 @@ function loginUser() {
 
     //     let userInitials = getInitials(user.name);
     //     console.log(userInitials);
-    window.location.href = './summary.html';
+    
+    switchPage('summary.html');
     return false;// Weiterleitung funktioniert nicht?!
     //     greeting(currentUser.name);
     //     // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
@@ -64,7 +65,7 @@ function loginUser() {
 }
 
 function gotoSignUp() {
-    window.location.href = 'signUp.html';
+    switchPage('signUp.html');
 }
 
 // function startAnimation() {
