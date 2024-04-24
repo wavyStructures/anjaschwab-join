@@ -64,21 +64,37 @@
                         </div>
                         <!-- BEGIN ASSIGNED TO -->
 
-                        <div class="addTaskAssignedToContainer">
+                        <div class="addTaskContainer">
                             <div class="addTaskTitle">Assigned to (optional)</div>
-                            <div class="addTask-dropdown-contact">
-                                <div class="addTask-custom-select" onclick="renderArrow()">
-                                    <span>Select contacts to assign</span>
-                                    <div class="addTask-custom-arrow" id="custom-arrow">
+                            <div class="addTask-dropdown-contact pointer">
+                                <div class="addTask-custom-select" onclick="renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
+                                    <span id="dropdown-assignedTo-title">Select contacts to assign</span>
+                                    <div class="addTask-custom-arrow" id="custom-arrow-assignedTo">
                                         <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
                                     </div>
                                 </div>
-                                <div class="addTask-dropdown-content d-none" id="dropdown-content">
+                                <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
                                 </div>
                                 <div id="assignedContactsContainer" class="assignedContactsContainer d-none"> CONTACT 1, CONTACT 2</div>
                             </div>
                         </div>
-                        <div class="addTaskCategory">
+                        <div class="addTaskContainer">
+                            <div class="addTaskTitle">Category </div>
+                            <div class="addTask-dropdown-category pointer">
+                                <div class="addTask-custom-select" onclick="renderArrow('custom-arrow-category', 'dropdown-content-category')">
+                                    <span id="dropdown-category-title">Select task category</span>
+                                    <div class="addTask-custom-arrow" id="custom-arrow-category">
+                                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="addTask-dropdown-content d-none no-scroll" id="dropdown-content-category">
+                                    <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
+                                    <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
+                                </div>
+                                <div id="assignedContactsContainer" class="assignedContactsContainer d-none"> CONTACT 1, CONTACT 2</div>
+                            </div>
+                        </div>
+                        <!-- <div class="addTaskCategory">
                             <div class="addTaskTitles">Category</div>
                             <div class="addTaskDropdownCategory">
                                 <select name="addTaskDropdown" id="addTaskDropdownCategory">
@@ -87,7 +103,7 @@
                                 </select>
                             </div>
 
-                        </div>
+                        </div> -->
                         <div class="addTaskSubtasks">
                             <div class="addTaskTitles">Subtasks (optional)</div>
                         </div>

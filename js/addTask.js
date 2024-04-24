@@ -68,15 +68,15 @@ function getButtonColor(priority) {
 /**
  * Toggles the visibility of the dropdown content and updates the arrow image based on its current direction.
  */
-function renderArrow(){
-    let customArrow = document.getElementById('custom-arrow')
+function renderArrow(arrowContainer, contentContainer){
+    let customArrow = document.getElementById(arrowContainer)
     let arrowImg = customArrow.childNodes[1];
     arrowImg.dataset.direction == "down"
     ? arrowImg.dataset.direction = "up"
     : arrowImg.dataset.direction = "down"
 
     arrowImg.src = `../../assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
-    document.getElementById('dropdown-content').classList.toggle('d-none')
+    document.getElementById(contentContainer).classList.toggle('d-none')
 }
 
 
@@ -84,28 +84,27 @@ function renderArrow(){
  * Renders the test contacts in the dropdown content.
  */
 function renderContactsToDropdown(){
-    let content = document.getElementById('dropdown-content');
+    let content = document.getElementById('dropdown-content-assignedTo');
     content.innerHTML = '';
     contacts.forEach(contact => {
-        content.innerHTML += /*html*/`<div class="assignedToContact" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
+        content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
     })
-    checkIfAnyContactIsAssignedToTask();
 }
 
 
 /**
  * Assigns a contact to a task based on the provided id.
- *
- * @param {number} id - The id of the task to assign the contact to.
- */
+*
+* @param {number} id - The id of the task to assign the contact to.
+*/
 function assignContactToTask(id){
     let dropdownContact = document.getElementById('assignedToContact' + id);
     let dropdownCheckboxImage = dropdownContact.lastElementChild;
-
+    
     setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
-
+    toggleAssignedContactsContainer();
 }
 
 /**
@@ -126,32 +125,32 @@ function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
 
 
 /**
- * Checks if any contact is assigned to a task by iterating through the child nodes of the 'dropdown-content' element.
- * If any contact is marked as 'true', the 'assignedContactsContainer' element is made visible and the function returns true.
- * If no contact is marked as 'true', the 'assignedContactsContainer' element is made hidden and the function returns false.
- *
- * @return {boolean} Returns true if any contact is assigned to a task, false otherwise.
+ * Toggles the visibility of the assigned contacts container based on the marked attribute of the contact cards.
  */
-function checkIfAnyContactIsAssignedToTask(){
-    let contactCards = document.getElementById('dropdown-content').childNodes;
+function toggleAssignedContactsContainer(){
+    let contactCards = document.getElementById('dropdown-content-assignedTo').childNodes;
     let assignedContactsContainer = document.getElementById('assignedContactsContainer');
     let empty = true;
     for(let i = 0; i < contactCards.length; i++){
         if(contactCards[i].getAttribute('marked') == 'true'){
             assignedContactsContainer.classList.remove('d-none');
             empty = false;
-
-            return true;
-            // addContacTemp(contactCards[i]);
+            break;
         }
     }
     if (empty){
         assignedContactsContainer.classList.add('d-none');
-        return false;
     }
 }
 
+function chooseCategory(category){
+    let dropdownContentContainer = document.getElementById('dropdown-content-category')
+    let categoryContainer = document.getElementById('dropdown-category-title');
+    categoryContainer.innerHTML = category;
+    dropdownContentContainer.classList.add('d-none');
 
+    
+}
 // function renderAssignedToContacts() {
 //     const assignedToContactsList = document.getElementById('assignedToContactsList');
     

@@ -11,8 +11,19 @@
     <script src="script.js"></script>
 
     <link rel="stylesheet" href="./assets/css/board.css">
+    <script src="./js/storage.js"></script>
+    <script src="./js/addTask.js"></script>
+    <script src="./js/allTasks.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/contacts.js"></script>
+    <script src="./js/contact_list.js"></script>
+    <script src="./js/contact_popups.js"></script>
+    <script src="./js/helper.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/signUp.js"></script>
+    <script src="./js/summary.js"></script>
+
+    <script src="script.js"></script>
     <script src="./assets/templates/html_templates.js"></script>
 
     <title>Join - Contacts</title>
@@ -47,69 +58,69 @@
                         <p>Tasks are better with a team!</p>
                     </div>
 
-                    <div class="add-contact-bottom">
-                        <div class="profile-badge-group-add-contact">
-                            <div class="profile-badge-add-contact">
-                                <img src="./assets/img/add.contact-badge.png" alt="">
-                            </div>
-                        </div>
-                        <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
-                            <div class="input-frame">
-                                <input id="contactName" type="text" placeholder="Name" autofocus required>
-                                <img src="./assets/img/icon-person.png" alt="">
-                            </div>
-                            <div class="input-frame">
-                                <input id="contactMail" type="email" placeholder="Email" autofocus required>
-                                <img src="./assets/img/icon-mail.png" alt="">
-                            </div>
-                            <div class="input-frame">
-                                <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
-                                <img src="./assets/img/icon-call.png" alt="">
-                            </div>
-                            <div id="addContactButton" class="addContactButton">
-                                <button class="cancelButton" onmouseover="changeCancelIcon()"
-                                    onmouseout="restoreCancelIcon()">Cancel
-                                    <img id="cancelIcon" onclick="closeAddContact()" src="./assets/img/icon-cancel.png"
-                                        alt="">
-                                </button>
-                                <button class="createButton">Create contact
-                                    <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png"
-                                        alt="">
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
-                    <div class="button-add-contact-card" id="button-add-contact-card"> <!-- Button-->
-                        <div onclick="addContactCard()" class="button-add-contact"> <!-- secondary contact -->
-                            <div class="add-new-contact">Add new contact</div>
-                            <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
-                        </div>
-                    </div>
-                    <div class="contact-list " id="contact-list">
-                        <div class="contact-list-letter" id="contact-list-letter">A</div>
-                        <div class="parting-line-container" id="parting-line-container">
-                            <div class="parting-line" id="parting-line"></div>
-                        </div>
-                        <div class="contact-card choosenContact" id="contact-card">
-                            <div class="profile-badge" id="profile-badge">
-                                <div class="profile-badge-group profileBadgeChoosen" id="profile-badge-icon">
-                                    AM
+                        <div class="add-contact-bottom">
+                            <div class="profile-badge-group-add-contact">
+                                <div class="profile-badge-add-contact">
+                                    <img src="./assets/img/add.contact-badge.png" alt="">
                                 </div>
+                            </div>
+                            <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+                                <div class="input-frame">
+                                    <input id="contactName" type="text" placeholder="Name" autofocus required>
+                                    <img src="./assets/img/icon-person.png" alt="">
+                                </div>
+                                <div class="input-frame">
+                                    <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                                    <img src="./assets/img/icon-mail.png" alt="">
+                                </div>
+                                <div class="input-frame">
+                                    <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
+                                    <img src="./assets/img/icon-call.png" alt="">
+                                </div>
+                                <div id="addContactButton" class="addContactButton">
+                                    <button class="cancelButton" onmouseover="changeCancelIcon()"
+                                        onmouseout="restoreCancelIcon()">Cancel
+                                        <img id="cancelIcon" onclick="closeAddContact()"
+                                            src="./assets/img/icon-cancel.png" alt="">
+                                    </button>
+                                    <button class="createButton">Create contact
+                                        <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png"
+                                            alt="">
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="contacts-container" id="contacts-container"> <!-- frame 156 -->
+                        <div class="button-add-contact-card" id="button-add-contact-card"> <!-- Button-->
+                            <div onclick="addContactCard()" class="button-add-contact"> <!-- secondary contact -->
+                                <div class="add-new-contact">Add new contact</div>
+                                <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+                            </div>
+                        </div>
+                        <div class="contact-list " id="contact-list">
+                            <div class="contact-list-letter" id="contact-list-letter">A</div>
+                            <div class="parting-line-container" id="parting-line-container">
+                                <div class="parting-line" id="parting-line"></div>
+                            </div>
+                            <div class="contact-card choosenContact" id="contact-card">
+                                <div class="profile-badge" id="profile-badge">
+                                    <div class="profile-badge-group profileBadgeChoosen" id="profile-badge-icon">
+                                        AM
+                                    </div>
 
-                            </div>
-                            <div class="contact-card-overview" id="contact-card-overview">
-                                <div class="contact-card-name choosenContact" id="contact-card-name">Anton Mayer
                                 </div>
-                                <div class="contact-card-email choosenContact" id="contact-card-email">
-                                    antom@gmail.com</div>
+                                <div class="contact-card-overview" id="contact-card-overview">
+                                    <div class="contact-card-name choosenContact" id="contact-card-name">Anton Mayer
+                                    </div>
+                                    <div class="contact-card-email choosenContact" id="contact-card-email">
+                                        antom@gmail.com</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
-        </main>
-</body>
+            </main>
+    </body>
 
 </html>

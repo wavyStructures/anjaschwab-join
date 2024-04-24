@@ -40,7 +40,7 @@ function setDefaultInputs() {
     password.value = "benedikt";
 }
 
-function login() {
+function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
 
@@ -53,7 +53,9 @@ function login() {
 
     //     let userInitials = getInitials(user.name);
     //     console.log(userInitials);
-    window.location.href = '/path/to/summary.html'; // Weiterleitung funktioniert nicht?!
+    
+    switchPage('summary.html');
+    return false;// Weiterleitung funktioniert nicht?!
     //     greeting(currentUser.name);
     //     // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
     // } else {
@@ -63,7 +65,7 @@ function login() {
 }
 
 function gotoSignUp() {
-    window.location.href = 'signUp.html';
+    switchPage('signUp.html');
 }
 
 // function startAnimation() {

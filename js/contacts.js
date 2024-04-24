@@ -1,3 +1,24 @@
+async function fetchStoredContacts() {
+  try {
+    const response = await fetch(STORAGE_URL, {
+      headers: {
+        Authorization: `Bearer ${STORAGE_TOKEN}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch stored contacts');
+    }
+
+    const data = await response.json();
+    console.log('Stored contacts:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching stored contacts:', error);
+    return null;
+  }
+}
+
 /**
  * Array containing contact objects.
  *
@@ -155,7 +176,7 @@ let contacts = [
   },
   {
     id: 19,
-    name: "robin jung",
+    name: "zist amanfang",
     mail: "robin@gmail.com",
     password: "robin",
     phone: "+49 1111 111 11 19",
@@ -187,10 +208,17 @@ let contacts = [
   },
 ];
 
+
+/**
+ * Initializes the contacts by including the HTML and loading the contacts.
+ *
+ * @return {void} This function does not return anything.
+ */
 function contactsInit() {
   includeHTML();
   loadContacts();
 }
+
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -203,9 +231,39 @@ function loadContacts() {
   main.innerHTML = ``;
   createContactsContainer(main);
 
+  const sortedContacts = sortContactsByName(contacts);
+  renderSortedContacts(main, sortedContacts);
+}
+
+
+/**
+ * Sorts the contacts by last name.
+ *
+ * @function sortContactsByName
+ * @param {Array} contacts - The array of contacts to be sorted.
+ * @returns {Array} - The sorted array of contacts.
+ */
+function sortContactsByName(contacts) {
+  return contacts.slice().sort((a, b) => {
+    const lastNameA = a.name.split(" ")[1].toLowerCase();
+    const lastNameB = b.name.split(" ")[1].toLowerCase();
+    return lastNameA.localeCompare(lastNameB);
+  });
+}
+
+
+/**
+ * Renders the sorted contacts into the main element.
+ *
+ * @function renderSortedContacts
+ * @param {HTMLElement} main - The main element to render contacts into.
+ * @param {Array} sortedContacts - The sorted array of contacts.
+ * @returns {void}
+ */
+function renderSortedContacts(main, sortedContacts) {
   const currentFirstLetters = [];
 
-  contacts.forEach((contact) => {
+  sortedContacts.forEach((contact) => {
     const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
     const firstLetter = name.charAt(0).toUpperCase();
@@ -218,6 +276,51 @@ function loadContacts() {
     createContactCard(main, id, contactColor, initials, name, mail);
   });
 }
+
+
+/**
+ * Loads the contacts from remote storage and renders them into the main element.
+ *
+ * @function loadContacts
+ * @returns {void}
+ */
+/*
+async function loadContacts() {
+  try {
+    const contactsData = await getItem("contacts");
+    const contacts = JSON.parse(contactsData);
+
+    // Sort contacts by last name
+    const sortedContacts = contacts.sort((a, b) => {
+      const lastNameA = a.name.split(" ")[1].toLowerCase();
+      const lastNameB = b.name.split(" ")[1].toLowerCase();
+      return lastNameA.localeCompare(lastNameB);
+    });
+
+    // Clear existing contacts
+    const main = document.getElementById("main");
+    main.innerHTML = ``;
+    createContactsContainer(main);
+
+    const currentFirstLetters = [];
+
+    sortedContacts.forEach((contact) => {
+      const { id, name, mail, phone, contactColor } = contact;
+      const initials = getInitials(name);
+      const firstLetter = name.charAt(0).toUpperCase();
+
+      if (!currentFirstLetters.includes(firstLetter)) {
+        createFirstLetter(main, firstLetter);
+        currentFirstLetters.push(firstLetter);
+      }
+
+      createContactCard(main, id, contactColor, initials, name, mail);
+    });
+  } catch (error) {
+    console.error("Fehler beim Laden der Kontakte:", error);
+  }
+}*/
+
 
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
@@ -237,6 +340,7 @@ function addContactCard() {
     document.body.style.overflow = "hidden";
   }
 }
+
 
 /**
  * Hides the add contact card by removing it from the DOM.
@@ -260,6 +364,7 @@ function closeAddContact() {
   }
 }
 
+
 /**
  * Generates initials from a full name.
  *
@@ -272,6 +377,7 @@ function getInitials(name) {
   let lastInitial = lastName.charAt(0).toUpperCase();
   return firstInitial + lastInitial;
 }
+
 
 /**
  * Creates a letter element representing the first letter of a group of contacts.
@@ -290,6 +396,7 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
+
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
@@ -301,6 +408,7 @@ function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
+
 
 /**
  * Creates a parting line element and appends it to the contact list within the main element.
@@ -321,6 +429,7 @@ function createPartingLine(main) {
   partingLineContainer.appendChild(partingLine);
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
+
 
 /**
  * Generates HTML code for the contacts container.
@@ -387,6 +496,7 @@ function generateContactsContainerHTML() {
         </section>
     `;
 }
+
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -475,6 +585,7 @@ function resetAllContactCards() {
   allContactCards.forEach(resetContactCard);
 }
 
+
 /**
  * Highlights a contact card by applying specific styles.
  *
@@ -494,6 +605,7 @@ function highlightContactCard(card) {
     emailElement.style.color = "white";
   }
 }
+
 
 /**
  * Highlights the selected contact card and resets all others if already highlighted.
@@ -600,6 +712,7 @@ function generateContactDetailsHTML(name, email, phone) {
   `;
 }
 
+
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -611,6 +724,7 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
+
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -620,6 +734,7 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
+
 
 /**
  * Creates a new contact based on the input values from the form,
@@ -658,6 +773,7 @@ function createContact() {
   }
 }
 
+
 /**
  * Generates a random color from a predefined list of colors.
  *
@@ -680,6 +796,7 @@ function generateRandomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
+
 
 /**
  * Saves a contact in the remote storage.
@@ -708,6 +825,7 @@ async function saveContact(contact) {
   }
 }
 
+
 async function loadContactsStorrage() {
   try {
     const response = await fetch(STORAGE_URL);
@@ -719,4 +837,3 @@ async function loadContactsStorrage() {
 }
 
 // load contacts()
-// email validierung wirft Fehlermeldung heraus

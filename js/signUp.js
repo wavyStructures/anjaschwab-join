@@ -39,7 +39,7 @@ async function addUser() {
 
     //WEiterleitung zu login-Seite UND Nachricht anzeigen: erfolgreiche Registrierung/ you are signed up now!
 
-    window.location.href = 'login.html?msg=you are signed up now!';
+    switchPage('login.html?msg=you are signed up now!');
 
     // await setItem('users', JSON.stringify(users));
     // resetForm();
@@ -109,6 +109,6 @@ async function delAllUsers() {
  * @return {void}
  */
 function redirectToLogin() {
-    window.location.href = 'login.html';
+    switchPage('login.html');
 }
 

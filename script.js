@@ -104,7 +104,7 @@ function renderContacts() {
  * open help page
  */
 function openHelp() {
-	window.location.href = 'help.html';
+	switchPage('help.html');
 }
 // /**
 
@@ -116,6 +116,17 @@ function openSmallMenu() {
 	let content = getDiv("smallMenu");
 	content.classList.toggle("d-none");
 }
+
+/**
+ * Updates the window location pathname to the new URL.
+ *
+ * @param {string} newUrl - The new URL to navigate to
+ */
+function switchPage(newPath){
+	window.location.pathname = newUrl;
+}
+
+
 // /**
 
 
