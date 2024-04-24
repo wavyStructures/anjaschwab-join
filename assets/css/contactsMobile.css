@@ -1024,7 +1024,7 @@ body {
   .person-add-icon {
     height: 2rem;
     width: 2rem;
-    position: relative;
+    position: absolute;
   }
   .secondary-mobile-contact-v1 {
     width: 4rem;
