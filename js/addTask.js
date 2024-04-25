@@ -23,7 +23,6 @@ let temporaryTask =
 };
 
 
-
 /**
  * Updates the priority styling for the task buttons based on the selected priority.
  *
@@ -106,6 +105,7 @@ function assignContactToTask(id){
     setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
     toggleAssignedContactsContainer();
 }
+
 
 /**
  * Sets the appearance of the dropdown contact based on the 'marked' attribute.
