@@ -122,8 +122,9 @@ function openSmallMenu() {
  *
  * @param {string} newUrl - The new URL to navigate to
  */
-function switchPage(newPath){
-	window.location.pathname = newUrl;
+function switchPage(newUrl) {
+	// window.location.pathname = newUrl;
+	window.location.href = newUrl;
 }
 
 

@@ -14,54 +14,40 @@
 function summaryInit() {
     includeHTML();
     getDate();
-    greeting(currentUser)
+
 }
 
 
-function greeting(userName) {
-    const isLoggedIn = true;        //TODO is loggedIn setting
+function greeting(user) {
+    alert('greetingUserObject is:', user);
 
-    console.log('greetingName is:', userName);
-
-    const h1GreetingUser = document.getElementById("h1GreetingUser");
-    const usernameForGreeting = document.getElementById("usernameForGreeting");
-
-    if (isLoggedIn) {
-        h1GreetingUser.dataset.userType = "user";
-        usernameForGreeting.innerText = `, ${userName}`;
-    } else {
-        h1GreetingUser.dataset.userType = "guest";
-        usernameForGreeting.innerText = '';
-    }
-    
-}
+    setTimeout(function () {
+        const usernameForGreeting = document.getElementById("usernameForGreeting");
+        usernameForGreeting.innerHTML = '';
+        usernameForGreeting.innerHTML = user.name; 6000
 
 
-function greetingSummary(user) {
-    console.log('currentUser 2 inside login.js is:', user);
-    // let currentName = userName;
+    })
 
 
-    // let findUser = users.find(user => user.name === currentName);
-    // let greetingName = findUser.name;
-    // console.log('greetingName is:', greetingName);
+
+
+    // const isLoggedIn = true;        //TODO is loggedIn setting
+
+
 
     // const usernameForGreeting = document.getElementById("usernameForGreeting");
-    // const h1GreetingUser = document.getElementById("h1GreetingUser");
-    // if (h1GreetingUser) {
-    //     h1GreetingUser.dataset.userType = "user";
-    //     h1GreetingUser.dataset.userType = "user";
-    //     usernameForGreeting.innerText = `, ${greetingName}`;
-    //     // Rest of the code
+    // usernameForGreeting.innerHTML = '';
+    // usernameForGreeting.innerHTML = `${user.name}`;
+
     // } else {
     //     h1GreetingUser.dataset.userType = "guest";
     //     usernameForGreeting.innerText = '';
-    //     console.error("Element with ID 'h1GreetingUser' not found.");
     // }
 
-
-
 }
+
+
 
 // let userInitials = getInitials(user.name);
 

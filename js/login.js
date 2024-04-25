@@ -43,25 +43,16 @@ function setDefaultInputs() {
 function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
-
     let user = users.find(user => user.mail == email.value && user.password == password.value);
 
-    // if (user) {
+    if (user) {
+        greeting(user);
+    } else {
+        greetingGuest();
+    }
 
-    //     isLoggedIn: true;
-    //     currentUser = user;        
-
-    //     let userInitials = getInitials(user.name);
-    //     console.log(userInitials);
-    
     switchPage('summary.html');
-    return false;// Weiterleitung funktioniert nicht?!
-    //     greeting(currentUser.name);
-    //     // TODO wie übergebe ich den eingeloggten User? für    getInitials(name)
-    // } else {
-    //     console.log('user NICHT gefunden');
-    //     alert("user not found. please try again.")
-    // }
+    return false;
 }
 
 function gotoSignUp() {
