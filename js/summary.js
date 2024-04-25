@@ -91,17 +91,17 @@ function getDate() {
 
 
 
-function greetAccordingToDayTime() {
-    let nowTime = new Date();
-    let hours = nowTime.getHours();
-    //let hours = 14;
-    let status = (hours < 12) ? "Good Morning" :
-        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
+// function greetAccordingToDayTime() {
+//     let nowTime = new Date();
+//     let hours = nowTime.getHours();
+//     //let hours = 14;
+//     let status = (hours < 12) ? "Good Morning" :
+//         ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
-    document.getElementById('daytimeGreeting').innerHTML = `${status} `;
-}
+//     document.getElementById('daytimeGreeting').innerHTML = `${status} `;
+// }
 
-greetAccordingToDayTime();
+// greetAccordingToDayTime();
 
 
 
