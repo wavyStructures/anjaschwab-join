@@ -1,11 +1,14 @@
+/**
+ * Initializes the login process by including HTML, setting default inputs, and starting an animation.
+ */
 function loginInit() {
     includeHTML();
     setDefaultInputs();
     // startAnimation();
-    // login();
 }
 
-let currentUser = "Gast";
+// let currentUser = "Gast";
+let loggedUser;
 
 let users = [
     {
@@ -40,20 +43,26 @@ function setDefaultInputs() {
     password.value = "benedikt";
 }
 
-function loginUser() {
+
+async function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
-    let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
+    loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
 
-    if (loggedUser) {
-        greeting(loggedUser);
-    } else {
-        greetingGuest();
-    }
+
+    console.log('loggedUser inside loginUser()', loggedUser);
+    // greeting(loggedUser);
+
+    // if (loggedUser) {
+    //     greeting(loggedUser);
+    // } else {
+    //     greetingGuest();
+    // }
 
     switchPage('summary.html');
     return false;
 }
+
 
 function gotoSignUp() {
     switchPage('signUp.html');
