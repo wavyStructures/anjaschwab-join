@@ -200,7 +200,7 @@ let contacts = [
   },
   {
     id: 22,
-    name: "ulrich fuchs",
+    name: "ulrich maria fuchs",
     mail: "ulrich@gmail.com",
     password: "ulrich",
     phone: "+49 1111 111 11 22",
@@ -266,7 +266,7 @@ function renderSortedContacts(main, sortedContacts) {
   sortedContacts.forEach((contact) => {
     const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
-    const firstLetter = name.charAt(0).toUpperCase();
+    const firstLetter = name.split(" ")[name.split(" ").length -1].charAt(0).toUpperCase();
 
     if (!currentFirstLetters.includes(firstLetter)) {
       createFirstLetter(main, firstLetter);
@@ -527,7 +527,8 @@ function createContactCard(main, id, color, initials, name, mail) {
 }
 
 function generateContactCardHTML(contactId, profileColor, initials, name, email, shortEmail) {
-  const formattedName = name.replace(/\b\w/g, letter => letter.toUpperCase());
+  let formattedName = getNameWithCapitalizedFirstLetter(name);
+
   return `
     <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
       <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
@@ -537,6 +538,18 @@ function generateContactCardHTML(contactId, profileColor, initials, name, email,
       </div>
     </div>
   `;
+}
+
+function getNameWithCapitalizedFirstLetter(name) {
+  let [firstname, lastname, surname] = name.split(" ");
+  firstname = firstname[0].toUpperCase() + firstname.slice(1);
+  lastname = lastname[0].toUpperCase() + lastname.slice(1);
+  if (surname){
+    surname = surname[0].toUpperCase() + surname.slice(1);
+    return firstname + " " + lastname + " " + surname;
+  }else{
+    return firstname + " " + lastname;
+  }
 }
 
 

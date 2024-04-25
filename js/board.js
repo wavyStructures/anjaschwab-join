@@ -98,9 +98,11 @@ function renderCategories() {
     };
 
 }
+
 /**
- * render the icons with the initials of the users name on each card
- * @param {object} card 
+ * Renders the icons with the initials of the user's name on each card.
+ *
+ * @param {object} card - The card object containing information about the card
  */
 function renderAssignedToButtons(card){
     let assignedToContainer = document.getElementById('cardAssignedToContainerId' + card['id']);
