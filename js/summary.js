@@ -1,20 +1,11 @@
-// const msgBox = document.getElementById('msgBox');
-// console.log('msgBox inside summary.js is: ', msgBox);
-
-// const urlParams = new URLSearchParams(window.location.search);
-// const msg = urlParams.get('msg');
-
-// if (msg) {
-//     msgBox.innerHTML = msg;
-// } else {
-//     msgBox.style.display = 'none';
-// }
-
-
+/**
+ * Initializes the summary by including the HTML and getting the current date.
+ *
+ * @return {void} This function does not return anything.
+ */
 function summaryInit() {
     includeHTML();
     getDate();
-
 }
 
 
@@ -23,8 +14,10 @@ function greeting(user) {
 
     setTimeout(function () {
         const usernameForGreeting = document.getElementById("usernameForGreeting");
-        usernameForGreeting.innerHTML = '';
-        usernameForGreeting.innerHTML = user.name; 6000
+
+        console.log('inside summary greeting(user) timeout:', usernameForGreeting);
+        // usernameForGreeting.innerHTML = '';
+        // usernameForGreeting.innerHTML = user.name; 6000
 
 
     })

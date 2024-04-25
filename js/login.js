@@ -43,10 +43,10 @@ function setDefaultInputs() {
 function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
-    let user = users.find(user => user.mail == email.value && user.password == password.value);
+    let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
 
-    if (user) {
-        greeting(user);
+    if (loggedUser) {
+        greeting(loggedUser);
     } else {
         greetingGuest();
     }
