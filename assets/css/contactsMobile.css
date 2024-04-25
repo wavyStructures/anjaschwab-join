@@ -461,18 +461,19 @@ body {
     position: absolute;
   }
   .secondary-mobile-contact-v1 {
+    position: absolute;
     width: 4rem;
+    height: 4rem;
     box-shadow: var(--stronger);
     border-radius: var(--br-3xs);
     background-color: var(--version-2-main-color);
     border: 1px solid var(--version-2-main-color);
     box-sizing: border-box;
-    display: none;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     padding: var(--padding-sm) var(--padding-mini);
-  }
+    z-index: 100;
+    bottom: 50px;
+    right: 50px;
+}
   .menu-icons1 {
     height: 1.5rem;
     width: 1.5rem;
