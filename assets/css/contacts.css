@@ -368,7 +368,6 @@ input {
 .contact-card-name {
   font-size: 1.188rem;
   line-height: 1.425rem;
-  /* text-transform: capitalize; */
 }
 
 .contact-card-email {
