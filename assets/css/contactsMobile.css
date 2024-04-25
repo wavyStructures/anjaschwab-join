@@ -244,49 +244,7 @@ body {
   }
   
   
-  .ellipse-parent2 {
-    height: 2.625rem;
-    flex: 1;
-    position: relative;
-  }
-  .profile-badge5 {
-    width: 2.625rem;
-    border-radius: var(--br-26xl);
-    background-color: var(--white);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  .anton-mayer5 {
-    margin: 0;
-    position: relative;
-    font-size: inherit;
-    line-height: 1.438rem;
-    font-weight: 400;
-    font-family: inherit;
-  }
-  .antomgmailcom5 {
-    position: relative;
-    font-size: var(--version-2-body-size);
-    line-height: 120%;
-    color: var(--version-2-main-color);
-    white-space: nowrap;
-  }
-  .anton-mayer-parent3,
-  .contact-name5 {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .anton-mayer-parent3 {
-    flex-direction: column;
-    gap: var(--gap-8xs);
-    text-align: left;
-    font-size: var(--version-2-t6-size);
-    color: var(--color-black);
-    font-family: var(--version-2-body);
-  }
+  
   .m {
     margin: 0;
     position: relative;
@@ -336,57 +294,7 @@ body {
     align-items: center;
     justify-content: center;
   }
-  .antomgmailcom6,
-  .anton-mayer6 {
-    position: relative;
-    line-height: 120%;
-    display: flex;
-    align-items: center;
-  }
-  .anton-mayer6 {
-    margin: 0;
-    width: 7.375rem;
-    height: 1.438rem;
-    font-size: inherit;
-    font-weight: 400;
-    font-family: inherit;
-  }
-  .antomgmailcom6 {
-    align-self: stretch;
-    height: 1.188rem;
-    font-size: var(--version-2-body-size);
-    color: var(--version-2-main-color);
-    white-space: nowrap;
-  }
-  .anton-mayer-parent4,
-  .contact-name6 {
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .anton-mayer-parent4 {
-    width: 8.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-8xs);
-    text-align: left;
-    font-size: var(--version-2-t6-size);
-    color: var(--color-black);
-    font-family: var(--version-2-body);
-  }
-  .contact-name6 {
-    border-radius: var(--br-3xs);
-    background-color: var(--white);
-    flex-direction: row;
-    padding: var(--padding-mini) var(--padding-5xl);
-    gap: var(--gap-16xl);
-    z-index: 6;
-  }
-  .contact-name6,
-  .t,
-  .t-wrapper {
-    align-self: stretch;
-    display: flex;
-  }
+  
   .t {
     margin: 0;
     width: 0.625rem;
@@ -409,14 +317,6 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-black);
     font-family: var(--version-2-body);
-  }
-  .frame-child8 {
-    align-self: stretch;
-    position: relative;
-    border-radius: var(--br-10xs);
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
   }
   .contact-list-v1-mobile-inner2 {
     align-self: stretch;
