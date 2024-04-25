@@ -7,6 +7,7 @@ function addTask(category){
     console.log("Task added to:", category);
     console.log("Add function to addTask-Buttons");
 }
+let tempAssignedContacts = [];
 
 let temporaryTask = 
     {
@@ -101,9 +102,19 @@ function renderContactsToDropdown(){
 function assignContactToTask(id){
     let dropdownContact = document.getElementById('assignedToContact' + id);
     let dropdownCheckboxImage = dropdownContact.lastElementChild;
-    
+
     setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
     toggleAssignedContactsContainer();
+    pushContactToTempAssignedContacts(id);
+}
+
+
+function pushContactToTempAssignedContacts(id){
+    if (tempAssignedContacts.indexOf(id) == -1){
+        tempAssignedContacts.push(id)
+    }else{
+        tempAssignedContacts.splice(tempAssignedContacts.indexOf(id), 1)
+    }
 }
 
 
