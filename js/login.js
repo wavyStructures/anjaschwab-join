@@ -8,7 +8,7 @@ function loginInit() {
 }
 
 // let currentUser = "Gast";
-let loggedUser;
+let loggedUsers = [];
 
 let users = [
     {
@@ -47,8 +47,9 @@ function setDefaultInputs() {
 async function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
-    loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
+    let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
 
+    loggedUsers.push(loggedUser);
 
     console.log('loggedUser inside loginUser()', loggedUser);
     // greeting(loggedUser);
@@ -59,11 +60,23 @@ async function loginUser() {
     //     greetingGuest();
     // }
 
+    loggedUsers.push(loggedUser);
+    console.log('loggedUser inside loginUser()', loggedUser);
+
+    // Log the updated loggedUsers array after pushing the logged user
+    await updateLoggedUsers();
+
     switchPage('summary.html');
     return false;
 }
 
 
+async function updateLoggedUsers() {
+    console.log('loggedUsers after pushing', loggedUsers);
+}
+
+
+console.log('after loginUser() and pushing the loggedUsers-array is:', loggedUsers);
 function gotoSignUp() {
     switchPage('signUp.html');
 }

@@ -104,7 +104,8 @@
 
 #signUpNameInput,
 #signUpEmailInput,
-#signUpPasswordInput {
+#signUpPasswordInput,
+#signUpPasswordInputConfirm {
   border: none;
   font-size: 19px;
   font-weight: 400;
@@ -113,7 +114,8 @@
 
 #signUpNameInput:focus,
 #signUpEmailInput:focus,
-#signUpPasswordInput:focus {
+#signUpPasswordInput:focus,
+#signUpPasswordInputConfirm:focus {
   outline: none;
 }
 

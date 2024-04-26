@@ -7,7 +7,11 @@ function summaryInit() {
     includeHTML();
     getDate();
     greeting(handedOverUser);
+
 }
+
+let userInitials = getInitials(user.name);
+console.log('userInitials', userInitials);
 
 function greeting(handedOverUser) {
 
@@ -66,7 +70,7 @@ function greeting(handedOverUser) {
 
 
 
-// let userInitials = getInitials(user.name);
+
 
 
 
