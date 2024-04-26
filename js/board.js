@@ -1,4 +1,4 @@
-let cards = [
+let tasks = [
     {
         'id': 0,
         'type': 'User Story',
@@ -70,9 +70,9 @@ function boardInit(){
  * @param {string} toFilterFor the category's name (e.g. 'done')
  * @returns array with cards fitting category
  */
-function filterCardsForCategory(toFilterFor) {
-    let card = cards.filter(c => c['category'] == toFilterFor);
-    return card;
+function filterTasksForCategory(toFilterFor) {
+    let task = tasks.filter(c => c['category'] == toFilterFor);
+    return task;
 }
 
 
@@ -85,12 +85,12 @@ function renderCategories() {
     for(let i=0; i<categories.length; i++){
         let category = categories[i];
         let categoryContainer = document.getElementById(category);
-        let filteredCards = filterCards(category);
-        if (filteredCards.length != 0) {
-            for (let j=0; j<filteredCards.length; j++){
-                let card = filteredCards[j];
-                categoryContainer.innerHTML += renderCardsHTML(card);
-                renderAssignedToButtons(card);
+        let filteredTasks = filterTasks(category);
+        if (filteredTasks.length != 0) {
+            for (let j=0; j<filteredTasks.length; j++){
+                let task = filteredTasks[j];
+                categoryContainer.innerHTML += renderCardsHTML(task);
+                renderAssignedToButtons(task);
             }
         } else {
             renderEmptyCategory(categoryContainer);
@@ -104,9 +104,9 @@ function renderCategories() {
  *
  * @param {object} card - The card object containing information about the card
  */
-function renderAssignedToButtons(card){
-    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + card['id']);
-    let assignedToContacts = card['assignedTo'];
+function renderAssignedToButtons(task){
+    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
+    let assignedToContacts = task['assignedTo'];
 
     for (let i=0; i<assignedToContacts.length; i++){
         for (let j=0; j<contacts.length; j++){
@@ -121,14 +121,14 @@ function renderAssignedToButtons(card){
  * @param {string} category 
  * @returns array with the cards for each category
  */
-function filterCards(category) {
-    let filteredCards = [];
-    for (let id in cards) {
-        if (cards[id]['category'] == category) {
-            filteredCards.push(cards[id]);
+function filterTasks(category) {
+    let filteredTasks = [];
+    for (let id in tasks) {
+        if (tasks[id]['category'] == category) {
+            filteredTasks.push(tasks[id]);
         }
     }
-    return filteredCards;
+    return filteredTasks;
 }
 
 /**
@@ -141,13 +141,13 @@ function renderEmptyCategory(categoryContainer) {
 
 /**
  * 
- * @param {string} cardPriority 
+ * @param {string} taskPriority 
  * @returns html-image-tag
  */
-function setPriorityImage(cardPriority) {
-    if (cardPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
-    else if (cardPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
-    else return `<img src="assets/img/icon-priority_high.png">`
+function setPriorityImage(taskPriority) {
+    if (taskPriority == 'low') return `<img src="assets/img/icon-priority_low.png">`
+    else if (taskPriority == 'medium') return `<img src="assets/img/icon-priority_medium.png">`
+    else return `<img src="assets/img/icon-priority_urgent.png">`
 }
 
 
@@ -156,15 +156,15 @@ function searchTask() {
 }
 
 
-function renderSubtask(card) {
-    let countSubtasks = card['subtasks'];
-    let completedSubtasks = card['completedSubtasks'];
+function renderSubtask(task) {
+    let countSubtasks = tasks['subtasks'];
+    let completedSubtasks = tasks['completedSubtasks'];
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
     if (countSubtasks == 0) {
         return `Nothing`
     } else {
-        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${card['completedSubtasks']}/${card["subtasks"]} Subtasks</div>`
+        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${task['completedSubtasks']}/${task["subtasks"]} Subtasks</div>`
     }
 
 }

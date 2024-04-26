@@ -9,7 +9,7 @@ function addTask(category){
 }
 let tempAssignedContacts = [];
 
-let temporaryTask = 
+let newTask = 
     {
         'id': 999,
         'type': '',
@@ -160,9 +160,12 @@ function chooseCategory(category){
     let categoryContainer = document.getElementById('dropdown-category-title');
     categoryContainer.innerHTML = category;
     dropdownContentContainer.classList.add('d-none');
-
-    
 }
+
+// function fetchInformationsForNewCard(){
+//     newTask.id = 
+// }
+
 // function renderAssignedToContacts() {
 //     const assignedToContactsList = document.getElementById('assignedToContactsList');
     
