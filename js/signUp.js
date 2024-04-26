@@ -1,14 +1,27 @@
-
-
-console.log('users = contacts are:', users);
-
 /**
  * init-function run at on loading the body
  */
 async function signUpInit() {
-    await loadUsers(); f
+    console.log("signUpInit() called")
+    try {
+        await loadUsers();
+        console.log("loadUsers() successful")
+    } catch (error) {
+        console.error("loadUsers() failed", error)
+    }
     console.log("USERS: ", users)
+    username = document.getElementById('signUpNameInput');
+    email = document.getElementById('signUpEmailInput');
+    password = document.getElementById('signUpPasswordInput');
+    registerBtn = document.getElementById('registerBtn');
 }
+
+
+
+let users = [];
+let username = document.getElementById('signUpNameInput');
+let email = document.getElementById('signUpEmailInput');
+let password = document.getElementById('signUpPasswordInput');
 
 
 /**
@@ -27,23 +40,31 @@ async function loadUsers() {
  * add new user to users and save it to remote storage
  */
 async function addUser() {
+    let registerBtn = document.getElementById("registerBtn");
+    registerBtn.disabled = true;
+
+    let username = document.getElementById('signUpNameInput');
     let email = document.getElementById('signUpEmailInput');
     let password = document.getElementById('signUpPasswordInput');
-
-    // registerBtn.disabled = true;
     users.push(
         {
+            username: username.value,
             email: email.value,
             password: password.value
         });
 
-    //WEiterleitung zu login-Seite UND Nachricht anzeigen: erfolgreiche Registrierung/ you are signed up now!
+    await setItem('users', JSON.stringify(users));
+    resetForm();
+}
 
-    switchPage('login.html?msg=you are signed up now!');
 
-    // await setItem('users', JSON.stringify(users));
-    // resetForm();
-    // console.log("USERS: ", users)
+/**
+ * reseting the signUp form
+ */
+function resetForm() {
+    email.value = '';
+    password.value = '';
+    registerBtn.disabled = false;
 }
 
 
@@ -58,6 +79,7 @@ function togglePrivacyPolicyCheckbox() {
     privacyCheckbox.addEventListener('click', function () {
         if (checkBoxImage.src.includes('unchecked.png')) {
             checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
+
         } else {
             checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
         }
@@ -69,27 +91,12 @@ function togglePrivacyPolicyCheckbox() {
  * checking if the user has confirmed the privacy policy
  */
 function checkPrivacyPolicyConfirmation() {
-    let privacyPolicyCheckbox = document.getElementById('privacyPolicyCheckbox');
+    let checkBoxImage = document.querySelector('.checkboxBox img');
 
-    if (!privacyPolicyCheckbox.checked) {
+    if (checkBoxImage.src.includes('unchecked.png')) {
         alert('please confirm the privacy policy');
         return false;
     }
-
-    // privacyPolicyCheckbox.checked = true;
-
-}
-
-
-
-
-/**
- * reseting the register form
- */
-function resetForm() {
-    email.value = '';
-    password.value = '';
-    registerBtn.disabled = false;
 }
 
 
@@ -109,6 +116,6 @@ async function delAllUsers() {
  * @return {void}
  */
 function redirectToLogin() {
-    switchPage('login.html');
+    switchPage('login.html?msg=you are signed up now!');
 }
 
