@@ -162,9 +162,20 @@ function chooseCategory(category){
     dropdownContentContainer.classList.add('d-none');
 }
 
-// function fetchInformationsForNewCard(){
-//     newTask.id = 
-// }
+function fetchInformationsForNewCard(){
+    newTask.id = tasks.length;
+    //.type = getType()
+    newTask.title = document.getElementById('addTaskEnterTitleInput').value
+    newTask.text = document.getElementById('addTaskDescriptionInput').value
+    //.subtasks = getSubtasks();
+    //.completedSubtasks = getCompletedSubtasks()
+    newTask.assignedTo = tempAssignedContacts
+    //.category = getCategory()
+    //.priority = getPriority()
+    newTask.dueDate = document.getElementById('addTaskDueDateInput').value
+
+    console.log(newTask);
+}
 
 // function renderAssignedToContacts() {
 //     const assignedToContactsList = document.getElementById('assignedToContactsList');
