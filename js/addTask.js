@@ -14,7 +14,7 @@ let newTask =
         'id': 999,
         'type': '',
         'title': '',
-        'text': '',
+        'description': '',
         'subtasks': 0,
         'completedSubtasks': 0,
         'assignedTo': [],
@@ -163,19 +163,82 @@ function chooseCategory(category){
 }
 
 function fetchInformationsForNewCard(){
-    newTask.id = tasks.length;
-    //.type = getType()
-    newTask.title = document.getElementById('addTaskEnterTitleInput').value
-    newTask.text = document.getElementById('addTaskDescriptionInput').value
-    //.subtasks = getSubtasks();
-    //.completedSubtasks = getCompletedSubtasks()
-    newTask.assignedTo = tempAssignedContacts
-    //.category = getCategory()
-    //.priority = getPriority()
-    newTask.dueDate = document.getElementById('addTaskDueDateInput').value
+    newTask.id = getNewTaskId();
+    newTask.type = getNewTaskType();
+    newTask.title = getNewTaskTitle();
+    newTask.description = getNewTaskDescription();
+    newTask.subtasks = getNewTaskSubtasks();
+    newTask.completedSubtasks = getNewTaskCompletedSubtasks();
+    newTask.assignedTo = getNewTaskAssignedTo();
+    newTask.category = getNewTaskCategory();
+    newTask.priority = getNewTaskPriority();
+    newTask.dueDate = getNewTaskDueDate();
 
     console.log(newTask);
 }
+
+/**
+ * Retrieves the new task ID based on the length of the tasks array.
+ *
+ * @return {number} The new task ID.
+ */
+function getNewTaskId(){
+    return tasks.length;
+}
+
+
+function getNewTaskType(){
+    return
+}
+
+
+/**
+ * Retrieves the value of the input field with the id 'addTaskEnterTitleInput'
+ * and returns it as the title of the new task.
+ *
+ * @return {string} The title of the new task.
+ */
+function getNewTaskTitle(){
+    return document.getElementById('addTaskEnterTitleInput').value
+}
+
+
+/**
+ * Retrieves the description of the new task from the 'addTaskDescriptionInput' element.
+ *
+ * @return {string} The description of the new task.
+ */
+function getNewTaskDescription(){
+    return document.getElementById('addTaskDescriptionInput').value
+}
+
+
+function getNewTaskSubtasks(){
+    return
+}
+function getNewTaskCompletedSubtasks(){
+    return
+}
+function getNewTaskAssignedTo(){
+    return tempAssignedContacts;
+}
+function getNewTaskCategory(){
+    return
+}
+function getNewTaskPriority(){
+    return
+}
+
+
+/**
+ * Retrieves the value of the 'addTaskDueDateInput' element and returns it as the due date of the new task.
+ *
+ * @return {string} The due date of the new task.
+ */
+function getNewTaskDueDate(){
+    return document.getElementById('addTaskDueDateInput').value
+}
+
 
 // function renderAssignedToContacts() {
 //     const assignedToContactsList = document.getElementById('assignedToContactsList');

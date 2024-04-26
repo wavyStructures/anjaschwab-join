@@ -170,7 +170,7 @@ function renderCardsHTML(card) {
     <div draggable="true" id="${card["id"]}" class="card">
         <div class="cardType">${card["type"]}</div>
         <div class="cardTitle">${card["title"]}</div>
-        <div class="cardText">${card["text"]}</div>
+        <div class="cardText">${card["description"]}</div>
         <div class="cardSubtasks">${renderSubtask(card)}</div>
         <div class="cardBottomContainer">
         <div id="cardAssignedToContainerId${
