@@ -1,0 +1,9 @@
+.h1PrivacyBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.h1PrivacyBox img {
+  width: 40px;
+  cursor: pointer;
+}

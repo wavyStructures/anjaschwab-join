@@ -1,0 +1,10 @@
+.h1LegalNoticeBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h1LegalNoticeBox img {
+  width: 40px;
+  cursor: pointer;
+}

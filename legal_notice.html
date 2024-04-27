@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/legalNotice.css">
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/legalNotice.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 
     <script src="script.js"></script>
@@ -30,7 +31,14 @@
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
             <main id="main" class="main">
+                <div class="legal_notice-wrapper">
 
+                    <div class="h1LegalNoticeBox">
+                        <h1>Legal Notice</h1>
+                        <img src="/assets/img/icon-arrow_left.png" alt="going-back arrow"
+                            onclick="switchPage('login.html')">
+                    </div>
+                </div>
                 <!--TODO legal notice erstellen  -->
             </main>
         </div>
