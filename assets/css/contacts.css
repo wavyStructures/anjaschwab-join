@@ -513,6 +513,7 @@ input {
   position: relative;
   line-height: 1.75rem;
 }
+
 .contact-succ-created-overlay,
 .contact-succesfully-created-wrapper {
   display: flex;
@@ -520,6 +521,7 @@ input {
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .contact-succesfully-created-wrapper {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
@@ -529,6 +531,7 @@ input {
   white-space: nowrap;
   max-width: 100%;
 }
+
 .contact-succ-created-overlay {
   position: relative;
   box-shadow: var(--nuevo);
