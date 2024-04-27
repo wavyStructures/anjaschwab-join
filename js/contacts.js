@@ -1,11 +1,10 @@
 const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/';
 
-async function setItem(key, value) {
+/*async function setItem(key, value) {
     const payload = { key, value };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
       .then(res => res.json());
-}
-
+}*/
 let contactUsers = [];
 
 async function saveContact() {
@@ -22,9 +21,9 @@ async function saveContact() {
 }
 
 function resetContactForm() {
-    contactNameInput.value = "";
-    contactMailInput.value = "";
-    ContactPhoneInput.value = "";
+    contactName.value = "";
+    contactMail.value = "";
+    ContactPhone.value = "";
     createBtn.disabled = false;
 }
 
