@@ -1,3 +1,33 @@
+const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/';
+
+async function setItem(key, value) {
+    const payload = { key, value };
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
+      .then(res => res.json());
+}
+
+let contactUsers = [];
+
+async function saveContact() {
+      createBtn.disabled = true;
+      contactUsers.push({
+      name: contactName.value,
+      mail: contactMail.value,
+      phone: ContactPhone.value,
+      contactColor: generateRandomColor(),
+    });
+    await setItem('contactUsers', JSON.stringify(contactUsers));
+
+    resetContactForm();
+}
+
+function resetContactForm() {
+    contactNameInput.value = "";
+    contactMailInput.value = "";
+    ContactPhoneInput.value = "";
+    createBtn.disabled = false;
+}
+
 /**
  * Array containing contact objects.
  *
@@ -9,6 +39,7 @@
  * @property {string} contactColor - The color associated with the contact.
  */
 let contacts = [
+  
   {
     id: 1,
     name: "anton mayer",
@@ -416,6 +447,7 @@ function createPartingLine(main) {
  * @function generateContactsContainerHTML
  * @returns {string} The HTML code for the contacts container.
  */
+
 function generateContactsContainerHTML() {
   return `
   <div id="addContact" class="add-contact d-none">
@@ -436,28 +468,31 @@ function generateContactsContainerHTML() {
               <img src="./assets/img/add.contact-badge.png" alt="">
           </div>
       </div>
-      <form action="#" onsubmit="createContact(); return false" class="add-contact-input-group">
-      <div class="input-frame">
-          <input id="contactName" type="text" placeholder="Name" autofocus required>
-          <img src="./assets/img/icon-person.png" alt="">
-      </div>
-      <div class="input-frame">
-          <input id="contactMail" type="email" placeholder="Email" autofocus required>
-          <img src="./assets/img/icon-mail.png" alt="">
-      </div>
-      <div class="input-frame">
-          <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required pattern="[0-9]+">
-          <img src="./assets/img/icon-call.png" alt="">
-      </div>
-      <div id="addContactButton" class="addContactButton">
-          <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()" onmouseout="restoreCancelIcon()">Cancel
-              <img id="cancelIcon" src="./assets/img/icon-cancel.png" alt="">
-          </button>
-          <button class="createButton" onclick="createContact()">Create contact
-          <img id="createIcon" src="./assets/img/icon-check.png" alt="">
-      </button>
-      </div>
-      </form>
+      <form onsubmit="saveContact(); return false" class="add-contact-input-group">
+                            <div class="input-frame">
+                                <input id="contactName" type="text" placeholder="Name" autofocus required>
+                                <img src="./assets/img/icon-person.png" alt="">
+                            </div>
+                            <div class="input-frame">
+                                <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                                <img src="./assets/img/icon-mail.png" alt="">
+                            </div>
+                            <div class="input-frame">
+                                <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
+                                <img src="./assets/img/icon-call.png" alt="">
+                            </div>
+                            <div id="addContactButton" class="addContactButton">
+                                <button class="cancelButton" onmouseover="changeCancelIcon()"
+                                    onmouseout="restoreCancelIcon()">Cancel
+                                    <img id="cancelIcon" onclick="closeAddContact()" src="./assets/img/icon-cancel.png"
+                                        alt="">
+                                </button>
+                                <button id="createBtn" class="createButton">Create contact
+                                    <img id="createIcon" src="./assets/img/icon-check.png"
+                                        alt="">
+                                </button>
+                            </div>
+                        </form>
   </div>
 </div>
         <div class="contacts-container" id="contacts-container"> 
@@ -736,6 +771,7 @@ function restoreCancelIcon() {
  * @function createContact
  * @returns {void}
  */
+/*
 function createContact() {
   const nameInput = document.getElementById("contactName");
   const mailInput = document.getElementById("contactMail");
@@ -764,7 +800,7 @@ function createContact() {
     notificationElement.textContent = "Bitte füllen Sie alle Felder korrekt aus.";
   }
 }
-
+*/
 
 /**
  * Generates a random color from a predefined list of colors.
@@ -795,6 +831,7 @@ function generateRandomColor() {
  * 
  * @param {object} contact - The contact to be saved.
  */
+/*
 async function saveContact(contact) {
   try {
     const key = contact.id;
@@ -815,9 +852,9 @@ async function saveContact(contact) {
   } catch (error) {
     console.error("Fehler beim Speichern des Kontakts:", error);
   }
-}
+}*/
 
-
+/*
 async function loadContactsStorrage() {
   try {
     const response = await fetch(STORAGE_URL);
@@ -828,4 +865,5 @@ async function loadContactsStorrage() {
   }
 }
 
-// load contacts()
+
+*/

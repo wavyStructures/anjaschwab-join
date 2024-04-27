@@ -2,8 +2,8 @@
  * Token-Generator: https://remote-storage.developerakademie.org/token-generator
  */
 
-const STORAGE_TOKEN = '441D59WVPL1TM4PQXPZBMD2DVHMTLLM72U8YTPTA'
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item'
+const STORAGE_TOKEN = '441D59WVPL1TM4PQXPZBMD2DVHMTLLM72U8YTPTA';
+const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 
 /**
