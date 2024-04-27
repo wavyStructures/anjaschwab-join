@@ -75,8 +75,33 @@ async function updateLoggedUsers() {
     console.log('loggedUsers after pushing', loggedUsers);
 }
 
-
 console.log('after loginUser() and pushing the loggedUsers-array is:', loggedUsers);
+
+function toggleRememberMeCheckbox() {
+    let rememberMeCheckbox = document.getElementById('loginCheckbox');
+    let rememberMeCheckboxImg = document.querySelector('#loginCheckbox img');
+    console.log('rememberMeCheckboxImg is: ', rememberMeCheckboxImg);
+    if (rememberMeCheckboxImg.contains("unchecked")) {
+        rememberMeCheckboxImg.src = "/"
+    }
+}
+
+let privacyCheckbox = document.getElementById('privacyCheckbox');
+let checkBoxImage = document.querySelector('.checkboxBox img');
+checkBoxImage.src = `../../assets/img/icon-check_button_unchecked.png`;
+
+privacyCheckbox.addEventListener('click', function () {
+    if (checkBoxImage.src.includes('unchecked.png')) {
+        checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
+
+    } else {
+        checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
+    }
+});
+
+
+
+
 function gotoSignUp() {
     switchPage('signUp.html');
 }
