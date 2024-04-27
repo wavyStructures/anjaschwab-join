@@ -1,60 +1,72 @@
-/**
- * init-function run at on loading the body
- */
-async function signUpInit() {
-    console.log("signUpInit() called")
-    try {
-        await loadUsers();
-        console.log("loadUsers() successful")
-    } catch (error) {
-        console.error("loadUsers() failed", error)
-    }
-    console.log("USERS: ", users)
-    username = document.getElementById('signUpNameInput');
-    email = document.getElementById('signUpEmailInput');
-    password = document.getElementById('signUpPasswordInput');
-    registerBtn = document.getElementById('registerBtn');
-}
-
-
-
 let users = [];
 let username = document.getElementById('signUpNameInput');
-let email = document.getElementById('signUpEmailInput');
+let mail = document.getElementById('signUpEmailInput');
 let password = document.getElementById('signUpPasswordInput');
 
 
 /**
- * get the users from remote storage
+ * init-function run at on loading the body
+ */
+async function signUpInit() {
+    // try {
+    //     await loadUsers();
+    //     console.log("loadUsers() successful")
+    // } catch (error) {
+    //     console.error("loadUsers() failed", error)
+    // }
+
+    username = document.getElementById('signUpNameInput');
+    mail = document.getElementById('signUpEmailInput');
+    password = document.getElementById('signUpPasswordInput');
+    registerBtn = document.getElementById('registerBtn');
+}
+
+/**
+ * get the users from local storage
  */
 async function loadUsers() {
     try {
-        users = JSON.parse(await getItem('users'));
+        users = getArray('users');
     } catch (e) {
-        console.error('Loading error: ', e);
+        console.error('loadUsers error: ', e);
     }
 }
 
 
 /**
- * add new user to users and save it to remote storage
+ * add new user to users and save it to local storage
  */
-async function addUser() {
+// async 
+function addUser() {
     let registerBtn = document.getElementById("registerBtn");
     registerBtn.disabled = true;
 
+    //TODO  sollte hier Abfrage ob bereits vorhanden???
+
     let username = document.getElementById('signUpNameInput');
-    let email = document.getElementById('signUpEmailInput');
+    let mail = document.getElementById('signUpEmailInput');
     let password = document.getElementById('signUpPasswordInput');
     users.push(
         {
             username: username.value,
-            email: email.value,
+            mail: mail.value,
             password: password.value
         });
 
-    await setItem('users', JSON.stringify(users));
+    // await 
+    setArray('users', users);     //TODO    brauche ich hier async und await für localStorage???
     resetForm();
+    redirectToLogin();
+}
+
+
+function setArray(key, array) {
+    localStorage.setItem(key, JSON.stringify(array))
+}
+
+
+function getArray(key) {
+    return JSON.parse(localStorage.getItem(key));
 }
 
 
@@ -62,7 +74,7 @@ async function addUser() {
  * reseting the signUp form
  */
 function resetForm() {
-    email.value = '';
+    mail.value = '';
     password.value = '';
     registerBtn.disabled = false;
 }
