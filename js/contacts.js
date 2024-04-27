@@ -7,6 +7,12 @@ const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatab
 }*/
 let contactUsers = [];
 
+
+/**
+ * Saves a contact by pushing it to the contactUsers array and storing it in local storage.
+ *
+ * @return {Promise<void>} A promise that resolves when the contact is saved.
+ */
 async function saveContact() {
       createBtn.disabled = true;
       contactUsers.push({
@@ -20,12 +26,20 @@ async function saveContact() {
     resetContactForm();
 }
 
+
+/**
+ * Resets the contact form by clearing the input fields and enabling the create button.
+ *
+ * @param {void}
+ * @return {void}
+ */
 function resetContactForm() {
     contactName.value = "";
     contactMail.value = "";
     ContactPhone.value = "";
     createBtn.disabled = false;
 }
+
 
 /**
  * Array containing contact objects.
@@ -539,6 +553,17 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
+/**
+ * Generates the HTML code for a contact card.
+ *
+ * @param {number} contactId - The unique identifier for the contact.
+ * @param {string} profileColor - The color associated with the contact's profile.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} shortEmail - The shortened version of the email address.
+ * @return {string} The HTML code for the contact card.
+ */
 function generateContactCardHTML(contactId, profileColor, initials, name, email, shortEmail) {
   let formattedName = getNameWithCapitalizedFirstLetter(name);
 
@@ -553,6 +578,13 @@ function generateContactCardHTML(contactId, profileColor, initials, name, email,
   `;
 }
 
+
+/**
+ * Capitalizes the first letter of each word in a given name.
+ *
+ * @param {string} name - The name to be capitalized.
+ * @return {string} The capitalized name.
+ */
 function getNameWithCapitalizedFirstLetter(name) {
   let [firstname, lastname, surname] = name.split(" ");
   firstname = firstname[0].toUpperCase() + firstname.slice(1);
