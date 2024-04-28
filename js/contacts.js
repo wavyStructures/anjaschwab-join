@@ -36,7 +36,7 @@ async function saveContact() {
 function resetContactForm() {
     contactName.value = "";
     contactMail.value = "";
-    ContactPhone.value = "";
+    contactPhone.value = "";
     createBtn.disabled = false;
 }
 
@@ -447,7 +447,7 @@ function generateContactsContainerHTML() {
                                 <img src="./assets/img/icon-mail.png" alt="">
                             </div>
                             <div class="input-frame">
-                                <input id="ContactPhone" type="tel" placeholder="Phone" autofocus required>
+                                <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
                                 <img src="./assets/img/icon-call.png" alt="">
                             </div>
                             <div id="addContactButton" class="addContactButton">
