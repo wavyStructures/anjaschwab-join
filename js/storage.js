@@ -39,3 +39,24 @@ TODO:
 - setItem und getItem für cards (cards[])
 */
 
+/**
+ * Sets the currently logged in user in the local storage.
+ *
+ * @param {Object} loggedUser - The user object representing the logged in user.
+ * @return {void} This function does not return anything.
+ */
+function setCurrentUser(loggedUser) {
+    localStorage.setItem('currentUser', JSON.stringify(loggedUser)); //TODO   localStorage.setItem('currentUser', loggedUser);
+    console.log('setCurrent has run and saved: ', loggedUser);
+}
+
+/**
+ * Retrieves the currently logged in user from the local storage.
+ *
+ * @return {Object} The user object representing the logged in user, parsed from the local storage.
+ */
+function getCurrentUser() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return currentUser;
+}
+
