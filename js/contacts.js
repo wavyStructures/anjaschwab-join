@@ -7,6 +7,17 @@ const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatab
 }*/
 let contactUsers = [];
 
+/**
+ * Loads the contacts.
+ * 
+ */
+async function loadContacts() {
+  try {
+      contacts = JSON.parse(await getItem('contacts'));
+  } catch (e) {
+      console.error('Loading error:', e);
+  }
+}
 
 /**
  * Saves a contact by pushing it to the contactUsers array and storing it in local storage.
