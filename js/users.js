@@ -1,7 +1,3 @@
-function setUsersRemote() {
-    setItem('users', JSON.stringify(users));
-}
-
 let users = [
     {
         id: 1,

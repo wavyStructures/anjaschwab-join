@@ -6,21 +6,26 @@
 function summaryInit() {
     includeHTML();
     getDate();
-    greeting(handedOverUser);
-
 }
 
-let userInitials = getInitials(user.name);
-console.log('userInitials', userInitials);
 
-function greeting(handedOverUser) {
+// let loggedUser = getCurrentUser();
+// console.log('loggedUser', loggedUser);
 
-    const usernameForGreeting = document.getElementById("usernameForGreeting");
+// let loggedUserName = loggedUser.name;
+// console.log('loggedUserName', loggedUserName);
 
-    console.log('inside doc EventListener:', usernameForGreeting);
-    usernameForGreeting.innerHTML = '';
-    usernameForGreeting.innerHTML = handedOverUser.name;
-}
+// let userInitials = getInitials(loggedUserName);
+// console.log('userInitials', userInitials);
+
+// function greeting(handedOverUser) {
+
+//     const usernameForGreeting = document.getElementById("usernameForGreeting");
+
+//     console.log('inside doc EventListener:', usernameForGreeting);
+//     usernameForGreeting.innerHTML = '';
+//     usernameForGreeting.innerHTML = handedOverUser.name;
+// }
 
 
 
