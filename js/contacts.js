@@ -13,7 +13,7 @@ let contactUsers = [];
  */
 async function loadContacts() {
   try {
-      contacts = JSON.parse(await getItem('contacts'));
+      contacts = JSON.parse(await getItem('contactsUsers'));
   } catch (e) {
       console.error('Loading error:', e);
   }
