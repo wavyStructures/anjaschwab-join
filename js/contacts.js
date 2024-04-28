@@ -416,7 +416,6 @@ function createPartingLine(main) {
  * @function generateContactsContainerHTML
  * @returns {string} The HTML code for the contacts container.
  */
-
 function generateContactsContainerHTML() {
   return /*html*/` 
   <div id="addContact" class="add-contact d-none">
