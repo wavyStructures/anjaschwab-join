@@ -564,7 +564,7 @@ function createContactCard(main, id, color, initials, name, mail) {
  * @param {string} shortEmail - The shortened version of the email address.
  * @return {string} The HTML code for the contact card.
  */
-function generateContactCardHTML(contactId, profileColor, initials, name, email, shortEmail) {
+function generateContactCardHTML(contactId, profileColor, initials, name, email, shorterMail) {
   let formattedName = getNameWithCapitalizedFirstLetter(name);
 
   return `
@@ -572,7 +572,7 @@ function generateContactCardHTML(contactId, profileColor, initials, name, email,
       <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
       <div>
         <span class="contact-card-name">${formattedName}</span><br>
-        <a class="contact-card-email" href="mailto:${email}">${shortEmail}</a>
+        <a class="contact-card-email" href="mailto:${email}">${shorterMail}</a>
       </div>
     </div>
   `;
@@ -604,8 +604,8 @@ function getNameWithCapitalizedFirstLetter(name) {
  */
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
-  const { name, email, phone } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(name, email, phone);
+  const { name, mail, phone } = contact;
+  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone);
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
