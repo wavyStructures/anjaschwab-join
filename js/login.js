@@ -20,8 +20,6 @@ function loginInit() {
 }
 
 
-
-
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
  * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.

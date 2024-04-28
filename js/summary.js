@@ -6,7 +6,13 @@
 function summaryInit() {
     includeHTML();
     getDate();
+    greet();
 }
+
+let loggedUser = getCurrentUser('currentUser');
+console.log('loggedUser', loggedUser);
+
+
 
 
 // let loggedUser = getCurrentUser();

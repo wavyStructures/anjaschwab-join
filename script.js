@@ -26,6 +26,7 @@ async function includeHTML() {
 			element.innerHTML = "Page not found";
 		}
 	}
+	showInitials();
 }
 
 /**
@@ -100,13 +101,32 @@ function renderContacts() {
 }
 
 
+
+/***************************************ab hier links und render für Header-Elemente********************************* */
 /**
  * open help page
  */
 function openHelp() {
 	switchPage('help.html');
 }
-// /**
+
+
+/**
+ * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
+ */
+function showInitials() {
+	let userAsString = localStorage.getItem('currentUser');
+	let userName = JSON.parse(userAsString).name;
+
+	if (userName) {
+		let userInitials = getInitials(userName);
+		document.getElementById('userInitials').innerHTML =
+			userInitials;
+	} else {
+		document.getElementById('userInitials').innerHTML = 'G';
+	}
+}
+
 
 
 /**
