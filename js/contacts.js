@@ -302,50 +302,6 @@ function renderSortedContacts(main, sortedContacts) {
 
 
 /**
- * Loads the contacts from remote storage and renders them into the main element.
- *
- * @function loadContacts
- * @returns {void}
- */
-/*
-async function loadContacts() {
-  try {
-    const contactsData = await getItem("contacts");
-    const contacts = JSON.parse(contactsData);
-
-    // Sort contacts by last name
-    const sortedContacts = contacts.sort((a, b) => {
-      const lastNameA = a.name.split(" ")[1].toLowerCase();
-      const lastNameB = b.name.split(" ")[1].toLowerCase();
-      return lastNameA.localeCompare(lastNameB);
-    });
-
-    // Clear existing contacts
-    const main = document.getElementById("main");
-    main.innerHTML = ``;
-    createContactsContainer(main);
-
-    const currentFirstLetters = [];
-
-    sortedContacts.forEach((contact) => {
-      const { id, name, mail, phone, contactColor } = contact;
-      const initials = getInitials(name);
-      const firstLetter = name.charAt(0).toUpperCase();
-
-      if (!currentFirstLetters.includes(firstLetter)) {
-        createFirstLetter(main, firstLetter);
-        currentFirstLetters.push(firstLetter);
-      }
-
-      createContactCard(main, id, contactColor, initials, name, mail);
-    });
-  } catch (error) {
-    console.error("Fehler beim Laden der Kontakte:", error);
-  }
-}*/
-
-
-/**
  * Displays the add contact card by removing the d-none class from the corresponding container.
  *
  * @function addContactCard
@@ -552,6 +508,7 @@ function createContactCard(main, id, color, initials, name, mail) {
     .querySelector(".contact-list")
     .insertAdjacentHTML("beforeend", cardHTML);
 }
+
 
 /**
  * Generates the HTML code for a contact card.
@@ -792,8 +749,6 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
-
-
 
 
 /**
