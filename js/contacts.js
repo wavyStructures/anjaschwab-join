@@ -442,7 +442,6 @@ function generateContactsContainerHTML() {
       <span>Add Contact</span>
       <p>Tasks are better with a team!</p>
   </div>
-  
   <div class="add-contact-bottom">
       <div class="profile-badge-group-add-contact">
           <div class="profile-badge-add-contact">
