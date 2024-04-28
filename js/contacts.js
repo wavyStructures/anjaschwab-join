@@ -223,7 +223,7 @@ let contacts = [
   },
   {
     id: 22,
-    name: "ulrich maria fuchs",
+    name: "ulrich anton fuchs",
     mail: "ulrich@gmail.com",
     password: "ulrich",
     phone: "+49 1111 111 11 22",
