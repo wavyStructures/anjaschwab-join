@@ -794,44 +794,7 @@ function restoreCancelIcon() {
 }
 
 
-/**
- * Creates a new contact based on the input values from the form,
- * assigns a random color to the contact, adds it to the contacts array,
- * clears the form inputs, and reloads the contacts.
- *
- * @function createContact
- * @returns {void}
- */
-/*
-function createContact() {
-  const nameInput = document.getElementById("contactName");
-  const mailInput = document.getElementById("contactMail");
-  const phoneInput = document.getElementById("ContactPhone");
 
-  if (nameInput.checkValidity() && mailInput.checkValidity() && phoneInput.checkValidity()) {
-    const name = nameInput.value.trim();
-    const mail = mailInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const newContact = {
-      id: contacts.length + 1,
-      name: name,
-      mail: mail,
-      phone: phone,
-      contactColor: generateRandomColor(),
-    };
-    contacts.push(newContact);
-    nameInput.value = "";
-    mailInput.value = "";
-    phoneInput.value = "";
-
-    loadContacts();
-    saveContact(newContact);
-  } else {
-    const notificationElement = document.getElementById("notification");
-    notificationElement.textContent = "Bitte füllen Sie alle Felder korrekt aus.";
-  }
-}
-*/
 
 /**
  * Generates a random color from a predefined list of colors.
@@ -855,35 +818,6 @@ function generateRandomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
-
-
-/**
- * Saves a contact in the remote storage.
- * 
- * @param {object} contact - The contact to be saved.
- */
-/*
-async function saveContact(contact) {
-  try {
-    const key = contact.id;
-    const payload = {
-      key: key,
-      value: JSON.stringify(contact),
-      token: STORAGE_TOKEN
-    };
-    const response = await fetch(STORAGE_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
-    console.log("Kontakt erfolgreich gespeichert:", data);
-  } catch (error) {
-    console.error("Fehler beim Speichern des Kontakts:", error);
-  }
-}*/
 
 /*
 async function loadContactsStorrage() {
