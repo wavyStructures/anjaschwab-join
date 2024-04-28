@@ -418,7 +418,7 @@ function createPartingLine(main) {
  */
 
 function generateContactsContainerHTML() {
-  return `
+  return /*html*/` 
   <div id="addContact" class="add-contact d-none">
   <div class="add-contact-header">
       <div class="add-contact-header-close">
@@ -524,7 +524,7 @@ function createContactCard(main, id, color, initials, name, mail) {
 function generateContactCardHTML(contactId, profileColor, initials, name, email, shorterMail) {
   let formattedName = getNameWithCapitalizedFirstLetter(name);
 
-  return `
+  return /*html*/`
     <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
       <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
       <div>
@@ -688,7 +688,7 @@ function applyHighlight(selectedContactCard, rightSideElement) {
  * @returns {string} The HTML code for displaying contact details.
  */
 function generateContactDetailsHTML(name, email, phone) {
-  return `
+  return /*html*/`
     <div class="contact-Details">
       <div class="contact-details-header" id="contactDetailsHeader">
         <div class="contact-details-badge-group">
