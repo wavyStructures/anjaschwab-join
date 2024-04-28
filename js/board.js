@@ -4,8 +4,16 @@ let tasks = [
         'type': 'User Story',
         'title': 'Kochwelt Page & Recipe Recommender',
         'description': 'Build start page with recipe recommendation...',
-        'subtasks': 2,
-        'completedSubtasks': 1,
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'Bügeln',
+            'completed': false
+        },
+        {
+            'id': 1,
+            'subtask': 'Kochen',
+            'completed': true
+        }],
         'assignedTo': [21],
         'category': 'todo',
         'priority': 'low',
@@ -16,8 +24,10 @@ let tasks = [
         'type': 'Technical Task',
         'title': 'HTML Base Template Creation',
         'description': 'Create reusable HTML base templates...',
-        'subtasks': 2,
-        'completedSubtasks': 0,
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'Bügeln',
+            'completed': false}],
         'assignedTo': [21, 2, 5],
         'category': 'awaitFeedback',
         'priority': 'medium',
@@ -28,10 +38,18 @@ let tasks = [
         'type': 'User Story',
         'title': 'Daily Kochwelt Recipe',
         'description': 'Implement daily recipe and portion calculator...',
-        'subtasks': 2,
-        'completedSubtasks': 0,
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'building calculator',
+            'completed': true
+        },
+        {
+            'id': 1,
+            'subtask': 'insert to main-project',
+            'completed': true
+        }],
         'assignedTo': [17],
-        'category': 'inProgress',
+        'category': 'done',
         'priority': 'urgend',
         'dueDate': "welches Format?"
     },
@@ -40,8 +58,16 @@ let tasks = [
         'type': 'Technical Task',
         'title': 'CSS Architecture Planning',
         'description': 'Define CSS naming conventions and structure...',
-        'subtasks': 2,
-        'completedSubtasks': 1,
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'watching Kevin Powells video',
+            'completed': true
+        },
+        {
+            'id': 1,
+            'subtask': 'rebuild Kevins code',
+            'completed': false
+        }],
         'assignedTo': [9, 18],
         'category': 'todo',
         'priority': 'low',
@@ -52,10 +78,18 @@ let tasks = [
         'type': 'Technical Task',
         'title': 'Cooking lunch',
         'description': 'Define CSS naming conventions and structure...',
-        'subtasks': 2,
-        'completedSubtasks': 2,
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'Making Noodles',
+            'completed': false
+        },
+        {
+            'id': 1,
+            'subtask': 'Making Sauce',
+            'completed': false
+        }],
         'assignedTo': [9],
-        'category': 'done',
+        'category': 'inProgress',
         'priority': 'low',
         'dueDate': "welches Format?"
     }
@@ -157,14 +191,14 @@ function searchTask() {
 
 
 function renderSubtask(task) {
-    let countSubtasks = tasks['subtasks'];
-    let completedSubtasks = tasks['completedSubtasks'];
+    let countSubtasks = +Object.keys(task['subtasks']).length;
+    let completedSubtasks = task['subtasks'].filter(subtask => subtask['completed'] == true).length;
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
     if (countSubtasks == 0) {
         return `Nothing`
     } else {
-        return `<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${task['completedSubtasks']}/${task["subtasks"]} Subtasks</div>`
+        return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
     }
 
 }

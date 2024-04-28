@@ -10,6 +10,7 @@ function addTask(category){
 let tempAssignedContacts = [];
 let tempCategory = '';
 let tempPriority = '';
+let tempSubtasks = [];
 
 let newTask = 
     {
@@ -17,6 +18,9 @@ let newTask =
         'type': '',
         'title': '',
         'description': '',
+        'subtasks': [{
+            'id': 0,
+            'subtask': 'Bügeln'}],
         'subtasks': 0,
         'completedSubtasks': 0,
         'assignedTo': [],
