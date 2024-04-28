@@ -18,7 +18,7 @@ async function saveContact() {
       contactUsers.push({
       name: contactName.value,
       mail: contactMail.value,
-      phone: ContactPhone.value,
+      phone: contactPhone.value,
       contactColor: generateRandomColor(),
     });
     await setItem('contactUsers', JSON.stringify(contactUsers));
