@@ -5,19 +5,32 @@ const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatab
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
       .then(res => res.json());
 }*/
-let contactUsers = [];
+let contacts = [];
 
 
 /**
  * Loads the contacts.
  * 
  */
-async function loadContacts() {
+async function loadContactsStorrage() {
   try {
-      contacts = JSON.parse(await getItem('contactsUsers'));
+      contacts = JSON.parse(await getItem('contacts'));
+      console.log('contacts: ', contacts);
+      
   } catch (e) {
       console.error('Loading error:', e);
   }
+    loadContacts();
+}
+
+function getNextId(contactsArray) {
+  let maxId = 0;
+  contactsArray.forEach(contact => {
+      if (contact.id > maxId) {
+          maxId = contact.id;
+      }
+  });
+  return maxId + 1;
 }
 
 
@@ -28,15 +41,19 @@ async function loadContacts() {
  */
 async function saveContact() {
       createBtn.disabled = true;
-      contactUsers.push({
+      const newId = getNextId(contacts);
+      contacts.push({
+      id: newId,
       name: contactName.value,
       mail: contactMail.value,
       phone: contactPhone.value,
       contactColor: generateRandomColor(),
     });
-    await setItem('contactUsers', JSON.stringify(contactUsers));
+    await setItem('contacts', JSON.stringify(contacts));
 
     resetContactForm();
+    closeAddContact();
+    await loadContactsStorrage();
 }
 
 
@@ -64,6 +81,7 @@ function resetContactForm() {
  * @property {string} phone - The phone number of the contact.
  * @property {string} contactColor - The color associated with the contact.
  */
+/*
 let contacts = [
   
   {
@@ -242,7 +260,7 @@ let contacts = [
     phone: "+49 1111 111 11 22",
     contactColor: "#ff9999"
   },
-];
+];*/
 
 
 /**
@@ -252,7 +270,7 @@ let contacts = [
  */
 function contactsInit() {
   includeHTML();
-  loadContacts();
+  loadContactsStorrage();
 }
 
 
@@ -795,3 +813,9 @@ async function loadContactsStorrage() {
     console.error("Fehler beim Laden der Kontakte:", error);
   }
 }*/
+
+async function delAllContacts() {
+  contacts = [];
+  await setItem('contacts', JSON.stringify(contacts));
+  console.log("contacts: ", contacts)
+}
