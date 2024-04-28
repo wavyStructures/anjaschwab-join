@@ -8,6 +8,8 @@ function addTask(category){
     console.log("Add function to addTask-Buttons");
 }
 let tempAssignedContacts = [];
+let tempCategory = '';
+let tempPriority = '';
 
 let newTask = 
     {
@@ -31,6 +33,11 @@ let newTask =
  * @param {string} priority - The selected priority ('Urgent', 'Medium', or 'Low').
  */
 function setPriority(priority) {
+    setPriorityAppearance(priority);
+    setPriorityForNewCard(priority);
+}
+
+function setPriorityAppearance(priority){
     document.querySelectorAll('.addTaskPriorityButton').forEach(button => {
         button.style.backgroundColor = 'white';
         button.classList.remove('active');
@@ -43,6 +50,10 @@ function setPriority(priority) {
     button.classList.add('active');
     button.querySelector('.priorityButtonText').style.color = 'white';
     button.querySelector('img').src = `./assets/img/icon-priority_${priority.toLowerCase()}_white.png`;
+}
+
+function setPriorityForNewCard(priority){
+    tempPriority = priority;
 }
 
 
@@ -155,12 +166,19 @@ function toggleAssignedContactsContainer(){
     }
 }
 
-function chooseCategory(category){
+function chooseCategory(chosenCategory){
     let dropdownContentContainer = document.getElementById('dropdown-content-category')
     let categoryContainer = document.getElementById('dropdown-category-title');
-    categoryContainer.innerHTML = category;
+    categoryContainer.innerHTML = chosenCategory;
     dropdownContentContainer.classList.add('d-none');
+    setCategory(chosenCategory);
 }
+
+function setCategory(chosenCategory){
+    category = chosenCategory;
+}
+
+
 
 function fetchInformationsForNewCard(){
     newTask.id = getNewTaskId();
@@ -203,6 +221,8 @@ function getNewTaskTitle(){
 }
 
 
+
+
 /**
  * Retrieves the description of the new task from the 'addTaskDescriptionInput' element.
  *
@@ -223,10 +243,10 @@ function getNewTaskAssignedTo(){
     return tempAssignedContacts;
 }
 function getNewTaskCategory(){
-    return
+    return tempCategory;
 }
 function getNewTaskPriority(){
-    return
+    return tempPriority;
 }
 
 

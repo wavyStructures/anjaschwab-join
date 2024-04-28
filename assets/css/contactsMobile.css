@@ -470,7 +470,7 @@ body {
     border: 1px solid var(--version-2-main-color);
     box-sizing: border-box;
     padding: var(--padding-sm) var(--padding-mini);
-    z-index: 100;
+    z-index: 100sw;
     bottom: 50px;
     right: 50px;
 }
