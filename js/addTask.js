@@ -1,6 +1,7 @@
 function addTaskInit(){
     includeHTML();
     renderContactsToDropdown();
+    renderSubtasks();
 }
 
 function addTask(category){
@@ -18,7 +19,21 @@ let newTask =
         'type': '',
         'title': '',
         'description': '',
-        'subtasks': [],
+        'subtasks': [{
+            'id': 0,
+            'subtaskText': 'Bügeln',
+            'completed': false
+        },
+        {
+            'id': 1,
+            'subtaskText': 'Making Noodles',
+            'completed': false
+        },
+        {
+            'id': 2,
+            'subtaskText': 'Making Sauce',
+            'completed': false
+        }],
         'completedSubtasks': 0,
         'assignedTo': [],
         'category': '',
@@ -108,7 +123,6 @@ function addSubtask(){
             console.log("Bitte eingeben!");
         }
 
-    console.log(newTask.subtasks);
     renderSubtasks();
 }
 
@@ -124,13 +138,34 @@ function renderSubtasks(){
 
 
 function renderSubtaskHTML(outputContainer, subtask){
+    console.log(subtask.id);
     outputContainer.innerHTML +=
     /*html*/`
-        <div class="subTaskOutputDiv" id="subtask${subtask.id}">
-        <div class="subtaskText">${subtask.subtaskText}</div>
-        <div class="subtaskCheckbox"><img src="./assets/img/" alt="checkbox"></div>
-    </div>`
+        <div class="subTaskOutputDiv">
+            <div class="subtaskText">${subtask.subtaskText}</div>
+            <div class="subtaskCheckboxes">
+                <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>|
+                <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div>
+            </div>
+        </div>`
 }
+
+/**
+ * Deletes a subtask from the `newTask.subtasks` array based on the provided `subtaskId`.
+ *
+ * @param {number} subtaskId - The ID of the subtask to be deleted.
+ */
+function deleteSubtask(subtaskId){
+    newTask.subtasks.forEach((subtask, index) => {
+        if (subtask.id == subtaskId){
+            newTask.subtasks.splice(index, 1);
+        }
+    })
+    renderSubtasks();
+}
+
+
+
 
 /**
  * Returns the background color for a given priority level.

@@ -183,6 +183,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 
 }
+
 .dropdownOption:hover {
     background-color: var(--clr-contact-hover);
 }
@@ -246,59 +247,91 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2), 0 3px 1px -1px var(--clr-prio-urgent)
 }
 
-.subtaskBottom{
+.subtaskBottom {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    input{
+    input {
         border-bottom: none;
     }
 }
 
-.subtaskAddOrCancel{
+.subtaskAddOrCancel {
     display: flex;
     align-items: center;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.no-scroll{
+.no-scroll {
     overflow: visible;
 }
 
-.subtaskImgDiv{
+.subtaskImgDiv {
     width: 24px;
     aspect-ratio: 1;
-    
+    cursor: pointer;
+
+
     &* {
         background-position: center;
     }
 
 }
-    #subtaskImgAddCheck{
-        background-image: url('../img/icon-check_blue.png');
 
-        &:hover{
-            background-image: url('../img/icon-check_blue_hover.png');
-        }
+#subtaskImgAddCheck {
+    background-image: url('../img/icon-check_blue.png');
 
-    }
-    #subtaskImgAddCancel{
-        background-image: url('../img/icon-cancel.png');
-
-        &:hover{
-            background-image: url('../img/icon-cancel_hover.png');
-        }
+    &:hover {
+        background-image: url('../img/icon-check_blue_hover.png');
     }
 
-    #subtaskImgAddPlus{
-        background-image: url('../img/icon-plus_blue.png');
+}
 
-        &:hover{
-            background-image: url('../img/icon-plus_blue_hover.png');
-        }
+#subtaskImgAddCancel {
+    background-image: url('../img/icon-cancel.png');
+
+    &:hover {
+        background-image: url('../img/icon-cancel_hover.png');
     }
+}
+
+#subtaskImgAddPlus {
+    background-image: url('../img/icon-plus_blue.png');
+
+    &:hover {
+        background-image: url('../img/icon-plus_blue_hover.png');
+    }
+}
+
+.subTaskOutputDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+
+.subtaskCheckboxes{
+    display: flex;
+    flex-direction: row;
+}
+
+#subtaskImgDelete {
+    background-image: url("../img/icon-delete.png");
+
+    &:hover {
+        background-image: url("../img/icon-delete_hover.png");
+    }
+}
+#subtaskImgEdit {
+    background-image: url("../img/icon-edit.png");
+
+    &:hover {
+        background-image: url("../img/icon-edit_hover.png");
+    }
+}
