@@ -7,7 +7,6 @@ const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatab
 }*/
 let contacts = [];
 
-
 /**
  * Loads the contacts.
  * 
@@ -20,7 +19,7 @@ async function loadContactsStorrage() {
   } catch (e) {
       console.error('Loading error:', e);
   }
-    loadContacts();
+
 }
 
 
@@ -275,9 +274,10 @@ let contacts = [
  *
  * @return {void} This function does not return anything.
  */
-function contactsInit() {
+async function contactsInit() {
   includeHTML();
-  loadContactsStorrage();
+  await loadContactsStorrage();
+  loadContacts();
 }
 
 

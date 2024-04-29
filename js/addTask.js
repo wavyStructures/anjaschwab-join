@@ -1,7 +1,9 @@
-function addTaskInit(){
+async function addTaskInit(){
     includeHTML();
     renderContactsToDropdown();
     renderSubtasks();
+    await loadContactsStorrage();
+    
 }
 
 function addTask(category){
@@ -346,7 +348,7 @@ function getNewTaskDescription(){
 
 
 function getNewTaskSubtasks(){
-    return
+    return tempSubtasks;
 }
 function getNewTaskCompletedSubtasks(){
     return

@@ -136,10 +136,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .addTask-custom-select {
-    /* background-color: red; */
     font-size: 1.188rem;
-    /* background: #4d5061; */
-    /* color: white; */
     position: relative;
 }
 
@@ -150,7 +147,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 0;
     right: 0;
-    /* background: #3b3c47; */
     height: 99%;
     width: 1.5rem;
     pointer-events: none;
@@ -177,11 +173,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
-    /* padding: 5px; */
-    /* border-radius: 5px; */
-    /* border-bottom: 1px solid lightgray; */
-    cursor: pointer;
-
 }
 
 .dropdownOption:hover {
@@ -318,16 +309,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     &:hover .subtaskCheckboxes{
         visibility: visible;
+    }
 }
-
 
 .subtaskCheckboxes{
     display: flex;
     flex-direction: row;
     visibility: hidden;
 }
-
-
 
 #subtaskImgDelete {
     background-image: url("../img/icon-delete.png");
@@ -336,6 +325,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         background-image: url("../img/icon-delete_hover.png");
     }
 }
+
 #subtaskImgEdit {
     background-image: url("../img/icon-edit.png");
 
