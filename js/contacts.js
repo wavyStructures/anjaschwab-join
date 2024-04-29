@@ -339,6 +339,8 @@ function renderSortedContacts(main, sortedContacts) {
 }
 
 
+
+
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
  *
@@ -352,6 +354,7 @@ function addContactCard() {
 
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
+    overlay.onclick = closeAddContact; // funktioniert noch nicht, bin etwas ratlos, wenn ich das in die main schreibe, dann wird es sofort ausgeführt
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
@@ -487,9 +490,9 @@ function generateContactsContainerHTML() {
                                 <img src="./assets/img/icon-call.png" alt="">
                             </div>
                             <div id="addContactButton" class="addContactButton">
-                                <button class="cancelButton" onmouseover="changeCancelIcon()"
+                                <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()"
                                     onmouseout="restoreCancelIcon()">Cancel
-                                    <img id="cancelIcon" onclick="closeAddContact()" src="./assets/img/icon-cancel.png"
+                                    <img id="cancelIcon"  src="./assets/img/icon-cancel.png"
                                         alt="">
                                 </button>
                                 <button id="createBtn" class="createButton">Create contact
