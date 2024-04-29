@@ -23,6 +23,13 @@ async function loadContactsStorrage() {
     loadContacts();
 }
 
+
+/**
+ * Finds the maximum id in the contactsArray and returns the next id.
+ *
+ * @param {Array} contactsArray - An array of contacts with ids.
+ * @return {number} The next id after the maximum id in the contactsArray.
+ */
 function getNextId(contactsArray) {
   let maxId = 0;
   contactsArray.forEach(contact => {
@@ -814,6 +821,12 @@ async function loadContactsStorrage() {
   }
 }*/
 
+
+/**
+ * Deletes all contacts by clearing the contacts array and updating the storage.
+ *
+ * @return {Promise<void>} Promise that resolves once contacts are deleted.
+ */
 async function delAllContacts() {
   contacts = [];
   await setItem('contacts', JSON.stringify(contacts));
