@@ -6,12 +6,12 @@ let tasks = [
         'description': 'Build start page with recipe recommendation...',
         'subtasks': [{
             'id': 0,
-            'subtask': 'Bügeln',
+            'subtaskText': 'Bügeln',
             'completed': false
         },
         {
             'id': 1,
-            'subtask': 'Kochen',
+            'subtaskText': 'Kochen',
             'completed': true
         }],
         'assignedTo': [21],
@@ -26,7 +26,7 @@ let tasks = [
         'description': 'Create reusable HTML base templates...',
         'subtasks': [{
             'id': 0,
-            'subtask': 'Bügeln',
+            'subtaskText': 'Bügeln',
             'completed': false}],
         'assignedTo': [21, 2, 5],
         'category': 'awaitFeedback',
@@ -40,12 +40,12 @@ let tasks = [
         'description': 'Implement daily recipe and portion calculator...',
         'subtasks': [{
             'id': 0,
-            'subtask': 'building calculator',
+            'subtaskText': 'building calculator',
             'completed': true
         },
         {
             'id': 1,
-            'subtask': 'insert to main-project',
+            'subtaskText': 'insert to main-project',
             'completed': true
         }],
         'assignedTo': [17],
@@ -60,12 +60,12 @@ let tasks = [
         'description': 'Define CSS naming conventions and structure...',
         'subtasks': [{
             'id': 0,
-            'subtask': 'watching Kevin Powells video',
+            'subtaskText': 'watching Kevin Powells video',
             'completed': true
         },
         {
             'id': 1,
-            'subtask': 'rebuild Kevins code',
+            'subtaskText': 'rebuild Kevins code',
             'completed': false
         }],
         'assignedTo': [9, 18],
@@ -80,12 +80,12 @@ let tasks = [
         'description': 'Define CSS naming conventions and structure...',
         'subtasks': [{
             'id': 0,
-            'subtask': 'Making Noodles',
+            'subtaskText': 'Making Noodles',
             'completed': false
         },
         {
             'id': 1,
-            'subtask': 'Making Sauce',
+            'subtaskText': 'Making Sauce',
             'completed': false
         }],
         'assignedTo': [9],

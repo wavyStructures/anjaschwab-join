@@ -18,10 +18,7 @@ let newTask =
         'type': '',
         'title': '',
         'description': '',
-        'subtasks': [{
-            'id': 0,
-            'subtask': 'Bügeln'}],
-        'subtasks': 0,
+        'subtasks': [],
         'completedSubtasks': 0,
         'assignedTo': [],
         'category': '',
@@ -61,6 +58,80 @@ function setPriorityForNewCard(priority){
 }
 
 
+function renderSubtaskInputField(){
+    let subtaskBottom = document.getElementById('subtaskBottom');
+    subtaskBottom.setAttribute('onclick', '');
+    subtaskBottom.innerHTML = renderSubtaskInputFieldHTML();
+}
+
+function renderSubtaskInputFieldHTML(){
+   return /*html*/`
+    <input type="text" id="subtaskInputField" placeholder="Add new subtask">
+    <div class="subtaskAddOrCancel">
+        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add')"></div>|
+        <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel')"></div>
+        <!-- <img class="pointer" src="./assets/img/icon-cancel_click.png" onclick="subtaskAddOrCancel('cancel')"></div> -->
+    `
+}
+
+
+function subtaskAddOrCancel(option){
+    document.getElementById('subtaskBottom');
+    if (option == 'add'){
+        addSubtask();
+    }
+    else if (option == 'cancel'){
+        console.log("CANCELLING");
+        subtaskBottom.innerHTML = renderSubtaskCanceledHTML();
+        subtaskBottom.setAttribute('onclick', 'renderSubtaskInputField()');
+    }
+}
+
+
+function renderSubtaskCanceledHTML(){
+    return /*html*/`<div id="subTaskAddSubtaskDiv">Add subtask</div>
+    <img id="subtaskAddImg" src="./assets/img/icon-add_subtask.png" onclick="addSubtask()">`
+}
+
+
+function addSubtask(){
+    let subtaskInputField = document.getElementById('subtaskInputField');
+    if(subtaskInputField.value != ''){
+
+        newTask.subtasks.push({
+            'id': newTask.subtasks.length,
+            'subtaskText' : subtaskInputField.value,
+            'completed': false
+        })
+    }
+        else{
+            console.log("Bitte eingeben!");
+        }
+
+    console.log(newTask.subtasks);
+    renderSubtasks();
+}
+
+
+function renderSubtasks(){
+    let outputContainer = document.getElementById('subtasksOutput');
+    outputContainer.innerHTML = '';
+    for (let i = 0; i < newTask.subtasks.length; i++) {
+        let subtask = newTask.subtasks[i];
+        renderSubtaskHTML(outputContainer, subtask);
+    }
+}
+
+
+function renderSubtaskHTML(outputContainer, subtask){
+    outputContainer.innerHTML +=
+    /*html*/`
+        <div class="subTaskOutputDiv" id="subtask${subtask.id}">
+        <div class="subtaskText">${subtask.subtaskText}</div>
+        <div class="subtaskCheckbox"><img src="./assets/img/" alt="checkbox"></div>
+    </div>`
+}
+
 /**
  * Returns the background color for a given priority level.
  *
@@ -87,6 +158,7 @@ function getButtonColor(priority) {
 function renderArrow(arrowContainer, contentContainer){
     let customArrow = document.getElementById(arrowContainer)
     let arrowImg = customArrow.childNodes[1];
+    console.log(arrowImg);
     arrowImg.dataset.direction == "down"
     ? arrowImg.dataset.direction = "up"
     : arrowImg.dataset.direction = "down"
