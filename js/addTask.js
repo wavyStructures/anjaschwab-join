@@ -36,11 +36,11 @@ let newTask =
             'subtaskText': 'Making Sauce',
             'completed': false
         }],
-        'completedSubtasks': 0,
+        'completedSubtasks': [],
         'assignedTo': [],
-        'category': '',
+        'category': 'todo',
         'priority': '',
-        'dueDate': ""
+        'dueDate': ''
 };
 
 
@@ -126,7 +126,6 @@ function addSubtask(){
         else{
             console.log("Bitte eingeben!");
         }
-
     renderSubtasks();
 }
 
@@ -299,7 +298,7 @@ function fetchInformationsForNewCard(){
     newTask.type = getNewTaskType();
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
-    newTask.subtasks = getNewTaskSubtasks();
+    // newTask.subtasks = getNewTaskSubtasks();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();
     newTask.assignedTo = getNewTaskAssignedTo();
     newTask.category = getNewTaskCategory();
@@ -351,13 +350,13 @@ function getNewTaskSubtasks(){
     return tempSubtasks;
 }
 function getNewTaskCompletedSubtasks(){
-    return
+    return [];
 }
 function getNewTaskAssignedTo(){
     return tempAssignedContacts;
 }
 function getNewTaskCategory(){
-    return tempCategory;
+    return 'todo';
 }
 function getNewTaskPriority(){
     return tempPriority;

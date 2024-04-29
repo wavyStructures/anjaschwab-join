@@ -14,6 +14,7 @@ let tasks = [
             'subtaskText': 'Kochen',
             'completed': true
         }],
+        'completedSubtasks': [],
         'assignedTo': [21],
         'category': 'todo',
         'priority': 'low',
@@ -27,7 +28,9 @@ let tasks = [
         'subtasks': [{
             'id': 0,
             'subtaskText': 'Bügeln',
-            'completed': false}],
+            'completed': false
+        }],
+        'completedSubtasks': [],
         'assignedTo': [21, 2, 5],
         'category': 'awaitFeedback',
         'priority': 'medium',
@@ -48,6 +51,7 @@ let tasks = [
             'subtaskText': 'insert to main-project',
             'completed': true
         }],
+        'completedSubtasks': [],
         'assignedTo': [17],
         'category': 'done',
         'priority': 'urgend',
@@ -68,6 +72,7 @@ let tasks = [
             'subtaskText': 'rebuild Kevins code',
             'completed': false
         }],
+        'completedSubtasks': [],
         'assignedTo': [9, 18],
         'category': 'todo',
         'priority': 'low',
@@ -88,6 +93,7 @@ let tasks = [
             'subtaskText': 'Making Sauce',
             'completed': false
         }],
+        'completedSubtasks': [],
         'assignedTo': [9],
         'category': 'inProgress',
         'priority': 'low',
