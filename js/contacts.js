@@ -48,18 +48,14 @@ function getNextId(contactsArray) {
 async function saveContact() {
       createBtn.disabled = true;
       const newId = getNextId(contacts);
-      contacts.push({
-      id: newId,
-      name: contactName.value,
-      mail: contactMail.value,
-      phone: contactPhone.value,
-      contactColor: generateRandomColor(),
+      contacts.push({id: newId, name: contactName.value, mail: contactMail.value, phone: contactPhone.value, contactColor: generateRandomColor(),
     });
     await setItem('contacts', JSON.stringify(contacts));
 
     resetContactForm();
     closeAddContact();
     await loadContactsStorrage();
+    loadContacts();
 }
 
 
