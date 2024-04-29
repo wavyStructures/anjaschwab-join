@@ -354,7 +354,9 @@ function addContactCard() {
 
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
-    overlay.onclick = closeAddContact; // funktioniert noch nicht, bin etwas ratlos, wenn ich das in die main schreibe, dann wird es sofort ausgeführt
+    
+    const main = document.getElementById("main");
+    main.setAttribute("onclick", "closeAddContact()");
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
