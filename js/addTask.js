@@ -75,8 +75,12 @@ function setPriorityForNewCard(priority){
 
 function renderSubtaskInputField(){
     let subtaskBottom = document.getElementById('subtaskBottom');
-    subtaskBottom.setAttribute('onclick', '');
+    subtaskBottom.setAttribute('onclick', 'test()');
     subtaskBottom.innerHTML = renderSubtaskInputFieldHTML();
+}
+
+function test(){
+    console.log("TEST");
 }
 
 function renderSubtaskInputFieldHTML(){
@@ -85,27 +89,30 @@ function renderSubtaskInputFieldHTML(){
     <div class="subtaskAddOrCancel">
         <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add')"></div>|
         <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel')"></div>
-        <!-- <img class="pointer" src="./assets/img/icon-cancel_click.png" onclick="subtaskAddOrCancel('cancel')"></div> -->
     `
 }
 
 
 function subtaskAddOrCancel(option){
-    document.getElementById('subtaskBottom');
+    let subtaskBottom = document.getElementById('subtaskBottom');
+    console.log(subtaskBottom);
     if (option == 'add'){
         addSubtask();
     }
     else if (option == 'cancel'){
-        console.log("CANCELLING");
-        subtaskBottom.innerHTML = renderSubtaskCanceledHTML();
-        subtaskBottom.setAttribute('onclick', 'renderSubtaskInputField()');
+        //TODO: else if can be deleted
+        console.log('Cancelling...');
     }
+    subtaskBottom.innerHTML = renderSubtaskDefaultHTML();
+    subtaskBottom.setAttribute('onclick', 'renderSubtaskInputField()');
 }
 
 
-function renderSubtaskCanceledHTML(){
+function renderSubtaskDefaultHTML(){
+    console.log("To default");
     return /*html*/`<div id="subTaskAddSubtaskDiv">Add subtask</div>
-    <img id="subtaskAddImg" src="./assets/img/icon-add_subtask.png" onclick="addSubtask()">`
+        <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
+    `
 }
 
 
@@ -138,7 +145,6 @@ function renderSubtasks(){
 
 
 function renderSubtaskHTML(outputContainer, subtask){
-    console.log(subtask.id);
     outputContainer.innerHTML +=
     /*html*/`
         <div class="subTaskOutputDiv">
