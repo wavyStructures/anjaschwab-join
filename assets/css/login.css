@@ -52,12 +52,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   border-radius: 30px;
   width: fit-content;
   padding: 48px 115px;
   gap: 39px;
-  box-shadow: 0px 0px 10px 3px #00000014;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
 .h1LoginBox {

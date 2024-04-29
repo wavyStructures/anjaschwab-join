@@ -40,4 +40,15 @@
   flex-direction: column;
   gap: 15px;
   margin-bottom: 66px;
+  margin-left: 56px;
+  line-height: 19.2px;
+  /* text-align: left; */
+
+  a {
+    color: var(--clr-text-menu);
+    text-decoration: none;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+  }
 }

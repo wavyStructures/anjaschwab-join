@@ -56,7 +56,9 @@ function setCurrentUser(loggedUser) {
  * @return {Object} The user object representing the logged in user, parsed from the local storage.
  */
 function getCurrentUser() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser;
+    const currentUserJSON = localStorage.getItem('currentUser');
+    if (currentUserJSON) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return currentUser;
+    }
 }
-

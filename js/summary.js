@@ -9,29 +9,22 @@ function summaryInit() {
     greet();
 }
 
-let loggedUser = getCurrentUser('currentUser');
+let loggedUser = getCurrentUser();
 console.log('loggedUser', loggedUser);
 
-
-
-
-// let loggedUser = getCurrentUser();
-// console.log('loggedUser', loggedUser);
-
 // let loggedUserName = loggedUser.name;
-// console.log('loggedUserName', loggedUserName);
 
-// let userInitials = getInitials(loggedUserName);
-// console.log('userInitials', userInitials);
+let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
+console.log(capitalizedName);
 
-// function greeting(handedOverUser) {
 
-//     const usernameForGreeting = document.getElementById("usernameForGreeting");
+function greet() {
+    let usernameForGreeting = document.getElementById("usernameForGreeting");
+    usernameForGreeting.innerHTML = '';
+    usernameForGreeting.innerHTML = capitalizedName;
 
-//     console.log('inside doc EventListener:', usernameForGreeting);
-//     usernameForGreeting.innerHTML = '';
-//     usernameForGreeting.innerHTML = handedOverUser.name;
-// }
+}
+
 
 
 
@@ -76,13 +69,6 @@ console.log('loggedUser', loggedUser);
 //     h1GreetingUser.dataset.userType = "guest";
 //     usernameForGreeting.innerText = '';
 // }
-
-
-
-
-
-
-
 
 
 

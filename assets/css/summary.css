@@ -52,6 +52,12 @@
   max-width: fit-content;
 }
 
+.daytimeGreeting {
+  font-family: open sans;
+  font-size: 48px;
+  font-weight: 400;
+}
+
 .h1-box {
   max-width: fit-content;
   gap: 22px;
@@ -62,7 +68,7 @@
   margin-bottom: 72px;
 }
 
-[data-user-type="guest"] h1 {
+/* [data-user-type="guest"] h1 {
   font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
@@ -79,16 +85,13 @@
   height: 58px;
   width: 338px;
   margin: 9.5px 0 9.5px 22px;
-}
+} */
 
-[data-user-type="user"] #usernameForGreeting {
+#usernameForGreeting {
   max-width: fit-content;
-
   color: var(--clr-main);
   height: 58px;
-  width: 338px;
   margin: 9.5px 0 9.5px 22px;
-
   font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;

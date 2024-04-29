@@ -46,17 +46,24 @@ function addUser() {
     let username = document.getElementById('signUpNameInput');
     let mail = document.getElementById('signUpEmailInput');
     let password = document.getElementById('signUpPasswordInput');
-    users.push(
-        {
-            username: username.value,
-            mail: mail.value,
-            password: password.value
-        });
 
-    // await 
-    setArray('users', users);     //TODO    brauche ich hier async und await für localStorage???
-    resetForm();
-    redirectToLogin();
+    checkPrivacyPolicyConfirmation();
+    if (checkPrivacyPolicyConfirmation()) {
+        registerBtn.disabled = false;
+        users.push(
+            {
+                username: username.value,
+                mail: mail.value,
+                password: password.value
+            });
+
+        // await 
+        setArray('users', users);     //TODO    brauche ich hier async und await für localStorage???
+        resetForm();
+        redirectToLogin();
+    } else {
+        alert('please confirm the privacy policy');
+    }
 }
 
 
@@ -97,8 +104,9 @@ function checkPrivacyPolicyConfirmation() {
     let checkBoxImage = document.querySelector('.checkboxBox img');
 
     if (checkBoxImage.src.includes('unchecked.png')) {
-        alert('please confirm the privacy policy');
         return false;
+    } else {
+        return true;
     }
 }
 
