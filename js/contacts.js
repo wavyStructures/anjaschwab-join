@@ -591,8 +591,8 @@ function getNameWithCapitalizedFirstLetter(name) {
  */
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
-  const { name, mail, phone } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone);
+  const { name, mail, phone} = contact;
+  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id);
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
@@ -717,7 +717,7 @@ function applyHighlight(selectedContactCard, rightSideElement) {
  * @param {string} phone - The phone number of the contact.
  * @returns {string} The HTML code for displaying contact details.
  */
-function generateContactDetailsHTML(name, email, phone) {
+function generateContactDetailsHTML(name, email, phone, id) {
   return /*html*/`
     <div class="contact-Details">
       <div class="contact-details-header" id="contactDetailsHeader">
