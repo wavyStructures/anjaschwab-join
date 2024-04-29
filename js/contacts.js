@@ -363,14 +363,6 @@ function addContactCard() {
   }
 }
 
-function createEvtListener(container) {
- document.getElementById(container).addEventListener('click', function (event) {
-  event.stopPropagation();
- })
-
-}
-
-
 
 /**
  * Hides the add contact card by removing it from the DOM.
