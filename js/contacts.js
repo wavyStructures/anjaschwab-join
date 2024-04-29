@@ -355,13 +355,21 @@ function addContactCard() {
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
     
-    const main = document.getElementById("main");
+    const main = document.getElementById("bodyContent");
     main.setAttribute("onclick", "closeAddContact()");
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
   }
 }
+
+function createEvtListener(container) {
+ document.getElementById(container).addEventListener('click', function (event) {
+  event.stopPropagation();
+ })
+
+}
+
 
 
 /**
@@ -429,6 +437,9 @@ function createFirstLetter(main, firstLetter) {
 function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
+  createEvtListener('button-add-contact-card');
+  createEvtListener('addContact');
+
 }
 
 
