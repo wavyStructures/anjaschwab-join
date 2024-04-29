@@ -280,7 +280,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     &* {
         background-position: center;
     }
+}
 
+.hidden{
+    visibility: hidden;
 }
 
 #subtaskImgAddCheck {
@@ -313,13 +316,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: row;
     justify-content: space-between;
 
+    &:hover .subtaskCheckboxes{
+        visibility: visible;
 }
 
 
 .subtaskCheckboxes{
     display: flex;
     flex-direction: row;
+    visibility: hidden;
 }
+
+
 
 #subtaskImgDelete {
     background-image: url("../img/icon-delete.png");

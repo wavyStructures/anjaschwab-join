@@ -76,16 +76,15 @@ function setPriorityForNewCard(priority){
 function renderSubtaskInputField(){
     let subtaskBottom = document.getElementById('subtaskBottom');
     subtaskBottom.innerHTML = renderSubtaskInputFieldHTML();
-    stopPropagation(subtaskBottom);
 }
 
 
 function renderSubtaskInputFieldHTML(){
    return /*html*/`
-    <input type="text" id="subtaskInputField" placeholder="Add new subtask">
+    <input type="text" id="subtaskInputField" placeholder="Add new subtask" onclick="doNotClose(event)">
     <div class="subtaskAddOrCancel">
-        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add')"></div>|
-        <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel')"></div>`
+        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add'); doNotClose(event)"></div>|
+        <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel'); doNotClose(event)"></div>`
 }
 
 
