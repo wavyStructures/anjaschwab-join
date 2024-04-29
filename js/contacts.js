@@ -335,8 +335,6 @@ function renderSortedContacts(main, sortedContacts) {
 }
 
 
-
-
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
  *
