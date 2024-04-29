@@ -731,7 +731,7 @@ function generateContactDetailsHTML(name, email, phone) {
         <div class="contact-details-name-group">
           <div class="contact-details-name">${name}</div>
           <div class="contact-details-icons">
-            <div class="icon-edit">
+            <div class="icon-edit" onclick="editContact(${id})">
               <img src="./assets/img/icon-edit.png" alt="">Edit
             </div>
             <div class="icon-delete">
@@ -815,3 +815,26 @@ async function delAllContacts() {
   await setItem('contacts', JSON.stringify(contacts));
   console.log("contacts: ", contacts)
 }
+
+
+/**
+ * Edits the contact with the specified ID.
+ *
+ * @param {number} id - The unique identifier of the contact to be edited.
+ * @returns {void}
+ */
+function editContact(id) {
+  const contactIndex = contacts.findIndex(contact => contact.id === id);
+  if (contactIndex !== -1) {
+    const contact = contacts[contactIndex];
+    // Logik zum Bearbeiten des Kontakts implementieren,
+    // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
+    // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
+    console.log("Editing contact:", contact);
+  } else {
+    console.error("Contact not found with ID:", id);
+  }
+}
+
+
+// functio delete contact
