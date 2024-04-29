@@ -1,8 +1,8 @@
 async function addTaskInit(){
     includeHTML();
+    await loadContactsStorrage();
     renderContactsToDropdown();
     renderSubtasks();
-    await loadContactsStorrage();
     
 }
 
