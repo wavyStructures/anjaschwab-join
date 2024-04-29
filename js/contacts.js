@@ -355,8 +355,8 @@ function addContactCard() {
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
     
-    const main = document.getElementById("bodyContent");
-    main.setAttribute("onclick", "closeAddContact()");
+    const bodyContent = document.getElementById("bodyContent");
+    bodyContent.setAttribute("onclick", "closeAddContact()");
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
@@ -429,9 +429,6 @@ function createFirstLetter(main, firstLetter) {
 function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
-  createEvtListener('button-add-contact-card');
-  createEvtListener('addContact');
-
 }
 
 
@@ -464,7 +461,7 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/` 
-  <div id="addContact" class="add-contact d-none">
+  <div id="addContact" class="add-contact d-none" onclick="doNotClose(event)">
   <div class="add-contact-header">
       <div class="add-contact-header-close">
           <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
@@ -510,7 +507,7 @@ function generateContactsContainerHTML() {
 </div>
         <div class="contacts-container" id="contacts-container"> 
         
-            <div class="button-add-contact-card" id="button-add-contact-card"> 
+            <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
                 <div onclick="addContactCard()" class="button-add-contact"> 
                     <div class="add-new-contact">Add new contact</div>
                     <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
