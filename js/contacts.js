@@ -1,10 +1,5 @@
 const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/';
 
-/*async function setItem(key, value) {
-    const payload = { key, value };
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-      .then(res => res.json());
-}*/
 let contacts = [];
 
 /**
@@ -808,17 +803,6 @@ function generateRandomColor() {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
-
-/*
-async function loadContactsStorrage() {
-  try {
-    const response = await fetch(STORAGE_URL);
-    const data = await response.json();
-    contacts = data;
-  } catch (error) {
-    console.error("Fehler beim Laden der Kontakte:", error);
-  }
-}*/
 
 
 /**
