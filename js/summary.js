@@ -10,19 +10,14 @@ function summaryInit() {
 }
 
 let loggedUser = getCurrentUser();
-console.log('loggedUser', loggedUser);
-
-// let loggedUserName = loggedUser.name;
-
 let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
-console.log(capitalizedName);
+console.log('loggedUser', loggedUser);
 
 
 function greet() {
     let usernameForGreeting = document.getElementById("usernameForGreeting");
     usernameForGreeting.innerHTML = '';
     usernameForGreeting.innerHTML = capitalizedName;
-
 }
 
 

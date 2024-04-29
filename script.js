@@ -111,6 +111,11 @@ function openHelp() {
 }
 
 
+function logout() {
+	localStorage.removeItem('currentUser');
+	switchPage('login.html');
+}
+
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
@@ -135,6 +140,7 @@ function showInitials() {
 function openSmallMenu() {
 	let content = getDiv("smallMenu");
 	content.classList.toggle("d-none");
+	content.classList.toggle("visible");
 }
 
 /**
