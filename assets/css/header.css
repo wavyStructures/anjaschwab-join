@@ -87,6 +87,11 @@
 
 .small-menu.visible {
   z-index: 1;
+  opacity: 1;
+}
+
+.opacityZero {
+  opacity: 0;
 }
 
 .helpIcon {

@@ -6,20 +6,44 @@
 function summaryInit() {
     includeHTML();
     getDate();
-    greet();
+    getUserNameForGreeting();
 }
 
-let loggedUser = getCurrentUser();
-let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
-console.log('loggedUser', loggedUser);
 
+/**
+* Retrieves the current user's name and triggers personalized greeting.
+*/
+function getUserNameForGreeting() {
+    let loggedUser = getCurrentUser();
+    if (loggedUser) {
+        let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
+        console.log('loggedUser', loggedUser);
+        greet(capitalizedName);
+    }
+}
 
-function greet() {
+/**
+ * Greets the user with the capitalized name.
+ * @param {string} capitalizedName - The capitalized name of the user to greet.
+ */
+function greet(capitalizedName) {
     let usernameForGreeting = document.getElementById("usernameForGreeting");
     usernameForGreeting.innerHTML = '';
     usernameForGreeting.innerHTML = capitalizedName;
+    adjustGreeting();
 }
 
+
+/**
+ * Adjusts the greeting displayed on the page to "Good Morning, ".
+ */
+function adjustGreeting() {
+    let daytimeGreeting = document.getElementById("daytimeGreeting");
+    daytimeGreeting.innerHTML = '';
+    daytimeGreeting.innerHTML = 'Good Morning, ';
+    daytimeGreeting.classList.remove("daytimeGreeting");
+    daytimeGreeting.classList.add("userGreeting");
+}
 
 
 

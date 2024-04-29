@@ -52,7 +52,7 @@
   max-width: fit-content;
 }
 
-.daytimeGreeting {
+.userGreeting {
   font-family: open sans;
   font-size: 48px;
   font-weight: 400;
@@ -68,7 +68,7 @@
   margin-bottom: 72px;
 }
 
-/* [data-user-type="guest"] h1 {
+.daytimeGreeting {
   font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
@@ -78,7 +78,7 @@
   align-content: center;
 }
 
-[data-user-type="user"] h1 {
+/* [data-user-type="user"] h1 {
   max-width: fit-content;
   font-size: 48px;
   color: var(--clr-text-good-morning);

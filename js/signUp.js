@@ -130,3 +130,6 @@ function redirectToLogin() {
     switchPage('login.html?msg=you are signed up now!');
 }
 
+
+
+

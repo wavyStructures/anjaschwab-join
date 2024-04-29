@@ -121,9 +121,9 @@ function logout() {
  */
 function showInitials() {
 	let userAsString = localStorage.getItem('currentUser');
-	let userName = JSON.parse(userAsString).name;
 
-	if (userName) {
+	if (userAsString) {
+		let userName = JSON.parse(userAsString).name;
 		let userInitials = getInitials(userName);
 		document.getElementById('userInitials').innerHTML =
 			userInitials;
@@ -139,7 +139,7 @@ function showInitials() {
  */
 function openSmallMenu() {
 	let content = getDiv("smallMenu");
-	content.classList.toggle("d-none");
+	content.classList.toggle("opacityZero");
 	content.classList.toggle("visible");
 }
 

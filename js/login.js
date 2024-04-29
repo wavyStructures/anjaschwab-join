@@ -4,15 +4,21 @@ let loggedUsers = [];
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
 function setUsersRemote() {
-    setItem('users', JSON.stringify(users));
+    // setItem('users', JSON.stringify(users));
+    setItem('users', JSON.stringify(contacts));
 }
-
+// contacts.forEach(contact => {
+//     content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
+//             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
+//             </div>`
+// })
 
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 function loginInit() {
     includeHTML();
+    loadContactsStorrage();
     setUsersRemote();
     getItem('users');
 
@@ -65,6 +71,16 @@ function gotoSignUp() {
 }
 
 
+const urlParams = new URLSearchParams(window.location.search);
+const msg = urlParams.get('msg');
+console.log('msg: ', msg);
+const msgBox = document.getElementById('msgBox');
+
+if (msg) {
+    msgBox.innerHTML = msg;
+} else {
+    msgBox.classlist.add('d-none');
+}
 
 
 // function startAnimation() {
