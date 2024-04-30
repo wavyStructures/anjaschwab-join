@@ -4,9 +4,9 @@ let loggedUsers = [];
 /**
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
-function setUsersRemote() {
+async function setUsersRemote() { //geändert zu "async"
     // setItem('users', JSON.stringify(users));
-    setItem('users', JSON.stringify(users));
+    await setItem('users', JSON.stringify(users));
 }
 
 
@@ -16,33 +16,35 @@ function setUsersRemote() {
 async function loginInit() {
     includeHTML();
     getInformations();
-    setUsersRemote();
-    getItem('users');
+    await setUsersRemote(); //geändert zu "await"
+    await getItem('users'); //geändert zu "await"
 
     // startAnimation();
 }
 
+/** Funktion bereits in contacts.js geschrieben.
+ * Kann hier aber aufgerufen werden, da contacts.js in login.html eingebunden ist
+ */
+// async function loadContacts() {
+//     try {
+//         users = await getContactsFromRemoteStorage();
+//         if (users.length > 0) {
+//             console.log("Contacts loaded from online storage.");
 
-async function loadContacts() {
-    try {
-        users = await getContactsFromRemoteStorage();
-        if (users.length > 0) {
-            console.log("Contacts loaded from online storage.");
-
-            // Save the contacts array to local storage
-            localStorage.setItem("users", JSON.stringify(users));
-            console.log("Contacts saved to local storage.");
-        } else {
-            console.log(
-                "Using local storage."
-            );
-            // Load contacts from local storage
-            users = JSON.parse(localStorage.getItem("contacts"));
-        }
-    } catch (error) {
-        console.error("Loading error:", error);
-    }
-}
+//             // Save the contacts array to local storage
+//             localStorage.setItem("users", JSON.stringify(users));
+//             console.log("Contacts saved to local storage.");
+//         } else {
+//             console.log(
+//                 "Using local storage."
+//             );
+//             // Load contacts from local storage
+//             users = JSON.parse(localStorage.getItem("contacts"));
+//         }
+//     } catch (error) {
+//         console.error("Loading error:", error);
+//     }
+// }
 
 
 /**

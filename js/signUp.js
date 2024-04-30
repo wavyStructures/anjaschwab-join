@@ -1,7 +1,13 @@
-let users = [];
-let username = document.getElementById('signUpNameInput');
-let mail = document.getElementById('signUpEmailInput');
-let password = document.getElementById('signUpPasswordInput');
+/**auskommentiert, weil:
+ * let users = [] bereits in login.js
+ * let username, let mail und let password wird direkt beim laden des JS ausgeführt, wenns die Elemente (id's) noch gar nicht gibt
+ * läufts auf einen Fehler.
+ */
+
+// let users = [];
+// let username = document.getElementById('signUpNameInput');
+// let mail = document.getElementById('signUpEmailInput');
+// let password = document.getElementById('signUpPasswordInput');
 
 
 /**
