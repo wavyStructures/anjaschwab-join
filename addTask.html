@@ -36,20 +36,20 @@
 
                         </div>
                         <div class="addTaskDescription">
-                            <div class="addTaskTitles">Description (optional)</div>
+                            <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
                             <div class="textAreaContainer">
                                 <textarea id="addTaskDescriptionInput" type="text"></textarea>
                             </div>
                         </div>
-                        <div class="addTaskDescription">
-                            <div class="addTaskTitles">Due date</div>
-                            <input id="addTaskDueDateInput" type="date">
+                        <div class="addTaskDueDate ">
+                            <div class="addTaskTitles"><span class="bold">Due date</span></div>
+                            <input id="addTaskDueDateInput" class="border-bottom" type="date">
                         </div>
                         <div class="addTaskDueDate"></div>
                     </div>
                     <div class="addTaskBodyBottom">
                         <div class="addTaskPriority">
-                            <div class="addTaskTitles">Priority</div>
+                            <div class="addTaskTitles bold">Priority</div>
                             <div class="addTaskPriorityButtonContainer">
                                 <div id="addTaskPriorityButtonUrgent" class="addTaskPriorityButton"  onclick="setPriority('Urgent')">
                                     <div class="priorityButtonText">Urgent</div>
@@ -69,8 +69,8 @@
                         <!-- BEGIN ASSIGNED TO -->
 
                         <div class="addTaskContainer">
-                            <div class="addTaskTitle">Assigned to (optional)</div>
-                            <div class="addTask-dropdown-contact pointer">
+                            <div class="addTaskTitle"><span class="bold">Assigned to</span> (optional)</div>
+                            <div class="addTask-dropdown-contact pointer border-bottom">
                                 <div class="addTask-custom-select" onclick="renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
                                     <span id="dropdown-assignedTo-title">Select contacts to assign</span>
                                     <div class="addTask-custom-arrow" id="custom-arrow-assignedTo">
@@ -82,9 +82,9 @@
                                 <div id="assignedContactsContainer" class="assignedContactsContainer d-none"> CONTACT 1, CONTACT 2</div>
                             </div>
                         </div>
-                        <div class="addTaskContainer">
-                            <div class="addTaskTitle">Category </div>
-                            <div class="addTask-dropdown-category pointer">
+                        <div class="addTaskContainer ">
+                            <div class="addTaskTitle bold">Category </div>
+                            <div class="addTask-dropdown-category pointer border-bottom">
                                 <div class="addTask-custom-select" onclick="renderArrow('custom-arrow-category', 'dropdown-content-category')">
                                     <span id="dropdown-category-title">Select task category</span>
                                     <div class="addTask-custom-arrow" id="custom-arrow-category">
@@ -110,9 +110,9 @@
 
                         </div> -->
                         <div class="addTaskSubtasks">
-                            <div class="addTaskTitles">Subtasks (optional)
+                            <div class="addTaskTitles"><span class="bold">Subtasks</span> (optional)
                             </div>
-                            <div id="subtaskBottom" class="subtaskBottom" onclick="renderSubtaskInputField()">
+                            <div id="subtaskBottom" class="subtaskBottom border-bottom" onclick="renderSubtaskInputField()">
                                 <input type="text" id="subtaskInputField" placeholder="Add new subtask">
                                 <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
                             </div>
