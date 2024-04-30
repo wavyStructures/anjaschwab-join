@@ -133,6 +133,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+
+}
+.subtaskBottom:hover,
+.addTask-custom-select:hover,
+.addTask-dropdown-contact:hover{
+    box-shadow: 0 2px 1px -1px var(--clr-contact-marked)
 }
 
 .addTask-custom-select {
@@ -247,6 +253,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     input {
         border-bottom: none;
     }
+}
+
+#subTaskAddSubtaskText{
+    color: #757575
 }
 
 .subtaskAddOrCancel {
