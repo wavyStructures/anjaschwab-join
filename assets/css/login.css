@@ -137,6 +137,12 @@ input[type="password"]:focus {
   font-weight: 400;
 }
 
+.custom-checkbox > img:hover {
+  /*TODO check shadow...*/
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 4px #333);
+}
+
 .loginButtonsBox {
   display: flex;
   margin-bottom: 48px;
@@ -155,6 +161,12 @@ input[type="password"]:focus {
   margin-left: 27.5px;
 }
 
+.loginButtonUser:hover,
+.signUpButton:hover {
+  background-color: var(--clr-text-medium-blue);
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
 .loginButtonUser,
 .signUpButton {
   color: #fff;
@@ -166,6 +178,12 @@ input[type="password"]:focus {
   margin-left: 35px;
   background-color: #fff;
   border: 1px solid #647188;
+}
+
+.loginButtonGuest:hover {
+  border: 1.5px solid var(--clr-main);
+  color: var(--clr-main);
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .loginFooter {
@@ -190,9 +208,9 @@ input[type="password"]:focus {
 
 .privacyPolicy:hover,
 .legalNotice:hover {
-  color: var(--clr-main);
+  color: var(--clr-text-medium-blue);
   cursor: pointer;
-  transform: scaleX(1.2);
+  /* transform: scaleX(1.2); */
   font-size: 1rem;
 }
 

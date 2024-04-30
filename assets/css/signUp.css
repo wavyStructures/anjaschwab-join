@@ -46,6 +46,7 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .h1SignUpBox {
