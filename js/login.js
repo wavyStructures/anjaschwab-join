@@ -1,3 +1,4 @@
+let users = [];
 let loggedUsers = [];
 
 /**
@@ -7,22 +8,40 @@ function setUsersRemote() {
     // setItem('users', JSON.stringify(users));
     setItem('users', JSON.stringify(contacts));
 }
-// contacts.forEach(contact => {
-//     content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
-//             ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
-//             </div>`
-// })
+
 
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
     includeHTML();
-    await loadContactsStorrage();
+    getInformations();
     setUsersRemote();
     getItem('users');
 
     // startAnimation();
+}
+
+
+async function loadContacts() {
+    try {
+        users = await getContactsFromRemoteStorage();
+        if (users.length > 0) {
+            console.log("Contacts loaded from online storage.");
+
+            // Save the contacts array to local storage
+            localStorage.setItem("users", JSON.stringify(users));
+            console.log("Contacts saved to local storage.");
+        } else {
+            console.log(
+                "Using local storage."
+            );
+            // Load contacts from local storage
+            users = JSON.parse(localStorage.getItem("contacts"));
+        }
+    } catch (error) {
+        console.error("Loading error:", error);
+    }
 }
 
 
@@ -50,7 +69,6 @@ function loginUser() {
  * Toggles the appearance of the remember me checkbox image when clicked.
  */
 function toggleRememberMeCheckbox() {
-    let rememberMeCheckbox = document.getElementById('loginCheckbox');
     let loginCheckboxImg = document.getElementById('loginCheckboxImg');
 
 
@@ -73,13 +91,14 @@ function gotoSignUp() {
 
 const urlParams = new URLSearchParams(window.location.search);
 const msg = urlParams.get('msg');
-console.log('msg: ', msg);
 const msgBox = document.getElementById('msgBox');
 
 if (msg) {
+    msgBox.classList.remove('d-none');
     msgBox.innerHTML = msg;
-} else {
-    msgBox.classlist.add('d-none');
+}
+else {
+    console.log('no msg found');
 }
 
 

@@ -369,7 +369,8 @@ input[type="password"]:focus {
   }
 }
 
-#msgBox {
+.msgBox {
+  display: none;
   color: red;
   width: 100px;
   height: 100px;

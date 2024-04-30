@@ -102,7 +102,7 @@ function renderContacts() {
 
 
 
-/***************************************ab hier links und render für Header-Elemente********************************* */
+/***************************************ab hier für Header-Elemente und Navigation********************************* */
 /**
  * open help page
  */
@@ -119,19 +119,38 @@ function logout() {
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
-function showInitials() {
-	let userAsString = localStorage.getItem('currentUser');
 
-	if (userAsString) {
-		let userName = JSON.parse(userAsString).name;
-		let userInitials = getInitials(userName);
-		document.getElementById('userInitials').innerHTML =
-			userInitials;
-	} else {
+function showInitials() {
+	try {
+		let userAsString = localStorage.getItem('currentUser');
+
+		if (userAsString) {
+			let userName = JSON.parse(userAsString).name;
+			let userInitials = getInitials(userName);
+			document.getElementById('userInitials').innerHTML = userInitials;
+		} else {
+			document.getElementById('userInitials').innerHTML = 'G';
+		}
+	} catch (error) {
+		console.error('Error while retrieving user data from localStorage:', error);
+		// Handle the error accordingly, such as setting a default value or displaying an error message.
 		document.getElementById('userInitials').innerHTML = 'G';
 	}
 }
 
+
+// function showInitials() {
+// 	let userAsString = localStorage.getItem('currentUser');
+
+// 	if (userAsString) {
+// 		let userName = JSON.parse(userAsString).name;
+// 		let userInitials = getInitials(userName);
+// 		document.getElementById('userInitials').innerHTML =
+// 			userInitials;
+// 	} else {
+// 		document.getElementById('userInitials').innerHTML = 'G';
+// 	}
+// }
 
 
 /**
@@ -152,6 +171,14 @@ function switchPage(newUrl) {
 	// window.location.pathname = newUrl;
 	window.location.href = newUrl;
 }
+
+//TODO anja highlighting...
+// function highlightActive(index) {
+// 	document.querySelectorAll(`.nav-btn:nth-child(${index})`).forEach(element => {
+// 		element.classList.add("activeHighlighted");
+// 	});
+// }
+
 
 
 // /**
