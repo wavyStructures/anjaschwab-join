@@ -101,8 +101,9 @@ let tasks = [
     }
 ];
 
-function boardInit(){
+async function boardInit(){
     includeHTML();
+    await loadContactsStorage();
     renderCategories();
 }
 /**

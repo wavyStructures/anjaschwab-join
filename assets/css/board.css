@@ -19,14 +19,17 @@
     border-radius: 10px;
 }
 
+
 .searchImg{
-        background-image: url("../img/icon-search.png");
-        background-repeat: no-repeat;
-        height: 32px;
-        width: 32px;
-        cursor: pointer;
-    }
-    
+    background-image: url("../img/icon-search.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 32px;
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+
+
 .searchImg:hover{
     background-image: url("../img/icon-search_hover.png");
 }
@@ -44,23 +47,26 @@
         background-color: transparent;
         border: none;
         border-right: 1px solid #D1D1D1;
+        margin: 0;
     }
 
     input::placeholder{
         color: #D1D1D1;
     }
+}
 
-    input:focus,
-    select:focus,
-    textarea:focus,
-    button:focus {
-        outline: none;
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
 
 
 
 
-}
+
 .categoryTitle{
     display: flex;
     flex-direction: row;
