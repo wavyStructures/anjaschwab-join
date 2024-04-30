@@ -28,7 +28,7 @@ async function getItem(key) {
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) {
             return res.data.value;
-        } throw `Could not find data with the key "${key}`;
+        } throw `Could not find data with the key "${key}"`;
     });
 }
 

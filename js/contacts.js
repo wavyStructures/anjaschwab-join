@@ -3,23 +3,53 @@ const STORAGE_URL1 = 'https://join-1ea34-default-rtdb.europe-west1.firebasedatab
 let contacts = [];
 let localVersionIndex = 0;
 
+
+async function getContactsFromRemoteStorage(){
+  return await getItem('contacts').then( res => JSON.parse(res));
+}
+
+
+async function saveContactsToRemoteStorage(){
+  return await setItem('contacts', JSON.stringify(contacts_old));
+}
+
+
+async function getVersions(){
+  let localVersion = localVersionIndex;
+  let remoteVersion = await getItem('versionIndex');
+
+  return [localVersion, remoteVersion]
+}
+
+
+async function getInformations(){
+  let remoteContacts = await getContactsFromRemoteStorage()
+  let [local, remote] = await getVersions();
+  
+  console.log("Versions: local: ", local, " remote: ", remote);
+  console.log("Remote Contacts", remoteContacts);
+  console.log("Local Contacts: ", contacts);
+  return "-- getInformations() finished --";
+}
+
+
 /**
  * Loads the contacts from storage.
  */
 async function loadContactsStorage() {
   try {
-    const onlineVersionIndex = await getOnlineVersionIndex();
+    const onlineVersionIndex = await fetchOnlineVersionIndex();
     if (onlineVersionIndex !== null && onlineVersionIndex > localVersionIndex) {
-      contacts = JSON.parse(await getItem('contacts'));
+      contacts = await getContactsFromRemoteStorage();
       localVersionIndex = onlineVersionIndex;
       console.log('Contacts loaded from online storage.');
       // Save the contacts array to local storage
-      await setItem('contacts', JSON.stringify(contacts));
+      localStorage.setItem('contacts', JSON.stringify(contacts));
       console.log('Contacts saved to local storage.');
     } else {
       console.log('Local contacts are up to date or no online version index found. Using local storage.');
       // Load contacts from local storage
-      contacts = JSON.parse(await getItem('contacts'));
+      contacts = JSON.parse(localStorage.getItem('contacts'));
     }
   } catch (error) {
     console.error('Loading error:', error);
@@ -43,22 +73,11 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
-/**
- * Retrieves the version index from the online storage.
- */
-async function getOnlineVersionIndex() {
-  const response = await fetch(`${STORAGE_URL}/versionIndex`);
-  const data = await response.json();
-  return data.versionIndex;
-}
-
-
 async function fetchOnlineVersionIndex() {
-  const response = await fetch(`${STORAGE_URL}/versionIndex`);
-  if (response.ok) {
-    const data = await response.json();
-    return data.versionIndex;
+  const response = await getItem('versionIndex');
+
+  if (response) {
+    return response;
   } else {
     console.error('Failed to fetch version index from online storage');
     return null;
@@ -76,7 +95,7 @@ async function contactsInit() {
   await loadContactsStorage();
 
   // Check the version index in online storage
-  const onlineVersionIndex = await getOnlineVersionIndex();
+  const onlineVersionIndex = await fetchOnlineVersionIndex();
 
   if (onlineVersionIndex === null) {
     // If version index doesn't exist, set it to 0 and save it online
@@ -92,17 +111,12 @@ async function contactsInit() {
 }
 
 
-
+/**
+ * Saves the version index to Firebase Realtime Database.
+ */
 async function saveOnlineVersionIndex(versionIndex) {
-  await fetch(`${STORAGE_URL}/versionIndex`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ versionIndex }),
-  });
+  await setItem('versionIndex', versionIndex);
 }
-
 
 /**
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
@@ -113,8 +127,8 @@ async function saveContact() {
     const newId = getNextId(contacts);
     contacts.push({ id: newId, name: contactName.value, mail: contactMail.value, phone: contactPhone.value, contactColor: generateRandomColor() });
     await setItem('contacts', JSON.stringify(contacts));
-    localVersionIndex++; // Increase the version index after saving the contact locally.
-    await saveOnlineVersionIndex(); // Save the updated version index online.
+    localVersionIndex++; // Increase the version index after saving the contact remote.
+    await saveOnlineVersionIndex(localVersionIndex); // Save the updated version index online.
 
     resetContactForm();
     closeAddContact();
@@ -164,9 +178,10 @@ function resetContactForm() {
  * @property {string} phone - The phone number of the contact.
  * @property {string} contactColor - The color associated with the contact.
  */
-/*
-let contacts = [
-  
+
+
+let contacts_old = [
+
   {
     id: 1,
     name: "anton mayer",
@@ -343,7 +358,9 @@ let contacts = [
     phone: "+49 1111 111 11 22",
     contactColor: "#ff9999"
   },
-];*/
+];
+
+
 
 
 /**
@@ -364,11 +381,10 @@ async function contactsInit() {
  * @function loadContacts
  * @returns {void}
  */
-function loadContacts() {
+ function loadContacts() {
   const main = document.getElementById("main");
   main.innerHTML = ``;
   createContactsContainer(main);
-
   const sortedContacts = sortContactsByName(contacts);
   renderSortedContacts(main, sortedContacts);
 }
@@ -921,6 +937,3 @@ function editContact(id) {
     console.error("Contact not found with ID:", id);
   }
 }
-
-
-// functio delete contact
