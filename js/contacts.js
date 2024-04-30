@@ -73,6 +73,12 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
+
+/**
+ * Fetches the online version index by retrieving the 'versionIndex' item asynchronously.
+ *
+ * @return {Promise<number>} The online version index if successful, otherwise null.
+ */
 async function fetchOnlineVersionIndex() {
   const response = await getItem('versionIndex');
 
