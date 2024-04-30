@@ -4,16 +4,32 @@ let contacts = [];
 let localVersionIndex = 0;
 
 
+/**
+ * Retrieves the contacts from the remote storage asynchronously.
+ *
+ * @return {Promise<Array>} A promise that resolves to an array of contacts.
+ */
 async function getContactsFromRemoteStorage(){
   return await getItem('contacts').then( res => JSON.parse(res));
 }
 
 
+
+/**
+ * Asynchronously saves the contacts to the remote storage.
+ *
+ * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
+ */
 async function saveContactsToRemoteStorage(){
   return await setItem('contacts', JSON.stringify(contacts_old));
 }
 
 
+/**
+ * Asynchronously retrieves the local and remote versions of the application.
+ *
+ * @return {Promise<[number, string]>} A promise that resolves to an array containing the local version index and the remote version string.
+ */
 async function getVersions(){
   let localVersion = localVersionIndex;
   let remoteVersion = await getItem('versionIndex');
@@ -22,6 +38,11 @@ async function getVersions(){
 }
 
 
+/**
+ * Asynchronously retrieves remote contacts, versions, and logs information.
+ *
+ * @return {string} Indicates the completion of the function.
+ */
 async function getInformations(){
   let remoteContacts = await getContactsFromRemoteStorage()
   let [local, remote] = await getVersions();
