@@ -130,17 +130,22 @@
 }
 
 .registerBtn {
-  margin-left: 27.5px;
-}
-
-.registerBtn {
   color: #fff;
   background-color: var(--clr-main);
+  margin-left: 27.5px;
+  cursor: pointer;
 }
 
-.signUpButtonGuest {
-  color: #647188;
-  margin-left: 35px;
+#registerBtn[disabled] {
+  background-color: var(--clr-main);
+  color: #fff;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.registerBtn:not([disabled]):hover {
+  color: #fff;
+  background-color: var(--clr-text-medium-blue);
 }
 
 .checkboxBox label {

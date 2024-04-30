@@ -110,6 +110,18 @@ function checkPrivacyPolicyConfirmation() {
     }
 }
 
+function checkAllFieldsFilled() {
+    let form = document.getElementById('login-form');
+    let registerBtn = document.getElementById('registerBtn');
+    if (form.checkValidity()) {
+        registerBtn.disabled = false;
+    } else {
+        registerBtn.disabled = true;
+    }
+    console.log("checkAllFieldsFilled is:", registerBtn.disabled);
+}
+
+
 
 /**
  * deleting all users - local and remote
