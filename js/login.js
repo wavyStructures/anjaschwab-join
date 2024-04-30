@@ -17,10 +17,16 @@ async function loginInit() {
     includeHTML();
     getInformations();
     await setUsersRemote(); //geändert zu "await"
-    await getItem('users'); //geändert zu "await"
+    await loadUsers(); //neu angelegt
+    
 
     // startAnimation();
 }
+
+async function loadUsers() {
+    users = JSON.parse(await getItem('contacts'));
+}
+
 
 /** Funktion bereits in contacts.js geschrieben.
  * Kann hier aber aufgerufen werden, da contacts.js in login.html eingebunden ist
@@ -58,7 +64,7 @@ function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
     let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
-
+;
     loggedUsers.push(loggedUser);
     setCurrentUser(loggedUser);
 
