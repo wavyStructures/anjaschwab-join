@@ -11,6 +11,7 @@ async function init() {
 	// renderSignUp();
 }
 
+
 /**
  * Includes HTML-Files into container containing "w3-include-html"-attribute
  */

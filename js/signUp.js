@@ -21,6 +21,7 @@ async function signUpInit() {
     registerBtn = document.getElementById('registerBtn');
 }
 
+
 /**
  * get the users from local storage
  */

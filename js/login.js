@@ -6,7 +6,7 @@ let loggedUsers = [];
  */
 function setUsersRemote() {
     // setItem('users', JSON.stringify(users));
-    setItem('users', JSON.stringify(contacts));
+    setItem('users', JSON.stringify(users));
 }
 
 
