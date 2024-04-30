@@ -278,8 +278,17 @@ function toggleAssignedContactsContainer(){
     if (empty){
         assignedContactsContainer.classList.add('d-none');
     }
+    fillAssignedCotactsContainer(assignedContactsContainer)
+
 }
 
+
+function fillAssignedCotactsContainer(container){
+    container.innerHTML = "";
+    contacts.forEach(contact => {
+        container.innerHTML += renderAssignedToButtonsHTML(contact);
+    })
+}
 function chooseCategory(chosenCategory){
     let dropdownContentContainer = document.getElementById('dropdown-content-category')
     let categoryContainer = document.getElementById('dropdown-category-title');
