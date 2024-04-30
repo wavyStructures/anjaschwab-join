@@ -16,9 +16,9 @@ function setUsersRemote() {
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
-function loginInit() {
+async function loginInit() {
     includeHTML();
-    loadContactsStorrage();
+    await loadContactsStorrage();
     setUsersRemote();
     getItem('users');
 
