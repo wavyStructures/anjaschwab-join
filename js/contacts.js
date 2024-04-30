@@ -48,14 +48,14 @@ function getNextId(contactsArray) {
  * Retrieves the version index from the online storage.
  */
 async function getOnlineVersionIndex() {
-  const response = await fetch(`${STORAGE_URL}/versionIndex.json`);
+  const response = await fetch(`${STORAGE_URL}/versionIndex`);
   const data = await response.json();
   return data.versionIndex;
 }
 
 
 async function fetchOnlineVersionIndex() {
-  const response = await fetch(`${STORAGE_URL}versionIndex.json`);
+  const response = await fetch(`${STORAGE_URL}/versionIndex`);
   if (response.ok) {
     const data = await response.json();
     return data.versionIndex;
@@ -93,11 +93,8 @@ async function contactsInit() {
 
 
 
-/**
- * Saves the version index to Firebase Realtime Database.
- */
 async function saveOnlineVersionIndex(versionIndex) {
-  await fetch(`${STORAGE_URL}versionIndex.json`, {
+  await fetch(`${STORAGE_URL}/versionIndex`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
