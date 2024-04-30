@@ -78,6 +78,7 @@ function setPriorityForNewCard(priority){
 function renderSubtaskInputField(){
     let subtaskBottom = document.getElementById('subtaskBottom');
     subtaskBottom.innerHTML = renderSubtaskInputFieldHTML();
+    document.getElementById('subtaskInputField').focus();
 }
 
 
@@ -107,8 +108,8 @@ function subtaskAddOrCancel(option){
 
 function renderSubtaskDefaultHTML(){
     console.log("To default");
-    return /*html*/`<div id="subTaskAddSubtaskDiv">Add subtask</div>
-        <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
+    return /*html*/`<input id="subTaskAddSubtaskText" placeholder="Add new subtask">
+    <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
     `
 }
 
