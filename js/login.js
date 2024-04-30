@@ -65,7 +65,6 @@ function loginUser() {
     let password = document.getElementById('loginPasswordInput');
     let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
 
-    console.log("LOGGED USER: ", loggedUser);
     loggedUsers.push(loggedUser);
     setCurrentUser(loggedUser);
 
