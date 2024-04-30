@@ -64,7 +64,8 @@ function loginUser() {
     let email = document.getElementById('loginEmailInput');
     let password = document.getElementById('loginPasswordInput');
     let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
-;
+
+    console.log("LOGGED USER: ", loggedUser);
     loggedUsers.push(loggedUser);
     setCurrentUser(loggedUser);
 
@@ -159,5 +160,3 @@ else {
 //     email.value = "benedikt@gmail.com";
 //     password.value = "benedikt";
 // }
-
-
