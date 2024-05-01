@@ -8,7 +8,7 @@ function externalPagesInit() {
 function hideNavigation() {
   let navigation = document.querySelector(".navigation-container .navigation-content");
   if (navigation) {
-    navigation.style.opacity = 1;
+    navigation.style.opacity = 0;
   } else {
     console.error("Navigation content not found.");
   }
