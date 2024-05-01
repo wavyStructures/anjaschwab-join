@@ -1,6 +1,5 @@
 .legal_notice-wrapper {
-  margin-left: 88px;
-  margin-top: 76px;
+  margin: 76px 88px;
 }
 
 h1 {
@@ -9,7 +8,9 @@ h1 {
   font-weight: 700;
   color: #000;
   line-height: 73.2px;
+  margin-bottom: 48px;
   /* text-align: left; */
+  /* white-space: nowrap; */
 }
 
 h2 {
@@ -19,6 +20,7 @@ h2 {
   color: var(--clr-main);
   line-height: 39.6px;
   text-align: left;
+  margin-bottom: 16px;
 }
 
 h3 {
@@ -27,8 +29,8 @@ h3 {
   font-weight: 700;
   line-height: 22.8px;
   text-align: left;
-
   color: var(--clr-text-medium-blue);
+  margin-top: 24px;
 }
 
 .blue {
@@ -44,4 +46,8 @@ h3 {
 .h1LegalNoticeBox img {
   width: 40px;
   cursor: pointer;
+}
+
+legalHighlight.active {
+  background-color: aqua;
 }

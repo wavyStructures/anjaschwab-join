@@ -4,33 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/legalNotice.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/legalNotice.css">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/navigation.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/legalNotice.css">
     <script src="script.js"></script>
-    <!-- <script src="script.js" defer></script> -->
-    <!-- defer anstelle von Eventlistener?? s. summary.js, damit alle JS-Dateien geladen werden -->
+    <script src="./js/external.js"></script>
 
-    <link rel="stylesheet" href="./assets/css/summary.css">
-    <script src="./js/summary.js"></script>
-    <title>Join - Legal Notice</title>
+    <link rel="stylesheet" href="./assets/css/help.css">
+
+
+
+    <title>Join - Legal Notice External</title>
 </head>
 
-<body onload="summaryInit()">
-    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, hier euer HTML-Code rein -->
-        <div class="header-content">
-            <img class="header-logo" src="/assets/img/logo-small_white.png" alt="join-logo" />
-            <div class="header-inner-right">
-                <span class="header-kanban-writing">Kanban Project Management Tool</span>
+<body onload="externalPagesInit()">
+    <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
+        <header id="header" class="header">
+            <div class="header-content">
+                <img class="header-logo" src="./assets/img/logo-small_white.png" alt="join-logo" />
+                <div class="header-inner-right">
+                    <span class="header-kanban-writing">Kanban Project Management Tool</span>
+                </div>
             </div>
-        </div>
+        </header>
         <div id="main-wrapper" class="main-wrapper">
-            <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
-                class="navigation-container"></nav>
-            <main id="main" class="main">
+            <nav id="navigation-container" class="navigation-container">
+                <div class="navigation-content">
+                    <a href="./summary.html">
+                        <div id="summary" class="nav-btn" onclick="loadSummary()">
+                            <img src="./assets/img/icon-summary.png" alt="summary" />Summary
+                        </div>
+                    </a>
+                    <a href="./addTask.html" o>
+                        <div id="addTask" class="nav-btn" onclick="loadAddTask()">
+                            <img src="./assets/img/icon-addTask.png" alt="add task" />Add Task
+                        </div>
+                    </a>
+                    <a href="./board.html">
+                        <div id="board" class="nav-btn" onclick="loadBoard()">
+                            <img src="./assets/img/icon-board.png" alt="board" />Board
+                        </div>
+                    </a>
+                    <a href="./contacts.html">
+                        <div id="contacts" class="nav-btn" onclick="loadContacts()">
+                            <img src="./assets/img/icon-contacts.png" alt="contacts" />Contacts
+                        </div>
+                    </a>
+                </div>
+
+                <div class="privatePolicyAndLegalNoticeLinksNav">
+                    <a href="./privatePolicy.html" class="privacyHighlight">Privacy Policy</a>
+                    <a href="./legalNotice.html" class="legalHighlight">Legal Notice</a>
+                </div>
+            </nav>
+            <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
                 <div class="legal_notice-wrapper">
                     <div class="h1LegalNoticeBox">
                         <h1>Legal Notice</h1>
@@ -147,21 +177,9 @@
                     </div>
 
                 </div>
+            </main>
         </div>
     </div>
-    </div>
-
-
-
-
-    </div>
-
-    </main>
-    </div>
-    </div>
-
-
-
 </body>
 
 </html>

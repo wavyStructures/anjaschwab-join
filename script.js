@@ -169,8 +169,11 @@ function openSmallMenu() {
  * @param {string} newUrl - The new URL to navigate to
  */
 function switchPage(newUrl) {
-	// window.location.pathname = newUrl;
 	window.location.href = newUrl;
+}
+
+function switchPageNewTab(newUrl) {
+	window.open(newUrl, '_blank');
 }
 
 //TODO anja highlighting...
