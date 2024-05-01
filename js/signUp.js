@@ -1,15 +1,3 @@
-/**auskommentiert, weil:
- * let users = [] bereits in login.js
- * let username, let mail und let password wird direkt beim laden des JS ausgeführt, wenns die Elemente (id's) noch gar nicht gibt
- * läufts auf einen Fehler.
- */
-
-// let users = [];
-// let username = document.getElementById('signUpNameInput');
-// let mail = document.getElementById('signUpEmailInput');
-// let password = document.getElementById('signUpPasswordInput');
-
-
 /**
  * init-function run at on loading the body
  */
@@ -44,7 +32,7 @@ async function loadUsers() {
  * add new user to users and save it to local storage
  */
 // async 
-function addUser() {
+ function addUser() {
     let registerBtn = document.getElementById("registerBtn");
     registerBtn.disabled = true;
 
@@ -63,9 +51,7 @@ function addUser() {
                 mail: mail.value,
                 password: password.value
             });
-
-        // await 
-        setArray('users', users);     //TODO    brauche ich hier async und await für localStorage???
+            
         resetForm();
         redirectToLogin();
     } else {

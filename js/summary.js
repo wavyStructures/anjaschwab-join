@@ -1,13 +1,9 @@
-// let users = []
-
 /**
  * Initializes the summary by including the HTML and getting the current date.
  *
  * @return {void} This function does not return anything.
  */
-function summaryInit() {
-    getItem('users');
-    console.log('users mit getItem is: ', users);
+async function summaryInit() {
     includeHTML();
     getDate();
     getUserNameForGreeting();

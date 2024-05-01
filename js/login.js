@@ -4,8 +4,7 @@ let loggedUsers = [];
 /**
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
-async function setUsersRemote() { //geändert zu "async"
-    // setItem('users', JSON.stringify(users));
+async function setUsersRemote() {
     await setItem('users', JSON.stringify(users));
 }
 
@@ -16,9 +15,9 @@ async function setUsersRemote() { //geändert zu "async"
 async function loginInit() {
     includeHTML();
     getInformations();
-    await setUsersRemote(); //geändert zu "await"
-    await loadUsers(); //neu angelegt
-    
+    await setUsersRemote();
+    await loadUsers();
+    // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
 
     // startAnimation();
 }
@@ -27,32 +26,9 @@ async function loadUsers() {
     users = JSON.parse(await getItem('contacts'));
 }
 
-
-/** Funktion bereits in contacts.js geschrieben.
- * Kann hier aber aufgerufen werden, da contacts.js in login.html eingebunden ist
- */
-// async function loadContacts() {
-//     try {
-//         users = await getContactsFromRemoteStorage();
-//         if (users.length > 0) {
-//             console.log("Contacts loaded from online storage.");
-
-//             // Save the contacts array to local storage
-//             localStorage.setItem("users", JSON.stringify(users));
-//             console.log("Contacts saved to local storage.");
-//         } else {
-//             console.log(
-//                 "Using local storage."
-//             );
-//             // Load contacts from local storage
-//             users = JSON.parse(localStorage.getItem("contacts"));
-//         }
-//     } catch (error) {
-//         console.error("Loading error:", error);
-//     }
-// }
-
-
+function setUsersToLocalStorage(){
+    localStorage.setItem('users', JSON.stringify(users));
+}
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
  * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.
