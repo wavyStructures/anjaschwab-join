@@ -18,7 +18,7 @@ async function getContactsFromRemoteStorage() {
  *
  * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
  */
-async function saveContactsToRemoteStorage() {
+async function resetContactsOnRemoteStorage() {
   return await setItem("contacts", JSON.stringify(contacts_old));
 }
 
