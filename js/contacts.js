@@ -411,28 +411,22 @@ function loadContacts() {
   renderSortedContacts(main, sortedContacts);
 }
 
-/**
- * Sorts the contacts by last name.
- *
- * @function sortContactsByName
- * @param {Array} contacts - The array of contacts to be sorted.
- * @returns {Array} - The sorted array of contacts.
- */
 function sortContactsByName(contacts) {
-  let sortedContacts = contacts;
-  if (contacts.includes(" ")) {
-    sortedContacts = contacts.slice().sort((a, b) => {
-      const firstNameA = a.name.split(" ")[0].toLowerCase();
-      const firstNameB = b.name.split(" ")[0].toLowerCase();
-      return firstNameA.localeCompare(firstNameB);
-    });
-  } else {
-    sortedContacts = contacts.slice().sort(a) => {
-      const firstNameA = a.name.split(" ")[0].toLowerCase();
-    
-    };
-  }
+  let sortedContacts = contacts.slice().sort((a, b) => {
+    const lastNameA = getSecondOrFullName(a).toLowerCase();
+    const lastNameB = getSecondOrFullName(b).toLowerCase();
+    return lastNameA.localeCompare(lastNameB);
+  });
   return sortedContacts;
+}
+
+function getSecondOrFullName(contact) {
+  const names = contact.name.split(" ");
+  if (names.length === 1) {
+    return names[0]; // Wenn nur ein Name vorhanden ist, diesen zurückgeben
+  } else {
+    return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
+  }
 }
 
 /**
@@ -730,12 +724,14 @@ function generateContactCardHTML(
 function getNameWithCapitalizedFirstLetter(name) {
   let [firstname, lastname, surname] = name.split(" ");
   firstname = firstname[0].toUpperCase() + firstname.slice(1);
-  lastname = lastname[0].toUpperCase() + lastname.slice(1);
+  if (lastname) {
+    lastname = lastname[0].toUpperCase() + lastname.slice(1);
+  }
   if (surname) {
     surname = surname[0].toUpperCase() + surname.slice(1);
-    return firstname + " " + lastname + " " + surname;
+    return firstname + " " + (lastname ? lastname + " " : "") + surname;
   } else {
-    return firstname + " " + lastname;
+    return firstname + (lastname ? " " + lastname : "");
   }
 }
 
