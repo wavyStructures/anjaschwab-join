@@ -116,6 +116,13 @@ async function contactsInit() {
   await loadContactsStorage();
 
   // Check the version index in online storage
+  await ckeckOnlineVersionIndex();
+
+  // Load contacts after ensuring the version index is up to date
+  loadContacts();
+}
+
+async function ckeckOnlineVersionIndex() {
   const onlineVersionIndex = await fetchOnlineVersionIndex();
 
   if (onlineVersionIndex === null) {
@@ -126,10 +133,8 @@ async function contactsInit() {
     // If version index exists, update local version index
     localVersionIndex = onlineVersionIndex;
   }
-
-  // Load contacts after ensuring the version index is up to date
-  loadContacts();
 }
+
 
 /**
  * Saves the version index to Firebase Realtime Database.
@@ -502,10 +507,16 @@ function closeAddContact() {
  * @returns {string} The initials generated from the provided full name.
  */
 function getInitials(name) {
-  let [firstName, lastName] = name.split(" ");
-  let firstInitial = firstName.charAt(0).toUpperCase();
-  let lastInitial = lastName.charAt(0).toUpperCase();
-  return firstInitial + lastInitial;
+  let returnName = "";
+  if (name.includes(" ")){
+    let [firstName, lastName] = name.split(" ");
+    let firstInitial = firstName.charAt(0).toUpperCase();
+    let lastInitial = lastName.charAt(0).toUpperCase();
+    returnName = firstInitial + lastInitial;
+  }else{
+    returnName = name.charAt(0).toUpperCase();
+  }
+  return returnName;
 }
 
 /**
