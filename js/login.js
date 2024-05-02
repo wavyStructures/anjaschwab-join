@@ -22,13 +22,17 @@ async function loginInit() {
     // startAnimation();
 }
 
+
 async function loadUsers() {
     users = JSON.parse(await getItem('contacts'));
 }
 
-function setUsersToLocalStorage(){
+
+function setUsersToLocalStorage() {
     localStorage.setItem('users', JSON.stringify(users));
 }
+
+
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
  * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.
@@ -73,6 +77,7 @@ function gotoSignUp() {
 }
 
 
+
 const urlParams = new URLSearchParams(window.location.search);
 const msg = urlParams.get('msg');
 const msgBox = document.getElementById('msgBox');
@@ -96,6 +101,8 @@ else {
 
 //     // }, 30000); // 30 seconds
 // }
+
+
 
 
 

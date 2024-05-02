@@ -13,26 +13,28 @@ async function signUpInit() {
     mail = document.getElementById('signUpEmailInput');
     password = document.getElementById('signUpPasswordInput');
     registerBtn = document.getElementById('registerBtn');
+
+
 }
 
 
-/**
- * get the users from local storage
- */
-async function loadUsers() {
-    try {
-        users = getArray('users');
-    } catch (e) {
-        console.error('loadUsers error: ', e);
-    }
-}
+// /**
+//  * get the users from local storage
+//  */
+// async function loadUsers() {
+//     try {
+//         users = getArray('users');
+//     } catch (e) {
+//         console.error('loadUsers error: ', e);
+//     }
+// }
 
 
 /**
  * add new user to users and save it to local storage
  */
 // async 
- function addUser() {
+function addUser() {
     let registerBtn = document.getElementById("registerBtn");
     registerBtn.disabled = true;
 
@@ -51,7 +53,7 @@ async function loadUsers() {
                 mail: mail.value,
                 password: password.value
             });
-            
+
         resetForm();
         redirectToLogin();
     } else {

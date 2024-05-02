@@ -5,8 +5,11 @@
  */
 async function summaryInit() {
     includeHTML();
-    getDate();
+    // highlightActivePage(0);
     getUserNameForGreeting();
+    getDate();
+    greetAccordingToDayTime();
+
 }
 
 /**
@@ -33,6 +36,8 @@ function greet(capitalizedName) {
 }
 
 
+
+
 /**
  * Adjusts the greeting displayed on the page to "Good Morning, ".
  */
@@ -45,34 +50,6 @@ function adjustGreeting() {
 }
 
 
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     function greeting(handedOverUser) {
-
-//         const usernameForGreeting = document.getElementById("usernameForGreeting");
-
-//         console.log('inside doc EventListener:', usernameForGreeting);
-//         usernameForGreeting.innerHTML = '';
-//         usernameForGreeting.innerHTML = handedOverUser.name;
-
-
-//     }
-
-// });
-
-// function greeting(user) {
-//     alert('greetingUserObject is:', user);
-
-//     setTimeout(function () {
-//         const usernameForGreeting = document.getElementById("usernameForGreeting");
-
-//         console.log('inside summary greeting(user) timeout:', usernameForGreeting);
-//         // usernameForGreeting.innerHTML = '';
-//         // usernameForGreeting.innerHTML = user.name; 6000
-
-
-//     })
 
 
 
@@ -110,17 +87,21 @@ function getDate() {
 
 
 
-// function greetAccordingToDayTime() {
-//     let nowTime = new Date();
-//     let hours = nowTime.getHours();
-//     //let hours = 14;
-//     let status = (hours < 12) ? "Good Morning" :
-//         ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
+/**
+ * Generates a greeting based on the current time.
+ */
+function greetAccordingToDayTime() {
+    let nowTime = new Date();
+    let hours = nowTime.getHours();
+    let status = (hours < 12) ? "Good Morning" :
+        ((hours <= 18 && hours >= 12) ? "Good Afternoon," : "Good Night,");
 
-//     document.getElementById('daytimeGreeting').innerHTML = `${status} `;
-// }
+    document.getElementById('daytimeGreeting').innerHTML = '';
+    document.getElementById('daytimeGreeting').innerHTML = `${status} `;
+}
 
-// greetAccordingToDayTime();
+
+
 
 
 

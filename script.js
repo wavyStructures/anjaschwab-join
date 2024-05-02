@@ -9,6 +9,7 @@ async function init() {
 	// renderBoard();
 	// renderLogin();
 	// renderSignUp();
+
 }
 
 
@@ -140,20 +141,6 @@ function showInitials() {
 }
 
 
-// function showInitials() {
-// 	let userAsString = localStorage.getItem('currentUser');
-
-// 	if (userAsString) {
-// 		let userName = JSON.parse(userAsString).name;
-// 		let userInitials = getInitials(userName);
-// 		document.getElementById('userInitials').innerHTML =
-// 			userInitials;
-// 	} else {
-// 		document.getElementById('userInitials').innerHTML = 'G';
-// 	}
-// }
-
-
 /**
  * opens small menu onclick on intials button inside header
  */
@@ -172,9 +159,31 @@ function switchPage(newUrl) {
 	window.location.href = newUrl;
 }
 
+/**
+ * Opens a new tab with the specified URL.
+ *
+ * @param {string} newUrl - The URL to open in the new tab
+ */
 function switchPageNewTab(newUrl) {
 	window.open(newUrl, '_blank');
 }
+
+
+
+// function highlightActivePage(index) {
+// 	let navLinks = document.querySelectorAll('.nav-btn');
+// 	navLinks.forEach((link, i) => {
+// 		if (i === index) {
+// 			link.classList.add('activeHighlighted');
+// 		} else {
+// 			link.classList.remove('activeHighlighted');
+// 		}
+// 	});
+// }
+
+// // Example usage:
+// highlightActivePage(0);
+
 
 //TODO anja highlighting...
 // function highlightActive(index) {

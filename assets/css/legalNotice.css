@@ -7,7 +7,7 @@ h1 {
   font-size: 61px;
   font-weight: 700;
   color: #000;
-  line-height: 73.2px;
+  /* line-height: 73.2px; */
   margin-bottom: 48px;
   /* text-align: left; */
   /* white-space: nowrap; */
@@ -18,7 +18,7 @@ h2 {
   font-size: 33px;
   font-weight: 700;
   color: var(--clr-main);
-  line-height: 39.6px;
+  /* line-height: 39.6px; */
   text-align: left;
   margin-bottom: 16px;
 }
@@ -27,7 +27,7 @@ h3 {
   font-family: Open Sans;
   font-size: 19px;
   font-weight: 700;
-  line-height: 22.8px;
+  /* line-height: 22.8px; */
   text-align: left;
   color: var(--clr-text-medium-blue);
   margin-top: 24px;
@@ -48,6 +48,79 @@ h3 {
   cursor: pointer;
 }
 
-legalHighlight.active {
-  background-color: aqua;
+a {
+  color: var(--clr-text-menu);
+  text-decoration: none;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: 8px;
+  /* line-height: 19.2px; */
+  text-align: center;
+  gap: 8px;
+}
+
+a:not(.active):hover {
+  /* background-color: var(--clr-text-menu-hover); */
+  color: var(--clr-main);
+}
+
+.active {
+  background-color: var(--clr-main);
+  font-weight: 700;
+  color: #fff;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  width: 232px;
+  max-width: 232px;
+}
+
+.navigation-content {
+  padding-top: 42px;
+  padding-inline: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.nav-btn {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 186px;
+  padding: 8px 30px 8px 30px;
+  border-radius: 8px;
+  gap: 8px;
+  color: var(--clr-text-menu);
+  cursor: pointer;
+
+  img {
+    width: 24px;
+  }
+
+  &:hover {
+    background-color: var(--clr-text-menu-hover);
+  }
+}
+
+.privatePolicyAndLegalNoticeLinksNav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 66px;
+  margin-left: 56px;
+  line-height: 19.2px;
+  /* text-align: left; */
+}
+/* 
+.privatePolicyAndLegalNoticeLinksNav {
+  a:hover {
+    color: var(--clr-main);
+  } */
 }
