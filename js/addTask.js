@@ -232,6 +232,7 @@ function assignContactToTask(id){
     setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
     toggleAssignedContactsContainer();
     pushContactToTempAssignedContacts(id);
+    renderAssignedContactsContainer();
 }
 
 
@@ -278,17 +279,20 @@ function toggleAssignedContactsContainer(){
     if (empty){
         assignedContactsContainer.classList.add('d-none');
     }
-    fillAssignedCotactsContainer(assignedContactsContainer)
 
 }
 
 
-function fillAssignedCotactsContainer(container){
-    container.innerHTML = "";
-    contacts.forEach(contact => {
-        container.innerHTML += renderAssignedToButtonsHTML(contact);
+function renderAssignedContactsContainer(){
+    let container = document.getElementById('assignedContactsContainer');
+    container.innerHTML = '';
+    tempAssignedContacts.forEach(id => {
+        let contact = contacts.find(contact => contact.id == id);
+        container.innerHTML += renderAssignedToButtonsHTML(contact)
     })
 }
+
+
 function chooseCategory(chosenCategory){
     let dropdownContentContainer = document.getElementById('dropdown-content-category')
     let categoryContainer = document.getElementById('dropdown-category-title');
