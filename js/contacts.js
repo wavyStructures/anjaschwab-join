@@ -419,11 +419,20 @@ function loadContacts() {
  * @returns {Array} - The sorted array of contacts.
  */
 function sortContactsByName(contacts) {
-  return contacts.slice().sort((a, b) => {
-    const lastNameA = a.name.split(" ")[1].toLowerCase();
-    const lastNameB = b.name.split(" ")[1].toLowerCase();
-    return lastNameA.localeCompare(lastNameB);
-  });
+  let sortedContacts = contacts;
+  if (contacts.includes(" ")) {
+    sortedContacts = contacts.slice().sort((a, b) => {
+      const firstNameA = a.name.split(" ")[0].toLowerCase();
+      const firstNameB = b.name.split(" ")[0].toLowerCase();
+      return firstNameA.localeCompare(firstNameB);
+    });
+  } else {
+    sortedContacts = contacts.slice().sort(a) => {
+      const firstNameA = a.name.split(" ")[0].toLowerCase();
+    
+    };
+  }
+  return sortedContacts;
 }
 
 /**
