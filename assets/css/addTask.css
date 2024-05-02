@@ -9,7 +9,7 @@
     --clr-contact-hover: #d2e3ff;
     --clr-border: #d1d1d1;
     --clr-border-hover: var(--clr-contact-marked);
-    --padding-input:  12px 16px 12px 16px;
+    --padding-1216:  12px 16px 12px 16px;
 }
 
 .bold{
@@ -43,7 +43,7 @@ button:focus {
 }
 
 input{
-    padding: var(--padding-input);
+    padding: var(--padding-1216);
 }
 
 input:focus {
@@ -156,6 +156,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    padding: var(--padding-1216)
 
 }
 
@@ -164,6 +165,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-wrap: wrap;
 }
 
+.addTask-dropdown-category{
+    padding: var(--padding-1216)
+}
 
 /* .subtaskBottom:hover,
 .addTask-custom-select:hover,
@@ -174,7 +178,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .addTask-custom-select {
     font-size: 1.188rem;
     position: relative;
-    padding: var(--padding-input);
 }
 
 .addTask-custom-arrow {
@@ -192,15 +195,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .addTask-dropdown-content {
     display: flex;
     flex-direction: column;
-    gap: .25rem;
     width: 100%;
     max-height: 200px;
     overflow: hidden;
     overflow-y: scroll;
+
 }
 
 .dropdownOption{
-    padding: var(--padding-input);
+    padding: var(--padding-1216);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: red; */
+    border-radius: 10px;
+    cursor:pointer;
+    & img{
+        height: 1.5rem;
+        aspect-ratio: 1;
+    }
+}
+
+.dropdownOptionName{
+    padding: var(--padding-1216);
+
 }
 
 .addTaskContainer {
@@ -210,11 +228,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-bottom: var(--addTaskPaddingBottom);
 }
 
-.dropdownOption {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-}
+
 
 .dropdownOption:hover {
     background-color: var(--clr-contact-hover);

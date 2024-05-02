@@ -33,7 +33,7 @@
                 <div class="addTaskBody">
                     <div class="addTaskBodyTop">
                         <div class="addTaskAddTitleContainer">
-                            <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title">
+                            <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title">addTask-dropdown-category
 
                         </div>
                         <div class="addTaskDescription">
@@ -46,7 +46,6 @@
                             <div class="addTaskTitles"><span class="bold">Due date</span></div>
                             <input id="addTaskDueDateInput" class="border-bottom" type="date">
                         </div>
-                        <div class="addTaskDueDate"></div>
                     </div>
                     <div class="addTaskBodyBottom">
                         <div class="addTaskPriority">
@@ -78,10 +77,11 @@
                                         <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
                                     </div>
                                 </div>
+                            </div>
                                 <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
                                 </div>
                                 <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"> CONTACT 1, CONTACT 2</div>
-                            </div>
+                            
                         </div>
                         <div class="addTaskContainer ">
                             <div class="addTaskTitle bold">Category </div>
@@ -93,12 +93,12 @@
                                         <!-- TODO: <div data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt=""></div> -->
                                     </div>
                                 </div>
-                                <div class="addTask-dropdown-content d-none no-scroll" id="dropdown-content-category">
-                                    <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
-                                    <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
-                                </div>
-                                <!-- <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer"> CONTACT 1, CONTACT 2</div> -->
                             </div>
+                            <div class="addTask-dropdown-content d-none no-scroll" id="dropdown-content-category">
+                                <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
+                                <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
+                            </div>
+                                <!-- <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer"> CONTACT 1, CONTACT 2</div> -->
                         </div>
                         <!-- <div class="addTaskCategory">
                             <div class="addTaskTitles">Category</div>
