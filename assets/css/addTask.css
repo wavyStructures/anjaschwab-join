@@ -24,9 +24,6 @@
     }
 }
 
-
-
-
 select,
 input,
 textarea {
@@ -34,6 +31,7 @@ textarea {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     font-size: 1.188rem;
+    margin: 0;
 }
 
 input:focus,
@@ -73,13 +71,7 @@ select {
     cursor: pointer;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    background: url('../img/icon-event.png') no-repeat;
-    background-position: center;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
+
 
 .addTaskBody {
     height: 769px;
@@ -112,14 +104,36 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .addTaskDueDate {
+    display: flex;
+    flex-direction: column;
     padding-bottom: var(--addTaskPaddingBottom);
     gap: var(--addTaskGap);
 }
 
+.addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url('../img/icon-event.png') no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.addTaskDueDateInputContainer{
+    width: 100%;
+    background-color: green;
+}
+
+ #addTaskDueDateInput{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    }
+
 .addTaskBodyTop {
     display: flex;
     flex-direction: column;
-    /* width: 440px; */
+    width: 440px;
     gap: 12px;
 }
 
@@ -133,7 +147,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .addTaskBodyBottom {
-    /* width: 440px; */
+    width: 440px;
 }
 
 
@@ -210,14 +224,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     /* background-color: red; */
     border-radius: 10px;
     cursor:pointer;
+    text-transform: capitalize;
+
     & img{
         height: 1.5rem;
         aspect-ratio: 1;
     }
 }
 
-.dropdownOptionName{
-    padding: var(--padding-1216);
+.dropdownContactBadgeAndName{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 
 }
 
@@ -302,7 +321,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     input {
         border-bottom: none;
-
     }
 }
 

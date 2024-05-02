@@ -214,7 +214,7 @@ function renderContactsToDropdown(){
     content.innerHTML = '';
     contacts.forEach(contact => {
         content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
-            ${contact.name} <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
+            <div class="dropdownContactBadgeAndName">${renderAssignedToButtonsHTML(contact)} ${contact.name}</div> <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
             </div>`
     })
 }
