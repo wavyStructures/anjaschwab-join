@@ -76,6 +76,15 @@ function toggleRememberMeCheckbox() {
 
 
 /**
+ * Switches the page to the summary page for guest login.
+ */
+function loginAsGuest() {
+    switchPage('summary.html');
+}
+
+
+
+/**
  * Switches the page to the sign up page.
  */
 function gotoSignUp() {
