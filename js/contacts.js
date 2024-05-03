@@ -123,7 +123,6 @@ async function contactsInit() {
   loadContacts();
 }*/
 
-
 /**
  * Checks the online version index by fetching it, sets the local version index based on the fetched value,
  * and saves the updated version index online if necessary.
@@ -143,14 +142,12 @@ async function ckeckOnlineVersionIndex() {
   }
 }
 
-
 /**
  * Saves the version index to Firebase Realtime Database.
  */
 async function saveOnlineVersionIndex(versionIndex) {
   await remoteStorageSetItem("versionIndex", versionIndex);
 }
-
 
 /**
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
@@ -167,9 +164,9 @@ async function saveContact() {
       contactColor: generateRandomColor(),
     });
     await remoteStorageSetItem("contacts", JSON.stringify(contacts));
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    localStorage.setItem("contacts", JSON.stringify(contacts));
     localVersionIndex++; // Increase the version index after saving the contact remote.
-    
+
     await saveOnlineVersionIndex(localVersionIndex); // Save the updated version index online.
 
     resetContactForm();
@@ -180,7 +177,6 @@ async function saveContact() {
     console.error("Error saving contact:", error);
   }
 }
-
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -195,7 +191,6 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
 /**
  * Resets the contact form by clearing the input fields and enabling the create button.
  *
@@ -208,7 +203,6 @@ function resetContactForm() {
   contactPhone.value = "";
   createBtn.disabled = false;
 }
-
 
 /**
  * Array containing contact objects.
@@ -400,7 +394,6 @@ let contacts_old = [
   },
 ];
 
-
 /**
  * Initializes the contacts by including the HTML and loading the contacts.
  *
@@ -411,7 +404,6 @@ async function contactsInit() {
   await loadContactsStorage();
   loadContacts();
 }
-
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -426,7 +418,6 @@ function loadContacts() {
   const sortedContacts = sortContactsByName(contacts);
   renderSortedContacts(main, sortedContacts);
 }
-
 
 /**
  * Sorts an array of contacts by their last name.
@@ -443,7 +434,6 @@ function sortContactsByName(contacts) {
   return sortedContacts;
 }
 
-
 /**
  * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
  *
@@ -458,7 +448,6 @@ function getSecondOrFullName(contact) {
     return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
   }
 }
-
 
 /**
  * Renders the sorted contacts into the main element.
@@ -476,7 +465,7 @@ function renderSortedContacts(main, sortedContacts) {
     const initials = getInitials(name);
     const firstLetter = name
       .split(" ")
-    [name.split(" ").length - 1].charAt(0)
+      [name.split(" ").length - 1].charAt(0)
       .toUpperCase();
 
     if (!currentFirstLetters.includes(firstLetter)) {
@@ -487,7 +476,6 @@ function renderSortedContacts(main, sortedContacts) {
     createContactCard(main, id, contactColor, initials, name, mail);
   });
 }
-
 
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
@@ -512,7 +500,6 @@ function addContactCard() {
   }
 }
 
-
 /**
  * Hides the add contact card by removing it from the DOM.
  *
@@ -536,7 +523,6 @@ function closeAddContact() {
   hideAddContactContainer();
 }
 
-
 /**
  * Generates initials from a full name.
  *
@@ -545,17 +531,16 @@ function closeAddContact() {
  */
 function getInitials(name) {
   let returnName = "";
-  if (name.includes(" ")){
+  if (name.includes(" ")) {
     let [firstName, lastName] = name.split(" ");
     let firstInitial = firstName.charAt(0).toUpperCase();
     let lastInitial = lastName.charAt(0).toUpperCase();
     returnName = firstInitial + lastInitial;
-  }else{
+  } else {
     returnName = name.charAt(0).toUpperCase();
   }
   return returnName;
 }
-
 
 /**
  * Creates a letter element representing the first letter of a group of contacts.
@@ -574,7 +559,6 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
-
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
@@ -586,7 +570,6 @@ function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
-
 
 /**
  * Creates a parting line element and appends it to the contact list within the main element.
@@ -607,7 +590,6 @@ function createPartingLine(main) {
   partingLineContainer.appendChild(partingLine);
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
-
 
 /**
  * Generates HTML code for the contacts container.
@@ -679,20 +661,17 @@ function generateContactsContainerHTML() {
     `;
 }
 
-
 // Funktion zum Anzeigen des Containers
 function showAddContactContainer() {
-  const addContactContainer = document.getElementById('addContactContainer');
-  addContactContainer.classList.remove('hidden');
+  const addContactContainer = document.getElementById("addContactContainer");
+  addContactContainer.classList.remove("hidden");
 }
-
 
 // Funktion zum Ausblenden des Containers
 function hideAddContactContainer() {
-  const addContactContainer = document.getElementById('addContactContainer');
-  addContactContainer.classList.add('hidden');
+  const addContactContainer = document.getElementById("addContactContainer");
+  addContactContainer.classList.add("hidden");
 }
-
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -721,7 +700,6 @@ function createContactCard(main, id, color, initials, name, mail) {
     .querySelector(".contact-list")
     .insertAdjacentHTML("beforeend", cardHTML);
 }
-
 
 /**
  * Generates the HTML code for a contact card.
@@ -755,7 +733,6 @@ function generateContactCardHTML(
   `;
 }
 
-
 /**
  * Capitalizes the first letter of each word in a given name.
  *
@@ -776,7 +753,6 @@ function getNameWithCapitalizedFirstLetter(name) {
   }
 }
 
-
 /**
  * Displays details of the contact with the given ID.
  * @param {number} id - The unique identifier of the contact.
@@ -790,7 +766,6 @@ function openContactDetails(id) {
   rightSide.innerHTML = contactDetailsHTML;
   highlightSelectedContact(id);
 }
-
 
 /**
  * Resets contact card styles to their default values.
@@ -810,7 +785,6 @@ function resetContactCard(card) {
   }
 }
 
-
 /**
  * Resets the styles of all contact cards to their default values.
  *
@@ -821,7 +795,6 @@ function resetAllContactCards() {
   const allContactCards = document.querySelectorAll(".contact-card");
   allContactCards.forEach(resetContactCard);
 }
-
 
 /**
  * Highlights a contact card by applying specific styles.
@@ -843,7 +816,6 @@ function highlightContactCard(card) {
   }
 }
 
-
 /**
  * Highlights the selected contact card and resets all others if already highlighted.
  *
@@ -864,7 +836,6 @@ function highlightSelectedContact(id) {
   }
 }
 
-
 /**
  * Removes the highlighting from the selected contact card and hides the right side element.
  *
@@ -880,7 +851,6 @@ function removeHighlight(selectedContactCard, rightSideElement) {
   resetContactCard(selectedContactCard);
   selectedContactCard.classList.remove("highlighted");
 }
-
 
 /**
  * Applies highlighting to the selected contact card and shows the right side element.
@@ -899,7 +869,6 @@ function applyHighlight(selectedContactCard, rightSideElement) {
   }
 }
 
-
 /**
  * Generates HTML code for displaying contact details.
  *
@@ -916,8 +885,8 @@ function generateContactDetailsHTML(name, email, phone, id) {
         <div class="contact-details-badge-group">
           <div class="contact-details-badge">
             <div class="contact-details-badge-initials">${getInitials(
-    name
-  )}</div>
+              name
+            )}</div>
           </div>
         </div>
         <div class="contact-details-name-group">
@@ -949,7 +918,6 @@ function generateContactDetailsHTML(name, email, phone, id) {
   `;
 }
 
-
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -961,7 +929,6 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
-
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -971,7 +938,6 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
-
 
 /**
  * Generates a random color from a predefined list of colors.
@@ -996,7 +962,6 @@ function generateRandomColor() {
   return colors[randomIndex];
 }
 
-
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
  *
@@ -1007,7 +972,6 @@ async function delAllContacts() {
   await remoteStorageSetItem("contacts", JSON.stringify(contacts));
   console.log("contacts: ", contacts);
 }
-
 
 /**
  * Edits the contact with the specified ID.
@@ -1028,7 +992,6 @@ function editContact(id) {
   }
 }
 
-
 /**
  * Deletes a contact from the local storage.
  *
@@ -1036,16 +999,15 @@ function editContact(id) {
  * @return {undefined} This function does not return a value.
  */
 function deleteContactFromLocalStorage(contactId) {
-  var contacts = JSON.parse(localStorage.getItem('contacts'));
+  var contacts = JSON.parse(localStorage.getItem("contacts"));
 
   if (contacts) {
-      contacts = contacts.filter(function(contact) {
-          return contact.id !== contactId;
-      });
-      localStorage.setItem('contacts', JSON.stringify(contacts));
+    contacts = contacts.filter(function (contact) {
+      return contact.id !== contactId;
+    });
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 }
-
 
 /**
  * Deletes the contact with the specified ID.
@@ -1056,14 +1018,13 @@ function deleteContactFromLocalStorage(contactId) {
 async function deleteContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
-    contacts.splice(contactIndex, 1); 
-    await remoteStorageSetItem("contacts", JSON.stringify(contacts)); 
+    contacts.splice(contactIndex, 1);
+    await remoteStorageSetItem("contacts", JSON.stringify(contacts));
     console.log("Contact deleted successfully.");
   } else {
     console.error("Contact not found with ID:", id);
   }
 }
-
 
 /**
  * Removes a contact from the local storage and reinitializes the contacts list.
