@@ -747,7 +747,7 @@ function generateContactCardHTML(
       <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
       <div>
         <span class="contact-card-name">${formattedName}</span><br>
-        <a class="contact-card-email" href="mailto:${email}">${shorterMail}</a>
+        <a class="contact-card-email">${shorterMail}</a>
       </div>
     </div>
   `;
@@ -933,8 +933,8 @@ function generateContactDetailsHTML(name, email, phone, id) {
       <div></div>
       <div class="contact-information">Contact Information
         <div class="contact-email-container" id="contactEmailContainer">
-          <div class="contact-information-mail-header">Email</div>
-          <div class="contact-information-mail">${email}</div>
+          <div class="contact-information-mail-header" >Email</div>
+          <div class="contact-information-mail" href="mailto:${email}">${email}</div>
         </div>
       </div>
       <div>
