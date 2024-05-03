@@ -934,7 +934,7 @@ function generateContactDetailsHTML(name, email, phone, id) {
       <div class="contact-information">Contact Information
         <div class="contact-email-container" id="contactEmailContainer">
           <div class="contact-information-mail-header" >Email</div>
-          <div class="contact-information-mail" href="mailto:${email}">${email}</div>
+          <a class="contact-information-mail" href="mailto:${email}">${email}</a>
         </div>
       </div>
       <div>
