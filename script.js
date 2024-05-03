@@ -1,3 +1,5 @@
+let navLinks = ['summary', "addTask", "board", "contacts"];
+
 /**
  * the init-function in body onload
  */
@@ -170,6 +172,7 @@ function switchPageNewTab(newUrl) {
 }
 
 
+<<<<<<< Updated upstream
 /**
  * Sets the active navigation button based on the current location pathname.
  */
@@ -191,3 +194,74 @@ function setActiveNavButton(){
 			break;
 	}
 }
+=======
+
+//TODO:
+// async function addClassOfActive() {
+// 	await document.getElementById('summary').classList.add('activeHighlighted');
+// }
+
+// for (let i = 0; i < navLinks.length; i++) {
+// 	let link = navLinks[i];
+// 	console.log('link akutell in Schleife ist: ', link);
+// 	if (i === index) {
+// 		document.getElementById(`$navLink[i]`)
+// 		link.classList.add('activeHighlighted');
+// 	} else {
+// 		link.classList.remove('activeHighlighted');
+// 	}
+// }
+
+// function highlightActivePage(index) {
+// 	let navLinks = document.querySelectorAll('.nav-btn');
+// 	for (let i = 0; i < navLinks.length; i++) {
+// 		let link = navLinks[i];
+// 		if (i === index) {
+// 			link.classList.add('activeHighlighted');
+// 		} else {
+// 			link.classList.remove('activeHighlighted');
+// 		}
+// 	}
+// }
+
+
+
+//TODO anja highlighting...
+// function highlightActive(index) {
+// 	document.querySelectorAll(`.nav-btn:nth-child(${index})`).forEach(element => {
+// 		element.classList.add("activeHighlighted");
+// 	});
+// }
+
+
+
+// /**
+
+
+
+//  *
+//  * @param {String} folderPath
+//  */
+// function dynamicallyLoadScriptsFromFolder(folderPath) {
+//   var scripts = [
+//     'allTasks.js',
+//     'board.js',
+//     'contacts.js',
+//     'contact_list.js',
+//     'contact_popups.js',
+//     'login.js',
+//     'navigation.js',
+//     'register.js',
+//     'storage.js',
+//     'summary.js'
+//   ];
+
+//   scripts.forEach(function(script) {
+//       var scriptElement = document.createElement("script");
+//       scriptElement.src = folderPath + "/" + script;
+//       scriptElement.setAttribute("defer","");
+//       document.head.appendChild(scriptElement);
+//   });
+//   console.log("JS imported")
+// }
+>>>>>>> Stashed changes

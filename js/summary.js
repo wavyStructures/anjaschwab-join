@@ -7,8 +7,13 @@ let loggedUser;
  */
 async function summaryInit() {
     includeHTML();
+<<<<<<< Updated upstream
     await loadContactsStorage();
     getLoggedUser();
+=======
+    // highlightActivePage(0);
+    // addClassOfActive();
+>>>>>>> Stashed changes
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
@@ -29,7 +34,11 @@ function greetAccordingToDayTime() {
         ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night"); 
 
     document.getElementById('daytimeGreeting').innerHTML = '';
+<<<<<<< Updated upstream
     console.log('loggedUser Fkt1', loggedUser);
+=======
+    loggedUser = getCurrentUser();
+>>>>>>> Stashed changes
     if (loggedUser) {
         status += ",";
     }
@@ -43,7 +52,6 @@ function greetAccordingToDayTime() {
 function getUserNameForGreeting() {
     if (loggedUser) {
         let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
-        console.log('loggedUser 2.Fkt', loggedUser);
         greet(capitalizedName);
     }
 }
