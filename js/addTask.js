@@ -219,6 +219,9 @@ function renderContactsToDropdown(){
     })
 }
 
+function addTaskDueDateOpenCalendear(){
+    console.log("TODO: open calendar");
+}
 
 /**
  * Assigns a contact to a task based on the provided id.

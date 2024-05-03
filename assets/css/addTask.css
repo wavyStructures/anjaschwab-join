@@ -116,24 +116,41 @@ select {
 }
 
 .addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
-    background: url('../img/icon-event.png') no-repeat;
+    display: none;
+    /* background: url('../img/icon-event.png') no-repeat;
     background-position: center;
     width: 24px;
-    height: 24px;
-    cursor: pointer;
+    height: 24px; 
+    cursor: pointer; */
+    
 }
 
 .addTaskDueDateInputContainer{
+    display: flex;
+    /* justify-content: space-between; */
     width: 100%;
-    background-color: green;
+    /* background-color: green; */
+    padding: var(--padding-1216);
+
+    input{
+        padding: 0;
+        border-bottom: none;
+    }
 }
 
- #addTaskDueDateInput{
+.addTaskDueDateImage{
+    background: url('../img/icon-event.png') no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px; 
+    cursor: pointer;
+}
+
+/* #addTaskDueDateInput{
     display: flex;
     justify-content: center;
     width: 100%;
-
-    }
+} */
 
 .addTaskBodyTop {
     display: flex;
