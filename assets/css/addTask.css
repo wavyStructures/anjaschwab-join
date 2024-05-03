@@ -183,6 +183,9 @@ select {
     display: flex;
     flex-wrap: wrap;
 }
+.assignedContactsContainer .profile-badge-group{
+    border: 1px solid white;
+}
 
 .addTask-dropdown-category{
     padding: var(--padding-1216)
@@ -242,7 +245,10 @@ select {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+}
 
+.dropdownOption:hover .profile-badge-group{
+    border: 2px solid white;
 }
 
 .addTaskContainer {
