@@ -7,13 +7,17 @@ let loggedUser;
  */
 async function summaryInit() {
     includeHTML();
-    // highlightActivePage(0);
+    await loadContactsStorage();
+    getLoggedUser();
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
 
 }
 
+function getLoggedUser(){
+    loggedUser = getCurrentUser();
+}
 
 /**
  * Generates a greeting based on the current time.
@@ -22,10 +26,9 @@ function greetAccordingToDayTime() {
     let nowTime = new Date();
     let hours = nowTime.getHours();
     let status = (hours < 12) ? "Good Morning" :
-        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
+        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night"); 
 
     document.getElementById('daytimeGreeting').innerHTML = '';
-    loggedUser = getCurrentUser();
     console.log('loggedUser Fkt1', loggedUser);
     if (loggedUser) {
         status += ",";
@@ -38,7 +41,6 @@ function greetAccordingToDayTime() {
 * Retrieves the current user's name and triggers personalized greeting.
 */
 function getUserNameForGreeting() {
-    loggedUser = getCurrentUser();
     if (loggedUser) {
         let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
         console.log('loggedUser 2.Fkt', loggedUser);
