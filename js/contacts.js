@@ -1,8 +1,7 @@
-const STORAGE_URL1 =
-  "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
-
 let contacts = [];
 let localVersionIndex = 0;
+
+
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.

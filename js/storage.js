@@ -5,6 +5,7 @@
 const STORAGE_TOKEN = '441D59WVPL1TM4PQXPZBMD2DVHMTLLM72U8YTPTA';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
  * 
@@ -33,12 +34,30 @@ async function getItem(key) {
 }
 
 
+// Firebase Storage
+/*
+async function remoteStorageSetItem(path="") {
+    let response = await fetch(BASE_URL + path, + ".json");
+    return responseToJSON = await response.json();
+    }
+
+async function getItem(path="", data={}){
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return responseToJSON = await response.json();
+}*/
+
 /*
 TODO:
 - setItem und getItem für Kontakte (contacts[])
 - setItem und getItem für cards (cards[])
 */
-
+/*
 /**
  * Sets the currently logged in user in the local storage.
  *
