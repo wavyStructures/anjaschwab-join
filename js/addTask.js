@@ -132,7 +132,7 @@ function addSubtask(){
 
 
 function renderSubtasks(){
-    let outputContainer = document.getElementById('subtasksOutput');
+    let outputContainer = document.getElementById('subtasksOutputContainer');
     outputContainer.innerHTML = '';
     for (let i = 0; i < newTask.subtasks.length; i++) {
         let subtask = newTask.subtasks[i];

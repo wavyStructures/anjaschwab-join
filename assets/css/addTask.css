@@ -377,7 +377,9 @@ select {
         background-image: url('../img/icon-plus_blue_hover.png');
     }
 }
-
+#subtasksOutputContainer{
+    padding: var(--padding-1216)
+}
 .subTaskOutputDiv {
     display: flex;
     flex-direction: row;
