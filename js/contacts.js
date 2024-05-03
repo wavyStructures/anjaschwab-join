@@ -167,7 +167,9 @@ async function saveContact() {
       contactColor: generateRandomColor(),
     });
     await setItem("contacts", JSON.stringify(contacts));
+    localStorage.setItem('contacts', JSON.stringify(contacts));
     localVersionIndex++; // Increase the version index after saving the contact remote.
+    
     await saveOnlineVersionIndex(localVersionIndex); // Save the updated version index online.
 
     resetContactForm();
