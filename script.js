@@ -188,7 +188,6 @@ function setActiveNavButton(){
 			document.getElementById('contacts').classList.add('active');
 			break;
 		default:
-			console.error("setActiveNavButton: Unknown path name: " + location.pathname);
 			break;
 	}
 }
