@@ -33,6 +33,10 @@
   &:hover {
     background-color: var(--clr-text-menu-hover);
   }
+  
+  &.active{
+    background-color: var(--clr-text-menu-hover);
+  }
 }
 
 .activeHighlighted {

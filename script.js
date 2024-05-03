@@ -29,6 +29,7 @@ async function includeHTML() {
 		}
 	}
 	showInitials();
+	setActiveNavButton();
 }
 
 /**
@@ -169,57 +170,25 @@ function switchPageNewTab(newUrl) {
 }
 
 
-
-// function highlightActivePage(index) {
-// 	let navLinks = document.querySelectorAll('.nav-btn');
-// 	navLinks.forEach((link, i) => {
-// 		if (i === index) {
-// 			link.classList.add('activeHighlighted');
-// 		} else {
-// 			link.classList.remove('activeHighlighted');
-// 		}
-// 	});
-// }
-
-// // Example usage:
-// highlightActivePage(0);
-
-
-//TODO anja highlighting...
-// function highlightActive(index) {
-// 	document.querySelectorAll(`.nav-btn:nth-child(${index})`).forEach(element => {
-// 		element.classList.add("activeHighlighted");
-// 	});
-// }
-
-
-
-// /**
-
-
-
-//  *
-//  * @param {String} folderPath
-//  */
-// function dynamicallyLoadScriptsFromFolder(folderPath) {
-//   var scripts = [
-//     'allTasks.js',
-//     'board.js',
-//     'contacts.js',
-//     'contact_list.js',
-//     'contact_popups.js',
-//     'login.js',
-//     'navigation.js',
-//     'register.js',
-//     'storage.js',
-//     'summary.js'
-//   ];
-
-//   scripts.forEach(function(script) {
-//       var scriptElement = document.createElement("script");
-//       scriptElement.src = folderPath + "/" + script;
-//       scriptElement.setAttribute("defer","");
-//       document.head.appendChild(scriptElement);
-//   });
-//   console.log("JS imported")
-// }
+/**
+ * Sets the active navigation button based on the current location pathname.
+ */
+function setActiveNavButton(){
+	switch (location.pathname) {
+		case '/summary.html':
+			document.getElementById('summary').classList.add('active');
+			break;
+		case '/addTask.html':
+			document.getElementById('addTask').classList.add('active');
+			break;
+		case '/board.html':
+			document.getElementById('board').classList.add('active');
+			break;
+		case '/contacts.html':
+			document.getElementById('contacts').classList.add('active');
+			break;
+		default:
+			console.error("setActiveNavButton: Unknown path name: " + location.pathname);
+			break;
+	}
+}

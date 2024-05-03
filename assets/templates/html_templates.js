@@ -188,7 +188,6 @@ function renderEmptyCategoryHTML() {
 }
 
 function renderAssignedToButtonsHTML(contact) {
-  console.log(contact.contactColor);
   return /*html*/ `<div class="profile-badge-group" style="background-color: ${
     contact.contactColor
   }">${getInitials(contact.name)}</div>`;
