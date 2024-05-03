@@ -599,6 +599,8 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
+  <div class="contact-list-container">
+  <div class="add-contact-overlay"></div>
   <div id="addContactContainer" class="hidden">
     <div id="addContact" class="add-contact d-none" onclick="doNotClose(event)">
       <div class="add-contact-header">
@@ -644,6 +646,7 @@ function generateContactsContainerHTML() {
         </form>
     </div>
     </div>
+</div>
 </div>
         <div class="contacts-container" id="contacts-container"> 
         
