@@ -19,7 +19,7 @@ async function getContactsFromRemoteStorage() {
  * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
  */
 async function resetContactsOnRemoteStorage() {
-  return await setItem("contacts", JSON.stringify(contacts_old));
+  return await remoteStorageSetItem("contacts", JSON.stringify(contacts_old));
 }
 
 /**
@@ -148,7 +148,7 @@ async function ckeckOnlineVersionIndex() {
  * Saves the version index to Firebase Realtime Database.
  */
 async function saveOnlineVersionIndex(versionIndex) {
-  await setItem("versionIndex", versionIndex);
+  await remoteStorageSetItem("versionIndex", versionIndex);
 }
 
 
@@ -166,7 +166,7 @@ async function saveContact() {
       phone: contactPhone.value,
       contactColor: generateRandomColor(),
     });
-    await setItem("contacts", JSON.stringify(contacts));
+    await remoteStorageSetItem("contacts", JSON.stringify(contacts));
     localStorage.setItem('contacts', JSON.stringify(contacts));
     localVersionIndex++; // Increase the version index after saving the contact remote.
     
@@ -1004,7 +1004,7 @@ function generateRandomColor() {
  */
 async function delAllContacts() {
   contacts = [];
-  await setItem("contacts", JSON.stringify(contacts));
+  await remoteStorageSetItem("contacts", JSON.stringify(contacts));
   console.log("contacts: ", contacts);
 }
 
@@ -1057,7 +1057,7 @@ async function deleteContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     contacts.splice(contactIndex, 1); 
-    await setItem("contacts", JSON.stringify(contacts)); 
+    await remoteStorageSetItem("contacts", JSON.stringify(contacts)); 
     console.log("Contact deleted successfully.");
   } else {
     console.error("Contact not found with ID:", id);

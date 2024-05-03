@@ -16,6 +16,14 @@
     font-weight: bold;
 }
 
+.cursorDefault{
+    cursor: default;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
+
 .border-bottom{
     border-bottom: 1px solid var(--clr-border);
     
@@ -41,7 +49,7 @@ button:focus {
 }
 
 input{
-    padding: var(--padding-1216);
+    /* padding: var(--padding-1216); */
 }
 
 input:focus {
@@ -71,14 +79,11 @@ select {
     cursor: pointer;
 }
 
-
-
 .addTaskBody {
     height: 769px;
     max-width: 500px;
     padding: 64px 24px 0 24px;
     font-size: 1.188rem;
-
 }
 
 .addTaskAddTitleContainer {
@@ -318,9 +323,13 @@ select {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    padding: var(--padding-1216);
+    cursor: pointer;
+    
     input {
         border-bottom: none;
+        cursor: pointer;
+        padding: 0;
     }
 }
 

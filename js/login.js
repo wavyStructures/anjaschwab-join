@@ -5,7 +5,7 @@ let loggedUsers = [];
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
 async function setUsersRemote() {
-    await setItem('users', JSON.stringify(users));
+    await remoteStorageSetItem('users', JSON.stringify(users));
 }
 
 

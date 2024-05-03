@@ -12,7 +12,7 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
  * @param {string} value - the value for the key
  * @returns 
  */
-async function setItem(key, value) {
+async function remoteStorageSetItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json());

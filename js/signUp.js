@@ -123,7 +123,7 @@ function checkAllFieldsFilled() {
  */
 async function delAllUsers() {
     users = [];
-    await setItem('users', JSON.stringify(users));
+    await remoteStorageSetItem('users', JSON.stringify(users));
     console.log("USERS: ", users)
 }
 
