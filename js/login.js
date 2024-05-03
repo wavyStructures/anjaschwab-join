@@ -1,6 +1,7 @@
 let users = [];
 let loggedUsers = [];
 
+
 /**
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
@@ -23,11 +24,18 @@ async function loginInit() {
 }
 
 
+/**
+ * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
+ * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
+ */
 async function loadUsers() {
     users = JSON.parse(await getItem('contacts'));
 }
 
 
+/**
+ * Saves the users array to the local storage as a JSON string.
+ */
 function setUsersToLocalStorage() {
     localStorage.setItem('users', JSON.stringify(users));
 }
@@ -38,7 +46,7 @@ function setUsersToLocalStorage() {
  * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.
  * Then, it switches the page to 'summary.html'.
  *
- * @return {boolean} Returns false to prevent the form from submitting.
+ * @return {boolean} Returns false to prevent the form from submitting again.
  */
 function loginUser() {
     let email = document.getElementById('loginEmailInput');
@@ -58,8 +66,6 @@ function loginUser() {
  */
 function toggleRememberMeCheckbox() {
     let loginCheckboxImg = document.getElementById('loginCheckboxImg');
-
-
     if (loginCheckboxImg.src.includes('unchecked.png')) {
         loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
 
@@ -77,20 +83,6 @@ function gotoSignUp() {
 }
 
 
-
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-const msgBox = document.getElementById('msgBox');
-
-if (msg) {
-    msgBox.classList.remove('d-none');
-    msgBox.innerHTML = msg;
-}
-else {
-    console.log('no msg found');
-}
-
-
 // function startAnimation() {
 //     // setTimeout(function () {
 
@@ -101,6 +93,8 @@ else {
 
 //     // }, 30000); // 30 seconds
 // }
+
+
 
 
 
