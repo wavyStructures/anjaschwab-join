@@ -109,6 +109,7 @@ async function fetchOnlineVersionIndex() {
 /**
  * Initializes the contacts by including the HTML, loading the contacts, and checking the version index.
  */
+/*
 async function contactsInit() {
   includeHTML();
 
@@ -120,7 +121,7 @@ async function contactsInit() {
 
   // Load contacts after ensuring the version index is up to date
   loadContacts();
-}
+}*/
 
 
 /**
@@ -923,7 +924,7 @@ function generateContactDetailsHTML(name, email, phone, id) {
             <div class="icon-edit" onclick="editContact(${id})">
               <img src="./assets/img/icon-edit.png" alt="">Edit
             </div>
-            <div class="icon-delete">
+            <div class="icon-delete" onclick="removeContact(${id})">
               <img src="./assets/img/icon-delete.png" alt="">Delete
             </div>
           </div>
@@ -1023,4 +1024,53 @@ function editContact(id) {
   } else {
     console.error("Contact not found with ID:", id);
   }
+}
+
+
+/**
+ * Deletes a contact from the local storage.
+ *
+ * @param {number} contactId - The ID of the contact to be deleted.
+ * @return {undefined} This function does not return a value.
+ */
+function deleteContactFromLocalStorage(contactId) {
+  var contacts = JSON.parse(localStorage.getItem('contacts'));
+
+  if (contacts) {
+      contacts = contacts.filter(function(contact) {
+          return contact.id !== contactId;
+      });
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+  }
+}
+
+
+/**
+ * Deletes the contact with the specified ID.
+ *
+ * @param {number} id - The unique identifier of the contact to be deleted.
+ * @returns {void}
+ */
+async function deleteContact(id) {
+  const contactIndex = contacts.findIndex((contact) => contact.id === id);
+  if (contactIndex !== -1) {
+    contacts.splice(contactIndex, 1); 
+    await setItem("contacts", JSON.stringify(contacts)); 
+    console.log("Contact deleted successfully.");
+  } else {
+    console.error("Contact not found with ID:", id);
+  }
+}
+
+
+/**
+ * Removes a contact from the local storage and reinitializes the contacts list.
+ *
+ * @param {number} id - The unique identifier of the contact to be removed.
+ * @return {void} This function does not return anything.
+ */
+function removeContact(id) {
+  deleteContactFromLocalStorage(id);
+  deleteContact(id);
+  contactsInit();
 }
