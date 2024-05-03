@@ -492,7 +492,7 @@ function addContactCard() {
     overlay.classList.add("overlay");
 
     const bodyContent = document.getElementById("bodyContent");
-    bodyContent.setAttribute("onclick", "closeAddContact()");
+    overlay.setAttribute("onclick", "closeAddContact()");
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
