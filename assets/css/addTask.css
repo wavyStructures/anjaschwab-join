@@ -115,27 +115,37 @@ select {
     gap: var(--addTaskGap);
 }
 
-.addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    /* background: url('../img/icon-event.png') no-repeat;
-    background-position: center;
-    width: 24px;
-    height: 24px; 
-    cursor: pointer; */
-    
-}
 
 .addTaskDueDateInputContainer{
+    position: relative;
     display: flex;
-    /* justify-content: space-between; */
     width: 100%;
-    /* background-color: green; */
     padding: var(--padding-1216);
 
     input{
         padding: 0;
         border-bottom: none;
+        cursor: pointer;
+        width: 100%;
     }
+}
+
+.addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
+    
+    /* background: url('../img/icon-event.png') no-repeat; */
+    background: transparent;
+    position: absolute;
+    /* background-position: center; */
+    width: 24px;
+    height: 24px; 
+    cursor: pointer;
+    height: 100%;
+    width: auto;
+    top:0;
+    left:50px;
+    right:0;
+    left:0;
+    
 }
 
 .addTaskDueDateImage{
