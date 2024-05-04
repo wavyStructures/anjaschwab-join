@@ -13,6 +13,7 @@
     --clr-border-hover: var(--clr-contact-marked);
     --padding-1216: 12px 16px 12px 16px;
     --padding-0616: 6px 16px 6px 16px;
+    --clr-btn-border: #647188;
 }
 
 .bold {
@@ -83,12 +84,43 @@ select {
 
 .addTaskBody {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* height: 769px; */
     max-width: 500px;
     padding: 64px 24px 0 24px;
     font-size: 1.188rem;
     gap: var(--addTaskGap-24);
+}
+
+.addTaskBodyRight{
+    background-color: red;
+
+}
+
+.addTaskBtn{
+    width: 100px;
+    height: 60px;
+    border: 1px solid var(--clr-btn-border);
+    padding: 16px 10px 16px 10px;
+    border-radius: 10px;
+    
+}
+
+.addTaskBtnContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 25px;
+}
+
+.clearBtn{
+    display: flex;
+    gap:10px
+}
+
+.createBtn{
+    width: 174px;
+    gap: 4px;
 }
 
 .addTaskAddTitleContainer {

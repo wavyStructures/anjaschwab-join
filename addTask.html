@@ -31,33 +31,33 @@
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
                 <div class="addTaskBody">
-                    <div class="addTaskBodyTop">
-                        <div class="addTaskAddTitleContainer">
-                            <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title">
-                            <div class="addTaskRequired" id="requiredTitle"></div>
-                        </div>
-                        <div class="addTaskDescription">
-                            <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
-                            <div>
-                            <div class="textAreaContainer">
-                                <textarea id="addTaskDescriptionInput" type="text"></textarea>
-                                <div class="addTaskRequired" id="requiredDescription"></div>
+                    <div class="addTaskBodyLeft">
+                        <div class="addTaskBodyTop">
+                            <div class="addTaskAddTitleContainer">
+                                <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title">
+                                <div class="addTaskRequired" id="requiredTitle"></div>
                             </div>
-                        </div>
-                        </div>
-                        <div class="addTaskDueDate ">
-                            <div class="addTaskTitles"><span class="bold">Due date</span></div>
-                            <!-- TODO: ADD TODAYS DATE-->
-                            <div >
-                                <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
-                                    <input id="addTaskDueDateInput" type="date"  value="">
-                                    <div class="addTaskDueDateImage"></div>
+                            <div class="addTaskDescription">
+                                <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
+                                <div>
+                                <div class="textAreaContainer">
+                                    <textarea id="addTaskDescriptionInput" type="text"></textarea>
+                                    <div class="addTaskRequired" id="requiredDescription"></div>
                                 </div>
-                                <div class="addTaskRequired" id="requiredDueDate"></div>
+                            </div>
+                            </div>
+                            <div class="addTaskDueDate ">
+                                <div class="addTaskTitles"><span class="bold">Due date</span></div>
+                                <div>
+                                    <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
+                                        <input id="addTaskDueDateInput" type="date"  value="">
+                                        <div class="addTaskDueDateImage"></div>
+                                    </div>
+                                    <div class="addTaskRequired" id="requiredDueDate"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="addTaskBodyBottom">
+                        <div class="addTaskBodyBottom">
                         <div class="addTaskPriority">
                             <div class="addTaskTitles bold">Priority</div>
                             <div class="addTaskPriorityButtonContainer">
@@ -120,6 +120,19 @@
                             <div id="subtasksOutputContainer"></div>
                         </div>
                         <div class="addTaskEmptyDiv"></div>
+                        </div>
+                    </div>
+                    <div class="addTaskBodyRight">
+                        <div class="addTaskBtnContainer">
+                            <div class="clearBtn addTaskBtn">
+                                <span class="addTaskBtnText">Clear</span>
+                                <div class="createBtnImg"></div>
+                            </div>
+                            <div class="createBtn addTaskBtn">
+                                <span class="addTaskBtnText">Create Task</span>
+                                <div class="createBtnImg"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
