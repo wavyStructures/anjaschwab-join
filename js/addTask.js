@@ -107,7 +107,8 @@ function renderSubtaskInputFieldHTML(){
    return /*html*/`
     <input type="text" id="subtaskInputField" placeholder="Add new subtask" onclick="doNotClose(event)">
     <div class="subtaskAddOrCancel">
-        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add'); doNotClose(event)"></div>|
+        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add'); doNotClose(event)"></div>
+        <div class="vLine"></div>
         <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel'); doNotClose(event)"></div>
     </div>`
 }
@@ -188,7 +189,8 @@ function renderSubtaskHTML(outputContainer, subtask){
         <div class="subTaskOutputDiv" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
         <div class="subtaskText">&#8226; ${subtask.subtaskText}</div>
             <div class="subtaskCheckboxes">
-                <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>|
+                <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>
+                <div class="vLine"></div>
                 <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div>
             </div>
         </div>`
@@ -239,7 +241,7 @@ function editSubtaskHTML(subtask) {
     return /*html*/`
         <input type="text" id="subtaskEditInputField" value="${subtask.subtaskText}">
         <div class="subtaskCheckboxes">
-        <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div>|
+        <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div><div class="vLine"></div>
             <div class="subtaskImgDiv pointer" id="subtaskImgAddCheck" onclick="saveEditSubtask(${subtask.id})"> </div>
         </div>`
 }

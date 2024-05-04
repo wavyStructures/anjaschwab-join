@@ -11,26 +11,26 @@
     --clr-contact-hover: #d2e3ff;
     --clr-border: #d1d1d1;
     --clr-border-hover: var(--clr-contact-marked);
-    --padding-1216:  12px 16px 12px 16px;
-    --padding-0616:  6px 16px 6px 16px;
+    --padding-1216: 12px 16px 12px 16px;
+    --padding-0616: 6px 16px 6px 16px;
 }
 
-.bold{
+.bold {
     font-weight: bold;
 }
 
-.cursorDefault{
+.cursorDefault {
     cursor: default;
 }
 
-.cursorPointer{
+.cursorPointer {
     cursor: pointer;
 }
 
-.border-bottom{
+.border-bottom {
     border-bottom: 1px solid var(--clr-border);
-    
-    &:hover{
+
+    &:hover {
         border-bottom: 1px solid var(--clr-border-hover);
     }
 }
@@ -74,12 +74,13 @@ select {
     cursor: pointer;
 }
 
-.addTaskRequired{
+.addTaskRequired {
     width: 125px;
     height: 16px;
     background-color: red;
     margin-top: 4px;
 }
+
 .addTaskBody {
     display: flex;
     flex-direction: column;
@@ -107,7 +108,7 @@ select {
     padding-bottom: var(--addTaskPaddingBottom);
     gap: var(--addTaskGap-8);
 
-    & .addTaskRequired{
+    & .addTaskRequired {
         margin-top: 0;
     }
 }
@@ -119,13 +120,13 @@ select {
 }
 
 
-.addTaskDueDateInputContainer{
+.addTaskDueDateInputContainer {
     position: relative;
     display: flex;
     width: 100%;
     padding: var(--padding-1216);
 
-    input{
+    input {
         padding: 0;
         border-bottom: none;
         cursor: pointer;
@@ -134,28 +135,28 @@ select {
 }
 
 .addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
-    
+
     /* background: url('../img/icon-event.png') no-repeat; */
     background: transparent;
     position: absolute;
     /* background-position: center; */
     width: 24px;
-    height: 24px; 
+    height: 24px;
     cursor: pointer;
     height: 100%;
     width: auto;
-    top:0;
-    left:50px;
-    right:0;
-    left:0;
-    
+    top: 0;
+    left: 50px;
+    right: 0;
+    left: 0;
+
 }
 
-.addTaskDueDateImage{
+.addTaskDueDateImage {
     background: url('../img/icon-event.png') no-repeat;
     background-position: center;
     width: 24px;
-    height: 24px; 
+    height: 24px;
     cursor: pointer;
 }
 
@@ -209,18 +210,18 @@ select {
     gap: 1rem;
     width: 100%;
     padding: var(--padding-1216)
-
 }
 
-.assignedContactsContainer{
+.assignedContactsContainer {
     display: flex;
     flex-wrap: wrap;
 }
-.assignedContactsContainer .profile-badge-group{
+
+.assignedContactsContainer .profile-badge-group {
     border: 1px solid white;
 }
 
-.addTask-dropdown-category{
+.addTask-dropdown-category {
     padding: var(--padding-1216)
 }
 
@@ -257,30 +258,30 @@ select {
 
 }
 
-.dropdownOption{
+.dropdownOption {
     padding: var(--padding-1216);
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* background-color: red; */
     border-radius: 10px;
-    cursor:pointer;
+    cursor: pointer;
     text-transform: capitalize;
 
-    & img{
+    & img {
         height: 1.5rem;
         aspect-ratio: 1;
     }
 }
 
-.dropdownContactBadgeAndName{
+.dropdownContactBadgeAndName {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
 }
 
-.dropdownOption:hover .profile-badge-group{
+.dropdownOption:hover .profile-badge-group {
     border: 2px solid white;
 }
 
@@ -363,7 +364,7 @@ select {
     justify-content: space-between;
     padding: var(--padding-1216);
     cursor: pointer;
-    
+
     input {
         border-bottom: none;
         cursor: pointer;
@@ -371,19 +372,20 @@ select {
     }
 }
 
-.addTaskSubtasks{
+.addTaskSubtasks {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap-8);
 }
 
-#subTaskAddSubtaskText{
+#subTaskAddSubtaskText {
     color: #757575;
 }
 
 .subtaskAddOrCancel {
     display: flex;
     align-items: center;
+    gap: 4px;
 }
 
 .pointer {
@@ -431,7 +433,7 @@ select {
     }
 }
 
-#subtasksOutputContainer{
+#subtasksOutputContainer {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -447,49 +449,54 @@ select {
     padding: var(--padding-0616);
     border-radius: 10px;
 
-    &:hover{
+    &:hover {
         background-color: var(--clr-contact-hover);
     }
-    
-    &:hover .subtaskCheckboxes{
+
+    &:hover .subtaskCheckboxes {
         visibility: visible;
     }
 }
 
-.subTaskOutputDiv.editing{
+.subTaskOutputDiv.editing {
     padding: 4px 16px 4px 16px;
     border-bottom: 1px solid var(--clr-contact-marked);
     border-radius: 0;
 
-    & input{
+    & input {
         font-size: 1rem;
         border: none;
         padding: 0;
     }
 
-    &:hover{
+    &:hover {
         background-color: transparent;
     }
 
-    & .subtaskCheckboxes{
+    & .subtaskCheckboxes {
         visibility: visible;
     }
-
-
 }
 
-.subtaskCheckboxes{
+.subtaskCheckboxes {
     display: flex;
     flex-direction: row;
     visibility: hidden;
     align-items: center;
+    gap: 4px;
+}
+
+.vLine {
+    height: 24px;
+    width: 1px;
+    background-color: var(--clr-border);
 }
 
 #subtaskImgDelete {
     background-image: url("../img/icon-delete.png");
 
     &:hover {
-        background-image: url("../img/icon-delete_hover.png");
+        background-image: url("../img/icon-delete_hover_round.png");
     }
 }
 
@@ -501,7 +508,7 @@ select {
     }
 }
 
-.addTaskEmptyDiv{
+.addTaskEmptyDiv {
     height: 48px;
     width: 100%;
 }
