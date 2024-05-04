@@ -34,19 +34,26 @@
                     <div class="addTaskBodyTop">
                         <div class="addTaskAddTitleContainer">
                             <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title">
+                            <div class="addTaskRequired" id="requiredTitle"></div>
                         </div>
                         <div class="addTaskDescription">
                             <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
+                            <div>
                             <div class="textAreaContainer">
                                 <textarea id="addTaskDescriptionInput" type="text"></textarea>
+                                <div class="addTaskRequired" id="requiredDescription"></div>
                             </div>
+                        </div>
                         </div>
                         <div class="addTaskDueDate ">
                             <div class="addTaskTitles"><span class="bold">Due date</span></div>
                             <!-- TODO: ADD TODAYS DATE-->
-                            <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
-                                <input id="addTaskDueDateInput" type="date" value="" placeholder="Enter a date">
-                                <div class="addTaskDueDateImage"></div>
+                            <div>
+                                <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
+                                    <input id="addTaskDueDateInput" type="date" value="" placeholder="Enter a date">
+                                    <div class="addTaskDueDateImage"></div>
+                                </div>
+                                <div class="addTaskRequired" id="requiredDueDate"></div>
                             </div>
                         </div>
                     </div>
@@ -112,6 +119,7 @@
                             </div>
                             <div id="subtasksOutputContainer"></div>
                         </div>
+                        <div class="addTaskEmptyDiv"></div>
                     </div>
                 </div>
             </main>
