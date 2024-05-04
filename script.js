@@ -172,7 +172,6 @@ function switchPageNewTab(newUrl) {
 }
 
 
-<<<<<<< Updated upstream
 /**
  * Sets the active navigation button based on the current location pathname.
  */
@@ -194,7 +193,7 @@ function setActiveNavButton(){
 			break;
 	}
 }
-=======
+
 
 //TODO:
 // async function addClassOfActive() {
@@ -264,4 +263,4 @@ function setActiveNavButton(){
 //   });
 //   console.log("JS imported")
 // }
->>>>>>> Stashed changes
+
