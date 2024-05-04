@@ -201,9 +201,31 @@ function renderSubtaskHTML(outputContainer, subtask){
  * @param {number} id - The ID of the subtask to be edited.
  */
 function editSubtask(id){
+    if (checkIfAnySubtaskIsInEditingMode()) {
+        return;
+    }
     let subtaskContainer = document.getElementById('subtask' + id);
     let subtask = newTask.subtasks.find(subtask => subtask.id == id);
+    subtaskContainer.classList.add("editing")
     subtaskContainer.innerHTML = editSubtaskHTML(subtask);
+}
+
+
+/**
+ * Checks if any subtask container has the 'editing' class.
+ * This is to prevent other subtasks to be edited.
+ *
+ * @return {boolean} Returns true if any subtask container has the 'editing' class, otherwise returns false.
+ */
+function checkIfAnySubtaskIsInEditingMode(){
+    let subtaskContainers = document.getElementsByClassName('subTaskOutputDiv');
+    for (let i = 0; i < subtaskContainers.length; i++) {
+        let subtaskContainer = subtaskContainers[i];
+        if (subtaskContainer.classList.contains('editing')) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
