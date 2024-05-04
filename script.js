@@ -1,5 +1,3 @@
-let navLinks = ['summary', "addTask", "board", "contacts"];
-
 /**
  * the init-function in body onload
  */
@@ -116,10 +114,14 @@ function openHelp() {
 }
 
 
+/**
+ * Logs out the current user by removing the 'currentUser' item from the local storage and redirecting to the login page.
+ */
 function logout() {
 	localStorage.removeItem('currentUser');
 	switchPage('login.html');
 }
+
 
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
@@ -153,6 +155,7 @@ function openSmallMenu() {
 	content.classList.toggle("visible");
 }
 
+
 /**
  * Updates the window location pathname to the new URL.
  *
@@ -161,6 +164,7 @@ function openSmallMenu() {
 function switchPage(newUrl) {
 	window.location.href = newUrl;
 }
+
 
 /**
  * Opens a new tab with the specified URL.
@@ -175,7 +179,7 @@ function switchPageNewTab(newUrl) {
 /**
  * Sets the active navigation button based on the current location pathname.
  */
-function setActiveNavButton(){
+function setActiveNavButton() {
 	switch (location.pathname) {
 		case '/summary.html':
 			document.getElementById('summary').classList.add('active');
@@ -193,45 +197,6 @@ function setActiveNavButton(){
 			break;
 	}
 }
-
-
-//TODO:
-// async function addClassOfActive() {
-// 	await document.getElementById('summary').classList.add('activeHighlighted');
-// }
-
-// for (let i = 0; i < navLinks.length; i++) {
-// 	let link = navLinks[i];
-// 	console.log('link akutell in Schleife ist: ', link);
-// 	if (i === index) {
-// 		document.getElementById(`$navLink[i]`)
-// 		link.classList.add('activeHighlighted');
-// 	} else {
-// 		link.classList.remove('activeHighlighted');
-// 	}
-// }
-
-// function highlightActivePage(index) {
-// 	let navLinks = document.querySelectorAll('.nav-btn');
-// 	for (let i = 0; i < navLinks.length; i++) {
-// 		let link = navLinks[i];
-// 		if (i === index) {
-// 			link.classList.add('activeHighlighted');
-// 		} else {
-// 			link.classList.remove('activeHighlighted');
-// 		}
-// 	}
-// }
-
-
-
-//TODO anja highlighting...
-// function highlightActive(index) {
-// 	document.querySelectorAll(`.nav-btn:nth-child(${index})`).forEach(element => {
-// 		element.classList.add("activeHighlighted");
-// 	});
-// }
-
 
 
 // /**

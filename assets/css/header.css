@@ -97,3 +97,18 @@
 .helpIcon {
   cursor: pointer;
 }
+
+@media (min-width: 581px) and (max-width: 769px) {
+  .signUpField {
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 580px) {
+  .signUpField {
+    display: none;
+  }
+}
