@@ -144,7 +144,7 @@ function renderSubtasks(){
 function renderSubtaskHTML(outputContainer, subtask){
     outputContainer.innerHTML +=
     /*html*/`
-        <div class="subTaskOutputDiv">
+        <div class="subTaskOutputDiv" ondblclick="editSubtask(${subtask.id})">
         <div class="subtaskText">&#8226; ${subtask.subtaskText}</div>
             <div class="subtaskCheckboxes">
                 <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>|
