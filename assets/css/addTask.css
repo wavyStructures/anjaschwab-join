@@ -10,6 +10,7 @@
     --clr-border: #d1d1d1;
     --clr-border-hover: var(--clr-contact-marked);
     --padding-1216:  12px 16px 12px 16px;
+    --padding-0616:  6px 16px 6px 16px;
 }
 
 .bold{
@@ -366,8 +367,14 @@ select {
     }
 }
 
+.addTaskSubtasks{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 #subTaskAddSubtaskText{
-    color: #757575
+    color: #757575;
 }
 
 .subtaskAddOrCancel {
@@ -420,13 +427,23 @@ select {
     }
 }
 #subtasksOutputContainer{
-    padding: var(--padding-1216)
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .subTaskOutputDiv {
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: var(--padding-0616);
+    border-radius: 10px;
 
+    &:hover{
+        background-color: var(--clr-contact-hover);
+    }
     &:hover .subtaskCheckboxes{
         visibility: visible;
     }
@@ -436,8 +453,7 @@ select {
     display: flex;
     flex-direction: row;
     visibility: hidden;
-    /* text-align: center */
-    text-align:justify;
+    align-items: center;
 }
 
 #subtaskImgDelete {
