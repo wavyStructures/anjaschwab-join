@@ -152,38 +152,39 @@ button {
   height: 76px;
 }
 
-.line1 .square-button:hover {
-  gap: 13px;
-  border-radius: 0px 30px 30px 30px;
-  transform: scale(1.06);
-  background-color: red;
-}
-
-.line2 .square-button:hover {
-  gap: 13px;
-  border-radius: 0px 30px 30px 30px;
-  transform: scale(1.06);
-  background-color: #fff;
+.line1 .square-button:hover * {
+  color: #fff;
 }
 
 .line1 .square-button:hover {
-  background-color: #fff;
+  background-color: var(--clr-text-medium-blue);
   border-radius: 0px 30px 30px 30px;
   transform: scale(1.06);
+  transform-origin: right;
   img {
     border-radius: 50%;
+    border: 3px solid #fff;
     z-index: 1;
   }
 }
 
 .line1 .square-button:active {
-  background-color: var(--clr-main);
-  border-radius: 0px 30px 30px 30px;
-  transform: scale(1.06);
+  background-color: #fff;
+  color: var(--clr-text-medium-blue);
+  border-radius: 30px 30px 30px 30px;
+  transform: scale(1);
   img {
     border-radius: 50%;
-    border: 3px solid red;
+    border: 3px solid #fff;
     z-index: 1;
+  }
+}
+
+.line1 .square-button:active,
+.line1 .square-button:active * {
+  color: var(--clr-text-medium-blue);
+  .amount {
+    color: #000;
   }
 }
 
@@ -225,8 +226,31 @@ button {
 }
 
 .urgentAndDate:hover {
-  transform: scale(1.05);
+  border-radius: 0px 30px 30px 30px;
+
+  transform: scale(1.02, 1.08);
+  img {
+    transform: scale(1.08, 1.02);
+  }
+  background-color: #fff;
+  border: 1px solid lightgrey;
+  box-shadow: 0px 0px 0px 0px #00000029;
+
+  color: var(--clr-text-medium-blue);
+}
+
+.urgentAndDate:hover * {
+  border-color: var(--clr-text-medium-blue);
+}
+
+.urgentAndDate:active * {
+  border-color: #fff;
+}
+
+.urgentAndDate:active {
+  transform: scale(1);
   background-color: var(--clr-text-medium-blue);
+  color: #fff;
 }
 
 .urgentAndDate .amount {
