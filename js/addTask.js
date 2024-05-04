@@ -328,7 +328,7 @@ function renderContactsToDropdown(){
 }
 
 function addTaskDueDateOpenCalendear(){
-    console.log("TODO: open calendar");
+    document.getElementById('addTaskDueDateInput').showPicker();
 }
 
 /**
@@ -549,3 +549,16 @@ function getNewTaskDueDate(){
     return document.getElementById('addTaskDueDateInput').value
 }
 
+function setDefaultCalenderDate(){
+    let date = new Date(),
+        day = date.getDate(),
+        month = date.getMonth() + 1,
+        year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    const todayDate = `${year}-${month}-${day}`;
+
+    document.getElementById("addTaskDueDateInput").defaultValue = todayDate;
+}

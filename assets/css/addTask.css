@@ -135,11 +135,8 @@ select {
 }
 
 .addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
-
-    /* background: url('../img/icon-event.png') no-repeat; */
     background: transparent;
     position: absolute;
-    /* background-position: center; */
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -153,11 +150,13 @@ select {
 }
 
 .addTaskDueDateImage {
-    background: url('../img/icon-event.png') no-repeat;
+    background-image: url('../img/icon-event.png');
     background-position: center;
+    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
     cursor: pointer;
+    
 }
 
 /* #addTaskDueDateInput{
