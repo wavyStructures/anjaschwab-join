@@ -2,6 +2,7 @@ async function addTaskInit(){
     includeHTML();
     await loadContactsStorage();
     renderContactsToDropdown();
+    setTodayDateAsMin();
     renderSubtasks();
     
 }
@@ -549,7 +550,10 @@ function getNewTaskDueDate(){
     return document.getElementById('addTaskDueDateInput').value
 }
 
-function setDefaultCalenderDate(){
+/**
+ * Sets the minimum value of the "addTaskDueDateInput" element to the current date.
+ */
+function setTodayDateAsMin(){
     let date = new Date(),
         day = date.getDate(),
         month = date.getMonth() + 1,
@@ -560,5 +564,5 @@ function setDefaultCalenderDate(){
 
     const todayDate = `${year}-${month}-${day}`;
 
-    document.getElementById("addTaskDueDateInput").defaultValue = todayDate;
+    document.getElementById("addTaskDueDateInput").setAttribute('min', todayDate)
 }
