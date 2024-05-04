@@ -33,8 +33,8 @@
   &:hover {
     background-color: var(--clr-text-menu-hover);
   }
-  
-  &.active{
+
+  &.active {
     background-color: var(--clr-text-menu-hover);
   }
 }
@@ -51,6 +51,9 @@
   margin-left: 56px;
   line-height: 19.2px;
   /* text-align: left; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
 
   a {
     color: var(--clr-text-menu);

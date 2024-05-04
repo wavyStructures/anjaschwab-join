@@ -90,6 +90,16 @@ function getDate() {
 }
 
 
+function loadAmountInProgress() {
+    let inProgressCount = 0;
+    let tasks = getCurrentUserTasks();
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].boardCategory === "inProgress") {
+            inProgressCount++;
+        }
+    }
+    document.getElementById('tasks-in-progress').innerHTML = inProgressCount;
+}
 
 
 
