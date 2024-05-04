@@ -430,6 +430,10 @@ select {
         background-image: url('../img/icon-plus_blue_hover.png');
     }
 }
+
+#subTaskImageCheck{
+    background-image: url('../img/icon-check_blue.png');
+}
 #subtasksOutputContainer{
     display: flex;
     flex-direction: column;
