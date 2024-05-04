@@ -7,20 +7,17 @@ let loggedUser;
  */
 async function summaryInit() {
     includeHTML();
-<<<<<<< Updated upstream
     await loadContactsStorage();
     getLoggedUser();
-=======
     // highlightActivePage(0);
     // addClassOfActive();
->>>>>>> Stashed changes
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
 
 }
 
-function getLoggedUser(){
+function getLoggedUser() {
     loggedUser = getCurrentUser();
 }
 
@@ -31,14 +28,11 @@ function greetAccordingToDayTime() {
     let nowTime = new Date();
     let hours = nowTime.getHours();
     let status = (hours < 12) ? "Good Morning" :
-        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night"); 
+        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
     document.getElementById('daytimeGreeting').innerHTML = '';
-<<<<<<< Updated upstream
     console.log('loggedUser Fkt1', loggedUser);
-=======
     loggedUser = getCurrentUser();
->>>>>>> Stashed changes
     if (loggedUser) {
         status += ",";
     }
