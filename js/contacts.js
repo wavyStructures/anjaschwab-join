@@ -464,7 +464,7 @@ function renderSortedContacts(main, sortedContacts) {
     const initials = getInitials(name);
     const firstLetter = name
       .split(" ")
-      [name.split(" ").length - 1].charAt(0)
+    [name.split(" ").length - 1].charAt(0)
       .toUpperCase();
 
     if (!currentFirstLetters.includes(firstLetter)) {
@@ -887,8 +887,8 @@ function generateContactDetailsHTML(name, email, phone, id) {
         <div class="contact-details-badge-group">
           <div class="contact-details-badge">
             <div class="contact-details-badge-initials">${getInitials(
-              name
-            )}</div>
+    name
+  )}</div>
           </div>
         </div>
         <div class="contact-details-name-group">
