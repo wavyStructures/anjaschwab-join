@@ -85,7 +85,7 @@ function setPriorityAppearance(priority){
  * @param {string} priority - The priority level of the new card.
  */
 function setPriorityForNewCard(priority){
-    tempPriority = priority;
+    newTask.priority = priority;
 }
 
 
@@ -442,11 +442,9 @@ function collectInformationsForNewCard(){
     newTask.type = getNewTaskType();
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
-    // newTask.subtasks = getNewTaskSubtasks();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();
     newTask.assignedTo = getNewTaskAssignedTo();
     newTask.category = getNewTaskCategory();
-    newTask.priority = getNewTaskPriority();
     newTask.dueDate = getNewTaskDueDate();
 
     console.log(newTask);
@@ -529,16 +527,6 @@ function getNewTaskAssignedTo(){
 function getNewTaskCategory(){
     //TODO: return the right value
     return 'todo';
-}
-
-
-/**
- * Retrieves the priority of the new task.
- *
- * @return {string} The priority of the new task.
- */
-function getNewTaskPriority(){
-    return tempPriority;
 }
 
 
