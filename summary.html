@@ -12,10 +12,9 @@
     <script src="script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/contacts.js"></script>
+    <script src="./js/board.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/login.js"></script>
-    <!-- <script src="script.js" defer></script> -->
-    <!-- defer anstelle von Eventlistener?? s. summary.js, damit alle JS-Dateien geladen werden -->
     <title>Join - Summary</title>
 </head>
 
@@ -83,7 +82,7 @@
                                 <div class="inner-square-button">
                                     <div class="image-and-amount flex">
                                         <img src="./assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
-                                        <div id="amountAwaitingFeedback" class="amount">2</div>
+                                        <div id="amountAwaitFeedback" class="amount">2</div>
                                     </div>
                                     <span>Awaiting Feedback</span>
                                 </div>
@@ -92,7 +91,7 @@
                                 <div class="inner-square-button">
                                     <div class="image-and-amount flex">
                                         <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
-                                        <div id="amountTodo" class="amount">1</div>
+                                        <div id="amountDone" class="amount">1</div>
                                     </div>
                                     <span>Tasks<br>Done</span>
                                 </div>

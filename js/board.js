@@ -101,7 +101,7 @@ let tasks = [
     }
 ];
 
-async function boardInit(){
+async function boardInit() {
     includeHTML();
     await loadContactsStorage();
     renderCategories();
@@ -123,12 +123,12 @@ function filterTasksForCategory(toFilterFor) {
 function renderCategories() {
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
 
-    for(let i=0; i<categories.length; i++){
+    for (let i = 0; i < categories.length; i++) {
         let category = categories[i];
         let categoryContainer = document.getElementById(category);
         let filteredTasks = filterTasks(category);
         if (filteredTasks.length != 0) {
-            for (let j=0; j<filteredTasks.length; j++){
+            for (let j = 0; j < filteredTasks.length; j++) {
                 let task = filteredTasks[j];
                 categoryContainer.innerHTML += renderCardsHTML(task);
                 renderAssignedToButtons(task);
@@ -145,13 +145,13 @@ function renderCategories() {
  *
  * @param {object} card - The card object containing information about the card
  */
-function renderAssignedToButtons(task){
+function renderAssignedToButtons(task) {
     let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
     let assignedToContacts = task['assignedTo'];
 
-    for (let i=0; i<assignedToContacts.length; i++){
-        for (let j=0; j<contacts.length; j++){
-            if (contacts[j]['id'] == assignedToContacts[i]) 
+    for (let i = 0; i < assignedToContacts.length; i++) {
+        for (let j = 0; j < contacts.length; j++) {
+            if (contacts[j]['id'] == assignedToContacts[i])
                 assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
         }
     }

@@ -14,6 +14,7 @@ async function summaryInit() {
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
+    loadAmounts();
 
 }
 
@@ -90,18 +91,96 @@ function getDate() {
 }
 
 
-function loadAmountInProgress() {
-    let inProgressCount = 0;
-    let tasks = getCurrentUserTasks();
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].boardCategory === "inProgress") {
-            inProgressCount++;
-        }
+/**
+ * Loads the amounts of tasks in each category and calls function to display them.
+ *
+ * @param {array} categories - An array of category names.
+ * @param {array} categoriesAmounts - An array of category amounts.                                 //TODO  anja: was wäre der Sinn hier was zu returnen?
+ */
+function loadAmounts() {
+    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    let categoriesAmounts = [0, 0, 0, 0];
+
+    for (let i = 0; i < categories.length; i++) {
+        let category = categories[i];
+        let filteredTasks = filterTasks(category);
+        categoriesAmounts[i] = filteredTasks.length;
     }
-    document.getElementById('tasks-in-progress').innerHTML = inProgressCount;
+    showAmounts(categoriesAmounts);
 }
 
 
+/**
+ * Updates the HTML elements with the amounts from the categoriesAmounts array.
+ * * @param {array} categoriesAmounts - An array of category amounts to be displayed.
+ */
+function showAmounts(categoriesAmounts) {
+    let amountTodo = document.getElementById("amountTodo");
+    let amountInProgress = document.getElementById("amountInProgress");
+    let amountAwaitFeedback = document.getElementById("amountAwaitFeedback");
+    let amountDone = document.getElementById("amountDone");
+    let amountAllBoardTasks = document.getElementById("amountAllBoardTasks");
+
+    amountTodo.innerHTML = categoriesAmounts[0];
+
+    amountInProgress.innerHTML = categoriesAmounts[1];
+    amountAwaitFeedback.innerHTML = categoriesAmounts[2];
+    amountDone.innerHTML = categoriesAmounts[3];
+    amountAllBoardTasks.innerHTML = categoriesAmounts[0] + categoriesAmounts[1] + categoriesAmounts[2] + categoriesAmounts[3];
+}
+
+
+/**
+ * Checks if a task is urgent based on its due date.
+ *
+ * @param {string} dueDate - The due date of the task.
+ * @return {boolean} Returns true if the task is urgent, false if it's not urgent.
+ */
+function isTaskUrgent(dueDate) {
+    let currentDate = new Date();
+
+    // Convert due date string to a Date object
+    let taskDueDate = new Date(dueDate);
+    let timeDiff = taskDueDate.getTime() - currentDate.getTime();
+    let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    if (daysDiff <= 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
+ * Retrieves the urgent tasks from the tasks array based on their due date.
+ *
+ * @return {Array} The array of urgent tasks.
+ */
+function getUrgentTasks() {
+    let urgentTasks = [];
+    for (let i = 0; i < tasks.length; i++) {
+        let task = tasks[i];
+
+        if (isTaskUrgent(task.dueDate)) {
+            urgentTasks.push(task);
+        }
+    }
+    showUrgentTasks(urgentTasks);
+    return urgentTasks;
+}
+
+/**
+ * Updates the HTML element with the ID "amountUrgent" to display the number of urgent tasks.
+ *
+ * @param {Array} urgentTasks - An array of urgent tasks.
+  */
+
+function showUrgentTasks(urgentTasks) {
+    let amountUrgentTasksContainer = document.getElementById("amountUrgent");
+
+    amountUrgentTasksContainer.innerHTML = urgentTasks.length;
+}
 
 
 
