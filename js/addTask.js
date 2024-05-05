@@ -1,6 +1,7 @@
 async function addTaskInit(){
     includeHTML();
     await loadContactsStorage();
+    setPriority('Medium');
     renderContactsToDropdown();
     setTodayDateAsMin();
     renderSubtasks();
@@ -11,8 +12,8 @@ function addTask(category){
     console.log("Task added to:", category);
     console.log("Add function to addTask-Buttons");
 }
+
 let tempAssignedContacts = [];
-let tempCategory = '';
 let tempPriority = '';
 let tempSubtasks = [];
 
@@ -436,7 +437,7 @@ function setCategory(chosenCategory){
 /**
  * Fetches information for a new card by setting values for id, type, title, description, completed subtasks, assignedTo, category, priority, and due date of a new task.
  */
-function fetchInformationsForNewCard(){
+function collectInformationsForNewCard(){
     newTask.id = getNewTaskId();
     newTask.type = getNewTaskType();
     newTask.title = getNewTaskTitle();
@@ -565,4 +566,9 @@ function setTodayDateAsMin(){
     const todayDate = `${year}-${month}-${day}`;
 
     document.getElementById("addTaskDueDateInput").setAttribute('min', todayDate)
+}
+
+
+function createTask(){
+    collectInformationsForNewCard();
 }
