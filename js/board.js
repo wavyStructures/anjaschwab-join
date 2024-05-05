@@ -107,31 +107,35 @@ async function boardInit() {
     includeHTML();
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
-    renderCategories();
+    renderCategories(tasks);
 }
+
+//FIXME: wird noch gebraucht?!
+// /**
+//  * All available cards will be filtered for the category
+//  * @param {string} toFilterFor the category's name (e.g. 'done')
+//  * @returns array with cards fitting category
+//  */
+// function filterTasksForCategory(toFilterFor) {
+//     let task = tasks.filter(c => c['category'] == toFilterFor);
+//     return task;
+// }
+
 
 
 /**
- * All available cards will be filtered for the category
- * @param {string} toFilterFor the category's name (e.g. 'done')
- * @returns array with cards fitting category
+ * Renders the cards inside each category based on the tasks provided.
+ *
+ * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
-function filterTasksForCategory(toFilterFor) {
-    let task = tasks.filter(c => c['category'] == toFilterFor);
-    return task;
-}
-
-
-/**
- * render the cards inside each category
- */
-function renderCategories() {
+function renderCategories(arrayToSearchIn) {
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
 
     categories.forEach(category => {
         let categoryContainer = document.getElementById(category);
         categoryContainer.innerHTML = "";
-        let filteredTasks = filterTasks(category);
+        let filteredTasks = filterTasks(arrayToSearchIn, category);
+
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = filteredTasks[j];
@@ -142,6 +146,24 @@ function renderCategories() {
             renderEmptyCategory(categoryContainer);
         }});
     }
+
+
+/**
+ * Filters an array of tasks based on a specified category.
+ *
+ * @param {Array} arrayToSearchIn - The array of tasks to search through.
+ * @param {string} category - The category to filter the tasks by.
+ * @return {Array} An array of tasks that match the specified category.
+ */
+function filterTasks(arrayToSearchIn, category) {
+    let filteredTasks = [];
+    for (let id in arrayToSearchIn) {
+        if (arrayToSearchIn[id]['category'] == category) {
+            filteredTasks.push(tasks[id]);
+        }
+    }
+    return filteredTasks;
+}
 
 
 /**
@@ -159,22 +181,6 @@ function renderAssignedToButtons(task) {
                 assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
         }
     }
-}
-
-
-/**
- * 
- * @param {string} category 
- * @returns array with the cards for each category
- */
-function filterTasks(category) {
-    let filteredTasks = [];
-    for (let id in tasks) {
-        if (tasks[id]['category'] == category) {
-            filteredTasks.push(tasks[id]);
-        }
-    }
-    return filteredTasks;
 }
 
 
@@ -200,7 +206,10 @@ function setPriorityImage(taskPriority) {
 
 
 function searchTask() {
-    console.log('TBD');
+    let searchInput = document.getElementById('findTask');
+    if(searchInput == null) return;
+    let foundTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchInput.value) || task['description'].toLowerCase().includes(searchInput.value));
+    renderCategories(foundTasks);
 }
 
 
@@ -212,6 +221,6 @@ function renderSubtask(task) {
     if (countSubtasks != 0) {
         return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
     }else{
-        console.log("parent element have to be d-none");
+        // console.log("parent element have to be d-none");
     }
 }

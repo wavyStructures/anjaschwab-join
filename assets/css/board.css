@@ -105,6 +105,18 @@ button:focus {
     flex-direction: column;
 }
 
+.empty-category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    min-height: 48px;
+    background-color: #e7e7e7;
+    border: 1px dashed #A8A8A8;
+    border-radius: 10px;
+    color: #A8A8A8;
+}
+
 .card {
     position: relative;
     display: flex;

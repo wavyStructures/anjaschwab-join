@@ -184,7 +184,7 @@ function renderCardsHTML(card) {
 }
 
 function renderEmptyCategoryHTML() {
-  return /*html*/ `<div class="empty-category">Keine Karte!</div>`;
+  return /*html*/ `<div class="empty-category">No tasks to do</div>`;
 }
 
 function renderAssignedToButtonsHTML(contact) {

@@ -548,7 +548,7 @@ async function saveTasksToRemoteStorage(){
 }
 
 async function deleteAllTasksOnRemoteStorage(){
-    await remoteStorageSetItem('tasks', '')
+    await remoteStorageSetItem('tasks', JSON.stringify('[]'))
 }
 
 async function restoreTasksOnRemoteStorage(){
