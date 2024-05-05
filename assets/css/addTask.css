@@ -219,7 +219,13 @@ select {
         border-bottom: none;
         cursor: pointer;
         width: 100%;
+        color: #757575;
     }
+
+    input.filled{
+        color: black;
+    }
+    
 }
 
 .addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
