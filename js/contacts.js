@@ -9,7 +9,7 @@ let localVersionIndex = 0;
  * @return {Promise<Array>} A promise that resolves to an array of contacts.
  */
 async function getContactsFromRemoteStorage() {
-  return await getItem("contacts").then((res) => JSON.parse(res));
+  return await remoteStorageGetItem("contacts").then((res) => JSON.parse(res));
 }
 
 /**
@@ -28,7 +28,7 @@ async function resetContactsOnRemoteStorage() {
  */
 async function getVersions() {
   let localVersion = localVersionIndex;
-  let remoteVersion = await getItem("versionIndex");
+  let remoteVersion = await remoteStorageGetItem("versionIndex");
 
   return [localVersion, remoteVersion];
 }
@@ -95,7 +95,7 @@ function getNextId(contactsArray) {
  * @return {Promise<number>} The online version index if successful, otherwise null.
  */
 async function fetchOnlineVersionIndex() {
-  const response = await getItem("versionIndex");
+  const response = await remoteStorageGetItem("versionIndex");
 
   if (response) {
     return response;

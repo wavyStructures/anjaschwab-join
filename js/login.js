@@ -29,7 +29,7 @@ async function loginInit() {
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
 async function loadUsers() {
-    users = JSON.parse(await getItem('contacts'));
+    users = JSON.parse(await remoteStorageGetItem('contacts'));
 }
 
 

@@ -429,7 +429,7 @@ function chooseCategory(chosenCategory){
  * @param {string} chosenCategory - The category to set the global variable "category" to..
  */
 function setCategory(chosenCategory){
-    category = chosenCategory;
+    newTask['type'] = chosenCategory;
 }
 
 
@@ -439,7 +439,6 @@ function setCategory(chosenCategory){
  */
 function collectInformationsForNewCard(){
     newTask.id = getNewTaskId();
-    newTask.type = getNewTaskType();
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();
@@ -458,12 +457,6 @@ function collectInformationsForNewCard(){
 function getNewTaskId(){
     return tasks.length;
 }
-
-
-function getNewTaskType(){
-    return
-}
-
 
 /**
  * Retrieves the value of the input field with the id 'addTaskEnterTitleInput'
@@ -557,6 +550,20 @@ function setTodayDateAsMin(){
 }
 
 
-function createTask(){
+async function createTask(){
     collectInformationsForNewCard();
+    tasks.push(newTask);
+    // await saveTasksToRemoteStorage();
+}
+
+async function saveTasksToRemoteStorage(){
+   await remoteStorageSetItem('tasks', JSON.stringify(tasks))
+}
+
+async function deleteAllTasksOnRemoteStorage(){
+    await remoteStorageSetItem('tasks', '')
+}
+
+async function loadTasksFromRemoteStorage(){
+    await remoteStorageGetItem('tasks')
 }

@@ -24,7 +24,7 @@ async function remoteStorageSetItem(key, value) {
  * @param {string} key - the key the values are stored in
  * @returns the users json
  */
-async function getItem(key) {
+async function remoteStorageGetItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
         if (res.data) {
