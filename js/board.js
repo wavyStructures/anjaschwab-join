@@ -18,7 +18,7 @@ let tasks = [
         'assignedTo': [21],
         'category': 'todo',
         'priority': 'low',
-        'dueDate': "welches Format?"
+        'dueDate': "2024-01-06"
     },
     {
         'id': 1,
@@ -34,7 +34,7 @@ let tasks = [
         'assignedTo': [21, 2, 5],
         'category': 'awaitFeedback',
         'priority': 'medium',
-        'dueDate': "welches Format?"
+        'dueDate': "2024-09-15"
     },
     {
         'id': 2,
@@ -54,8 +54,8 @@ let tasks = [
         'completedSubtasks': [],
         'assignedTo': [17],
         'category': 'done',
-        'priority': 'urgend',
-        'dueDate': "welches Format?"
+        'priority': 'urgent',
+        'dueDate': "2024-07-07"
     },
     {
         'id': 3,
@@ -75,8 +75,8 @@ let tasks = [
         'completedSubtasks': [],
         'assignedTo': [9, 18],
         'category': 'todo',
-        'priority': 'low',
-        'dueDate': "welches Format?"
+        'priority': 'urgent',
+        'dueDate': "2024-05-11"
     },
     {
         'id': 4,
@@ -97,7 +97,7 @@ let tasks = [
         'assignedTo': [9],
         'category': 'inProgress',
         'priority': 'low',
-        'dueDate': "welches Format?"
+        'dueDate': "2024-10-17"
     }
 ];
 
@@ -106,6 +106,8 @@ async function boardInit() {
     await loadContactsStorage();
     renderCategories();
 }
+
+
 /**
  * All available cards will be filtered for the category
  * @param {string} toFilterFor the category's name (e.g. 'done')
@@ -140,6 +142,7 @@ function renderCategories() {
 
 }
 
+
 /**
  * Renders the icons with the initials of the user's name on each card.
  *
@@ -157,6 +160,7 @@ function renderAssignedToButtons(task) {
     }
 }
 
+
 /**
  * 
  * @param {string} category 
@@ -172,6 +176,7 @@ function filterTasks(category) {
     return filteredTasks;
 }
 
+
 /**
  * 
  * @param {object} categoryContainer html-object from the (emtpy) category
@@ -179,6 +184,7 @@ function filterTasks(category) {
 function renderEmptyCategory(categoryContainer) {
     categoryContainer.innerHTML = renderEmptyCategoryHTML();
 }
+
 
 /**
  * 
