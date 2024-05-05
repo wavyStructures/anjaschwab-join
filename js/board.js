@@ -128,9 +128,9 @@ function filterTasksForCategory(toFilterFor) {
 function renderCategories() {
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
 
-    for (let i = 0; i < categories.length; i++) {
-        let category = categories[i];
+    categories.forEach(category => {
         let categoryContainer = document.getElementById(category);
+        categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(category);
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
@@ -140,10 +140,8 @@ function renderCategories() {
             }
         } else {
             renderEmptyCategory(categoryContainer);
-        }
-    };
-
-}
+        }});
+    }
 
 
 /**

@@ -24,21 +24,7 @@ let newTask =
         'type': '',
         'title': '',
         'description': '',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'Bügeln',
-            'completed': false
-        },
-        {
-            'id': 1,
-            'subtaskText': 'Making Noodles',
-            'completed': false
-        },
-        {
-            'id': 2,
-            'subtaskText': 'Making Sauce',
-            'completed': false
-        }],
+        'subtasks': [],
         'completedSubtasks': [],
         'assignedTo': [],
         'category': 'todo',
