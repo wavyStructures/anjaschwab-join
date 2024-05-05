@@ -4,14 +4,6 @@
   background-color: var(--clr-main);
 }
 
-.signUpMainContainer {
-  z-index: 100;
-  background-color: var(--clr-main);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .joinLogoSignUpWhite {
   position: absolute;
   top: 80px;
@@ -19,12 +11,23 @@
   z-index: 1;
 }
 
+.signUpMainContainer {
+  z-index: 100;
+  background-color: var(--clr-main);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .signUp-page {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
+  height: 100%;
 }
 
 .signUp-box {

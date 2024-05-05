@@ -279,12 +279,12 @@ input[type="password"]:focus {
 /*
 •	320px — 480px: Mobile devices
 •	481px — 768px: iPads, Tablets
-•	769px — 1024px: Small screens, laptops
+•	769px — 1024px: document.getElementById('') screens, laptops
 •	1025px — 1200px: Desktops, large screens
 •	1201px and more —  Extra large screens, TV
 */
 
-@media (min-width: 481px) and (max-width: 769px) {
+/* @media (min-width: 481px) and (max-width: 769px) {
   .login-box {
     padding: 24px 56px;
     width: -webkit-fill-available;
@@ -301,7 +301,7 @@ input[type="password"]:focus {
   /* logo-animation-start {
     width: 100px;
     height: 122px;
-  } */
+  } 
 
   .joinLogoBlue {
     margin-top: 37px;
@@ -311,7 +311,7 @@ input[type="password"]:focus {
   .joinLogoBlue img {
     width: 64px;
     height: 78px;
-    /* margin-bottom: 90px; REALLY? */
+    /* margin-bottom: 90px; REALLY? 
   }
 
   .login-box {
@@ -358,7 +358,7 @@ input[type="password"]:focus {
     min-width: 66px;
     white-space: nowrap;
   }
-}
+} */
 
 .msgBox {
   display: none;
