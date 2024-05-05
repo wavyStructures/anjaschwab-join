@@ -15,6 +15,7 @@ async function summaryInit() {
     getDate();
     greetAccordingToDayTime();
     loadAmounts();
+    getUrgentTasks();
 
 }
 
@@ -130,45 +131,23 @@ function showAmounts(categoriesAmounts) {
 }
 
 
-/**
- * Checks if a task is urgent based on its due date.
- *
- * @param {string} dueDate - The due date of the task.
- * @return {boolean} Returns true if the task is urgent, false if it's not urgent.
- */
-function isTaskUrgent(dueDate) {
-    let currentDate = new Date();
-
-    // Convert due date string to a Date object
-    let taskDueDate = new Date(dueDate);
-    let timeDiff = taskDueDate.getTime() - currentDate.getTime();
-    let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    if (daysDiff <= 1) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
-/**
- * Retrieves the urgent tasks from the tasks array based on their due date.
- *
- * @return {Array} The array of urgent tasks.
- */
+/* Retrieves the tasks with priority "urgent" from the tasks array.
+*
+* @return {Array} The array of tasks with priority "urgent".
+*/
 function getUrgentTasks() {
     let urgentTasks = [];
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
-
-        if (isTaskUrgent(task.dueDate)) {
+        if (task.priority === 'urgent' && (task.category === 'todo' || task.category === 'inProgress' || task.category === 'awaitFeedback')) {
             urgentTasks.push(task);
         }
     }
     showUrgentTasks(urgentTasks);
+    console.log("urgentTasks: ", urgentTasks);
     return urgentTasks;
 }
+
 
 /**
  * Updates the HTML element with the ID "amountUrgent" to display the number of urgent tasks.
@@ -178,7 +157,6 @@ function getUrgentTasks() {
 
 function showUrgentTasks(urgentTasks) {
     let amountUrgentTasksContainer = document.getElementById("amountUrgent");
-
     amountUrgentTasksContainer.innerHTML = urgentTasks.length;
 }
 
