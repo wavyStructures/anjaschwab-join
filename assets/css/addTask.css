@@ -95,7 +95,12 @@ select {
 
 .addTaskBodyRight{
     background-color: white
+}
 
+.addTaskBodyLeft{
+    display: flex;
+    flex-direction: column;
+    gap: var(--addTaskGap-24)
 }
 
 
