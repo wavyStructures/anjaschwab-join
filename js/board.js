@@ -211,10 +211,9 @@ function renderSubtask(task) {
     let completedSubtasks = task['subtasks'].filter(subtask => subtask['completed'] == true).length;
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
-    if (countSubtasks == 0) {
-        return `Nothing`
-    } else {
+    if (countSubtasks != 0) {
         return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
+    }else{
+        console.log("parent element have to be d-none");
     }
-
 }

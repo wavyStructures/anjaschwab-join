@@ -9,7 +9,6 @@
 
 }
 
-
 .searchTaskContainer{
     display: flex;
     font-size: 16px;
@@ -48,6 +47,7 @@
         border: none;
         border-right: 1px solid #D1D1D1;
         margin: 0;
+        padding: 0;
     }
 
     input::placeholder{
@@ -55,17 +55,12 @@
     }
 }
 
-
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
 }
-
-
-
-
 
 .categoryTitle{
     display: flex;
@@ -85,15 +80,17 @@ button:focus {
     flex-direction: row;
     padding: 10px;
     grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 }
 
 .category {
     display: flex;
     flex-direction: column;
     padding: 5px;
-    border: 2px dotted gray;
+    /* border: 2px dotted gray; */
     text-align: left;
     flex:1;
+    gap:29px;
 
     h2{
         padding-bottom: 5px;
@@ -213,3 +210,6 @@ progress{
     }
 }
 
+.d-none{
+    display: none;
+}

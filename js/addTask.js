@@ -1,6 +1,7 @@
 async function addTaskInit(){
     includeHTML();
     await loadContactsStorage();
+    await loadTasksFromRemoteStorage();
     setPriority('Medium');
     renderContactsToDropdown();
     setTodayDateAsMin();
@@ -570,5 +571,5 @@ async function restoreTasksOnRemoteStorage(){
 
 async function loadTasksFromRemoteStorage(){
     tasks = JSON.parse(await remoteStorageGetItem('tasks'))
-    console.info('Tasks loaded from Remote Storage');
+console.info('Tasks loaded from Remote Storage');
 }

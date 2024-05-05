@@ -8,6 +8,7 @@ let loggedUser;
 async function summaryInit() {
     includeHTML();
     await loadContactsStorage();
+    await loadTasksFromRemoteStorage();
     getLoggedUser();
     // highlightActivePage(0);
     // addClassOfActive();
