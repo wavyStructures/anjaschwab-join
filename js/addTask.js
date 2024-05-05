@@ -553,7 +553,7 @@ function setTodayDateAsMin(){
 async function createTask(){
     collectInformationsForNewCard();
     tasks.push(newTask);
-    // await saveTasksToRemoteStorage();
+    await saveTasksToRemoteStorage();
 }
 
 async function saveTasksToRemoteStorage(){
@@ -564,6 +564,11 @@ async function deleteAllTasksOnRemoteStorage(){
     await remoteStorageSetItem('tasks', '')
 }
 
+async function restoreTasksOnRemoteStorage(){
+    await remoteStorageSetItem('tasks', _tasksBackup);
+}
+
 async function loadTasksFromRemoteStorage(){
-    await remoteStorageGetItem('tasks')
+    tasks = JSON.parse(await remoteStorageGetItem('tasks'))
+    console.info('Tasks loaded from Remote Storage');
 }
