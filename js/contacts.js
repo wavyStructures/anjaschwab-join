@@ -168,7 +168,7 @@ async function saveContact() {
 
     resetContactForm();
     closeAddContact();
-    displaySuccessMessage();
+    await displaySuccessMessage();
     await loadContactsStorage(); // Load contacts from online storage if necessary.
     loadContacts();
   } catch (error) {
@@ -181,14 +181,21 @@ async function saveContact() {
  *
  * @returns {void}
  */
-function displaySuccessMessage() {
-  const overlay = document.getElementById("contactSuccCreatedOverlay");
+/**
+ * Displays the success message container when a contact is successfully created.
+ *
+ * @returns {void}
+ */
+async function displaySuccessMessage() {
+  const overlay = document.getElementById('contactSuccCreatedOverlay');
   if (overlay) {
-    overlay.style.display = "block";
+    // Container anzeigen
+    overlay.classList.remove('d-none');
 
+    // Container nach 3 Sekunden wieder ausblenden
     setTimeout(() => {
-      overlay.style.display = "none";
-    }, 3000); // Hide the message after 3 seconds
+      overlay.classList.add('d-none');
+    }, 3000);
   } else {
     console.error("Error: Overlay element not found.");
   }
