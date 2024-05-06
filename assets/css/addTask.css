@@ -86,30 +86,36 @@ select {
 .addTaskBody {
     display: flex;
     flex-direction: row;
-    /* height: 769px; */
-    max-width: 500px;
+
     padding: 64px 24px 0 24px;
     font-size: 1.188rem;
     gap: var(--addTaskGap-24);
 }
 
-.addTaskBodyRight{
-    background-color: white
-}
 
 .addTaskBodyLeft{
     display: flex;
     flex-direction: column;
-    gap: var(--addTaskGap-24)
+    gap: var(--addTaskGap-24);
+    overflow-y: scroll;    
+}
+
+
+.addTaskBodyRight{
+    display: flex;
+    background-color: white;
+    align-items: flex-end;
+
 }
 
 
 .addTaskBtnContainer{
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: baseline;
     gap: 25px;
     cursor: default;
+    margin-bottom: 55px;
 }
 
 .addTaskBtn{
