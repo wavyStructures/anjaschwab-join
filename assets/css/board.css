@@ -4,7 +4,7 @@
     overflow: auto;
 }
 
-.hidden{
+/* .hidden{
     transform: translateX(100%);
 }
 
@@ -24,7 +24,7 @@
     .addTaskBtnContainer{
         display: none;
     }
-}
+} */
 
 .boardTopContainer{
     /* background-color: lightcoral; */
