@@ -1008,6 +1008,10 @@ function editContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
+    addContactCard();
+    document.getElementById('contactName').value = contact.name;
+    document.getElementById('contactMail').value = contact.mail;
+    document.getElementById('contactPhone').value = contact.phone;
     // Logik zum Bearbeiten des Kontakts implementieren,
     // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
     // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
