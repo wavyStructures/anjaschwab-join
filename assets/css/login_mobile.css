@@ -88,29 +88,6 @@
     width: fit-content;
   }
 
-  .loginButtonsBox {
-    flex-direction: column;
-    gap: 21px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loginButtons {
-    font-size: 19px;
-  }
-  .loginButtons {
-    width: 180px;
-    height: 48px;
-    font-size: 19px;
-    font-weight: 400;
-    /* border: none;
-      border-radius: 8px;
-      padding: 10px 35px;
-      gap: 10px;
-      font-size: 23px;
-      cursor: pointer; */
-  }
-
   .signUpField {
     display: none;
   }
@@ -133,5 +110,43 @@
   .signUpButton-mobile {
     min-width: 66px;
     white-space: nowrap;
+  }
+}
+
+@media (min-width: 386px) and (max-width: 480px) {
+  .loginButtonsBox {
+    flex-direction: column;
+    gap: 21px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginButtons {
+    width: 180px;
+    height: 48px;
+    font-size: 19px;
+    font-weight: 400;
+    margin-left: 0;
+    /* border: none;
+      border-radius: 8px;
+      padding: 10px 35px;
+      gap: 10px;
+      font-size: 23px;
+      cursor: pointer; */
+  }
+}
+
+@media (min-width: 280px) and (max-width: 385px) {
+  .loginButtons {
+    width: 180px;
+    height: 48px;
+    font-size: 19px;
+    font-weight: 400;
+    margin-left: 0;
+  }
+
+  .loginButtonUser,
+  .loginButtonGuest {
+    margin-left: 0;
   }
 }
