@@ -157,8 +157,8 @@ function showInitials() {
 
 function openSmallMenu() {
 	let screenWidth = window.innerWidth;
-	let smallMenu = document.getElementById("smallMenu");
-	let smallMenuMobile = document.getElementById("smallMenuMobile");
+	let smallMenu = getDiv("smallMenu");
+	let smallMenuMobile = getDiv("smallMenuMobile");
 
 	if (screenWidth <= 701) {
 		smallMenu.classList.remove("opacityZero");
@@ -166,8 +166,8 @@ function openSmallMenu() {
 		smallMenuMobile.classList.toggle("d-none");
 	} else {
 		smallMenuMobile.classList.add("d-none");
-		smallMenu.classList.add("opacityZero");
-		smallMenu.classList.add("visible");
+		smallMenu.classList.toggle("opacityZero");
+		smallMenu.classList.toggle("visible");
 	}
 }
 
