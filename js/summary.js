@@ -16,7 +16,13 @@ async function summaryInit() {
     loadAmounts();
     getUrgentTasks();
     buttonEventListener();
+    goToMobileView();
+}
 
+function goToMobileView() {
+    if (window.innerWidth <= 701) {
+        window.location.href = "summary_mobile.html";
+    }
 }
 
 function getLoggedUser() {
@@ -33,7 +39,6 @@ function greetAccordingToDayTime() {
         ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
     document.getElementById('daytimeGreeting').innerHTML = '';
-    console.log('loggedUser Fkt1', loggedUser);
     loggedUser = getCurrentUser();
     if (loggedUser) {
         status += ",";
@@ -144,7 +149,6 @@ function getUrgentTasks() {
         }
     }
     showUrgentTasks(urgentTasks);
-    console.log("urgentTasks: ", urgentTasks);
     return urgentTasks;
 }
 
@@ -163,8 +167,6 @@ function showUrgentTasks(urgentTasks) {
 
 function buttonEventListener() {
     const summaryButtons = document.querySelectorAll('.square-button, .urgentAndDate');
-    console.log("summaryButtons: ", summaryButtons);
-
     summaryButtons.forEach(button => {
         button.addEventListener('click', () => {
             switchPage('board.html');

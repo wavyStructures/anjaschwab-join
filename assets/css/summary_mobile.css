@@ -1,0 +1,18 @@
+/* @media (min-width: 481px) and (max-width: 769px) {
+  #sub-main-summary {
+    display: none;
+  }
+
+
+
+}
+
+@media (max-width: 480px) {
+} */
+
+.line3,
+.line4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

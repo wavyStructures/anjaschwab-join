@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/header.css" />
+    <title>Header</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/header.css">
-  <title>Header</title>
-</head>
-
-<body>
-  <div class="header-content header-mobile">
-    <img class="header-logo" src="./assets/img/logo-small_white.png" alt="join-logo" />
-    <div class="header-inner-right">
-      <span class="header-kanban-writing">Kanban Project Management Tool</span>
-      <img id="helpIcon" class="helpIcon" src="./assets/img/icon-help.png" alt="help" onclick="openHelp()" />
-      <div class="header-initials-button-outer-circle">
-        <button id="userInitials" class="header-initials-button" onclick="openSmallMenu()">
-          G
-        </button>
-      </div>
-      <div id="smallMenu" class="small-menu opacityZero">
-        <a href="./privacy_policy.html" class="smallMenuLink">Privacy Policy</a>
-        <a href="./legal_notice.html" class="smallMenuLink">Legal Notice</a>
-        <a class="smallMenuLink" onclick="logout()">Log out</a>
-      </div>
-      <div id="smallMenuMobile" class="small-menu-mobile d-none">
-        <!--TODO styling small-menu-->
-        <a href="./help.html" class="smallMenuLink">Help</a>
-        <a href="./privacy_policy.html" class="smallMenuLink">Privacy Policy</a>
-        <a href="./legal_notice.html" class="smallMenuLink">Legal Notice</a>
-        <a class="smallMenuLink" onclick="logout()">Log out</a>
+  <body>
+    <div class="header-content header-mobile">
+      <img
+        class="header-logo"
+        src="./assets/img/logo-small_white.png"
+        alt="join-logo"
+      />
+      <div class="header-inner-right">
+        <span class="header-kanban-writing"
+          >Kanban Project Management Tool</span
+        >
+        <img
+          id="helpIcon"
+          class="helpIcon"
+          src="./assets/img/icon-help.png"
+          alt="help"
+          onclick="openHelp()"
+        />
+        <div class="header-initials-button-outer-circle">
+          <button
+            id="userInitials"
+            class="header-initials-button"
+            onclick="openSmallMenu()"
+          >
+            G
+          </button>
+        </div>
+        <div id="smallMenu" class="small-menu opacityZero">
+          <a href="./privacy_policy.html" class="smallMenuLink"
+            >Privacy Policy</a
+          >
+          <a href="./legal_notice.html" class="smallMenuLink">Legal Notice</a>
+          <a class="smallMenuLink" onclick="logout()">Log out</a>
+        </div>
+        <div id="smallMenuMobile" class="small-menu-mobile d-none">
+          <!--TODO styling small-menu-->
+          <a href="./help.html" class="smallMenuLink">Help</a>
+          <a href="./privacy.html" class="smallMenuLink">Privacy Policy</a>
+          <a href="./legal_notice.html" class="smallMenuLink">Legal Notice</a>
+          <a class="smallMenuLink" onclick="logout()">Log out</a>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

@@ -149,10 +149,26 @@ function showInitials() {
 /**
  * opens small menu onclick on intials button inside header
  */
+// function openSmallMenu() {
+// 	let content = getDiv("smallMenu");
+// 	content.classList.toggle("opacityZero");
+// 	content.classList.toggle("visible");
+// }
+
 function openSmallMenu() {
-	let content = getDiv("smallMenu");
-	content.classList.toggle("opacityZero");
-	content.classList.toggle("visible");
+	let screenWidth = window.innerWidth;
+	let smallMenu = document.getElementById("smallMenu");
+	let smallMenuMobile = document.getElementById("smallMenuMobile");
+
+	if (screenWidth <= 701) {
+		smallMenu.classList.remove("opacityZero");
+		smallMenu.classList.remove("visible");
+		smallMenuMobile.classList.toggle("d-none");
+	} else {
+		smallMenuMobile.classList.add("d-none");
+		smallMenu.classList.add("opacityZero");
+		smallMenu.classList.add("visible");
+	}
 }
 
 
