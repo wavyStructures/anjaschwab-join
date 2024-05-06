@@ -110,6 +110,11 @@ async function boardInit() {
     renderCategories(tasks);
 }
 
+function showAddTaskContainer(){
+    document.getElementById('addTaskHoverContainer').classList.toggle('hidden')
+}
+
+
 //FIXME: wird noch gebraucht?!
 // /**
 //  * All available cards will be filtered for the category

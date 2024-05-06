@@ -32,13 +32,14 @@
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
                 <div class="board-Container">
+                    <div w3-include-html="./addTask.html" id="addTaskHoverContainer" class="addTaskHoverContainer hidden" ></div>
                     <div class="boardTopContainer">
                         <div class="searchTaskContainer">
                             <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text">
                                 <div class="searchImg" onclick="searchTask()"> </div>
                             </div>
                         </div>
-                        <div class="createBtn addTaskBtn addTaskBtnBoard" onclick="addTaskHover()">
+                        <div class="createBtn addTaskBtn addTaskBtnBoard" onclick="showAddTaskContainer()">
                             <span class="addTaskBtnText">Add Task</span>
                             <div class="addTaskBtnImg "></div>
                         </div>

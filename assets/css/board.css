@@ -1,6 +1,18 @@
 .board-Container{
     display: flex;
     flex-direction: column;
+    overflow: auto;
+}
+
+.hidden{
+    transform: translateX(100%);
+}
+
+.addTaskHoverContainer{
+    position: fixed;
+    right:0;
+    top:0;
+    background-color: lightblue;
 }
 
 .boardTopContainer{
