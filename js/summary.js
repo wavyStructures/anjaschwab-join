@@ -10,13 +10,12 @@ async function summaryInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     getLoggedUser();
-    // highlightActivePage(0);
-    // addClassOfActive();
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
     loadAmounts();
     getUrgentTasks();
+    buttonEventListener();
 
 }
 
@@ -162,5 +161,14 @@ function showUrgentTasks(urgentTasks) {
 }
 
 
+function buttonEventListener() {
+    const summaryButtons = document.querySelectorAll('.square-button, .urgentAndDate');
+    console.log("summaryButtons: ", summaryButtons);
 
+    summaryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            switchPage('board.html');
+        });
+    });
+}
 
