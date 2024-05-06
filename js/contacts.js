@@ -173,6 +173,7 @@ async function saveContact() {
   } catch (error) {
     console.error("Error saving contact:", error);
   }
+  displaySuccessMessage()
 }
 
 /**
@@ -680,13 +681,7 @@ function generateContactsContainerHTML() {
             </div>
         </div>
         <section class="right-side d-none" id="rightSide">
-        <div class="contact-succ-created-overlay" id="contactSuccCreatedOverlay">
-    <div class="contact-succesfully-created-wrapper">
-      <div class="contact-succesfully-created">
-            Contact succesfully created
-      </div>
-    </div>
-  </div>
+        
         </section>
     `;
 }

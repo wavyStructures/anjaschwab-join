@@ -516,9 +516,10 @@ input {
 .contact-succ-created-overlay,
 .contact-succesfully-created-wrapper {
   display: flex;
+  position: relative;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-succesfully-created-wrapper {
@@ -532,19 +533,21 @@ input {
 }
 
 .contact-succ-created-overlay {
-  position: relative;
-  box-shadow: var(--nuevo);
-  width: 100%;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  font-size: 1.438rem;
-  color: var(--white);
-  font-family: var(--version-2-body);
+  /*display: none;*/
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  /*right: -100%; /* Startposition außerhalb des Bildschirms */
+  /*transform: translate(0, -50%);*/
+  background-color: #ffffff;
+  padding: 20px;
+  border: 2px solid #00ff00;
+  animation: slide-in 0.5s forwards;
 }
 
 .add-contact-container {
-  
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
