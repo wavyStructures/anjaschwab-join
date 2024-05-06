@@ -37,14 +37,14 @@
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
-                <div id="contactMain" class="contact-main d-none" onclick="closeAddContact()"> 
-                    <div class="contact-succ-created-overlay">
-                        <div class="contact-succesfully-created-wrapper">
-                            <div class="contact-succesfully-created">
-                                Contact succesfully created
-                            </div>
+                <div class="contact-succ-created-overlay" id="contactSuccCreatedOverlay">
+                    <div class="contact-succesfully-created-wrapper">
+                        <div class="contact-succesfully-created">
+                            Contact succesfully created
                         </div>
                     </div>
+                </div>
+                <div id="contactMain" class="contact-main d-none" onclick="closeAddContact()"> 
                     <div class="add-contact d-none">
                         <div class="add-contact-header">
                             <div class="add-contact-header-close">

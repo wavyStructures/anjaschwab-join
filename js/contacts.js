@@ -1,8 +1,6 @@
 let contacts = [];
 let localVersionIndex = 0;
 
-
-
 /**
  * Retrieves the contacts from the remote storage asynchronously.
  *
@@ -170,10 +168,29 @@ async function saveContact() {
 
     resetContactForm();
     closeAddContact();
+    displaySuccessMessage();
     await loadContactsStorage(); // Load contacts from online storage if necessary.
     loadContacts();
   } catch (error) {
     console.error("Error saving contact:", error);
+  }
+}
+
+/**
+ * Displays the success message container when a contact is successfully created.
+ *
+ * @returns {void}
+ */
+function displaySuccessMessage() {
+  const overlay = document.getElementById("contactSuccCreatedOverlay");
+  if (overlay) {
+    overlay.style.display = "block";
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 3000); // Hide the message after 3 seconds
+  } else {
+    console.error("Error: Overlay element not found.");
   }
 }
 
@@ -464,7 +481,7 @@ function renderSortedContacts(main, sortedContacts) {
     const initials = getInitials(name);
     const firstLetter = name
       .split(" ")
-    [name.split(" ").length - 1].charAt(0)
+      [name.split(" ").length - 1].charAt(0)
       .toUpperCase();
 
     if (!currentFirstLetters.includes(firstLetter)) {
@@ -598,6 +615,13 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
+  <div class="contact-succ-created-overlay d-none" id="contactSuccCreatedOverlay">
+    <div class="contact-succesfully-created-wrapper">
+      <div class="contact-succesfully-created">
+            Contact succesfully created
+      </div>
+    </div>
+  </div>
   <div class="contact-list-container">
   <div class="add-contact-overlay"></div>
   <div id="addContactContainer" class="hidden">
@@ -887,8 +911,8 @@ function generateContactDetailsHTML(name, email, phone, id) {
         <div class="contact-details-badge-group">
           <div class="contact-details-badge">
             <div class="contact-details-badge-initials">${getInitials(
-    name
-  )}</div>
+              name
+            )}</div>
           </div>
         </div>
         <div class="contact-details-name-group">
