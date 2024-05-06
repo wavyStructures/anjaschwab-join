@@ -6,10 +6,14 @@
 .boardTopContainer{
     /* background-color: lightcoral; */
     padding: 10px;
+    display: flex;
+    gap: 35px;
 
 }
 
 .searchTaskContainer{
+    align-items: center;
+    justify-content: center;
     display: flex;
     font-size: 16px;
     font-weight: 400;
@@ -130,14 +134,28 @@ button:focus {
 
 .addTaskButton{
     background-image: url("../img/icon-plus_button.png");
+    background-repeat: no-repeat;
     cursor: pointer;
     width: 24px;
-    height: 24px;
+    aspect-ratio: 1;
+    
 }
 
 .addTaskButton:hover{
     background-image: url("../img/icon-plus_button_hover.png");
 }
+
+.addTaskBtnImg{
+    background-image: url('../img/icon-plus.png');
+    background-position: center;
+    width: 15px;
+    aspect-ratio: 1;
+}
+
+.addTaskBtnBoard{
+    width: 138px;
+}
+
 
 .assignedToButton{
     background-color: red;
