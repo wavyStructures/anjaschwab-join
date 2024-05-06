@@ -97,7 +97,8 @@ select {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap-24);
-    overflow-y: scroll;    
+    overflow-y: scroll;
+    padding: 0 24px;
 }
 
 

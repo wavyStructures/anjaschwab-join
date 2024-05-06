@@ -4,8 +4,9 @@
     overflow: auto;
 }
 
-/* .hidden{
+.boardHidden{
     transform: translateX(100%);
+    animation: moveOutRight 0.5s ease-out forwards;
 }
 
 .addTaskHoverContainer{
@@ -13,7 +14,7 @@
     z-index:1000;
     right:0;
     top:0;
-    background-color: white;
+    background-color: #fff;
     border-radius: 20px 0 0 20px;
     height: 100vh;
 
@@ -21,11 +22,63 @@
         display: none
     }
 
-    .addTaskBtnContainer{
+   
+    .addTaskBodyRight{
         display: none;
     }
-} */
 
+    .addTaskBody{
+        display: flex;
+        flex-direction: column;
+        padding: 11px 0 0 36px;
+        height: 65vh;
+    }
+
+    .addTaskBodyLeft{
+        padding: 0;
+        height: 85vh;
+    }
+
+    .addTaskPriorityButtonContainer{
+        padding:0 5px;
+    }
+
+    .createBtn{
+        position: fixed;
+        right: 50px;
+        bottom: 20px;
+    }
+} 
+
+
+.boardAddTaskHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    /* background-color: red; */
+    padding: 52px 40px 52px 40px;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.boardAddTaskCloseHoverContainer{
+    position: fixed;
+    right:24px;
+    top: 24px;
+    background-image: url('../img/icon-close.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    /* background-color: red; */
+    
+    &:hover{
+        background-image: url('../img/icon-close_hover.png');
+
+    }
+}
 .boardTopContainer{
     /* background-color: lightcoral; */
     padding: 10px;
@@ -264,4 +317,14 @@ progress{
 
 .addTaskBtnBoard{
     width: 150px !important;
+}
+
+#boardOverlay{
+    position: fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    z-index: 500;
+    background-color: rgba(0, 0, 0, 0.1);
 }

@@ -16,6 +16,8 @@
     <script src="./js/contacts.js"></script>
     <script src="./js/addTask.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/helper.js"></script>
+
     
     <script src="./assets/templates/html_templates.js"></script>
 
@@ -23,7 +25,7 @@
     <title>Join - AddTask</title>
 </head>
 
-<body onload="boardInit()">
+<body onload="boardInit()" onclick="hideAddTaskContainer()">
     <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
         <header w3-include-html="./assets/templates/header.html" id="header" class="header">
         </header>
@@ -31,20 +33,36 @@
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
-                <div class="board-Container">
-                    <!-- <div w3-include-html="./addTask.html" id="addTaskHoverContainer" class="addTaskHoverContainer hidden" ></div>
+                <div class="board-Container" >
+                    <div class="addTaskHoverContainer boardHidden" id="addTaskHoverContainer" onclick="doNotClose(event)">
+                        <div class="boardAddTaskHeader">
+                           <div class="boardAddTaskHeaderText"> Add Task</div>
+                           <div class="boardAddTaskCloseHoverContainer" onclick="hideAddTaskContainer()"></div>
+                        </div>
+                        <div w3-include-html="./addTask.html" ></div>
+                        <div class="boardAddTaskFooter">
+                            <div class="createBtn addTaskBtn" onclick="createTask()">
+                                <span class="addTaskBtnText">Create Task</span>
+                                <div class="createBtnImg"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
                     <div class="boardTopContainer">
                         <div class="searchTaskContainer">
                             <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text">
                                 <div class="searchImg" onclick="searchTask()"> </div>
                             </div>
                         </div>
+                        <div class="boardAddTaskButtonContainer" onclick="doNotClose(event)">
                         <div class="createBtn addTaskBtn addTaskBtnBoard" onclick="showAddTaskContainer()">
                             <span class="addTaskBtnText">Add Task</span>
                             <div class="addTaskBtnImg "></div>
                         </div>
+                    </div>
 
-                    </div> -->
+                    </div>
                     <div class="category-container">
                         <div class="category">
                             <div class="categoryTitle">
@@ -84,6 +102,7 @@
             </main>
         </div>
     </div>
+    <div id="boardOverlay" class="d-none"></div>
 </body>
 
 </html>

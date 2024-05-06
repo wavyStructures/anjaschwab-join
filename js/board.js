@@ -111,7 +111,13 @@ async function boardInit() {
 }
 
 function showAddTaskContainer(){
-    document.getElementById('addTaskHoverContainer').classList.toggle('hidden')
+    document.getElementById('addTaskHoverContainer').classList.remove('boardHidden');
+    document.getElementById('boardOverlay').classList.remove('d-none');
+}
+
+function hideAddTaskContainer(){
+    document.getElementById('addTaskHoverContainer').classList.add('boardHidden');
+    document.getElementById('boardOverlay').classList.add('d-none');
 }
 
 
