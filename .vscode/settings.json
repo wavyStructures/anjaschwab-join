@@ -1,3 +1,12 @@
 {
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "highlight-matching-tag.styles": {
+        "opening": {
+          "name": {
+            "underline": "red",
+          }
+        }
+      },
+      "editor.minimap.showSlider": "always",
+      "editor.minimap.enabled": false
 }
