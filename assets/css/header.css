@@ -94,21 +94,85 @@
   opacity: 0;
 }
 
+/* .small-menu-mobile {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 20px 0 20px 20px;
+  position: absolute;
+  top: 100px;
+  z-index: -1;
+  right: 2px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+
+  a {
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--clr-text-menu);
+    width: Fixed 152px;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+} */
+
 .helpIcon {
   cursor: pointer;
 }
+/* 
 
-@media (min-width: 581px) and (max-width: 769px) {
-  .signUpField {
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    gap: 12px;
+@media (min-width: 500px) {
+  .header-mobile {
+    display: none;
   }
-}
 
-@media (max-width: 580px) {
-  .signUpField {
+  .small-menu-mobile {
     display: none;
   }
 }
+
+@media (max-width: 501px) {
+  .header-mobile {
+    display: flex;
+  }
+
+  .small-menu-mobile {
+    display: flex;
+  }
+
+  .header-content {
+    .header-logo {
+      width: 32px;
+      height: 39px;
+    }
+  }
+
+  .header-kanban-writing {
+    display: none;
+  }
+  .helpIcon {
+    display: none;
+  }
+
+  .header-initials-button-outer-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-initials-button {
+    width: 37px;
+    height: 37px;
+  }
+  .header-mobile {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px 20px 16px;
+    background-color: var(--clr-main);
+    margin-bottom: 26px;
+    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+  }
+} */
