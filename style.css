@@ -77,12 +77,16 @@ a {
   background-position: center;
 }
 
-*::-webkit-scrollbar-button:decrement {
+*::-webkit-scrollbar-button:single-button:vertical:decrement {
   background-image: url("./assets/img/arrow_up.png");
   scroll-padding-top: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-*::-webkit-scrollbar-button:increment {
+*::-webkit-scrollbar-button:single-button:vertical:increment {
   background-image: url("./assets/img/arrow_down.png");
   margin-bottom: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
