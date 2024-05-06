@@ -89,7 +89,7 @@
 }
 
 .right-side {
-  animation: none; /* Deaktiviere die Animation standardmäßig */
+  animation: none; /* Deaktiviere die Animation standardmĆ¤Ćig */
 }
 
 .right-side.animate-in {
@@ -357,7 +357,7 @@ input {
   border-radius: 100%;
   color: white;
   font-size: 0.75rem;
-  background-color: #ff7a00; /*Platzhalter, noch zu löschen*/
+  background-color: #ff7a00; /*Platzhalter, noch zu lĆ¶schen*/
 }
 
 .contact-card-overview {
@@ -544,12 +544,12 @@ input {
 }
 
 .add-contact-container {
+  
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Hintergrundfarbe für das Overlay */
-    z-index: 999; /* Stellen Sie sicher, dass das Overlay über anderen Elementen liegt */
-  
+    background-color: rgba(0, 0, 0, 0.5); /* Hintergrundfarbe fĆ¼r das Overlay */
+    z-index: 999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
 }

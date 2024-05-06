@@ -168,7 +168,6 @@ async function saveContact() {
 
     resetContactForm();
     closeAddContact();
-    await displaySuccessMessage();
     await loadContactsStorage(); // Load contacts from online storage if necessary.
     loadContacts();
   } catch (error) {
@@ -181,21 +180,19 @@ async function saveContact() {
  *
  * @returns {void}
  */
-/**
- * Displays the success message container when a contact is successfully created.
- *
- * @returns {void}
- */
-async function displaySuccessMessage() {
-  const overlay = document.getElementById('contactSuccCreatedOverlay');
+function displaySuccessMessage() {
+  const overlay = document.querySelector(".contact-succ-created-overlay");
   if (overlay) {
-    // Container anzeigen
-    overlay.classList.remove('d-none');
+    overlay.style.display = "block"; // Erfolgsmeldung einblenden
 
-    // Container nach 3 Sekunden wieder ausblenden
+    // Timeout, um die Erfolgsmeldung nach 3 Sekunden auszublenden
     setTimeout(() => {
-      overlay.classList.add('d-none');
-    }, 3000);
+      overlay.style.animation = "slide-out 0.5s forwards"; // Animation zum Ausblenden hinzufügen
+      setTimeout(() => {
+        overlay.style.display = "none"; // Erfolgsmeldung ausblenden
+        overlay.style.animation = "slide-in 0.5s forwards"; // Zurücksetzen der Animation
+      }, 500); // Timeout für die Dauer der Ausblendanimation
+    }, 3000); // Timeout für 3 Sekunden Anzeigedauer
   } else {
     console.error("Error: Overlay element not found.");
   }
@@ -622,13 +619,6 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
-  <div class="contact-succ-created-overlay d-none" id="contactSuccCreatedOverlay">
-    <div class="contact-succesfully-created-wrapper">
-      <div class="contact-succesfully-created">
-            Contact succesfully created
-      </div>
-    </div>
-  </div>
   <div class="contact-list-container">
   <div class="add-contact-overlay"></div>
   <div id="addContactContainer" class="hidden">
@@ -690,6 +680,13 @@ function generateContactsContainerHTML() {
             </div>
         </div>
         <section class="right-side d-none" id="rightSide">
+        <div class="contact-succ-created-overlay" id="contactSuccCreatedOverlay">
+    <div class="contact-succesfully-created-wrapper">
+      <div class="contact-succesfully-created">
+            Contact succesfully created
+      </div>
+    </div>
+  </div>
         </section>
     `;
 }
