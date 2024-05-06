@@ -10,9 +10,20 @@
 
 .addTaskHoverContainer{
     position: fixed;
+    z-index:1000;
     right:0;
     top:0;
-    background-color: lightblue;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+    height: 100vh;
+
+    .navigation-container{
+        display: none
+    }
+
+    .addTaskBtnContainer{
+        display: none;
+    }
 }
 
 .boardTopContainer{
@@ -164,11 +175,6 @@ button:focus {
     aspect-ratio: 1;
 }
 
-.addTaskBtnBoard{
-    width: 138px;
-}
-
-
 .assignedToButton{
     background-color: red;
 }
@@ -254,4 +260,8 @@ progress{
 
 .d-none{
     display: none;
+}
+
+.addTaskBtnBoard{
+    width: 150px !important;
 }
