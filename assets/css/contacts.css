@@ -513,6 +513,19 @@ input {
 .contact-succesfully-created {
   position: relative;
   line-height: 1.75rem;
+  border: 0.063rem solid;
+  border-color: #4589ff;
+  color: white;
+  background-color: #4589ff;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1.25rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.063rem;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--version-2-body);
 }
 
 .contact-succ-created-overlay,
@@ -534,7 +547,7 @@ input {
 }
 
 .contact-succ-created-overlay {
-  position: relative;
+  position: absolute;
   box-shadow: var(--nuevo);
   width: 100%;
   line-height: normal;
@@ -543,6 +556,8 @@ input {
   font-size: 1.438rem;
   color: var(--white);
   font-family: var(--version-2-body);
+  left: 60%;
+  top: 15%;
 }
 
 .add-contact-container {

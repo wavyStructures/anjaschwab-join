@@ -193,7 +193,7 @@ function displaySuccessMessage() {
         overlay.style.display = "none"; // Erfolgsmeldung ausblenden
         overlay.style.animation = "slide-in 0.5s forwards"; // Zurücksetzen der Animation
       }, 500); // Timeout für die Dauer der Ausblendanimation
-    }, 3000); // Timeout für 3 Sekunden Anzeigedauer
+    }, 1500); // Timeout für 3 Sekunden Anzeigedauer
   } else {
     console.error("Error: Overlay element not found.");
   }
