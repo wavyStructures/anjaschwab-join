@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/css/signUp.css">
-    <link rel="stylesheet" href="assets/css/contacts.css">
     <script src="script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/signUp.js"></script>
@@ -25,16 +24,8 @@
                         <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
                     </div>
                 </header>
-                <div class="signUp-succ-created-overlay">
-                    <div class="contact-succesfully-created-wrapper">
-                        <div class="contact-succesfully-created">
-                            signed up successfully </div>
-                    </div>
-                </div>
                 <div class="signUp-page">
-
                     <div class="signUp-box">
-
                         <div class="arrowLeft" onclick="redirectToLogin()"><img src="./assets/img/icon-arrow_left.png"
                                 alt="arrow left"></div>
 
@@ -44,29 +35,27 @@
                         </div>
 
                         <div class="formDiv">
-                            <form id="login-form" onsubmit="addUser(); return false">
+                            <form id="login-form" return false">
                                 <div class="innerSignUpBox">
                                     <div class="signUpNameBox">
-                                        <input type="text" id="signUpNameInput" placeholder="Name" required
-                                            oninput="checkAllFieldsFilled()">
+                                        <input type="text" id="signUpNameInput" placeholder="Name" required>
                                         <div class="mailIcon"><img src="./assets/img/icon-person.png" alt="letter">
                                         </div>
                                     </div>
                                     <div class="signUpEmailBox">
-                                        <input type="email" id="signUpEmailInput" placeholder="Email" required
-                                            oninput="checkAllFieldsFilled()">
+                                        <input type="email" id="signUpEmailInput" placeholder="Email" required>
+
                                         <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
                                         </div>
                                     </div>
                                     <div class="signUpPasswordBox">
-                                        <input type="password" id="signUpPasswordInput" placeholder="Password" required
-                                            oninput="checkAllFieldsFilled()" minlength="8">
+                                        <input type="password" id="signUpPasswordInput" placeholder="Password" required>
                                         <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
                                         </div>
                                     </div>
                                     <div class="signUpPasswordBox">
                                         <input type="password" id="signUpPasswordInputConfirm"
-                                            placeholder="Confirm Password" required oninput="checkAllFieldsFilled()">
+                                            placeholder="Confirm Password" required>
                                         <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
                                         </div>
                                     </div>
@@ -78,8 +67,7 @@
                                             onclick="togglePrivacyPolicyCheckbox()">
                                         I accept the <a href="#">Privacy Policy</a></label><br>
                                 </div>
-                                <button id="registerBtn" class="signUpButtons registerBtn" disabled
-                                    onclick="addUser()">Sign
+                                <button id="registerBtn" class="signUpButtons registerBtn" onclick="addNewUser()">Sign
                                     up</button>
 
                                 <!--TODO-->
@@ -101,6 +89,15 @@
                     </div>
                 </div>
 
+            </div>
+            <div id="signUp-succ-created-overlay" class="signUp-succ-created-overlay">
+                <div class="contact-succesfully-created-wrapper">
+                    <div class="contact-succesfully-created">
+                        signed up successfully </div>
+                </div>
+            </div>
+            <div id="userMessageOverlay" class="userMessageOverlay">
+                <div id="userMessage"></div>
             </div>
         </main>
     </div>

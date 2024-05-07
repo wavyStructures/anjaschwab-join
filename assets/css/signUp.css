@@ -39,7 +39,6 @@
   gap: 39px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
   position: relative;
-  top: 15%;
 }
 
 .arrowLeft {
@@ -54,7 +53,7 @@
 }
 
 .h1SignUpBox {
-  width: 422px;
+  /* width: 422px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,6 +93,13 @@
   margin-bottom: 24px;
   padding: 12px 21px;
   gap: 10px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .signUpPasswordBox {
@@ -222,7 +228,7 @@ a {
   }
 
   .signUp-box {
-    width: 92vw;
+    /* width: 92vw; */
     margin-top: 48px;
     /* height: 608px; */
     top: 159px;
@@ -293,6 +299,7 @@ a {
 }
 
 .signUp-succ-created-overlay {
+  display: none;
   position: absolute;
   box-shadow: var(--nuevo);
   width: 100%;
@@ -306,10 +313,32 @@ a {
   left: 40%;
   transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
 }
-.slide-in {
-  bottom: 50%; /* Endposition in der Mitte des Bildschirms */
-}
+/* .slide-in {
+  bottom: 50%; 
 
 .slide-out {
-  bottom: -100%; /* Zielposition außerhalb des Bildschirms */
+  bottom: -100%; 
+} */
+
+#userMessageOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  position: relative;
+}
+
+#userMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }

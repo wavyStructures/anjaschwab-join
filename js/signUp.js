@@ -1,7 +1,14 @@
+let newUsers = [];
+let username = '';
+let mail = '';
+let password = '';
+let passwordConfirm = '';
+
 /**
  * init-function run at on loading the body
  */
 async function signUpInit() {
+    showUserMessage("Versuch");
     // try {
     //     await loadUsers();
     //     console.log("loadUsers() successful")
@@ -9,12 +16,10 @@ async function signUpInit() {
     //     console.error("loadUsers() failed", error)
     // }
 
-    username = document.getElementById('signUpNameInput');
-    mail = document.getElementById('signUpEmailInput');
-    password = document.getElementById('signUpPasswordInput');
-    registerBtn = document.getElementById('registerBtn');
-
-
+    // username = document.getElementById('signUpNameInput');
+    // mail = document.getElementById('signUpEmailInput');
+    // password = document.getElementById('signUpPasswordInput');
+    // registerBtn = document.getElementById('registerBtn');
 }
 
 
@@ -30,59 +35,58 @@ async function signUpInit() {
 // }
 
 
-/**
- * add new user to users and save it to local storage
- */
-// async 
-function addUser() {
+function addNewUser() {
     let registerBtn = document.getElementById("registerBtn");
     registerBtn.disabled = true;
 
-    //TODO  sollte hier Abfrage ob bereits vorhanden???
+    // Get references to input fields
+    username = document.getElementById('signUpNameInput');
+    mail = document.getElementById('signUpEmailInput');
+    password = document.getElementById('signUpPasswordInput');
+    passwordConfirm = document.getElementById('signUpPasswordInputConfirm');
 
-    let username = document.getElementById('signUpNameInput');
-    let mail = document.getElementById('signUpEmailInput');
-    let password = document.getElementById('signUpPasswordInput');
+    // Perform validation
+    let privacyConfirmed = checkPrivacyPolicyConfirmation();
+    let passwordsMatch = checkPasswordsEqual();
+    const allFieldsFilled = username.value !== '' && mail.value !== '' && password.value !== '';
 
-    checkPrivacyPolicyConfirmation();
-    if (checkPrivacyPolicyConfirmation()) {
+    // Enable register button only if all validation criteria are met
+    if (privacyConfirmed && passwordsMatch && allFieldsFilled) {
         registerBtn.disabled = false;
-        users.push(
-            {
-                username: username.value,
-                mail: mail.value,
-                password: password.value
-            });
-        showSuccessMessage();
+        newUsers.push({
+            username: username.value,
+            mail: mail.value,
+            password: password.value
+        });
+        showUserMessage('Sign up successful!');
         resetForm();
+        setNewUsersToLocalStorage();
         redirectToLogin();
     } else {
-        alert('please confirm the privacy policy');
+        alert('Please confirm the privacy policy and ensure all fields are filled correctly.');
     }
 }
 
+// /**
+//  * Displays the success message container when signUp is successful.
 
-/**
- * Displays the success message container when a contact is successfully created.
- *
- * @returns {void}
- */
-function showSuccessMessage() {
-    const overlay = document.querySelector('.signUp-succ-created-overlay');
-    if (overlay) {
-        overlay.classList.add('slide-in'); // Container einblenden
+//  */
+// function showSuccessMessage() {
+//     const overlay = document.getElementById('signUp-succ-created-overlay');
+//     if (overlay.style.display !== 'flex') {
+//         overlay.style.display = 'flex';
+//         setTimeout(() => {
+//             overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
+//             setTimeout(() => {
+//                 if (overlay.style.display === "flex") {
+//                     overlay.style.display = "none";
+//                     redirectToLogin();
+//                 }
+//             }, 3000); // Timeout für 3 Sekunden Anzeigedauer
+//         }, 1000); // Timeout für 1 Sekunde Startverzögerung
+//     }
+// }
 
-        // Timeout, um den Container nach 3 Sekunden wieder auszublenden
-        setTimeout(() => {
-            overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
-            setTimeout(() => {
-                overlay.classList.remove('slide-in', 'slide-out'); // Animation beenden
-            }, 500); // Timeout für die Dauer der Ausblendanimation
-        }, 1000); // Timeout für 3 Sekunden Anzeigedauer
-    } else {
-        console.error("Error: Overlay element not found.");
-    }
-}
 
 
 /**
@@ -91,7 +95,8 @@ function showSuccessMessage() {
 function resetForm() {
     mail.value = '';
     password.value = '';
-    registerBtn.disabled = false;
+    passwordConfirm.value = '';
+    registerBtn.disabled = true;
 }
 
 
@@ -127,16 +132,22 @@ function checkPrivacyPolicyConfirmation() {
     }
 }
 
-function checkAllFieldsFilled() {
-    let form = document.getElementById('login-form');
-    let registerBtn = document.getElementById('registerBtn');
-    if (form.checkValidity()) {
-        registerBtn.disabled = false;
-    } else {
-        registerBtn.disabled = true;
-    }
-}
 
+
+
+
+// /**
+//  * Checks if all fields in the login form are filled.
+//  */
+// function checkAllFieldsFilled() {
+//     let form = document.getElementById('login-form');
+//     let registerBtn = document.getElementById('registerBtn');
+//     if (form.checkValidity()) {
+//         registerBtn.disabled = false;
+//     } else {
+//         registerBtn.disabled = true;
+//     }
+// }
 
 
 /**
@@ -159,5 +170,30 @@ function redirectToLogin() {
 }
 
 
+/**
+ * Saves the newUsers array to the local storage as a JSON string.
+ */
+function setNewUsersToLocalStorage() {
+    localStorage.setItem('newUsers', JSON.stringify(newUsers));
+}
 
 
+function showUserMessage(message) {
+    var overlay = document.getElementById("userMessageOverlay");
+    var messageDiv = document.getElementById("userMessage");
+    messageDiv.innerText = message;
+    overlay.style.display = "flex";
+    setTimeout(function () {
+        overlay.style.display = "none";
+    }, 1000); // 1 second
+}
+
+function checkPasswordsEqual() {
+    if (password.value !== passwordConfirm.value) {
+        showUserMessage("Passwords do not match");
+        return false;
+    } else {
+        return true;
+    }
+
+}
