@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/css/signUp.css">
+    <link rel="stylesheet" href="assets/css/contacts.css">
     <script src="script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/signUp.js"></script>
@@ -23,15 +24,16 @@
                     <div class="joinLogoSignUpWhite">
                         <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
                     </div>
-
                 </header>
+                <div class="signUp-succ-created-overlay">
+                    <div class="contact-succesfully-created-wrapper">
+                        <div class="contact-succesfully-created">
+                            signed up successfully </div>
+                    </div>
+                </div>
                 <div class="signUp-page">
+
                     <div class="signUp-box">
-
-
-
-
-
 
                         <div class="arrowLeft" onclick="redirectToLogin()"><img src="./assets/img/icon-arrow_left.png"
                                 alt="arrow left"></div>
@@ -58,7 +60,7 @@
                                     </div>
                                     <div class="signUpPasswordBox">
                                         <input type="password" id="signUpPasswordInput" placeholder="Password" required
-                                            oninput="checkAllFieldsFilled()">
+                                            oninput="checkAllFieldsFilled()" minlength="8">
                                         <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
                                         </div>
                                     </div>

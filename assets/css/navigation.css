@@ -1,3 +1,7 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 .navigation-container {
   display: flex;
   flex-direction: column;
@@ -68,17 +72,21 @@
 
 @media (max-width: 701px) {
   .navigation-container {
-    display: flex;
-    /* width: 232px; */
-    /* max-width: 232px; */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    .navigation-content {
+      background-color: #fff;
+      display: flex;
+      /* width: 232px; */
+      /* max-width: 232px; */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99;
+    }
   }
-
   .navigation-content {
     border-top: 1px solid lightgrey;
+    background-color: #fff;
     padding-top: 24px;
     padding-inline: 23px;
     display: flex;

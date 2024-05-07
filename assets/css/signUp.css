@@ -39,6 +39,7 @@
   gap: 39px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
   position: relative;
+  top: 15%;
 }
 
 .arrowLeft {
@@ -222,6 +223,7 @@ a {
 
   .signUp-box {
     width: 92vw;
+    margin-top: 48px;
     /* height: 608px; */
     top: 159px;
     bottom: 159px;
@@ -271,3 +273,43 @@ a {
     display: none;
   }
 } */
+
+.signUp-succ-created-overlay,
+.contact-succesfully-created-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.contact-succesfully-created-wrapper {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background-color: var(--version-2-main-color);
+  padding: 1.437rem var(--padding-mid);
+  box-sizing: border-box;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.signUp-succ-created-overlay {
+  position: absolute;
+  box-shadow: var(--nuevo);
+  width: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 1.438rem;
+  color: var(--white);
+  font-family: var(--version-2-body);
+  bottom: -100%; /* Startposition unterhalb des Bildschirms */
+  left: 40%;
+  transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
+}
+.slide-in {
+  bottom: 50%; /* Endposition in der Mitte des Bildschirms */
+}
+
+.slide-out {
+  bottom: -100%; /* Zielposition außerhalb des Bildschirms */
+}

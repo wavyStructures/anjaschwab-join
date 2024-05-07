@@ -53,7 +53,7 @@ function addUser() {
                 mail: mail.value,
                 password: password.value
             });
-
+        showSuccessMessage();
         resetForm();
         redirectToLogin();
     } else {
@@ -61,6 +61,28 @@ function addUser() {
     }
 }
 
+
+/**
+ * Displays the success message container when a contact is successfully created.
+ *
+ * @returns {void}
+ */
+function showSuccessMessage() {
+    const overlay = document.querySelector('.signUp-succ-created-overlay');
+    if (overlay) {
+        overlay.classList.add('slide-in'); // Container einblenden
+
+        // Timeout, um den Container nach 3 Sekunden wieder auszublenden
+        setTimeout(() => {
+            overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
+            setTimeout(() => {
+                overlay.classList.remove('slide-in', 'slide-out'); // Animation beenden
+            }, 500); // Timeout für die Dauer der Ausblendanimation
+        }, 1000); // Timeout für 3 Sekunden Anzeigedauer
+    } else {
+        console.error("Error: Overlay element not found.");
+    }
+}
 
 
 /**
@@ -113,7 +135,6 @@ function checkAllFieldsFilled() {
     } else {
         registerBtn.disabled = true;
     }
-    console.log("checkAllFieldsFilled is:", registerBtn.disabled);
 }
 
 
