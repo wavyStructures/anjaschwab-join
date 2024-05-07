@@ -25,7 +25,7 @@
   margin-bottom: 24px;
 }
 
-.summary-box {
+.mobile-summary-box {
   width: 98vw;
   display: flex;
   flex-direction: column;
@@ -66,7 +66,7 @@
   align-items: center;
 }
 
-.square-button {
+.mobile-square-button {
   width: 186px;
   height: 152px;
   padding: 15px 40px 15px 40px;
@@ -76,7 +76,7 @@
   margin-right: 0;
 }
 
-.inner-square-button span {
+.mobile-inner-square-button span {
   font-size: 19px;
 }
 
