@@ -556,8 +556,17 @@ input {
   font-size: 1.438rem;
   color: var(--white);
   font-family: var(--version-2-body);
-  left: 60%;
-  top: 15%;
+  bottom: -100%; /* Startposition unterhalb des Bildschirms */
+  left: 40%;
+  transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
+}
+
+.slide-in {
+  bottom: 50%; /* Endposition in der Mitte des Bildschirms */
+}
+
+.slide-out {
+  bottom: -100%; /* Zielposition außerhalb des Bildschirms */
 }
 
 .add-contact-container {

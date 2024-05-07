@@ -182,18 +182,17 @@ async function saveContact() {
  * @returns {void}
  */
 function displaySuccessMessage() {
-  const overlay = document.querySelector(".contact-succ-created-overlay");
+  const overlay = document.querySelector('.contact-succ-created-overlay');
   if (overlay) {
-    overlay.style.display = "block"; // Erfolgsmeldung einblenden
+    overlay.classList.add('slide-in'); // Container einblenden
 
-    // Timeout, um die Erfolgsmeldung nach 3 Sekunden auszublenden
+    // Timeout, um den Container nach 3 Sekunden wieder auszublenden
     setTimeout(() => {
-      overlay.style.animation = "slide-out 0.5s forwards"; // Animation zum Ausblenden hinzufügen
+      overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
       setTimeout(() => {
-        overlay.style.display = "none"; // Erfolgsmeldung ausblenden
-        overlay.style.animation = "slide-in 0.5s forwards"; // Zurücksetzen der Animation
+        overlay.classList.remove('slide-in', 'slide-out'); // Animation beenden
       }, 500); // Timeout für die Dauer der Ausblendanimation
-    }, 1500); // Timeout für 3 Sekunden Anzeigedauer
+    }, 1000); // Timeout für 3 Sekunden Anzeigedauer
   } else {
     console.error("Error: Overlay element not found.");
   }
