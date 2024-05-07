@@ -1,0 +1,40 @@
+#container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-color: lightblue;
+}
+
+#innerContainer {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    /* animation-name: move; */
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.move-to-right {
+    animation-name: moveToRight;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+@keyframes moveToRight {
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
