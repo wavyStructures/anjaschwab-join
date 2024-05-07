@@ -579,3 +579,9 @@ input {
     background-color: rgba(0, 0, 0, 0.5); /* Hintergrundfarbe fĆ¼r das Overlay */
     z-index: 999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
 }
+
+.contact-main-edit {
+  position: ;
+  left: 0;
+  top: 20%;
+}

@@ -619,6 +619,54 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
+  <div id="contactMainEdit" class="contact-main-edit" onclick="closeAddContact()"> 
+                    <div class="edit-contact ">
+                        <div class="edit-contact-header">
+                            <div class="edit-contact-header-close">
+                                <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png"
+                                    alt="closeAddContact">
+                            </div>
+                        </div>
+                        <div class="edit-contact-header-logo">
+                            <img src="./assets/img/logo-medium_white.png" alt="">
+                            <span>Edit Contact</span>
+                            <p>Tasks are better with a team!</p>
+                        </div>
+
+                        <div class="edit-contact-bottom">
+                            <div class="profile-badge-group-add-contact">
+                                <div class="profile-badge-add-contact">
+                                    <img src="./assets/img/add.contact-badge.png" alt="">
+                                </div>
+                            </div>
+                            <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+                                <div class="input-frame">
+                                    <input id="contactName" type="text" placeholder="Name" autofocus required>
+                                    <img src="./assets/img/icon-person.png" alt="">
+                                </div>
+                                <div class="input-frame">
+                                    <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                                    <img src="./assets/img/icon-mail.png" alt="">
+                                </div>
+                                <div class="input-frame">
+                                    <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
+                                    <img src="./assets/img/icon-call.png" alt="">
+                                </div>
+                                <div id="addContactButton" class="addContactButton">
+                                    <button class="cancelButton" onmouseover="changeCancelIcon()"
+                                        onmouseout="restoreCancelIcon()">Cancel
+                                        <img id="cancelIcon" onclick="closeAddContact()"
+                                            src="./assets/img/icon-cancel.png" alt="">
+                                    </button>
+                                    <button class="createButton">Edit contact
+                                        <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png"
+                                            alt="">
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+</div>
   <div class="contact-list-container">
   <div class="add-contact-overlay"></div>
   <div id="addContactContainer" class="hidden">
