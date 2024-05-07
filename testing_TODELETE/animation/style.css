@@ -10,28 +10,29 @@
     width: 200px;
     height: 200px;
     background-color: red;
-    /* animation-name: move; */
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+
 }
 
 .move-to-right {
-    animation-name: moveToRight;
+    animation: moveToRight 1s ease forwards;
+}
+.move-to-left {
+    animation: moveToLeft 1s ease forwards;
 }
 
-@keyframes move {
+@keyframes moveToRight {
     from {
         transform: translateX(0);
     }
 
     to {
-        transform: translateX(100px);
+        transform: translateX(1000px);
     }
 }
 
-@keyframes moveToRight {
+@keyframes moveToLeft {
     from {
-        transform: translateX(100px);
+        transform: translateX(1000px);
     }
 
     to {

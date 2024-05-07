@@ -1,17 +1,11 @@
 let isMoved = false;
 
-function moveDiv() {
+function moveDiv(side) {
+    console.log('move-to-' + side);
     let div = document.getElementById("innerContainer");
-            if (isMoved) {
-                console.log('isMoved');
-                div.classList.remove("move-to-right");
-                div.classList.add("move");
-                
-                isMoved = false;
-            } else {
-                console.log('isNotMoved');
-                div.classList.add("move-to-right");
-                div.classList.remove("move");
-                isMoved = true;
-            }
-        }
+    if (side == 'left')
+    side == 'left' ? div.classList.remove('move-to-right') : div.classList.remove('move-to-left');
+    side == 'right' ? div.classList.remove('move-to-left') : div.classList.remove('move-to-right');
+    div.classList.add('move-to-' + side)
+
+}
