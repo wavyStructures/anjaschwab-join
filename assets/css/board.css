@@ -328,3 +328,39 @@ progress{
     z-index: 500;
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+#success-message{
+    display: flex;
+    background-color:red;
+    height:100px;
+    width: 200px;
+    z-index: 500;
+    position: fixed;
+    bottom: 0;
+    transform: translatey(500px);
+}
+
+.hoverTop{
+    animation: testIn 0.5s ease-out forwards; 
+}
+
+
+@keyframes testIn{
+    0%{
+        transform: translatey(500px);
+    }
+    100%{
+        transform: translatey(0);
+    }
+}
+
+@keyframes testOut {
+    0% {
+        transform: translatey(0);
+    }
+    100% {
+        transform: translatey(500px);
+    }
+
+    
+}
