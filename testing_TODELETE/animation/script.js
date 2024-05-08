@@ -7,6 +7,7 @@ function moveDiv() {
     // side == 'right' ? div.classList.remove('move-to-left') : div.classList.remove('move-to-right');
     // side == 'left' ? div.classList.remove('move-to-right') : div.classList.remove('move-to-left');
     
+    div.classList.remove('d-none');
     setTimeout(() => {
         console.table('begin outerTimeout');
         div.classList.add('move-to-right')
@@ -18,6 +19,10 @@ function moveDiv() {
             
         },2000),1000}
     );
+    setTimeout(() => {
+        console.log('timeout d-none');
+        div.classList.add('d-none');
+    },3000);
     div.classList.remove('move-to-left');
     console.log('end timeOuts');
 }
