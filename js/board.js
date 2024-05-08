@@ -111,13 +111,19 @@ async function boardInit() {
 }
 
 function showAddTaskContainer(){
-    document.getElementById('addTaskHoverContainer').classList.remove('boardHidden');
-    document.getElementById('boardOverlay').classList.remove('d-none');
+    let container = document.getElementById('addTaskHoverContainer');
+    container.classList.remove('d-none');
+    container.classList.remove('hideBoard');
+    container.classList.add('showBoard');
 }
 
 function hideAddTaskContainer(){
-    document.getElementById('addTaskHoverContainer').classList.add('boardHidden');
-    document.getElementById('boardOverlay').classList.add('d-none');
+    let container = document.getElementById('addTaskHoverContainer');
+    container.classList.remove('showBoard');
+    container.classList.add('hideBoard');
+    setTimeout(() => {
+        container.classList.add('d-none');
+    },501)
 }
 
 
