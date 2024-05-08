@@ -14,10 +14,10 @@
 }
 
 .move-to-right {
-    animation: moveToRight 1s ease forwards;
+    animation: moveToRight .5s ease forwards;
 }
 .move-to-left {
-    animation: moveToLeft 1s ease forwards;
+    animation: moveToLeft .5s ease forwards;
 }
 
 @keyframes moveToRight {
@@ -26,13 +26,13 @@
     }
 
     to {
-        transform: translateX(1000px);
+        transform: translateX(200px);
     }
 }
 
 @keyframes moveToLeft {
     from {
-        transform: translateX(1000px);
+        transform: translateX(200px);
     }
 
     to {
