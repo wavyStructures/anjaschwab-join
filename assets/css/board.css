@@ -6,12 +6,12 @@
 
 .hideBoard{
     transform: translateX(100%);
-    animation: moveOutRight 0.5s ease-out forwards;
+    animation: moveOutRight 0.125s ease-out forwards;
 }
 
 .showBoard{
     transform: translateX(100%);
-    animation: moveInRight 0.5s ease-out forwards;
+    animation: moveInRight 0.125s ease-out forwards;
     
 }
 

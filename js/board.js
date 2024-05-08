@@ -100,6 +100,34 @@ let _tasksBackup = [
         'category': 'inProgress',
         'priority': 'low',
         'dueDate': "2024-10-17"
+    },
+    {
+        "id": 5,
+        "type": "Technical Task",
+        "title": "Birthday cake",
+        "description": "John got birthday on May 21th!\nWe have to bake a cake for him!",
+        "subtasks": [
+            {
+                "id": 0,
+                "subtaskText": "buy ingredients",
+                "completed": false
+            },
+            {
+                "id": 1,
+                "subtaskText": "bake the cake",
+                "completed": false
+            },
+            {
+                "id": 2,
+                "subtaskText": "meet what cake it'll be",
+                "completed": false
+            }
+        ],
+        "completedSubtasks": [],
+        "assignedTo": [],
+        "category": "todo",
+        "priority": "Urgent",
+        "dueDate": "2024-05-20"
     }
 ];
 
@@ -122,10 +150,11 @@ function hideAddTaskContainer(){
     let container = document.getElementById('addTaskHoverContainer');
     container.classList.remove('showBoard');
     container.classList.add('hideBoard');
+    document.getElementById('boardOverlay').classList.add('d-none')
     setTimeout(() => {
-        container.classList.add('d-none');
-        document.getElementById('boardOverlay').classList.toggle('d-none')
-    },501)
+        container.classList.toggle('d-none');
+
+    },200)
 }
 
 

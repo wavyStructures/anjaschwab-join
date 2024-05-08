@@ -25,7 +25,7 @@
     <title>Join - AddTask</title>
 </head>
 
-<body onload="boardInit()" onclick="hideAddTaskContainer()">
+<body onload="boardInit()">
     <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
         <header w3-include-html="./assets/templates/header.html" id="header" class="header">
         </header>
@@ -102,7 +102,7 @@
             </main>
         </div>
     </div>
-    <div id="boardOverlay" class="d-none"></div>
+    <div id="boardOverlay" class="d-none" onclick="hideAddTaskContainer()"></div>
     <div id="success-message" class=""></div>
 </body>
 
