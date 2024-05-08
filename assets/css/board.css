@@ -12,6 +12,7 @@
 .showBoard{
     transform: translateX(100%);
     animation: moveInRight 0.5s ease-out forwards;
+    
 }
 
 .addTaskHoverContainer{
@@ -52,7 +53,7 @@
         right: 50px;
         bottom: 20px;
     }
-} 
+}
 
 
 .boardAddTaskHeader{

@@ -115,6 +115,7 @@ function showAddTaskContainer(){
     container.classList.remove('d-none');
     container.classList.remove('hideBoard');
     container.classList.add('showBoard');
+    document.getElementById('boardOverlay').classList.toggle('d-none')
 }
 
 function hideAddTaskContainer(){
@@ -123,6 +124,7 @@ function hideAddTaskContainer(){
     container.classList.add('hideBoard');
     setTimeout(() => {
         container.classList.add('d-none');
+        document.getElementById('boardOverlay').classList.toggle('d-none')
     },501)
 }
 
