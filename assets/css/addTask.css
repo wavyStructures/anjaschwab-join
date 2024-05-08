@@ -130,9 +130,8 @@ select {
     border-radius: 10px;
     font-size: 1.438rem;
     transition: var(--addTask-transistion);
-
-
 }
+
 
 .clearBtn{
     display: flex;
@@ -140,15 +139,15 @@ select {
     background-color: #fff;
     color: var(--clr-btn-border);
     cursor: pointer;
-    
+
     &:hover{
         color: var(--clr-contact-marked);
         border-color: var(--clr-contact-marked) !important;
-        
+
         box-shadow: 0px 0px .5px rgba(0, 0, 0, .5), 
         0px 1px 3px rgba(0, 0, 0, .4),
         0px 0px 0px 1px var(--clr-contact-marked);
-        
+
         .clearBtnImg{
             background-image: url('../img/icon-close.png');
         }

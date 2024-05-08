@@ -348,13 +348,22 @@ progress{
 
 #success-message{
     display: flex;
-    background-color:red;
-    height:100px;
-    width: 200px;
+    height:70px;
+    width: 330px;
+    padding: 20px;
     z-index: 500;
     position: fixed;
     bottom: 0;
-    transform: translatey(500px);
+    border-radius: 20px;
+    cursor: default;
+
+    .addTaskBtnImg{
+        background-image: url('../img/icon-board.png');
+        background-repeat: no-repeat;
+        width: 32px;
+        filter: brightness(0) invert(1);
+    }
+
 }
 
 .hoverTop{
