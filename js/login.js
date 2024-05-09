@@ -14,7 +14,7 @@ async function setUsersRemote() {
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    includeHTML();
+    // includeHTML();
     getInformations();
     await setUsersRemote();
     await loadUsers();

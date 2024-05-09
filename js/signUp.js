@@ -8,7 +8,7 @@ let passwordConfirm = '';
  * init-function run at on loading the body
  */
 async function signUpInit() {
-    showUserMessage("Versuch");
+    // showUserMessage("Versuch");
     // try {
     //     await loadUsers();
     //     console.log("loadUsers() successful")
@@ -58,41 +58,22 @@ function addNewUser() {
             mail: mail.value,
             password: password.value
         });
-        showUserMessage('Sign up successful!');
+        showUserMessage('You Signed Up successfully!');
         resetForm();
         setNewUsersToLocalStorage();
         redirectToLogin();
     } else {
-        alert('Please confirm the privacy policy and ensure all fields are filled correctly.');
+        alert('Please confirm the privacy policy.');
+        showUserMessage('Please confirm the privacy policy and ensure all fields are filled correctly.');
     }
 }
-
-// /**
-//  * Displays the success message container when signUp is successful.
-
-//  */
-// function showSuccessMessage() {
-//     const overlay = document.getElementById('signUp-succ-created-overlay');
-//     if (overlay.style.display !== 'flex') {
-//         overlay.style.display = 'flex';
-//         setTimeout(() => {
-//             overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
-//             setTimeout(() => {
-//                 if (overlay.style.display === "flex") {
-//                     overlay.style.display = "none";
-//                     redirectToLogin();
-//                 }
-//             }, 3000); // Timeout für 3 Sekunden Anzeigedauer
-//         }, 1000); // Timeout für 1 Sekunde Startverzögerung
-//     }
-// }
-
 
 
 /**
  * reseting the signUp form
  */
 function resetForm() {
+    username.value = '';
     mail.value = '';
     password.value = '';
     passwordConfirm.value = '';
@@ -133,12 +114,6 @@ function checkPrivacyPolicyConfirmation() {
 }
 
 
-
-
-
-// /**
-//  * Checks if all fields in the login form are filled.
-//  */
 // function checkAllFieldsFilled() {
 //     let form = document.getElementById('login-form');
 //     let registerBtn = document.getElementById('registerBtn');
@@ -148,16 +123,6 @@ function checkPrivacyPolicyConfirmation() {
 //         registerBtn.disabled = true;
 //     }
 // }
-
-
-/**
- * deleting all users - local and remote
- */
-async function delAllUsers() {
-    users = [];
-    await remoteStorageSetItem('users', JSON.stringify(users));
-    console.log("USERS: ", users)
-}
 
 
 /**
@@ -185,8 +150,9 @@ function showUserMessage(message) {
     overlay.style.display = "flex";
     setTimeout(function () {
         overlay.style.display = "none";
-    }, 1000); // 1 second
+    }, 100000); // 100 second
 }
+
 
 function checkPasswordsEqual() {
     if (password.value !== passwordConfirm.value) {
@@ -196,4 +162,14 @@ function checkPasswordsEqual() {
         return true;
     }
 
+}
+
+
+/**
+ * deleting all users - local and remote
+ */
+async function delAllUsers() {
+    users = [];
+    await remoteStorageSetItem('users', JSON.stringify(users));
+    console.log("USERS: ", users)
 }

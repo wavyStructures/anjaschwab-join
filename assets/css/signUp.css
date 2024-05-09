@@ -280,56 +280,16 @@ a {
   }
 } */
 
-.signUp-succ-created-overlay,
-.contact-succesfully-created-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.contact-succesfully-created-wrapper {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  background-color: var(--version-2-main-color);
-  padding: 1.437rem var(--padding-mid);
-  box-sizing: border-box;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.signUp-succ-created-overlay {
-  display: none;
-  position: absolute;
-  box-shadow: var(--nuevo);
-  width: 100%;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  font-size: 1.438rem;
-  color: var(--white);
-  font-family: var(--version-2-body);
-  bottom: -100%; /* Startposition unterhalb des Bildschirms */
-  left: 40%;
-  transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
-}
-/* .slide-in {
-  bottom: 50%; 
-
-.slide-out {
-  bottom: -100%; 
-} */
-
 #userMessageOverlay {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
-  position: relative;
 }
 
 #userMessage {
@@ -337,8 +297,16 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--clr-main);
+  color: #fff;
+  font-size: 23px;
+  font-weight: 400;
+  width: 326px;
+  height: 74px;
+  text-align: center;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  box-sizing: border-box;
+  white-space: nowrap;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
 }

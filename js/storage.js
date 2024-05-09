@@ -77,7 +77,7 @@ function setCurrentUser(loggedUser) {
 function getCurrentUser() {
     const currentUserJSON = localStorage.getItem('currentUser');
     if (currentUserJSON) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(currentUserJSON);
         return currentUser;
     }
 }

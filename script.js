@@ -215,6 +215,18 @@ function setActiveNavButton() {
 }
 
 
+/**
+ * Locks the screen orientation to portrait.
+ */
+function lockScreenOrientation() {
+	if (screen.orientation) {
+		screen.orientation.lock('portrait');
+
+	}
+}
+// Call the function to lock screen orientation when the page loads
+window.addEventListener('load', lockScreenOrientation);
+
 // /**
 
 
