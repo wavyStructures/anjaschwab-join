@@ -2,11 +2,25 @@
   --clr-summary-square-button-focus: #d2e3ff;
 }
 
-.flex {
+.button-container {
+  width: 100%;
+  max-width: 870px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 190px 220px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  grid-template-areas:
+    "first first first third"
+    "second fourth fifth sixth";
+}
+
+/* .flex {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .no-wrap {
   white-space: nowrap;
@@ -263,6 +277,7 @@ button {
 }
 
 .urgentAndDate {
+  grid-area: first;
   box-sizing: border-box;
   display: inline-flex;
   justify-content: center;

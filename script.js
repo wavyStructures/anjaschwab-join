@@ -218,14 +218,35 @@ function setActiveNavButton() {
 /**
  * Locks the screen orientation to portrait.
  */
-function lockScreenOrientation() {
-	if (screen.orientation) {
-		screen.orientation.lock('portrait');
 
+function lockScreenOrientation() {
+	// Check if screen.orientation and screen.orientation.lock are supported
+	if (screen.orientation && screen.orientation.lock) {
+		screen.orientation.lock('portrait')
+			.catch(error => {
+				// console.warn('Failed to lock screen orientation:', error);
+			});
+	} else {
+		// console.warn('Screen orientation lock is not supported on this device.');
 	}
+
+	// Set the height of the body element to 100vw
+	document.body.style.height = '100vw';
 }
-// Call the function to lock screen orientation when the page loads
+
+// Call the function to lock screen orientation and set body height when the page loads
 window.addEventListener('load', lockScreenOrientation);
+
+// function lockScreenOrientation() {
+// 	if (screen.orientation && screen.orientation.lock) {
+// 		screen.orientation.lock('portrait');
+// 	}
+
+// 	document.body.style.height = '100vw';
+// }
+
+// // Call the function to lock screen orientation when the page loads
+// window.addEventListener('load', lockScreenOrientation);
 
 // /**
 
