@@ -230,8 +230,8 @@ function lockScreenOrientation() {
 		// console.warn('Screen orientation lock is not supported on this device.');
 	}
 
-	// Set the height of the body element to 100vw
-	document.body.style.height = '100vw';
+	// Set the height of the body element to 100vH
+	document.body.style.height = '100vH';
 }
 
 // Call the function to lock screen orientation and set body height when the page loads
