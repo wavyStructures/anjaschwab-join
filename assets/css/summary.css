@@ -12,8 +12,28 @@
   align-items: center;
   gap: 24px;
   grid-template-areas:
-    "first first first third"
-    "second fourth fifth sixth";
+    "urgent urgent urgent inBoard"
+    "toDo inProgress feedback done";
+}
+
+.inBoard {
+  grid-area: inBoard;
+}
+
+.toDo {
+  grid-area: toDo;
+}
+
+.inProgress {
+  grid-area: inProgress;
+}
+
+.feedback {
+  grid-area: feedback;
+}
+
+.done {
+  grid-area: done;
 }
 
 /* .flex {
@@ -221,19 +241,6 @@ button {
   }
 }
 
-/*///////////line 2 first child////////*/
-/* 
-.line2 .square-button:first-child {
-  background-color: var(--clr-summary-square-button-focus);
-}
-
-.line1 .square-button:last-child,
-.line2 .square-button:last-child {
-  margin-right: 0;
-} */
-
-/*//////////line 2 other children/////////*/
-
 .line2 .square-button:hover,
 .line2 .square-button:hover:nth-child(n + 2) {
   background-color: #fff;
@@ -277,7 +284,7 @@ button {
 }
 
 .urgentAndDate {
-  grid-area: first;
+  grid-area: urgent;
   box-sizing: border-box;
   display: inline-flex;
   justify-content: center;

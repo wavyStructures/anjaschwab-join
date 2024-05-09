@@ -84,7 +84,7 @@
 .opacityZero {
   opacity: 0;
 }
-
+/* 
 .small-menu-mobile {
   display: flex;
   flex-direction: column;
@@ -106,7 +106,7 @@
     padding: 8px 16px;
     gap: 8px;
   }
-}
+} */
 
 .helpIcon {
   cursor: pointer;
