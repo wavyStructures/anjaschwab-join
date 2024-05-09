@@ -1,85 +1,62 @@
-/* @media (min-width: 481px) and (max-width: 769px) {
-  #sub-main-summary {
+@media (min-width: 481px) and (max-width: 769px) {
+  /* #sub-main-summary {
     display: none;
+  } */
+
+  .mobile-summary-main {
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-summary-box {
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-square-button {
+    width: 186px;
+    height: 152px;
+    padding: 15px 40px 15px 40px;
+    gap: 0px;
+    border-radius: 30px;
+    background-color: #fff;
+    margin-right: 0;
+  }
+
+  .mobile-inner-square-button span {
+    font-size: 19px;
+  }
+
+  .mobile-amount {
+    font-size: 40px;
   }
 
 
+  @media (min-width: 956px) and (max-width: 1190px) {
+    button-container {
+      width: 100%;
+      max-width: 870px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 190px 220px;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      grid-template-areas:
+          "urgent urgent"
+          "inBoard inBoard"
+          "toDo inProgress"
+          "feedback done";
+  }
 
-}
-
-@media (max-width: 480px) {
-} */
-
-.mobile-summary-main {
-  width: 98vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.mobileLine {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.mobile-summary-box {
-  width: 98vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.mobileLine1 {
-  width: 396px;
-
-  height: 150px;
-  padding: 28px 0;
-  gap: 16px;
-  border-radius: 30px;
-  margin-left: 4vw;
-  margin-right: 4vw;
-}
-
-.mobileLine2 {
-  background-color: var(--clr-summary-square-button-focus);
-  width: 396px;
-
-  /* height: 106px; */
-  padding: 15px 0;
-  gap: 12px;
-  border-radius: 30px;
-  margin-left: 4vw;
-  margin-right: 4vw;
-}
-
-.line3,
-.line4 {
-  display: flex;
-  justify-content: space-between;
-  gap: 21px;
-  align-items: center;
-}
-
-.mobile-square-button {
-  width: 186px;
-  height: 152px;
-  padding: 15px 40px 15px 40px;
-  gap: 0px;
-  border-radius: 30px;
-  background-color: #fff;
-  margin-right: 0;
-}
-
-.mobile-inner-square-button span {
-  font-size: 19px;
-}
-
-.mobile-amount {
-  font-size: 40px;
+  @media (max-width: 480px) {
+  }
 }
