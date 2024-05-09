@@ -7,6 +7,7 @@ async function addTaskInit(){
     setTodayDateAsMin();
     renderSubtasks();
     
+    
 }
 
 let tempAssignedContacts = [];

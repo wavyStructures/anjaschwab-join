@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    
+    // openCard(0);
 }
 
 function showAddTaskContainer(){
@@ -309,4 +309,32 @@ function renderSubtask(task) {
     }else{
         // console.log("parent element have to be d-none");
     }
+}
+
+
+function openCard(taskId){
+    let openCardContainer = document.getElementById('openCardContainer');
+    let task = tasks.filter(task => task['id'] == taskId)[0];
+    openCardContainer.setAttribute('style', 'display: block;');
+    openCardContainer.innerHTML = renderOpenCardHTML(task);
+}
+
+function closeCard(){
+    let card = document.getElementById('openCardContainer');
+    openCardContainer.setAttribute('style', 'display: none');
+    
+    // FIXME: funktioniert nicht mit d-none bzw. nur mit !important
+    card.classList.add('d-none');
+}
+
+
+function renderOpenCardHTML(task){
+    
+    return /*html*/`
+    <div class="cardTypeAndCloseBtn">
+        <div class="cardType">User Story</div>
+        <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
+    </div>
+    <div class="cardTitle">${task['title']}</div>
+    `
 }

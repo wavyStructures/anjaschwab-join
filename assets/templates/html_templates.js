@@ -167,7 +167,7 @@ function renderBoardHTML() {
  */
 function renderCardsHTML(card) {
   return /*html*/ `
-    <div draggable="true" id="${card["id"]}" class="card">
+    <div draggable="true" id="${card["id"]}" class="card" onclick="openCard(${card['id']})">
         <div class="cardType">${card["type"]}</div>
         <div class="cardTitle">${card["title"]}</div>
         <div class="cardText">${card["description"]}</div>

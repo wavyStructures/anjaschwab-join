@@ -45,6 +45,7 @@ body {
   flex-direction: column;
   /* max-width: 1440px; */
   width: 100%;
+  position: relative;
 }
 
 a {

@@ -224,6 +224,7 @@ button:focus {
     gap: 24px;
     padding: 16px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1);
+    cursor: pointer
 }
 
 .addTaskButton{
@@ -402,4 +403,28 @@ progress{
 .successOut{
     animation-delay: 2000ms;
     animation: successOut 0.5s ease forwards;
+}
+
+#openCardContainer{
+    position: absolute;
+    top: 30px;
+    left:calc(50% - 250px);
+    width: 500px;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 30px;
+    padding: 48px 40px 48px 40px;
+    background-color: red;
+
+    .boardAddTaskCloseHoverContainer{
+        position: inherit;
+    }
+
+    .cardTypeAndCloseBtn{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
