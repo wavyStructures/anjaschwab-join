@@ -160,6 +160,8 @@ function hideAddTaskContainer(){
 
 
 function showSuccessMessage(){
+    if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
+
     let container = document.getElementById('success-message-container');
 
     container.classList.remove('successOut');
@@ -169,10 +171,30 @@ function showSuccessMessage(){
     setTimeout(() => {
         container.classList.remove('successIn');
         container.classList.add('successOut');
-        // container.classList.add('d-none');
+        container.classList.add('d-none');
     }, 2000)
 }
 
+
+function createSuccessMessageContainer(){
+    let div = document.createElement("div");
+
+    div.id = "success-message-container";
+    div.classList.add("createBtn", "addTaskBtn", "center", "disabled");
+
+    let span = document.createElement("span");
+    span.classList.add("addTaskBtnText");
+    span.textContent = "Task added to the board";
+
+
+    let imgDiv = document.createElement("div");
+    imgDiv.classList.add("addTaskBtnImg");
+
+    div.appendChild(span);
+    div.appendChild(imgDiv);
+
+    document.body.appendChild(div);
+}
 
 //FIXME: wird noch gebraucht?!
 // /**

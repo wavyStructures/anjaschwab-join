@@ -536,6 +536,7 @@ async function createTask(){
     collectInformationsForNewCard();
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
+    showSuccessMessage();
 }
 
 async function saveTasksToRemoteStorage(){
