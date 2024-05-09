@@ -346,7 +346,7 @@ progress{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-#success-message{
+#success-message-container{
     display: flex;
     height:70px;
     width: 330px;
@@ -356,6 +356,9 @@ progress{
     bottom: 0;
     border-radius: 20px;
     cursor: default;
+
+    /* position: fixed; */
+    bottom: -100px;
 
     .addTaskBtnImg{
         background-image: url('../img/icon-board.png');
@@ -368,4 +371,35 @@ progress{
 
 .hoverTop{
     animation: testIn 0.5s ease-out forwards; 
+}
+
+
+/* Animations success message */
+@keyframes successIn {
+    0%{
+        transform: translateY(0) ;
+    }
+    100%{
+        bottom: 50%;
+        transform: translateY(50%)
+    }
+}
+
+
+@keyframes successOut {
+    0%{
+        bottom: calc(50% - 75px);
+    }
+    100%{
+        bottom: -100px;
+    }
+}
+
+.successIn{
+    animation: successIn 0.5s ease forwards;
+}
+
+.successOut{
+    animation-delay: 2000ms;
+    animation: successOut 0.5s ease forwards;
 }

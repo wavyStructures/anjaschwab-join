@@ -136,6 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
+    
 }
 
 function showAddTaskContainer(){
@@ -155,6 +156,21 @@ function hideAddTaskContainer(){
         container.classList.toggle('d-none');
 
     },200)
+}
+
+
+function showSuccessMessage(){
+    let container = document.getElementById('success-message-container');
+
+    container.classList.remove('successOut');
+    container.classList.remove('d-none');
+    container.classList.add('successIn');
+
+    setTimeout(() => {
+        container.classList.remove('successIn');
+        container.classList.add('successOut');
+        // container.classList.add('d-none');
+    }, 2000)
 }
 
 
