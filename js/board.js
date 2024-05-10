@@ -292,6 +292,10 @@ function setPriorityImage(taskPriority) {
 }
 
 
+/**
+ * Searches for tasks based on the value of the search input.
+ *
+ */
 function searchTask() {
     let searchInput = document.getElementById('findTask');
     if(searchInput == null) return;
@@ -300,6 +304,12 @@ function searchTask() {
 }
 
 
+/**
+ * Renders a subtask progress bar and text based on the number of completed subtasks in a task.
+ *
+ * @param {object} task - The task object containing subtasks.
+ * @return {string} The HTML code for the subtask progress bar and text.
+ */
 function renderSubtask(task) {
     let countSubtasks = +Object.keys(task['subtasks']).length;
     let completedSubtasks = task['subtasks'].filter(subtask => subtask['completed'] == true).length;
@@ -313,6 +323,11 @@ function renderSubtask(task) {
 }
 
 
+/**
+ * Opens a card with the specified task ID.
+ *
+ * @param {number} taskId - The ID of the task to open.
+ */
 function openCard(taskId){
     if (!document.getElementById('openCardContainer')){
         let newDiv = document.createElement('div');
@@ -328,14 +343,24 @@ function openCard(taskId){
     renderSubtasksToOpenCard(task);
 }
 
+
+/**
+ * Closes the open card by adding the 'd-none' class to the 'openCardContainer' element.
+ *
+ */
 function closeCard(){
     let openCardContainer = document.getElementById('openCardContainer');
     openCardContainer.classList.add('d-none');
 }
 
 
+/**
+ * Renders the HTML for the open card based on the given task object.
+ *
+ * @param {Object} task - The task object containing the details to render.
+ * @return {string} The HTML string for the open card.
+ */
 function renderOpenCardHTML(task){
-    
     return /*html*/`
     <div class="cardTypeAndCloseBtn">
         <div class="cardType">User Story</div>
@@ -364,19 +389,29 @@ function renderOpenCardHTML(task){
         `
 }
 
-function renderContactsToOpenCard(task){
-    let content = document.getElementById('openCardAssignedToContactsContainer');
-    content.innerHTML = '';
+/**
+ * Renders the contacts assigned to a task in the open card.
+ *
+ * @param {Object} task - The task object containing the assigned contacts.
+ */
+function renderContactsToOpenCard(task) {
+	let content = document.getElementById("openCardAssignedToContactsContainer");
+	content.innerHTML = "";
 
-    task['assignedTo'].forEach(id =>{
-        console.log(id);
-        contacts.filter(contact => {
-            if (contact['id'] == id) content.innerHTML += /*html*/`<div class="openCardAssignedToContact">${renderAssignedToButtonsHTML(contact)} ${contact.name}</div>`
-        })
-
-    })
+	task["assignedTo"].forEach((id) => {
+		contacts.filter((contact) => {
+			if (contact["id"] == id)
+				content.innerHTML += /*html*/ `
+                    <div class="openCardAssignedToContact">${renderAssignedToButtonsHTML(contact)}${contact.name}</div>`;
+		});
+	});
 }
 
+/**
+ * Renders subtasks to the open card based on the task object.
+ *
+ * @param {object} task - The task object containing subtasks to render.
+ */
 function renderSubtasksToOpenCard(task){
     let content = document.getElementById('openCardSubtasks');
     content.innerHTML = '';
@@ -386,14 +421,29 @@ function renderSubtasksToOpenCard(task){
 
         content.innerHTML += /*html*/`
         <div class="openCardSubtask" ${completed}>
-            <div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${index})"></div>
+            <div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${task['id']}, ${index})"></div>
             ${subtask['subtaskText']}
         </div>`
     })
 }
-// setSubtaskState(${task['id']})
 
-function setSubtaskState(subtaskIndex){
-    console.log("tbd");
-    // HOW?!
+
+/**
+ * Toggles the completion state of a subtask in a task.
+ * Also setting the attribute "completed" on the subtask element so the css can handle the image.
+ *
+ * @param {number} taskId - The ID of the task containing the subtask.
+ * @param {number} subtaskIndex - The index of the subtask in the task's subtasks array.
+ */
+function setSubtaskState(taskId, subtaskIndex){
+    tasks[taskId]['subtasks'][subtaskIndex]['completed'] = !tasks[taskId]['subtasks'][subtaskIndex]['completed'];
+    let openCardSubtasks = document.getElementsByClassName('openCardSubtask');
+    
+    for (let i = 0; i < openCardSubtasks.length; i++) {
+        if(i == subtaskIndex) {
+            openCardSubtasks[i].getAttribute('completed') == null
+            ? openCardSubtasks[i].setAttribute('completed', '') 
+            : openCardSubtasks[i].removeAttribute('completed')
+        }
+    }
 }
