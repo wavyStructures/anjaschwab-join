@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    openCard(1);
+    openCard(5);
 }
 
 function showAddTaskContainer(){
@@ -324,7 +324,8 @@ function openCard(taskId){
     let task = tasks.filter(task => task['id'] == taskId)[0];
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
-    renderContactsToOpenCard(task)
+    renderContactsToOpenCard(task);
+    renderSubtasksToOpenCard(task);
 }
 
 function closeCard(){
@@ -356,6 +357,10 @@ function renderOpenCardHTML(task){
     <div class="openCardAssignedToContainer"><span class="openCardText">Assigned To:</span>
         <div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>
     </div>
+    <div class="openCardSubtasksContainer">
+        <span class="openCardText">Subtasks:</span>
+        <div id="openCardSubtasks"></div>
+    </div>
         `
 }
 
@@ -370,10 +375,32 @@ function renderContactsToOpenCard(task){
         })
 
     })
+}
+
+function renderSubtasksToOpenCard(task){
+    let content = document.getElementById('openCardSubtasks');
+
+    task['subtasks'].forEach(subtask => {
+        let subtaskImage = subtask['completed'] ? './assets/img/icon-check_button_checked.png' : './assets/img/icon-check_button_unchecked.png';
+
+        content.innerHTML += /*html*/`
+        <div class="openCardSubtask">
+            <img src="${subtaskImage}" class="openCardSubtaskCheckbox" onclick="">
+            ${subtask['subtaskText']}
+        </div>`
+    })
+}
+// setSubtaskState(${task['id']})
+
+function setSubtaskState(taskId){
+    tasks[taskId['id']['subtasks']]
+    
+    // .forEach(subtask => {
+    //     subtask['completed'] = !subtask['completed'];
         
-    //     contact => {
-    //     content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
-    //         <div class="dropdownContactBadgeAndName">${renderAssignedToButtonsHTML(contact)} ${contact.name}</div> <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
-    //         </div>`
     // })
+    // taskId['subtasks'].forEach(subtask => {
+        
+    // })
+    renderOpenCard(task);
 }
