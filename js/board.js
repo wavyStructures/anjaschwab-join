@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    // openCard(5);
+    openCard(5);
 }
 
 function showAddTaskContainer(){
@@ -379,28 +379,21 @@ function renderContactsToOpenCard(task){
 
 function renderSubtasksToOpenCard(task){
     let content = document.getElementById('openCardSubtasks');
-
-    task['subtasks'].forEach(subtask => {
-        let subtaskImage = subtask['completed'] ? './assets/img/icon-check_button_checked.png' : './assets/img/icon-check_button_unchecked.png';
+    content.innerHTML = '';
+    
+    task['subtasks'].forEach((subtask, index) => {
+        let completed = subtask['completed'] ? 'completed' : '';
 
         content.innerHTML += /*html*/`
-        <div class="openCardSubtask">
-            <img src="${subtaskImage}" class="openCardSubtaskCheckbox" onclick="">
+        <div class="openCardSubtask" ${completed}>
+            <div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${index})"></div>
             ${subtask['subtaskText']}
         </div>`
     })
 }
 // setSubtaskState(${task['id']})
 
-function setSubtaskState(taskId){
-    tasks[taskId['id']['subtasks']]
-    
-    // .forEach(subtask => {
-    //     subtask['completed'] = !subtask['completed'];
-        
-    // })
-    // taskId['subtasks'].forEach(subtask => {
-        
-    // })
-    renderOpenCard(task);
+function setSubtaskState(subtaskIndex){
+    console.log("tbd");
+    // HOW?!
 }

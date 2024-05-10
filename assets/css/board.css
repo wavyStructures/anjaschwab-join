@@ -519,3 +519,19 @@ progress{
     font-size: 1rem;
     text-transform: capitalize;  /* has to be??  */
 }
+
+.openCardSubtaskImgContainer{
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    aspect-ratio: 1;
+
+}
+.openCardSubtask[completed] .openCardSubtaskImgContainer {
+    cursor: pointer;
+    background-image: url('../img/icon-check_button_checked.png');
+}
+.openCardSubtask .openCardSubtaskImgContainer {
+    cursor: pointer;
+    background-image: url('../img/icon-check_button_unchecked.png');
+}
