@@ -470,7 +470,13 @@ progress{
     border-radius: 10px;
     gap: 10px;
     align-items: center;
+    
+}
 
+.openCardPriorityImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .openCardAssignedToContainer{
@@ -500,5 +506,16 @@ progress{
         height: 42px;
     }
 }
-
-
+.openCardSubtasksContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.openCardSubtask{
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 16px;
+    font-size: 1rem;
+    text-transform: capitalize;  /* has to be??  */
+}
