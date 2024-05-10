@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    // openCard(0);
+    openCard(1);
 }
 
 function showAddTaskContainer(){
@@ -152,6 +152,7 @@ function hideAddTaskContainer(){
     container.classList.remove('showBoard');
     container.classList.add('hideBoard');
     document.getElementById('boardOverlay').classList.add('d-none')
+    // TODO: ALSO HIDE SUCCESS-MESSAGE-CONTAINER
     setTimeout(() => {
         container.classList.toggle('d-none');
 
@@ -313,18 +314,22 @@ function renderSubtask(task) {
 
 
 function openCard(taskId){
+    if (!document.getElementById('openCardContainer')){
+        let newDiv = document.createElement('div');
+        newDiv.setAttribute('id', 'openCardContainer');
+        newDiv.setAttribute('class', 'openCardContainer');
+        document.body.appendChild(newDiv);
+    }    
     let openCardContainer = document.getElementById('openCardContainer');
     let task = tasks.filter(task => task['id'] == taskId)[0];
-    openCardContainer.setAttribute('style', 'display: block;');
+    openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
+    renderContactsToOpenCard(task)
 }
 
 function closeCard(){
-    let card = document.getElementById('openCardContainer');
-    openCardContainer.setAttribute('style', 'display: none');
-    
-    // FIXME: funktioniert nicht mit d-none bzw. nur mit !important
-    card.classList.add('d-none');
+    let openCardContainer = document.getElementById('openCardContainer');
+    openCardContainer.classList.add('d-none');
 }
 
 
@@ -336,5 +341,39 @@ function renderOpenCardHTML(task){
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
     <div class="cardTitle">${task['title']}</div>
-    `
+    <div class="cardText openCardText">${task['description']}</div>
+    <div class="openCardTextBox">
+        <span class="openCardText">Due Date:</span>
+        <span class="openCardValue">${task['dueDate']}</span>
+    </div>
+    <div class="openCardTextBox">
+        <span class="openCardText">Priority:</span>
+        <div class="openCardPriority">
+            <span class="openCardValue">${task['priority']}</span>
+            <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
+        </div>
+    </div>
+    <div class="openCardAssignedToContainer"><span class="openCardText">Assigned To:</span>
+        <div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>
+    </div>
+        `
+}
+
+function renderContactsToOpenCard(task){
+    let content = document.getElementById('openCardAssignedToContactsContainer');
+    content.innerHTML = '';
+
+    task['assignedTo'].forEach(id =>{
+        console.log(id);
+        contacts.filter(contact => {
+            if (contact['id'] == id) content.innerHTML += /*html*/`<div class="openCardAssignedToContact">${renderAssignedToButtonsHTML(contact)} ${contact.name}</div>`
+        })
+
+    })
+        
+    //     contact => {
+    //     content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
+    //         <div class="dropdownContactBadgeAndName">${renderAssignedToButtonsHTML(contact)} ${contact.name}</div> <img src="../../assets/img/icon-check_button_unchecked.png" alt="">
+    //         </div>`
+    // })
 }
