@@ -30,6 +30,7 @@ async function includeHTML() {
 	}
 	showInitials();
 	setActiveNavButton();
+	window.addEventListener('resize', setActiveNavButton);
 }
 
 /**
@@ -196,23 +197,67 @@ function switchPageNewTab(newUrl) {
  * Sets the active navigation button based on the current location pathname.
  */
 function setActiveNavButton() {
+	const summaryNavLink = document.getElementById('summary');
+	const addTaskNavLink = document.getElementById('addTask');
+	const boardNavLink = document.getElementById('board');
+	const contactsNavLink = document.getElementById('contacts');
+	const activeNavLink = document.querySelector('.nav-btn.active');
+
+	// Remove active class from any previously active nav link
+	if (activeNavLink) {
+		activeNavLink.classList.remove('active');
+	}
+
 	switch (location.pathname) {
 		case '/summary.html':
-			document.getElementById('summary').classList.add('active');
+			summaryNavLink.classList.add('active');
+			if (window.innerWidth < 700) {
+				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
+			}
 			break;
 		case '/addTask.html':
-			document.getElementById('addTask').classList.add('active');
+			addTaskNavLink.classList.add('active');
+			if (window.innerWidth < 700) {
+				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
+			}
 			break;
 		case '/board.html':
-			document.getElementById('board').classList.add('active');
+			boardNavLink.classList.add('active');
+			if (window.innerWidth < 700) {
+				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
+			}
 			break;
 		case '/contacts.html':
-			document.getElementById('contacts').classList.add('active');
+			contactsNavLink.classList.add('active');
+			if (window.innerWidth < 700) {
+				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
+			}
 			break;
 		default:
 			break;
 	}
 }
+
+
+
+// function setActiveNavButton() {
+// 	switch (location.pathname) {
+// 		case '/summary.html':
+// 			document.getElementById('summary').classList.add('active');
+// 			break;
+// 		case '/addTask.html':
+// 			document.getElementById('addTask').classList.add('active');
+// 			break;
+// 		case '/board.html':
+// 			document.getElementById('board').classList.add('active');
+// 			break;
+// 		case '/contacts.html':
+// 			document.getElementById('contacts').classList.add('active');
+// 			break;
+// 		default:
+// 			break;
+// 	}
+// }
 
 
 /**

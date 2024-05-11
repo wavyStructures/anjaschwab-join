@@ -113,17 +113,16 @@
 
     img {
       width: 24px;
-      color: red;
+      color: var(--clr-text-menu);
     }
 
     &:hover {
       background-color: #fff;
-      color: red;
     }
 
     &.active {
       background-color: #fff;
-      color: red;
+      color: var(--clr-main);
     }
   }
 
