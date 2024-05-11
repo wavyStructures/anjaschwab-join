@@ -16,14 +16,9 @@ async function summaryInit() {
     loadAmounts();
     getUrgentTasks();
     buttonEventListener();
-    // goToMobileView();
 }
 
-// function goToMobileView() {
-//     if (window.innerWidth <= 701) {
-//         window.location.href = "summary_mobile.html";
-//     }
-// }
+
 
 function getLoggedUser() {
     loggedUser = getCurrentUser();
