@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    // openCard(5);
+    openCard(5);
 }
 
 function showAddTaskContainer(){
@@ -161,13 +161,10 @@ function hideAddTaskContainer(){
 
 function toggleBoardOverlay(functionToCall){
     let overlay = document.getElementById('boardOverlay')
-    console.log(overlay);
     if (overlay.classList.contains('d-none')){
-        console.log('HAD d-none');
         overlay.classList.remove('d-none')
         overlay.setAttribute('onclick', functionToCall);
     } else if (functionToCall == 'disable') {
-        console.log('HAD NO d-none');
         overlay.classList.add('d-none')
         overlay.removeAttribute('onclick');
     }
@@ -408,6 +405,17 @@ function renderOpenCardHTML(task){
     <div class="openCardSubtasksContainer">
         <span class="openCardText">Subtasks:</span>
         <div id="openCardSubtasks"></div>
+    </div>
+    <div class="openCardDeleteEditContainer">
+        <div class="openCardDeleteContainer">
+            <div class="openCardImgDiv pointer" id="openCardImgDelete"> </div>
+            <span>Delete</span>
+        </div>
+        <div class="vLine"></div>
+        <div class="openCardEditContainer">
+            <div class="openCardImgDiv pointer" id="openCardImgEdit"> </div>
+            <span>Edit</span>
+        </div>
     </div>
         `
 }
