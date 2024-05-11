@@ -38,25 +38,53 @@
   .mobile-amount {
     font-size: 40px;
   }
+}
 
-
-  @media (min-width: 956px) and (max-width: 1190px) {
-    button-container {
-      width: 100%;
-      max-width: 870px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 190px 220px;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      grid-template-areas:
-          "urgent urgent"
-          "inBoard inBoard"
-          "toDo inProgress"
-          "feedback done";
+@media screen and (min-width: 956x) and (max-width: 1156px) {
+  .button-container {
+    max-width: 956px;
+    display: grid;
+    grid-template-columns: 204px 1fr 1fr 1fr;
+    grid-template-rows: 190px 220px 220px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    grid-template-areas:
+      "urgent urgent urgent"
+      "inProgress toDo inBoard "
+      "feedback done done";
   }
 
-  @media (max-width: 480px) {
+  .inProgress {
+    width: 204px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 955px) {
+  .button-container {
+    max-width: 950px;
+    display: grid;
+    grid-template-columns: 204px 1fr 1fr;
+    grid-template-rows: 190px 220px 220px 220px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    grid-template-areas:
+      "urgent urgent"
+      "toDo inBoard"
+      "inProgress inProgress"
+      "feedback done";
+  }
+}
+
+@media (max-width: 480px) {
+  .urgent {
+    width: 396px;
+    height: 150px;
+  }
+
+  .toDo {
+    width: 100%;
+    height: 106px;
   }
 }

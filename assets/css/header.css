@@ -136,6 +136,7 @@
     .header-logo {
       width: 32px;
       height: 39px;
+      margin-left: 0;
     }
   }
 
@@ -149,6 +150,7 @@
   .header-initials-button {
     width: 37px;
     height: 37px;
+    margin-right: 0;
   }
   .header-mobile {
     height: 80px;
@@ -156,7 +158,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 16px 20px 16px;
+    padding: 20px 25px 20px 25px;
     background-color: var(--clr-main);
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
   }

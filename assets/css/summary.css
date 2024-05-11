@@ -4,9 +4,9 @@
 
 .button-container {
   width: 100%;
-  max-width: 870px;
+  /* max-width: 870px; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 204px 1fr 1fr 1fr 1fr;
   grid-template-rows: 190px 220px;
   justify-content: center;
   align-items: center;
@@ -98,7 +98,6 @@
   }
 }
 
-/* Additional styling for img, .amount, and span when not hovered */
 .square-button img {
   transition: border-color 0.3s ease;
 }
@@ -123,11 +122,11 @@
   grid-area: done;
 }
 
-/* .flex {
+.flex {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .no-wrap {
   white-space: nowrap;
