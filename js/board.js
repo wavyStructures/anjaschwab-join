@@ -407,12 +407,12 @@ function renderOpenCardHTML(task){
         <div id="openCardSubtasks"></div>
     </div>
     <div class="openCardDeleteEditContainer">
-        <div class="openCardDeleteContainer">
+        <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
             <div class="openCardImgDiv pointer" id="openCardImgDelete"> </div>
             <span>Delete</span>
         </div>
         <div class="vLine"></div>
-        <div class="openCardEditContainer">
+        <div class="openCardEditContainer"  onclick='openCardEdit(${task.id})'>
             <div class="openCardImgDiv pointer" id="openCardImgEdit"> </div>
             <span>Edit</span>
         </div>
@@ -477,4 +477,20 @@ function setSubtaskState(taskId, subtaskIndex){
             : openCardSubtasks[i].removeAttribute('completed')
         }
     }
+}
+
+function openCardDelete(taskId){
+    for(let i=0; i<tasks.length; i++){
+        if(tasks[i].id == taskId){
+            tasks.splice(i, 1);
+            break;
+        }
+    }
+    closeCard();
+    renderCategories(tasks);
+
+}
+
+function openCardEdit(){
+
 }

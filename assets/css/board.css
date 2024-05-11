@@ -425,6 +425,7 @@ progress{
     border-radius: 30px;
     padding: 48px 40px 48px 40px;
     background-color: lightblue;
+    background-color: white;
     font-size: 1.188rem;
     z-index: 500;
     
@@ -507,11 +508,13 @@ progress{
         height: 42px;
     }
 }
+
 .openCardSubtasksContainer{
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
+
 .openCardSubtask{
     display: flex;
     align-items: center;
@@ -528,10 +531,12 @@ progress{
     aspect-ratio: 1;
 
 }
+
 .openCardSubtask[completed] .openCardSubtaskImgContainer {
     cursor: pointer;
     background-image: url('../img/icon-check_button_checked.png');
 }
+
 .openCardSubtask .openCardSubtaskImgContainer {
     cursor: pointer;
     background-image: url('../img/icon-check_button_unchecked.png');
@@ -542,6 +547,7 @@ progress{
     width: 24px;
     aspect-ratio: 1;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 
@@ -549,7 +555,7 @@ progress{
     display: flex;
     align-self: flex-end;
     gap: 5px;
-    
+
     >* {
         display: flex;
         align-items: center;
@@ -558,7 +564,6 @@ progress{
 
     span{
         color: #2A3647;
-        
     }
 }
 
@@ -573,17 +578,19 @@ progress{
 .openCardDeleteContainer,
 .openCardEditContainer{
     cursor: pointer;
-    
+
     &:hover{
         font-weight: bold;
-        
+
         & span{
             color: #005dff;
+
         }
-        
+
         #openCardImgDelete {
             background-image: url("../img/icon-delete_hover.png");
         }
+
         #openCardImgEdit {
             background-image: url("../img/icon-edit_darker.png");
         }
