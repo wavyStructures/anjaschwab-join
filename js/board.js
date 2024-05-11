@@ -348,9 +348,13 @@ function openCard(taskId){
  * Closes the open card by adding the 'd-none' class to the 'openCardContainer' element.
  *
  */
-function closeCard(){
+async function closeCard(){
     let openCardContainer = document.getElementById('openCardContainer');
     openCardContainer.classList.add('d-none');
+
+    await saveTasksToRemoteStorage();
+    renderCategories(tasks);
+    
 }
 
 
