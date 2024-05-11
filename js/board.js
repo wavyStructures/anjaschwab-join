@@ -136,7 +136,7 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    openCard(5);
+    // openCard(5);
 }
 
 function showAddTaskContainer(){
@@ -144,21 +144,34 @@ function showAddTaskContainer(){
     container.classList.remove('d-none');
     container.classList.remove('hideBoard');
     container.classList.add('showBoard');
-    document.getElementById('boardOverlay').classList.toggle('d-none')
+    toggleBoardOverlay("hideAddTaskContainer()");
 }
+
 
 function hideAddTaskContainer(){
     let container = document.getElementById('addTaskHoverContainer');
     container.classList.remove('showBoard');
     container.classList.add('hideBoard');
-    document.getElementById('boardOverlay').classList.add('d-none')
     // TODO: ALSO HIDE SUCCESS-MESSAGE-CONTAINER
     setTimeout(() => {
         container.classList.toggle('d-none');
-
     },200)
+    toggleBoardOverlay('disable');
 }
 
+function toggleBoardOverlay(functionToCall){
+    let overlay = document.getElementById('boardOverlay')
+    console.log(overlay);
+    if (overlay.classList.contains('d-none')){
+        console.log('HAD d-none');
+        overlay.classList.remove('d-none')
+        overlay.setAttribute('onclick', functionToCall);
+    } else if (functionToCall == 'disable') {
+        console.log('HAD NO d-none');
+        overlay.classList.add('d-none')
+        overlay.removeAttribute('onclick');
+    }
+}
 
 function showSuccessMessage(){
     if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
@@ -331,8 +344,7 @@ function renderSubtask(task) {
 function openCard(taskId){
     if (!document.getElementById('openCardContainer')){
         let newDiv = document.createElement('div');
-        newDiv.setAttribute('id', 'openCardContainer');
-        newDiv.setAttribute('class', 'openCardContainer');
+        setAttributes(newDiv, {'id': 'openCardContainer', 'class': 'openCardContainer', 'onclick': 'doNotClose(event)'});
         document.body.appendChild(newDiv);
     }    
     let openCardContainer = document.getElementById('openCardContainer');
@@ -341,7 +353,14 @@ function openCard(taskId){
     openCardContainer.innerHTML = renderOpenCardHTML(task);
     renderContactsToOpenCard(task);
     renderSubtasksToOpenCard(task);
+    toggleBoardOverlay('closeCard()');
 }
+
+function setAttributes(el, attrs) {
+    for(let key in attrs) {
+      el.setAttribute(key, attrs[key]);
+    }
+  }
 
 
 /**
@@ -354,7 +373,7 @@ async function closeCard(){
 
     await saveTasksToRemoteStorage();
     renderCategories(tasks);
-    
+    toggleBoardOverlay('disable');
 }
 
 

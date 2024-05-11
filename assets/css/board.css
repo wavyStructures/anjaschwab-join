@@ -426,6 +426,7 @@ progress{
     padding: 48px 40px 48px 40px;
     background-color: lightblue;
     font-size: 1.188rem;
+    z-index: 500;
     
     & * {
         color: black;
