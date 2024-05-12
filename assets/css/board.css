@@ -399,7 +399,7 @@ progress{
     position: absolute;
     top: 30px;
     left:calc(50% - 250px);
-    width: 500px;
+    min-width: 525px;
     height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
@@ -578,5 +578,28 @@ progress{
         #openCardImgEdit {
             background-image: url("../img/icon-edit_darker.png");
         }
+    }
+}
+
+.openCardContainer[editing]{
+    background-color: lightgray;
+}
+
+.editCardHeaderContainer{
+    height: 24px;
+    width: 1000px;
+    background-color: red;
+}
+
+.editCardClosingImgDiv{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-image: url("../img/icon-close.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
+    &:hover{
+        background-image: url("../img/icon-close_hover.png");
     }
 }

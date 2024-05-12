@@ -53,6 +53,7 @@ function setPriority(priority) {
  * @param {string} priority - The selected priority ('Urgent', 'Medium', or 'Low').
  */
 function setPriorityAppearance(priority){
+    console.log(document.getElementsByClassName('addTaskPriorityButton'));
     document.querySelectorAll('.addTaskPriorityButton').forEach(button => {
         button.style.backgroundColor = 'white';
         button.classList.remove('active');

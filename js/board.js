@@ -139,16 +139,24 @@ async function boardInit() {
     renderBoardAddTaskOverlay();
     renderContactsToDropdown();
     // showAddTaskContainer();
-    openCard(5);
+    // openCard(5);
 }
 
 
 function renderBoardAddTaskOverlay(){
+    if (!document.getElementById('addTaskHoverContainer')) {
+        let newDiv = document.createElement('div');
+        setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer hideBoard d-none', 'onclick': 'doNotClose(event)'});
+        document.body.appendChild(newDiv);
+    }
     let container = document.getElementById('addTaskHoverContainer');
-    container.innerHTML = renderBoardAddTaskOverlayHTML();
+    container.innerHTML = renderAddTaskMainContentHTML();
 }
 
 function showAddTaskContainer(){
+    if (!document.getElementById('addTaskHoverContainer')) {
+        renderBoardAddTaskOverlay();
+    }
     let container = document.getElementById('addTaskHoverContainer');
     container.classList.remove('d-none');
     container.classList.remove('hideBoard');
@@ -163,7 +171,8 @@ function hideAddTaskContainer(){
     container.classList.add('hideBoard');
     // TODO: ALSO HIDE SUCCESS-MESSAGE-CONTAINER
     setTimeout(() => {
-        container.classList.toggle('d-none');
+        container.remove();
+        // container.classList.toggle('d-none');
     },200)
     toggleBoardOverlay('disable');
 }
@@ -376,6 +385,7 @@ function setAttributes(el, attrs) {
 async function closeCard(){
     let openCardContainer = document.getElementById('openCardContainer');
     openCardContainer.classList.add('d-none');
+    openCardContainer.remove('editing');
 
     await saveTasksToRemoteStorage();
     renderCategories(tasks);
@@ -501,5 +511,22 @@ function openCardDelete(taskId){
 }
 
 function openCardEdit(){
+    let container = document.getElementById('openCardContainer');
+    container.setAttribute('editing','');
+    container.innerHTML = "";
+    createEditHeader();
+
+    container.innerHTML += renderAddTaskMainContentHTML();
+}
+
+function createEditHeader(){
+    return /*html*/`
+    <div class="editCardHeaderContainer">
+        <div class="editCardClosingImgDiv" onclick="closeCard()"></div>
+    </div>
+    ` 
+}
+
+function createEditFooter(){
 
 }
