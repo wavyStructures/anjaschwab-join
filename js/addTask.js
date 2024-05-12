@@ -3,7 +3,7 @@ async function addTaskInit(){
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderAddTaskHTML();
-    setPriority('Medium');
+    setPriority('medium');
     renderContactsToDropdown();
     setTodayDateAsMin();
     renderSubtasks();
@@ -42,6 +42,7 @@ function renderAddTaskHTML() {
  * @param {string} priority - The selected priority ('Urgent', 'Medium', or 'Low').
  */
 function setPriority(priority) {
+    console.log(priority);
     setPriorityAppearance(priority);
     setPriorityForNewCard(priority);
 }
@@ -278,11 +279,11 @@ function deleteSubtask(subtaskId){
  */
 function getButtonColor(priority) {
     switch (priority) {
-        case 'Urgent':
+        case 'urgent':
             return '#ff3d00';
-        case 'Medium':
+        case 'medium':
             return '#ffa800';
-        case 'Low':
+        case 'low':
             return '#7ae229';
         default:
             return 'white';

@@ -136,8 +136,6 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    // renderBoardAddTaskOverlay();
-    // renderContactsToDropdown();
     // showAddTaskContainer();
     openCard(5);
 }
@@ -150,7 +148,10 @@ function renderBoardAddTaskOverlay(){
         document.body.appendChild(newDiv);
     }
     let container = document.getElementById('addTaskHoverContainer');
-    container.innerHTML = renderBoardAddTaskOverlayHTML();
+    // container.innerHTML = renderBoardAddTaskOverlayHTML();
+    container.innerHTML = renderBoardAddTaskHeaderHTML();
+    container.innerHTML += renderAddTaskMainContentHTML();
+    container.innerHTML += renderAddTaskFooterHTML();
     renderContactsToDropdown();
 }
 
@@ -364,13 +365,18 @@ function openCard(taskId){
         document.body.appendChild(newDiv);
     }    
     let openCardContainer = document.getElementById('openCardContainer');
-    let task = tasks.filter(task => task['id'] == taskId)[0];
+    let task = getTaskOutOfId(taskId)
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
     renderContactsToOpenCard(task);
     renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
 }
+
+function getTaskOutOfId(taskId){
+    return tasks.filter(task => task['id'] == taskId)[0]
+}
+
 
 function setAttributes(el, attrs) {
     for(let key in attrs) {
@@ -512,17 +518,28 @@ function openCardDelete(taskId){
 
 }
 
-function openCardEdit(){
+function openCardEdit(taskId){
+    let task = getTaskOutOfId(taskId);
     let container = document.getElementById('openCardContainer');
     container.setAttribute('editing','');
 
-    container.innerHTML =createEditHeader();
+    container.innerHTML = createEditHeader();
     container.innerHTML += renderAddTaskMainContentHTML();
     container.innerHTML += createEditFooter();
-
+    setTaskValuesToFields(task);
     renderContactsToDropdown();
 }
 
+
+function setTaskValuesToFields(task){
+    document.getElementById('addTaskEnterTitleInput').value = task['title'];
+    document.getElementById('addTaskDescriptionInput').value = task['description'];
+    document.getElementById('addTaskDueDateInput').value = task['dueDate'];
+    console.log(task.priority);
+    setPriorityAppearance(task['priority']);
+    document.getElementById('openCardAssignedTo').value = task['assignedTo'];
+    document.getElementById('openCardSubtasks').value = task['subtasks'];
+}
 function createEditHeader(){
     return /*html*/`
 <div class="boardEditTaskHeader">
@@ -534,7 +551,7 @@ function createEditHeader(){
 function createEditFooter(){
     return /*html*/`
     <div class="addTaskBodyRight">
-        <div class="createBtn addTaskBtn">
+        <div class="createBtn addTaskBtn" onclick="saveTask()">
             <span class="addTaskBtnText">Ok</span>
             <div class="createBtnImg"></div>
         </div>

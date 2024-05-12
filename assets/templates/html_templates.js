@@ -298,15 +298,15 @@ function renderBoardAddTaskOverlayHTML() {
         <div class="addTaskPriority">
             <div class="addTaskTitles bold">Priority</div>
             <div class="addTaskPriorityButtonContainer">
-                <div id="addTaskPriorityButtonUrgent" class="addTaskPriorityButton"  onclick="setPriority('Urgent')">
+                <div id="addTaskPriorityButtonurgent" class="addTaskPriorityButton"  onclick="setPriority('urgent')">
                     <div class="priorityButtonText">Urgent</div>
                     <img src="./assets/img/icon-priority_urgent.png" alt="Priority urgent">
                 </div>
-                <div id="addTaskPriorityButtonMedium" class="addTaskPriorityButton" onclick="setPriority('Medium')">
+                <div id="addTaskPriorityButtonmedium" class="addTaskPriorityButton" onclick="setPriority('medium')">
                     <div class="priorityButtonText">Medium</div>
                     <img src="./assets/img/icon-priority_medium.png" alt="Priority medium">
                 </div>
-                <div id="addTaskPriorityButtonLow" class="addTaskPriorityButton"  onclick="setPriority('Low')">
+                <div id="addTaskPriorityButtonlow" class="addTaskPriorityButton"  onclick="setPriority('low')">
                     <div class="priorityButtonText">Low</div>
                     <img src="./assets/img/icon-priority_low.png" alt="Priority low">
                 </div>
@@ -364,6 +364,14 @@ function renderBoardAddTaskOverlayHTML() {
 </div>`;
 }
 
+function renderBoardAddTaskHeaderHTML(){
+    return /*html*/`
+    <div class="boardAddTaskHeader">
+    <div class="boardAddTaskHeaderText"> Add Task</div>
+    <div class="boardAddTaskCloseHoverContainer" onclick="hideAddTaskContainer()"></div>
+ </div>`
+}
+
 function renderAddTaskMainContentHTML(){
     return /*html*/ `<div class="addTaskBodyLeft">
         <div class="addTaskBodyTop">
@@ -394,15 +402,15 @@ function renderAddTaskMainContentHTML(){
         <div class="addTaskPriority">
             <div class="addTaskTitles bold">Priority</div>
             <div class="addTaskPriorityButtonContainer">
-                <div id="addTaskPriorityButtonUrgent" class="addTaskPriorityButton"  onclick="setPriority('Urgent')">
+                <div id="addTaskPriorityButtonurgent" class="addTaskPriorityButton"  onclick="setPriority('urgent')">
                     <div class="priorityButtonText">Urgent</div>
                     <img src="./assets/img/icon-priority_urgent.png" alt="Priority urgent">
                 </div>
-                <div id="addTaskPriorityButtonMedium" class="addTaskPriorityButton" onclick="setPriority('Medium')">
+                <div id="addTaskPriorityButtonmedium" class="addTaskPriorityButton" onclick="setPriority('medium')">
                     <div class="priorityButtonText">Medium</div>
                     <img src="./assets/img/icon-priority_medium.png" alt="Priority medium">
                 </div>
-                <div id="addTaskPriorityButtonLow" class="addTaskPriorityButton"  onclick="setPriority('Low')">
+                <div id="addTaskPriorityButtonlow" class="addTaskPriorityButton"  onclick="setPriority('low')">
                     <div class="priorityButtonText">Low</div>
                     <img src="./assets/img/icon-priority_low.png" alt="Priority low">
                 </div>
@@ -457,16 +465,16 @@ function renderAddTaskMainContentHTML(){
 function renderAddTaskFooterHTML(){
     return /*html*/ `
         <div class="addTaskBodyRight">
-                        <div class="addTaskBtnContainer">
-                            <div class="clearBtn addTaskBtn">
-                                <span class="addTaskBtnText">Clear</span>
-                                <div class="clearBtnImg"></div>
-                            </div>
-                            <div class="createBtn addTaskBtn disabled">
-                                <span class="addTaskBtnText">Create Task</span>
-                                <div class="createBtnImg"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="addTaskBtnContainer">
+                <div class="clearBtn addTaskBtn">
+                    <span class="addTaskBtnText">Clear</span>
+                    <div class="clearBtnImg"></div>
+                </div>
+                <div class="createBtn addTaskBtn disabled">
+                    <span class="addTaskBtnText">Create Task</span>
+                    <div class="createBtnImg"></div>
+                </div>
+            </div>
+        </div>
     `
 }
