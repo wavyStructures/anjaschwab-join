@@ -35,19 +35,6 @@
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
                 <div class="board-Container" >
                     <div class="addTaskHoverContainer hideBoard d-none" id="addTaskHoverContainer" onclick="doNotClose(event)">
-                        <div class="boardAddTaskHeader">
-                           <div class="boardAddTaskHeaderText"> Add Task</div>
-                           <div class="boardAddTaskCloseHoverContainer" onclick="hideAddTaskContainer()"></div>
-                        </div>
-                        <div w3-include-html="./addTask.html" ></div>
-                        <div class="boardAddTaskFooter">
-                            <div class="createBtn addTaskBtn" onclick="createTask()">
-                                <span class="addTaskBtnText">Create Task</span>
-                                <div class="createBtnImg"></div>
-                            </div>
-                        </div>
-
-
                     </div>
                     <div class="boardTopContainer">
                         <div class="searchTaskContainer">
@@ -100,9 +87,9 @@
                 </div>
             </main>
         </div>
-        <!-- <div id="openCardContainer" class="openCardContainer d-none"></div> -->
     </div>
     <div id="boardOverlay" class="boardOverlay d-none"></div>
+    <div id="openCardContainer" class="openCardContainer d-none"></div>
 </body>
 
 </html>

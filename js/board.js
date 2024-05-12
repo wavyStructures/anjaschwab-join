@@ -136,8 +136,16 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
+    renderBoardAddTaskOverlay();
     renderContactsToDropdown();
-    // openCard(5);
+    // showAddTaskContainer();
+    openCard(5);
+}
+
+
+function renderBoardAddTaskOverlay(){
+    let container = document.getElementById('addTaskHoverContainer');
+    container.innerHTML = renderBoardAddTaskOverlayHTML();
 }
 
 function showAddTaskContainer(){
@@ -192,7 +200,7 @@ function createSuccessMessageContainer(){
     let div = document.createElement("div");
 
     div.id = "success-message-container";
-    div.classList.add("createBtn", "addTaskBtn", "center", "disabled");
+    div.classList.add("createBtn", "addTaskBtn", "center", "disable");
 
     let span = document.createElement("span");
     span.classList.add("addTaskBtnText");

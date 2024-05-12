@@ -262,3 +262,104 @@ function renderSignUpPageHTML() {
     </div>
     `;
 }
+
+function renderBoardAddTaskOverlayHTML() {
+	return /*html*/ `<div class="boardAddTaskHeader">
+    <div class="boardAddTaskHeaderText"> Add Task</div>
+    <div class="boardAddTaskCloseHoverContainer" onclick="hideAddTaskContainer()"></div>
+ </div>
+ <div class="addTaskBody">
+    <div class="addTaskBodyLeft">
+        <div class="addTaskBodyTop">
+            <div class="addTaskAddTitleContainer">
+                <input type="text" id="addTaskEnterTitleInput" placeholder="Enter a title" required>
+                <div class="addTaskRequired" id="requiredTitle"></div>
+            </div>
+            <div class="addTaskDescription">
+                <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
+                <div>
+                <div class="textAreaContainer">
+                    <textarea id="addTaskDescriptionInput" type="text"></textarea>
+                </div>
+            </div>
+            </div>
+            <div class="addTaskDueDate ">
+                <div class="addTaskTitles"><span class="bold">Due date</span></div>
+                <div>
+                    <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
+                        <input id="addTaskDueDateInput" type="date"  value="">
+                        <div class="addTaskDueDateImage"></div>
+                    </div>
+                    <div class="addTaskRequired" id="requiredDueDate"></div>
+                </div>
+            </div>
+        </div>
+        <div class="addTaskBodyBottom">
+        <div class="addTaskPriority">
+            <div class="addTaskTitles bold">Priority</div>
+            <div class="addTaskPriorityButtonContainer">
+                <div id="addTaskPriorityButtonUrgent" class="addTaskPriorityButton"  onclick="setPriority('Urgent')">
+                    <div class="priorityButtonText">Urgent</div>
+                    <img src="./assets/img/icon-priority_urgent.png" alt="Priority urgent">
+                </div>
+                <div id="addTaskPriorityButtonMedium" class="addTaskPriorityButton" onclick="setPriority('Medium')">
+                    <div class="priorityButtonText">Medium</div>
+                    <img src="./assets/img/icon-priority_medium.png" alt="Priority medium">
+                </div>
+                <div id="addTaskPriorityButtonLow" class="addTaskPriorityButton"  onclick="setPriority('Low')">
+                    <div class="priorityButtonText">Low</div>
+                    <img src="./assets/img/icon-priority_low.png" alt="Priority low">
+                </div>
+
+            </div>
+        </div>
+        <!-- BEGIN ASSIGNED TO -->
+        <div class="addTaskContainer">
+            <div class="addTaskTitle"><span class="bold">Assigned to</span> (optional)</div>
+            <div class="addTask-dropdown-contact pointer border-bottom" onclick="renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
+                <div class="addTask-custom-select">
+                    <span id="dropdown-assignedTo-title">Select contacts to assign</span>
+                    <div class="addTask-custom-arrow" id="custom-arrow-assignedTo">
+                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                    </div>
+                </div>
+            </div>
+                <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
+                </div>
+                <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"></div>
+        </div>
+        <div class="addTaskContainer ">
+            <div class="addTaskTitle bold">Category </div>
+            <div class="addTask-dropdown-category pointer border-bottom" onclick="renderArrow('custom-arrow-category', 'dropdown-content-category')">
+                <div class="addTask-custom-select">
+                    <span id="dropdown-category-title">Select task category</span>
+                       <div class="addTask-custom-arrow" id="custom-arrow-category">
+                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="addTask-dropdown-content d-none no-scroll" id="dropdown-content-category">
+                <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
+                <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
+            </div>
+        </div>
+        <div class="addTaskSubtasks">
+            <div class="addTaskTitles"><span class="bold">Subtasks</span> (optional)
+            </div>
+            <div id="subtaskBottom" class="subtaskBottom border-bottom" onclick="renderSubtaskInputField()">
+                <input type="text" id="subtaskInputField" placeholder="Add new subtask">
+                <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
+            </div>
+            <div id="subtasksOutputContainer"></div>
+        </div>
+        <div class="addTaskEmptyDiv"></div>
+        </div>
+    </div>
+    <div class="boardAddTaskFooter">
+        <div class="createBtn addTaskBtn" onclick="createTask()">
+            <span class="addTaskBtnText">Create Task</span>
+            <div class="createBtnImg"></div>
+        </div>
+    </div>
+</div>`;
+}
