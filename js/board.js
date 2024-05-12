@@ -136,7 +136,8 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    openCard(5);
+    renderContactsToDropdown();
+    // openCard(5);
 }
 
 function showAddTaskContainer(){

@@ -143,6 +143,7 @@ function addSubtask(){
         })
     }
         else{
+            // TODO:
             console.log("Bitte eingeben!");
         }
     renderSubtasks();
@@ -289,7 +290,6 @@ function getButtonColor(priority) {
 function renderArrow(arrowContainer, contentContainer){
     let customArrow = document.getElementById(arrowContainer)
     let arrowImg = customArrow.childNodes[1];
-    console.log(arrowImg);
     arrowImg.dataset.direction == "down"
     ? arrowImg.dataset.direction = "up"
     : arrowImg.dataset.direction = "down"
@@ -428,8 +428,6 @@ function collectInformationsForNewCard(){
     newTask.assignedTo = getNewTaskAssignedTo();
     newTask.category = getNewTaskCategory();
     newTask.dueDate = getNewTaskDueDate();
-
-    console.log(newTask);
 }
 
 /**
