@@ -2,6 +2,7 @@ async function addTaskInit(){
     includeHTML();
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
+    renderAddTaskHTML();
     setPriority('Medium');
     renderContactsToDropdown();
     setTodayDateAsMin();
@@ -28,7 +29,12 @@ let newTask =
         'dueDate': ''
 };
 
-
+function renderAddTaskHTML() {
+    let container = document.getElementById('addTaskBody');
+    container.innerHTML = '';
+    container.innerHTML += renderAddTaskMainContentHTML();
+    container.innerHTML += renderAddTaskFooterHTML();
+  }
 
 /**
  * Updates the priority styling for the task buttons based on the selected priority.
