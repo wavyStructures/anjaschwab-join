@@ -139,7 +139,7 @@ async function boardInit() {
     // renderBoardAddTaskOverlay();
     // renderContactsToDropdown();
     // showAddTaskContainer();
-    // openCard(5);
+    openCard(5);
 }
 
 
@@ -150,7 +150,7 @@ function renderBoardAddTaskOverlay(){
         document.body.appendChild(newDiv);
     }
     let container = document.getElementById('addTaskHoverContainer');
-    container.innerHTML = renderAddTaskMainContentHTML();
+    container.innerHTML = renderBoardAddTaskOverlayHTML();
     renderContactsToDropdown();
 }
 
@@ -515,21 +515,28 @@ function openCardDelete(taskId){
 function openCardEdit(){
     let container = document.getElementById('openCardContainer');
     container.setAttribute('editing','');
-    container.innerHTML = "";
-    createEditHeader();
 
+    container.innerHTML =createEditHeader();
     container.innerHTML += renderAddTaskMainContentHTML();
+    container.innerHTML += createEditFooter();
+
     renderContactsToDropdown();
 }
 
 function createEditHeader(){
     return /*html*/`
-    <div class="editCardHeaderContainer">
-        <div class="editCardClosingImgDiv" onclick="closeCard()"></div>
-    </div>
+<div class="boardEditTaskHeader">
+    <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
+ </div>
     ` 
 }
 
 function createEditFooter(){
-
+    return /*html*/`
+    <div class="addTaskBodyRight">
+        <div class="createBtn addTaskBtn">
+            <span class="addTaskBtnText">Ok</span>
+            <div class="createBtnImg"></div>
+        </div>
+</div>`
 }

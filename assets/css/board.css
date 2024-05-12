@@ -29,7 +29,7 @@
     top:0;
     background-color: #fff;
     border-radius: 20px 0 0 20px;
-    height: 100vh;
+    height: 100%;
 
     .addTaskBody{
         display: flex;
@@ -583,23 +583,27 @@ progress{
 
 .openCardContainer[editing]{
     background-color: lightgray;
-}
 
-.editCardHeaderContainer{
-    height: 24px;
-    width: 1000px;
-    background-color: red;
-}
-
-.editCardClosingImgDiv{
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    background-image: url("../img/icon-close.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: all 0.3s ease;
-    &:hover{
-        background-image: url("../img/icon-close_hover.png");
+    .boardEditTaskHeader{
+        display: flex;
+        justify-content: end;
     }
+
+    .addTaskBodyLeft{
+        padding-inline: 5px;
+    }
+    .addTaskBodyRight{
+        display: flex;
+        justify-content: end;
+    }
+
+    .addTaskBtn{
+        width: min-content
+    }
+
+    .addTaskEmptyDiv{
+        display: none;
+    }
+
 }
+
