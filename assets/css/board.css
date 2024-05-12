@@ -430,7 +430,7 @@ progress{
     z-index: 500;
     
     & * {
-        color: black;
+        /* color: black; */
     }
 
     .boardAddTaskCloseHoverContainer{
@@ -444,8 +444,14 @@ progress{
     }
 
     .cardTitle{
+        color: black;
         font-size: 3.813rem;
         font-weight: 700;
+    }
+    .openCardDescription{
+        color: black;
+        font-size: 1.313rem;
+        font-weight: 400;
     }
 }
 

@@ -383,11 +383,11 @@ async function closeCard(){
 function renderOpenCardHTML(task){
     return /*html*/`
     <div class="cardTypeAndCloseBtn">
-        <div class="cardType">User Story</div>
+        <div class="cardType">${task['type']}</div>
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
     <div class="cardTitle">${task['title']}</div>
-    <div class="cardText openCardText">${task['description']}</div>
+    <div class="openCardDescription">${task['description']}</div>
     <div class="openCardTextBox">
         <span class="openCardText">Due Date:</span>
         <span class="openCardValue">${task['dueDate']}</span>
