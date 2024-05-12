@@ -1,4 +1,5 @@
 let loggedUser;
+let globalCapitalizedName;
 
 /**
  * Initializes the summary by including the HTML and getting the current date.
@@ -13,11 +14,13 @@ async function summaryInit() {
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
+
+    greetUserMobile();
+
     loadAmounts();
     getUrgentTasks();
     buttonEventListener();
 }
-
 
 
 function getLoggedUser() {
@@ -61,6 +64,7 @@ function greet(capitalizedName) {
     let usernameForGreeting = document.getElementById("usernameForGreeting");
     usernameForGreeting.innerHTML = '';
     usernameForGreeting.innerHTML = capitalizedName;
+    globalCapitalizedName = capitalizedName;
     adjustGreeting();
 }
 
@@ -132,7 +136,6 @@ function showAmounts(categoriesAmounts) {
 
 
 /* Retrieves the tasks with priority "urgent" from the tasks array.
-*
 * @return {Array} The array of tasks with priority "urgent".
 */
 function getUrgentTasks() {
@@ -150,7 +153,6 @@ function getUrgentTasks() {
 
 /**
  * Updates the HTML element with the ID "amountUrgent" to display the number of urgent tasks.
- *
  * @param {Array} urgentTasks - An array of urgent tasks.
   */
 
@@ -160,6 +162,10 @@ function showUrgentTasks(urgentTasks) {
 }
 
 
+/**
+ * Attaches a click event listener to all elements with the class 'square-button' and 'urgentAndDate'.
+ * When clicked, the function switches the page to 'board.html'.
+ */
 function buttonEventListener() {
     const summaryButtons = document.querySelectorAll('.square-button, .urgentAndDate');
     summaryButtons.forEach(button => {
@@ -169,3 +175,29 @@ function buttonEventListener() {
     });
 }
 
+
+function greetUserMobile() {
+    if (window.innerWidth < 800) {
+        // document.getElementById('greetingContainer').classList.remove('d-none');
+        // document.getElementById('subMainSummary').classList.add('d-none');
+
+        mobileGreeting();
+
+        // Set a timeout to hide the mobile greeting after two minutes (120000 milliseconds)
+        setTimeout(hideMobileGreeting, 120000);
+    }
+}
+
+function mobileGreeting() {
+
+    let mobileGreeting = document.getElementById('mobileGreeting');
+    mobileGreeting.innerHTML = 'Welcome,';
+
+    document.getElementById('mobileGreetingUsername').innerHTML = globalCapitalizedName;
+}
+
+
+function hideMobileGreeting() {
+    document.getElementById('greetingContainer').classList.add('d-none');
+    document.getElementById('subMainSummary').classList.remove('d-none');
+}

@@ -260,59 +260,6 @@ function setActiveNavButton() {
 // 	}
 // }
 
-async function mobileGreeting() {
-	if (window.innerWidth < 800) {
-		await greetUserMobile();
-		await delay(1200); // Wait 1.2 seconds
-		hideGreeting();
-	}
-}
-
-function delay(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function greetUserMobile() {
-	let userName = await getUserName();
-	let greetingElement = document.getElementById('greeting-mobile');
-	let currentHour = new Date().getHours();
-	let greetingText;
-
-	if (currentHour < 12) {
-		greetingText = "Good morning";
-	} else if (currentHour < 18) {
-		greetingText = "Good afternoon";
-	} else {
-		greetingText = "Good evening";
-	}
-
-	if (userName === 'Gast') {
-		greetingElement.textContent = `${greetingText}`;
-	} else {
-		let greetingElementUser = document.getElementById('greeting-mobile-user');
-		greetingElementUser.textContent = `${greetingText},`;
-		greetingElement.textContent = `${userName}`;
-		greetingElement.style.color = '#005DFF';
-	}
-}
-
-
-
-
-function getUserName() {
-	return new Promise(resolve => {
-		let userName = localStorage.getItem('currentUserName');
-		resolve(userName);
-	});
-}
-
-function hideGreeting() {
-	let greetingContainer = document.querySelector('.greeting-container');
-	greetingContainer.style.display = 'none';
-}
-
-mobileGreeting();
-
 
 /**
  * Locks the screen orientation to portrait.

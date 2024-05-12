@@ -29,86 +29,88 @@
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
             <main id="main" class="main">
-                <div class="greeting-container d-none">
-                    <p id="greeting-mobile-user"></p><br>
-                    <h1 class="greeting-mobile" id="greeting-mobile"></h1>
-                </div>
-                <div id="sub-main-summary" class="sub-main-summary">
-                    <div class="summary-box">
-                        <div id="h1GreetingUser" class="h1-box">
-                            <h1 id="daytimeGreeting" class="daytimeGreeting no-wrap">Welcome!</h1>
-                            <span id="usernameForGreeting" class="usernameForGreeting"></span>
-                        </div>
-                        <div id="buttonContainer" class="button-container">
-
-
-                            <div class="urgentAndDate urgent" id="urgentAndDate">
-                                <div class="urgentBox">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-urgent_clock-with-border.png"
-                                            alt="clock symbol" class="white-border">
-                                        <span id="amountUrgent" class="amount">1</span>
-                                    </div>
-                                    <span>Tasks Urgent</span>
-                                </div>
-                                <div class="verticalSeparaterLine"></div>
-                                <div class="dateBox">
-                                    <div id="date" class="date"></div>
-                                    <span>Upcoming Deadline</span>
-                                </div>
+                <div class="greetingContainer-and-subMainSummary">
+                    <div id="greetingContainer" class="greeting-container">
+                        <p id="mobileGreeting" class="mobile-greeting">Hello</p><br>
+                        <h1 id="mobileGreetingUsername" class="mobile-greeting-username">XX</h1>
+                    </div>
+                    <div id="subMainSummary" class="sub-main-summary">
+                        <div class="summary-box">
+                            <div id="h1GreetingUser" class="h1-box">
+                                <h1 id="daytimeGreeting" class="daytimeGreeting no-wrap">Welcome!</h1>
+                                <span id="usernameForGreeting" class="usernameForGreeting"></span>
                             </div>
+                            <div id="buttonContainer" class="button-container">
 
-                            <div class="square-button inBoard">
-                                <div class="inner-square-button">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
-                                        <div id="amountAllBoardTasks" class="amount">5</div>
+
+                                <div class="urgentAndDate urgent" id="urgentAndDate">
+                                    <div class="urgentBox">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-urgent_clock-with-border.png"
+                                                alt="clock symbol" class="white-border">
+                                            <span id="amountUrgent" class="amount">1</span>
+                                        </div>
+                                        <span>Tasks Urgent</span>
                                     </div>
-                                    <span>Tasks in Board</span>
-                                </div>
-                            </div>
-
-
-                            <div class="square-button toDo">
-                                <div class="inner-square-button">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-todo.png" alt="todo list">
-                                        <div id="amountTodo" class="amount">1</div>
+                                    <div class="verticalSeparaterLine"></div>
+                                    <div class="dateBox">
+                                        <div id="date" class="date"></div>
+                                        <span>Upcoming Deadline</span>
                                     </div>
-                                    <span class="no-wrap">Tasks To-do</span>
                                 </div>
-                            </div>
 
-                            <div class="square-button inProgress">
-                                <div class="inner-square-button">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-in_progress.png" alt="rising chart">
-                                        <div id="amountInProgress" class="amount">2</div>
+                                <div class="square-button inBoard">
+                                    <div class="inner-square-button">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-tasks_in_board.png" alt="file shelf">
+                                            <div id="amountAllBoardTasks" class="amount">5</div>
+                                        </div>
+                                        <span>Tasks in Board</span>
                                     </div>
-                                    <span>Task in Progress</span>
                                 </div>
-                            </div>
 
-                            <div class="square-button feedback">
-                                <div class="inner-square-button ">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
-                                        <div id="amountAwaitFeedback" class="amount">2</div>
+
+                                <div class="square-button toDo">
+                                    <div class="inner-square-button">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-todo.png" alt="todo list">
+                                            <div id="amountTodo" class="amount">1</div>
+                                        </div>
+                                        <span class="no-wrap">Tasks To-do</span>
                                     </div>
-                                    <span>Awaiting Feedback</span>
                                 </div>
-                            </div>
 
-                            <div class="square-button done">
-                                <div class="inner-square-button">
-                                    <div class="image-and-amount flex">
-                                        <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
-                                        <div id="amountDone" class="amount">1</div>
+                                <div class="square-button inProgress">
+                                    <div class="inner-square-button">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-in_progress.png" alt="rising chart">
+                                            <div id="amountInProgress" class="amount">2</div>
+                                        </div>
+                                        <span>Task in Progress</span>
                                     </div>
-                                    <span>Tasks<br>Done</span>
                                 </div>
-                            </div>
 
+                                <div class="square-button feedback">
+                                    <div class="inner-square-button ">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-awaiting_feedback.png" alt="feedback card">
+                                            <div id="amountAwaitFeedback" class="amount">2</div>
+                                        </div>
+                                        <span>Awaiting Feedback</span>
+                                    </div>
+                                </div>
+
+                                <div class="square-button done">
+                                    <div class="inner-square-button">
+                                        <div class="image-and-amount flex">
+                                            <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
+                                            <div id="amountDone" class="amount">1</div>
+                                        </div>
+                                        <span>Tasks<br>Done</span>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
