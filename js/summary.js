@@ -1,5 +1,6 @@
 let loggedUser;
 let globalCapitalizedName;
+let dayTime;                                                //TODO: anja: ist global i.O.?
 
 /**
  * Initializes the summary by including the HTML and getting the current date.
@@ -33,15 +34,15 @@ function getLoggedUser() {
 function greetAccordingToDayTime() {
     let nowTime = new Date();
     let hours = nowTime.getHours();
-    let status = (hours < 12) ? "Good Morning" :
+    dayTime = (hours < 12) ? "Good Morning" :
         ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
     document.getElementById('daytimeGreeting').innerHTML = '';
     loggedUser = getCurrentUser();
     if (loggedUser) {
-        status += ",";
+        dayTime += ",";
     }
-    document.getElementById('daytimeGreeting').innerHTML = `${status} `;
+    document.getElementById('daytimeGreeting').innerHTML = `${dayTime} `;
 }
 
 
@@ -178,26 +179,33 @@ function buttonEventListener() {
 
 function greetUserMobile() {
     if (window.innerWidth < 800) {
-        // document.getElementById('greetingContainer').classList.remove('d-none');
-        // document.getElementById('subMainSummary').classList.add('d-none');
+        document.getElementById('greetingContainer').classList.remove('d-none');
+        document.getElementById('subMainSummary').classList.remove('sub-main-summary');
+        document.getElementById('subMainSummary').classList.add('d-none');
 
         mobileGreeting();
-
-        // Set a timeout to hide the mobile greeting after two minutes (120000 milliseconds)
-        setTimeout(hideMobileGreeting, 120000);
+        setTimeout(hideMobileGreeting, 6000);
     }
 }
 
 function mobileGreeting() {
-
     let mobileGreeting = document.getElementById('mobileGreeting');
-    mobileGreeting.innerHTML = 'Welcome,';
+    mobileGreeting.innerHTML = '';
+    mobileGreeting.innerHTML = `${dayTime}`;
 
-    document.getElementById('mobileGreetingUsername').innerHTML = globalCapitalizedName;
+    if (loggedUser) {
+        dayTime += ",";
+        document.getElementById('mobileGreetingUsername').innerHTML = globalCapitalizedName;
+    } else {
+        mobileGreeting.classList.add('mobile-guest-greeting');
+        mobileGreeting.style.fontWeight = 'bold';
+    }
 }
 
 
 function hideMobileGreeting() {
     document.getElementById('greetingContainer').classList.add('d-none');
+    document.getElementById('greetingContainer').classList.remove('greeting-container');
+    document.getElementById('subMainSummary').classList.add('sub-main-summary');
     document.getElementById('subMainSummary').classList.remove('d-none');
 }

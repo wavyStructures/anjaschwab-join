@@ -349,11 +349,19 @@ button {
 }
 
 .mobile-greeting {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 33px;
+  font-weight: 400px;
+  color: var(--clr-text-good-morning);
 }
 
 .mobile-greeting-username {
-  font-size: 32px;
+  font-size: 47px;
   font-weight: 700;
+  color: var(--clr-style-lightblue);
+}
+
+.mobile-guest-greeting {
+  font-size: 48px;
+  font-weight: 700px;
+  color: var(--clr-text-good-morning);
 }
