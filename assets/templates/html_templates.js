@@ -104,57 +104,6 @@ function renderSummaryHTML() {
 `;
 }
 
-function renderAddTaskHTML() {
-  return /*html*/ `<div class="addTask-content">Content Of AddTask</div>`;
-}
-
-function renderBoardHTML() {
-  return /*html*/ `
-    <div class="board-Container">
-        <div class="boardTopContainer">
-            <div class="searchTaskContainer">
-                <div class="searchTaskInner"><input id="findTask" placeholder="Find Task" type="text">
-                    <div class="searchImg" onclick="searchTask()"> </div>
-                </div>
-            </div>
-        </div>
-        <div class="category-container">
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>To Do</h2>
-                    <div class="addTaskButton" onclick="addTask('todo')"></div>
-                </div>
-                <div id="todo" class="categoryTasks">
-                    </div>
-                </div>
-                <div class="category">
-                    <div class="categoryTitle">
-                        <h2>In progress</h2>
-                        <div class="addTaskButton" onclick="addTask('inProgress')"></div>
-                    </div>
-                    <div id="inProgress" class="categoryTasks">
-
-                </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>Await feedback</h2>
-                    <div class="addTaskButton" onclick="addTask('awaitFeedback')"></div>
-                </div>
-                <div id="awaitFeedback" class="categoryTasks">
-                </div>
-            </div>
-            <div class="category">
-                <div class="categoryTitle">
-                    <h2>Done</h2>
-                    <div class="addTaskButton" onclick="addTask('done')"></div>
-                </div>
-                <div id="done" class="categoryTasks">
-                </div>
-            </div>
-        </div>
-    </div>`;
-}
 
 // function renderContactsHTML() {
 //   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
