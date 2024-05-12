@@ -136,8 +136,8 @@ async function boardInit() {
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
-    renderBoardAddTaskOverlay();
-    renderContactsToDropdown();
+    // renderBoardAddTaskOverlay();
+    // renderContactsToDropdown();
     // showAddTaskContainer();
     // openCard(5);
 }
@@ -151,6 +151,7 @@ function renderBoardAddTaskOverlay(){
     }
     let container = document.getElementById('addTaskHoverContainer');
     container.innerHTML = renderAddTaskMainContentHTML();
+    renderContactsToDropdown();
 }
 
 function showAddTaskContainer(){
@@ -384,8 +385,9 @@ function setAttributes(el, attrs) {
  */
 async function closeCard(){
     let openCardContainer = document.getElementById('openCardContainer');
+    openCardContainer.remove();
     openCardContainer.classList.add('d-none');
-    openCardContainer.remove('editing');
+    openCardContainer.removeAttribute('editing');
 
     await saveTasksToRemoteStorage();
     renderCategories(tasks);
@@ -517,6 +519,7 @@ function openCardEdit(){
     createEditHeader();
 
     container.innerHTML += renderAddTaskMainContentHTML();
+    renderContactsToDropdown();
 }
 
 function createEditHeader(){
