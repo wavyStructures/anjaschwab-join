@@ -202,6 +202,8 @@ function setActiveNavButton() {
 	const addTaskNavLink = document.getElementById('addTask');
 	const boardNavLink = document.getElementById('board');
 	const contactsNavLink = document.getElementById('contacts');
+	let privacy = document.getElementById('privacyNav');
+	let legalNotice = document.getElementById('legalNav');
 	const activeNavLink = document.querySelector('.nav-btn.active');
 
 	// Remove active class from any previously active nav link
@@ -234,10 +236,81 @@ function setActiveNavButton() {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
 			}
 			break;
+		case '/privacy.html':
+			privacy.querySelector('a').classList.add('privacyNav-clicked');
+			break;
+		case '/legal_notice.html':
+			legalNotice.querySelector('a').classList.add('legalNav-clicked');
+			break;
 		default:
 			break;
 	}
 }
+
+
+// function setActiveNavLegalAndPrivacy() {
+// 	let privacy = document.getElementById('privacyNav');
+// 	let legalNotice = document.getElementById('legalNav');
+// 	const activeNavLink = document.querySelector('.nav-btn.active');
+
+// 	// Remove active class from any previously active nav link
+// 	if (activeNavLink) {
+// 		activeNavLink.classList.remove('active');
+// 	}
+
+// 	switch (location.pathname) {
+// 		case '/summary.html':
+// 			summaryNavLink.classList.add('active');
+// 			if (window.innerWidth < 700) {
+// 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
+// 			}
+// 			break;
+// 		case '/addTask.html':
+// 			addTaskNavLink.classList.add('active');
+// 			if (window.innerWidth < 700) {
+// 				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
+// 			}
+// 			break;
+// 		case '/board.html':
+// 			boardNavLink.classList.add('active');
+// 			if (window.innerWidth < 700) {
+// 				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
+// 			}
+// 			break;
+// 		case '/contacts.html':
+// 			contactsNavLink.classList.add('active');
+// 			if (window.innerWidth < 700) {
+// 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
+// 			}
+// 			break;
+
+
+// 		case '/privacy.html':
+// 			privacy.querySelector('a').classList.add('privacyNav-clicked');
+// 			break;
+// 		case '/legal_notice.html':
+// 			legalNotice.querySelector('a').classList.add('legalNav-clicked');
+// 			break;
+// 		default:
+// 			break;
+
+
+// 		default:
+// 			break;
+
+// }
+
+// function highlightPrivacy() {
+// 	let privacy = document.getElementById('privacyNav');
+// 	privacy.querySelector('a').classList.add('privacyNav-clicked');
+// }
+
+// function highlightLegalNotice() {
+// 	let legalNotice = document.getElementById('legalNav');
+// 	legalNotice.querySelector('a').classList.add('legalNav-clicked');
+// }
+
+
 
 
 
@@ -264,7 +337,6 @@ function setActiveNavButton() {
 /**
  * Locks the screen orientation to portrait.
  */
-
 function lockScreenOrientation() {
 	// Check if screen.orientation and screen.orientation.lock are supported
 	if (screen.orientation && screen.orientation.lock) {
@@ -276,25 +348,12 @@ function lockScreenOrientation() {
 		// console.warn('Screen orientation lock is not supported on this device.');
 	}
 
-	// Set the height of the body element to 100vH
-	document.body.style.height = '100vH';
+	// // Set the height of the body element to 100vH
+	// document.body.style.height = '100vH';
 }
 
 // Call the function to lock screen orientation and set body height when the page loads
 window.addEventListener('load', lockScreenOrientation);
-
-// function lockScreenOrientation() {
-// 	if (screen.orientation && screen.orientation.lock) {
-// 		screen.orientation.lock('portrait');
-// 	}
-
-// 	document.body.style.height = '100vw';
-// }
-
-// // Call the function to lock screen orientation when the page loads
-// window.addEventListener('load', lockScreenOrientation);
-
-// /**
 
 
 

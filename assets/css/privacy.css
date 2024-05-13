@@ -1,3 +1,33 @@
+h1 {
+  font-size: 61px;
+  font-weight: 700;
+  margin-top: 72px;
+  margin-bottom: 48px;
+}
+
+h2 {
+  font-size: 33px;
+  font-weight: 700;
+  color: var(--clr-text-medium-blue);
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--clr-text-medium-blue);
+}
+
+strong,
+h4 {
+  color: var(--clr-text-medium-blue);
+}
+
+p {
+  margin-bottom: 8px;
+}
+
 .h1PrivacyBox {
   display: flex;
   justify-content: space-between;
