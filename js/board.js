@@ -519,41 +519,45 @@ function openCardDelete(taskId){
 }
 
 function openCardEdit(taskId){
-    let task = getTaskOutOfId(taskId);
-    let container = document.getElementById('openCardContainer');
-    container.setAttribute('editing','');
-
-    container.innerHTML = createEditHeader();
-    container.innerHTML += renderAddTaskMainContentHTML();
-    container.innerHTML += createEditFooter(task);
-    newTask = task;
-    console.log(newTask);
-    renderAssignedContactsContainer();
+    newTask = getTaskOutOfId(taskId);
+    renderEditContainer();
     renderContactsToDropdown();
-    toggleAssignedContactsContainer();
+    renderAssignedContactsContainer();
     renderSubtasks()
+    
     setTaskValuesToFields(newTask);
 }
 
+function renderEditContainer(){
+    let container = document.getElementById('openCardContainer');
+    container.setAttribute('editing','');
+    container.innerHTML = createEditHeader();
+    container.innerHTML += renderAddTaskMainContentHTML();
+    container.innerHTML += createEditFooter(newTask);
+}
 
-// function setTaskValuesToFields(task){
-//     newTask = task;
 
-// }
-function setTaskValuesToFields(task){
+function setTaskValuesToFields(){
+    tempAssignedContacts = [];
     document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
     document.getElementById('addTaskDescriptionInput').value = newTask['description'];
     document.getElementById('addTaskDueDateInput').value = newTask['dueDate'];
-    setPriorityAppearance(newTask['priority']);
     document.getElementById('dropdown-category-title').innerHTML = newTask['type'];
+    setPriorityAppearance(newTask['priority']);
+    renderEditCardAssignedContacts();
     
-    newTask['assignedTo'].forEach(id => {
-        assignContactToTask(id);
-    })
+    
     // document.getElementById('openCardAssignedTo').value = newTask['assignedTo'];
     // document.getElementById('openCardSubtasks').value = newTask['subtasks'];
 }
 
+
+function renderEditCardAssignedContacts(){
+    document.getElementById('assignedContactsContainer').innerHTML = '';
+    newTask['assignedTo'].forEach(id => {
+        assignContactToTask(id);
+    })
+}
 
 function saveEditedTask(){
     
