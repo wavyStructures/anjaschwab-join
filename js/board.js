@@ -137,7 +137,7 @@ async function boardInit() {
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
     // showAddTaskContainer();
-    openCard(5);
+    openCard(2);
 }
 
 
@@ -525,21 +525,40 @@ function openCardEdit(taskId){
 
     container.innerHTML = createEditHeader();
     container.innerHTML += renderAddTaskMainContentHTML();
-    container.innerHTML += createEditFooter();
-    setTaskValuesToFields(task);
+    container.innerHTML += createEditFooter(task);
+    newTask = task;
+    console.log(newTask);
+    renderAssignedContactsContainer();
     renderContactsToDropdown();
+    toggleAssignedContactsContainer();
+    renderSubtasks()
+    setTaskValuesToFields(newTask);
 }
 
 
+// function setTaskValuesToFields(task){
+//     newTask = task;
+
+// }
 function setTaskValuesToFields(task){
-    document.getElementById('addTaskEnterTitleInput').value = task['title'];
-    document.getElementById('addTaskDescriptionInput').value = task['description'];
-    document.getElementById('addTaskDueDateInput').value = task['dueDate'];
-    setPriorityAppearance(task['priority']);
-    document.getElementById('dropdown-category-title').innerHTML = task['type'];
-    // document.getElementById('openCardAssignedTo').value = task['assignedTo'];
-    // document.getElementById('openCardSubtasks').value = task['subtasks'];
+    document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
+    document.getElementById('addTaskDescriptionInput').value = newTask['description'];
+    document.getElementById('addTaskDueDateInput').value = newTask['dueDate'];
+    setPriorityAppearance(newTask['priority']);
+    document.getElementById('dropdown-category-title').innerHTML = newTask['type'];
+    
+    newTask['assignedTo'].forEach(id => {
+        assignContactToTask(id);
+    })
+    // document.getElementById('openCardAssignedTo').value = newTask['assignedTo'];
+    // document.getElementById('openCardSubtasks').value = newTask['subtasks'];
 }
+
+
+function saveEditedTask(){
+    
+}
+
 function createEditHeader(){
     return /*html*/`
 <div class="boardEditTaskHeader">
@@ -548,12 +567,12 @@ function createEditHeader(){
     ` 
 }
 
-function createEditFooter(){
+function createEditFooter(task){
     return /*html*/`
     <div class="addTaskBodyRight">
-        <div class="createBtn addTaskBtn" onclick="saveTask()">
+        <div class="createBtn addTaskBtn" onclick="saveEditedTask()">
             <span class="addTaskBtnText">Ok</span>
             <div class="createBtnImg"></div>
         </div>
-</div>`
+    </div>`
 }

@@ -10,5 +10,6 @@
       "editor.minimap.showSlider": "always",
       "editor.minimap.enabled": false,
       "IDX.aI.enableInlineCompletion": true,
-      "IDX.aI.enableCodebaseIndexing": true
+      "IDX.aI.enableCodebaseIndexing": true,
+      "liveServer.settings.port": 5501
 }
