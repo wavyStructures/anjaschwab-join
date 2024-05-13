@@ -126,7 +126,7 @@ let _tasksBackup = [
         "completedSubtasks": [],
         "assignedTo": [],
         "category": "todo",
-        "priority": "Urgent",
+        "priority": "urgent",
         "dueDate": "2024-05-20"
     }
 ];
@@ -537,8 +537,8 @@ function setTaskValuesToFields(task){
     document.getElementById('addTaskDueDateInput').value = task['dueDate'];
     console.log(task.priority);
     setPriorityAppearance(task['priority']);
-    document.getElementById('openCardAssignedTo').value = task['assignedTo'];
-    document.getElementById('openCardSubtasks').value = task['subtasks'];
+    // document.getElementById('openCardAssignedTo').value = task['assignedTo'];
+    // document.getElementById('openCardSubtasks').value = task['subtasks'];
 }
 function createEditHeader(){
     return /*html*/`

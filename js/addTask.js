@@ -274,7 +274,7 @@ function deleteSubtask(subtaskId){
 /**
  * Returns the background color for a given priority level.
  *
- * @param {string} priority - The priority level ('Urgent', 'Medium', or 'Low').
+ * @param {string} priority - The priority level ('urgent', 'medium', or 'low').
  * @return {string} The corresponding background color ('red', 'orange', 'green', or 'white').
  */
 function getButtonColor(priority) {
