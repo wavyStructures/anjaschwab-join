@@ -535,8 +535,8 @@ function setTaskValuesToFields(task){
     document.getElementById('addTaskEnterTitleInput').value = task['title'];
     document.getElementById('addTaskDescriptionInput').value = task['description'];
     document.getElementById('addTaskDueDateInput').value = task['dueDate'];
-    console.log(task.priority);
     setPriorityAppearance(task['priority']);
+    document.getElementById('dropdown-category-title').innerHTML = task['type'];
     // document.getElementById('openCardAssignedTo').value = task['assignedTo'];
     // document.getElementById('openCardSubtasks').value = task['subtasks'];
 }
