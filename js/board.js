@@ -142,11 +142,10 @@ async function boardInit() {
 
 
 function renderBoardAddTaskOverlay(){
-    if (!document.getElementById('addTaskHoverContainer')) {
-        let newDiv = document.createElement('div');
-        setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer hideBoard d-none', 'onclick': 'doNotClose(event)'});
-        document.body.appendChild(newDiv);
-    }
+    let newDiv = document.createElement('div');
+    setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer hideBoard d-none', 'onclick': 'doNotClose(event)'});
+    document.body.appendChild(newDiv);
+
     let container = document.getElementById('addTaskHoverContainer');
     // container.innerHTML = renderBoardAddTaskOverlayHTML();
     container.innerHTML = renderBoardAddTaskHeaderHTML();
@@ -363,7 +362,7 @@ function openCard(taskId){
         let newDiv = document.createElement('div');
         setAttributes(newDiv, {'id': 'openCardContainer', 'class': 'openCardContainer', 'onclick': 'doNotClose(event)'});
         document.body.appendChild(newDiv);
-    }    
+    }
     let openCardContainer = document.getElementById('openCardContainer');
     let task = getTaskOutOfId(taskId)
     openCardContainer.classList.remove('d-none');
@@ -373,16 +372,12 @@ function openCard(taskId){
     toggleBoardOverlay('closeCard()');
 }
 
+
 function getTaskOutOfId(taskId){
     return tasks.filter(task => task['id'] == taskId)[0]
 }
 
 
-function setAttributes(el, attrs) {
-    for(let key in attrs) {
-      el.setAttribute(key, attrs[key]);
-    }
-  }
 
 
 /**

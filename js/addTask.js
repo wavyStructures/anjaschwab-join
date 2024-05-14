@@ -446,8 +446,38 @@ function collectInformationsForNewCard(){
  * @return {number} The new task ID.
  */
 function getNewTaskId(){
-    return tasks.length;
+    if (!checkIfCardIsEditing()){
+        let freeId = findFreeTaskId();
+        return freeId;
+    }
 }
+
+
+function findFreeTaskId() {
+	for (let i = 0; i < 1000; i++) {
+		let free = true;
+		for (let j = 0; j < tasks.length; j++) {
+			if (tasks[j].id == i) {
+				free = false;
+			}
+		}
+		if (free) {
+			return i;
+		}
+	}
+}
+function checkIfCardIsEditing(){
+    let editing = document.getElementsByTagName('*');
+    for (let element of editing){
+        if(element.hasAttribute('editing')){
+            console.log("is editing");
+            return true;
+        }
+    }
+    console.log("is not editing");
+    return false;
+}
+
 
 /**
  * Retrieves the value of the input field with the id 'addTaskEnterTitleInput'
