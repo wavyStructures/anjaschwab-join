@@ -17,11 +17,13 @@ h3 {
   font-size: 19px;
   font-weight: 700;
   color: var(--clr-text-medium-blue);
+  margin-bottom: 8px;
 }
 
 strong,
 h4 {
   color: var(--clr-text-medium-blue);
+  margin-bottom: 6px;
 }
 
 p {
@@ -31,6 +33,7 @@ p {
 .h1PrivacyBox {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .h1PrivacyBox img {

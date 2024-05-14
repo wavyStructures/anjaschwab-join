@@ -31,6 +31,7 @@ async function includeHTML() {
 	}
 	showInitials();
 	setActiveNavButton();
+
 	window.addEventListener('resize', setActiveNavButton);
 }
 
@@ -202,9 +203,10 @@ function setActiveNavButton() {
 	const addTaskNavLink = document.getElementById('addTask');
 	const boardNavLink = document.getElementById('board');
 	const contactsNavLink = document.getElementById('contacts');
-	let privacy = document.getElementById('privacyNav');
-	let legalNotice = document.getElementById('legalNav');
 	const activeNavLink = document.querySelector('.nav-btn.active');
+
+
+	const privacyNavLink = document.getElementById('privacyNav');
 
 	// Remove active class from any previously active nav link
 	if (activeNavLink) {
@@ -236,16 +238,15 @@ function setActiveNavButton() {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
 			}
 			break;
-		case '/privacy.html':
-			privacy.querySelector('a').classList.add('privacyNav-clicked');
-			break;
-		case '/legal_notice.html':
-			legalNotice.querySelector('a').classList.add('legalNav-clicked');
-			break;
+
 		default:
 			break;
 	}
 }
+
+
+
+
 
 
 // function setActiveNavLegalAndPrivacy() {
@@ -314,24 +315,6 @@ function setActiveNavButton() {
 
 
 
-// function setActiveNavButton() {
-// 	switch (location.pathname) {
-// 		case '/summary.html':
-// 			document.getElementById('summary').classList.add('active');
-// 			break;
-// 		case '/addTask.html':
-// 			document.getElementById('addTask').classList.add('active');
-// 			break;
-// 		case '/board.html':
-// 			document.getElementById('board').classList.add('active');
-// 			break;
-// 		case '/contacts.html':
-// 			document.getElementById('contacts').classList.add('active');
-// 			break;
-// 		default:
-// 			break;
-// 	}
-// }
 
 
 /**

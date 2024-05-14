@@ -55,6 +55,10 @@
   bottom: 0;
   left: 0;
 
+  div {
+    padding: 8px;
+    border-radius: 8px;
+  }
   a {
     color: var(--clr-text-menu);
     text-decoration: none;
@@ -66,9 +70,28 @@
   }
 }
 
-.privatePolicyAndLegalNoticeLinksNav {
+/* .privatePolicyAndLegalNoticeLinksNav {
   a:hover {
     color: var(--clr-main);
+  }
+
+  a:active {
+    background-color: var(--clr-main);
+    color: #fff;
+  }
+} */
+
+.privatePolicyAndLegalNoticeLinksNav a:hover {
+  color: var(--clr-main);
+}
+
+.highlit {
+  background-color: var(--clr-main);
+
+  a,
+  a:hover {
+    color: #fff;
+    font-weight: 700;
   }
 }
 

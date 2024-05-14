@@ -7,20 +7,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/privacy.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/privacy.css">
+    <link rel="stylesheet" href="./assets/css/summary.css">
 
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 
     <script src="script.js"></script>
-    <!-- <script src="script.js" defer></script> -->
-    <!-- defer anstelle von Eventlistener?? s. summary.js, damit alle JS-Dateien geladen werden -->
+    <script src="./js/privacy.js"></script>
 
-    <link rel="stylesheet" href="./assets/css/summary.css">
-    <script src="./js/summary.js"></script>
     <title>Join - Privacy Policy</title>
 </head>
 
-<body onload="summaryInit()">
+<body onload="PrivacyInit()">
     <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, hier euer HTML-Code rein -->
         <div class="header-content">
             <img class="header-logo" src="/assets/img/logo-small_white.png" alt="join-logo" />
@@ -431,7 +428,7 @@
                         <li>By email: mario.markwart@gmail.com</li>
                         <li>By email: schult.sebastian@gmail.com</li>
                         <li>By email: anja_schwab@gmx.de</li>
-                    </ul>
+                    </ul><br>
                     <span>Generated using TermsFeed Privacy Policy Generator</span>
                 </div>
             </main>
