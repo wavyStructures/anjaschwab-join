@@ -428,7 +428,10 @@ function setCategory(chosenCategory){
  * Fetches information for a new card by setting values for id, type, title, description, completed subtasks, assignedTo, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard(){
-    newTask.id = getNewTaskId();
+    if (!document.getElementById('openCardContainer').hasAttribute('editing')){
+        console.log('Has editing');
+        newTask.id = getNewTaskId();
+    }
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();

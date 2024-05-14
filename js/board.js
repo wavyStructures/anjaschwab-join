@@ -520,6 +520,8 @@ function openCardDelete(taskId){
 
 function openCardEdit(taskId){
     newTask = getTaskOutOfId(taskId);
+    console.log("taskId: ", taskId);
+    console.log("Description: ", newTask.description);
     renderEditContainer();
     renderContactsToDropdown();
     renderAssignedContactsContainer();
@@ -559,8 +561,12 @@ function renderEditCardAssignedContacts(){
     })
 }
 
-function saveEditedTask(){
-    
+function saveEditedTask(taskId){
+    collectInformationsForNewCard();
+    let taskToSave = getTaskOutOfId(taskId);
+    taskToSave = newTask;
+    saveTasksToRemoteStorage();
+    closeCard();
 }
 
 function createEditHeader(){
@@ -574,7 +580,7 @@ function createEditHeader(){
 function createEditFooter(task){
     return /*html*/`
     <div class="addTaskBodyRight">
-        <div class="createBtn addTaskBtn" onclick="saveEditedTask()">
+        <div class="createBtn addTaskBtn" onclick="saveEditedTask(${task.id})">
             <span class="addTaskBtnText">Ok</span>
             <div class="createBtnImg"></div>
         </div>
