@@ -45,6 +45,40 @@ p {
   margin-bottom: 42px;
 }
 
+@media (max-width: 900px) {
+  .privacy-wrapper {
+    margin: 36px 40px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 48px;
+  }
+
+  h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--clr-text-medium-blue);
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--clr-text-medium-blue);
+    margin-bottom: 8px;
+  }
+
+  strong,
+  h4 {
+    font-size: 16px;
+    color: var(--clr-text-medium-blue);
+    margin-bottom: 6px;
+  }
+}
+
 @media (max-width: 701px) {
   .privacy-wrapper {
     margin: 36px 40px;

@@ -107,7 +107,7 @@ a:not(.active):hover {
   flex-direction: column;
   gap: 15px;
   margin-bottom: 66px;
-  margin-left: 56px;
+  /* margin-left: 56px; */
   line-height: 19.2px;
   /* text-align: left; */
 }
