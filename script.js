@@ -129,24 +129,47 @@ function logout() {
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
-
 function showInitials() {
 	try {
 		let userAsString = localStorage.getItem('currentUser');
+		let userInitialsElement = document.getElementById('userInitials');
 
-		if (userAsString) {
-			let userName = JSON.parse(userAsString).name;
-			let userInitials = getInitials(userName);
-			document.getElementById('userInitials').innerHTML = userInitials;
-		} else {
-			document.getElementById('userInitials').innerHTML = 'G';
+		if (userInitialsElement) {
+			if (userAsString) {
+				let userName = JSON.parse(userAsString).name;
+				let userInitials = getInitials(userName);
+				userInitialsElement.innerHTML = userInitials;
+			} else {
+				userInitialsElement.innerHTML = 'G';
+			}
 		}
 	} catch (error) {
 		console.error('Error while retrieving user data from localStorage:', error);
 		// Handle the error accordingly, such as setting a default value or displaying an error message.
-		document.getElementById('userInitials').innerHTML = 'G';
+		let userInitialsElement = document.getElementById('userInitials');
+		if (userInitialsElement) {
+			userInitialsElement.innerHTML = 'G';
+		}
 	}
 }
+
+// function showInitials() {
+// 	try {
+// 		let userAsString = localStorage.getItem('currentUser');
+
+// 		if (userAsString) {
+// 			let userName = JSON.parse(userAsString).name;
+// 			let userInitials = getInitials(userName);
+// 			document.getElementById('userInitials').innerHTML = userInitials;
+// 		} else {
+// 			document.getElementById('userInitials').innerHTML = 'G';
+// 		}
+// 	} catch (error) {
+// 		console.error('Error while retrieving user data from localStorage:', error);
+// 		// Handle the error accordingly, such as setting a default value or displaying an error message.
+// 		document.getElementById('userInitials').innerHTML = 'G';
+// 	}
+// }
 
 
 /**

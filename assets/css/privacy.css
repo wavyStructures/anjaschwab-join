@@ -1,7 +1,10 @@
+.privacy-wrapper {
+  margin: 76px 88px;
+}
+
 h1 {
   font-size: 61px;
   font-weight: 700;
-  margin-top: 72px;
   margin-bottom: 48px;
 }
 
@@ -39,4 +42,11 @@ p {
 .h1PrivacyBox img {
   width: 40px;
   cursor: pointer;
+  margin-bottom: 42px;
+}
+
+@media (max-width: 701px) {
+  .privacy-wrapper {
+    margin: 36px 40px;
+  }
 }

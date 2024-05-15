@@ -1,7 +1,7 @@
 /**
  * the init-function in body onload
  */
-async function PrivacyInit() {
+async function privacyInit() {
 	includeHTML();
 	// mobileGreeting();
 	// startAnimation();
@@ -29,19 +29,22 @@ async function includeHTML() {
 			element.innerHTML = "Page not found";
 		}
 	}
-	highlightPrivacyNavLink();
+	highlightPrivacyLegalNavLink();
 }
 
 
 
-function highlightPrivacyNavLink() {
+function highlightPrivacyLegalNavLink() {
 	const currentURL = window.location.href;
-	const searchString = "privacy.html";
+	const searchStringPrivacy = "privacy.html";
+	const searchStringLegal = "legal_notice.html";
 
-	if (currentURL.includes(searchString)) {
+	if (currentURL.includes(searchStringPrivacy)) {
 		const privacyNavLink = document.getElementById('privacyNav');
-
 		privacyNavLink.classList.add('highlit');
+	} else if (currentURL.includes(searchStringLegal)) {
+		const legalNavLink = document.getElementById('legalNav');
+		legalNavLink.classList.add('highlit');
 	}
 }
 

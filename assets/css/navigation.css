@@ -105,9 +105,11 @@
 
 @media (max-width: 701px) {
   .navigation-container {
+    width: 0;
     .navigation-content {
       background-color: #fff;
       display: flex;
+      justify-content: space-evenly;
       /* width: 232px; */
       /* max-width: 232px; */
       position: fixed;

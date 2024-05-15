@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/legalNotice.css">
+    <link rel="stylesheet" href="assets/css/privacy.css">
+    <link rel="stylesheet" href="assets/css/navigation.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/legalNotice.css">
+    <link rel="stylesheet" href="./assets/css/summary.css">
+
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 
     <script src="script.js"></script>
-    <!-- <script src="script.js" defer></script> -->
-    <!-- defer anstelle von Eventlistener?? s. summary.js, damit alle JS-Dateien geladen werden -->
+    <script src="./js/privacy.js"></script>
 
-    <link rel="stylesheet" href="./assets/css/summary.css">
-    <script src="./js/summary.js"></script>
     <title>Join - Legal Notice</title>
 </head>
 
-<body onload="summaryInit()">
+<body onload="privacyInit()">
     <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, hier euer HTML-Code rein -->
         <div class="header-content">
             <img class="header-logo" src="/assets/img/logo-small_white.png" alt="join-logo" />
@@ -143,25 +144,15 @@
                                 possibility of
                                 such damages, arising out of or in connection with the use or performance of <span
                                     class="blue">Join</span>.</p>
+                            <br><br>
                         </div>
                     </div>
 
                 </div>
+
+            </main>
         </div>
     </div>
-    </div>
-
-
-
-
-    </div>
-
-    </main>
-    </div>
-    </div>
-
-
-
 </body>
 
 </html>
