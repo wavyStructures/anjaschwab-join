@@ -51,7 +51,7 @@
 
                     </div>
                     <div class="category-container">
-                        <div class="category"  ondrop="moveTo('todo')" ondragover="allowDrop(event)">
+                        <div class="category" id="containerTodo" ondrop="moveTo('todo')" ondragleave="removeContainerHighlight('containerTodo')" ondragover="allowDrop(event); containerHighlight('containerTodo')">
                             <div class="categoryTitle">
                                 <h2>To Do</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
@@ -59,7 +59,7 @@
                             <div id="todo" class="categoryTasks">
                                 </div>
                             </div>
-                            <div class="category"  ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                            <div class="category" id="containerInProgress" ondrop="moveTo('inProgress')" ondragleave="removeContainerHighlight('containerInProgress')" ondragover="allowDrop(event); containerHighlight('containerInProgress')">
                                 <div class="categoryTitle">
                                     <h2>In progress</h2>
                                     <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
@@ -67,7 +67,7 @@
                                 <div id="inProgress" class="categoryTasks">
                             </div>
                         </div>
-                        <div class="category"  ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+                        <div class="category" id="containerAwaitFeedback" ondrop="moveTo('awaitFeedback')" ondragleave="removeContainerHighlight('containerAwaitFeedback')" ondragover="allowDrop(event); containerHighlight('containerAwaitFeedback')">
                             <div class="categoryTitle">
                                 <h2>Await feedback</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
@@ -75,7 +75,7 @@
                             <div id="awaitFeedback" class="categoryTasks">
                             </div>
                         </div>
-                        <div class="category"  ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                        <div class="category" id="containerDone" ondrop="moveTo('done')" ondragleave="removeContainerHighlight('containerDone')" ondragover="allowDrop(event); containerHighlight('containerDone')">
                             <div class="categoryTitle">
                                 <h2>Done</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>

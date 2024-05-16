@@ -604,6 +604,15 @@ function moveTo(category){
     saveTasksToRemoteStorage();
 }
 
+function containerHighlight(containerId){
+    document.getElementById(containerId).classList.add('drag-area-highlight');
+}
+
+function removeContainerHighlight(containerId){
+    document.getElementById(containerId).classList.remove('drag-area-highlight');
+}
+
+
 // DEBUGGING
 
 let toPrint = 'category';
