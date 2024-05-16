@@ -140,7 +140,8 @@ input[type="password"]:focus {
 .custom-checkbox > img:hover {
   /*TODO check shadow...*/
   cursor: pointer;
-  filter: drop-shadow(0px 0px 4px #333);
+  filter: drop-shadow(0px 0px 6px rgba(69, 137, 255, 0.6));
+  /* filter: drop-shadow(0px 0px 4px #333); */
 }
 
 .loginButtonsBox {
