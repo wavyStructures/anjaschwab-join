@@ -122,10 +122,24 @@ function openHelp() {
  */
 function logout() {
 	localStorage.removeItem('currentUser');
+	sessionStorage.removeItem('currentUser');
 	switchPage('login.html');
 }
 
+window.addEventListener('beforeunload', function () {
+	if (localStorage.getItem('rememberMe') !== 'true') {
+		sessionStorage.removeItem('currentUser');
+	}
+});
 
+document.addEventListener('DOMContentLoaded', function () {
+	let user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
+	if (user) {
+		switchPage('summary.html');
+	}
+
+
+});
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */

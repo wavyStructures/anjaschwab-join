@@ -30,6 +30,7 @@ async function loginInit() {
  */
 async function loadUsers() {
     users = JSON.parse(await remoteStorageGetItem('contacts'));
+    console.log('users in login.js on loginInit(): ', users);
 }
 
 
@@ -49,16 +50,32 @@ function setUsersToLocalStorage() {
  * @return {boolean} Returns false to prevent the form from submitting again.
  */
 function loginUser() {
-    let email = document.getElementById('loginEmailInput');
-    let password = document.getElementById('loginPasswordInput');
-    let loggedUser = users.find(user => user.mail == email.value && user.password == password.value);
+    let email = document.getElementById('loginEmailInput').value;
+    let password = document.getElementById('loginPasswordInput').value;
+    let rememberMe = localStorage.getItem('rememberMe') === 'true';
 
-    loggedUsers.push(loggedUser);
-    setCurrentUser(loggedUser);
+    let loggedUser = users.find(user => user.mail == email && user.password == password);
+    console.log('loggedUser from the users.find is: ', loggedUser);
 
-    switchPage('summary.html');
+    if (loggedUser) {
+        loggedUsers.push(loggedUser);
+        setCurrentUser(loggedUser);
+
+        let user = { username: loggedUser.username }
+
+        if (rememberMe) {
+            localStorage.setItem("currentUser", JSON.stringify(user));
+        } else {
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
+        }
+
+        switchPage('summary.html');
+    } else {
+        alert("Invalid email or password. Please try again.");
+    }
     return false;
 }
+
 
 
 /**
