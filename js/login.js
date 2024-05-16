@@ -68,9 +68,10 @@ function toggleRememberMeCheckbox() {
     let loginCheckboxImg = document.getElementById('loginCheckboxImg');
     if (loginCheckboxImg.src.includes('unchecked.png')) {
         loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
-
+        localStorage.setItem('rememberMe', 'true');
     } else {
         loginCheckboxImg.src = '../../assets/img/icon-check_button_unchecked.png';
+        localStorage.removeItem('rememberMe');
     };
 }
 
