@@ -431,16 +431,14 @@ function collectInformationsForNewCard(){
 
     // wenn KEINE Karte editiert wird
     if (!checkIfCardIsEditing()){
-        newTask.id = getNewTaskId();
-    } 
-
-    tasks.forEach(task => console.log("ID: ", task.id, " Title: ", task.title))
-
+        newTask.id = getNewTaskId(); // NEUE ID vergeben
+        newTask.category = 'todo'; // KATEGORIE todo vergeben
+    } //ansonsten das lassen, wo die ursprüngliche Karte war
+    
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();
     newTask.assignedTo = getNewTaskAssignedTo();
-    newTask.category = getNewTaskCategory();
     newTask.dueDate = getNewTaskDueDate();
 }
 

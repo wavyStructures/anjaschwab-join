@@ -371,7 +371,7 @@ function openCard(taskId){
     renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
 
-    console.log("Task opened -> ID: " + taskId);
+    printValueFromSpecificCard('Task open', taskId);
 }
 
 
@@ -522,8 +522,7 @@ function openCardEdit(taskId){
     renderAssignedContactsContainer();
     renderSubtasks()
     setTaskValuesToFields(newTask);
-
-    console.log("Task opened for editing -> ID: ", taskId);
+    printValueFromSpecificCard('Task edit', taskId);
 }
 
 function renderEditContainer(){
@@ -563,7 +562,8 @@ function saveEditedTask(taskId){
     taskToSave = newTask;
     saveTasksToRemoteStorage();
     closeCard();
-    console.log("Task saved -> ID: ", taskId);
+    printValueFromSpecificCard('Task saved', taskId);
+    printValuesFromEachCard('category')
 }
 
 function createEditHeader(){
@@ -582,4 +582,14 @@ function createEditFooter(task){
             <div class="createBtnImg"></div>
         </div>
     </div>`
+}
+
+let toPrint = 'category';
+
+function printValuesFromEachCard(){
+    tasks.forEach(task => console.log("ID: " + task.id + " | " + toPrint + ": " + task[toPrint]))
+}
+
+function printValueFromSpecificCard(reason, id){
+    console.log(reason + " -> ID: " + id + " | " + toPrint + ": " + tasks[id][toPrint])
 }
