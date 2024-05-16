@@ -137,7 +137,7 @@ async function boardInit() {
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
     // showAddTaskContainer();
-    openCard(2);
+    // openCard(2);
 }
 
 
@@ -592,5 +592,6 @@ function printValuesFromEachCard(){
 }
 
 function printValueFromSpecificCard(reason, id){
-    console.log(reason + " -> ID: " + id + " | " + toPrint + ": " + tasks[id][toPrint])
+    let task = getTaskOutOfId(id);
+    console.log(reason + " -> ID: " + id + " | " + toPrint + ": " + task[toPrint])
 }
