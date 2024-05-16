@@ -476,7 +476,7 @@ function renderSubtasksToOpenCard(task){
 
         content.innerHTML += /*html*/`
         <div class="openCardSubtask" ${completed}>
-            <div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${task['id']}, ${index})"></div>
+            <div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${task.id}, ${index})"></div>
             ${subtask['subtaskText']}
         </div>`
     })
@@ -491,7 +491,8 @@ function renderSubtasksToOpenCard(task){
  * @param {number} subtaskIndex - The index of the subtask in the task's subtasks array.
  */
 function setSubtaskState(taskId, subtaskIndex){
-    tasks[taskId]['subtasks'][subtaskIndex]['completed'] = !tasks[taskId]['subtasks'][subtaskIndex]['completed'];
+    let task = getTaskOutOfId(taskId);
+    task['subtasks'][subtaskIndex]['completed'] = !task['subtasks'][subtaskIndex]['completed'];
     let openCardSubtasks = document.getElementsByClassName('openCardSubtask');
     
     for (let i = 0; i < openCardSubtasks.length; i++) {
