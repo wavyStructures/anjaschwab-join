@@ -99,6 +99,7 @@ select {
     gap: var(--addTaskGap-24);
     overflow-y: scroll;
     padding: 0 24px;
+    cursor: default;
 }
 
 
