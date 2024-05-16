@@ -1,5 +1,7 @@
 let tasks = [];
 
+let currentDraggedElement;
+
 let _tasksBackup = [
     {
         'id': 0,
@@ -255,7 +257,7 @@ function renderCategories(arrayToSearchIn) {
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = filteredTasks[j];
-                categoryContainer.innerHTML += renderCardsHTML(task);
+                categoryContainer.innerHTML += renderTasksHTML(task);
                 renderAssignedToButtons(task);
             }
         } else {
@@ -584,6 +586,25 @@ function createEditFooter(task){
         </div>
     </div>`
 }
+
+// DRAG AND DROP
+
+function startDragging(taskId){
+    currentDraggedElement = taskId;
+}
+
+function allowDrop(event){
+    event.preventDefault();
+}
+
+function moveTo(category){
+    let task = getTaskOutOfId(currentDraggedElement);
+    task['category'] = category;
+    renderCategories(tasks);
+    saveTasksToRemoteStorage();
+}
+
+// DEBUGGING
 
 let toPrint = 'category';
 

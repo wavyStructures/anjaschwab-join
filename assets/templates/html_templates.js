@@ -114,19 +114,19 @@ function renderSummaryHTML() {
  * @param {object} content the div the cards will be rendered in
  * @param {array} categoryCards JSON of cards (fitting to the category)
  */
-function renderCardsHTML(card) {
+function renderTasksHTML(task) {
   return /*html*/ `
-    <div draggable="true" id="${card["id"]}" class="card" onclick="openCard(${card['id']})">
-        <div class="cardType">${card["type"]}</div>
-        <div class="cardTitle">${card["title"]}</div>
-        <div class="cardText">${card["description"]}</div>
-        <div class="cardSubtasks">${renderSubtask(card)}</div>
+    <div draggable="true" ondragstart="startDragging(${task.id})" id="${task.id}" class="card" onclick="openCard(${task.id})">
+        <div class="cardType">${task.type}</div>
+        <div class="cardTitle">${task.title}</div>
+        <div class="cardText">${task.description}</div>
+        <div class="cardSubtasks">${renderSubtask(task)}</div>
         <div class="cardBottomContainer">
         <div id="cardAssignedToContainerId${
-          card["id"]
+          task["id"]
         }" class="cardAssignedToContainer"></div>
             <div class="cardPriority">${setPriorityImage(
-              card["priority"]
+              task["priority"]
             )}</div>
         </div>
     </div>`;
