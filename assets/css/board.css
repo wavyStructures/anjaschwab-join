@@ -422,6 +422,7 @@ progress{
     background-color: white;
     font-size: 1.188rem;
     z-index: 1000;
+    cursor: default;
 
     .boardAddTaskCloseHoverContainer{
         position: inherit;
