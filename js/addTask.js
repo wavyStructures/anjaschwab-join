@@ -428,10 +428,14 @@ function setCategory(chosenCategory){
  * Fetches information for a new card by setting values for id, type, title, description, completed subtasks, assignedTo, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard(){
-    if (!document.getElementById('openCardContainer').hasAttribute('editing')){
-        console.log('Has editing');
+
+    // wenn KEINE Karte editiert wird
+    if (!checkIfCardIsEditing()){
         newTask.id = getNewTaskId();
-    }
+    } 
+
+    tasks.forEach(task => console.log("ID: ", task.id, " Title: ", task.title))
+
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();

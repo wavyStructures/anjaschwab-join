@@ -370,6 +370,8 @@ function openCard(taskId){
     renderContactsToOpenCard(task);
     renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
+
+    console.log("Task opened -> ID: " + taskId);
 }
 
 
@@ -515,14 +517,13 @@ function openCardDelete(taskId){
 
 function openCardEdit(taskId){
     newTask = getTaskOutOfId(taskId);
-    console.log("taskId: ", taskId);
-    console.log("Description: ", newTask.description);
     renderEditContainer();
     renderContactsToDropdown();
     renderAssignedContactsContainer();
     renderSubtasks()
-    
     setTaskValuesToFields(newTask);
+
+    console.log("Task opened for editing -> ID: ", taskId);
 }
 
 function renderEditContainer(){
@@ -562,6 +563,7 @@ function saveEditedTask(taskId){
     taskToSave = newTask;
     saveTasksToRemoteStorage();
     closeCard();
+    console.log("Task saved -> ID: ", taskId);
 }
 
 function createEditHeader(){
