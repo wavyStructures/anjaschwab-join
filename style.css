@@ -97,3 +97,7 @@ a {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.end-of-page {
+  margin-bottom: 80px;
+}
