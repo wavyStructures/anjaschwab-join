@@ -3,7 +3,7 @@
  */
 async function init() {
 	includeHTML();
-	mobileGreeting();
+	// mobileGreeting();
 	// startAnimation();
 	// renderHeader();
 	// renderNavigation();
@@ -132,14 +132,15 @@ window.addEventListener('beforeunload', function () {
 	}
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-	let user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
-	if (user) {
-		switchPage('summary.html');
-	}
+// document.addEventListener('DOMContentLoaded', function () {
+// 	let user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
+// 	if (user) {
+// 		switchPage('summary.html');
+// 	}
+
+// });
 
 
-});
 /**
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
@@ -203,9 +204,9 @@ function openSmallMenu() {
 	if (screenWidth <= 701) {
 		smallMenu.classList.remove("opacityZero");
 		smallMenu.classList.remove("visible");
-		smallMenuMobile.classList.toggle("d-none");
+		smallMenuMobile.classList.toggle("opacityZero");
 	} else {
-		smallMenuMobile.classList.add("d-none");
+		smallMenuMobile.classList.add("opacityZero");
 		smallMenu.classList.toggle("opacityZero");
 		smallMenu.classList.toggle("visible");
 	}

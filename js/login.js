@@ -61,7 +61,7 @@ function loginUser() {
         loggedUsers.push(loggedUser);
         setCurrentUser(loggedUser);
 
-        let user = { username: loggedUser.username }
+        let user = { username: loggedUser.name }
 
         if (rememberMe) {
             localStorage.setItem("currentUser", JSON.stringify(user));
