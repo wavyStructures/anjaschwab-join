@@ -53,7 +53,41 @@ h4 {
   font-weight: 400;
 }
 
+.lastHelpDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+}
+
 .bottomGreetingHelp {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  h2 {
+    margin: 46px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .help-page {
+    margin: 0 46px;
+  }
+
+  h2 {
+    margin: 16px 0 60px 0;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .help-page {
+    font-size: 12px;
+  }
+  h2 {
+    font-size: 24px;
+  }
 }
