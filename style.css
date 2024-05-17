@@ -101,3 +101,9 @@ a {
 .end-of-page {
   margin-bottom: 80px;
 }
+
+@media screen and (max-width: 700px) {
+  .main {
+    height: 79vh;
+  }
+}
