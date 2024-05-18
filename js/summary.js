@@ -177,15 +177,37 @@ function buttonEventListener() {
 }
 
 
+// function greetUserMobile() {
+//     if (window.innerWidth < 701) {
+//         document.getElementById('greetingContainer').classList.remove('d-none');
+//         document.getElementById('subMainSummary').classList.remove('sub-main-summary');
+//         document.getElementById('subMainSummary').classList.add('d-none');
+
+//         mobileGreeting();
+//         setTimeout(hideMobileGreeting, 6000);
+//     }
+// }
+
+
 function greetUserMobile() {
-    if (window.innerWidth < 800) {
-        document.getElementById('greetingContainer').classList.remove('d-none');
-        document.getElementById('subMainSummary').classList.remove('sub-main-summary');
-        document.getElementById('subMainSummary').classList.add('d-none');
+    if (window.innerWidth < 701) {
+        let greetingContainer = document.getElementById('greetingContainer');
+        let subMainSummary = document.getElementById('subMainSummary');
+
+        greetingContainer.style.display = 'flex';
+        subMainSummary.classList.remove('sub-main-summary');
+        subMainSummary.classList.add('d-none');
 
         mobileGreeting();
-        setTimeout(hideMobileGreeting, 6000);
+        setTimeout(hideMobileGreeting, 60000);
     }
+}
+
+function hideMobileGreeting() {
+    document.getElementById('greetingContainer').style.display = 'none';
+    subMainSummary.classList.add('sub-main-summary');
+    subMainSummary.classList.remove('d-none');
+
 }
 
 function mobileGreeting() {
@@ -203,9 +225,9 @@ function mobileGreeting() {
 }
 
 
-function hideMobileGreeting() {
-    document.getElementById('greetingContainer').classList.add('d-none');
-    document.getElementById('greetingContainer').classList.remove('greeting-container');
-    document.getElementById('subMainSummary').classList.add('sub-main-summary');
-    document.getElementById('subMainSummary').classList.remove('d-none');
-}
+// function hideMobileGreeting() {
+//     document.getElementById('greetingContainer').classList.add('d-none');
+//     document.getElementById('greetingContainer').classList.remove('greeting-container');
+//     document.getElementById('subMainSummary').classList.add('sub-main-summary');
+//     document.getElementById('subMainSummary').classList.remove('d-none');
+// }

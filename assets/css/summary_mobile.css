@@ -1,90 +1,157 @@
-@media (min-width: 481px) and (max-width: 769px) {
-  /* #subMainSummary {
-    display: none;
-  } */
-
-  .mobile-summary-main {
-    width: 98vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .mobile-summary-box {
-    width: 98vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .mobile-square-button {
-    width: 186px;
-    height: 152px;
-    padding: 15px 40px 15px 40px;
-    gap: 0px;
-    border-radius: 30px;
-    background-color: #fff;
-    margin-right: 0;
-  }
-
-  .mobile-inner-square-button span {
-    font-size: 19px;
-  }
-
-  .mobile-amount {
-    font-size: 40px;
-  }
-}
-
-@media screen and (min-width: 956x) and (max-width: 1156px) {
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 950px) {
   .button-container {
-    max-width: 956px;
+    /* max-width: 950px; */
     display: grid;
-    grid-template-columns: 204px 1fr 1fr 1fr;
-    grid-template-rows: 190px 220px 220px;
+    grid-template-columns: 204px 204px 204px;
+    grid-template-rows: auto;
     justify-content: center;
     align-items: center;
-    gap: 24px;
-    grid-template-areas:
-      "urgent urgent urgent"
-      "inProgress toDo inBoard "
-      "feedback done done";
+    /* gap: 24px; */
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    /* grid-template-areas:
+    "urgent urgent inProgress"
+    "toDo inBoard urgent"
+    "feedback done urgent"; */
+
+    /* background: blue; */
+  }
+
+  .urgent {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    width: calc((204px * 3) + (2 * 24px));
+  }
+
+  .toDo {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background: white;
+    height: 219px;
+    width: 204px;
+  }
+
+  .inBoard {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
   }
 
   .inProgress {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
+  }
+
+  .feedback {
+    height: 219px;
+    width: 204px;
+  }
+
+  .done {
+    height: 219px;
     width: 204px;
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 955px) {
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 1204px) {
   .button-container {
-    max-width: 950px;
     display: grid;
-    grid-template-columns: 204px 1fr 1fr;
-    grid-template-rows: 190px 220px 220px 220px;
+    grid-template-columns: 204px 204px 204px 204px;
+    grid-template-rows: auto;
     justify-content: center;
     align-items: center;
-    gap: 24px;
-    grid-template-areas:
-      "urgent urgent"
-      "toDo inBoard"
-      "inProgress inProgress"
-      "feedback done";
+    /* gap: 24px; */
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
   }
-}
 
-@media (max-width: 480px) {
   .urgent {
-    width: 396px;
-    height: 150px;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    width: calc((204px * 3) + (2 * 24px));
   }
 
   .toDo {
-    width: 100%;
-    height: 106px;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+    background: white;
+    height: 219px;
+    width: 204px;
   }
+
+  .inBoard {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
+  }
+
+  .inProgress {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
+  }
+
+  .feedback {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
+  }
+
+  .done {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+    height: 219px;
+    width: 204px;
+  }
+}
+
+.usernameForGreeting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+}
+
+.userGreeting {
+  font-family: open sans;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.h1-box {
+  max-width: fit-content;
+  gap: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 0;
+  margin-bottom: 72px;
+}
+
+.daytimeGreeting {
+  font-family: Open Sans;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 76.8px;
+  text-align: left;
+  color: var(--clr-text-good-morning);
+  align-content: center;
+}
+
+#usernameForGreeting {
+  max-width: fit-content;
+  color: var(--clr-main);
+  height: 58px;
+  margin: 9.5px 0 9.5px 22px;
+  font-family: Open Sans;
+  font-size: 64px;
+  font-weight: 700;
 }

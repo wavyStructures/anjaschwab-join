@@ -3,7 +3,7 @@
  */
 async function init() {
 	includeHTML();
-	// mobileGreeting();
+	mobileGreeting();
 	// startAnimation();
 	// renderHeader();
 	// renderNavigation();
@@ -187,15 +187,10 @@ function showInitials() {
 // }
 
 
-/**
- * opens small menu onclick on intials button inside header
- */
-// function openSmallMenu() {
-// 	let content = getDiv("smallMenu");
-// 	content.classList.toggle("opacityZero");
-// 	content.classList.toggle("visible");
-// }
 
+/**
+ * Function to handle opening the small menu based on screen width.
+ */
 function openSmallMenu() {
 	let screenWidth = window.innerWidth;
 	let smallMenu = getDiv("smallMenu");

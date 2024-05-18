@@ -2,31 +2,50 @@
   --clr-summary-square-button-focus: #d2e3ff;
 }
 
-.button-container {
+.greetingContainer-and-subMainSummary {
   width: 100%;
-  /* max-width: 870px; */
-  display: grid;
-  grid-template-columns: 204px 1fr 1fr 1fr 1fr;
-  grid-template-rows: 190px 220px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
-  grid-template-areas:
+  /* padding-left: 50px; */
+  height: 100vh;
+}
+
+.button-container {
+  /* width: 100%; */
+  /* max-width: 870px; */
+  display: grid;
+  grid-template-columns: 204px 204px;
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: center;
+  /* gap: 24px; */
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  /* grid-template-areas:
     "urgent urgent urgent inBoard"
-    "toDo inProgress feedback done";
+    "toDo inProgress feedback done"; */
 }
 
 .inBoard {
-  grid-area: inBoard;
+  /* grid-area: inBoard;
   height: 191px;
+  width: 204px; */
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  height: 219px;
   width: 204px;
+  background: white;
 }
 
 .toDo {
   background-color: var(--clr-summary-square-button-focus);
-  grid-area: toDo;
+  /* grid-area: toDo; */
   height: 219px;
-  width: 204px;
+  /* width: 204px; */
+  width: calc((204px * 2) + 24px);
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
 }
 
 .square-button:hover {
@@ -109,17 +128,29 @@
 
 .inProgress {
   background-color: #fff;
-  grid-area: inProgress;
+  /* grid-area: inProgress; */
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  height: 219px;
+  width: 204px;
 }
 
 .feedback {
   background-color: #fff;
-  grid-area: feedback;
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  /* grid-area: feedback; */
+  height: 219px;
+  width: 204px;
 }
 
 .done {
   background-color: #fff;
-  grid-area: done;
+  /* grid-area: done; */
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+  height: 219px;
+  width: 204px;
 }
 
 .flex {
@@ -152,13 +183,13 @@
   display: grid;
   place-items: center;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .summary-box {
   /* background-color: rgba(39, 134, 22, 0.4); */
-  width: 912px;
-  height: 591px;
+  /* width: 912px; */
+  /* height: 591px; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -234,19 +265,27 @@ button {
 }
 
 .urgentAndDate {
-  grid-area: urgent;
+  /* grid-area: urgent; */
   box-sizing: border-box;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   background-color: var(--clr-main);
   height: 191px;
-  width: 672px;
+  /* width: 672px; */
   border-radius: 30px;
   padding: 28px 48px;
   gap: 9px;
   cursor: pointer;
   color: #fff;
+}
+
+.urgent {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  height: 219px;
+  width: calc((204px * 2) + 24px);
+  /* background: white; */
 }
 
 .urgentAndDate:hover {
@@ -337,10 +376,7 @@ button {
   background-color: aqua;
   width: 100%;
   height: 100vh;
-}
-
-.greeting-container {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
