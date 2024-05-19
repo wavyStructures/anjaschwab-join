@@ -84,6 +84,7 @@
 
 .opacityZero {
   opacity: 0;
+  z-index: -1000;
 }
 
 .small-menu-mobile {
