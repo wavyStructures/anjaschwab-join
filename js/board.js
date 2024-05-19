@@ -149,7 +149,6 @@ function renderBoardAddTaskOverlay(){
     document.body.appendChild(newDiv);
 
     let container = document.getElementById('addTaskHoverContainer');
-    // container.innerHTML = renderBoardAddTaskOverlayHTML();
     container.innerHTML = renderBoardAddTaskHeaderHTML();
     container.innerHTML += renderAddTaskMainContentHTML();
     container.innerHTML += renderAddTaskFooterHTML();
