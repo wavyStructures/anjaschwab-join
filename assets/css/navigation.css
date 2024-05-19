@@ -26,6 +26,12 @@
   flex-direction: column;
 }
 
+.nav-buttons-box {
+  display: flex;
+  flex-direction: column;
+  gap:15px
+}
+
 .nav-btn {
   background-color: white;
   display: flex;
@@ -129,7 +135,6 @@
   }
 
   .nav-buttons-box {
-    display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100vw;
