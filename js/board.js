@@ -152,6 +152,8 @@ function renderBoardAddTaskOverlay(){
     container.innerHTML = renderBoardAddTaskHeaderHTML();
     container.innerHTML += renderAddTaskMainContentHTML();
     container.innerHTML += renderAddTaskFooterHTML();
+    setTodayDateAsMin();
+    setPriority('medium');
     renderContactsToDropdown();
 }
 

@@ -3,12 +3,8 @@ async function addTaskInit(){
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderAddTaskHTML();
-    setPriority('medium');
-    renderContactsToDropdown();
-    setTodayDateAsMin();
-    renderSubtasks();
-    
-    
+
+
 }
 
 let tempAssignedContacts = [];
@@ -34,6 +30,10 @@ function renderAddTaskHTML() {
     container.innerHTML = '';
     container.innerHTML += renderAddTaskMainContentHTML();
     container.innerHTML += renderAddTaskFooterHTML();
+    setTodayDateAsMin();
+    setPriority('medium');
+    renderContactsToDropdown();
+    renderSubtasks();
   }
 
 /**
