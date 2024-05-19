@@ -22,9 +22,11 @@
     grid-column: 1 / 4;
     grid-row: 1 / 2;
     width: calc((204px * 3) + (2 * 24px));
+    /* height: 150px; */
   }
 
   .toDo {
+    background-color: var(--clr-summary-square-button-focus);
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     background: white;
@@ -77,16 +79,18 @@
   }
 
   .toDo {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
     background: white;
     height: 219px;
     width: 204px;
+    background-color: var(--clr-summary-square-button-focus);
   }
 
   .inBoard {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+
     height: 219px;
     width: 204px;
   }
@@ -154,4 +158,36 @@
   font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
+}
+
+@media (max-width: 950px) {
+  .inner-square-button.toDo {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .square-button {
+    padding: 0;
+    margin: 0;
+    height: 106px;
+  }
+
+  .urgent {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    width: calc((204px * 3) + (2 * 24px));
+    height: 150px;
+  }
+
+  .urgentAndDate {
+    height: 151px;
+  }
+
+  .toDo {
+    background-color: var(--clr-summary-square-button-focus);
+    width: calc((204px * 3) + (2 * 24px));
+  }
 }

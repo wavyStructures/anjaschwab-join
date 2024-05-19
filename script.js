@@ -196,7 +196,7 @@ function openSmallMenu() {
 	let smallMenu = getDiv("smallMenu");
 	let smallMenuMobile = getDiv("smallMenuMobile");
 
-	if (screenWidth <= 701) {
+	if (screenWidth <= 801) {
 		smallMenu.classList.remove("opacityZero");
 		smallMenu.classList.remove("visible");
 		smallMenuMobile.classList.toggle("opacityZero");
@@ -249,25 +249,25 @@ function setActiveNavButton() {
 	switch (location.pathname) {
 		case '/summary.html':
 			summaryNavLink.classList.add('active');
-			if (window.innerWidth < 700) {
+			if (window.innerWidth < 800) {
 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
 			}
 			break;
 		case '/addTask.html':
 			addTaskNavLink.classList.add('active');
-			if (window.innerWidth < 700) {
+			if (window.innerWidth < 800) {
 				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
 			}
 			break;
 		case '/board.html':
 			boardNavLink.classList.add('active');
-			if (window.innerWidth < 700) {
+			if (window.innerWidth < 800) {
 				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
 			}
 			break;
 		case '/contacts.html':
 			contactsNavLink.classList.add('active');
-			if (window.innerWidth < 700) {
+			if (window.innerWidth < 800) {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
 			}
 			break;

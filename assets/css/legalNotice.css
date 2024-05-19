@@ -112,7 +112,7 @@ a:not(.active):hover {
   /* text-align: left; */
 }
 
-@media (max-width: 701px) {
+@media (max-width: 801px) {
   .legal_notice-wrapper {
     margin: 36px 40px;
   }

@@ -100,7 +100,7 @@
   background-color: var(--clr-main);
 }
 
-@media (max-width: 701px) {
+@media (max-width: 801px) {
   .navigation-container {
     width: 0;
     .navigation-content {

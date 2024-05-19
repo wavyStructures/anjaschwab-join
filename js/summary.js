@@ -190,7 +190,7 @@ function buttonEventListener() {
 
 
 function greetUserMobile() {
-    if (window.innerWidth < 701) {
+    if (window.innerWidth < 801) {
         let greetingContainer = document.getElementById('greetingContainer');
         let subMainSummary = document.getElementById('subMainSummary');
 
@@ -224,10 +224,3 @@ function mobileGreeting() {
     }
 }
 
-
-// function hideMobileGreeting() {
-//     document.getElementById('greetingContainer').classList.add('d-none');
-//     document.getElementById('greetingContainer').classList.remove('greeting-container');
-//     document.getElementById('subMainSummary').classList.add('sub-main-summary');
-//     document.getElementById('subMainSummary').classList.remove('d-none');
-// }

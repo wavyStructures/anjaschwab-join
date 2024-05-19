@@ -79,7 +79,7 @@ p {
   }
 }
 
-@media (max-width: 701px) {
+@media (max-width: 801px) {
   .privacy-wrapper {
     margin: 36px 40px;
   }

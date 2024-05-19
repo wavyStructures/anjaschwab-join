@@ -113,7 +113,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 701px) {
+@media (max-width: 801px) {
   .header-mobile {
     display: flex;
   }
