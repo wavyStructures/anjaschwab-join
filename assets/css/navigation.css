@@ -70,7 +70,7 @@
   a {
     color: var(--clr-text-menu);
     text-decoration: none;
-    font-family: Open Sans;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     font-weight: 400;
     padding: 8px;
