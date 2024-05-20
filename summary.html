@@ -30,7 +30,7 @@
 
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
-            <main id="main" class="main">
+            <main id="main" class="main main-summary">
                 <div class="greetingContainer-and-subMainSummary">
 
                     <div id="greetingContainer" class="greeting-container d-none">
@@ -74,8 +74,8 @@
                                 </div>
 
 
-                                <div class="square-button toDo">
-                                    <div class="inner-square-button">
+                                <div id="toDoButton" class="square-button toDo">
+                                    <div class="inner-square-button toDoInner">
                                         <div class="image-and-amount flex">
                                             <img src="./assets/img/icon-blue-todo.png" alt="todo list">
                                             <div id="amountTodo" class="amount">1</div>
@@ -110,7 +110,7 @@
                                             <img src="./assets/img/icon-blue-done.png" alt="thumbs up">
                                             <div id="amountDone" class="amount">1</div>
                                         </div>
-                                        <span>Tasks<br>Done</span>
+                                        <span>Tasks Done</span>
                                     </div>
                                 </div>
                             </div>
