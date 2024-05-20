@@ -26,12 +26,6 @@
   flex-direction: column;
 }
 
-.nav-buttons-box {
-  display: flex;
-  flex-direction: column;
-  gap:15px
-}
-
 .nav-btn {
   background-color: white;
   display: flex;
@@ -76,7 +70,7 @@
   a {
     color: var(--clr-text-menu);
     text-decoration: none;
-    font-family: "Open Sans", sans-serif;
+    font-family: Open Sans;
     font-size: 16px;
     font-weight: 400;
     padding: 8px;
@@ -105,6 +99,16 @@
   color: white;
   background-color: var(--clr-main);
 }
+
+/*////////////////////////////////////////////////////////////////////max  950px*/
+
+@media (max-width: 950px) {
+  .navigation-content {
+    padding-inline: 8px;
+  }
+}
+
+/*////////////////////////////////////////////////////////////////////max  801px*/
 
 @media (max-width: 801px) {
   .navigation-container {
@@ -135,10 +139,10 @@
   }
 
   .nav-buttons-box {
+    display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100vw;
-    flex-direction: row;
   }
 
   .nav-btn {
