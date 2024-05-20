@@ -291,7 +291,7 @@ function renderAddTaskMainContentHTML(){
             <div class="addTaskDueDate ">
                 <div class="addTaskTitles"><span class="bold">Due date</span></div>
                 <div>
-                    <div class="addTaskDueDateInputContainer border-bottom pointer" onclick="addTaskDueDateOpenCalendear()">
+                    <div class="addTaskDueDateInputContainer border-bottom pointer" id="addTaskDueDateInputContainer" onclick="addTaskDueDateOpenCalendear()">
                         <input id="addTaskDueDateInput" type="date"  value="">
                         <div class="addTaskDueDateImage"></div>
                     </div>

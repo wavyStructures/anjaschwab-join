@@ -79,8 +79,13 @@ select {
 .addTaskRequired {
     width: 125px;
     height: 16px;
-    background-color: red;
+    color: red;
     margin-top: 4px;
+    font-size: 0.813rem;
+}
+
+.is-invalid{
+    border-bottom: 1px solid red !important;
 }
 
 .addTaskBody {

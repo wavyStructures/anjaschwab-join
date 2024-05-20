@@ -3,6 +3,7 @@ async function addTaskInit(){
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderAddTaskHTML();
+    checkValidity()
 
 
 }
@@ -10,6 +11,18 @@ async function addTaskInit(){
 let tempAssignedContacts = [];
 let tempPriority = '';
 let tempSubtasks = [];
+let requiredInputFields = [
+    {
+        'id': 'addTaskEnterTitleInput',
+        'requiredFieldId': 'requiredTitle',
+        'idForRedUnderline':  'addTaskEnterTitleInput'
+    },
+    {
+        'id': 'addTaskDueDateInput',
+        'requiredFieldId': 'requiredDueDate',
+        'idForRedUnderline': 'addTaskDueDateInputContainer'
+    }
+];
 
 let newTask = 
     {
@@ -580,6 +593,40 @@ async function createTask(){
     showSuccessMessage();
 }
 
+
+function checkValidity(){
+    requiredInputFields.forEach(requiredInputField => {
+        showOrHideRequiredMessage(requiredInputField);
+    })
+}
+
+function showOrHideRequiredMessage(requiredInbputField){
+    let inputField = document.getElementById(requiredInbputField.id);
+    let requiredMessageField = document.getElementById(requiredInbputField.requiredFieldId);
+    let toUnderline = document.getElementById(requiredInbputField.idForRedUnderline);
+
+    if (getStateOfRequriredField(requiredInbputField)){
+        toUnderline.classList.remove('is-invalid');
+        requiredMessageField.innerHTML = "";
+    } else {
+        toUnderline.classList.add('is-invalid');
+        requiredMessageField.innerHTML = "This field is requried";
+    }
+
+}
+
+
+function getStateOfRequriredField(requiredInbputField){
+
+    let inputField = document.getElementById(requiredInbputField.id);
+    if (inputField.value == '') return false;
+    return true;
+}
+
+
+
+
+// REMOTE STORAGE
 async function saveTasksToRemoteStorage(){
    await remoteStorageSetItem('tasks', JSON.stringify(tasks))
 }
