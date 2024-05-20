@@ -155,6 +155,7 @@ function renderBoardAddTaskOverlay(){
     setTodayDateAsMin();
     setPriority('medium');
     renderContactsToDropdown();
+    checkValidity();
 }
 
 function showAddTaskContainer(){

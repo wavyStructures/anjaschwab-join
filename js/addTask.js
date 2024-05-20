@@ -3,9 +3,7 @@ async function addTaskInit(){
     await loadContactsStorage();
     await loadTasksFromRemoteStorage();
     renderAddTaskHTML();
-    checkValidity()
-
-
+    checkValidity();
 }
 
 let tempAssignedContacts = [];
@@ -596,12 +594,14 @@ async function createTask(){
 
 function checkValidity(){
     requiredInputFields.forEach(requiredInputField => {
-        showOrHideRequiredMessage(requiredInputField);
+        document.getElementById(requiredInputField.id).addEventListener('input', () => {
+            toggleRequiredMessage(requiredInputField);
+        })
+        toggleRequiredMessage(requiredInputField);
     })
 }
 
-function showOrHideRequiredMessage(requiredInbputField){
-    let inputField = document.getElementById(requiredInbputField.id);
+function toggleRequiredMessage(requiredInbputField){
     let requiredMessageField = document.getElementById(requiredInbputField.requiredFieldId);
     let toUnderline = document.getElementById(requiredInbputField.idForRedUnderline);
 
@@ -612,12 +612,10 @@ function showOrHideRequiredMessage(requiredInbputField){
         toUnderline.classList.add('is-invalid');
         requiredMessageField.innerHTML = "This field is requried";
     }
-
 }
 
 
 function getStateOfRequriredField(requiredInbputField){
-
     let inputField = document.getElementById(requiredInbputField.id);
     if (inputField.value == '') return false;
     return true;
