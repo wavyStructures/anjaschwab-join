@@ -4,8 +4,6 @@ let dayTime;                                                //TODO: anja: ist gl
 
 /**
  * Initializes the summary by including the HTML and getting the current date.
- *
- * @return {void} This function does not return anything.
  */
 async function summaryInit() {
     includeHTML();
@@ -24,6 +22,9 @@ async function summaryInit() {
 }
 
 
+/**
+ * Retrieves the currently logged in user by calling the getCurrentUser function and assigns it to the loggedUser variable.
+ */
 function getLoggedUser() {
     loggedUser = getCurrentUser();
 }
@@ -101,7 +102,7 @@ function getDate() {
  * Loads the amounts of tasks in each category and calls function to display them.
  *
  * @param {array} categories - An array of category names.
- * @param {array} categoriesAmounts - An array of category amounts.                                 //TODO  anja: was wäre der Sinn hier was zu returnen?
+ * @param {array} categoriesAmounts - An array of category amounts.                                 
  */
 function loadAmounts() {
     let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
@@ -177,18 +178,9 @@ function buttonEventListener() {
 }
 
 
-// function greetUserMobile() {
-//     if (window.innerWidth < 701) {
-//         document.getElementById('greetingContainer').classList.remove('d-none');
-//         document.getElementById('subMainSummary').classList.remove('sub-main-summary');
-//         document.getElementById('subMainSummary').classList.add('d-none');
-
-//         mobileGreeting();
-//         setTimeout(hideMobileGreeting, 6000);
-//     }
-// }
-
-
+/**
+ * Displays a mobile greeting if the window width is less than 801 pixels.
+ */
 function greetUserMobile() {
     if (window.innerWidth < 801) {
         let greetingContainer = document.getElementById('greetingContainer');
@@ -203,6 +195,9 @@ function greetUserMobile() {
     }
 }
 
+/**
+ * Hides the mobile greeting by setting the display style of the 'greetingContainer' element to 'none'and adding 'sub-main-summary' class to 'subMainSummary' element and removing 'd-none' class.
+ */
 function hideMobileGreeting() {
     document.getElementById('greetingContainer').style.display = 'none';
     subMainSummary.classList.add('sub-main-summary');
@@ -210,6 +205,9 @@ function hideMobileGreeting() {
 
 }
 
+/**
+ * Sets the mobile greeting based on the current state of the application.
+ */
 function mobileGreeting() {
     let mobileGreeting = document.getElementById('mobileGreeting');
     mobileGreeting.innerHTML = '';
