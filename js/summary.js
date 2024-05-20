@@ -191,7 +191,7 @@ function greetUserMobile() {
         subMainSummary.classList.add('d-none');
 
         mobileGreeting();
-        setTimeout(hideMobileGreeting, 60000);
+        setTimeout(hideMobileGreeting, 6000);
     }
 }
 

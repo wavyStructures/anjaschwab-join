@@ -415,41 +415,376 @@ button {
 
 /*////////////////////////////Media Queries /////////////////////////////////////*/
 
-/*/ ///////////////////////////////////////////////////////////////////unter 720px*/
-/* @media (max-width: 800px) {
-  .square-button {
-    padding: 0;
-    margin: 0;
-    height: 186px;
-  }
-
-  #toDoButton {
-    width: calc(((204px * 3) + (2 * 24px)));
-  }
-
-  .urgent {
-    width: calc(((204px * 3) + (2 * 24px)));
-  }
-} */
-
-/*/ ///////////////////////////////////////////////////////////////////unter 800px*/
-/* @media (max-width: 800px) {
-  .square-button {
-    padding: 0;
-    margin: 0;
-    height: 186px;
-  }
-
-  #toDoButton {
-    width: calc(((204px * 3) + (2 * 24px)));
+/* / ///////////////////////////////////////////////////////////////////max 430px*/
+@media (min-width: 320px) and (max-width: 430px) {
+  .button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 8px;
+    grid-row-gap: 21px;
+    height: auto;
+    width: 300px;
   }
 
   .urgent {
-    width: calc(((204px * 3) + (2 * 24px)));
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    width: 300px;
+    height: 150px;
   }
-} */
 
-/*////////////////////////////////////////////////////////////////////min 800px*/
+  .date {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 12px;
+  }
+
+  .dateBox span {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .urgentBox {
+    span {
+      font-weight: 400;
+      font-size: 19px;
+    }
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .square-button {
+    padding: 0;
+    margin: 0;
+    width: 142px;
+    height: 152px;
+
+    span {
+      font-weight: 400;
+      font-size: 19px;
+      white-space: pre-line;
+    }
+
+    img {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  .amount,
+  #amountUrgent {
+    font-size: 26px;
+  }
+
+  .image-and-amount {
+    gap: 8px;
+  }
+
+  .verticalSeparaterLine {
+    height: 106px;
+    border: 2.5px solid #fff;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .toDo {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .inBoard {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    padding-bottom: 26px;
+  }
+
+  .inProgress {
+    grid-column: 2 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .feedback {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  .done {
+    background-color: #fff;
+    grid-column: 2 /2;
+    grid-row: 4 / 5;
+    padding-bottom: 26px;
+  }
+
+  #toDoButton {
+    background-color: var(--clr-summary-square-button-focus);
+    width: 300px;
+    height: 106px;
+  }
+}
+
+/* / ///////////////////////////////////////////////////////////////////max 600px*/
+@media (min-width: 430px) and (max-width: 600px) {
+  .sub-main-summary {
+    width: -webkit-fill-available;
+    padding-left: 16px;
+  }
+
+  #h1GreetingUser {
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 21px;
+    grid-row-gap: 21px;
+    height: auto;
+  }
+
+  .urgent {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    width: 396px;
+    height: 150px;
+  }
+
+  .toDo {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .inBoard {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .inProgress {
+    grid-column: 2 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .feedback {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  .done {
+    background-color: #fff;
+    grid-column: 2 /2;
+    grid-row: 4 / 5;
+  }
+
+  #toDoButton {
+    background-color: var(--clr-summary-square-button-focus);
+    width: 396px;
+    height: 106px;
+  }
+
+  .date {
+    font-weight: 700;
+    font-size: 23px;
+    white-space: nowrap;
+    margin-top: 12px;
+  }
+
+  .dateBox span {
+    font-weight: 400;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .urgentBox {
+    span {
+      font-weight: 400;
+      font-size: 19px;
+      white-space: nowrap;
+    }
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .square-button {
+    padding: 0;
+    margin: 0;
+    width: 186px;
+    height: 152px;
+
+    span {
+      font-weight: 400;
+      font-size: 19px;
+    }
+
+    img {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  .amount,
+  #amountUrgent {
+    font-size: 40px;
+  }
+
+  .verticalSeparaterLine {
+    height: 106px;
+    border: 2.5px solid #fff;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+/* / ///////////////////////////////////////////////////////////////////unter 720px*/
+@media (min-width: 430px) and (max-width: 600px) {
+  .sub-main-summary {
+    width: -webkit-fill-available;
+    padding-left: 16px;
+  }
+
+  #h1GreetingUser {
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 21px;
+    grid-row-gap: 21px;
+    height: auto;
+  }
+
+  .urgent {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    width: 396px;
+    height: 150px;
+  }
+
+  .toDo {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .inBoard {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .inProgress {
+    grid-column: 2 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .feedback {
+    background-color: #fff;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  .done {
+    background-color: #fff;
+    grid-column: 2 /2;
+    grid-row: 4 / 5;
+  }
+
+  #toDoButton {
+    background-color: var(--clr-summary-square-button-focus);
+    width: 396px;
+    height: 106px;
+
+    .inner-square-button {
+      gap: 8px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .date {
+    font-weight: 700;
+    font-size: 23px;
+    white-space: nowrap;
+    margin-top: 12px;
+  }
+
+  .dateBox span {
+    font-weight: 400;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .urgentBox {
+    span {
+      font-weight: 400;
+      font-size: 19px;
+      white-space: nowrap;
+    }
+    img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .square-button {
+    padding: 0;
+    margin: 0;
+    width: 186px;
+    height: 152px;
+
+    span {
+      font-weight: 400;
+      font-size: 19px;
+    }
+
+    img {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  .amount,
+  #amountUrgent {
+    font-size: 40px;
+  }
+
+  .verticalSeparaterLine {
+    height: 106px;
+    border: 2.5px solid #fff;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+/*////////////////////////////////////////////////////////////////////max 800px*/
+@media (max-width: 800px) {
+  .daytimeGreeting {
+    display: none;
+  }
+  .h1-box {
+    height: 0;
+    margin-bottom: 0;
+  }
+}
+
+/*////////////////////////////////////////////////////////////////////min 700px*/
 @media (max-width: 949px) {
   .inner-square-button.toDo {
     display: flex;
@@ -460,10 +795,15 @@ button {
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) and (max-width: 949px) {
   .sub-main-summary {
     width: -webkit-fill-available;
     padding-left: 16px;
+  }
+
+  .h1-box {
+    height: 0;
+    margin-bottom: 0;
   }
 
   .button-container {
@@ -482,6 +822,10 @@ button {
     margin: 0;
     height: 152px;
     width: 252px;
+  }
+
+  .daytimeGreeting {
+    margin-top: 42px;
   }
 
   .date {
@@ -542,13 +886,13 @@ button {
     grid-row: 3 / 4;
   }
 
-  /* .inner-square-button.toDoInner {
+  .inner-square-button.toDoInner {
     gap: 16px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  } */
+  }
 
   .inProgress {
     grid-column: 2 / 3;
@@ -565,13 +909,12 @@ button {
     background-color: #fff;
     grid-column: 2 /3;
     grid-row: 4 / 5;
-    /* margin-bottom: 64px; */
   }
 }
 
 /*/ ///////////////////////////////////////////////////////////////////min    950px*/
 
-@media only screen and (min-width: 950px) {
+@media only screen and (min-width: 950px) and (max-width: 1204px) {
   .greetingContainer-and-subMainSummary {
     padding-left: 16px;
   }
