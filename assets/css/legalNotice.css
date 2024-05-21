@@ -55,7 +55,6 @@ a {
 }
 
 a:not(.active):hover {
-  /* background-color: var(--clr-text-menu-hover); */
   color: var(--clr-main);
 }
 
@@ -107,13 +106,18 @@ a:not(.active):hover {
   flex-direction: column;
   gap: 15px;
   margin-bottom: 66px;
-  /* margin-left: 56px; */
   line-height: 19.2px;
-  /* text-align: left; */
 }
 
 @media (max-width: 801px) {
   .legal_notice-wrapper {
     margin: 36px 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .h1LegalNoticeBox img {
+    width: 32px;
+    margin-bottom: 24px;
   }
 }

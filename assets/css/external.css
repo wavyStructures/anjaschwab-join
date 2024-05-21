@@ -11,3 +11,14 @@
 .privatePolicyAndLegalNoticeLinksNav {
   margin-bottom: 16px;
 }
+
+@media screen and (max-width: 800px) {
+  .main {
+    height: auto;
+    /* overflow: hidden; */
+  }
+
+  #navigation-container {
+    display: none;
+  }
+}
