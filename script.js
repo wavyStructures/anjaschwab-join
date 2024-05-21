@@ -198,12 +198,12 @@ function openSmallMenu() {
 
 	if (screenWidth <= 801) {
 		smallMenu.classList.remove("d-none");
-		smallMenu.classList.remove("visible");
+		// smallMenu.classList.remove("visible");
 		smallMenuMobile.classList.toggle("d-none");
 	} else {
 		smallMenuMobile.classList.add("d-none");
 		smallMenu.classList.toggle("d-none");
-		smallMenu.classList.toggle("visible");
+		// smallMenu.classList.toggle("visible");
 	}
 }
 

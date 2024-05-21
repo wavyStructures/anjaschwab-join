@@ -79,7 +79,7 @@
 
 .small-menu.visible {
   z-index: 1;
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 
@@ -150,4 +150,8 @@
     background-color: var(--clr-main);
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
   }
+}
+
+.d-none{
+  display: none;
 }
