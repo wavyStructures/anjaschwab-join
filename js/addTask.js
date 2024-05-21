@@ -9,16 +9,19 @@ async function addTaskInit(){
 let tempAssignedContacts = [];
 let tempPriority = '';
 let tempSubtasks = [];
+let isValid = false;
 let requiredInputFields = [
     {
         'id': 'addTaskEnterTitleInput',
         'requiredFieldId': 'requiredTitle',
-        'idForRedUnderline':  'addTaskEnterTitleInput'
+        'idForRedUnderline':  'addTaskEnterTitleInput',
+        'state': false
     },
     {
         'id': 'addTaskDueDateInput',
         'requiredFieldId': 'requiredDueDate',
-        'idForRedUnderline': 'addTaskDueDateInputContainer'
+        'idForRedUnderline': 'addTaskDueDateInputContainer',
+        'state': false
     }
 ];
 
@@ -593,6 +596,7 @@ async function createTask(){
 
 
 function checkValidity(){
+    console.log(isValid);
     requiredInputFields.forEach(requiredInputField => {
         document.getElementById(requiredInputField.id).addEventListener('input', () => {
             toggleRequiredMessage(requiredInputField);
@@ -601,27 +605,43 @@ function checkValidity(){
     })
 }
 
-function toggleRequiredMessage(requiredInbputField){
-    let requiredMessageField = document.getElementById(requiredInbputField.requiredFieldId);
-    let toUnderline = document.getElementById(requiredInbputField.idForRedUnderline);
+function toggleRequiredMessage(requiredInputField){
+    let requiredMessageField = document.getElementById(requiredInputField.requiredFieldId);
+    let toUnderline = document.getElementById(requiredInputField.idForRedUnderline);
 
-    if (getStateOfRequriredField(requiredInbputField)){
+    if (getStateOfRequriredField(requiredInputField)){
+        requiredInputField.state = true;
         toUnderline.classList.remove('is-invalid');
         requiredMessageField.innerHTML = "";
     } else {
+        requiredInputField.state = false;
         toUnderline.classList.add('is-invalid');
         requiredMessageField.innerHTML = "This field is requried";
     }
+    setCreateBtnState();
 }
 
 
-function getStateOfRequriredField(requiredInbputField){
-    let inputField = document.getElementById(requiredInbputField.id);
-    if (inputField.value == '') return false;
+function getStateOfRequriredField(requiredInputField){
+    let inputField = document.getElementById(requiredInputField.id);
+    if (inputField.value == ''){
+        return false;
+    }
     return true;
 }
 
 
+function setCreateBtnState() {
+	let createBtn = document.getElementById("createBtn");
+
+	if (requiredInputFields.every((r) => r.state == true)) {
+		createBtn.classList.remove("disabled");
+		createBtn.setAttribute("onclick", "createTask()");
+	} else {
+		createBtn.classList.add("disabled");
+		createBtn.removeAttribute("onclick");
+	}
+}
 
 
 // REMOTE STORAGE

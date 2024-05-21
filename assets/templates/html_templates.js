@@ -371,7 +371,7 @@ function renderAddTaskFooterHTML(){
                     <span class="addTaskBtnText">Clear</span>
                     <div class="clearBtnImg"></div>
                 </div>
-                <div class="createBtn addTaskBtn disabled">
+                <div id="createBtn" class="createBtn addTaskBtn disabled">
                     <span class="addTaskBtnText">Create Task</span>
                     <div class="createBtnImg"></div>
                 </div>
