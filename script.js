@@ -197,12 +197,12 @@ function openSmallMenu() {
 	let smallMenuMobile = getDiv("smallMenuMobile");
 
 	if (screenWidth <= 801) {
-		smallMenu.classList.remove("opacityZero");
+		smallMenu.classList.remove("d-none");
 		smallMenu.classList.remove("visible");
-		smallMenuMobile.classList.toggle("opacityZero");
+		smallMenuMobile.classList.toggle("d-none");
 	} else {
-		smallMenuMobile.classList.add("opacityZero");
-		smallMenu.classList.toggle("opacityZero");
+		smallMenuMobile.classList.add("d-none");
+		smallMenu.classList.toggle("d-none");
 		smallMenu.classList.toggle("visible");
 	}
 }
