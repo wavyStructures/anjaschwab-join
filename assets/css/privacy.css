@@ -20,12 +20,14 @@ h3 {
   font-size: 19px;
   font-weight: 700;
   color: var(--clr-text-medium-blue);
+  margin-top: 10px;
   margin-bottom: 8px;
 }
 
 strong,
 h4 {
   color: var(--clr-text-medium-blue);
+  margin-top: 8px;
   margin-bottom: 6px;
 }
 
@@ -82,5 +84,12 @@ p {
 @media (max-width: 801px) {
   .privacy-wrapper {
     margin: 36px 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .h1PrivacyBox img {
+    width: 32px;
+    margin-bottom: 24px;
   }
 }

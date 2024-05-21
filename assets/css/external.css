@@ -15,7 +15,8 @@
 @media screen and (max-width: 800px) {
   .main {
     height: auto;
-    /* overflow: hidden; */
+    overflow-x: hidden;
+    margin-left: 24px;
   }
 
   #navigation-container {
