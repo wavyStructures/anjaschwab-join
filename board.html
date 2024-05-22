@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/png">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/css/contacts.css">
@@ -18,7 +18,7 @@
     <script src="./js/storage.js"></script>
     <script src="./js/helper.js"></script>
 
-    
+
     <script src="./assets/templates/html_templates.js"></script>
 
 
@@ -33,7 +33,7 @@
             <nav w3-include-html="./assets/templates/navigation.html" id="navigation-container"
                 class="navigation-container"></nav>
             <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
-                <div class="board-Container" >
+                <div class="board-Container">
                     <!-- <div class="addTaskHoverContainer hideBoard d-none" id="addTaskHoverContainer" onclick="doNotClose(event)">
                     </div> -->
                     <div class="boardTopContainer">
@@ -43,31 +43,37 @@
                             </div>
                         </div>
                         <div class="boardAddTaskButtonContainer" onclick="doNotClose(event)">
-                        <div class="createBtn addTaskBtn addTaskBtnBoard" onclick="showAddTaskContainer()">
-                            <span class="addTaskBtnText">Add Task</span>
-                            <div class="addTaskBtnImg "></div>
+                            <div class="createBtn addTaskBtn addTaskBtnBoard" onclick="showAddTaskContainer()">
+                                <span class="addTaskBtnText">Add Task</span>
+                                <div class="addTaskBtnImg "></div>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                     <div class="category-container">
-                        <div class="category" id="containerTodo" ondrop="moveTo('todo')" ondragleave="removeContainerHighlight('containerTodo')" ondragover="allowDrop(event); containerHighlight('containerTodo')">
+                        <div class="category" id="containerTodo" ondrop="moveTo('todo')"
+                            ondragleave="removeContainerHighlight('containerTodo')"
+                            ondragover="allowDrop(event); containerHighlight('containerTodo')">
                             <div class="categoryTitle">
                                 <h2>To Do</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
                             </div>
                             <div id="todo" class="categoryTasks">
-                                </div>
-                            </div>
-                            <div class="category" id="containerInProgress" ondrop="moveTo('inProgress')" ondragleave="removeContainerHighlight('containerInProgress')" ondragover="allowDrop(event); containerHighlight('containerInProgress')">
-                                <div class="categoryTitle">
-                                    <h2>In progress</h2>
-                                    <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
-                                </div>
-                                <div id="inProgress" class="categoryTasks">
                             </div>
                         </div>
-                        <div class="category" id="containerAwaitFeedback" ondrop="moveTo('awaitFeedback')" ondragleave="removeContainerHighlight('containerAwaitFeedback')" ondragover="allowDrop(event); containerHighlight('containerAwaitFeedback')">
+                        <div class="category" id="containerInProgress" ondrop="moveTo('inProgress')"
+                            ondragleave="removeContainerHighlight('containerInProgress')"
+                            ondragover="allowDrop(event); containerHighlight('containerInProgress')">
+                            <div class="categoryTitle">
+                                <h2>In progress</h2>
+                                <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                            </div>
+                            <div id="inProgress" class="categoryTasks">
+                            </div>
+                        </div>
+                        <div class="category" id="containerAwaitFeedback" ondrop="moveTo('awaitFeedback')"
+                            ondragleave="removeContainerHighlight('containerAwaitFeedback')"
+                            ondragover="allowDrop(event); containerHighlight('containerAwaitFeedback')">
                             <div class="categoryTitle">
                                 <h2>Await feedback</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
@@ -75,7 +81,9 @@
                             <div id="awaitFeedback" class="categoryTasks">
                             </div>
                         </div>
-                        <div class="category" id="containerDone" ondrop="moveTo('done')" ondragleave="removeContainerHighlight('containerDone')" ondragover="allowDrop(event); containerHighlight('containerDone')">
+                        <div class="category" id="containerDone" ondrop="moveTo('done')"
+                            ondragleave="removeContainerHighlight('containerDone')"
+                            ondragover="allowDrop(event); containerHighlight('containerDone')">
                             <div class="categoryTitle">
                                 <h2>Done</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
