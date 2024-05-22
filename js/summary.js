@@ -182,7 +182,7 @@ function buttonEventListener() {
  * Displays a mobile greeting overlay if the window width is less than 801 pixels.
  */
 function greetUserMobile() {
-    if (window.innerWidth < 801) {
+    if (window.innerWidth < 951) {
         let greetingContainer = document.getElementById('greetingContainer');
         let subMainSummary = document.getElementById('subMainSummary');
 
