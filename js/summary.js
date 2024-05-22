@@ -1,6 +1,6 @@
 let loggedUser;
 let globalCapitalizedName;
-let dayTime;                                                //TODO: anja: ist global i.O.?
+let dayTime;
 
 /**
  * Initializes the summary by including the HTML and getting the current date.
@@ -179,7 +179,7 @@ function buttonEventListener() {
 
 
 /**
- * Displays a mobile greeting if the window width is less than 801 pixels.
+ * Displays a mobile greeting overlay if the window width is less than 801 pixels.
  */
 function greetUserMobile() {
     if (window.innerWidth < 801) {
@@ -187,11 +187,12 @@ function greetUserMobile() {
         let subMainSummary = document.getElementById('subMainSummary');
 
         greetingContainer.style.display = 'flex';
+        subMainSummary.style.overflow = 'hidden';
         subMainSummary.classList.remove('sub-main-summary');
         subMainSummary.classList.add('d-none');
 
         mobileGreeting();
-        setTimeout(hideMobileGreeting, 6000);
+        setTimeout(hideMobileGreeting, 60000);
     }
 }
 

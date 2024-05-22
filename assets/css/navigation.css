@@ -29,7 +29,7 @@
 .nav-buttons-box {
   display: flex;
   flex-direction: column;
-  gap:15px
+  gap: 15px;
 }
 
 .nav-btn {
@@ -220,6 +220,7 @@
 
   .nav-buttons-box {
     justify-content: space-evenly;
+    gap: 12px;
     a {
       font-size: 14px;
     }
