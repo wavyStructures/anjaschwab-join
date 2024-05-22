@@ -168,25 +168,6 @@ function showInitials() {
 	}
 }
 
-// function showInitials() {
-// 	try {
-// 		let userAsString = localStorage.getItem('currentUser');
-
-// 		if (userAsString) {
-// 			let userName = JSON.parse(userAsString).name;
-// 			let userInitials = getInitials(userName);
-// 			document.getElementById('userInitials').innerHTML = userInitials;
-// 		} else {
-// 			document.getElementById('userInitials').innerHTML = 'G';
-// 		}
-// 	} catch (error) {
-// 		console.error('Error while retrieving user data from localStorage:', error);
-// 		// Handle the error accordingly, such as setting a default value or displaying an error message.
-// 		document.getElementById('userInitials').innerHTML = 'G';
-// 	}
-// }
-
-
 
 /**
  * Function to handle opening the small menu based on screen width.
@@ -276,78 +257,6 @@ function setActiveNavButton() {
 			break;
 	}
 }
-
-
-
-
-
-
-// function setActiveNavLegalAndPrivacy() {
-// 	let privacy = document.getElementById('privacyNav');
-// 	let legalNotice = document.getElementById('legalNav');
-// 	const activeNavLink = document.querySelector('.nav-btn.active');
-
-// 	// Remove active class from any previously active nav link
-// 	if (activeNavLink) {
-// 		activeNavLink.classList.remove('active');
-// 	}
-
-// 	switch (location.pathname) {
-// 		case '/summary.html':
-// 			summaryNavLink.classList.add('active');
-// 			if (window.innerWidth < 700) {
-// 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
-// 			}
-// 			break;
-// 		case '/addTask.html':
-// 			addTaskNavLink.classList.add('active');
-// 			if (window.innerWidth < 700) {
-// 				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
-// 			}
-// 			break;
-// 		case '/board.html':
-// 			boardNavLink.classList.add('active');
-// 			if (window.innerWidth < 700) {
-// 				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
-// 			}
-// 			break;
-// 		case '/contacts.html':
-// 			contactsNavLink.classList.add('active');
-// 			if (window.innerWidth < 700) {
-// 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
-// 			}
-// 			break;
-
-
-// 		case '/privacy.html':
-// 			privacy.querySelector('a').classList.add('privacyNav-clicked');
-// 			break;
-// 		case '/legal_notice.html':
-// 			legalNotice.querySelector('a').classList.add('legalNav-clicked');
-// 			break;
-// 		default:
-// 			break;
-
-
-// 		default:
-// 			break;
-
-// }
-
-// function highlightPrivacy() {
-// 	let privacy = document.getElementById('privacyNav');
-// 	privacy.querySelector('a').classList.add('privacyNav-clicked');
-// }
-
-// function highlightLegalNotice() {
-// 	let legalNotice = document.getElementById('legalNav');
-// 	legalNotice.querySelector('a').classList.add('legalNav-clicked');
-// }
-
-
-
-
-
 
 
 /**
