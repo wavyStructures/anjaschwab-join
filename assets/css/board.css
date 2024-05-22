@@ -200,6 +200,10 @@ button:focus {
     border: 2px dashed #4589FF;
 }
 
+.dragging{
+    transform: rotate(5deg);
+}
+
 .categoryTasks {
     display: flex;
     gap: 16px;

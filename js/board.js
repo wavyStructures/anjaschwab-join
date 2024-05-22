@@ -593,6 +593,7 @@ function createEditFooter(task){
 
 function startDragging(taskId){
     currentDraggedElement = taskId;
+    document.getElementById(taskId).classList.add('dragging');
 }
 
 function allowDrop(event){
