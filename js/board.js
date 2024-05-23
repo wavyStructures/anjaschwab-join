@@ -20,7 +20,7 @@ let _tasksBackup = [
         }],
         'completedSubtasks': [],
         'assignedTo': [21],
-        'category': 'todo',
+        'category': 'category-0',
         'priority': 'low',
         'dueDate': "2024-01-06"
     },
@@ -36,7 +36,7 @@ let _tasksBackup = [
         }],
         'completedSubtasks': [],
         'assignedTo': [21, 2, 5],
-        'category': 'awaitFeedback',
+        'category': 'category-2',
         'priority': 'medium',
         'dueDate': "2024-09-15"
     },
@@ -57,7 +57,7 @@ let _tasksBackup = [
         }],
         'completedSubtasks': [],
         'assignedTo': [17],
-        'category': 'done',
+        'category': 'category-3',
         'priority': 'urgent',
         'dueDate': "2024-07-07"
     },
@@ -78,7 +78,7 @@ let _tasksBackup = [
         }],
         'completedSubtasks': [],
         'assignedTo': [9, 18],
-        'category': 'todo',
+        'category': 'category-0',
         'priority': 'urgent',
         'dueDate': "2024-05-11"
     },
@@ -99,7 +99,7 @@ let _tasksBackup = [
         }],
         'completedSubtasks': [],
         'assignedTo': [9],
-        'category': 'inProgress',
+        'category': 'category-1',
         'priority': 'low',
         'dueDate': "2024-10-17"
     },
@@ -127,13 +127,13 @@ let _tasksBackup = [
         ],
         "completedSubtasks": [],
         "assignedTo": [],
-        "category": "todo",
+        "category": "category-0",
         "priority": "urgent",
         "dueDate": "2024-05-20"
     }
 ];
 
-let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+let categories = ['category-0', 'category-1', 'category-2', 'category-3'];
 
 async function boardInit() {
     includeHTML();
@@ -252,6 +252,7 @@ function createSuccessMessageContainer(){
  */
 function renderCategories(arrayToSearchIn) {
     categories.forEach(category => {
+        console.log(category);
         let categoryContainer = document.getElementById(category);
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, category);
