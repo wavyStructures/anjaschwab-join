@@ -283,7 +283,7 @@ function renderAddTaskMainContentHTML(){
                 <div class="addTaskTitles"><span class="bold">Description</span> (optional)</div>
                 <div>
                 <div class="textAreaContainer">
-                    <textarea id="addTaskDescriptionInput" type="text"></textarea>
+                    <textarea id="addTaskDescriptionInput" type="text" placeholder="Enter a description"></textarea>
                 </div>
             </div>
             </div>
@@ -291,7 +291,7 @@ function renderAddTaskMainContentHTML(){
                 <div class="addTaskTitles"><span class="bold">Due date</span></div>
                 <div>
                     <div class="addTaskDueDateInputContainer border-bottom pointer" id="addTaskDueDateInputContainer" onclick="addTaskDueDateOpenCalendear()">
-                        <input id="addTaskDueDateInput" type="date"  value="">
+                        <input class="addTaskDueDateInput" id="addTaskDueDateInput" type="date"  value="">
                         <div class="addTaskDueDateImage"></div>
                     </div>
                     <div class="addTaskRequired" id="requiredDueDate"></div>
@@ -351,7 +351,7 @@ function renderAddTaskMainContentHTML(){
             <div class="addTaskTitles"><span class="bold">Subtasks</span> (optional)
             </div>
             <div id="subtaskBottom" class="subtaskBottom border-bottom" onclick="renderSubtaskInputField()">
-                <input type="text" id="subtaskInputField" placeholder="Add new subtask">
+                <div id="subtaskInputFieldDiv">Add new subtask</div>
                 <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
             </div>
             <div id="subtasksOutputContainer"></div>

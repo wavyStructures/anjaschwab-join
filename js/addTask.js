@@ -56,7 +56,6 @@ function renderAddTaskHTML() {
  * @param {string} priority - The selected priority ('Urgent', 'Medium', or 'Low').
  */
 function setPriority(priority) {
-    console.log(priority);
     setPriorityAppearance(priority);
     setPriorityForNewCard(priority);
 }
@@ -144,7 +143,7 @@ function subtaskAddOrCancel(option) {
  * @return {string} The default HTML for a subtask.
  */
 function renderSubtaskDefaultHTML(){
-    return /*html*/`<input id="subTaskAddSubtaskText" placeholder="Add new subtask">
+    return /*html*/`<div id="subtaskInputFieldDiv">Add new subtask</div>
     <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
     `
 }
@@ -486,11 +485,9 @@ function checkIfCardIsEditing(){
     let editing = document.getElementsByTagName('*');
     for (let element of editing){
         if(element.hasAttribute('editing')){
-            console.log("is editing");
             return true;
         }
     }
-    console.log("is not editing");
     return false;
 }
 
@@ -596,7 +593,6 @@ async function createTask(){
 
 
 function checkValidity(){
-    console.log(isValid);
     requiredInputFields.forEach(requiredInputField => {
         document.getElementById(requiredInputField.id).addEventListener('input', () => {
             toggleRequiredMessage(requiredInputField);
@@ -625,8 +621,10 @@ function toggleRequiredMessage(requiredInputField){
 function getStateOfRequriredField(requiredInputField){
     let inputField = document.getElementById(requiredInputField.id);
     if (inputField.value == ''){
+        inputField.style = 'color: #D1D1D1 !important';
         return false;
     }
+    inputField.style = 'color: black !important';
     return true;
 }
 
@@ -642,6 +640,7 @@ function setCreateBtnState() {
 		createBtn.removeAttribute("onclick");
 	}
 }
+
 
 
 // REMOTE STORAGE

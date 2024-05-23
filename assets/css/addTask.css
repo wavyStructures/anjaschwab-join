@@ -76,6 +76,10 @@ select {
     cursor: pointer;
 }
 
+#addTaskDescriptionInput{
+    padding: 18px 16px;
+}
+
 .addTaskRequired {
     width: 125px;
     height: 16px;
@@ -95,6 +99,14 @@ select {
     padding: 64px 24px 0 24px;
     font-size: 1.188rem;
     gap: var(--addTaskGap-24);
+
+    *::placeholder{
+        color: #D1D1D1;
+    }
+
+    input[type="date"]{
+        color: #D1D1D1;
+    }
 }
 
 
@@ -236,13 +248,7 @@ select {
         border-bottom: none;
         cursor: pointer;
         width: 100%;
-        color: #757575;
     }
-
-    input.filled{
-        color: black;
-    }
-    
 }
 
 .addTaskDueDate input[type="date"]::-webkit-calendar-picker-indicator {
@@ -398,7 +404,7 @@ select {
 .addTaskContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--addTaskGap-8);
+    gap: var(--addTaskGap-24);
 }
 
 
@@ -475,11 +481,24 @@ select {
     padding: var(--padding-1216);
     cursor: pointer;
 
+    #subtaskInputFieldDiv{
+        color: #D1D1D1;
+    }
+    
     input {
         border-bottom: none;
         cursor: pointer;
         padding: 0;
     }
+}
+
+#subtaskInputFieldDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 1px;
+    /* background-color: red; */
 }
 
 .addTaskSubtasks {
