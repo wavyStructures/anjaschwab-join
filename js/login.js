@@ -20,7 +20,7 @@ async function loginInit() {
     await loadUsers();
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
 
-    // startAnimation();
+    startAnimation();
 }
 
 
@@ -110,16 +110,19 @@ function gotoSignUp() {
 }
 
 
-// function startAnimation() {
-//     // setTimeout(function () {
+/**
+ * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
+ */
+function startAnimation() {
+    setTimeout(function () {
 
-//     let blueOverlay = document.getElementById("blue-overlay");
-//     console.log(blueOverlay);
-//     blueOverlay.style.display = "block";
-//     document.getElementById("logo").classList.add("logo-animation");
+        let blueOverlay = document.getElementById("blueOverlay");
+        console.log(blueOverlay);
+        blueOverlay.style.display = "block";
+        document.getElementById("logo").classList.add("logo-animation");
 
-//     // }, 30000); // 30 seconds
-// }
+    }, 3000); // 30 seconds
+}
 
 
 

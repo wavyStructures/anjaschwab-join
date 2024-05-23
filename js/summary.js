@@ -185,16 +185,19 @@ function greetUserMobile() {
     if (window.innerWidth < 951) {
         let greetingContainer = document.getElementById('greetingContainer');
         let subMainSummary = document.getElementById('subMainSummary');
+        let bitGreeting = document.getElementById('h1GreetingUser');
 
         greetingContainer.style.display = 'flex';
+        bitGreeting.style.display = "none";
         subMainSummary.style.overflow = 'hidden';
         subMainSummary.classList.remove('sub-main-summary');
         subMainSummary.classList.add('d-none');
 
         mobileGreeting();
-        setTimeout(hideMobileGreeting, 60000);
+        setTimeout(hideMobileGreeting, 6000);
     }
 }
+
 
 /**
  * Hides the mobile greeting by setting the display style of the 'greetingContainer' element to 'none'and adding 'sub-main-summary' class to 'subMainSummary' element and removing 'd-none' class.
@@ -203,8 +206,9 @@ function hideMobileGreeting() {
     document.getElementById('greetingContainer').style.display = 'none';
     subMainSummary.classList.add('sub-main-summary');
     subMainSummary.classList.remove('d-none');
-
+    subMainSummary.style.overflow = 'scroll';
 }
+
 
 /**
  * Sets the mobile greeting based on the current state of the application.
