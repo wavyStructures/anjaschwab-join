@@ -404,7 +404,7 @@ select {
 .addTaskContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--addTaskGap-24);
+    gap: var(--addTaskGap-8);
 }
 
 

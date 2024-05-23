@@ -330,7 +330,7 @@ function renderAddTaskMainContentHTML(){
             </div>
                 <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
                 </div>
-                <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"</div>
+                <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"></div>
         </div>
         <div class="addTaskContainer ">
             <div class="addTaskTitle bold">Category </div>
@@ -347,7 +347,7 @@ function renderAddTaskMainContentHTML(){
                 <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
             </div>
         </div>
-        <div class="addTaskSubtasks">
+        <div class="addTaskContainer">
             <div class="addTaskTitles"><span class="bold">Subtasks</span> (optional)
             </div>
             <div id="subtaskBottom" class="subtaskBottom border-bottom" onclick="renderSubtaskInputField()">
