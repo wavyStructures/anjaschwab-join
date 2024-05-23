@@ -252,7 +252,6 @@ function createSuccessMessageContainer(){
  */
 function renderCategories(arrayToSearchIn) {
     categories.forEach(category => {
-        console.log(category);
         let categoryContainer = document.getElementById(category);
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, category);
@@ -600,7 +599,12 @@ function startDragging(taskId){
 
 function stopDragging(){
     categories.forEach(category => {
-        document.getElementById(category).parentElement.classList.remove('drag-area-highlight');
+        console.log(document.getElementById(category));
+        document.getElementById(category).classList.remove('drag-area-highlight');
+    });
+
+    tasks.forEach(task => {
+        document.getElementById(task.id).classList.remove('dragging');
     });
 }
 
