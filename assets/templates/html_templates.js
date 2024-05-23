@@ -116,7 +116,7 @@ function renderSummaryHTML() {
  */
 function renderTasksHTML(task) {
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging(${task.id})" id="${task.id}" class="card" onclick="openCard(${task.id})">
+    <div draggable="true" ondragstart="startDragging(${task.id})" ondragend="stopDragging(${task.id})" id="${task.id}" class="card" onclick="openCard(${task.id})">
         <div class="cardType">${task.type}</div>
         <div class="cardTitle">${task.title}</div>
         <div class="cardText">${task.description}</div>
@@ -195,8 +195,7 @@ function renderLoginPageHTML() {
         </div>
         <div class="signUpField-mobile ">
             <span>Not a join user yet?</span>
-            <button class="loginButtons signUpButton signUpButton-mobile" onclick="renderSignUpPage()">Sign
-                up</button>
+            <button class="loginButtons signUpButton signUpButton-mobile" onclick="renderSignUpPage()">Sign up</button>
         </div>
         <div class="loginFooter">
             <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
@@ -267,7 +266,7 @@ function renderSignUpPageHTML() {
 function renderBoardAddTaskHeaderHTML(){
     return /*html*/`
     <div class="boardAddTaskHeader">
-    <div class="boardAddTaskHeaderText"> Add Task</div>
+    <div class="boardAddTaskHeaderText">Add Task</div>
     <div class="boardAddTaskCloseHoverContainer" onclick="hideAddTaskContainer()"></div>
  </div>`
 }
@@ -331,7 +330,7 @@ function renderAddTaskMainContentHTML(){
             </div>
                 <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
                 </div>
-                <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"> CONTACT 1, CONTACT 2</div>
+                <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"</div>
         </div>
         <div class="addTaskContainer ">
             <div class="addTaskTitle bold">Category </div>
@@ -340,7 +339,6 @@ function renderAddTaskMainContentHTML(){
                     <span id="dropdown-category-title">Select task category</span>
                         <div class="addTask-custom-arrow" id="custom-arrow-category">
                         <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
-                        <!-- TODO: <div data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt=""></div> -->
                     </div>
                 </div>
             </div>
@@ -348,7 +346,6 @@ function renderAddTaskMainContentHTML(){
                 <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
                 <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
             </div>
-                <!-- <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer"> CONTACT 1, CONTACT 2</div> -->
         </div>
         <div class="addTaskSubtasks">
             <div class="addTaskTitles"><span class="bold">Subtasks</span> (optional)
@@ -363,6 +360,8 @@ function renderAddTaskMainContentHTML(){
         </div>
     </div>`
 }
+
+
 function renderAddTaskFooterHTML(){
     return /*html*/ `
         <div class="addTaskBodyRight">

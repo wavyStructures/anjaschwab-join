@@ -596,9 +596,16 @@ function startDragging(taskId){
     document.getElementById(taskId).classList.add('dragging');
 }
 
+
+function stopDragging(taskId){
+    document.getElementById(taskId).classList.remove('dragging');
+}
+
+
 function allowDrop(event){
     event.preventDefault();
 }
+
 
 function moveTo(category){
     let task = getTaskOutOfId(currentDraggedElement);
@@ -628,3 +635,4 @@ function printValueFromSpecificCard(reason, id){
     let task = getTaskOutOfId(id);
     console.log(reason + " -> ID: " + id + " | " + toPrint + ": " + task[toPrint])
 }
+
