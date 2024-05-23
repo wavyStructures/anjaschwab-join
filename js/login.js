@@ -14,14 +14,50 @@ async function setUsersRemote() {
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
+    // showOverlay();
     // includeHTML();
     getInformations();
     await setUsersRemote();
     await loadUsers();
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
-
-    startAnimation();
 }
+
+function showOverlay() {
+    if (!getCurrentUser()) {
+        console.log("no user");
+        document.getElementById('loginMainContainer').style.overflow = 'hidden';
+        document.getElementById("blueOverlay").style.display = "flex";
+        // startAnimation();
+    } else {
+        console.log("user already logged in");
+        switchPage('summary.html');
+    }
+}
+
+
+/**
+ * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
+ */
+async function startAnimation() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const logo = document.getElementById("logo");
+            logo.classList.add("logo-animation");
+            setTimeout(() => {
+                resolve();
+                hideOverlay();
+            }, 2000); // Wait for the logo animation to finish (2 seconds)
+        }, 3000); // Wait for 3 seconds before starting the animation
+
+    });
+}
+
+function hideOverlay() {
+    document.getElementById("blueOverlay").style.display = "none";
+    document.getElementById('loginMainContainer').style.overflow = 'auto';
+    switchPage('login.html');
+}
+
 
 
 /**
@@ -110,19 +146,7 @@ function gotoSignUp() {
 }
 
 
-/**
- * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
- */
-function startAnimation() {
-    setTimeout(function () {
 
-        let blueOverlay = document.getElementById("blueOverlay");
-        console.log(blueOverlay);
-        blueOverlay.style.display = "block";
-        document.getElementById("logo").classList.add("logo-animation");
-
-    }, 3000); // 30 seconds
-}
 
 
 

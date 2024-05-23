@@ -189,8 +189,6 @@ div.square-button.toDo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 150px;
-  margin-bottom: 70px;
 }
 
 .usernameForGreeting {
@@ -534,6 +532,12 @@ button {
 
   .greetingContainer-and-subMainSummary {
     margin-top: 2px;
+  }
+
+  .summary-box {
+    height: calc(100vh - 230px);
+    /* margin-top: 320px;
+    margin-bottom: 70px; */
   }
 
   #h1GreetingUser {

@@ -195,7 +195,7 @@ input[type="password"]:focus {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 188.8px;
+  margin-top: 88.8px;
   margin-bottom: 42.7px;
   gap: 16px;
 }
@@ -216,6 +216,13 @@ input[type="password"]:focus {
   font-size: 1rem;
 }
 
+#logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .logo-animation {
   position: absolute;
   top: 50%;
@@ -227,9 +234,14 @@ input[type="password"]:focus {
 @keyframes move-logo {
   from {
     transform: translate(0px, 0px);
+    width: 250px;
+    height: 250px;
   }
   to {
     transform: translate(-720px, -330px);
+    width: 50px;
+    height: 50px;
+    filter: invert(1);
   }
 }
 
@@ -252,31 +264,6 @@ input[type="password"]:focus {
   }
   to {
     opacity: 0;
-  }
-}
-
-#logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.logo-animation {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: move-logo 2s ease-in-out;
-}
-
-@keyframes move-logo {
-  from {
-    transform: translate(0px, 0px);
-  }
-  to {
-    transform: translate(-220px, -330px);
-    filter: invert(1);
   }
 }
 
@@ -554,9 +541,24 @@ input[type="password"]:focus {
       font-size: 23px;
       cursor: pointer; */
   }
+
+  .joinLogoBlue {
+    margin-bottom: 20.53px;
+  }
+
+  .signUpField-mobile {
+    margin-top: 48px;
+  }
 }
 
 @media (min-width: 280px) and (max-width: 385px) {
+  .loginButtonsBox {
+    flex-direction: column;
+    gap: 21px;
+    justify-content: center;
+    align-items: center;
+  }
+
   .loginButtons {
     width: 180px;
     height: 48px;
@@ -568,5 +570,42 @@ input[type="password"]:focus {
   .loginButtonUser,
   .loginButtonGuest {
     margin-left: 0;
+  }
+
+  .joinLogoBlue {
+    margin-top: 48px;
+    margin-left: 24px;
+    margin-bottom: 20.53px;
+  }
+
+  .signUpField-mobile {
+    margin-top: 48px;
+  }
+
+  #loginEmailInput,
+  #loginPasswordInput {
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 12.5px;
+    width: 160px;
+  }
+
+  .horizontalH1Underline {
+    height: 132px;
+  }
+
+  .loginH1 {
+    font-size: 48px;
+    margin-bottom: 8px;
+  }
+
+  .loginButtons {
+    width: 142px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 0;
+    text-align: center;
   }
 }
