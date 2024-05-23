@@ -34,7 +34,7 @@ let newTask =
         'subtasks': [],
         'completedSubtasks': [],
         'assignedTo': [],
-        'category': 'todo',
+        'category': 'category-0',
         'priority': '',
         'dueDate': ''
 };
@@ -446,7 +446,7 @@ function collectInformationsForNewCard(){
     // wenn KEINE Karte editiert wird
     if (!checkIfCardIsEditing()){
         newTask.id = getNewTaskId(); // NEUE ID vergeben
-        newTask.category = 'todo'; // KATEGORIE todo vergeben
+        newTask.category = 'category-0'; // KATEGORIE todo vergeben
     } //ansonsten das lassen, wo die ursprüngliche Karte war
     
     newTask.title = getNewTaskTitle();

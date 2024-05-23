@@ -599,7 +599,6 @@ function startDragging(taskId){
 
 function stopDragging(){
     categories.forEach(category => {
-        console.log(document.getElementById(category));
         document.getElementById(category).classList.remove('drag-area-highlight');
     });
 
