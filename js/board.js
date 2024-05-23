@@ -133,6 +133,8 @@ let _tasksBackup = [
     }
 ];
 
+let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+
 async function boardInit() {
     includeHTML();
     await loadContactsStorage();
@@ -249,8 +251,6 @@ function createSuccessMessageContainer(){
  * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
 function renderCategories(arrayToSearchIn) {
-    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done']
-
     categories.forEach(category => {
         let categoryContainer = document.getElementById(category);
         categoryContainer.innerHTML = "";
@@ -597,8 +597,10 @@ function startDragging(taskId){
 }
 
 
-function stopDragging(taskId){
-    document.getElementById(taskId).classList.remove('dragging');
+function stopDragging(){
+    categories.forEach(category => {
+        document.getElementById(category).parentElement.classList.remove('drag-area-highlight');
+    });
 }
 
 
