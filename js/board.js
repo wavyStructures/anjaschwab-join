@@ -685,12 +685,14 @@ function setDroppableContainers(taskId){
  */
 function displayEmptyTask(taskId, categoryArr){
     let cardHeight = "height: "+  document.getElementById(taskId).clientHeight + "px";
+    let cardWidth = "width: "+  document.getElementById(taskId).clientWidth + "px";
+    let cardStyle = cardHeight + "; " + cardWidth;
 
-    for (let i=0; i< categoryArr.length; i++) {
+    for (let i=0; i < categoryArr.length; i++) {
         let newDiv = document.createElement('div');
         newDiv.classList.add('emptyCard');
 
-        newDiv.style = cardHeight;
+        newDiv.style = cardStyle;
         document.getElementById(categoryArr[i]).appendChild(newDiv);
     }
 
