@@ -135,6 +135,10 @@ let _tasksBackup = [
 
 let categories = ['category-0', 'category-1', 'category-2', 'category-3'];
 
+/**
+ * Initializes the board by including HTML, loading contacts and tasks from remote storage,
+ * and rendering the categories.
+ */
 async function boardInit() {
     includeHTML();
     await loadContactsStorage();
@@ -145,6 +149,9 @@ async function boardInit() {
 }
 
 
+/**
+ * Renders the overlay for adding a task to the board.
+ */
 function renderBoardAddTaskOverlay(){
     let newDiv = document.createElement('div');
     setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer hideBoard d-none', 'onclick': 'doNotClose(event)'});
@@ -160,6 +167,11 @@ function renderBoardAddTaskOverlay(){
     checkValidity();
 }
 
+
+/**
+ * Displays the add task container by rendering the overlay and adding the necessary classes to the container.
+ * If the container does not exist, it will be created and rendered.
+ */
 function showAddTaskContainer(){
     if (!document.getElementById('addTaskHoverContainer')) {
         renderBoardAddTaskOverlay();
@@ -184,6 +196,7 @@ function hideAddTaskContainer(){
     toggleBoardOverlay('disable');
 }
 
+
 function toggleBoardOverlay(functionToCall){
     let overlay = document.getElementById('boardOverlay')
     if (overlay.classList.contains('d-none')){
@@ -194,6 +207,7 @@ function toggleBoardOverlay(functionToCall){
         overlay.removeAttribute('onclick');
     }
 }
+
 
 function showSuccessMessage(){
     if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
@@ -231,18 +245,6 @@ function createSuccessMessageContainer(){
 
     document.body.appendChild(div);
 }
-
-//FIXME: wird noch gebraucht?!
-// /**
-//  * All available cards will be filtered for the category
-//  * @param {string} toFilterFor the category's name (e.g. 'done')
-//  * @returns array with cards fitting category
-//  */
-// function filterTasksForCategory(toFilterFor) {
-//     let task = tasks.filter(c => c['category'] == toFilterFor);
-//     return task;
-// }
-
 
 
 /**
@@ -379,11 +381,15 @@ function openCard(taskId){
 }
 
 
+/**
+ * Returns the task object with the specified taskId from the tasks array.
+ *
+ * @param {number} taskId - The ID of the task to retrieve.
+ * @return {Object|undefined} The task object with the specified taskId, or undefined if no task is found.
+ */
 function getTaskOutOfId(taskId){
     return tasks.filter(task => task['id'] == taskId)[0]
 }
-
-
 
 
 /**
@@ -448,6 +454,7 @@ function renderOpenCardHTML(task){
         `
 }
 
+
 /**
  * Renders the contacts assigned to a task in the open card.
  *
@@ -465,6 +472,7 @@ function renderContactsToOpenCard(task) {
 		});
 	});
 }
+
 
 /**
  * Renders subtasks to the open card based on the task object.
@@ -498,7 +506,7 @@ function setSubtaskState(taskId, subtaskIndex){
     let task = getTaskOutOfId(taskId);
     task['subtasks'][subtaskIndex]['completed'] = !task['subtasks'][subtaskIndex]['completed'];
     let openCardSubtasks = document.getElementsByClassName('openCardSubtask');
-    
+
     for (let i = 0; i < openCardSubtasks.length; i++) {
         if(i == subtaskIndex) {
             openCardSubtasks[i].getAttribute('completed') == null
@@ -508,6 +516,12 @@ function setSubtaskState(taskId, subtaskIndex){
     }
 }
 
+
+/**
+ * Deletes a task from the tasks array based on the provided taskId.
+ *
+ * @param {number} taskId - The ID of the task to be deleted.
+ */
 function openCardDelete(taskId){
     for(let i=0; i<tasks.length; i++){
         if(tasks[i].id == taskId){
@@ -520,6 +534,12 @@ function openCardDelete(taskId){
 
 }
 
+
+/**
+ * Opens the edit card for the task with the specified ID.
+ *
+ * @param {number} taskId - The ID of the task to edit.
+ */
 function openCardEdit(taskId){
     newTask = getTaskOutOfId(taskId);
     renderEditContainer();
@@ -530,6 +550,10 @@ function openCardEdit(taskId){
     printValueFromSpecificCard('Task edit', taskId);
 }
 
+
+/**
+ * Renders the edit container by setting the 'editing' attribute, updating the HTML content of the 'openCardContainer' element, and appending the HTML code for the edit header, main content, and footer.
+ */
 function renderEditContainer(){
     let container = document.getElementById('openCardContainer');
     container.setAttribute('editing','');
@@ -539,6 +563,9 @@ function renderEditContainer(){
 }
 
 
+/**
+ * Sets the values of the task fields in the edit card container.
+ */
 function setTaskValuesToFields(){
     tempAssignedContacts = [];
     document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
@@ -547,13 +574,14 @@ function setTaskValuesToFields(){
     document.getElementById('dropdown-category-title').innerHTML = newTask['type'];
     setPriorityAppearance(newTask['priority']);
     renderEditCardAssignedContacts();
-    
-    
-    // document.getElementById('openCardAssignedTo').value = newTask['assignedTo'];
-    // document.getElementById('openCardSubtasks').value = newTask['subtasks'];
 }
 
 
+/**
+ * Renders the assigned contacts in the edit card container.
+ *
+ * This function clears the contents of the 'assignedContactsContainer' element and then iterates over the 'assignedTo' array of the 'newTask' object. For each 'id' in the array, it calls the 'assignContactToTask' function to assign the corresponding contact to the task.
+ */
 function renderEditCardAssignedContacts(){
     document.getElementById('assignedContactsContainer').innerHTML = '';
     newTask['assignedTo'].forEach(id => {
@@ -561,6 +589,14 @@ function renderEditCardAssignedContacts(){
     })
 }
 
+
+/**
+ * Saves the edited task by collecting the necessary information, updating the task object,
+ * saving the tasks to remote storage, closing the card, printing a confirmation message,
+ * and printing the category values from each card.
+ *
+ * @param {number} taskId - The ID of the task to be saved.
+ */
 function saveEditedTask(taskId){
     collectInformationsForNewCard();
     let taskToSave = getTaskOutOfId(taskId);
@@ -571,14 +607,27 @@ function saveEditedTask(taskId){
     printValuesFromEachCard('category')
 }
 
+
+/**
+ * Generates the HTML code for the header of the edit task section.
+ *
+ * @return {string} The HTML code for the edit task header.
+ */
 function createEditHeader(){
     return /*html*/`
 <div class="boardEditTaskHeader">
     <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
  </div>
-    ` 
+    `
 }
 
+
+/**
+ * Generates the HTML code for the footer of the edit task section.
+ *
+ * @param {Object} task - The task object to be edited.
+ * @return {string} The HTML code for the edit task footer.
+ */
 function createEditFooter(task){
     return /*html*/`
     <div class="addTaskBodyRight">
@@ -589,8 +638,14 @@ function createEditFooter(task){
     </div>`
 }
 
+
 // DRAG AND DROP
 
+/**
+ * Starts the dragging process for a task.
+ *
+ * @param {string} taskId - The ID of the task element being dragged.
+ */
 function startDragging(taskId){
     currentDraggedElement = taskId;
     document.getElementById(taskId).classList.add('dragging');
@@ -598,38 +653,54 @@ function startDragging(taskId){
 }
 
 
+/**
+ * Sets the droppable containers for a given task ID based on its category.
+ *
+ * @param {string} taskId - The ID of the task element.
+ */
 function setDroppableContainers(taskId){
     let category = getTaskOutOfId(taskId)['category']
     switch (category) {
         case 'category-0':
-            displayEmptyTask(taskId, 'category-1')
+            displayEmptyTask(taskId, ['category-1']);
             break;
         case 'category-1':
-            displayEmptyTask(taskId, 'category-0');
-            displayEmptyTask(taskId, 'category-2');
+            displayEmptyTask(taskId, ['category-0', 'category-2']);
             break;
         case 'category-2':
-            displayEmptyTask(taskId, 'category-1');
-            displayEmptyTask(taskId, 'category-3');
+            displayEmptyTask(taskId, ['category-1', 'category-3']);
             break;
         case 'category-3':
-            displayEmptyTask(taskId, 'category-2')
+            displayEmptyTask(taskId, ['category-2']);
             break;
     }
 }
 
 
-function displayEmptyTask(taskId, category){
+/**
+ * Creates empty cards and appends them to the specified categories.
+ *
+ * @param {string} taskId - The ID of the task element.
+ * @param {Array<string>} categoryArr - An array of category IDs.
+ */
+function displayEmptyTask(taskId, categoryArr){
     let cardHeight = "height: "+  document.getElementById(taskId).clientHeight + "px";
 
-    let newDiv = document.createElement('div');
-    newDiv.classList.add('emptyCard');
+    for (let i=0; i< categoryArr.length; i++) {
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('emptyCard');
 
-    newDiv.style = cardHeight;
-    document.getElementById(category).appendChild(newDiv);
+        newDiv.style = cardHeight;
+        document.getElementById(categoryArr[i]).appendChild(newDiv);
+    }
+
 }
 
 
+/**
+ * Stops the dragging process by removing the 'drag-area-highlight' class from all categories
+ * and the 'dragging' class from all tasks.
+ */
 function stopDragging(){
     categories.forEach(category => {
         document.getElementById(category).classList.remove('drag-area-highlight');
@@ -641,11 +712,21 @@ function stopDragging(){
 }
 
 
+/**
+ * Prevents the default behavior of the event, which is to allow the browser to handle the drag and drop operation.
+ *
+ * @param {Event} event - The event object representing the drag and drop event.
+ */
 function allowDrop(event){
     event.preventDefault();
 }
 
 
+/**
+ * Moves a task to a specified category.
+ *
+ * @param {string} category - The category to move the task to.
+ */
 function moveTo(category){
     let task = getTaskOutOfId(currentDraggedElement);
     task['category'] = category;
