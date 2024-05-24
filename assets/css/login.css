@@ -45,6 +45,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .login-box {
@@ -565,6 +566,7 @@ input[type="password"]:focus {
     font-size: 19px;
     font-weight: 400;
     margin-left: 0;
+    padding: 0;
   }
 
   .loginButtonUser,
