@@ -594,6 +594,39 @@ function createEditFooter(task){
 function startDragging(taskId){
     currentDraggedElement = taskId;
     document.getElementById(taskId).classList.add('dragging');
+    setDroppableContainers(taskId)
+}
+
+
+function setDroppableContainers(taskId){
+    let category = getTaskOutOfId(taskId)['category']
+    switch (category) {
+        case 'category-0':
+            displayEmptyTask(taskId, 'category-1')
+            break;
+        case 'category-1':
+            displayEmptyTask(taskId, 'category-0');
+            displayEmptyTask(taskId, 'category-2');
+            break;
+        case 'category-2':
+            displayEmptyTask(taskId, 'category-1');
+            displayEmptyTask(taskId, 'category-3');
+            break;
+        case 'category-3':
+            displayEmptyTask(taskId, 'category-2')
+            break;
+    }
+}
+
+
+function displayEmptyTask(taskId, category){
+    let cardHeight = "height: "+  document.getElementById(taskId).clientHeight + "px";
+
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('emptyCard');
+
+    newDiv.style = cardHeight;
+    document.getElementById(category).appendChild(newDiv);
 }
 
 
@@ -619,15 +652,6 @@ function moveTo(category){
     renderCategories(tasks);
     saveTasksToRemoteStorage();
 }
-
-function containerHighlight(containerId){
-    document.getElementById(containerId).classList.add('drag-area-highlight');
-}
-
-function removeContainerHighlight(containerId){
-    document.getElementById(containerId).classList.remove('drag-area-highlight');
-}
-
 
 // DEBUGGING
 

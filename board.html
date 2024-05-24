@@ -52,8 +52,7 @@
                     </div>
                     <div class="category-container">
                         <div class="category" id="category-0" ondrop="moveTo('category-0')"
-                            ondragleave="removeContainerHighlight('category-0')"
-                            ondragover="allowDrop(event); containerHighlight('category-0')">
+                            ondragover="allowDrop(event)">
                             <div class="categoryTitle">
                                 <h2>To Do</h2>
                                 <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
@@ -61,40 +60,34 @@
                             <div id="todo" class="categoryTasks">
                             </div>
                         </div>
-                        <div class="category" id="category-1" ondrop="moveTo('category-1')"
-                            ondragleave="removeContainerHighlight('category-1')"
-                            ondragover="allowDrop(event); containerHighlight('category-1')">
-                            <div class="categoryTitle">
-                                <h2>In progress</h2>
-                                <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
-                            </div>
-                            <div id="inProgress" class="categoryTasks">
-                            </div>
+                        <div class="category" id="category-1" ondrop="moveTo('category-1')" ondragover="allowDrop(event)"">
+                            <div class=" categoryTitle">
+                            <h2>In progress</h2>
+                            <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
                         </div>
-                        <div class="category" id="category-2" ondrop="moveTo('category-2')"
-                            ondragleave="removeContainerHighlight('category-2')"
-                            ondragover="allowDrop(event); containerHighlight('category-2')">
-                            <div class="categoryTitle">
-                                <h2>Await feedback</h2>
-                                <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
-                            </div>
-                            <div id="awaitFeedback" class="categoryTasks">
-                            </div>
-                        </div>
-                        <div class="category" id="category-3" ondrop="moveTo('category-3')"
-                            ondragleave="removeContainerHighlight('category-3')"
-                            ondragover="allowDrop(event); containerHighlight('category-3')">
-                            <div class="categoryTitle">
-                                <h2>Done</h2>
-                                <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
-                            </div>
-                            <div id="done" class="categoryTasks">
-                            </div>
+                        <div id="inProgress" class="categoryTasks">
                         </div>
                     </div>
+                    <div class="category" id="category-2" ondrop="moveTo('category-2')" ondragover="allowDrop(event)"">
+                            <div class=" categoryTitle">
+                        <h2>Await feedback</h2>
+                        <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                    </div>
+                    <div id="awaitFeedback" class="categoryTasks">
+                    </div>
                 </div>
-            </main>
+                <div class="category" id="category-3" ondrop="moveTo('category-3')" ondragover="allowDrop(event)">
+                    <div class="categoryTitle">
+                        <h2>Done</h2>
+                        <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                    </div>
+                    <div id="done" class="categoryTasks">
+                    </div>
+                </div>
         </div>
+    </div>
+    </main>
+    </div>
     </div>
     <div id="boardOverlay" class="boardOverlay d-none"></div>
     <div id="openCardContainer" class="openCardContainer d-none"></div>
