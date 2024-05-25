@@ -6,6 +6,73 @@ const STORAGE_TOKEN = '441D59WVPL1TM4PQXPZBMD2DVHMTLLM72U8YTPTA';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
 const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
+const FIREBASE_TASKS_ID = '-NyjPfIkvaXKtVoSc38U';
+const FIREBASE_CONTACTS_ID = '-NyjPZcKfIcCe2Aj8RQT';
+const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
+
+
+/* 
+--- FIREBASE ---
+    
+IMPORTANT:
+
+Path ist set to default as "_" --> path="_"
+because when you want tu use "firebaseUpdateItem", insert the JSON-Array to save but FORGET to insert the ID,
+everything would be overwritten with path="". 
+
+*/
+
+
+/**
+ * Asynchronously creates an item in Firebase using the given JSON array and path.
+ *
+ * @param {Array} jsonArray - The JSON array to be posted.
+ * @param {string} [path="_"] - The path to the Firebase location where the item will be created. Defaults to "_".
+ * @return {Promise} A Promise that resolves with the response from the Firebase server.
+ */
+async function firebaseCreateItem(jsonArray, path="_") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(jsonArray)
+    })
+}
+
+
+/**
+ * Updates an item in Firebase using a PUT request.
+ *
+ * @param {Object} jsonArray - The JSON array to update.
+ * @param {string} [path="_"] - The path to the item in Firebase. Defaults to "_".
+ * @return {Promise<Response>} A Promise that resolves to the response from the PUT request.
+ */
+async function firebaseUpdateItem(jsonArray, path="_") {
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(jsonArray)
+    })
+}
+
+
+/**
+ * Retrieves an item from Firebase using the provided path.
+ *
+ * @param {string} [path="_"] - The path (the id) to the item in Firebase.
+ * @return {Promise<Object>} A Promise that resolves to the retrieved item as a JSON object.
+ */
+async function firebaseGetItem(path="_") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseAsJSON = await response.json();
+
+    return responseAsJSON;
+}
+
+/* --- Remote Storage --- */
 
 /**
  * 
@@ -33,24 +100,6 @@ async function remoteStorageGetItem(key) {
     });
 }
 
-
-// Firebase Storage
-/*
-async function remoteStorageSetItem(path="") {
-    let response = await fetch(BASE_URL + path, + ".json");
-    return responseToJSON = await response.json();
-    }
-
-async function getItem(path="", data={}){
-    let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-    return responseToJSON = await response.json();
-}*/
 
 /*
 TODO:

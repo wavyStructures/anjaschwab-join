@@ -642,21 +642,20 @@ function setCreateBtnState() {
 }
 
 
+//FIXME: Doesn't work due the fact that firebase doesn't save empty arrays as values
 
 // REMOTE STORAGE
 async function saveTasksToRemoteStorage(){
    await remoteStorageSetItem('tasks', JSON.stringify(tasks))
-}
-
-async function deleteAllTasksOnRemoteStorage(){
-    await remoteStorageSetItem('tasks', JSON.stringify('[]'))
+    // await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
 }
 
 async function restoreTasksOnRemoteStorage(){
-    await remoteStorageSetItem('tasks', _tasksBackup);
+    await remoteStorageSetItem(_tasksBackup, FIREBASE_TASKS_ID);
 }
 
 async function loadTasksFromRemoteStorage(){
-    tasks = JSON.parse(await remoteStorageGetItem('tasks'))
-console.info('Tasks loaded from Remote Storage');
+    tasks = JSON.parse(await remoteStorageGetItem('tasks')) //REMOTE STORAGE
+    // tasks = await firebaseGetItem(FIREBASE_TASKS_ID); //FIREBASE
+    console.info('Tasks loaded from Remote Storage');
 }

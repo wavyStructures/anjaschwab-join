@@ -7,7 +7,11 @@ let localVersionIndex = 0;
  * @return {Promise<Array>} A promise that resolves to an array of contacts.
  */
 async function getContactsFromRemoteStorage() {
-  return await remoteStorageGetItem("contacts").then((res) => JSON.parse(res));
+  // REMOTE STORAGE
+  // return await remoteStorageGetItem("contacts").then((res) => JSON.parse(res)); 
+  
+  // FIREBASE
+  return firebaseGetItem(FIREBASE_CONTACTS_ID);
 }
 
 /**
@@ -16,7 +20,11 @@ async function getContactsFromRemoteStorage() {
  * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
  */
 async function resetContactsOnRemoteStorage() {
-  return await remoteStorageSetItem("contacts", JSON.stringify(contacts_old));
+  // REMOTE STORAGE
+  //  return await remoteStorageSetItem("contacts", JSON.stringify(contacts_old));
+
+   // FIREBASE
+   return firebaseUpdateItem(contacts_old, FIREBASE_CONTACTS_ID);
 }
 
 /**
@@ -160,7 +168,12 @@ async function saveContact() {
       phone: contactPhone.value,
       contactColor: generateRandomColor(),
     });
-    await remoteStorageSetItem("contacts", JSON.stringify(contacts));
+    // REMOTE STORAGE
+    // await remoteStorageSetItem("contacts", JSON.stringify(contacts));
+    
+    // FIREBASE
+    await firebaseSetItem(FIREBASE_CONTACTS_ID, JSON.stringify(contacts));
+    
     localStorage.setItem("contacts", JSON.stringify(contacts));
     localVersionIndex++; // Increase the version index after saving the contact remote.
 
@@ -1095,7 +1108,13 @@ async function deleteContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     contacts.splice(contactIndex, 1);
-    await remoteStorageSetItem("contacts", JSON.stringify(contacts));
+    
+    // REMOTE STORAGE
+    // await remoteStorageSetItem("contacts", JSON.stringify(contacts));
+
+    // FIREBASE
+    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
+    
     console.log("Contact deleted successfully.");
   } else {
     console.error("Contact not found with ID:", id);

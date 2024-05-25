@@ -6,7 +6,11 @@ let loggedUsers = [];
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
 async function setUsersRemote() {
-    await remoteStorageSetItem('users', JSON.stringify(users));
+    // REMOTE STORAGE
+    // await remoteStorageSetItem('users', JSON.stringify(users));
+
+    // FIREBASE
+    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 }
 
 
@@ -17,8 +21,9 @@ async function loginInit() {
     // showOverlay();
     // includeHTML();
     getInformations();
-    await setUsersRemote();
     await loadUsers();
+    await setUsersRemote();
+    
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
 }
 
@@ -65,7 +70,12 @@ function hideOverlay() {
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
 async function loadUsers() {
-    users = JSON.parse(await remoteStorageGetItem('contacts'));
+    // REMOTE STORAGE
+    // users = JSON.parse(await remoteStorageGetItem('contacts'));
+
+    // FIREBASE
+    users = await firebaseGetItem(FIREBASE_CONTACTS_ID)
+
     console.log('users in login.js on loginInit(): ', users);
 }
 
@@ -144,16 +154,6 @@ function loginAsGuest() {
 function gotoSignUp() {
     switchPage('signUp.html');
 }
-
-
-
-
-
-
-
-
-
-
 
 // let users = [
 //     {
