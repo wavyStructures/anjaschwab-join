@@ -666,7 +666,7 @@ progress{
         align-items: flex-start;
         justify-content: start;
         overflow-x: auto;
-        padding: 7px;
+        padding: 18px;
     }
 
     .card{

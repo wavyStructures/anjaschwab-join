@@ -659,20 +659,13 @@ function startDragging(taskId){
  * @param {string} taskId - The ID of the task element.
  */
 function setDroppableContainers(taskId){
-    let category = getTaskOutOfId(taskId)['category']
-    switch (category) {
-        case 'category-0':
-            displayEmptyTask(taskId, ['category-1']);
-            break;
-        case 'category-1':
-            displayEmptyTask(taskId, ['category-0', 'category-2']);
-            break;
-        case 'category-2':
-            displayEmptyTask(taskId, ['category-1', 'category-3']);
-            break;
-        case 'category-3':
-            displayEmptyTask(taskId, ['category-2']);
-            break;
+    let category = getTaskOutOfId(taskId)['category'].slice(-1)
+    console.log(getTaskOutOfId(taskId)['category']);
+    console.log(category);
+    for (let i=0; i<4; i++){
+        if (i != category){
+           displayEmptyTask(taskId, i);
+        }
     }
 }
 
@@ -683,18 +676,18 @@ function setDroppableContainers(taskId){
  * @param {string} taskId - The ID of the task element.
  * @param {Array<string>} categoryArr - An array of category IDs.
  */
-function displayEmptyTask(taskId, categoryArr){
+function displayEmptyTask(taskId, categoryId){
+    console.log("categoryId: " + categoryId);
     let cardHeight = "height: "+  document.getElementById(taskId).clientHeight + "px";
     let cardWidth = "width: "+  document.getElementById(taskId).clientWidth + "px";
     let cardStyle = cardHeight + "; " + cardWidth;
 
-    for (let i=0; i < categoryArr.length; i++) {
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('emptyCard');
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('emptyCard');
 
-        newDiv.style = cardStyle;
-        document.getElementById(categoryArr[i]).appendChild(newDiv);
-    }
+    newDiv.style = cardStyle;
+    document.getElementById('category-' + categoryId).appendChild(newDiv);
+
 
 }
 
