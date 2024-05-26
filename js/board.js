@@ -660,8 +660,6 @@ function startDragging(taskId){
  */
 function setDroppableContainers(taskId){
     let category = getTaskOutOfId(taskId)['category'].slice(-1)
-    console.log(getTaskOutOfId(taskId)['category']);
-    console.log(category);
     for (let i=0; i<4; i++){
         if (i != category){
            displayEmptyTask(taskId, i);
@@ -677,9 +675,8 @@ function setDroppableContainers(taskId){
  * @param {Array<string>} categoryArr - An array of category IDs.
  */
 function displayEmptyTask(taskId, categoryId){
-    console.log("categoryId: " + categoryId);
-    let cardHeight = "height: "+  document.getElementById(taskId).clientHeight + "px";
-    let cardWidth = "width: "+  document.getElementById(taskId).clientWidth + "px";
+    let cardHeight = "min-height: "+  document.getElementById(taskId).clientHeight + "px";
+    let cardWidth = "min-width: "+  document.getElementById(taskId).clientWidth + "px";
     let cardStyle = cardHeight + "; " + cardWidth;
 
     let newDiv = document.createElement('div');

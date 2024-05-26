@@ -647,11 +647,15 @@ function setCreateBtnState() {
 // REMOTE STORAGE
 async function saveTasksToRemoteStorage(){
    await remoteStorageSetItem('tasks', JSON.stringify(tasks))
-    // await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
+   // await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
 }
 
 async function restoreTasksOnRemoteStorage(){
-    await remoteStorageSetItem(_tasksBackup, FIREBASE_TASKS_ID);
+    // REMOTE STORAGE
+    await remoteStorageSetItem('tasks', JSON.stringify(_tasksBackup));
+    
+    // FIREBASE
+    // await remoteStorageSetItem(_tasksBackup, FIREBASE_TASKS_ID);
 }
 
 async function loadTasksFromRemoteStorage(){
