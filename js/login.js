@@ -21,7 +21,7 @@ async function loginInit() {
     // showOverlay();
     // includeHTML();
     getInformations();
-    await loadUsers();
+    await loadUsersFromContacts();
     await setUsersRemote();
     
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
@@ -69,7 +69,7 @@ function hideOverlay() {
  * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
-async function loadUsers() {
+async function loadUsersFromContacts() {
     // REMOTE STORAGE
     // users = JSON.parse(await remoteStorageGetItem('contacts'));
 
