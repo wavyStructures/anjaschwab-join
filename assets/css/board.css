@@ -413,10 +413,10 @@ progress{
 
 /* Animations success message */
 @keyframes successIn {
-    0%{
+    from{
         transform: translateY(0) ;
     }
-    100%{
+    to{
         bottom: 50%;
         transform: translateY(50%)
     }
@@ -424,11 +424,11 @@ progress{
 
 
 @keyframes successOut {
-    0%{
+    from{
         transform: translate(0);
     }
-    100%{
-        transform: translateX(500px);
+    to{
+        transform: translateX(-500px);
     }
 }
 
@@ -437,7 +437,7 @@ progress{
 }
 
 .successOut{
-    animation: successOut 2.5s ease forwards;
+    animation: successOut 0.5s ease forwards;
 }
 
 .openCardContainer{

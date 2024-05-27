@@ -154,7 +154,7 @@ async function boardInit() {
  */
 function renderBoardAddTaskOverlay(){
     let newDiv = document.createElement('div');
-    setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer hideBoard d-none', 'onclick': 'doNotClose(event)'});
+    setAttributes(newDiv, {'id': 'addTaskHoverContainer', 'class': 'addTaskHoverContainer', 'onclick': 'doNotClose(event)'});
     document.body.appendChild(newDiv);
 
     let container = document.getElementById('addTaskHoverContainer');
@@ -177,8 +177,6 @@ function showAddTaskContainer(){
         renderBoardAddTaskOverlay();
     }
     let container = document.getElementById('addTaskHoverContainer');
-    container.classList.remove('d-none');
-    container.classList.remove('hideBoard');
     container.classList.add('showBoard');
     toggleBoardOverlay("hideAddTaskContainer()");
 }
@@ -188,12 +186,10 @@ function hideAddTaskContainer(){
     let container = document.getElementById('addTaskHoverContainer');
     container.classList.remove('showBoard');
     container.classList.add('hideBoard');
-    // TODO: ALSO HIDE SUCCESS-MESSAGE-CONTAINER
+    toggleBoardOverlay('disable');
     setTimeout(() => {
         container.remove();
-        // container.classList.toggle('d-none');
-        toggleBoardOverlay('disable');
-    },1000)
+    },200)
 }
 
 
@@ -212,16 +208,14 @@ function toggleBoardOverlay(functionToCall){
 function showSuccessMessage(){
     if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
     let container = document.getElementById('success-message-container');
-    container.classList.remove('successOut');
-    container.classList.remove('d-none');
     container.classList.add('successIn');
 
 }
 
 function hideSuccesMessage(){
     let container = document.getElementById('success-message-container');
-    container.classList.remove('successIn');
     container.classList.add('successOut');
+    container.classList.remove('successIn');
     container.remove();
 
 }
