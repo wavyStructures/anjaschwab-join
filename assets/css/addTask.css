@@ -115,7 +115,7 @@ select {
     display: flex;
     flex-direction: column;
     gap: var(--addTaskGap-24);
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     padding: 0 24px;
     cursor: default;
     width: 100%;
@@ -647,3 +647,26 @@ select {
     width: 100%;
 }
 
+@media screen and (max-width: 1070px) {
+    .addTaskBody{
+        align-items: center;
+        flex-direction: column;
+        width: min-content;
+    }
+
+    .addTaskBodyLeft{
+        width: min-content;
+    }
+
+    .addTaskBodyRight{
+        justify-content: center;
+
+        .clearBtn{
+            display: none;
+        }
+
+    }
+    .addTaskEmptyDiv{
+        display: none;
+    }
+}
