@@ -110,7 +110,7 @@ function loadAmounts() {
 
     for (let i = 0; i < categories.length; i++) {
         let category = categories[i];
-        let filteredTasks = filterTasks(category);
+        let filteredTasks = filterTasks(tasks, category);
         categoriesAmounts[i] = filteredTasks.length;
     }
     showAmounts(categoriesAmounts);
