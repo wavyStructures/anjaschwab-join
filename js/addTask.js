@@ -595,7 +595,8 @@ async function createTask(){
         hideSuccesMessage();
 
         setTimeout(() => {
-            switchPage('board.html');
+            if(window.location.href.includes('board.html')) renderCategories(tasks);
+            else switchPage('board.html');
         },1000)
 
     }, 1000);
