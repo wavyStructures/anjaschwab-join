@@ -3,18 +3,6 @@ let loggedUsers = [];
 
 
 /**
- * Sets the users list stored in users.js as an array of objects to the remote storage
- */
-async function setUsersRemote() {
-    // REMOTE STORAGE
-    // await remoteStorageSetItem('users', JSON.stringify(users));
-
-    // FIREBASE
-    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-}
-
-
-/**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
@@ -23,9 +11,37 @@ async function loginInit() {
     getInformations();
     await loadUsersFromContacts();
     await setUsersRemote();
-    
+
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
 }
+
+/**
+ * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
+ * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
+ */
+async function loadUsersFromContacts() {
+    users = await firebaseGetItem(FIREBASE_CONTACTS_ID)
+
+    console.log('users in login.js on loginInit(): ', users);
+}
+
+
+/**
+ * Saves the users array to the local storage as a JSON string.
+ */
+function setUsersToLocalStorage() {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+
+/**
+ * Sets the users list stored in users.js as an array of objects to the remote storage
+ */
+async function setUsersRemote() {
+    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+}
+
+
 
 function showOverlay() {
     if (!getCurrentUser()) {
@@ -65,27 +81,7 @@ function hideOverlay() {
 
 
 
-/**
- * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
- * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
- */
-async function loadUsersFromContacts() {
-    // REMOTE STORAGE
-    // users = JSON.parse(await remoteStorageGetItem('contacts'));
 
-    // FIREBASE
-    users = await firebaseGetItem(FIREBASE_CONTACTS_ID)
-
-    console.log('users in login.js on loginInit(): ', users);
-}
-
-
-/**
- * Saves the users array to the local storage as a JSON string.
- */
-function setUsersToLocalStorage() {
-    localStorage.setItem('users', JSON.stringify(users));
-}
 
 
 /**

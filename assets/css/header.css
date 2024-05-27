@@ -16,6 +16,7 @@
     width: 46px;
     height: 56px;
     margin-left: 39px;
+    cursor: pointer;
   }
 }
 
@@ -81,8 +82,6 @@
   z-index: 1;
   /* opacity: 1; */
 }
-
-
 
 .small-menu-mobile {
   display: flex;
@@ -152,6 +151,6 @@
   }
 }
 
-.d-none{
+.d-none {
   display: none;
 }
