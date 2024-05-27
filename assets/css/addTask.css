@@ -95,6 +95,7 @@ select {
 .addTaskBody {
     display: flex;
     flex-direction: row;
+    width: 100%;
 
     padding: 64px 24px 0 24px;
     font-size: 1.188rem;
@@ -117,6 +118,7 @@ select {
     overflow-y: scroll;
     padding: 0 24px;
     cursor: default;
+    width: 100%;
 }
 
 
@@ -124,6 +126,8 @@ select {
     display: flex;
     background-color: white;
     align-items: flex-end;
+    justify-content: right;
+    width: 100%;
 
 }
 
