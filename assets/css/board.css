@@ -681,6 +681,10 @@ progress{
         display: none;
     }
 
+    .empty-category{
+        height: 273px;
+    }
+
 }
 
 @media (max-width: 800px){
