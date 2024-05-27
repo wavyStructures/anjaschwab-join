@@ -676,11 +676,16 @@ function setDroppableContainers(taskId){
  */
 function displayEmptyTask(taskId, categoryId){
     let cardHeight = "min-height: "+  document.getElementById(taskId).clientHeight + "px";
+    // let cardHeight = "min-height: 100%";
     let cardWidth = "min-width: "+  document.getElementById(taskId).clientWidth + "px";
     let cardStyle = cardHeight + "; " + cardWidth;
 
     let newDiv = document.createElement('div');
     newDiv.classList.add('emptyCard');
+    if(window.innerWidth < 1370){
+        newDiv.classList.add('vertical')
+    }
+
 
     newDiv.style = cardStyle;
     document.getElementById('category-' + categoryId).appendChild(newDiv);
