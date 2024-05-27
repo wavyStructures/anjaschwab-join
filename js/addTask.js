@@ -589,8 +589,13 @@ async function createTask(){
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
+    
+    setTimeout(() => {
+        hideAddTaskContainer();
+        hideSuccesMessage();
+    }, 1000);
+    
 }
-
 
 function checkValidity(){
     requiredInputFields.forEach(requiredInputField => {

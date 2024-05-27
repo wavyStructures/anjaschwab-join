@@ -192,8 +192,8 @@ function hideAddTaskContainer(){
     setTimeout(() => {
         container.remove();
         // container.classList.toggle('d-none');
-    },200)
-    toggleBoardOverlay('disable');
+        toggleBoardOverlay('disable');
+    },1000)
 }
 
 
@@ -211,18 +211,19 @@ function toggleBoardOverlay(functionToCall){
 
 function showSuccessMessage(){
     if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
-
     let container = document.getElementById('success-message-container');
-
     container.classList.remove('successOut');
     container.classList.remove('d-none');
     container.classList.add('successIn');
 
-    setTimeout(() => {
-        container.classList.remove('successIn');
-        container.classList.add('successOut');
-        container.classList.add('d-none');
-    }, 2000)
+}
+
+function hideSuccesMessage(){
+    let container = document.getElementById('success-message-container');
+    container.classList.remove('successIn');
+    container.classList.add('successOut');
+    container.remove();
+
 }
 
 
