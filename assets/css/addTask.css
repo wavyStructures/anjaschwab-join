@@ -187,7 +187,7 @@ select {
     color: white;
     width: max-content;
     border: none;
-    height: 51px;
+    height: 61px;
     
     &:hover:not(.disabled){
         background-color: var(--clr-contact-marked-hover);

@@ -47,6 +47,8 @@
         height: 51px;
         /* bottom: 20px; */
     }
+
+
 .addTaskBtnContainer{
     display: flex;
     width:100%;
@@ -695,3 +697,6 @@ progress{
     }
 }
 
+.btnBoard{
+    height: 51px;
+}
