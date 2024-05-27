@@ -257,10 +257,9 @@ function renderCategories(arrayToSearchIn) {
         let categoryContainer = document.getElementById(category);
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, category);
-
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
-                let task = filteredTasks[j];
+                let task = getTaskOutOfId(filteredTasks[j].id);
                 categoryContainer.innerHTML += renderTasksHTML(task);
                 renderAssignedToButtons(task);
             }
@@ -279,11 +278,11 @@ function renderCategories(arrayToSearchIn) {
  */
 function filterTasks(arrayToSearchIn, category) {
     let filteredTasks = [];
-    for (let id in arrayToSearchIn) {
-        if (arrayToSearchIn[id]['category'] == category) {
-            filteredTasks.push(tasks[id]);
+    arrayToSearchIn.forEach((task) => {
+        if (task['category'] == category) {
+            filteredTasks.push(task);
         }
-    }
+    });
     return filteredTasks;
 }
 
@@ -333,8 +332,10 @@ function setPriorityImage(taskPriority) {
  */
 function searchTask() {
     let searchInput = document.getElementById('findTask');
+    console.log("searchInput: ", searchInput.value);
     if(searchInput == null) return;
     let foundTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchInput.value) || task['description'].toLowerCase().includes(searchInput.value));
+    foundTasks.forEach(t => console.log(t))
     renderCategories(foundTasks);
 }
 
