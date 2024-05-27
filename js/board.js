@@ -183,13 +183,15 @@ function showAddTaskContainer(){
 
 
 function hideAddTaskContainer(){
-    let container = document.getElementById('addTaskHoverContainer');
-    container.classList.remove('showBoard');
-    container.classList.add('hideBoard');
-    toggleBoardOverlay('disable');
-    setTimeout(() => {
-        container.remove();
-    },200)
+    if(document.getElementById('addTaskHoverContainer')){
+        let container = document.getElementById('addTaskHoverContainer');
+        container.classList.remove('showBoard');
+        container.classList.add('hideBoard');
+        toggleBoardOverlay('disable');
+        setTimeout(() => {
+            container.remove();
+        },200)
+    }
 }
 
 

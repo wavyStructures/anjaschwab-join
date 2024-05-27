@@ -589,12 +589,16 @@ async function createTask(){
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
-    
+
     setTimeout(() => {
         hideAddTaskContainer();
         hideSuccesMessage();
+
+        setTimeout(() => {
+            switchPage('board.html');
+        },1000)
+
     }, 1000);
-    
 }
 
 function checkValidity(){
