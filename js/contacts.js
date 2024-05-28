@@ -39,41 +39,14 @@ async function getVersions() {
   return [localVersion, remoteVersion];
 }
 
-/**
- * Asynchronously retrieves remote contacts, versions, and logs information.
- *
- * @return {string} Indicates the completion of the function.
- */
-async function getInformations() {
-  let remoteContacts = await getContactsFromRemoteStorage();
-  let [local, remote] = await getVersions();
-
-  console.log("Versions: local: ", local, " remote: ", remote);
-  console.log("Remote Contacts", remoteContacts);
-  console.log("Local Contacts: ", contacts);
-  return "-- getInformations() finished --";
-}
 
 /**
  * Loads the contacts from storage.
  */
 async function loadContactsStorage() {
   try {
-    const onlineVersionIndex = await fetchOnlineVersionIndex();
-    if (onlineVersionIndex !== null && onlineVersionIndex > localVersionIndex) {
       contacts = await getContactsFromRemoteStorage();
-      localVersionIndex = onlineVersionIndex;
-      console.log("Contacts loaded from online storage.");
-      // Save the contacts array to local storage
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-      console.log("Contacts saved to local storage.");
-    } else {
-      console.log(
-        "Local contacts are up to date or no online version index found. Using local storage."
-      );
-      // Load contacts from local storage
-      contacts = JSON.parse(localStorage.getItem("contacts"));
-    }
+      console.log("Contacts loaded from online storage.")
   } catch (error) {
     console.error("Loading error:", error);
   }
@@ -96,22 +69,6 @@ function getNextId(contactsArray) {
 }
 
 /**
- * Fetches the online version index by retrieving the 'versionIndex' item asynchronously.
- *
- * @return {Promise<number>} The online version index if successful, otherwise null.
- */
-async function fetchOnlineVersionIndex() {
-  const response = await remoteStorageGetItem("versionIndex");
-
-  if (response) {
-    return response;
-  } else {
-    console.error("Failed to fetch version index from online storage");
-    return null;
-  }
-}
-
-/**
  * Initializes the contacts by including the HTML, loading the contacts, and checking the version index.
  */
 /*
@@ -128,24 +85,6 @@ async function contactsInit() {
   loadContacts();
 }*/
 
-/**
- * Checks the online version index by fetching it, sets the local version index based on the fetched value,
- * and saves the updated version index online if necessary.
- *
- * @return {Promise<void>} Indicates the completion of updating the version indexes.
- */
-async function ckeckOnlineVersionIndex() {
-  const onlineVersionIndex = await fetchOnlineVersionIndex();
-
-  if (onlineVersionIndex === null) {
-    // If version index doesn't exist, set it to 0 and save it online
-    localVersionIndex = 0;
-    await saveOnlineVersionIndex(localVersionIndex);
-  } else {
-    // If version index exists, update local version index
-    localVersionIndex = onlineVersionIndex;
-  }
-}
 
 /**
  * Saves the version index to Firebase Realtime Database.
@@ -158,6 +97,8 @@ async function saveOnlineVersionIndex(versionIndex) {
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
  */
 async function saveContact() {
+  await loadContactsStorage(); // Load contacts from online storage to be sure to have the newest contacts.
+
   try {
     createBtn.disabled = true;
     const newId = getNextId(contacts);
@@ -168,20 +109,12 @@ async function saveContact() {
       phone: contactPhone.value,
       contactColor: generateRandomColor(),
     });
-    // REMOTE STORAGE
-    // await remoteStorageSetItem("contacts", JSON.stringify(contacts));
-    
+
     // FIREBASE
     await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
     
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    localVersionIndex++; // Increase the version index after saving the contact remote.
-
-    await saveOnlineVersionIndex(localVersionIndex); // Save the updated version index online.
-
     resetContactForm();
     closeAddContact();
-    await loadContactsStorage(); // Load contacts from online storage if necessary.
     loadContacts();
   } catch (error) {
     console.error("Error saving contact:", error);

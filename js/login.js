@@ -5,7 +5,6 @@ let loggedUsers = [];
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    getInformations();
     await loadUsersFromContacts();
     await setUsersRemote();
 
@@ -18,7 +17,6 @@ async function loginInit() {
  */
 async function loadUsersFromContacts() {
     users = await firebaseGetItem(FIREBASE_CONTACTS_ID);
-
     console.log('users in login.js on loginInit(): ', users);
 }
 

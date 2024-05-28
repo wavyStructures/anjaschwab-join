@@ -13,9 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: fit-content;
   overflow-y: hidden;
-  /* margin-top: 280px; */
 }
 
 .button-container {
@@ -26,7 +24,7 @@
   align-items: center;
   grid-column-gap: 24px;
   grid-row-gap: 24px;
-  margin-bottom: 48px;
+  /* margin-bottom: 48px; */
 }
 
 .inBoard {
@@ -190,6 +188,8 @@ div.square-button.toDo {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: normal;
+  gap: 20px;
 }
 
 .usernameForGreeting {
@@ -200,7 +200,6 @@ div.square-button.toDo {
 }
 
 .userGreeting {
-  font-family: open sans;
   font-size: 48px;
   font-weight: 400;
 }
@@ -210,13 +209,12 @@ div.square-button.toDo {
   gap: 22px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 0;
-  margin-bottom: 72px;
+  /* margin-bottom: 72px; */
 }
 
 .daytimeGreeting {
-  font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
   line-height: 76.8px;
@@ -229,8 +227,7 @@ div.square-button.toDo {
   max-width: fit-content;
   color: var(--clr-main);
   height: 58px;
-  margin: 9.5px 0 9.5px 22px;
-  font-family: Open Sans;
+  /* margin: 9.5px 0 9.5px 22px; */
   font-size: 64px;
   font-weight: 700;
 }
@@ -407,8 +404,7 @@ button {
 /* / ///////////////////////////////////////////////////////////////////max 465px*/
 @media (min-width: 320px) and (max-width: 465px) {
   .greetingContainer-and-subMainSummary {
-    margin-top: 8px;
-    padding-left: 24px;
+    /* padding-left: 24px; */
   }
 
   .button-container {
@@ -421,7 +417,7 @@ button {
     grid-row-gap: 21px;
     height: auto;
     width: 300px;
-    margin-bottom: 8px;
+    padding: 7px;
   }
 
   .urgent {
@@ -496,7 +492,7 @@ button {
     background-color: #fff;
     grid-column: 1 / 2;
     grid-row: 3 / 4;
-    padding-bottom: 26px;
+    /* padding-bottom: 26px; */
   }
 
   .inProgress {
@@ -528,17 +524,6 @@ button {
 @media (min-width: 465px) and (max-width: 600px) {
   .sub-main-summary {
     width: -webkit-fill-available;
-    padding-left: 16px;
-  }
-
-  .greetingContainer-and-subMainSummary {
-    margin-top: 2px;
-  }
-
-  .summary-box {
-    height: calc(100vh - 230px);
-    /* margin-top: 320px;
-    margin-bottom: 70px; */
   }
 
   #h1GreetingUser {
@@ -554,6 +539,7 @@ button {
     grid-column-gap: 21px;
     grid-row-gap: 21px;
     height: auto;
+    padding: 7px;
   }
 
   .urgent {
@@ -815,21 +801,17 @@ button {
 
 @media (min-width: 600px) and (max-width: 949px) {
   .sub-main-summary {
-    width: -webkit-fill-available;
-    padding-left: 16px;
-    margin-top: -150px;
+    padding: 16px;
   }
 
   .summary-box {
-    height: 100vh;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; */
-    margin-top: 250px;
+    align-items: center; 
   }
 
   .greetingContainer-and-subMainSummary {
-    margin-top: 180px;
+    /* margin-top: 180px; */
     overflow: hidden;
   }
 
@@ -848,7 +830,6 @@ button {
     grid-column-gap: 21px;
     grid-row-gap: 21px;
     height: auto;
-    margin-bottom: 8px;
   }
 
   .square-button {
@@ -959,11 +940,11 @@ button {
 
   .h1-box {
     gap: 24px;
-    margin: 32px 0 54px 48px;
+    /* margin: 32px 0 54px 48px; */
   }
 
   #usernameForGreeting {
-    margin: 9.5px 0 2px 0;
+    /* margin: 9.5px 0 2px 0; */
     font-size: 48px;
   }
 
@@ -1095,23 +1076,11 @@ button {
 }
 
 .userGreeting {
-  font-family: open sans;
   font-size: 48px;
   font-weight: 400;
 }
 
-/* .h1-box {
-  max-width: fit-content;
-  gap: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 0;
-  margin-bottom: 72px;
-} */
-
 .daytimeGreeting {
-  font-family: Open Sans;
   font-size: 64px;
   font-weight: 700;
   line-height: 76.8px;

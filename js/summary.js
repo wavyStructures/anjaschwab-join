@@ -35,16 +35,13 @@ function getLoggedUser() {
 function greetAccordingToDayTime() {
     let nowTime = new Date();
     let hours = nowTime.getHours();
-    let dayTime;
 
-    if (hours < 12) {
+    if (hours <= 12) {
         dayTime = "Good Morning";
-    } else if (hours < 18) {
+    } else if (hours <= 18) {
         dayTime = "Good Afternoon";
-    } else if (hours < 22) {
+    } else if (hours > 18) {
         dayTime = "Good Evening";
-    } else {
-        dayTime = "Good Night";
     }
 
     // = (hours < 12) ? "Good Morning" :
@@ -220,7 +217,7 @@ function hideMobileGreeting() {
     document.getElementById('main').classList.remove("hide-scroll");
     subMainSummary.classList.add('sub-main-summary');
     subMainSummary.classList.remove('d-none');
-    subMainSummary.style.overflow = 'scroll';
+    subMainSummary.style.overflow = 'auto';
 }
 
 
