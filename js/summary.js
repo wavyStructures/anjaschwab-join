@@ -188,6 +188,7 @@ function greetUserMobile() {
         let bitGreeting = document.getElementById('h1GreetingUser');
 
         greetingContainer.style.display = 'flex';
+        document.getElementById('main').classList.add("hide-scroll");
         bitGreeting.style.display = "none";
         subMainSummary.style.overflow = 'hidden';
         subMainSummary.classList.remove('sub-main-summary');
@@ -204,6 +205,7 @@ function greetUserMobile() {
  */
 function hideMobileGreeting() {
     document.getElementById('greetingContainer').style.display = 'none';
+    document.getElementById('main').classList.remove("hide-scroll");
     subMainSummary.classList.add('sub-main-summary');
     subMainSummary.classList.remove('d-none');
     subMainSummary.style.overflow = 'scroll';
