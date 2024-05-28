@@ -35,8 +35,20 @@ function getLoggedUser() {
 function greetAccordingToDayTime() {
     let nowTime = new Date();
     let hours = nowTime.getHours();
-    dayTime = (hours < 12) ? "Good Morning" :
-        ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
+    let dayTime;
+
+    if (hours < 12) {
+        dayTime = "Good Morning";
+    } else if (hours < 18) {
+        dayTime = "Good Afternoon";
+    } else if (hours < 22) {
+        dayTime = "Good Evening";
+    } else {
+        dayTime = "Good Night";
+    }
+
+    // = (hours < 12) ? "Good Morning" :
+    //     ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
     document.getElementById('daytimeGreeting').innerHTML = '';
     loggedUser = getCurrentUser();

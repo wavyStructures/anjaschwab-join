@@ -237,39 +237,66 @@ input[type="password"]:focus {
   justify-content: center;
   align-items: center; */
   overflow: hidden;
-  /* animation: fadingOverlay 5s ease-in-out; */
+  animation: fadingOverlay 5s ease-in-out;
 }
 
-.logo-animation {
-  position: absolute;
+/* .logo-animation { */
+/* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  /* animation: move-logo 2s ease-in-out; */
-}
+  transform: translate(-50%, -50%); */
+/* animation: move-logo 2s ease-in-out; */
+/* } */
 
 @keyframes move-logo {
   from {
     transform: translate(0px, 0px);
     width: 250px;
     height: 250px;
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-160px, -415px);
+    width: 150px;
+    height: 150px;
+    opacity: 0.5;
   }
   to {
-    transform: translate(-720px, -330px);
+    transform: translate(-235px, 77px);
+    /* transform: translate(-320px, -830px); */
     width: 50px;
     height: 50px;
-    filter: invert(1);
+    opacity: 0;
   }
 }
 
-/* @keyframes fadingOverlay {
+.logo-animation {
+  animation: move-logo 2s forwards;
+}
+
+/* @keyframes move-logo {
+  from {
+    transform: translate(0px, 0px);
+    width: 250px;
+    height: 250px;
+  }
+  to {
+    transform: translate(-320px, -530px);
+    width: 50px;
+    height: 50px;
+    filter: invert(1);
+    opacity: 0;
+  }
+} */
+
+@keyframes fadingOverlay {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
   }
-} */
+}
 
 /* .logo-animation {
   animation: moveAndShrink 3s forwards;

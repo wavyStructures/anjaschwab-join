@@ -19,7 +19,7 @@
   font-family: "Open Sans", sans-serif;
 }
 
-html{
+html {
   height: 100%;
 }
 
@@ -112,4 +112,8 @@ a {
 
 .d-none {
   display: none;
+}
+
+.hide-scroll {
+  scrollbar-width: none;
 }

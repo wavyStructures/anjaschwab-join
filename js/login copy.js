@@ -1,10 +1,14 @@
 let users = [];
 let loggedUsers = [];
 
+
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
+    setTimeout(() => {
+        showOverlay();
+    }, 5000);
     getInformations();
     await loadUsersFromContacts();
     await setUsersRemote();
@@ -17,10 +21,11 @@ async function loginInit() {
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
 async function loadUsersFromContacts() {
-    users = await firebaseGetItem(FIREBASE_CONTACTS_ID);
+    users = await firebaseGetItem(FIREBASE_CONTACTS_ID)
 
     console.log('users in login.js on loginInit(): ', users);
 }
+
 
 /**
  * Saves the users array to the local storage as a JSON string.
@@ -29,6 +34,7 @@ function setUsersToLocalStorage() {
     localStorage.setItem('users', JSON.stringify(users));
 }
 
+
 /**
  * Sets the users list stored in users.js as an array of objects to the remote storage
  */
@@ -36,10 +42,11 @@ async function setUsersRemote() {
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 }
 
+
 function showOverlay() {
     if (!getCurrentUser()) {
         console.log("no user");
-        document.getElementById('main').classList.add('hide-scroll');
+        document.getElementById('loginMainContainer').style.overflow = 'hidden';
         document.getElementById("blueOverlay").style.display = "flex";
         startAnimation();
     } else {
@@ -47,6 +54,7 @@ function showOverlay() {
         switchPage('summary.html');
     }
 }
+
 
 /**
  * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
@@ -65,18 +73,14 @@ async function startAnimation() {
     });
 }
 
+
 function hideOverlay() {
-    // document.getElementById('loginMainContainer').style.overflow = 'auto';
     document.getElementById("blueOverlay").style.display = "none";
+    document.getElementById('loginMainContainer').style.overflow = 'auto';
+    switchPage('login.html');
 }
 
-// // Delay the overlay display by 5 seconds (5000 milliseconds)
-// setTimeout(() => {
-//     showOverlay();
-// }, 50000);
 
-// Initialize the login process
-loginInit();
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
  * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.
