@@ -13,9 +13,7 @@ async function summaryInit() {
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
-
     greetUserMobile();
-
     loadAmounts();
     getUrgentTasks();
     buttonEventListener();
@@ -43,9 +41,6 @@ function greetAccordingToDayTime() {
     } else if (hours > 18) {
         dayTime = "Good Evening";
     }
-
-    // = (hours < 12) ? "Good Morning" :
-    //     ((hours <= 18 && hours >= 12) ? "Good Afternoon" : "Good Night");
 
     document.getElementById('daytimeGreeting').innerHTML = '';
     loggedUser = getCurrentUser();
