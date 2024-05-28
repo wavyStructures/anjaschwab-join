@@ -6,8 +6,7 @@ let loggedUsers = [];
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    // showOverlay();
-    // includeHTML();
+    showOverlay();
     getInformations();
     await loadUsersFromContacts();
     await setUsersRemote();
@@ -40,7 +39,6 @@ function setUsersToLocalStorage() {
 async function setUsersRemote() {
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 }
-
 
 
 function showOverlay() {

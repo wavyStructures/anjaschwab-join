@@ -26,6 +26,7 @@
   align-items: center;
   grid-column-gap: 24px;
   grid-row-gap: 24px;
+  margin-bottom: 48px;
 }
 
 .inBoard {
@@ -819,13 +820,23 @@ button {
     margin-top: -150px;
   }
 
+  .summary-box {
+    height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin-top: 250px;
+  }
+
   .greetingContainer-and-subMainSummary {
-    margin-top: 80px;
+    margin-top: 180px;
+    overflow: hidden;
   }
 
   .h1-box {
     height: 0;
-    margin-bottom: 0;
+    margin: 0;
+    display: none;
   }
 
   .button-container {
