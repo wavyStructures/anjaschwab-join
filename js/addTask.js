@@ -655,9 +655,11 @@ function setCreateBtnState() {
  * @param {string} onClickFunctionName - The name of the function to be called when the button is clicked.
  */
 function activateButton(id, onClickFunctionName){
-    let btn = document.getElementById(id);
-    btn.classList.remove("disabled");
-    btn.setAttribute("onclick", onClickFunctionName);
+    if(document.getElementById(id)){
+        let btn = document.getElementById(id);
+        btn.classList.remove("disabled");
+        btn.setAttribute("onclick", onClickFunctionName);
+    }
 }
 
 
@@ -667,9 +669,11 @@ function activateButton(id, onClickFunctionName){
  * @param {string} id - The ID of the button element.
  */
 function deactivateButton(id){
-    let btn = document.getElementById(id);
-    btn.classList.add("disabled");
-    btn.removeAttribute("onclick");
+    if(document.getElementById(id)){
+        let btn = document.getElementById(id);
+        btn.classList.add("disabled");
+        btn.removeAttribute("onclick");
+    }
 }
 
 
@@ -677,8 +681,10 @@ function deactivateButton(id){
 
 // REMOTE STORAGE
 async function saveTasksToRemoteStorage(){
+   deactivateButton('createBtn');
    await remoteStorageSetItem('tasks', JSON.stringify(tasks))
    // await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
+   activateButton('createBtn', 'createTask()');
 }
 
 async function restoreTasksOnRemoteStorage(){
