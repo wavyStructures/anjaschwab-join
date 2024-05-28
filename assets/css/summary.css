@@ -402,7 +402,7 @@ button {
 /*////////////////////////////Media Queries /////////////////////////////////////*/
 
 /* / ///////////////////////////////////////////////////////////////////max 465px*/
-@media (min-width: 320px) and (max-width: 465px) {
+@media (max-width: 465px) {
   .greetingContainer-and-subMainSummary {
     /* padding-left: 24px; */
   }
@@ -415,9 +415,7 @@ button {
     align-items: center;
     grid-column-gap: 8px;
     grid-row-gap: 21px;
-    height: auto;
-    width: 300px;
-    padding: 7px;
+    padding: 13px;
   }
 
   .urgent {

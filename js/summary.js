@@ -217,7 +217,7 @@ function hideMobileGreeting() {
     document.getElementById('main').classList.remove("hide-scroll");
     subMainSummary.classList.add('sub-main-summary');
     subMainSummary.classList.remove('d-none');
-    subMainSummary.style.overflow = 'auto';
+    subMainSummary.style.overflow = 'none';
 }
 
 
