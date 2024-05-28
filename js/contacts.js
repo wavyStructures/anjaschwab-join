@@ -172,7 +172,7 @@ async function saveContact() {
     // await remoteStorageSetItem("contacts", JSON.stringify(contacts));
     
     // FIREBASE
-    await firebaseSetItem(FIREBASE_CONTACTS_ID, JSON.stringify(contacts));
+    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
     
     localStorage.setItem("contacts", JSON.stringify(contacts));
     localVersionIndex++; // Increase the version index after saving the contact remote.
