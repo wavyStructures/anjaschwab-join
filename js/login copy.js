@@ -1,14 +1,49 @@
 let users = [];
 let loggedUsers = [];
 
+setTimeout(() => {
+    showOverlay();
+}, 5000);
+
+
+function showOverlay() {
+    if (!getCurrentUser()) {
+        console.log("no user");
+        document.getElementById('loginMainContainer').style.overflow = 'hidden';
+        document.getElementById("blueOverlay").style.display = "flex";
+        startAnimation();
+    } else {
+        console.log("user already logged in");
+        switchPage('summary.html');
+    }
+}
+
+async function startAnimation() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const logo = document.getElementById("logo");
+            logo.classList.add("logo-animation");
+            setTimeout(() => {
+                resolve();
+                hideOverlay();
+            }, 2000); // Wait for the logo animation to finish (2 seconds)
+        }, 3000); // Wait for 3 seconds before starting the animation
+
+    });
+}
+
+function hideOverlay() {
+    document.getElementById("blueOverlay").style.display = "none";
+    document.getElementById('loginMainContainer').style.overflow = 'auto';
+    switchPage('login.html');
+}
+
 
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    setTimeout(() => {
-        showOverlay();
-    }, 5000);
+
     getInformations();
     await loadUsersFromContacts();
     await setUsersRemote();
@@ -42,43 +77,6 @@ async function setUsersRemote() {
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 }
 
-
-function showOverlay() {
-    if (!getCurrentUser()) {
-        console.log("no user");
-        document.getElementById('loginMainContainer').style.overflow = 'hidden';
-        document.getElementById("blueOverlay").style.display = "flex";
-        startAnimation();
-    } else {
-        console.log("user already logged in");
-        switchPage('summary.html');
-    }
-}
-
-
-/**
- * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
- */
-async function startAnimation() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            const logo = document.getElementById("logo");
-            logo.classList.add("logo-animation");
-            setTimeout(() => {
-                resolve();
-                hideOverlay();
-            }, 2000); // Wait for the logo animation to finish (2 seconds)
-        }, 3000); // Wait for 3 seconds before starting the animation
-
-    });
-}
-
-
-function hideOverlay() {
-    document.getElementById("blueOverlay").style.display = "none";
-    document.getElementById('loginMainContainer').style.overflow = 'auto';
-    switchPage('login.html');
-}
 
 
 /**

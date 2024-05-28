@@ -15,7 +15,7 @@
   align-items: center;
   height: fit-content;
   overflow-y: hidden;
-  margin-top: 280px;
+  /* margin-top: 280px; */
 }
 
 .button-container {
@@ -60,7 +60,7 @@ div.square-button.toDo {
 .feedback:hover,
 .done:hover {
   border-radius: 0px 30px 30px 30px;
-  transform: scale(1.14, 1.08);
+  transform: scale(1.08, 1.08);
   transform-origin: right;
   background-color: var(--clr-text-medium-blue);
   color: #fff;
@@ -402,9 +402,6 @@ button {
   text-align: center;
 }
 
-.hide-scroll {
-  scrollbar-width: none;
-}
 /*////////////////////////////Media Queries /////////////////////////////////////*/
 
 /* / ///////////////////////////////////////////////////////////////////max 465px*/
