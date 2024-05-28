@@ -577,7 +577,7 @@ progress{
     width: 24px;
     aspect-ratio: 1;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
 }
 
 

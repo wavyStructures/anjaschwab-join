@@ -640,15 +640,36 @@ function getStateOfRequriredField(requiredInputField){
 
 
 function setCreateBtnState() {
-	let createBtn = document.getElementById("createBtn");
-
 	if (requiredInputFields.every((r) => r.state == true)) {
-		createBtn.classList.remove("disabled");
-		createBtn.setAttribute("onclick", "createTask()");
+        activateButton('createBtn', 'createTask()');
 	} else {
-		createBtn.classList.add("disabled");
-		createBtn.removeAttribute("onclick");
+        deactivateButton('createBtn');
 	}
+}
+
+
+/**
+ * Activates a button by removing the "disabled" class and setting the "onclick" attribute.
+ *
+ * @param {string} id - The ID of the button element.
+ * @param {string} onClickFunctionName - The name of the function to be called when the button is clicked.
+ */
+function activateButton(id, onClickFunctionName){
+    let btn = document.getElementById(id);
+    btn.classList.remove("disabled");
+    btn.setAttribute("onclick", onClickFunctionName);
+}
+
+
+/**
+ * Deactivates a button by adding the "disabled" class and removing the "onclick" attribute.
+ *
+ * @param {string} id - The ID of the button element.
+ */
+function deactivateButton(id){
+    let btn = document.getElementById(id);
+    btn.classList.add("disabled");
+    btn.removeAttribute("onclick");
 }
 
 
