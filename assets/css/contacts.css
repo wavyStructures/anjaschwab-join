@@ -230,7 +230,7 @@
   border: solid 1px #e3e3e3;
   border-radius: 0px 0px 30px 30px;
   border-bottom: none;
-  height: 90%;
+
 }
 
 .profile-badge-group-edit-contact {
@@ -249,6 +249,12 @@
 .profile-badge-edit-contact img {
   height: 120px;
   width: 120px;
+}
+
+.add-contact-input-group{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 @keyframes moveInLeft {
@@ -271,10 +277,10 @@
 input {
   justify-content: space-between;
   width: 100%;
-  font-size: 20px;
+  font-size: 19px;
   display: flex;
   padding: 12px 21px;
-  margin: 16px 0 16px 0;
+  /* margin: 16px 0 16px 0;  */
   align-items: center;
   outline: none;
   border: none;
@@ -664,7 +670,7 @@ input {
 }
 
 .contact-main-edit {
-  position: ;
+  /* position: ; */
   left: 0;
   top: 20%;
 }
