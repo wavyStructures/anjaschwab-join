@@ -179,6 +179,7 @@ div.square-button.toDo {
   display: grid;
   place-items: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 .summary-box {
@@ -189,7 +190,7 @@ div.square-button.toDo {
   flex-direction: column;
   align-items: center;
   justify-content: normal;
-  gap: 20px;
+  gap: 70px;
 }
 
 .usernameForGreeting {
@@ -210,8 +211,6 @@ div.square-button.toDo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0;
-  /* margin-bottom: 72px; */
 }
 
 .daytimeGreeting {
@@ -227,9 +226,9 @@ div.square-button.toDo {
   max-width: fit-content;
   color: var(--clr-main);
   height: 58px;
-  /* margin: 9.5px 0 9.5px 22px; */
-  font-size: 64px;
+  font-size: 24px;
   font-weight: 700;
+  text-wrap: nowrap;
 }
 
 button {
@@ -403,9 +402,6 @@ button {
 
 /* / ///////////////////////////////////////////////////////////////////max 465px*/
 @media (max-width: 465px) {
-  .greetingContainer-and-subMainSummary {
-    /* padding-left: 24px; */
-  }
 
   .button-container {
     display: grid;
@@ -525,7 +521,7 @@ button {
   }
 
   #h1GreetingUser {
-    margin-bottom: 0;
+    display: none;
   }
 
   .button-container {
@@ -780,6 +776,10 @@ button {
   .daytimeGreeting {
     display: none;
   }
+
+  #h1GreetingUser{
+    display: none;
+  }
   .h1-box {
     height: 0;
     margin-bottom: 0;
@@ -806,6 +806,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center; 
+    gap: 20px;
   }
 
   .greetingContainer-and-subMainSummary {
@@ -934,6 +935,7 @@ button {
 
   .summary-box {
     margin-top: 0;
+    gap: 20px;
   }
 
   .h1-box {
@@ -958,6 +960,7 @@ button {
     align-items: center;
     grid-column-gap: 24px;
     grid-row-gap: 24px;
+    padding-bottom: 10px;
     /* grid-template-areas:
     "urgent urgent inProgress"
     "toDo inBoard urgent"
@@ -1064,22 +1067,33 @@ button {
     height: 219px;
     width: 204px;
   }
+
+  #usernameForGreeting{
+    font-size: 64px;
+  }
+
+  .daytimeGreeting{
+    font-size: 48px;
+  }
 }
+
 
 .usernameForGreeting {
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: fit-content;
+  font-size: 48px;
 }
 
+
 .userGreeting {
-  font-size: 48px;
+  
   font-weight: 400;
 }
 
 .daytimeGreeting {
-  font-size: 64px;
+  font-size: 64px !important;
   font-weight: 700;
   line-height: 76.8px;
   text-align: left;
