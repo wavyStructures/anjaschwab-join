@@ -123,7 +123,7 @@ function openHelp() {
 function logout() {
 	localStorage.removeItem('currentUser');
 	sessionStorage.removeItem('currentUser');
-	switchPage('login.html');
+	switchPage('index.html');
 }
 
 window.addEventListener('beforeunload', function () {
