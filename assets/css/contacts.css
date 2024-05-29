@@ -181,23 +181,23 @@
   top: 0;
   width: 584px;
   left: 0px;
-  margin-left: 159px;
+  margin-right: 159px;
   position: fixed;
-  border-radius: 30px 0px 30px 30px;
+  border-radius: 0px 30px 30px 30px;
   animation: moveInLeft 125ms ease-in-out;
 }
 
 .edit-contact-header-close {
-display: flex;
+  display: flex;
   justify-content: end;
   padding: 24px 24px 35px 0;
-  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   box-sizing: border-box;
   background-color: #005dff;
 }
 
 .edit-contact-header-logo {
-display: flex;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -230,6 +230,7 @@ display: flex;
   border: solid 1px #e3e3e3;
   border-radius: 0px 0px 30px 30px;
   border-bottom: none;
+  height: 90%;
 }
 
 .profile-badge-group-edit-contact {
@@ -250,7 +251,14 @@ display: flex;
   width: 120px;
 }
 
-
+@keyframes moveInLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 
 .input-frame {
   display: flex;
