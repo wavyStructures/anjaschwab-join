@@ -5,7 +5,7 @@
 }
 
 .joinLogoSignUpWhite {
-  position: absolute;
+  position: fixed;
   top: 80px;
   left: 77px;
   z-index: 1;
@@ -221,7 +221,7 @@ a {
 
 @media (min-width: 300px) and (max-width: 768px) {
   .joinLogoSignUpWhite {
-    position: absolute;
+    position: fixed;
     top: 38px;
     left: 37px;
     z-index: 1;

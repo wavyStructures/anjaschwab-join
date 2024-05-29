@@ -109,7 +109,8 @@ function getDate() {
  * @param {array} categoriesAmounts - An array of category amounts.                                 
  */
 function loadAmounts() {
-    let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    // let categories = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    let categories = ['category-0', 'category-1', 'category-2', 'category-3'];
     let categoriesAmounts = [0, 0, 0, 0];
 
     for (let i = 0; i < categories.length; i++) {

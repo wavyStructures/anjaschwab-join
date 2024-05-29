@@ -49,7 +49,7 @@ div.square-button.toDo {
 
 .square-button:hover {
   border-radius: 0px 30px 30px 30px;
-  transform: scale(1.14, 1.08);
+  transform: scale(1.04, 1.04);
   transform-origin: right;
 }
 
@@ -58,7 +58,7 @@ div.square-button.toDo {
 .feedback:hover,
 .done:hover {
   border-radius: 0px 30px 30px 30px;
-  transform: scale(1.08, 1.08);
+  transform: scale(1.04, 1.04);
   transform-origin: right;
   background-color: var(--clr-text-medium-blue);
   color: #fff;
@@ -98,7 +98,7 @@ div.square-button.toDo {
 .square-button.toDo:hover {
   background-color: #fff;
   color: var(--clr-text-medium-blue);
-  transform: scale(1.08, 1.08);
+  transform: scale(1.04, 1.04);
   span,
   .amount {
     color: var(--clr-text-medium-blue);
@@ -124,12 +124,12 @@ div.square-button.toDo {
 }
 
 .square-button img {
-  transition: border-color 0.3s ease;
+  transition: border-color 0.1s ease;
 }
 
 .square-button .amount,
 .square-button span {
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .inProgress {
@@ -270,7 +270,7 @@ button {
   padding: 28px 48px;
   gap: 9px;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.125s ease-in-out;
   color: #fff;
 }
 
@@ -283,10 +283,11 @@ button {
 
 .urgentAndDate:hover {
   border-radius: 0px 30px 30px 30px;
-  transform: scale(1.08, 1.08);
+  transform: scale(1.04, 1.04);
   img {
-    transform: scale(1.08, 1.02);
+    transform: scale(1.04, 1.02);
   }
+  transition-timing-function: ease-in-out;
   background-color: #fff;
   border: 1px solid lightgrey;
   box-shadow: 0px 0px 0px 0px #00000029;
