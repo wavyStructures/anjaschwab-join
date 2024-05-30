@@ -150,7 +150,7 @@ function showUserMessage(message) {
     overlay.style.display = "flex";
     setTimeout(function () {
         overlay.style.display = "none";
-    }, 100000); // 100 second
+    }, 3000); // 100 second
 }
 
 
