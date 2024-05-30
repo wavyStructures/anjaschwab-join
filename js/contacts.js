@@ -566,7 +566,7 @@ function createPartingLine(main) {
 function generateContactsContainerHTML() {
   return /*html*/ ` 
   <div id="contactMainEdit" class="contact-main-edit" onclick="closeAddContact()"> 
-                    <div class="edit-contact ">
+                    <div class="edit-contact d-none" id="editContact">
                         <div class="edit-contact-header">
                             <div class="edit-contact-header-close">
                                 <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png"
@@ -575,7 +575,7 @@ function generateContactsContainerHTML() {
                         </div>
                         <div class="edit-contact-header-logo">
                             <img src="./assets/img/logo-medium_white.png" alt="">
-                            <span>Edit Contact</span>
+                            <span>Edit contact</span>
                             <p>Tasks are better with a team!</p>
                         </div>
 
@@ -601,7 +601,7 @@ function generateContactsContainerHTML() {
                                 <div id="addContactButton" class="addContactButton">
                                     <button class="cancelButton" onmouseover="changeCancelIcon()"
                                         onmouseout="restoreCancelIcon()">Cancel
-                                        <img id="cancelIcon" onclick="closeAddContact()"
+                                        <img id="cancelIcon" onclick="closeEditContact()"
                                             src="./assets/img/icon-cancel.png" alt="">
                                     </button>
                                     <button class="createButton">Edit contact
@@ -1001,10 +1001,12 @@ function editContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
-    addContactCard();
+    editContactCard();
     document.getElementById('contactName').value = contact.name;
     document.getElementById('contactMail').value = contact.mail;
     document.getElementById('contactPhone').value = contact.phone;
+    document.getElementById('contactId').value = contact.id;
+
     // Logik zum Bearbeiten des Kontakts implementieren,
     // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
     // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
@@ -1012,6 +1014,10 @@ function editContact(id) {
   } else {
     console.error("Contact not found with ID:", id);
   }
+}
+
+function editContactCard() {
+    document.getElementById("editContact").classList.remove("d-none");
 }
 
 /**
@@ -1029,6 +1035,10 @@ function deleteContactFromLocalStorage(contactId) {
     });
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
+}
+
+function closeEditContact() {
+    document.getElementById("editContact").classList.add("d-none");
 }
 
 /**
