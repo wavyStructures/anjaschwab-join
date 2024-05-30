@@ -565,117 +565,112 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
-  <div id="contactMainEdit" class="contact-main-edit" onclick="closeAddContact()"> 
-                    <div class="edit-contact d-none" id="editContact">
-                        <div class="edit-contact-header">
-                            <div class="edit-contact-header-close">
-                                <img onclick="closeEditContact()" src="./assets/img/icon-close_white.png"
-                                    alt="closeAddContact">
-                            </div>
-                        </div>
-                        <div class="edit-contact-header-logo">
-                            <img src="./assets/img/logo-medium_white.png" alt="">
-                            <span>Edit contact</span>
-                            <p>Tasks are better with a team!</p>
-                        </div>
-
-                        <div class="edit-contact-bottom">
-                            <div class="profile-badge-group-add-contact">
-                                <div class="profile-badge-add-contact">
-                                    <img src="./assets/img/add.contact-badge.png" alt="">
-                                </div>
-                            </div>
-                            <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
-                                <div class="input-frame">
-                                    <input id="contactName" type="text" placeholder="Name" autofocus required>
-                                    <img src="./assets/img/icon-person.png" alt="">
-                                </div>
-                                <div class="input-frame">
-                                    <input id="contactMail" type="email" placeholder="Email" autofocus required>
-                                    <img src="./assets/img/icon-mail.png" alt="">
-                                </div>
-                                <div class="input-frame">
-                                    <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
-                                    <img src="./assets/img/icon-call.png" alt="">
-                                </div>
-                                <div id="addContactButton" class="addContactButton">
-                                    <button class="cancelButton" onclick="closeEditContact() onmouseover="changeCancelIcon()"
-                                        onmouseout="restoreCancelIcon()">Cancel
-                                        <img id="cancelIcon" onclick="closeEditContact()"
-                                            src="./assets/img/icon-cancel.png" alt="">
-                                    </button>
-                                    <button class="createButton">Edit contact
-                                        <img id="createIcon" onclick="saveEditedContact()" src="./assets/img/icon-check.png"
-                                            alt="">
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-</div>
-  <div class="contact-list-container">
-  <div class="add-contact-overlay"></div>
-  <div id="addContactContainer" class="hidden">
-    <div id="addContact" class="add-contact d-none" onclick="doNotClose(event)">
-      <div class="add-contact-header">
-        <div class="add-contact-header-close">
-          <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
-        </div>
-    </div>
-    <div class="add-contact-header-logo">
-        <img src="./assets/img/logo-medium_white.png" alt="">
-        <span>Add Contact</span>
-        <p>Tasks are better with a team!</p>
-    </div>
-    <div class="add-contact-bottom">
-       <div class="profile-badge-group-add-contact">
-            <div class="profile-badge-add-contact">
-                <img src="./assets/img/add.contact-badge.png" alt="">
+  <div id="contactMainEdit" class="contact-main-edit" onclick="closeAddContact()">
+    <div class="edit-contact d-none" id="editContact">
+        <div class="edit-contact-header">
+            <div class="edit-contact-header-close">
+                <img onclick="closeEditContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
             </div>
-       </div>
-      <form onsubmit="saveContact(); return false" class="add-contact-input-group">
-                            <div class="input-frame">
-                                <input id="contactName" type="text" placeholder="Name" autofocus required>
-                                <img src="./assets/img/icon-person.png" alt="">
-                            </div>
-                            <div class="input-frame">
-                                <input id="contactMail" type="email" placeholder="Email" autofocus required>
-                                <img src="./assets/img/icon-mail.png" alt="">
-                            </div>
-                            <div class="input-frame">
-                                <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
-                                <img src="./assets/img/icon-call.png" alt="">
-                            </div>
-                            <div id="addContactButton" class="addContactButton">
-                                <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()"
-                                    onmouseout="restoreCancelIcon()">Cancel
-                                    <img id="cancelIcon"  src="./assets/img/icon-cancel.png"
-                                        alt="">
-                                </button>
-                                <button id="createBtn" class="createButton">Create contact
-                                    <img id="createIcon" src="./assets/img/icon-check.png"
-                                        alt="">
-                                </button>
-                            </div>
-        </form>
-    </div>
-    </div>
-</div>
-</div>
-        <div class="contacts-container" id="contacts-container"> 
-        
-            <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
-                <div onclick="addContactCard()" class="button-add-contact"> 
-                    <div class="add-new-contact">Add new contact</div>
-                    <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+        </div>
+        <div class="edit-contact-header-logo">
+            <img src="./assets/img/logo-medium_white.png" alt="">
+            <span>Edit contact</span>
+            <p>Tasks are better with a team!</p>
+        </div>
+
+        <div class="edit-contact-bottom">
+            <div class="profile-badge-group-add-contact">
+                <div class="profile-badge-add-contact">
+                    <img src="./assets/img/add.contact-badge.png" alt="">
                 </div>
             </div>
-            <div class="contact-list" id="contactList">
+            <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+                <div class="input-frame">
+                    <input id="contactName" type="text" placeholder="Name" autofocus required>
+                    <img src="./assets/img/icon-person.png" alt="">
+                </div>
+                <div class="input-frame">
+                    <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                    <img src="./assets/img/icon-mail.png" alt="">
+                </div>
+                <div class="input-frame">
+                    <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
+                    <img src="./assets/img/icon-call.png" alt="">
+                </div>
+                <div id="addContactButton" class="addContactButton">
+                    <button class="cancelButton" onclick="closeEditContact() onmouseover=" changeCancelIcon()"
+                        onmouseout="restoreCancelIcon()">Cancel
+                        <img id="cancelIcon" onclick="closeEditContact()" src="./assets/img/icon-cancel.png" alt="">
+                    </button>
+                    <button class="createButton">Edit contact
+                        <img id="createIcon" onclick="saveEditedContact()" src="./assets/img/icon-check.png" alt="">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="contact-list-container">
+    <div class="add-contact-overlay"></div>
+    <div id="addContactContainer" class="hidden">
+        <div id="addContact" class="add-contact d-none" onclick="doNotClose(event)">
+            <div class="add-contact-header">
+                <div class="add-contact-header-close">
+                    <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
+                </div>
+            </div>
+            <div class="add-contact-header-logo">
+                <img src="./assets/img/logo-medium_white.png" alt="">
+                <span>Add Contact</span>
+                <p>Tasks are better with a team!</p>
+            </div>
+            <div class="add-contact-bottom">
+                <div class="profile-badge-group-add-contact">
+                    <div class="profile-badge-add-contact">
+                        <img src="./assets/img/add.contact-badge.png" alt="">
+                    </div>
+                </div>
+                <form onsubmit="saveContact(); return false" class="add-contact-input-group">
+                    <div class="input-frame">
+                        <input id="contactName" type="text" placeholder="Name" autofocus required>
+                        <img src="./assets/img/icon-person.png" alt="">
+                    </div>
+                    <div class="input-frame">
+                        <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                        <img src="./assets/img/icon-mail.png" alt="">
+                    </div>
+                    <div class="input-frame">
+                        <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
+                        <img src="./assets/img/icon-call.png" alt="">
+                    </div>
+                    <div id="addContactButton" class="addContactButton">
+                        <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()"
+                            onmouseout="restoreCancelIcon()">Cancel
+                            <img id="cancelIcon" src="./assets/img/icon-cancel.png" alt="">
+                        </button>
+                        <button id="createBtn" class="createButton">Create contact
+                            <img id="createIcon" src="./assets/img/icon-check.png" alt="">
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-        <section class="right-side d-none" id="rightSide">
-        
-        </section>
+    </div>
+</div>
+<div class="contacts-container" id="contacts-container">
+
+    <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
+        <div onclick="addContactCard()" class="button-add-contact">
+            <div class="add-new-contact">Add new contact</div>
+            <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+        </div>
+    </div>
+    <div class="contact-list" id="contactList">
+    </div>
+</div>
+<section class="right-side d-none" id="rightSide">
+
+</section>
     `;
 }
 
