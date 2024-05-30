@@ -605,7 +605,7 @@ function generateContactsContainerHTML() {
                                             src="./assets/img/icon-cancel.png" alt="">
                                     </button>
                                     <button class="createButton">Edit contact
-                                        <img id="createIcon" onclick="createContact()" src="./assets/img/icon-check.png"
+                                        <img id="createIcon" onclick="saveEditedContact()" src="./assets/img/icon-check.png"
                                             alt="">
                                     </button>
                                 </div>
@@ -1017,13 +1017,43 @@ function editContact(id) {
     // Logik zum Bearbeiten des Kontakts implementieren,
     // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
     // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
-    sac
     console.log("Editing contact:", contact);
   } else {
     console.error("Contact not found with ID:", id);
   }
 }
 
+/**
+ * Saves the edited contact by updating the contact object with the values from the input fields.
+ * If the contact is found in the contacts array, it is updated and logged to the console.
+ * If the contact is not found, an error message is logged to the console.
+ *
+ * @return {undefined} This function does not return a value.
+ */
+function saveEditedContact() {
+  const id = document.getElementById('contactId').value;
+  const contactIndex = contacts.findIndex((contact) => contact.id === id);
+  if (contactIndex !== -1) {
+    const contact = contacts[contactIndex];
+
+    contact.name = document.getElementById('contactName').value;
+    contact.mail = document.getElementById('contactMail').value;
+    contact.phone = document.getElementById('contactPhone').value;
+
+    //await firebaseUpdateItem(contact, id);
+
+    console.log("Contact saved:", contact);
+    alert("Contact saved successfully!");
+  } else {
+    console.error("Contact not found with ID:", id);
+  }
+}
+
+/**
+ * Removes the "d-none" class from the "editContact" element, making it visible.
+ *
+ * @return {void} This function does not return a value.
+ */
 function editContactCard() {
     document.getElementById("editContact").classList.remove("d-none");
 }
@@ -1045,6 +1075,11 @@ function deleteContactFromLocalStorage(contactId) {
   }
 }
 
+/**
+ * Closes the edit contact card by adding the "d-none" class to the "editContact" element.
+ *
+ * @return {void} This function does not return a value.
+ */
 function closeEditContact() {
     document.getElementById("editContact").classList.add("d-none");
 }
