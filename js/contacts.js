@@ -569,7 +569,7 @@ function generateContactsContainerHTML() {
                     <div class="edit-contact d-none" id="editContact">
                         <div class="edit-contact-header">
                             <div class="edit-contact-header-close">
-                                <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png"
+                                <img onclick="closeEditContact()" src="./assets/img/icon-close_white.png"
                                     alt="closeAddContact">
                             </div>
                         </div>
@@ -599,7 +599,7 @@ function generateContactsContainerHTML() {
                                     <img src="./assets/img/icon-call.png" alt="">
                                 </div>
                                 <div id="addContactButton" class="addContactButton">
-                                    <button class="cancelButton" onmouseover="changeCancelIcon()"
+                                    <button class="cancelButton" onclick="closeEditContact() onmouseover="changeCancelIcon()"
                                         onmouseout="restoreCancelIcon()">Cancel
                                         <img id="cancelIcon" onclick="closeEditContact()"
                                             src="./assets/img/icon-cancel.png" alt="">
