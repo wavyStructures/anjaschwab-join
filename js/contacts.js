@@ -1001,6 +1001,13 @@ function editContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
+
+    // Funktion zum Großschreiben des ersten Buchstabens jedes Wortes im Namen
+    const capitalizeWords = (str) => {
+      return str.replace(/\b\w/g, (char) => char.toUpperCase());
+    };
+    contact.name = capitalizeWords(contact.name);
+
     editContactCard();
     document.getElementById('contactName').value = contact.name;
     document.getElementById('contactMail').value = contact.mail;
@@ -1010,6 +1017,7 @@ function editContact(id) {
     // Logik zum Bearbeiten des Kontakts implementieren,
     // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
     // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
+    sac
     console.log("Editing contact:", contact);
   } else {
     console.error("Contact not found with ID:", id);
