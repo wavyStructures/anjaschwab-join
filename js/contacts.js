@@ -450,43 +450,60 @@ function renderSortedContacts(main, sortedContacts) {
  * @returns {void}
  */
 function addContactCard() {
-  const addContactContainer = document.getElementById("addContact");
-  if (addContactContainer.classList.contains("d-none")) {
-    addContactContainer.classList.remove("d-none");
 
+  if (!document.getElementById("addContact")){
+    renderAddContacts();
+  }
+  document.getElementById("addContact").innerHTML = renderAddContactsHTML();
+  addOverlay("closeOverlay('addContact')");
+}
+
+function addOverlay(functionToAdd){
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
 
     const bodyContent = document.getElementById("bodyContent");
-    overlay.setAttribute("onclick", "closeAddContact()");
+    overlay.setAttribute("onclick", functionToAdd);
 
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
-    showAddContactContainer();
-  }
 }
 
-/**
- * Hides the add contact card by removing it from the DOM.
- *
- * @function closeAddContact
- * @returns {void}
- */
-function closeAddContact() {
-  const addContactContainer = document.getElementById("addContact");
-  if (!addContactContainer.classList.contains("d-none")) {
-    addContactContainer.classList.add("move-out-right");
-    setTimeout(() => {
-      addContactContainer.classList.add("d-none");
-      addContactContainer.classList.remove("move-out-right");
-    }, 125);
-    const overlay = document.querySelector(".overlay");
-    if (overlay) {
-      overlay.remove();
-    }
-    document.body.style.overflow = "auto";
-  }
-  hideAddContactContainer();
+// /**
+//  * Hides the add contact card by removing it from the DOM.
+//  *
+//  * @function closeAddContact
+//  * @returns {void}
+//  */
+// function closeAddContact() {
+//   const addContactContainer = document.getElementById("addContact");
+//   if (!addContactContainer.classList.contains("d-none")) {
+//     addContactContainer.classList.add("move-out-right");
+//     setTimeout(() => {
+//       addContactContainer.classList.add("d-none");
+//       addContactContainer.classList.remove("move-out-right");
+//     }, 125);
+//     const overlay = document.querySelector(".overlay");
+//     if (overlay) {
+//       overlay.remove();
+//     }
+//     document.body.style.overflow = "auto";
+//   }
+//   hideAddContactContainer();
+// }
+
+function closeOverlay(id) {
+	const container = document.getElementById(id);
+	container.classList.add("move-out-right");
+	setTimeout(() => {
+		addContactContainer.classList.remove("move-out-right");
+	}, 125);
+	const overlay = document.querySelector(".overlay");
+	if (overlay) overlay.remove(); 
+  
+	document.body.style.overflow = "auto";
+
+	removeContainer(id);
 }
 
 /**
@@ -565,11 +582,101 @@ function createPartingLine(main) {
  */
 function generateContactsContainerHTML() {
   return /*html*/ ` 
-  <div id="contactMainEdit" class="contact-main-edit" onclick="closeAddContact()">
-    <div class="edit-contact d-none" id="editContact">
+  <div id="contactMainEdit" class="contact-main-edit" onclick="doNotClose(event)">
+    
+</div>
+<div class="contact-list-container">
+    <div class="add-contact-overlay"></div>
+    <div id="addContactContainer" class="hidden">
+        
+    </div>
+</div>
+<div class="contacts-container" id="contacts-container">
+
+    <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
+        <div onclick="addContactCard()" class="button-add-contact">
+            <div class="add-new-contact">Add new contact</div>
+            <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+        </div>
+    </div>
+    <div class="contact-list" id="contactList">
+    </div>
+</div>
+<section class="right-side d-none" id="rightSide">
+
+</section>
+    `;
+}
+
+function renderAddContacts(){
+  let newDiv = document.createElement('div');
+  newDiv.id = 'addContact';
+  setAttributes(newDiv, {
+    'class':'add-contact',
+    'onclick':'doNotClose(event)'
+  })
+  document.getElementById('addContactContainer').appendChild(newDiv);
+}
+
+function renderAddContactsHTML(){
+  return /*html*/`
+        <div class="add-contact-header">
+            <div class="add-contact-header-close">
+                <img onclick="closeOverlay('addContact')" src="./assets/img/icon-close_white.png" alt="closeAddContact">
+            </div>
+        </div>
+        <div class="add-contact-header-logo">
+            <img src="./assets/img/logo-medium_white.png" alt="">
+            <span>Add Contact</span>
+            <p>Tasks are better with a team!</p>
+        </div>
+        <div class="add-contact-bottom">
+            <div class="profile-badge-group-add-contact">
+                <div class="profile-badge-add-contact">
+                    <img src="./assets/img/add.contact-badge.png" alt="">
+                </div>
+            </div>
+            <form onsubmit="saveContact(); return false" class="add-contact-input-group">
+                <div class="input-frame">
+                    <input id="contactName" type="text" placeholder="Name" autofocus required>
+                    <img src="./assets/img/icon-person.png" alt="">
+                </div>
+                <div class="input-frame">
+                    <input id="contactMail" type="email" placeholder="Email" autofocus required>
+                    <img src="./assets/img/icon-mail.png" alt="">
+                </div>
+                <div class="input-frame">
+                    <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
+                    <img src="./assets/img/icon-call.png" alt="">
+                </div>
+                <div id="addContactButton" class="addContactButton">
+                    <button class="cancelButton" onclick="closeOverlay('addContact')" onmouseover="changeCancelIcon()"
+                        onmouseout="restoreCancelIcon()">Cancel
+                        <img id="cancelIcon" src="./assets/img/icon-cancel.png" alt="">
+                    </button>
+                    <button id="createBtn" class="createButton">Create contact
+                        <img id="createIcon" src="./assets/img/icon-check.png" alt="">
+                    </button>
+                </div>
+            </form>
+</div>`
+}
+
+function renderEditContact(){
+  let newDiv = document.createElement('div');
+  newDiv.id = 'editContact';
+  setAttributes(newDiv, {
+    'class':'edit-contact'
+  })
+  document.getElementById('contactMainEdit').appendChild(newDiv);
+}
+
+
+function renderEditContactHTML() {
+  return /*html*/ `
         <div class="edit-contact-header">
             <div class="edit-contact-header-close">
-                <img onclick="closeEditContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
+                <img onclick="closeOverlay('editContact')" src="./assets/img/icon-close_white.png" alt="closeAddContact">
             </div>
         </div>
         <div class="edit-contact-header-logo">
@@ -598,81 +705,18 @@ function generateContactsContainerHTML() {
                     <img src="./assets/img/icon-call.png" alt="">
                 </div>
                 <div id="addContactButton" class="addContactButton">
-                    <button class="cancelButton" onclick="closeEditContact() onmouseover=" changeCancelIcon()"
+                    <button class="cancelButton" onclick="closeOverlay('editContact')" onmouseover="changeCancelIcon()"
                         onmouseout="restoreCancelIcon()">Cancel
-                        <img id="cancelIcon" onclick="closeEditContact()" src="./assets/img/icon-cancel.png" alt="">
+                        <img id="cancelIcon" onclick="closeOverlay('editContact')" src="./assets/img/icon-cancel.png" alt="">
                     </button>
                     <button class="createButton">Edit contact
                         <img id="createIcon" onclick="saveEditedContact()" src="./assets/img/icon-check.png" alt="">
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-<div class="contact-list-container">
-    <div class="add-contact-overlay"></div>
-    <div id="addContactContainer" class="hidden">
-        <div id="addContact" class="add-contact d-none" onclick="doNotClose(event)">
-            <div class="add-contact-header">
-                <div class="add-contact-header-close">
-                    <img onclick="closeAddContact()" src="./assets/img/icon-close_white.png" alt="closeAddContact">
-                </div>
-            </div>
-            <div class="add-contact-header-logo">
-                <img src="./assets/img/logo-medium_white.png" alt="">
-                <span>Add Contact</span>
-                <p>Tasks are better with a team!</p>
-            </div>
-            <div class="add-contact-bottom">
-                <div class="profile-badge-group-add-contact">
-                    <div class="profile-badge-add-contact">
-                        <img src="./assets/img/add.contact-badge.png" alt="">
-                    </div>
-                </div>
-                <form onsubmit="saveContact(); return false" class="add-contact-input-group">
-                    <div class="input-frame">
-                        <input id="contactName" type="text" placeholder="Name" autofocus required>
-                        <img src="./assets/img/icon-person.png" alt="">
-                    </div>
-                    <div class="input-frame">
-                        <input id="contactMail" type="email" placeholder="Email" autofocus required>
-                        <img src="./assets/img/icon-mail.png" alt="">
-                    </div>
-                    <div class="input-frame">
-                        <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
-                        <img src="./assets/img/icon-call.png" alt="">
-                    </div>
-                    <div id="addContactButton" class="addContactButton">
-                        <button class="cancelButton" onclick="closeAddContact()" onmouseover="changeCancelIcon()"
-                            onmouseout="restoreCancelIcon()">Cancel
-                            <img id="cancelIcon" src="./assets/img/icon-cancel.png" alt="">
-                        </button>
-                        <button id="createBtn" class="createButton">Create contact
-                            <img id="createIcon" src="./assets/img/icon-check.png" alt="">
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="contacts-container" id="contacts-container">
-
-    <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
-        <div onclick="addContactCard()" class="button-add-contact">
-            <div class="add-new-contact">Add new contact</div>
-            <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
-        </div>
-    </div>
-    <div class="contact-list" id="contactList">
-    </div>
-</div>
-<section class="right-side d-none" id="rightSide">
-
-</section>
-    `;
+        </div>`
 }
+
 
 // Funktion zum Anzeigen des Containers
 function showAddContactContainer() {
@@ -681,9 +725,8 @@ function showAddContactContainer() {
 }
 
 // Funktion zum Ausblenden des Containers
-function hideAddContactContainer() {
-  const addContactContainer = document.getElementById("addContactContainer");
-  addContactContainer.classList.add("hidden");
+function removeContainer(id) {
+  document.getElementById(id).remove();
 }
 
 /**
@@ -1007,7 +1050,7 @@ function editContact(id) {
     document.getElementById('contactName').value = contact.name;
     document.getElementById('contactMail').value = contact.mail;
     document.getElementById('contactPhone').value = contact.phone;
-    document.getElementById('contactId').value = contact.id;
+    // document.getElementById('contactId').value = contact.id;
 
     // Logik zum Bearbeiten des Kontakts implementieren,
     // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
@@ -1050,7 +1093,11 @@ function saveEditedContact() {
  * @return {void} This function does not return a value.
  */
 function editContactCard() {
-    document.getElementById("editContact").classList.remove("d-none");
+   if (!document.getElementById('editContact')){
+    renderEditContact();
+   }
+   document.getElementById("editContact").innerHTML = renderEditContactHTML();
+   addOverlay("closeOverlay('editContact')");
 }
 
 /**
@@ -1068,15 +1115,6 @@ function deleteContactFromLocalStorage(contactId) {
     });
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
-}
-
-/**
- * Closes the edit contact card by adding the "d-none" class to the "editContact" element.
- *
- * @return {void} This function does not return a value.
- */
-function closeEditContact() {
-    document.getElementById("editContact").classList.add("d-none");
 }
 
 /**
