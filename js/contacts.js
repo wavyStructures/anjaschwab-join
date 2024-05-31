@@ -183,7 +183,7 @@ function resetContactForm() {
 
 let contacts_old = [
   {
-      "contactColor": "#3399ff",
+      "contactColor": "",
       "id": 1,
       "mail": "antom@gmail.com",
       "name": "anton mayer",
@@ -231,7 +231,7 @@ let contacts_old = [
       "phone": "+49 1111 111 11 6"
   },
   {
-      "contactColor": "#3399ff",
+      "contactColor": "#33ccff",
       "id": 7,
       "mail": "fabian@gmail.com",
       "name": "fabian koch",
@@ -279,12 +279,20 @@ let contacts_old = [
       "phone": "+49 1111 111 11 12"
   },
   {
-      "contactColor": "#3399ff",
+      "contactColor": "#33ccff",
       "id": 13,
       "mail": "lisa@gmail.com",
       "name": "lisa meier",
       "password": "lisa",
       "phone": "+49 1111 111 11 13"
+  },
+  {
+      "contactColor": "#ff9933",
+      "id": 14,
+      "mail": "max@gmail.com",
+      "name": "max schwarz",
+      "password": "max",
+      "phone": "+49 1111 111 11 14"
   },
   {
       "contactColor": "#66ff66",
@@ -319,7 +327,7 @@ let contacts_old = [
       "phone": "+49 1111 111 11 18"
   },
   {
-      "contactColor": "#3399ff",
+      "contactColor": "#33ccff",
       "id": 19,
       "mail": "robin@gmail.com",
       "name": "zist amanfang",
@@ -343,20 +351,12 @@ let contacts_old = [
       "phone": "+49 1111 111 11 21"
   },
   {
-      "contactColor": "#3399ff",
+      "contactColor": "#ff3333",
       "id": 22,
-      "mail": "mario.markwart@gmail.com",
-      "name": "Mario Markwart",
-      "password": "mario",
-      "phone": "01753405411"
-  },
-  {
-      "contactColor": "#3399ff",
-      "id": 23,
-      "mail": "schult.sebastian@gmail.com",
-      "name": "Sebastian Schult",
-      "password": "sebastian",
-      "phone": "015732758581"
+      "mail": "ulrich@gmail.com",
+      "name": "ulrich anton fuchs",
+      "password": "ulrich",
+      "phone": "+49 1111 111 11 22"
   }
 ];
 
@@ -1008,7 +1008,7 @@ function generateRandomColor() {
     "#ff3333",
     "#3399ff",
     "#ff6666",
-    "#3399ff",
+    "#33ccff",
     "#ff9933",
     "#66ff66",
     "#0059ff",
@@ -1018,6 +1018,15 @@ function generateRandomColor() {
   return colors[randomIndex];
 }
 
+function changeColor() {
+  contacts_old.forEach((contact) => {
+    for(let i = 0; i < colors.length; i++) {
+      if(contact.contactColor == colors[i]) {
+        contact.contactColor = newColors[i];
+      }
+    }
+  })
+}
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
  *
