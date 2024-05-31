@@ -26,10 +26,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 100%;
-  margin-top: 480px;
 }
 
 .signUp-box {
@@ -186,13 +185,13 @@ a {
 }
 
 .signUpFooter {
+  position: fixed;
+  bottom:0;
   background-color: var(--clr-main);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 88.8px;
-  /* margin-bottom: 42.7px; */
   gap: 16px;
   /* padding: 24px; */
 }
@@ -220,34 +219,26 @@ a {
   background-color: #a8a8a8;
 }
 
-/*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
-@media (min-width: 320px) and (max-width: 680px) {
+/*/ //////////////////////////////////////////////media 970 ///////////////////////*/
+@media (max-width: 970px) {
+  
   .joinLogoSignUpWhite {
     position: fixed;
     top: 38px;
     left: 37px;
     z-index: 1;
   }
+}
 
-  .signUpLogo img {
+/*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
+@media (max-width: 680px) {
+
+  .signUpLogo {
     width: 64px;
     height: 78px;
   }
 
-  .signUp-page {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    margin-top: auto;
-  }
-
   .signUp-box {
-    margin-top: 196px;
-    /* top: 159px;
-    bottom: 159px; */
     padding: 32px 0px;
     gap: 32px;
     z-index: 1;
@@ -288,38 +279,43 @@ a {
     margin-left: 0;
   }
 
-  .signUpFooter {
-    background-color: var(--clr-main);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    /* margin-top: 188px; */
-    margin-bottom: 24px;
-    gap: 16px;
-    z-index: 1000;
-    padding: 48px;
-  }
-
-  .signUpLogo {
+   .signUpLogo {
     width: 64px;
     height: 78px;
   }
+
   .signUp-box {
     width: 482px;
   }
 }
 
 /*///////////////////////////////////////////////media  450 to 550///////////////////////*/
-@media (min-width: 450px) and (max-width: 550px) {
+@media (max-width: 550px) {
   .signUp-box {
-    width: 402px !important;
+    width: 402px;
   }
 }
 
-@media (min-width: 300px) and (max-width: 450px) {
+@media (max-width: 450px) {
+
+  #signUpNameInput,
+  #signUpEmailInput,
+  #signUpPasswordInput,
+  #signUpPasswordInputConfirm {
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 12.5px;
+  }
+
+  .signUpLogo {
+    width: 64px;
+    height: 72px;
+  }
+
+
   .signUp-box {
-    width: 290px !important;
+    width: 290px;
     z-index: 1;
   }
 
@@ -340,23 +336,14 @@ a {
 
   .signUpEmailBox,
   .signUpNameBox {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    width: 250px !important;
-    border-bottom: 1px solid #d1d1d1;
-    margin-bottom: 24px;
+    width: 250px;
     padding: 10px 7px;
     gap: 0px;
   }
 
   .signUpPasswordBox {
-    display: flex;
     justify-content: center;
-    align-items: self-end;
-    width: 250px !important;
-    border-bottom: 1px solid #d1d1d1;
-    margin-bottom: 24px;
+    width: 250px;
     padding: 10px 7px;
     gap: 0px;
   }
@@ -368,23 +355,5 @@ a {
     z-index: 1000;
     padding: 16px;
     white-space: nowrap;
-  }
-}
-
-/*///////////////////////////////////////////////media  300 to 450///////////////////////*/
-@media (min-width: 300px) and (max-width: 450px) {
-  #signUpNameInput,
-  #signUpEmailInput,
-  #signUpPasswordInput,
-  #signUpPasswordInputConfirm {
-    border: none;
-    font-size: 16px;
-    font-weight: 400;
-    padding-top: 12.5px;
-  }
-
-  .signUpLogo {
-    width: 64px;
-    height: 72px;
   }
 }

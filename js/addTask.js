@@ -584,6 +584,7 @@ function setTodayDateAsMin(){
 
 async function createTask(){
     collectInformationsForNewCard();
+    debugger
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
