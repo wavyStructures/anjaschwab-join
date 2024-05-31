@@ -26,10 +26,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
-  margin-top: 600px;
+  margin-top: 480px;
 }
 
 .signUp-box {
@@ -62,7 +62,7 @@
 }
 
 .signUpH1 {
-  font-size: 48px;
+  font-size: 46px;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 16px;
@@ -192,9 +192,9 @@ a {
   align-items: center;
   flex-direction: row;
   margin-top: 88.8px;
-  margin-bottom: 42.7px;
+  /* margin-bottom: 42.7px; */
   gap: 16px;
-  padding: 24px;
+  /* padding: 24px; */
 }
 
 .signUpFooter > div {
@@ -206,6 +206,7 @@ a {
   font-size: 16px;
   font-weight: 400;
   color: #fff;
+  margin-bottom: 48px;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -219,7 +220,8 @@ a {
   background-color: #a8a8a8;
 }
 
-@media (min-width: 300px) and (max-width: 768px) {
+/*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
+@media (min-width: 320px) and (max-width: 680px) {
   .joinLogoSignUpWhite {
     position: fixed;
     top: 38px;
@@ -243,11 +245,21 @@ a {
   }
 
   .signUp-box {
-    margin-top: 248px;
-    top: 159px;
-    bottom: 159px;
+    margin-top: 136px;
+    /* top: 159px;
+    bottom: 159px; */
     padding: 32px 0px;
     gap: 32px;
+  }
+
+  .arrowLeft {
+    left: 55.5px;
+    top: 56.5px;
+  }
+
+  .horizontalH1UnderlineSignUp {
+    height: 145px;
+    margin-top: -3px;
   }
 
   .innerSignUpBox {
@@ -281,56 +293,97 @@ a {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin-top: 188px;
+    /* margin-top: 188px; */
     margin-bottom: 24px;
     gap: 16px;
     z-index: 1000;
     padding: 48px;
   }
+
+  .signUpLogo {
+    width: 64px;
+    height: 78px;
+  }
+  .signUp-box {
+    width: 482px;
+  }
 }
 
-/* @media (min-width: 581px) and (max-width: 769px) {
-  .signUpField {
-    flex-direction: column;
-    justify-content: end;
+/*///////////////////////////////////////////////media  450 to 550///////////////////////*/
+@media (min-width: 450px) and (max-width: 550px) {
+  .signUp-box {
+    width: 402px !important;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 450px) {
+  .signUp-box {
+    width: 290px !important;
+    z-index: 1;
+  }
+
+  .arrowLeft {
+    left: 20.5px;
+    top: 51.5px;
+  }
+
+  .horizontalH1UnderlineSignUp {
+    height: 180px;
+    margin-top: -20px;
+  }
+
+  .signUpH1 {
+    font-size: 46px;
+    margin-bottom: 26px;
+  }
+
+  .signUpEmailBox,
+  .signUpNameBox {
+    display: flex;
+    justify-content: center;
     align-items: end;
-    gap: 12px;
+    width: 250px !important;
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 24px;
+    padding: 10px 7px;
+    gap: 0px;
+  }
+
+  .signUpPasswordBox {
+    display: flex;
+    justify-content: center;
+    align-items: self-end;
+    width: 250px !important;
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 24px;
+    padding: 10px 7px;
+    gap: 0px;
+  }
+
+  .signUpFooter {
+    /* margin-top: -100px; */
+    /* margin-bottom: 24px; */
+    gap: 16px;
+    z-index: 1000;
+    padding: 16px;
+    white-space: nowrap;
   }
 }
 
-@media (max-width: 580px) {
-  .signUpField {
-    display: none;
+/*///////////////////////////////////////////////media  300 to 450///////////////////////*/
+@media (min-width: 300px) and (max-width: 450px) {
+  #signUpNameInput,
+  #signUpEmailInput,
+  #signUpPasswordInput,
+  #signUpPasswordInputConfirm {
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 12.5px;
   }
-} */
 
-#userMessageOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
-}
-
-#userMessage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--clr-main);
-  color: #fff;
-  font-size: 23px;
-  font-weight: 400;
-  /* width: 326px;
-  height: 74px; */
-  text-align: center;
-  box-shadow: 0px 0px 4px 0px #00000026;
-  box-sizing: border-box;
-  white-space: nowrap;
-  padding: 20px;
-  border-radius: 20px;
+  .signUpLogo {
+    width: 64px;
+    height: 72px;
+  }
 }

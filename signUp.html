@@ -18,13 +18,13 @@
     <div id="bodyContent" class="bodyContent"> <!-- Hauptcontainer, der muss bleiben -->
         <main id="main" class="main"> <!-- hier kommt euer Code rein!-->
             <div id="signUpMainContainer" class="signUpMainContainer">
-
-                <header class="loginHeader">
-                    <div class="joinLogoSignUpWhite">
-                        <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
-                    </div>
-                </header>
                 <div class="signUp-page">
+                    <header class="loginHeader">
+                        <div class="joinLogoSignUpWhite">
+                            <img class="signUpLogo" src="./assets/img/logo-medium_white.png" alt="logo">
+                        </div>
+                    </header>
+
                     <div class="signUp-box">
                         <div class="arrowLeft" onclick="redirectToLogin()"><img src="./assets/img/icon-arrow_left.png"
                                 alt="arrow left"></div>
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="formDiv">
-                            <form id="login-form" return false">
+                            <form id="login-form" return false>
                                 <div class="innerSignUpBox">
                                     <div class="signUpNameBox">
                                         <input type="text" id="signUpNameInput" placeholder="Name" required>
@@ -70,22 +70,22 @@
                                 <button id="registerBtn" class="signUpButtons registerBtn" onclick="addNewUser()">Sign
                                     up</button>
 
-                                <!--TODO-->
                             </form>
                         </div>
 
                     </div>
-                </div>
-                <div class="signUpFooter">
-                    <div class="privacyPolicySignUp" onclick="switchPageNewTab('privacy_external.html');"
-                        target="_blank">
-                        <span>Privacy
-                            policy</span>
-                    </div>
-                    <div class="legalNoticeSignUp" onclick="switchPageNewTab('legal_notice_external.html');"
-                        target="_blank">
-                        <span>Legal
-                            notice</span>
+
+                    <div class="signUpFooter">
+                        <div class="privacyPolicySignUp" onclick="switchPageNewTab('privacy_external.html');"
+                            target="_blank">
+                            <span>Privacy
+                                policy</span>
+                        </div>
+                        <div class="legalNoticeSignUp" onclick="switchPageNewTab('legal_notice_external.html');"
+                            target="_blank">
+                            <span>Legal
+                                notice</span>
+                        </div>
                     </div>
                 </div>
 
