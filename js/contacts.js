@@ -183,181 +183,181 @@ function resetContactForm() {
 
 let contacts_old = [
   {
-    id: 1,
-    name: "anton mayer",
-    mail: "antom@gmail.com",
-    password: "anton",
-    phone: "+49 1111 111 11 1",
-    contactColor: "",
+      "contactColor": "#3399ff",
+      "id": 1,
+      "mail": "antom@gmail.com",
+      "name": "anton mayer",
+      "password": "anton",
+      "phone": "+49 1111 111 11 1"
   },
   {
-    id: 2,
-    name: "anja schulz",
-    mail: "schulz@hotmail.com",
-    password: "anja",
-    phone: "+49 1111 111 11 2",
-    contactColor: "#c2e59c",
+      "contactColor": "#76b852",
+      "id": 2,
+      "mail": "schulz@hotmail.com",
+      "name": "anja schulz",
+      "password": "anja",
+      "phone": "+49 1111 111 11 2"
   },
   {
-    id: 3,
-    name: "benedikt ziegler",
-    mail: "benedikt@gmail.com",
-    password: "benedikt",
-    phone: "+49 1111 111 11 3",
-    contactColor: "#ffcc80",
+      "contactColor": "#ff7043",
+      "id": 3,
+      "mail": "benedikt@gmail.com",
+      "name": "benedikt ziegler",
+      "password": "benedikt",
+      "phone": "+49 1111 111 11 3"
   },
   {
-    id: 4,
-    name: "carolin schmidt",
-    mail: "carolin@gmail.com",
-    password: "carolin",
-    phone: "+49 1111 111 11 4",
-    contactColor: "#ff9999",
+      "contactColor": "#ff3333",
+      "id": 4,
+      "mail": "carolin@gmail.com",
+      "name": "carolin schmidt",
+      "password": "carolin",
+      "phone": "+49 1111 111 11 4"
   },
   {
-    id: 5,
-    name: "daniel huber",
-    mail: "daniel@gmail.com",
-    password: "daniel",
-    phone: "+49 1111 111 11 5",
-    contactColor: "#99ccff",
+      "contactColor": "#3399ff",
+      "id": 5,
+      "mail": "daniel@gmail.com",
+      "name": "daniel huber",
+      "password": "daniel",
+      "phone": "+49 1111 111 11 5"
   },
   {
-    id: 6,
-    name: "emily wagner",
-    mail: "emily@gmail.com",
-    password: "emily",
-    phone: "+49 1111 111 11 6",
-    contactColor: "#ffb3b3",
+      "contactColor": "#ff6666",
+      "id": 6,
+      "mail": "emily@gmail.com",
+      "name": "emily wagner",
+      "password": "emily",
+      "phone": "+49 1111 111 11 6"
   },
   {
-    id: 7,
-    name: "fabian koch",
-    mail: "fabian@gmail.com",
-    password: "fabian",
-    phone: "+49 1111 111 11 7",
-    contactColor: "#b3d9ff",
+      "contactColor": "#3399ff",
+      "id": 7,
+      "mail": "fabian@gmail.com",
+      "name": "fabian koch",
+      "password": "fabian",
+      "phone": "+49 1111 111 11 7"
   },
   {
-    id: 8,
-    name: "gabriela müller",
-    mail: "gabriela@gmail.com",
-    password: "gabriela",
-    phone: "+49 1111 111 11 8",
-    contactColor: "#ffcc99",
+      "contactColor": "#ff9933",
+      "id": 8,
+      "mail": "gabriela@gmail.com",
+      "name": "gabriela müller",
+      "password": "gabriela",
+      "phone": "+49 1111 111 11 8"
   },
   {
-    id: 9,
-    name: "hans schneider",
-    mail: "hans@gmail.com",
-    password: "hans",
-    phone: "+49 1111 111 11 9",
-    contactColor: "#ccffcc",
+      "contactColor": "#66ff66",
+      "id": 9,
+      "mail": "hans@gmail.com",
+      "name": "hans schneider",
+      "password": "hans",
+      "phone": "+49 1111 111 11 9"
   },
   {
-    id: 10,
-    name: "irene fischer",
-    mail: "irene@gmail.com",
-    password: "irene",
-    phone: "+49 1111 111 11 10",
-    contactColor: "#ff9999",
+      "contactColor": "#ff3333",
+      "id": 10,
+      "mail": "irene@gmail.com",
+      "name": "irene fischer",
+      "password": "irene",
+      "phone": "+49 1111 111 11 10"
   },
   {
-    id: 11,
-    name: "johann weber",
-    mail: "johann@gmail.com",
-    password: "johann",
-    phone: "+49 1111 111 11 11",
-    contactColor: "#99ccff",
+      "contactColor": "#3399ff",
+      "id": 11,
+      "mail": "johann@gmail.com",
+      "name": "johann weber",
+      "password": "johann",
+      "phone": "+49 1111 111 11 11"
   },
   {
-    id: 12,
-    name: "karolina schwarz",
-    mail: "karolina@gmail.com",
-    password: "karolina",
-    phone: "+49 1111 111 11 12",
-    contactColor: "#ffb3b3",
+      "contactColor": "#ff6666",
+      "id": 12,
+      "mail": "karolina@gmail.com",
+      "name": "karolina schwarz",
+      "password": "karolina",
+      "phone": "+49 1111 111 11 12"
   },
   {
-    id: 13,
-    name: "lisa meier",
-    mail: "lisa@gmail.com",
-    password: "lisa",
-    phone: "+49 1111 111 11 13",
-    contactColor: "#b3d9ff",
+      "contactColor": "#3399ff",
+      "id": 13,
+      "mail": "lisa@gmail.com",
+      "name": "lisa meier",
+      "password": "lisa",
+      "phone": "+49 1111 111 11 13"
   },
   {
-    id: 14,
-    name: "max schwarz",
-    mail: "max@gmail.com",
-    password: "max",
-    phone: "+49 1111 111 11 14",
-    contactColor: "#ffcc99",
+      "contactColor": "#66ff66",
+      "id": 15,
+      "mail": "nina@gmail.com",
+      "name": "nina kramer",
+      "password": "nina",
+      "phone": "+49 1111 111 11 15"
   },
   {
-    id: 15,
-    name: "nina kramer",
-    mail: "nina@gmail.com",
-    password: "nina",
-    phone: "+49 1111 111 11 15",
-    contactColor: "#ccffcc",
+      "contactColor": "#ff3333",
+      "id": 16,
+      "mail": "oscar@gmail.com",
+      "name": "oscar richter",
+      "password": "oscar",
+      "phone": "+49 1111 111 11 16"
   },
   {
-    id: 16,
-    name: "oscar richter",
-    mail: "oscar@gmail.com",
-    password: "oscar",
-    phone: "+49 1111 111 11 16",
-    contactColor: "#ff9999",
+      "contactColor": "#3399ff",
+      "id": 17,
+      "mail": "paula@gmail.com",
+      "name": "paula vogel",
+      "password": "paula",
+      "phone": "+49 1111 111 11 17"
   },
   {
-    id: 17,
-    name: "paula vogel",
-    mail: "paula@gmail.com",
-    password: "paula",
-    phone: "+49 1111 111 11 17",
-    contactColor: "#99ccff",
+      "contactColor": "#ff6666",
+      "id": 18,
+      "mail": "quinn@gmail.com",
+      "name": "quinn hartmann",
+      "password": "quinn",
+      "phone": "+49 1111 111 11 18"
   },
   {
-    id: 18,
-    name: "quinn hartmann",
-    mail: "quinn@gmail.com",
-    password: "quinn",
-    phone: "+49 1111 111 11 18",
-    contactColor: "#ffb3b3",
+      "contactColor": "#3399ff",
+      "id": 19,
+      "mail": "robin@gmail.com",
+      "name": "zist amanfang",
+      "password": "robin",
+      "phone": "+49 1111 111 11 19"
   },
   {
-    id: 19,
-    name: "zist amanfang",
-    mail: "robin@gmail.com",
-    password: "robin",
-    phone: "+49 1111 111 11 19",
-    contactColor: "#b3d9ff",
+      "contactColor": "#ff9933",
+      "id": 20,
+      "mail": "sophie@gmail.com",
+      "name": "sophie lehmann",
+      "password": "sophie",
+      "phone": "+49 1111 111 11 20"
   },
   {
-    id: 20,
-    name: "sophie lehmann",
-    mail: "sophie@gmail.com",
-    password: "sophie",
-    phone: "+49 1111 111 11 20",
-    contactColor: "#ffcc99",
+      "contactColor": "#66ff66",
+      "id": 21,
+      "mail": "timo@gmail.com",
+      "name": "timo müller",
+      "password": "timo",
+      "phone": "+49 1111 111 11 21"
   },
   {
-    id: 21,
-    name: "timo müller",
-    mail: "timo@gmail.com",
-    password: "timo",
-    phone: "+49 1111 111 11 21",
-    contactColor: "#ccffcc",
+      "contactColor": "#3399ff",
+      "id": 22,
+      "mail": "mario.markwart@gmail.com",
+      "name": "Mario Markwart",
+      "password": "mario",
+      "phone": "01753405411"
   },
   {
-    id: 22,
-    name: "ulrich anton fuchs",
-    mail: "ulrich@gmail.com",
-    password: "ulrich",
-    phone: "+49 1111 111 11 22",
-    contactColor: "#ff9999",
-  },
+      "contactColor": "#3399ff",
+      "id": 23,
+      "mail": "schult.sebastian@gmail.com",
+      "name": "Sebastian Schult",
+      "password": "sebastian",
+      "phone": "015732758581"
+  }
 ];
 
 /**
@@ -1018,6 +1018,42 @@ function generateRandomColor() {
   return colors[randomIndex];
 }
 
+const colors = [
+  "#c2e59c",
+  "#ffcc80",
+  "#ff9999",
+  "#99ccff",
+  "#ffb3b3",
+  "#b3d9ff",
+  "#ffcc99",
+  "#ccffcc",
+  "#4589ff",
+  "#d9b3ff",
+];
+
+let newColors =     [
+"#76b852",
+"#ff7043",
+"#ff3333",
+"#3399ff",
+"#ff6666",
+"#3399ff",
+"#ff9933",
+"#66ff66",
+"#0059ff",
+"#a64dff",
+]
+
+function changeColor() {
+  contacts_old.forEach((contact) => {
+    for(let i = 0; i < colors.length; i++) {
+      if(contact.contactColor == colors[i]) {
+        contact.contactColor = newColors[i];
+      }
+    }
+  })
+  // firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
+}
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
  *
