@@ -1003,57 +1003,21 @@ function restoreCancelIcon() {
  */
 function generateRandomColor() {
   const colors = [
-    "#c2e59c",
-    "#ffcc80",
-    "#ff9999",
-    "#99ccff",
-    "#ffb3b3",
-    "#b3d9ff",
-    "#ffcc99",
-    "#ccffcc",
-    "#4589ff",
-    "#d9b3ff",
+    "#76b852",
+    "#ff7043",
+    "#ff3333",
+    "#3399ff",
+    "#ff6666",
+    "#3399ff",
+    "#ff9933",
+    "#66ff66",
+    "#0059ff",
+    "#a64dff",
   ];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
 
-const colors = [
-  "#c2e59c",
-  "#ffcc80",
-  "#ff9999",
-  "#99ccff",
-  "#ffb3b3",
-  "#b3d9ff",
-  "#ffcc99",
-  "#ccffcc",
-  "#4589ff",
-  "#d9b3ff",
-];
-
-let newColors =     [
-"#76b852",
-"#ff7043",
-"#ff3333",
-"#3399ff",
-"#ff6666",
-"#3399ff",
-"#ff9933",
-"#66ff66",
-"#0059ff",
-"#a64dff",
-]
-
-function changeColor() {
-  contacts_old.forEach((contact) => {
-    for(let i = 0; i < colors.length; i++) {
-      if(contact.contactColor == colors[i]) {
-        contact.contactColor = newColors[i];
-      }
-    }
-  })
-  // firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
-}
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
  *
