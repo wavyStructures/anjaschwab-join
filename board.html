@@ -55,7 +55,7 @@
                             ondragover="allowDrop(event)">
                             <div class="categoryTitle">
                                 <h2>To Do</h2>
-                                <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                                <div class="addTaskButton" onclick="showAddTaskContainer('category-0')"></div>
                             </div>
                             <div id="category-0" class="categoryTasks">
                             </div>
@@ -63,7 +63,7 @@
                         <div class="category" ondrop="moveTo('category-1')" ondragover="allowDrop(event)"">
                             <div class=" categoryTitle">
                             <h2>In progress</h2>
-                            <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                            <div class="addTaskButton" onclick="showAddTaskContainer('category-1')"></div>
                         </div>
                         <div id="category-1" class="categoryTasks">
                         </div>
@@ -71,7 +71,7 @@
                     <div class="category" ondrop="moveTo('category-2')" ondragover="allowDrop(event)"">
                             <div class=" categoryTitle">
                         <h2>Await feedback</h2>
-                        <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                        <div class="addTaskButton" onclick="showAddTaskContainer('category-2')"></div>
                     </div>
                     <div id="category-2" class="categoryTasks">
                     </div>
@@ -79,7 +79,7 @@
                 <div class="category" ondrop="moveTo('category-3')" ondragover="allowDrop(event)">
                     <div class="categoryTitle">
                         <h2>Done</h2>
-                        <div class="addTaskButton" onclick="showAddTaskContainer()"></div>
+                        <div class="addTaskButton" onclick="showAddTaskContainer('category-3')"></div>
                     </div>
                     <div id="category-3" class="categoryTasks">
                     </div>

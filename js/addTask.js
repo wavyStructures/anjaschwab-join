@@ -444,10 +444,8 @@ function collectInformationsForNewCard(){
 
     // wenn KEINE Karte editiert wird
     if (!checkIfCardIsEditing()){
-        newTask.id = getNewTaskId(); // NEUE ID vergeben
-        newTask.category = 'category-0'; // KATEGORIE todo vergeben
-    } //ansonsten das lassen, wo die ursprüngliche Karte war
-    
+        newTask.id = getNewTaskId(); 
+    }
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
     newTask.completedSubtasks = getNewTaskCompletedSubtasks();
@@ -589,17 +587,6 @@ async function createTask(){
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
-
-    setTimeout(() => {
-        hideAddTaskContainer();
-        hideSuccesMessage();
-        
-        setTimeout(() => {
-            if(window.location.href.includes('board.html')) renderCategories(tasks);
-            else switchPage('board.html');
-        },1000)
-
-    }, 1000);
 }
 
 function checkValidity(){

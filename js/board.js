@@ -177,7 +177,8 @@ function renderBoardAddTaskOverlay(){
  * Displays the add task container by rendering the overlay and adding the necessary classes to the container.
  * If the container does not exist, it will be created and rendered.
  */
-function showAddTaskContainer(){
+function showAddTaskContainer(category='category-0') {
+    newTask.category = category;
     if (!document.getElementById('addTaskHoverContainer')) {
         renderBoardAddTaskOverlay();
     }
@@ -217,6 +218,16 @@ function showSuccessMessage(){
     let container = document.getElementById('success-message-container');
     container.classList.add('successIn');
 
+    setTimeout(() => {
+        hideAddTaskContainer();
+        hideSuccesMessage();
+        setTimeout(() => {
+            if(window.location.href.includes('board.html')){
+                renderCategories(tasks);
+            } 
+            else switchPage('board.html');
+        },1000)
+    }, 1000);
 }
 
 function hideSuccesMessage(){
