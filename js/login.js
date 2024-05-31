@@ -1,12 +1,11 @@
-let users = [];
 let loggedUsers = [];
 
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    await loadUsersFromContacts();
-    await setUsersRemote();
+    await loadUsers();
+    // await setUsersRemote();
 
     // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
 }
@@ -15,8 +14,8 @@ async function loginInit() {
  * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
-async function loadUsersFromContacts() {
-    users = await firebaseGetItem(FIREBASE_CONTACTS_ID);
+async function loadUsers() {
+    users = await firebaseGetItem(FIREBASE_USERS_ID);
     console.log('users in login.js on loginInit(): ', users);
 }
 
@@ -57,8 +56,8 @@ async function startAnimation() {
             setTimeout(() => {
                 resolve();
                 hideOverlay();
-            }, 2000); // Wait for the logo animation to finish (2 seconds)
-        }, 3000); // Wait for 3 seconds before starting the animation
+            }, 1000); // Wait for the logo animation to finish (2 seconds)
+        }, 1000); // Wait for 3 seconds before starting the animation
 
     });
 }

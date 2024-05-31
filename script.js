@@ -1,3 +1,4 @@
+
 /**
  * the init-function in body onload
  */
@@ -151,7 +152,7 @@ function showInitials() {
 
 		if (userInitialsElement) {
 			if (userAsString) {
-				let userName = JSON.parse(userAsString).name;
+				let userName = JSON.parse(userAsString).username;
 				let userInitials = getInitials(userName);
 				userInitialsElement.innerHTML = userInitials;
 			} else {

@@ -1,6 +1,7 @@
 async function addTaskInit(){
     includeHTML();
-    await loadContactsStorage();
+    await getContactsFromRemoteStorage();
+    getContactsOutOfUsers();
     await loadTasksFromRemoteStorage();
     renderAddTaskHTML();
     checkValidity();
@@ -460,25 +461,12 @@ function collectInformationsForNewCard(){
  */
 function getNewTaskId(){
     if (!checkIfCardIsEditing()){
-        let freeId = findFreeTaskId();
+        let freeId = findFreeId(tasks);
         return freeId;
     }
 }
 
 
-function findFreeTaskId() {
-	for (let i = 0; i < 1000; i++) {
-		let free = true;
-		for (let j = 0; j < tasks.length; j++) {
-			if (tasks[j].id == i) {
-				free = false;
-			}
-		}
-		if (free) {
-			return i;
-		}
-	}
-}
 function checkIfCardIsEditing(){
     let editing = document.getElementsByTagName('*');
     for (let element of editing){
@@ -584,7 +572,6 @@ function setTodayDateAsMin(){
 
 async function createTask(){
     collectInformationsForNewCard();
-    debugger
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();

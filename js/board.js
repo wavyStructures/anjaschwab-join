@@ -146,7 +146,8 @@ let categories = [
  */
 async function boardInit() {
     includeHTML();
-    await loadContactsStorage();
+    await getContactsFromRemoteStorage();
+    getContactsOutOfUsers();
     await loadTasksFromRemoteStorage();
     renderCategories(tasks);
     // showAddTaskContainer();

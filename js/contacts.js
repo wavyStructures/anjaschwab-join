@@ -1,5 +1,5 @@
+let users = [];
 let contacts = [];
-let localVersionIndex = 0;
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.
@@ -7,11 +7,25 @@ let localVersionIndex = 0;
  * @return {Promise<Array>} A promise that resolves to an array of contacts.
  */
 async function getContactsFromRemoteStorage() {
-  // REMOTE STORAGE
-  // return await remoteStorageGetItem("contacts").then((res) => JSON.parse(res)); 
-  
-  // FIREBASE
-  return firebaseGetItem(FIREBASE_CONTACTS_ID);
+  try {
+    users = await firebaseGetItem(FIREBASE_USERS_ID);
+  } catch (error) {
+    console.error("Loading error:", error);
+  }
+}
+
+function getContactsOutOfUsers(){
+  contacts = [];
+  users.forEach(user => {
+    contacts.push(
+      {
+      "contactColor": user.contactColor,
+      "id": user.id,
+      "mail": user.mail,
+      "name": user.name,
+      "phone": user.phone
+    });
+  });
 }
 
 /**
@@ -20,36 +34,7 @@ async function getContactsFromRemoteStorage() {
  * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
  */
 async function resetContactsOnRemoteStorage() {
-  // REMOTE STORAGE
-  //  return await remoteStorageSetItem("contacts", JSON.stringify(contacts_old));
-
-   // FIREBASE
-   return firebaseUpdateItem(contacts_old, FIREBASE_CONTACTS_ID);
-}
-
-/**
- * Asynchronously retrieves the local and remote versions of the application.
- *
- * @return {Promise<[number, string]>} A promise that resolves to an array containing the local version index and the remote version string.
- */
-async function getVersions() {
-  let localVersion = localVersionIndex;
-  let remoteVersion = await remoteStorageGetItem("versionIndex");
-
-  return [localVersion, remoteVersion];
-}
-
-
-/**
- * Loads the contacts from storage.
- */
-async function loadContactsStorage() {
-  try {
-      contacts = await getContactsFromRemoteStorage();
-      console.log("Contacts loaded from online storage.")
-  } catch (error) {
-    console.error("Loading error:", error);
-  }
+  return firebaseUpdateItem(contacts_old, FIREBASE_CONTACTS_ID);
 }
 
 /**
@@ -85,41 +70,40 @@ async function contactsInit() {
   loadContacts();
 }*/
 
-
-/**
- * Saves the version index to Firebase Realtime Database.
- */
-async function saveOnlineVersionIndex(versionIndex) {
-  await remoteStorageSetItem("versionIndex", versionIndex);
-}
-
 /**
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
  */
 async function saveContact() {
-  await loadContactsStorage(); // Load contacts from online storage to be sure to have the newest contacts.
+	await getContactsFromRemoteStorage();
+	if (checkMailExist(document.getElementById("contactMail").value)) {
+		console.warn("MAIL EXISTIERT!!!!!");
+	} else {
+		try {
+			createBtn.disabled = true;
+			const newId = getNextId(users);
+			users.push({
+				id: newId,
+				name: contactName.value,
+				mail: contactMail.value,
+				phone: contactPhone.value,
+				contactColor: generateRandomColor(),
+				password: getFirstNameForDefaultPassword(contactName.value),
+			});
 
-  try {
-    createBtn.disabled = true;
-    const newId = getNextId(contacts);
-    contacts.push({
-      id: newId,
-      name: contactName.value,
-      mail: contactMail.value,
-      phone: contactPhone.value,
-      contactColor: generateRandomColor(),
-    });
+			await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+			getContactsOutOfUsers();
+			resetContactForm();
+			closeOverlay("addContact");
+		} catch (error) {
+			console.error("Error saving contact:", error);
+		}
+		displaySuccessMessage();
+	}
+}
 
-    // FIREBASE
-    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
-    
-    resetContactForm();
-    closeAddContact();
-    loadContacts();
-  } catch (error) {
-    console.error("Error saving contact:", error);
-  }
-  displaySuccessMessage()
+
+function getFirstNameForDefaultPassword(name) {
+  return name.split(' ')[0];
 }
 
 /**
@@ -181,184 +165,6 @@ function resetContactForm() {
  * @property {string} contactColor - The color associated with the contact.
  */
 
-let contacts_old = [
-  {
-      "contactColor": "",
-      "id": 1,
-      "mail": "antom@gmail.com",
-      "name": "anton mayer",
-      "password": "anton",
-      "phone": "+49 1111 111 11 1"
-  },
-  {
-      "contactColor": "#76b852",
-      "id": 2,
-      "mail": "schulz@hotmail.com",
-      "name": "anja schulz",
-      "password": "anja",
-      "phone": "+49 1111 111 11 2"
-  },
-  {
-      "contactColor": "#ff7043",
-      "id": 3,
-      "mail": "benedikt@gmail.com",
-      "name": "benedikt ziegler",
-      "password": "benedikt",
-      "phone": "+49 1111 111 11 3"
-  },
-  {
-      "contactColor": "#ff3333",
-      "id": 4,
-      "mail": "carolin@gmail.com",
-      "name": "carolin schmidt",
-      "password": "carolin",
-      "phone": "+49 1111 111 11 4"
-  },
-  {
-      "contactColor": "#3399ff",
-      "id": 5,
-      "mail": "daniel@gmail.com",
-      "name": "daniel huber",
-      "password": "daniel",
-      "phone": "+49 1111 111 11 5"
-  },
-  {
-      "contactColor": "#ff6666",
-      "id": 6,
-      "mail": "emily@gmail.com",
-      "name": "emily wagner",
-      "password": "emily",
-      "phone": "+49 1111 111 11 6"
-  },
-  {
-      "contactColor": "#33ccff",
-      "id": 7,
-      "mail": "fabian@gmail.com",
-      "name": "fabian koch",
-      "password": "fabian",
-      "phone": "+49 1111 111 11 7"
-  },
-  {
-      "contactColor": "#ff9933",
-      "id": 8,
-      "mail": "gabriela@gmail.com",
-      "name": "gabriela müller",
-      "password": "gabriela",
-      "phone": "+49 1111 111 11 8"
-  },
-  {
-      "contactColor": "#66ff66",
-      "id": 9,
-      "mail": "hans@gmail.com",
-      "name": "hans schneider",
-      "password": "hans",
-      "phone": "+49 1111 111 11 9"
-  },
-  {
-      "contactColor": "#ff3333",
-      "id": 10,
-      "mail": "irene@gmail.com",
-      "name": "irene fischer",
-      "password": "irene",
-      "phone": "+49 1111 111 11 10"
-  },
-  {
-      "contactColor": "#3399ff",
-      "id": 11,
-      "mail": "johann@gmail.com",
-      "name": "johann weber",
-      "password": "johann",
-      "phone": "+49 1111 111 11 11"
-  },
-  {
-      "contactColor": "#ff6666",
-      "id": 12,
-      "mail": "karolina@gmail.com",
-      "name": "karolina schwarz",
-      "password": "karolina",
-      "phone": "+49 1111 111 11 12"
-  },
-  {
-      "contactColor": "#33ccff",
-      "id": 13,
-      "mail": "lisa@gmail.com",
-      "name": "lisa meier",
-      "password": "lisa",
-      "phone": "+49 1111 111 11 13"
-  },
-  {
-      "contactColor": "#ff9933",
-      "id": 14,
-      "mail": "max@gmail.com",
-      "name": "max schwarz",
-      "password": "max",
-      "phone": "+49 1111 111 11 14"
-  },
-  {
-      "contactColor": "#66ff66",
-      "id": 15,
-      "mail": "nina@gmail.com",
-      "name": "nina kramer",
-      "password": "nina",
-      "phone": "+49 1111 111 11 15"
-  },
-  {
-      "contactColor": "#ff3333",
-      "id": 16,
-      "mail": "oscar@gmail.com",
-      "name": "oscar richter",
-      "password": "oscar",
-      "phone": "+49 1111 111 11 16"
-  },
-  {
-      "contactColor": "#3399ff",
-      "id": 17,
-      "mail": "paula@gmail.com",
-      "name": "paula vogel",
-      "password": "paula",
-      "phone": "+49 1111 111 11 17"
-  },
-  {
-      "contactColor": "#ff6666",
-      "id": 18,
-      "mail": "quinn@gmail.com",
-      "name": "quinn hartmann",
-      "password": "quinn",
-      "phone": "+49 1111 111 11 18"
-  },
-  {
-      "contactColor": "#33ccff",
-      "id": 19,
-      "mail": "robin@gmail.com",
-      "name": "zist amanfang",
-      "password": "robin",
-      "phone": "+49 1111 111 11 19"
-  },
-  {
-      "contactColor": "#ff9933",
-      "id": 20,
-      "mail": "sophie@gmail.com",
-      "name": "sophie lehmann",
-      "password": "sophie",
-      "phone": "+49 1111 111 11 20"
-  },
-  {
-      "contactColor": "#66ff66",
-      "id": 21,
-      "mail": "timo@gmail.com",
-      "name": "timo müller",
-      "password": "timo",
-      "phone": "+49 1111 111 11 21"
-  },
-  {
-      "contactColor": "#ff3333",
-      "id": 22,
-      "mail": "ulrich@gmail.com",
-      "name": "ulrich anton fuchs",
-      "password": "ulrich",
-      "phone": "+49 1111 111 11 22"
-  }
-];
 
 /**
  * Initializes the contacts by including the HTML and loading the contacts.
@@ -367,7 +173,8 @@ let contacts_old = [
  */
 async function contactsInit() {
   includeHTML();
-  await loadContactsStorage();
+  await getContactsFromRemoteStorage();
+  getContactsOutOfUsers();
   loadContacts();
 }
 
@@ -995,28 +802,6 @@ function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
 
-/**
- * Generates a random color from a predefined list of colors.
- *
- * @function generateRandomColor
- * @returns {string} A randomly selected color.
- */
-function generateRandomColor() {
-  const colors = [
-    "#76b852",
-    "#ff7043",
-    "#ff3333",
-    "#3399ff",
-    "#ff6666",
-    "#33ccff",
-    "#ff9933",
-    "#66ff66",
-    "#0059ff",
-    "#a64dff",
-  ];
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
-}
 
 function changeColor() {
   contacts_old.forEach((contact) => {
@@ -1035,7 +820,6 @@ function changeColor() {
 async function delAllContacts() {
   contacts = [];
   await remoteStorageSetItem("contacts", JSON.stringify(contacts));
-  console.log("contacts: ", contacts);
 }
 
 /**
@@ -1136,13 +920,9 @@ async function deleteContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     contacts.splice(contactIndex, 1);
-    
-    // REMOTE STORAGE
-    // await remoteStorageSetItem("contacts", JSON.stringify(contacts));
 
-    // FIREBASE
     await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
-    
+
     console.log("Contact deleted successfully.");
   } else {
     console.error("Contact not found with ID:", id);

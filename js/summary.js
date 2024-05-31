@@ -7,7 +7,8 @@ let dayTime;
  */
 async function summaryInit() {
     includeHTML();
-    await loadContactsStorage();
+    await getContactsFromRemoteStorage();
+    getContactsOutOfUsers();
     await loadTasksFromRemoteStorage();
     getLoggedUser();
     getUserNameForGreeting();
@@ -56,7 +57,7 @@ function greetAccordingToDayTime() {
 */
 function getUserNameForGreeting() {
     if (loggedUser) {
-        let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.name);
+        let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.username);
         greet(capitalizedName);
     }
 }

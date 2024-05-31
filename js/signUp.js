@@ -1,10 +1,16 @@
-let newUsers = [];
-let username = '';
-let mail = '';
-let password = '';
-let passwordConfirm = '';
-let registerBtn = document.getElementById("registerBtn");
+let newUsername = '';
+let newMail = '';
+let newPassword = '';
+let newPasswordConfirm = '';
 
+let newUser = {
+    id: '',
+    name: '',
+    mail: '',
+    password: '',
+    contactColor: '',
+    phone: '+49 0123 456789'
+};
 
 
 
@@ -31,76 +37,103 @@ async function signUpInit() {
 // }
 
 
-function addNewUser() {
-    username = document.getElementById('signUpNameInput');
-    mail = document.getElementById('signUpEmailInput');
-    password = document.getElementById('signUpPasswordInput');
-    passwordConfirm = document.getElementById('signUpPasswordInputConfirm');
+async function saveNewUser(){
+    users = await firebaseGetItem(FIREBASE_USERS_ID);
+    users.push(newUser);
 
-    if (validateForm()) {
+}
 
-        registerBtn.disabled = false;
-        newUsers.push({
-            username: username.value,
-            mail: mail.value,
-            password: password.value
-        });
+
+function getInputValues() {
+    newUsername = document.getElementById('signUpNameInput').value;
+    newMail = document.getElementById('signUpEmailInput').value;
+    newPassword = document.getElementById('signUpPasswordInput').value;
+    newPasswordConfirm = document.getElementById('signUpPasswordInputConfirm').value;
+}
+
+function setNewUserValues(){
+    newUser.name = newUsername;
+    newUser.mail = newMail;
+    newUser.password = newPassword;
+    newUser.id = findFreeId(users)
+    newUser.contactColor = generateRandomColor();
+}
+
+async function addNewUser() {
+    users = await firebaseGetItem(FIREBASE_USERS_ID);
+    getInputValues();
+    setNewUserValues(); 
+    if(!checkPasswordsEqual()){
+        showUserMessage('Passwords do not match!');
+    }
+    else if(checkMailExist(newMail)){
+        showUserMessage('The mail already exists!');
+    }else{
+        users.push(newUser);
+        await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+        console.log(users);
         showUserMessage('You Signed Up successfully!');
-        resetForm();
-        setNewUsersToLocalStorage();
-        redirectToLogin();
-    } else {
-        showUserMessage('Please confirm the privacy policy and ensure all fields are filled correctly.');
+        // resetForm();
+        switchPage('index.html?msg=you are signed up now!')
     }
 }
 
 
-/**
- * Validates the form inputs and privacy policy confirmation.
- */
-function validateForm() {
-    let privacyConfirmed = checkPrivacyPolicyConfirmation();
-    let passwordsMatch = checkPasswordsEqual();
-    const allFieldsFilled = username.value !== '' && mail.value !== '' && password.value !== '';
 
-    return privacyConfirmed && passwordsMatch && allFieldsFilled;
+function checkMailExist(mailToCheck){
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].mail === mailToCheck) {
+            return true;
+        }
+    }
+    return false;
 }
 
+function checkIfFormIsValid(){
+    let form = document.getElementById('login-form')
+    let btn = document.getElementById('registerBtn');
+    if (form.checkValidity() !== false && checkPrivacyPolicyConfirmation()) {
+        btn.disabled = false;
+        return true;
+    }else{
+        btn.disabled = true;
+        return false;
+    }
 
+}
 
 /**
  * reseting the signUp form
  */
 function resetForm() {
-    let registerBtn = document.getElementById("registerBtn");
-
-    username.value = '';
-    mail.value = '';
-    password.value = '';
-    passwordConfirm.value = '';
-    registerBtn.disabled = true;
+    let inputFields = document.querySelectorAll('input');
+    for (let i = 0; i < inputFields.length; i++) {
+        inputFields[i].value = '';
+    }
+    newUsername = '';
+    newMail = '';
+    newPassword = '';
+    newPasswordConfirm = '';
+    togglePrivacyPolicyCheckbox();
+    checkIfFormIsValid();
 }
 
 
 /**
  * Toggles the privacy policy confirmation checkbox checked to unchecked and vice versa 
  */
-function togglePrivacyPolicyCheckbox() {
+function togglePrivacyPolicyCheckbox(){
     let privacyCheckbox = document.getElementById('privacyCheckbox');
     let checkBoxImage = document.querySelector('.checkboxBox img');
-    // checkBoxImage.src = `../../assets/img/icon-check_button_unchecked.png`;
 
-    privacyCheckbox.addEventListener('click', function () {
-        if (checkBoxImage.src.includes('unchecked.png')) {
-            checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
-            addNewUser();
-
-        } else {
-            checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
-        }
-
-
-    });
+    if (privacyCheckbox.hasAttribute('checked')){
+        checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
+        privacyCheckbox.removeAttribute('checked');
+    }else{
+        privacyCheckbox.setAttribute('checked','');
+        checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
+    }
+    checkIfFormIsValid();
 }
 
 
@@ -108,14 +141,8 @@ function togglePrivacyPolicyCheckbox() {
  * checking if the user has confirmed the privacy policy
  */
 function checkPrivacyPolicyConfirmation() {
-    let checkBoxImage = document.querySelector('.checkboxBox img');
-
-    return !checkBoxImage.src.includes('unchecked.png');
-    // if (checkBoxImage.src.includes('unchecked.png')) {
-    //     return false;
-    // } else {
-    //     return true;
-    // }
+    let privacyCheckbox = document.getElementById('privacyCheckbox');
+    return privacyCheckbox.hasAttribute('checked');
 }
 
 
@@ -125,7 +152,7 @@ function checkPrivacyPolicyConfirmation() {
  * @return {void}
  */
 function redirectToLogin() {
-    switchPage('login.html?msg=you are signed up now!');
+    switchPage('index.html?msg=you are signed up now!');
 }
 
 
@@ -142,15 +169,15 @@ function showUserMessage(message) {
     var messageDiv = document.getElementById("userMessage");
     messageDiv.innerText = message;
     overlay.style.display = "flex";
-    setTimeout(function () {
+    setTimeout(() => {
         overlay.style.display = "none";
     }, 3000); // 100 second
 }
 
 
 function checkPasswordsEqual() {
-    if (password.value !== passwordConfirm.value) {
-        showUserMessage("Passwords do not match");
+    if (newPassword !== newPasswordConfirm) {
+        // showUserMessage("Passwords do not match");
         return false;
     } else {
         return true;
@@ -158,12 +185,12 @@ function checkPasswordsEqual() {
 }
 
 
-// Attach the privacy policy toggle functionality on page load
-window.onload = function () {
-    togglePrivacyPolicyCheckbox();
-    let registerBtn = document.getElementById("registerBtn");
-    registerBtn.addEventListener('click', addNewUser);
-};
+// // Attach the privacy policy toggle functionality on page load
+// window.onload = function () {
+//     togglePrivacyPolicyCheckbox();
+//     let registerBtn = document.getElementById("registerBtn");
+//     registerBtn.addEventListener('click', addNewUser);
+// };
 
 
 // /**
