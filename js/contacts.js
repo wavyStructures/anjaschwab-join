@@ -1077,7 +1077,7 @@ function editContact(id) {
  *
  * @return {undefined} This function does not return a value.
  */
-function saveEditedContact() {
+async function saveEditedContact() {
   const id = document.getElementById('contactId').value;
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
@@ -1087,7 +1087,7 @@ function saveEditedContact() {
     contact.mail = document.getElementById('contactMail').value;
     contact.phone = document.getElementById('contactPhone').value;
 
-    //await firebaseUpdateItem(contact, id);
+    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
 
     console.log("Contact saved:", contact);
     alert("Contact saved successfully!");
