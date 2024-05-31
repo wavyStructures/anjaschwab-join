@@ -132,8 +132,8 @@ function renderTasksHTML(task) {
     </div>`;
 }
 
-function renderEmptyCategoryHTML() {
-  return /*html*/ `<div class="empty-category">No tasks to do</div>`;
+function renderEmptyCategoryHTML(name) {
+  return /*html*/ `<div class="empty-category">No tasks ${name}</div>`;
 }
 
 function renderAssignedToButtonsHTML(contact) {

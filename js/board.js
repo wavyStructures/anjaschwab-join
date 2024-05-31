@@ -133,7 +133,12 @@ let _tasksBackup = [
     }
 ];
 
-let categories = ['category-0', 'category-1', 'category-2', 'category-3'];
+let categories = [
+    {'category-0': "To do"},
+    {'category-1': "In progress"}, 
+    {'category-2': "Await Feedback"}, 
+    {'category-3': "Done"}
+];
 
 /**
  * Initializes the board by including HTML, loading contacts and tasks from remote storage,
@@ -250,10 +255,12 @@ function createSuccessMessageContainer(){
  * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
 function renderCategories(arrayToSearchIn) {
+    
+    
     categories.forEach(category => {
-        let categoryContainer = document.getElementById(category);
+        let categoryContainer = document.getElementById(Object.keys(category)[0]);
         categoryContainer.innerHTML = "";
-        let filteredTasks = filterTasks(arrayToSearchIn, category);
+        let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
@@ -261,7 +268,7 @@ function renderCategories(arrayToSearchIn) {
                 renderAssignedToButtons(task);
             }
         } else {
-            renderEmptyCategory(categoryContainer);
+            renderEmptyCategory(categoryContainer, Object.values(category)[0]);
         }});
     }
 
@@ -306,8 +313,8 @@ function renderAssignedToButtons(task) {
  * 
  * @param {object} categoryContainer html-object from the (emtpy) category
  */
-function renderEmptyCategory(categoryContainer) {
-    categoryContainer.innerHTML = renderEmptyCategoryHTML();
+function renderEmptyCategory(categoryContainer, name) {
+    categoryContainer.innerHTML = renderEmptyCategoryHTML(name);
 }
 
 
@@ -698,7 +705,7 @@ function displayEmptyTask(taskId, categoryId){
  */
 function stopDragging(){
     categories.forEach(category => {
-        document.getElementById(category).classList.remove('drag-area-highlight');
+        document.getElementById(Object.keys(category)[0]).classList.remove('drag-area-highlight');
     });
 
     tasks.forEach(task => {
