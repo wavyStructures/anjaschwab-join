@@ -124,7 +124,7 @@ function getCurrentUser() {
 //TODELETE!!!!!!!!!!!!
 
 function restoreUsersOnFirebase(){
-    firebaseUpdateItem(users, FIREBASE_USERS_ID);
+    firebaseUpdateItem(users_backup, FIREBASE_USERS_ID);
 }
 
   let users_backup = [

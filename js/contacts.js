@@ -920,13 +920,16 @@ function deleteContactFromLocalStorage(contactId) {
  * @returns {void}
  */
 async function deleteContact(id) {
-  const contactIndex = contacts.findIndex((contact) => contact.id === id);
-  if (contactIndex !== -1) {
-    contacts.splice(contactIndex, 1);
-
-    await firebaseUpdateItem(contacts, FIREBASE_USERS_ID);
-
+  let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  console.log("delUser users: ", users);
+  const userIndex = users.findIndex((user) => user.id === id);
+  console.log("USER TO DELETE: ", users[userIndex]);
+  if (userIndex !== -1) {
+    users.splice(userIndex, 1);
+    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+    users = [];
     console.log("Contact deleted successfully.");
+    window.location.reload();
   } else {
     console.error("Contact not found with ID:", id);
   }
