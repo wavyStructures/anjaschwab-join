@@ -494,7 +494,7 @@ function renderEditContactHTML() {
                     <img src="./assets/img/add.contact-badge.png" alt="">
                 </div>
             </div>
-            <form action="" onsubmit="createNewContact(); return false" class="add-contact-input-group">
+            <form action="" onsubmit="saveEditedContact(${contactId}); return false" class="add-contact-input-group">
                 <div class="input-frame">
                     <input id="contactName" type="text" placeholder="Name" autofocus required>
                     <img src="./assets/img/icon-person.png" alt="">
@@ -513,7 +513,7 @@ function renderEditContactHTML() {
                         <img id="cancelIcon" onclick="closeOverlay('editContact')" src="./assets/img/icon-cancel.png" alt="">
                     </button>
                     <button class="createButton">Edit contact
-                        <img id="createIcon" onclick="saveEditedContact()" src="./assets/img/icon-check.png" alt="">
+                        <img id="createIcon" onclick="saveEditedContact(${contactId})" src="./assets/img/icon-check.png" alt="">
                     </button>
                 </div>
             </form>
@@ -818,6 +818,9 @@ async function delAllContacts() {
   await remoteStorageSetItem("contacts", JSON.stringify(contacts));
 }
 
+
+let currentContactId = null;
+
 /**
  * Edits the contact with the specified ID.
  *
@@ -835,15 +838,13 @@ function editContact(id) {
     };
     contact.name = capitalizeWords(contact.name);
 
-    editContactCard();
+    editContactCard(id);
     document.getElementById('contactName').value = contact.name;
     document.getElementById('contactMail').value = contact.mail;
     document.getElementById('contactPhone').value = contact.phone;
-    // document.getElementById('contactId').value = contact.id;
 
-    // Logik zum Bearbeiten des Kontakts implementieren,
-    // Anzeigen des Formulars mit den vorhandenen Kontaktinformationen
-    // Aktualisieren der Kontaktinformationen nach der Bearbeitung.
+    currentContactId = id; // Setze die aktuelle Kontakt-ID
+
     console.log("Editing contact:", contact);
   } else {
     console.error("Contact not found with ID:", id);
@@ -857,8 +858,7 @@ function editContact(id) {
  *
  * @return {undefined} This function does not return a value.
  */
-async function saveEditedContact() {
-  const id = document.getElementById('contactId').value;
+async function saveEditedContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
@@ -867,7 +867,8 @@ async function saveEditedContact() {
     contact.mail = document.getElementById('contactMail').value;
     contact.phone = document.getElementById('contactPhone').value;
 
-    await firebaseUpdateItem(contacts, FIREBASE_USERS_ID);
+    // Update contact in Firebase
+    await firebaseUpdateContact(contact);
 
     console.log("Contact saved:", contact);
     alert("Contact saved successfully!");
