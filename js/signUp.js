@@ -74,7 +74,7 @@ function checkMailExist(mailToCheck) {
 function checkIfFormIsValid() {
     let form = document.getElementById('login-form')
     let btn = document.getElementById('registerBtn');
-    if (form.checkValidity() !== false && checkPrivacyPolicyConfirmation()) {
+    if (form.checkValidity() && checkPrivacyPolicyConfirmation()) {
         btn.disabled = false;
         return true;
     } else {
@@ -111,7 +111,6 @@ function togglePrivacyPolicyCheckbox() {
     } else {
         checkBoxImage.src = './assets/img/icon-check_button_unchecked.png';
     }
-
     checkIfFormIsValid();
 }
 
@@ -138,7 +137,7 @@ function togglePrivacyPolicyCheckbox() {
  */
 function checkPrivacyPolicyConfirmation() {
     let privacyCheckbox = document.getElementById('privacyCheckbox');
-    return privacyCheckbox.hasAttribute('checked');
+    return privacyCheckbox.checked;
 }
 
 
