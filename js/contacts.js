@@ -30,14 +30,6 @@ function getContactsOutOfUsers(){
   contacts = sortContactsByName(temp_contacts);
 }
 
-/**
- * Asynchronously saves the contacts to the remote storage.
- *
- * @return {Promise<void>} A promise that resolves when the contacts are successfully saved.
- */
-async function resetContactsOnRemoteStorage() {
-  return firebaseUpdateItem(contacts_old, FIREBASE_CONTACTS_ID);
-}
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -54,6 +46,7 @@ function getNextId(contactsArray) {
   });
   return maxId + 1;
 }
+
 
 /**
  * Initializes the contacts by including the HTML, loading the contacts, and checking the version index.
@@ -456,7 +449,7 @@ function renderAddContactsHTML(){
                     <img src="./assets/img/icon-mail.png" alt="">
                 </div>
                 <div class="input-frame">
-                    <input id="contactPhone" type="tel" placeholder="Phone" autofocus required>
+                    <input id="contactPhone" pattern="[0-9]*" type="tel" placeholder="Phone" autofocus required>
                     <img src="./assets/img/icon-call.png" alt="">
                 </div>
                 <div id="addContactButton" class="addContactButton">
@@ -874,7 +867,7 @@ async function saveEditedContact() {
     contact.mail = document.getElementById('contactMail').value;
     contact.phone = document.getElementById('contactPhone').value;
 
-    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
+    await firebaseUpdateItem(contacts, FIREBASE_USERS_ID);
 
     console.log("Contact saved:", contact);
     alert("Contact saved successfully!");
@@ -924,7 +917,7 @@ async function deleteContact(id) {
   if (contactIndex !== -1) {
     contacts.splice(contactIndex, 1);
 
-    await firebaseUpdateItem(contacts, FIREBASE_CONTACTS_ID);
+    await firebaseUpdateItem(contacts, FIREBASE_USERS_ID);
 
     console.log("Contact deleted successfully.");
   } else {
