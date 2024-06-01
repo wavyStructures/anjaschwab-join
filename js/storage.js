@@ -72,19 +72,6 @@ async function firebaseGetItem(path="_") {
     return responseAsJSON;
 }
 
-/* --- Remote Storage --- */
-
-/**
- * 
- * @param {string} key - the key the value can be found
- * @param {string} value - the value for the key
- * @returns 
- */
-async function remoteStorageSetItem(key, value) {
-    const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-        .then(res => res.json());
-}
 
 /**
  * 
@@ -113,8 +100,8 @@ TODO:
  * @param {Object} loggedUser - The user object representing the logged in user.
  * @return {void} This function does not return anything.
  */
-function setCurrentUser(loggedUser) {
-    localStorage.setItem('currentUser', JSON.stringify(loggedUser)); //TODO   localStorage.setItem('currentUser', loggedUser);
+function setCurrentUser(name) {
+    sessionStorage.setItem('currentUser', JSON.stringify({ username: name}));
     console.log('setCurrent has run and saved: ', loggedUser);
 }
 
@@ -124,7 +111,7 @@ function setCurrentUser(loggedUser) {
  * @return {Object} The user object representing the logged in user, parsed from the local storage.
  */
 function getCurrentUser() {
-    const currentUserJSON = localStorage.getItem('currentUser');
+    const currentUserJSON = sessionStorage.getItem('currentUser');
     if (currentUserJSON) {
         const currentUser = JSON.parse(currentUserJSON);
         return currentUser;

@@ -25,7 +25,9 @@ async function summaryInit() {
  * Retrieves the currently logged in user by calling the getCurrentUser function and assigns it to the loggedUser variable.
  */
 function getLoggedUser() {
-    loggedUser = getCurrentUser();
+    currentUser = getCurrentUser();
+    loggedUser = currentUser.username
+
 }
 
 /**
@@ -57,7 +59,7 @@ function greetAccordingToDayTime() {
 */
 function getUserNameForGreeting() {
     if (loggedUser) {
-        let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser.username);
+        let capitalizedName = getNameWithCapitalizedFirstLetter(loggedUser);
         greet(capitalizedName);
     }
 }

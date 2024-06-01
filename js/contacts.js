@@ -26,6 +26,7 @@ function getContactsOutOfUsers(){
       "phone": user.phone
     });
   });
+  users = [];
 }
 
 /**
@@ -92,12 +93,14 @@ async function saveContact() {
 
 			await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 			getContactsOutOfUsers();
+      users = [];
 			resetContactForm();
 			closeOverlay("addContact");
 		} catch (error) {
-			console.error("Error saving contact:", error);
+      console.error("Error saving contact:", error);
 		}
 		displaySuccessMessage();
+    loadContacts();
 	}
 }
 

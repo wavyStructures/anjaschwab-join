@@ -1,37 +1,18 @@
-let loggedUsers = [];
-
 /**
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    await loadUsers();
-    // await setUsersRemote();
-
-    // setUsersToLocalStorage(); //Später wird Contacts[] (ohne Kennwörter) im LocalStorage gespeichert!
+    showOverlay()
+    checkIfUserIsRemembered();
 }
-
 /**
  * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
  */
 async function loadUsers() {
     users = await firebaseGetItem(FIREBASE_USERS_ID);
-    console.log('users in login.js on loginInit(): ', users);
 }
 
-/**
- * Saves the users array to the local storage as a JSON string.
- */
-function setUsersToLocalStorage() {
-    localStorage.setItem('users', JSON.stringify(users));
-}
-
-/**
- * Sets the users list stored in users.js as an array of objects to the remote storage
- */
-async function setUsersRemote() {
-    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-}
 
 function showOverlay() {
     if (!getCurrentUser()) {
@@ -72,35 +53,23 @@ function hideOverlay() {
 //     showOverlay();
 // }, 50000);
 
-// Initialize the login process
-loginInit();
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
- * If a matching user is found, it adds the user to the loggedUsers array and sets the current user.
- * Then, it switches the page to 'summary.html'.
+ * If a matching user is found, it sets the current user and switches the page to 'summary.html'.
  *
  * @return {boolean} Returns false to prevent the form from submitting again.
  */
-function loginUser() {
+async function loginUser() {
     let email = document.getElementById('loginEmailInput').value;
     let password = document.getElementById('loginPasswordInput').value;
-    let rememberMe = localStorage.getItem('rememberMe') === 'true';
 
+    await loadUsers();
     let loggedUser = users.find(user => user.mail == email && user.password == password);
-    console.log('loggedUser from the users.find is: ', loggedUser);
+    users = [];
 
     if (loggedUser) {
-        loggedUsers.push(loggedUser);
-        setCurrentUser(loggedUser);
-
-        let user = { username: loggedUser.name }
-
-        if (rememberMe) {
-            localStorage.setItem("currentUser", JSON.stringify(user));
-        } else {
-            sessionStorage.setItem("currentUser", JSON.stringify(user));
-        }
-
+        setCurrentUser(loggedUser.name); // sessionStorage
+        setRememberMe(loggedUser.name); // localStorage
         switchPage('summary.html');
     } else {
         alert("Invalid email or password. Please try again.");
@@ -108,19 +77,26 @@ function loginUser() {
     return false;
 }
 
+function setRememberMe(name) {
+    if (document.getElementById('loginCheckbox').hasAttribute('checked')){
+        localStorage.setItem('rememberedUser', JSON.stringify({username: name}));
+    }
+}
 
 
 /**
  * Toggles the appearance of the remember me checkbox image when clicked.
  */
 function toggleRememberMeCheckbox() {
+    let loginCheckbox = document.getElementById('loginCheckbox');
     let loginCheckboxImg = document.getElementById('loginCheckboxImg');
-    if (loginCheckboxImg.src.includes('unchecked.png')) {
-        loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
-        localStorage.setItem('rememberMe', 'true');
-    } else {
+
+    if (loginCheckbox.hasAttribute('checked')) {
         loginCheckboxImg.src = '../../assets/img/icon-check_button_unchecked.png';
-        localStorage.removeItem('rememberMe');
+        loginCheckbox.removeAttribute('checked');
+    } else {
+        loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
+        loginCheckbox.setAttribute('checked','');
     };
 }
 

@@ -1,17 +1,9 @@
-
 /**
  * the init-function in body onload
  */
 async function init() {
 	includeHTML();
 	mobileGreeting();
-	// startAnimation();
-	// renderHeader();
-	// renderNavigation();
-	// renderBoard();
-	// renderLogin();
-	// renderSignUp();
-
 }
 
 
@@ -46,49 +38,6 @@ function getDiv(id) {
 	return content;
 }
 
-/**
- * rendering the navigation on on the left side
- */
-function renderNavigation() {
-	let content = getDiv("navigation-container");
-	content.innerHTML = renderNavigationHTML();
-}
-
-/**
- * rendering the header
- */
-function renderHeader() {
-	let content = getDiv("header");
-	content.innerHTML = renderHeaderHTML();
-}
-
-/**
- * rendering the login-page
- */
-function renderLogin() {
-	let content = getDiv("loginPage");
-	content.classList.remove("d-none");
-	document.getElementById("signUpPage").classList.add("d-none");
-	document.getElementById("main-wrapper").classList.add("d-none");
-	content.innerHTML = renderLoginPageHTML();
-}
-
-
-/**
- * rendering the summary-page
- */
-function renderSummary() {
-	let content = getDiv("main");
-	content.innerHTML = renderSummaryHTML();
-}
-
-/**
- * rendering the addTask-page
- */
-function renderAddTask() {
-	let content = getDiv("main");
-	content.innerHTML = renderAddTaskHTML();
-}
 
 /**
  * rendering the board-page,
@@ -100,14 +49,6 @@ function renderBoard() {
 	renderCategories();
 }
 
-/**
- * rendering contacts-page
- */
-function renderContacts() {
-	loadContacts();
-}
-
-
 
 /***************************************ab hier für Header-Elemente und Navigation********************************* */
 /**
@@ -118,20 +59,24 @@ function openHelp() {
 }
 
 
+function checkIfUserIsRemembered(){
+	if (!sessionStorage.getItem('currentUser')){
+		if(localStorage.getItem('rememberedUser') != null){
+			sessionStorage.setItem('currentUser', localStorage.getItem('rememberedUser'));
+			if(window.location.href == 'index.html') switchPage('summary.html');
+		}
+	}
+}
+
+
 /**
  * Logs out the current user by removing the 'currentUser' item from the local storage and redirecting to the login page.
  */
 function logout() {
-	localStorage.removeItem('currentUser');
+	localStorage.removeItem('rememberedUser');
 	sessionStorage.removeItem('currentUser');
 	switchPage('index.html');
 }
-
-window.addEventListener('beforeunload', function () {
-	if (localStorage.getItem('rememberMe') !== 'true') {
-		sessionStorage.removeItem('currentUser');
-	}
-});
 
 // document.addEventListener('DOMContentLoaded', function () {
 // 	let user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
@@ -146,8 +91,9 @@ window.addEventListener('beforeunload', function () {
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
 function showInitials() {
+	checkIfUserIsRemembered()
 	try {
-		let userAsString = localStorage.getItem('currentUser');
+		let userAsString = sessionStorage.getItem('currentUser');
 		let userInitialsElement = document.getElementById('userInitials');
 
 		if (userInitialsElement) {
