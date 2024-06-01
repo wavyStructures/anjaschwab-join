@@ -670,9 +670,42 @@ select {
         display: none;
     }
 }
-
 @media screen and (max-width: 801px) {
-    .addTaskBody{
-        /* background-color: red; */
+    .main{
+        justify-content: center;
+    }
 }
+@media screen and (max-width: 500px) {
+
+    .addTaskBody{
+        padding: 24px 24px 0 24px;
+
+    }
+    .addTaskBodyTop,
+    .addTaskBodyBottom{
+        max-width: 400px;
+    }
+
+}
+@media screen and (max-width: 420px) {
+
+    .addTaskBody{
+        font-size: medium;
+    }
+    .addTaskBodyTop,
+    .addTaskBodyBottom{
+        width: 300px;
+    }
+    .addTask-custom-select{
+        font-size: medium;
+    }
+
+    .addTaskPriorityButton{
+        width: 107px;
+        font-size: medium;
+
+         img{
+            width: 16px;
+         };
+    }
 }
