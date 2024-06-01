@@ -132,7 +132,7 @@ function restoreUsersOnFirebase(){
         "contactColor": "#33ccff",
         "id": 19,
         "mail": "robina@gmail.com",
-        "name": "Zist Amanfang mit A",
+        "name": "Zist Amanfang",
         "password": "zist",
         "phone": "+49 1111 111 11 19"
     },
