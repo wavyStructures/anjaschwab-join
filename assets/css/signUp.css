@@ -96,14 +96,14 @@
   gap: 10px;
 }
 
-.signUpInputField{
-display: flex;
-justify-content: space-between;
-border-bottom: 1px solid #d1d1d1;
-padding: 12px 21px;
+.signUpInputField {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d1d1d1;
+  padding: 12px 21px;
 }
-input::placeholder{
-  color: #d1d1d1
+input::placeholder {
+  color: #d1d1d1;
 }
 .innerSignUpBox {
   display: flex;
@@ -227,6 +227,46 @@ a {
   background-color: #a8a8a8;
 }
 
+.userMessage {
+  display: flex;
+  height: 70px;
+  width: 330px;
+  padding: 20px;
+  z-index: 500;
+  position: fixed;
+  bottom: 0;
+  border-radius: 20px;
+  cursor: default;
+}
+
+/* Animations success message */
+@keyframes successIn {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+}
+
+@keyframes successOut {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translateX(-500px);
+  }
+}
+
+.successIn {
+  animation: successIn 0.5s ease forwards;
+}
+
+.successOut {
+  animation: successOut 0.5s ease forwards;
+}
+
 /*/ //////////////////////////////////////////////media 970 ///////////////////////*/
 @media (max-width: 970px) {
   .joinLogoSignUpWhite {
@@ -239,7 +279,6 @@ a {
 
 /*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
 @media (max-width: 680px) {
-
   .signUpLogo {
     width: 64px;
     height: 78px;
@@ -261,8 +300,6 @@ a {
     margin-top: -3px;
   }
 
-
-
   .signUpEmailBox,
   .signUpNameBox {
     width: 364px;
@@ -275,7 +312,7 @@ a {
   .registerBtn {
   }
 
-   .signUpLogo {
+  .signUpLogo {
     width: 64px;
     height: 78px;
   }
@@ -293,7 +330,6 @@ a {
 }
 
 @media (max-width: 450px) {
-
   #signUpNameInput,
   #signUpEmailInput,
   #signUpPasswordInput,
@@ -308,7 +344,6 @@ a {
     width: 64px;
     height: 72px;
   }
-
 
   .signUp-box {
     width: 290px;

@@ -21,7 +21,7 @@ async function signUpInit() {
 }
 
 
-async function saveNewUser(){
+async function saveNewUser() {
     users = await firebaseGetItem(FIREBASE_USERS_ID);
     users.push(newUser);
 }
@@ -34,7 +34,7 @@ function getInputValues() {
     newPasswordConfirm = document.getElementById('signUpPasswordInputConfirm').value;
 }
 
-function setNewUserValues(){
+function setNewUserValues() {
     newUser.name = newUsername;
     newUser.mail = newMail;
     newUser.password = newPassword;
@@ -45,13 +45,13 @@ function setNewUserValues(){
 async function addNewUser() {
     users = await firebaseGetItem(FIREBASE_USERS_ID);
     getInputValues();
-    setNewUserValues(); 
-    if(!checkPasswordsEqual()){
+    setNewUserValues();
+    if (!checkPasswordsEqual()) {
         showUserMessage('Passwords do not match!');
     }
-    else if(checkMailExist(newMail)){
+    else if (checkMailExist(newMail)) {
         showUserMessage('The mail already exists!');
-    }else{
+    } else {
         localStorage.setItem('newMail', newUser.mail)
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
@@ -62,7 +62,7 @@ async function addNewUser() {
 
 
 
-function checkMailExist(mailToCheck){
+function checkMailExist(mailToCheck) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].mail === mailToCheck) {
             return true;
@@ -71,13 +71,13 @@ function checkMailExist(mailToCheck){
     return false;
 }
 
-function checkIfFormIsValid(){
+function checkIfFormIsValid() {
     let form = document.getElementById('login-form')
     let btn = document.getElementById('registerBtn');
     if (form.checkValidity() !== false && checkPrivacyPolicyConfirmation()) {
         btn.disabled = false;
         return true;
-    }else{
+    } else {
         btn.disabled = true;
         return false;
     }
@@ -87,36 +87,50 @@ function checkIfFormIsValid(){
 /**
  * reseting the signUp form
  */
-function resetForm() {
-    let inputFields = document.querySelectorAll('input');
-    for (let i = 0; i < inputFields.length; i++) {
-        inputFields[i].value = '';
+// function resetForm() {
+//     let inputFields = document.querySelectorAll('input');
+//     for (let i = 0; i < inputFields.length; i++) {
+//         inputFields[i].value = '';
+//     }
+//     newUsername = '';
+//     newMail = '';
+//     newPassword = '';
+//     newPasswordConfirm = '';
+//     togglePrivacyPolicyCheckbox();
+//     checkIfFormIsValid();
+// }
+
+
+
+function togglePrivacyPolicyCheckbox() {
+    let privacyCheckbox = document.getElementById('privacyCheckbox');
+    let checkBoxImage = document.getElementById('checkboxImage');
+
+    if (privacyCheckbox.checked) {
+        checkBoxImage.src = './assets/img/icon-check_button_checked.png';
+    } else {
+        checkBoxImage.src = './assets/img/icon-check_button_unchecked.png';
     }
-    newUsername = '';
-    newMail = '';
-    newPassword = '';
-    newPasswordConfirm = '';
-    togglePrivacyPolicyCheckbox();
+
     checkIfFormIsValid();
 }
-
 
 /**
  * Toggles the privacy policy confirmation checkbox checked to unchecked and vice versa 
  */
-function togglePrivacyPolicyCheckbox(){
-    let privacyCheckbox = document.getElementById('privacyCheckbox');
-    let checkBoxImage = document.querySelector('.checkboxBox img');
+// function togglePrivacyPolicyCheckbox() {
+//     let privacyCheckbox = document.getElementById('privacyCheckbox');
+//     let checkBoxImage = document.querySelector('.checkboxBox img');
 
-    if (privacyCheckbox.hasAttribute('checked')){
-        checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
-        privacyCheckbox.removeAttribute('checked');
-    }else{
-        privacyCheckbox.setAttribute('checked','');
-        checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
-    }
-    checkIfFormIsValid();
-}
+//     if (privacyCheckbox.hasAttribute('checked')) {
+//         checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
+//         privacyCheckbox.removeAttribute('checked');
+//     } else {
+//         privacyCheckbox.setAttribute('checked', '');
+//         checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
+//     }
+//     checkIfFormIsValid();
+// }
 
 
 /**
@@ -165,6 +179,30 @@ function checkPasswordsEqual() {
         return true;
     }
 }
+
+
+// <div id="userMessageOverlay" class="userMessageOverlay">
+//     <div id="userMessage" class="userMessage"></div>
+// </div>
+
+function showMessage() {
+    let messageBox = document.getElementById('userMessage');
+    messageBox.classList.add('successIn');
+
+    setTimeout(() => {
+        hideMessage();
+        setTimeout(() => {
+            switchPage('index.html');
+        }, 1000)
+    }, 1000);
+}
+
+function hideMessage() {
+    let messageBox = document.getElementById('userMessage');
+    messageBox.classList.add('successOut');
+    messageBox.classList.remove('successIn');
+}
+
 
 
 // // Attach the privacy policy toggle functionality on page load

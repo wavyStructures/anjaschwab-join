@@ -32,40 +32,55 @@
                             <h1 class="signUpH1">Sign up</h1>
                             <div class="horizontalH1UnderlineSignUp"></div>
                         </div>
-                            <form class="formDiv" id="login-form" onsubmit="return false">
-                                <div class="innerSignUpBox">
-                                    <div class="signUpInputField">
-                                        <input type="text" id="signUpNameInput" placeholder="Name" onkeyup="checkIfFormIsValid()" required>
-                                        <div class="mailIcon"><img src="./assets/img/icon-person.png" alt="letter">
-                                        </div>
+                        <form class="formDiv" id="login-form" onsubmit="return false">
+                            <div class="innerSignUpBox">
+                                <div class="signUpInputField">
+                                    <input type="text" id="signUpNameInput" placeholder="Name"
+                                        onkeyup="checkIfFormIsValid()" required>
+                                    <div class="mailIcon"><img src="./assets/img/icon-person.png" alt="letter">
                                     </div>
-                                    <div class="signUpInputField">
-                                        <input type="email" id="signUpEmailInput" placeholder="Email" onkeyup="checkIfFormIsValid()" required>
-                                        <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
-                                        </div>
-                                    </div>
-                                    <div class="signUpInputField">
-                                        <input type="password" id="signUpPasswordInput" placeholder="Password" onkeyup="checkIfFormIsValid()" required>
-                                        <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
-                                        </div>
-                                    </div>
-                                    <div class="signUpInputField">
-                                        <input type="password" id="signUpPasswordInputConfirm" placeholder="Confirm Password" onkeyup="checkIfFormIsValid()" required>
-                                        <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
-                                        </div>
-                                    </div>
-                                    <div id="privacyCheckbox" class="checkboxBox">
-                                        <label for="acceptingPrivacyPolicy" class="custom-checkbox">
-                                            <img src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image"
-                                                onclick="togglePrivacyPolicyCheckbox()">
-                                            I accept the <a href="#">Privacy Policy</a></label><br>
-                                    </div>
-                                    <button id="registerBtn" class="signUpButtons registerBtn" onclick="addNewUser()" disabled="">Sign up</button>
                                 </div>
-                            </form>
+                                <div class="signUpInputField">
+                                    <input type="email" id="signUpEmailInput" placeholder="Email"
+                                        onkeyup="checkIfFormIsValid()" required>
+                                    <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
+                                    </div>
+                                </div>
+                                <div class="signUpInputField">
+                                    <input type="password" id="signUpPasswordInput" placeholder="Password"
+                                        onkeyup="checkIfFormIsValid()" required>
+                                    <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                    </div>
+                                </div>
+                                <div class="signUpInputField">
+                                    <input type="password" id="signUpPasswordInputConfirm"
+                                        placeholder="Confirm Password" onkeyup="checkIfFormIsValid()" required>
+                                    <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                    </div>
+                                </div>
+                                <div class="checkboxBox">
+                                    <input type="checkbox" id="privacyCheckbox" style="display: none;"
+                                        onclick="togglePrivacyPolicyCheckbox()">
+                                    <label for="privacyCheckbox" class="custom-checkbox">
+                                        <img id="checkboxImage" src="./assets/img/icon-check_button_unchecked.png"
+                                            alt="checkbox image">
+                                        I accept the <a href="#">Privacy Policy</a>
+                                    </label><br>
+                                </div>
 
+                                <!-- <div id="privacyCheckbox" class="checkboxBox">
+                                    <input type="checkbox" id="privacyCheckbox" style="display: none;"
+                                        onclick="togglePrivacyPolicyCheckbox()">
+                                    <label for="privacyCheckbox" class="custom-checkbox">
+                                        <img id="checkboxImage" src="./assets/img/icon-check_button_unchecked.png"
+                                            alt="checkbox image">
+                                        I accept the <a href="#">Privacy Policy</a></label><br>
+                                </div> -->
+                                <button id="registerBtn" class="signUpButtons registerBtn" onclick="addNewUser()"
+                                    disabled="">Sign up</button>
+                            </div>
+                        </form>
                     </div>
-
                     <div class="signUpFooter">
                         <div class="privacyPolicySignUp" onclick="switchPageNewTab('privacy_external.html');"
                             target="_blank">
