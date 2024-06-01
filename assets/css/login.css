@@ -1,6 +1,10 @@
 .loginMainContainer {
   z-index: 100;
-  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  /* position: absolute; */
   top: 0;
   left: 0;
   right: 0;
@@ -10,13 +14,18 @@
 
 .loginHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  width: 100vw;
 }
 
 .joinLogoBlue {
-  margin-top: 80px;
+  position: fixed;
+  left: 77px;
+  top: 80px;
+
+  /* margin-top: 80px;
   margin-left: 77px;
-  margin-bottom: 64.53px;
+  margin-bottom: 64.53px; */
 }
 
 .signUpField {
@@ -24,20 +33,13 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin-top: 67px;
-  margin-right: 86px;
+  padding: 67px 86px;
   gap: 35px;
 }
 
 .signUpField span {
   font-size: 23px;
   font-weight: 400;
-}
-
-.signUpButton {
-  padding: 10px 16px;
-  gap: 10px;
-  cursor: pointer;
 }
 
 .login-page {
@@ -70,8 +72,8 @@
 .loginH1 {
   font-size: 48px;
   font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 16px;
+  /* margin-top: 0;
+  margin-bottom: 16px; */
 }
 
 .horizontalH1Underline {
@@ -88,26 +90,15 @@
   margin-bottom: 20px;
 }
 
-.loginEmailBox {
+loginInputField {
   display: flex;
   justify-content: space-between;
   align-items: self-end;
   width: 422px;
   border-bottom: 1px solid #d1d1d1;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   padding: 12px 21px;
-  gap: 10px;
-}
-
-.loginPasswordBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: self-end;
-  width: 422px;
-  border-bottom: 1px solid #d1d1d1;
-  margin-bottom: 24px;
-  padding: 12px 21px;
-  gap: 10px;
+  gap: 34px;
 }
 
 #loginEmailInput,
@@ -139,7 +130,6 @@ input[type="password"]:focus {
 }
 
 .custom-checkbox > img:hover {
-  /*TODO check shadow...*/
   cursor: pointer;
   filter: drop-shadow(0px 0px 6px rgba(69, 137, 255, 0.6));
   /* filter: drop-shadow(0px 0px 4px #333); */
@@ -147,7 +137,7 @@ input[type="password"]:focus {
 
 .loginButtonsBox {
   display: flex;
-  margin-bottom: 48px;
+  /* margin-bottom: 48px; */
 }
 
 .loginButtons {
@@ -159,9 +149,15 @@ input[type="password"]:focus {
   cursor: pointer;
 }
 
-.loginButtonUser {
-  margin-left: 27.5px;
+.signUpButton {
+  color: #fff;
+  background-color: var(--clr-main);
+  gap: 10px;
 }
+
+/* .loginButtonUser {
+   margin-left: 27.5px; 
+} */
 
 .loginButtonUser:hover,
 .signUpButton:hover {
@@ -169,15 +165,14 @@ input[type="password"]:focus {
   box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-.loginButtonUser,
-.signUpButton {
+.loginButtonUser {
   color: #fff;
   background-color: var(--clr-main);
 }
 
 .loginButtonGuest {
   color: #647188;
-  margin-left: 35px;
+  /* margin-left: 35px; */
   background-color: #fff;
   border: 1px solid #647188;
   white-space: nowrap;
@@ -190,14 +185,17 @@ input[type="password"]:focus {
 }
 
 .loginFooter {
+  position: fixed;
+  bottom: 26px;
+
   width: 240px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 88.8px;
-  margin-bottom: 42.7px;
+  /* margin-top: 88.8px;
+  margin-bottom: 42.7px; */
   gap: 16px;
 }
 
@@ -274,21 +272,6 @@ input[type="password"]:focus {
   animation: move-logo 2s forwards;
 }
 
-/* @keyframes move-logo {
-  from {
-    transform: translate(0px, 0px);
-    width: 250px;
-    height: 250px;
-  }
-  to {
-    transform: translate(-320px, -530px);
-    width: 50px;
-    height: 50px;
-    filter: invert(1);
-    opacity: 0;
-  }
-} */
-
 @keyframes fadingOverlay {
   from {
     opacity: 1;
@@ -298,18 +281,6 @@ input[type="password"]:focus {
   }
 }
 
-/* .logo-animation {
-  animation: moveAndShrink 3s forwards;
-
-  @keyframes moveAndShrink {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    100% {
-      transform: translate(-50vw, -50vh) scale(0.3);
-    }
-  } */
-
 /*
 •	320px — 480px: Mobile devices
 •	481px — 768px: iPads, Tablets
@@ -317,82 +288,6 @@ input[type="password"]:focus {
 •	1025px — 1200px: Desktops, large screens
 •	1201px and more —  Extra large screens, TV
 */
-
-/* @media (min-width: 481px) and (max-width: 769px) {
-  .login-box {
-    padding: 24px 56px;
-    width: -webkit-fill-available;
-    margin: 32px;
-  }
-
-  .loginEmailBox,
-  .loginPasswordBox {
-    width: auto;
-  }
-}
-
-@media (max-width: 480px) {
-  /* logo-animation-start {
-    width: 100px;
-    height: 122px;
-  } 
-
-  .joinLogoBlue {
-    margin-top: 37px;
-    margin-left: 38px;
-  }
-
-  .joinLogoBlue img {
-    width: 64px;
-    height: 78px;
-    /* margin-bottom: 90px; REALLY? 
-  }
-
-  .login-box {
-    padding: 32px 16px;
-    width: -webkit-fill-available;
-    margin: 16px;
-  }
-
-  .loginEmailBox,
-  .loginPasswordBox {
-    width: fit-content;
-  }
-
-  .loginButtonsBox {
-    flex-direction: column;
-    gap: 21px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loginButtons {
-    width: 180px;
-    height: 48px;
-    font-size: 19px;
-    font-weight: 400;
-  }
-
-  .signUpField-mobile {
-    margin-top: 60.5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
-    gap: 16px;
-  }
-
-  .signUpField-mobile span,
-  .signUpButton-mobile {
-    font-size: 19px;
-    font-weight: 400;
-  }
-
-  .signUpButton-mobile {
-    min-width: 66px;
-    white-space: nowrap;
-  }
-} */
 
 .msgBox {
   display: none;
@@ -459,7 +354,7 @@ input[type="password"]:focus {
   .login-box {
     padding: 24px 56px;
     width: -webkit-fill-available;
-    margin: 32px 12px 0 18px;
+    /* margin: 32px 12px 0 18px; */
   }
 
   .loginEmailBox,
@@ -477,7 +372,7 @@ input[type="password"]:focus {
       height: 48px;
       gap: 10px;
       padding: 10px 10px;
-      margin: 0 0 21px 0;
+      /* margin: 0 0 21px 0; */
       text-align: center;
     }
   }
@@ -487,7 +382,7 @@ input[type="password"]:focus {
   }
 
   .signUpField-mobile {
-    margin-top: 60.5px;
+    /* margin-top: 60.5px; */
     display: flex;
     flex-direction: colurowmn;
     align-items: center;
@@ -517,20 +412,19 @@ input[type="password"]:focus {
   }
 
   .joinLogoBlue {
-    margin-top: 37px;
-    margin-left: 38px;
+    top: 37px;
+    left: 38px;
   }
 
   .joinLogoBlue img {
     width: 64px;
     height: 78px;
-    /* margin-bottom: 90px; REALLY? */
   }
 
   .login-box {
     padding: 32px 16px;
     width: -webkit-fill-available;
-    margin: 16px;
+    /* margin: 16px; */
   }
 
   .loginEmailBox,
@@ -543,7 +437,7 @@ input[type="password"]:focus {
   }
 
   .signUpField-mobile {
-    margin-top: 60.5px;
+    /* margin-top: 60.5px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -576,7 +470,7 @@ input[type="password"]:focus {
     height: 48px;
     font-size: 19px;
     font-weight: 400;
-    margin-left: 0;
+    /* margin-left: 0; */
     /* border: none;
       border-radius: 8px;
       padding: 10px 35px;
@@ -585,13 +479,13 @@ input[type="password"]:focus {
       cursor: pointer; */
   }
 
-  .joinLogoBlue {
+  /* .joinLogoBlue {
     margin-bottom: 20.53px;
-  }
+  } */
 
-  .signUpField-mobile {
+  /* .signUpField-mobile {
     margin-top: 48px;
-  }
+  } */
 }
 
 @media (min-width: 280px) and (max-width: 385px) {
@@ -617,14 +511,14 @@ input[type="password"]:focus {
   }
 
   .joinLogoBlue {
-    margin-top: 48px;
-    margin-left: 24px;
-    margin-bottom: 20.53px;
+    top: 48px;
+    left: 24px;
+    /* margin-bottom: 20.53px; */
   }
 
-  .signUpField-mobile {
+  /* .signUpField-mobile {
     margin-top: 48px;
-  }
+  } */
 
   #loginEmailInput,
   #loginPasswordInput {
@@ -641,7 +535,7 @@ input[type="password"]:focus {
 
   .loginH1 {
     font-size: 48px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
   }
 
   .loginButtons {
