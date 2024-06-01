@@ -18,29 +18,12 @@ let newUser = {
  * init-function run at on loading the body
  */
 async function signUpInit() {
-    // try {
-    //     await loadUsers();
-    //     console.log("loadUsers() successful")
-    // } catch (error) {
-    //     console.error("loadUsers() failed", error)
-    // }
 }
-// /**
-//  * get the users from local storage
-//  */
-// async function loadUsers() {
-//     try {
-//         users = getArray('users');
-//     } catch (e) {
-//         console.error('loadUsers error: ', e);
-//     }
-// }
 
 
 async function saveNewUser(){
     users = await firebaseGetItem(FIREBASE_USERS_ID);
     users.push(newUser);
-
 }
 
 
@@ -69,11 +52,10 @@ async function addNewUser() {
     else if(checkMailExist(newMail)){
         showUserMessage('The mail already exists!');
     }else{
+        localStorage.setItem('newMail', newUser.mail)
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-        console.log(users);
         showUserMessage('You Signed Up successfully!');
-        // resetForm();
         switchPage('index.html?msg=you are signed up now!')
     }
 }

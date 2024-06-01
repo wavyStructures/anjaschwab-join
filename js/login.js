@@ -4,6 +4,15 @@
 async function loginInit() {
     showOverlay()
     checkIfUserIsRemembered();
+    checkIfUserWasPreviouslyRegistered();
+}
+
+
+function checkIfUserWasPreviouslyRegistered(){
+    if (localStorage.getItem('newMail')){
+        document.getElementById('loginEmailInput').value = localStorage.getItem('newMail');
+        localStorage.removeItem('newMail');
+    }
 }
 /**
  * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
