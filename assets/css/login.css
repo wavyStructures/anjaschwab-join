@@ -67,7 +67,6 @@
 }
 
 .h1LoginBox {
-  width: 422px;
   display: flex;
   justify-content: center;
 }
@@ -460,7 +459,9 @@ input[type="password"]:focus {
     min-width: 66px;
     white-space: nowrap;
   }
-
+  .loginInputField{
+    width: 250px;
+  }
   .loginButtonsBox {
     flex-direction: column;
     gap: 21px;
