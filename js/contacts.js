@@ -475,7 +475,7 @@ function renderEditContact(){
 }
 
 
-function renderEditContactHTML() {
+function renderEditContactHTML(id) {
   return /*html*/ `
         <div class="edit-contact-header">
             <div class="edit-contact-header-close">
@@ -494,7 +494,7 @@ function renderEditContactHTML() {
                     <img src="./assets/img/add.contact-badge.png" alt="">
                 </div>
             </div>
-            <form action="" onsubmit="saveEditedContact(${contactId}); return false" class="add-contact-input-group">
+            <form action="" onsubmit="saveEditedContact(${id}); return false" class="add-contact-input-group">
                 <div class="input-frame">
                     <input id="contactName" type="text" placeholder="Name" autofocus required>
                     <img src="./assets/img/icon-person.png" alt="">
@@ -513,7 +513,7 @@ function renderEditContactHTML() {
                         <img id="cancelIcon" onclick="closeOverlay('editContact')" src="./assets/img/icon-cancel.png" alt="">
                     </button>
                     <button class="createButton">Edit contact
-                        <img id="createIcon" onclick="saveEditedContact(${contactId})" src="./assets/img/icon-check.png" alt="">
+                        <img id="createIcon" onclick="saveEditedContact(${id})" src="./assets/img/icon-check.png" alt="">
                     </button>
                 </div>
             </form>
@@ -868,7 +868,7 @@ async function saveEditedContact(id) {
     contact.phone = document.getElementById('contactPhone').value;
 
     // Update contact in Firebase
-    await firebaseUpdateContact(contact);
+    await firebaseUpdateContact(users, FIREBASE_USERS_ID);
 
     console.log("Contact saved:", contact);
     alert("Contact saved successfully!");
@@ -882,11 +882,11 @@ async function saveEditedContact(id) {
  *
  * @return {void} This function does not return a value.
  */
-function editContactCard() {
+function editContactCard(id) {
    if (!document.getElementById('editContact')){
     renderEditContact();
    }
-   document.getElementById("editContact").innerHTML = renderEditContactHTML();
+   document.getElementById("editContact").innerHTML = renderEditContactHTML(id);
    addOverlay("closeOverlay('editContact')");
 }
 
