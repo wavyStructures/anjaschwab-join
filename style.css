@@ -104,12 +104,6 @@ a {
   margin-bottom: 80px;
 }
 
-@media screen and (max-width: 800px) {
-  .main {
-    height: 81vh;
-  }
-}
-
 .d-none {
   display: none;
 }

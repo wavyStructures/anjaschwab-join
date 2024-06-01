@@ -1,18 +1,18 @@
 .loginMainContainer {
   z-index: 100;
-
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100vw;
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: white;
+  height: 100vh;
 }
 
 .loginHeader {
+  position: fixed;
+  top: 67px;
+  right: 86px; 
   display: flex;
   justify-content: end;
   width: 100vw;
@@ -33,7 +33,6 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 67px 86px;
   gap: 35px;
 }
 
@@ -48,19 +47,23 @@
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  border-radius: 30px;
 }
 
 .login-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid lightgrey;
   border-radius: 30px;
-  width: fit-content;
   padding: 48px 115px;
   gap: 39px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.login-box input::placeholder{
+  color: #d1d1d1;
 }
 
 .h1LoginBox {
@@ -72,8 +75,16 @@
 .loginH1 {
   font-size: 48px;
   font-weight: 700;
+  padding-bottom: 16px;;
   /* margin-top: 0;
   margin-bottom: 16px; */
+  /* border-bottom: 3px solid var(--clr-main) */
+}
+
+.innerLoginBox{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .horizontalH1Underline {
@@ -85,12 +96,8 @@
   /* left: 50%; */
 }
 
-.innerLoginBox {
-  height: 152px;
-  margin-bottom: 20px;
-}
 
-loginInputField {
+.loginInputField {
   display: flex;
   justify-content: space-between;
   align-items: self-end;
@@ -107,13 +114,16 @@ loginInputField {
   font-size: 19px;
   font-weight: 400;
   padding-top: 12.5px;
+  width: 100%;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
   outline: none;
 }
-
+.checkboxBox{
+  padding-top: 20px;
+}
 .custom-checkbox {
   display: flex;
   justify-content: space-between;
@@ -122,11 +132,9 @@ input[type="password"]:focus {
   gap: 8px;
   width: 24px;
   height: 24px;
-  margin-top: 50px;
-  margin-bottom: 38px;
-  margin-left: 8px;
   font-size: 16px;
   font-weight: 400;
+;
 }
 
 .custom-checkbox > img:hover {
@@ -137,6 +145,8 @@ input[type="password"]:focus {
 
 .loginButtonsBox {
   display: flex;
+  gap: 35px;
+  justify-content: center;
   /* margin-bottom: 48px; */
 }
 
@@ -187,15 +197,12 @@ input[type="password"]:focus {
 .loginFooter {
   position: fixed;
   bottom: 26px;
-
-  width: 240px;
+  width: 100%;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  /* margin-top: 88.8px;
-  margin-bottom: 42.7px; */
   gap: 16px;
 }
 
@@ -343,12 +350,13 @@ input[type="password"]:focus {
 
 /*/////////////////////////MOBILE///////////////////////////*/
 
-@media (min-width: 481px) and (max-width: 769px) {
+@media (max-width: 769px) {
   .login-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 61px;
   }
 
   .login-box {
@@ -362,19 +370,28 @@ input[type="password"]:focus {
     width: auto;
   }
 
-  .loginButtonsBox {
-    flex-direction: column;
-    white-space: nowrap;
-    justify-content: center;
-    align-items: center;
-    button {
-      width: 180px;
-      height: 48px;
-      gap: 10px;
-      padding: 10px 10px;
-      /* margin: 0 0 21px 0; */
-      text-align: center;
+.loginButtonsBox {
+  flex-direction: column;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: 180px;
+    height: 48px;
+    gap: 10px;
+    padding: 10px 10px;
+    /* margin: 0 0 21px 0; */
+    text-align: center;
     }
+  }
+  .joinLogoBlue {
+    top: 37px;
+    left: 38px;
+  }
+
+  .joinLogoBlue img {
+    width: 64px;
+    height: 78px;
   }
 
   .signUpField {
@@ -382,9 +399,8 @@ input[type="password"]:focus {
   }
 
   .signUpField-mobile {
-    /* margin-top: 60.5px; */
     display: flex;
-    flex-direction: colurowmn;
+    flex-direction: row;
     align-items: center;
     width: max-content;
     gap: 32px;
@@ -402,29 +418,23 @@ input[type="password"]:focus {
   }
 }
 
+@media (max-width: 550px) {
+  .login-box {
+    padding: 32px 16px;
+  }
+
+}
+
 @media (max-width: 480px) {
-  /* logo-animation-start {
-      width: 100px;
-      height: 122px;
-    } */
+
   .signUpField {
     display: none;
   }
 
-  .joinLogoBlue {
-    top: 37px;
-    left: 38px;
-  }
 
   .joinLogoBlue img {
     width: 64px;
     height: 78px;
-  }
-
-  .login-box {
-    padding: 32px 16px;
-    width: -webkit-fill-available;
-    /* margin: 16px; */
   }
 
   .loginEmailBox,
@@ -437,12 +447,7 @@ input[type="password"]:focus {
   }
 
   .signUpField-mobile {
-    /* margin-top: 60.5px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
-    gap: 16px;
+    gap: 35px;
   }
 
   .signUpField-mobile span,
@@ -455,40 +460,7 @@ input[type="password"]:focus {
     min-width: 66px;
     white-space: nowrap;
   }
-}
 
-@media (min-width: 386px) and (max-width: 480px) {
-  .loginButtonsBox {
-    flex-direction: column;
-    gap: 21px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loginButtons {
-    width: 180px;
-    height: 48px;
-    font-size: 19px;
-    font-weight: 400;
-    /* margin-left: 0; */
-    /* border: none;
-      border-radius: 8px;
-      padding: 10px 35px;
-      gap: 10px;
-      font-size: 23px;
-      cursor: pointer; */
-  }
-
-  /* .joinLogoBlue {
-    margin-bottom: 20.53px;
-  } */
-
-  /* .signUpField-mobile {
-    margin-top: 48px;
-  } */
-}
-
-@media (min-width: 280px) and (max-width: 385px) {
   .loginButtonsBox {
     flex-direction: column;
     gap: 21px;
@@ -513,12 +485,7 @@ input[type="password"]:focus {
   .joinLogoBlue {
     top: 48px;
     left: 24px;
-    /* margin-bottom: 20.53px; */
   }
-
-  /* .signUpField-mobile {
-    margin-top: 48px;
-  } */
 
   #loginEmailInput,
   #loginPasswordInput {

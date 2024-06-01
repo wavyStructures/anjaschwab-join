@@ -859,19 +859,25 @@ function editContact(id) {
  * @return {undefined} This function does not return a value.
  */
 async function saveEditedContact(id) {
-  const contactIndex = contacts.findIndex((contact) => contact.id === id);
-  if (contactIndex !== -1) {
-    const contact = contacts[contactIndex];
+  let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  const userIndex = users.findIndex((contact) => contact.id === id);
 
-    contact.name = document.getElementById('contactName').value;
-    contact.mail = document.getElementById('contactMail').value;
-    contact.phone = document.getElementById('contactPhone').value;
+  if (userIndex !== -1) {
+    const user = users[userIndex];
 
+    user.name = document.getElementById('contactName').value;
+    user.mail = document.getElementById('contactMail').value;
+    user.phone = document.getElementById('contactPhone').value;
+
+    console.log(users.findIndex((users) => users.id === id));
+
+    // debugger
     // Update contact in Firebase
-    await firebaseUpdateContact(users, FIREBASE_USERS_ID);
+    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
 
-    console.log("Contact saved:", contact);
+    console.log("Contact saved:", user);
     alert("Contact saved successfully!");
+    window.location.reload();
   } else {
     console.error("Contact not found with ID:", id);
   }
