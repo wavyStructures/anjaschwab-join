@@ -15,9 +15,9 @@ async function getContactsFromRemoteStorage() {
 }
 
 function getContactsOutOfUsers(){
-  contacts = [];
+  temp_contacts = [];
   users.forEach(user => {
-    contacts.push(
+    temp_contacts.push(
       {
       "contactColor": user.contactColor,
       "id": user.id,
@@ -27,6 +27,7 @@ function getContactsOutOfUsers(){
     });
   });
   users = [];
+  contacts = sortContactsByName(temp_contacts);
 }
 
 /**
@@ -191,8 +192,7 @@ function loadContacts() {
   const main = document.getElementById("main");
   main.innerHTML = ``;
   createContactsContainer(main);
-  const sortedContacts = sortContactsByName(contacts);
-  renderSortedContacts(main, sortedContacts);
+  renderSortedContacts(main, contacts);
 }
 
 /**
@@ -233,10 +233,10 @@ function getSecondOrFullName(contact) {
  * @param {Array} sortedContacts - The sorted array of contacts.
  * @returns {void}
  */
-function renderSortedContacts(main, sortedContacts) {
+function renderSortedContacts(main, contacts) {
   const currentFirstLetters = [];
 
-  sortedContacts.forEach((contact) => {
+  contacts.forEach((contact) => {
     const { id, name, mail, phone, contactColor } = contact;
     const initials = getInitials(name);
     const firstLetter = name
