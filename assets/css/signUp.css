@@ -275,14 +275,15 @@ a {
     left: 37px;
     z-index: 1;
   }
+
+  .signUpLogo {
+    width: 64px;
+    height: 72px;
+  }
 }
 
 /*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
 @media (max-width: 680px) {
-  .signUpLogo {
-    width: 64px;
-    height: 78px;
-  }
 
   .signUp-box {
     padding: 32px 0px;
@@ -312,11 +313,6 @@ a {
   .registerBtn {
   }
 
-  .signUpLogo {
-    width: 64px;
-    height: 78px;
-  }
-
   .signUp-box {
     width: 482px;
   }
@@ -338,11 +334,6 @@ a {
     font-size: 16px;
     font-weight: 400;
     padding-top: 0;
-  }
-
-  .signUpLogo {
-    width: 64px;
-    height: 72px;
   }
 
   .signUp-box {
