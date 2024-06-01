@@ -56,7 +56,7 @@ async function addNewUser() {
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
         showUserMessage('You Signed Up successfully!');
-        switchPage('index.html?msg=you are signed up now!')
+        switchPage('index.html')
     }
 }
 
@@ -147,7 +147,7 @@ function checkPrivacyPolicyConfirmation() {
  * @return {void}
  */
 function redirectToLogin() {
-    switchPage('index.html?msg=you are signed up now!');
+    switchPage('index.html');
 }
 
 

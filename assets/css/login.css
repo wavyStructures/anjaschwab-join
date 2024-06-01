@@ -349,6 +349,13 @@ input[type="password"]:focus {
 
 /*/////////////////////////MOBILE///////////////////////////*/
 
+@media (max-width: 970px){
+  .joinLogoBlue img {
+    width: 64px;
+    height: 78px;
+  }
+}
+
 @media (max-width: 769px) {
   .login-page {
     display: flex;
