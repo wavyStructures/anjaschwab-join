@@ -874,7 +874,7 @@ async function saveEditedContact(id) {
     // debugger
     // Update contact in Firebase
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-
+    users = [];
     console.log("Contact saved:", user);
     alert("Contact saved successfully!");
     window.location.reload();
