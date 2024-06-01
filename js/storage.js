@@ -117,3 +117,255 @@ function getCurrentUser() {
         return currentUser;
     }
 }
+
+
+
+
+//TODELETE!!!!!!!!!!!!
+
+function restoreUsersOnFirebase(){
+    firebaseUpdateItem(users, FIREBASE_USERS_ID);
+}
+
+  let users_backup = [
+    {
+        "contactColor": "#33ccff",
+        "id": 19,
+        "mail": "robina@gmail.com",
+        "name": "Zist Amanfang mit A",
+        "password": "zist",
+        "phone": "+49 1111 111 11 19"
+    },
+    {
+        "contactColor": "#0059ff",
+        "id": 27,
+        "mail": "claudi@web.de",
+        "name": "Claudi Bär",
+        "password": "claudi",
+        "phone": "+49 0123 456789"
+    },
+    {
+        "contactColor": "#ff3333",
+        "id": 10,
+        "mail": "irene@gmail.com",
+        "name": "irene fischer",
+        "password": "irene",
+        "phone": "+49 1111 111 11 10"
+    },
+    {
+        "contactColor": "#ff3333",
+        "id": 22,
+        "mail": "ulrich@gmail.com",
+        "name": "ulrich anton fuchs",
+        "password": "ulrich",
+        "phone": "+49 1111 111 11 22"
+    },
+    {
+        "contactColor": "#ff6666",
+        "id": 18,
+        "mail": "quinn@gmail.com",
+        "name": "quinn hartmann",
+        "password": "quinn",
+        "phone": "+49 1111 111 11 18"
+    },
+    {
+        "contactColor": "#0059ff",
+        "id": 26,
+        "mail": "hanni@gmx.de",
+        "name": "Hanni Hauser",
+        "password": "hanni",
+        "phone": "+49 0123 456789"
+    },
+    {
+        "contactColor": "#3399ff",
+        "id": 5,
+        "mail": "daniel@gmail.com",
+        "name": "daniel huber",
+        "password": "daniel",
+        "phone": "+49 1111 111 11 5"
+    },
+    {
+        "contactColor": "#33ccff",
+        "id": 7,
+        "mail": "fabian@gmail.com",
+        "name": "fabian koch",
+        "password": "fabian",
+        "phone": "+49 1111 111 11 7"
+    },
+    {
+        "contactColor": "#66ff66",
+        "id": 15,
+        "mail": "nina@gmail.com",
+        "name": "nina kramer",
+        "password": "nina",
+        "phone": "+49 1111 111 11 15"
+    },
+    {
+        "contactColor": "#ff9933",
+        "id": 20,
+        "mail": "sophie@gmail.com",
+        "name": "sophie lehmann",
+        "password": "sophie",
+        "phone": "+49 1111 111 11 20"
+    },
+    {
+        "contactColor": "#0059ff",
+        "id": 28,
+        "mail": "manuel@maier.de",
+        "name": "Manuel Maier",
+        "password": "manuel",
+        "phone": "012345"
+    },
+    {
+        "contactColor": "#66ff66",
+        "id": 29,
+        "mail": "Manni@iceage.de",
+        "name": "Manni Mammut",
+        "password": "manni",
+        "phone": "12345"
+    },
+    {
+        "contactColor": "#ff7043",
+        "id": 24,
+        "mail": "mario.markwart@gmail.com",
+        "name": "Mario Markwart",
+        "password": "mario",
+        "phone": "01753405411"
+    },
+    {
+        "contactColor": "",
+        "id": 1,
+        "mail": "antom@gmail.com",
+        "name": "anton mayer",
+        "password": "anton",
+        "phone": "+49 1111 111 11 1"
+    },
+    {
+        "contactColor": "#76b852",
+        "id": 0,
+        "mail": "heinz@gmx.de",
+        "name": "Heinz Mehl",
+        "password": "heinz",
+        "phone": "+49 0123 456789"
+    },
+    {
+        "contactColor": "#33ccff",
+        "id": 13,
+        "mail": "lisa@gmail.com",
+        "name": "lisa meier",
+        "password": "lisa",
+        "phone": "+49 1111 111 11 13"
+    },
+    {
+        "contactColor": "#ff9933",
+        "id": 8,
+        "mail": "gabriela@gmail.com",
+        "name": "gabriela müller",
+        "password": "gabriela",
+        "phone": "+49 1111 111 11 8"
+    },
+    {
+        "contactColor": "#66ff66",
+        "id": 21,
+        "mail": "timo@gmail.com",
+        "name": "timo müller",
+        "password": "timo",
+        "phone": "+49 1111 111 11 21"
+    },
+    {
+        "contactColor": "#ff3333",
+        "id": 16,
+        "mail": "oscar@gmail.com",
+        "name": "oscar richter",
+        "password": "oscar",
+        "phone": "+49 1111 111 11 16"
+    },
+    {
+        "contactColor": "#ff3333",
+        "id": 4,
+        "mail": "carolin@gmail.com",
+        "name": "carolin schmidt",
+        "password": "carolin",
+        "phone": "+49 1111 111 11 4"
+    },
+    {
+        "contactColor": "#66ff66",
+        "id": 9,
+        "mail": "hans@gmail.com",
+        "name": "hans schneider",
+        "password": "hans",
+        "phone": "+49 1111 111 11 9"
+    },
+    {
+        "contactColor": "#3399ff",
+        "id": 23,
+        "mail": "schult.sebastian@googlemail.com",
+        "name": "Sebastian Schult",
+        "password": "sebastian",
+        "phone": "015732758581"
+    },
+    {
+        "contactColor": "#76b852",
+        "id": 2,
+        "mail": "schulz@hotmail.com",
+        "name": "anja schulz",
+        "password": "anja",
+        "phone": "+49 1111 111 11 2"
+    },
+    {
+        "contactColor": "#ff6666",
+        "id": 12,
+        "mail": "karolina@gmail.com",
+        "name": "karolina schwarz",
+        "password": "karolina",
+        "phone": "+49 1111 111 11 12"
+    },
+    {
+        "contactColor": "#ff9933",
+        "id": 14,
+        "mail": "max@gmail.com",
+        "name": "max schwarz",
+        "password": "max",
+        "phone": "+49 1111 111 11 14"
+    },
+    {
+        "contactColor": "#3399ff",
+        "id": 17,
+        "mail": "paula@gmail.com",
+        "name": "paula vogel",
+        "password": "paula",
+        "phone": "+49 1111 111 11 17"
+    },
+    {
+        "contactColor": "#ff6666",
+        "id": 6,
+        "mail": "emily@gmail.com",
+        "name": "emily wagner",
+        "password": "emily",
+        "phone": "+49 1111 111 11 6"
+    },
+    {
+        "contactColor": "#3399ff",
+        "id": 11,
+        "mail": "johann@gmail.com",
+        "name": "johann weber",
+        "password": "johann",
+        "phone": "+49 1111 111 11 11"
+    },
+    {
+        "contactColor": "#ff7043",
+        "id": 3,
+        "mail": "benedikt@gmail.com",
+        "name": "benedikt ziegler",
+        "password": "benedikt",
+        "phone": "+49 1111 111 11 3"
+    },
+    {
+        "contactColor": "#76b852",
+        "id": 30,
+        "mail": "micha@gmail.com",
+        "name": "Micha Klein",
+        "password": "micha",
+        "phone": "012345"
+    }
+  ]
