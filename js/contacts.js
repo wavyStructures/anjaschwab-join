@@ -722,7 +722,10 @@ function resetContactCard(card) {
  */
 function resetAllContactCards() {
   const allContactCards = document.querySelectorAll(".contact-card");
-  allContactCards.forEach(resetContactCard);
+  allContactCards.forEach(card => {
+    resetContactCard(card);
+    card.classList.remove('highlighted');
+  });
 }
 
 
@@ -748,40 +751,23 @@ function highlightContactCard(card) {
 
 
 /**
- * Highlights the selected contact card and resets all others if already highlighted.
+ * Highlights the selected contact card and shows the right side element.
  *
- * @function highlightSelectedContact
- * @param {number} id - The unique identifier of the selected contact.
- * @returns {void}
+ * @param {number} id - The ID of the contact card to be highlighted.
  */
 function highlightSelectedContact(id) {
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
-  if (!selectedContactCard) return;
-
   const rightSideElement = document.getElementById("rightSide");
-
-  if (selectedContactCard.classList.contains("highlighted")) {
-    removeHighlight(selectedContactCard, rightSideElement);
-  } else {
-    applyHighlight(selectedContactCard, rightSideElement);
+  
+  if (selectedContactCard.classList.contains('highlighted')){
+    resetAllContactCards();
+    rightSideElement.classList.add('d-none');
+    return;
   }
-}
 
-
-/**
- * Removes the highlighting from the selected contact card and hides the right side element.
- *
- * @function removeHighlight
- * @param {HTMLElement} selectedContactCard - The selected contact card element.
- * @param {HTMLElement} rightSideElement - The right side element to be hidden.
- * @returns {void}
- */
-function removeHighlight(selectedContactCard, rightSideElement) {
-  if (rightSideElement) {
-    rightSideElement.classList.add("d-none");
-  }
-  resetContactCard(selectedContactCard);
-  selectedContactCard.classList.remove("highlighted");
+  resetAllContactCards();
+  selectedContactCard.classList.add('highlighted');
+  applyHighlight();
 }
 
 
@@ -793,13 +779,15 @@ function removeHighlight(selectedContactCard, rightSideElement) {
  * @param {HTMLElement} rightSideElement - The right side element to be shown.
  * @returns {void}
  */
-function applyHighlight(selectedContactCard, rightSideElement) {
-  resetAllContactCards();
-  highlightContactCard(selectedContactCard);
-  selectedContactCard.classList.add("highlighted");
-  if (rightSideElement) {
-    rightSideElement.classList.remove("d-none");
-  }
+function applyHighlight() {
+  let allContactCards = document.getElementsByClassName('contact-card');
+  for (card of allContactCards)
+    if (card.classList.contains('highlighted')) {
+      highlightContactCard(card);
+    }else{
+      resetContactCard(card);
+    }
+
 }
 
 
