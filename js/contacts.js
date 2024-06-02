@@ -956,7 +956,10 @@ async function saveEditedContact(id) {
     users = [];
     console.log("Contact saved:", user);
     closeOverlay("editContact");
-    displaySuccessMessage("Contact successfully edited");
+    await displaySuccessMessage("Contact successfully edited");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500); 
   } else {
     console.error("Contact not found with ID:", id);
   }

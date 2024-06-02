@@ -122,6 +122,10 @@
   background-color: #005dff;
 }
 
+.add-contact-header-close img {
+  cursor: pointer;
+}
+
 .add-contact-header-logo {
   display: flex;
   justify-content: center;
@@ -194,6 +198,10 @@
   border-top-right-radius: 30px;
   box-sizing: border-box;
   background-color: #005dff;
+}
+
+.edit-contact-header-close img {
+  cursor: pointer;
 }
 
 .edit-contact-header-logo {
@@ -538,6 +546,7 @@ input {
   line-height: 1.2rem;
   align-items: center;
   color: #2a3647;
+  cursor: pointer;
 }
 
 .icon-edit img {
@@ -553,6 +562,7 @@ input {
   line-height: 1.2rem;
   align-items: center;
   color: #2a3647;
+  cursor: pointer;
 }
 
 .icon-delete img {
