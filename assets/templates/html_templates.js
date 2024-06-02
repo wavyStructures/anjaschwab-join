@@ -320,7 +320,7 @@ function renderAddTaskMainContentHTML(){
         <!-- BEGIN ASSIGNED TO -->
         <div class="addTaskContainer">
             <div class="addTaskTitle"><span class="bold">Assigned to</span> (optional)</div>
-            <div class="addTask-dropdown-contact pointer border-bottom" onclick="renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
+            <div class="addTask-dropdown-contact pointer border-bottom" onclick="doNotClose(event); renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
                 <div class="addTask-custom-select">
                     <span id="dropdown-assignedTo-title">Select contacts to assign</span>
                     <div class="addTask-custom-arrow" id="custom-arrow-assignedTo">
@@ -328,13 +328,13 @@ function renderAddTaskMainContentHTML(){
                     </div>
                 </div>
             </div>
-                <div class="addTask-dropdown-content d-none" id="dropdown-content-assignedTo">
+                <div class="addTask-dropdown-content d-none" onclick="doNotClose(event)" id="dropdown-content-assignedTo">
                 </div>
                 <div id="assignedContactsContainer" class="assignedContactsContainer cardAssignedToContainer d-none"></div>
         </div>
         <div class="addTaskContainer ">
             <div class="addTaskTitle bold">Category </div>
-            <div class="addTask-dropdown-category pointer border-bottom" onclick="renderArrow('custom-arrow-category', 'dropdown-content-category')">
+            <div class="addTask-dropdown-category pointer border-bottom" onclick="doNotClose(event); renderArrow('custom-arrow-category', 'dropdown-content-category')">
                 <div class="addTask-custom-select">
                     <span id="dropdown-category-title">Select task category</span>
                         <div class="addTask-custom-arrow" id="custom-arrow-category">
@@ -342,7 +342,7 @@ function renderAddTaskMainContentHTML(){
                     </div>
                 </div>
             </div>
-            <div class="addTask-dropdown-content d-none no-scroll" id="dropdown-content-category">
+            <div class="addTask-dropdown-content d-none no-scroll" onclick="doNotClose(event)" id="dropdown-content-category">
                 <div class="dropdownOption" onclick="chooseCategory('Technical Task')">Technical Task</div>
                 <div class="dropdownOption" onclick="chooseCategory('User Story')">User Story</div>
             </div>

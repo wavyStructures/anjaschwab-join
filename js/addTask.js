@@ -317,6 +317,40 @@ function renderArrow(arrowContainer, contentContainer){
 
     arrowImg.src = `../../assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
     document.getElementById(contentContainer).classList.toggle('d-none')
+
+    // setOnclickOnBody(arrowContainer, contentContainer);
+}
+
+
+function setOnclickOnBody(arrowContainer, contentContainer){
+    console.log(contentContainer);
+    let customArrow = document.getElementById(arrowContainer)
+    if (document.getElementById(contentContainer).classList.contains('d-none')){
+        document.body.removeAttribute('onclick');
+    }else{
+ 
+        document.body.setAttribute('onclick', findElementsWithArrow());
+    }
+}
+
+
+function findElementsWithArrow(){
+    let onclicks = Array.from(document.getElementsByTagName('div')).filter(el => el.hasAttribute('onclick'))
+    let onclickValues = "";
+    onclicks.forEach(element => {
+        let nodeValueAsString = element.attributes.onclick.nodeValue;
+            if (nodeValueAsString.includes("renderArrow")){
+                let val = element.getAttribute('onclick').split(";")[1];
+                console.log(val);
+                if (onclickValues == ""){
+                    console.log("if");
+                    onclickValues = val;
+                } else {
+                    onclickValues = onclickValues + ";" + val
+                }
+            }
+        });
+    return onclickValues
 }
 
 
@@ -383,7 +417,6 @@ function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
         dropdownCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
     }
 }
-
 
 /**
  * Toggles the visibility of the assigned contacts container based on the marked attribute of the contact cards.
