@@ -552,7 +552,11 @@ function renderEditContactHTML(id) {
         <div class="edit-contact-bottom">
             <div class="profile-badge-group-add-contact">
                 <div class="profile-badge-add-contact">
-                    <img src="./assets/img/add.contact-badge.png" alt="">
+                <div class="contact-details-badge">
+            <div class="contact-details-badge-initials">${getInitials(
+              name
+            )}</div>
+          </div>
                 </div>
             </div>
             <form action="" onsubmit="saveEditedContact(${id}); return false" class="add-contact-input-group">
