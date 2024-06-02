@@ -42,7 +42,7 @@ async function startAnimation() {
     return new Promise(resolve => {
         setTimeout(() => {
             const logo = document.getElementById("logo");
-            logo.classList.add("logo-animation");
+            logo.classList.add("goal");
             setTimeout(() => {
                 resolve();
                 hideOverlay();

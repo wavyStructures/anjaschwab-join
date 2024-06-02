@@ -22,10 +22,6 @@
   position: fixed;
   left: 77px;
   top: 80px;
-
-  /* margin-top: 80px;
-  margin-left: 77px;
-  margin-bottom: 64.53px; */
 }
 
 .signUpField {
@@ -226,7 +222,25 @@ input[type="password"]:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 1s ease-out;
 }
+
+.goal{
+  transform: translate(0,0);
+  transition: all 1s ease-out
+}
+
+#logo.goal{
+  top: 37px;
+  left: 38px;
+}
+
+.goal img{
+  height: 78px;
+  width: 64px;
+  transition: all 3s ease-out
+}
+
 
 .blue-overlay {
   position: fixed;
@@ -252,7 +266,7 @@ input[type="password"]:focus {
 /* animation: move-logo 2s ease-in-out; */
 /* } */
 
-@keyframes move-logo {
+/* @keyframes move-logo {
   from {
     transform: translate(0px, 0px);
     width: 250px;
@@ -267,12 +281,11 @@ input[type="password"]:focus {
   }
   to {
     transform: translate(-235px, 77px);
-    /* transform: translate(-320px, -830px); */
     width: 50px;
     height: 50px;
     opacity: 0;
   }
-}
+} */
 
 .logo-animation {
   animation: move-logo 2s forwards;
