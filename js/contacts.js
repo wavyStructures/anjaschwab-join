@@ -536,7 +536,8 @@ function renderEditContact(){
  * @param {number} id - The ID of the contact to be edited.
  * @return {string} The HTML code for the edit contact form.
  */
-function renderEditContactHTML(id) {
+function renderEditContactHTML(id, name, contactColor) {
+  console.log("COLOR: ", contactColor);
   return /*html*/ `
         <div class="edit-contact-header">
             <div class="edit-contact-header-close">
@@ -551,11 +552,9 @@ function renderEditContactHTML(id) {
 
         <div class="edit-contact-bottom">
             <div class="profile-badge-group-add-contact">
-                <div class="profile-badge-add-contact">
-                <div class="contact-details-badge">
-            <div class="contact-details-badge-initials">${getInitials(
-              name
-            )}</div>
+                <div class="profile-badge-add-contact"> 
+                <div class="contact-details-badge" style="background-color: ${contactColor}">
+            <div class="contact-details-badge-initials">${getInitials(name)}</div>
           </div>
                 </div>
             </div>
@@ -687,8 +686,8 @@ function getNameWithCapitalizedFirstLetter(name) {
  */
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
-  const { name, mail, phone } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id);
+  const { name, mail, phone, contactColor } = contact;
+  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
@@ -813,15 +812,13 @@ function applyHighlight(selectedContactCard, rightSideElement) {
  * @param {string} phone - The phone number of the contact.
  * @returns {string} The HTML code for displaying contact details.
  */
-function generateContactDetailsHTML(name, email, phone, id) {
+function generateContactDetailsHTML(name, email, phone, id, color) {
   return /*html*/ `
     <div class="contact-Details">
       <div class="contact-details-header" id="contactDetailsHeader">
         <div class="contact-details-badge-group">
-          <div class="contact-details-badge">
-            <div class="contact-details-badge-initials">${getInitials(
-              name
-            )}</div>
+          <div class="contact-details-badge" style="background-color: ${color}">
+            <div class="contact-details-badge-initials">${getInitials(name)}</div>
           </div>
         </div>
         <div class="contact-details-name-group">
@@ -921,7 +918,7 @@ function editContact(id) {
     };
     contact.name = capitalizeWords(contact.name);
 
-    editContactCard(id);
+    editContactCard(contact);
     document.getElementById('contactName').value = contact.name;
     document.getElementById('contactMail').value = contact.mail;
     document.getElementById('contactPhone').value = contact.phone;
@@ -974,11 +971,11 @@ async function saveEditedContact(id) {
  *
  * @return {void} This function does not return a value.
  */
-function editContactCard(id) {
-   if (!document.getElementById('editContact')){
+function editContactCard(contact) {
+     if (!document.getElementById('editContact')){
     renderEditContact();
    }
-   document.getElementById("editContact").innerHTML = renderEditContactHTML(id);
+   document.getElementById("editContact").innerHTML = renderEditContactHTML(contact.id, contact.name, contact.contactColor);
    addOverlay("closeOverlay('editContact')");
 }
 
