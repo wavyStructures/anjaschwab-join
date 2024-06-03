@@ -369,3 +369,19 @@ function restoreUsersOnFirebase(){
         "phone": "012345"
     }
   ]
+
+
+
+  /* --- Remote Storage --- */
+
+/**
+ * 
+ * @param {string} key - the key the value can be found
+ * @param {string} value - the value for the key
+ * @returns 
+ */
+async function remoteStorageSetItem(key, value) {
+    const payload = { key, value, token: STORAGE_TOKEN };
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
+        .then(res => res.json());
+}
