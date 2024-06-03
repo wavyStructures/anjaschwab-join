@@ -96,7 +96,7 @@ select {
     flex-direction: row;
     width: 100%;
 
-    padding: 64px 24px 0 24px;
+    padding: 20px 0;
     font-size: 1.188rem;
     gap: var(--addTaskGap-24);
 
@@ -115,9 +115,9 @@ select {
     flex-direction: column;
     gap: var(--addTaskGap-24);
     overflow-y: auto;
-    padding: 0 24px;
+    padding: 40px 10px 0 24px;
     cursor: default;
-    width: 100%;
+    width: min-content;
 }
 
 
@@ -126,7 +126,7 @@ select {
     background-color: white;
     align-items: flex-end;
     justify-content: right;
-    width: 100%;
+    width: min-content;
     position:fixed;
     bottom:55px;
     right: 42px;
@@ -663,29 +663,28 @@ select {
     .addTaskBodyRight{
         position: relative;
         justify-content: center;
-
+        width: 100%;
         bottom:0;
         right: 0;
-
-
-
     }
+    
     .addTaskEmptyDiv{
         display: none;
     }
 }
+
+
 @media (max-width: 801px) {
     .main{
         justify-content: center;
     }
 }
+
 @media screen and (max-width: 560px) {
 
     .addTaskBody{
         padding: 24px 0  0 0;
     }
-
-
 
     .addTaskBodyTop,
     .addTaskBodyBottom{
@@ -697,10 +696,10 @@ select {
     }
 
     .addTaskBodyLeft{
-        padding: 0;
+        padding: 3px;
     }
-
 }
+
 @media (max-width: 450px) {
 
     .clearBtn{
@@ -734,6 +733,4 @@ select {
             width: 16px;
          };
     }
-
-
 }

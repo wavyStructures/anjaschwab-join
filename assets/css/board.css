@@ -660,6 +660,7 @@ progress{
         display: flex;
         flex-direction: column;
         gap: 26px;
+        overflow-x: hidden;
     }
 
     .category{
