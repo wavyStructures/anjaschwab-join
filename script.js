@@ -228,6 +228,10 @@ function lockScreenOrientation() {
 window.addEventListener('load', lockScreenOrientation);
 
 
+function goBack(){
+	window.history.go(-1);
+}
+
 
 //  *
 //  * @param {String} folderPath
