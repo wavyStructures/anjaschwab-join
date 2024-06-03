@@ -39,7 +39,7 @@
         /* height: 75vh; */
     }
     .addTaskBodyLeft{
-        height: 75%;
+        height: 85%;
     }
     .createBtn{
         position: relative;
@@ -707,7 +707,7 @@ progress{
     height: 51px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
 
     .addTaskBody{
         padding: 24px 24px 0 24px;
@@ -722,10 +722,32 @@ progress{
         justify-content: center;
     }
     .addTaskHoverContainer{
-
+        position: fixed;
+        top:20px;
+        right: 20px;
+        left: 20px;
+        height: 95%;
+        border-radius: 30px;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        
         .createBtn {
             right: 0;
         }
+
+        ::-webkit-scrollbar{
+            display: none;
+        }
+    }
+
+    .addTaskBodyLeft{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
     }
 }
 
@@ -744,5 +766,16 @@ progress{
             top: 12px;
             right: 12px;
         }
+    }
+}
+
+
+@media (max-width: 450px) {
+    .addTaskHoverContainer{
+        top:0;
+        left:0;
+        right:0;
+        height: 100%;
+        border-radius: 0;
     }
 }

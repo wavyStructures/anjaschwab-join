@@ -166,7 +166,7 @@ function renderBoardAddTaskOverlay(){
     let container = document.getElementById('addTaskHoverContainer');
     container.innerHTML = renderBoardAddTaskHeaderHTML();
     container.innerHTML += renderAddTaskMainContentHTML();
-    container.innerHTML += renderAddTaskFooterHTML();
+    document.getElementById('addTaskBodyRight').innerHTML += renderAddTaskFooterHTML();
     setTodayDateAsMin();
     setPriority('medium');
     renderContactsToDropdown();
