@@ -430,16 +430,17 @@ function generateContactsContainerHTML() {
         
     </div>
 </div>
-<div class="contacts-container" id="contacts-container">
-
-    <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
-        <div onclick="addContactCard()" class="button-add-contact">
-            <div class="add-new-contact">Add new contact</div>
-            <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
-        </div>
-    </div>
-    <div class="contact-list" id="contactList">
-    </div>
+<div class="contacts-container-outer">
+  <div class="contacts-container" id="contacts-container">
+      <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
+          <div onclick="addContactCard()" class="button-add-contact">
+              <div class="add-new-contact">Add new contact</div>
+              <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+          </div>
+      </div>
+      <div class="contact-list" id="contactList">
+      </div>
+  </div>
 </div>
 <section class="right-side d-none" id="rightSide">
 

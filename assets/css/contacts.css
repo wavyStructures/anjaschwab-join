@@ -23,8 +23,12 @@
   justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-top: 32px;
+}
+
+.contacts-container-outer{
   box-shadow: 6px 0px 0 0 rgba(0, 0, 0, 0.2);
+  padding-top: 32px;
+  display: flex;
 }
 
 /* 
