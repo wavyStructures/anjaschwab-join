@@ -41,7 +41,7 @@
   outline: white 3px solid;
   font-family: "open sans", sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
   border: 2.5px solid var(--clr-main);
   padding: 10px;
   gap: 10px;
@@ -138,7 +138,10 @@
     width: 37px;
     height: 37px;
     margin-right: 0;
+    font-size: 14px;
   }
+
+
   .header-mobile {
     height: 80px;
     width: 100%;
