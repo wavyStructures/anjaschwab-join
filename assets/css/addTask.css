@@ -127,6 +127,9 @@ select {
     align-items: flex-end;
     justify-content: right;
     width: 100%;
+    position:fixed;
+    bottom:55px;
+    right: 42px;
 
 }
 
@@ -137,7 +140,7 @@ select {
     align-items: center;
     gap: 25px;
     cursor: default;
-    margin-bottom: 55px;
+    
 }
 
 .addTaskBtn{
@@ -658,11 +661,13 @@ select {
     }
 
     .addTaskBodyRight{
+        position: relative;
         justify-content: center;
 
-        .clearBtn{
-            display: none;
-        }
+        bottom:0;
+        right: 0;
+
+
 
     }
     .addTaskEmptyDiv{
@@ -674,12 +679,14 @@ select {
         justify-content: center;
     }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 560px) {
 
     .addTaskBody{
-        padding: 24px 24px 0 24px;
-
+        padding: 24px 0  0 0;
     }
+
+
+
     .addTaskBodyTop,
     .addTaskBodyBottom{
         max-width: 400px;
@@ -688,11 +695,24 @@ select {
     .addTaskBtnContainer{
         justify-content: center;
     }
+
+    .addTaskBodyLeft{
+        padding: 0;
+    }
+
 }
 @media (max-width: 450px) {
 
+    .clearBtn{
+        display: none;
+    }
+
     .addTaskBody{
         font-size: medium;
+
+        ::-webkit-scrollbar{
+            display: none;
+        }
     }
     .addTaskBodyTop,
     .addTaskBodyBottom{
@@ -714,4 +734,6 @@ select {
             width: 16px;
          };
     }
+
+
 }

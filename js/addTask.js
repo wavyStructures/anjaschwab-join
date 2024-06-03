@@ -44,7 +44,7 @@ function renderAddTaskHTML() {
     let container = document.getElementById('addTaskBody');
     container.innerHTML = '';
     container.innerHTML += renderAddTaskMainContentHTML();
-    container.innerHTML += renderAddTaskFooterHTML();
+    document.getElementById('addTaskBodyRight').innerHTML = renderAddTaskFooterHTML();
     setTodayDateAsMin();
     setPriority('medium');
     renderContactsToDropdown();

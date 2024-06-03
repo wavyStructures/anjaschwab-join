@@ -358,13 +358,13 @@ function renderAddTaskMainContentHTML(){
         </div>
         <div class="addTaskEmptyDiv"></div>
         </div>
+        <div id="addTaskBodyRight" class="addTaskBodyRight"></div>
     </div>`
 }
 
 
 function renderAddTaskFooterHTML(){
     return /*html*/ `
-        <div class="addTaskBodyRight">
             <div class="addTaskBtnContainer">
                 <div class="clearBtn addTaskBtn">
                     <span class="addTaskBtnText">Clear</span>
@@ -374,7 +374,6 @@ function renderAddTaskFooterHTML(){
                     <span class="addTaskBtnText">Create Task</span>
                     <div class="createBtnImg"></div>
                 </div>
-            </div>
         </div>
     `
 }
