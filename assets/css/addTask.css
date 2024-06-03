@@ -2,7 +2,6 @@
     --addTaskGap-8: 8px;
     --addTaskGap-12: 12px;
     --addTaskGap-24: 24px;
-    --addTaskPaddingBottom: 20px;
     --clr-prio-urgent: #ff3d00;
     --clr-prio-medium: #ffa800;
     --clr-prio-low: #7ae229;
@@ -647,7 +646,7 @@ select {
     width: 100%;
 }
 
-@media screen and (max-width: 1070px) {
+@media (max-width: 1070px) {
     .addTaskBody{
         align-items: center;
         flex-direction: column;
@@ -670,7 +669,7 @@ select {
         display: none;
     }
 }
-@media screen and (max-width: 801px) {
+@media (max-width: 801px) {
     .main{
         justify-content: center;
     }
@@ -686,8 +685,11 @@ select {
         max-width: 400px;
     }
 
+    .addTaskBtnContainer{
+        justify-content: center;
+    }
 }
-@media screen and (max-width: 420px) {
+@media (max-width: 450px) {
 
     .addTaskBody{
         font-size: medium;
@@ -700,8 +702,12 @@ select {
         font-size: medium;
     }
 
+    .addTaskPriorityButtonContainer{
+        gap: 5px;
+    }
+
     .addTaskPriorityButton{
-        width: 107px;
+        width: 100px;
         font-size: medium;
 
          img{

@@ -712,3 +712,42 @@ progress{
     height: 51px;
 }
 
+@media (max-width: 500px) {
+
+    .addTaskBody{
+        padding: 24px 24px 0 24px;
+
+    }
+    .addTaskBodyTop,
+    .addTaskBodyBottom{
+        max-width: 400px;
+    }
+
+    .addTaskBtnContainer{
+        justify-content: center;
+    }
+    .addTaskHoverContainer{
+
+        .createBtn {
+            right: 0;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+
+    .addTaskHoverContainer{
+
+        .boardAddTaskHeader{
+            padding: 32px 20px;
+            justify-content: center;
+        }
+        .addTaskBodyLeft{
+            padding-inline: 10px;
+        }
+        .boardAddTaskCloseHoverContainer{
+            top: 12px;
+            right: 12px;
+        }
+    }
+}
