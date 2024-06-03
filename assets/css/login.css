@@ -116,9 +116,25 @@ input[type="email"]:focus,
 input[type="password"]:focus {
   outline: none;
 }
+
 .checkboxBox{
   padding-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min-content;
 }
+
+.rememberMeBox{
+  display: flex;
+  align-items: center;
+  
+  background-color: red;
+  width: min-content;
+  cursor: pointer;
+}
+
 .custom-checkbox {
   display: flex;
   justify-content: space-between;
