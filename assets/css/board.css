@@ -48,6 +48,9 @@
         /* bottom: 20px; */
     }
 
+    .addTaskEmptyDiv{
+        display: none;
+    }
 
 .addTaskBtnContainer{
     display: flex;
