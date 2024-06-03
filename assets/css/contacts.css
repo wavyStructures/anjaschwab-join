@@ -24,6 +24,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 32px;
+  box-shadow: 6px 0px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 /* 
