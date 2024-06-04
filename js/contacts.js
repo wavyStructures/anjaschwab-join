@@ -162,7 +162,7 @@ function displaySuccessMessage(message) {
       setTimeout(() => {
         overlay.remove(); // Overlay aus dem DOM entfernen
       }, 500); // Timeout für die Dauer der Ausblendanimation
-    }, 3000); // Timeout für 3 Sekunden Anzeigedauer
+    }, 2000); // Timeout für 3 Sekunden Anzeigedauer
   }, 10); // Minimaler Timeout, um das Hinzufügen der Klasse zu triggern
 }
 
@@ -577,7 +577,7 @@ function renderEditContactHTML(id, name, contactColor) {
                         onmouseout="restoreCancelIcon()">Cancel
                         <img id="cancelIcon" onclick="closeOverlay('editContact')" src="./assets/img/icon-cancel.png" alt="">
                     </button>
-                    <button class="createButton">Edit contact
+                    <button class="createButton">Save
                         <img id="createIcon" onclick="saveEditedContact(${id})" src="./assets/img/icon-check.png" alt="">
                     </button>
                 </div>
@@ -949,7 +949,7 @@ async function saveEditedContact(id) {
     await displaySuccessMessage("Contact successfully edited");
     setTimeout(() => {
       window.location.reload();
-    }, 1500); 
+    }, 2500); 
   } else {
     console.error("Contact not found with ID:", id);
   }
@@ -1003,7 +1003,7 @@ async function deleteContact(id) {
     await displaySuccessMessage("Contact successfully deleted");
     setTimeout(() => {
       window.location.reload();
-    }, 1000); 
+    }, 3000); 
   } else {
     console.error("Contact not found with ID:", id);
   }

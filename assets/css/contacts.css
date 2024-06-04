@@ -345,6 +345,11 @@ input {
   font-size: 23px;
   transition-duration: 120ms;
   cursor: pointer;
+  min-width: 174px;
+}
+
+.createButton img {
+  padding-left: 24px;
 }
 
 .createButton:hover {
