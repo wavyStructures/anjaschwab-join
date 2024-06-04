@@ -160,13 +160,39 @@ function setNewUsersToLocalStorage() {
 
 
 function showUserMessage(message) {
-    var overlay = document.getElementById("userMessageOverlay");
-    var messageDiv = document.getElementById("userMessage");
-    messageDiv.innerText = message;
-    overlay.style.display = "flex";
+
+    const overlay = document.createElement("div");
+    overlay.className = "signUp-succ-created-overlay";
+    overlay.innerHTML = `
+<div class="signUp-succesfully-created-wrapper">
+<div class="signUp-succesfully-created">${message}
+</div></div>
+`;
+    document.body.appendChild(overlay);
+
     setTimeout(() => {
-        overlay.style.display = "none";
-    }, 3000); // 100 second
+        overlay.classList.add('slide-in');
+
+        setTimeout(() => {
+            overlay.classList.add('slide-out');
+
+            setTimeout(() => {
+                overlay.remove;
+            }, 500); // 100 second
+
+        }, 3000); // 100 second
+
+
+    }, 10); // 100 second
+
+
+    // var overlay = document.getElementById("userMessageOverlay");
+    // var messageDiv = document.getElementById("userMessage");
+    // messageDiv.innerText = message;
+    // overlay.style.display = "flex";
+    // setTimeout(() => {
+    //     overlay.style.display = "none";
+    // }, 3000); // 100 second
 }
 
 

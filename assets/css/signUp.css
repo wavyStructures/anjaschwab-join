@@ -101,7 +101,9 @@
   justify-content: space-between;
   border-bottom: 1px solid #d1d1d1;
   padding: 12px 21px;
+  width: 140%;
 }
+
 input::placeholder {
   color: #d1d1d1;
 }
@@ -267,6 +269,75 @@ a {
   animation: successOut 0.5s ease forwards;
 }
 
+.signUp-succesfully-created {
+  position: relative;
+  line-height: 1.75rem;
+  border: 0.063rem solid;
+  border-color: #4589ff;
+  color: white;
+  background-color: #4589ff;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1.25rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.063rem;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--version-2-body);
+}
+
+.signUp-succ-created-overlay,
+.signUp-succesfully-created-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.signUp-succesfully-created-wrapper {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background-color: var(--version-2-main-color);
+  padding: 1.437rem var(--padding-mid);
+  box-sizing: border-box;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.signUp-succ-created-overlay {
+  position: absolute;
+  box-shadow: var(--nuevo);
+  width: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 1.438rem;
+  color: var(--white);
+  font-family: var(--version-2-body);
+  bottom: -100%; /* Startposition unterhalb des Bildschirms */
+  left: 40%;
+  transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
+}
+
+.slide-in {
+  bottom: 50%; /* Endposition in der Mitte des Bildschirms */
+}
+
+.slide-out {
+  bottom: -100%; /* Zielposition außerhalb des Bildschirms */
+}
+
+.add-signUp-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Hintergrundfarbe fĆ¼r das Overlay */
+  z-index: 999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
+}
+
 /*/ //////////////////////////////////////////////media 970 ///////////////////////*/
 @media (max-width: 970px) {
   .joinLogoSignUpWhite {
@@ -284,11 +355,14 @@ a {
 
 /*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
 @media (max-width: 680px) {
-
   .signUp-box {
     padding: 32px 0px;
     gap: 32px;
     z-index: 1;
+  }
+
+  .signUpInputField {
+    width: auto;
   }
 
   .arrowLeft {

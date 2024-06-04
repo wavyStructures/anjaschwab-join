@@ -6,6 +6,7 @@ h1 {
   font-size: 61px;
   font-weight: 700;
   margin-bottom: 48px;
+  margin-left: -12px;
 }
 
 h2 {
@@ -14,6 +15,7 @@ h2 {
   color: var(--clr-text-medium-blue);
   margin-top: 24px;
   margin-bottom: 10px;
+  margin-left: -8px;
 }
 
 h3 {
