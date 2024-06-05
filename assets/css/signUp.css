@@ -229,7 +229,21 @@ a {
   background-color: #a8a8a8;
 }
 
-.signUp-succesfully-created {
+#userMessageOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure it's on top */
+  bottom: -100%;
+  transition: bottom 0.5s ease-in-out;
+}
+
+.signUp-successfully-created {
   position: relative;
   line-height: 1.75rem;
   border: 0.063rem solid;
@@ -247,62 +261,36 @@ a {
   font-family: var(--version-2-body);
 }
 
-#userMessage {
-  /* display: flex; */
-  height: 70px;
-  width: 330px;
-  padding: 20px;
-  z-index: 500;
-  position: fixed;
-  bottom: 0;
-  border-radius: 20px;
-  cursor: default;
-  z-index: 999;
-  position: absolute;
+.slide-in {
   bottom: 50%;
-  left: 30%;
+  transition: bottom 0.5s ease-in-out;
 }
 
-.signUp-succ-created-overlay,
-.signUp-succesfully-created-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+.slide-out {
+  bottom: -100%;
+  transition: bottom 0.5s ease-in-out;
 }
 
-.signUp-succesfully-created-wrapper {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  background-color: var(--version-2-main-color);
-  padding: 1.437rem var(--padding-mid);
-  box-sizing: border-box;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.signUp-succ-created-overlay {
+/* .signUp-succ-created-overlay {
   position: fixed;
   box-shadow: var(--nuevo);
-  /* width: 100%; */
+  width: 100%;
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
   font-size: 1.438rem;
   color: var(--white);
   font-family: var(--version-2-body);
-  bottom: -100%; /* Startposition unterhalb des Bildschirms */
+  bottom: -100%; 
   left: 40%;
   transition: bottom 0.5s ease-in-out;
-}
-
+} */
+/* 
 .slide-in {
-  bottom: 50%; /* Endposition in der Mitte des Bildschirms */
-}
+  bottom: 50%; 
 
 .slide-out {
-  bottom: -100%; /* Zielposition außerhalb des Bildschirms */
-}
+  bottom: -100%;  */
 
 .add-signUp-container {
   position: fixed;
