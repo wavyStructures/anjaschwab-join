@@ -489,9 +489,9 @@ input {
 }
 
 .right-side {
-  margin-top: 10.5rem;
+  /* margin-top: 10.5rem; */
   left: 46.875rem;
-  padding-left: 1.313rem;
+  padding: 4.5rem 0 0 3.875rem;
   color: black;
 }
 
@@ -530,12 +530,14 @@ input {
 }
 
 .contact-details-name-group {
-  height: auto;
-  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.313rem;
+  gap: 0.5rem;
 }
 
 .contact-details-name {
-  padding: 0.313rem;
   font-weight: 500;
   font-size: 2.938rem;
   line-height: 3.525rem;
@@ -669,6 +671,12 @@ input {
   transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
 }
 
+.contact-details-badge-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .slide-in {
   bottom: 50%; /* Endposition in der Mitte des Bildschirms */
 }
@@ -738,6 +746,7 @@ input {
 
   .contacts-container {
     width: 22rem;
+    padding-left: 0.5rem;
   }
 
   .contact-card {

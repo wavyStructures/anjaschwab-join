@@ -133,6 +133,7 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
+    border: none;
   }
 
   .nav-buttons-box {
@@ -163,7 +164,10 @@
       color: var(--clr-main);
     }
   }
-
+  .nav-wrapper{
+    border: none;
+    box-shadow: 0px -2px 5.5px rgba(0, 0, 0, .2)
+  }
   .privatePolicyAndLegalNoticeLinksNav {
     display: none;
   }
