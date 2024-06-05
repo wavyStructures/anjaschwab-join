@@ -59,11 +59,11 @@ function openHelp() {
 }
 
 
-function checkIfUserIsRemembered(){
-	if (!sessionStorage.getItem('currentUser')){
-		if(localStorage.getItem('rememberedUser') != null){
+function checkIfUserIsRemembered() {
+	if (!sessionStorage.getItem('currentUser')) {
+		if (localStorage.getItem('rememberedUser') != null) {
 			sessionStorage.setItem('currentUser', localStorage.getItem('rememberedUser'));
-			if(window.location.href == 'index.html') switchPage('summary.html');
+			if (window.location.href == 'index.html') switchPage('summary.html');
 		}
 	}
 }
@@ -179,24 +179,32 @@ function setActiveNavButton() {
 			summaryNavLink.classList.add('active');
 			if (window.innerWidth < 802) {
 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
+			} else {
+				summaryNavLink.querySelector('img').src = './assets/img/icon-summary.png';
 			}
 			break;
 		case '/addTask.html':
 			addTaskNavLink.classList.add('active');
 			if (window.innerWidth < 802) {
 				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
+			} else {
+				addTaskNavLink.querySelector("img").src = './assets/img/icon-addTask.png';
 			}
 			break;
 		case '/board.html':
 			boardNavLink.classList.add('active');
 			if (window.innerWidth < 802) {
 				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
+			} else {
+				boardNavLink.querySelector('img').src = './assets/img/icon-board.png';
 			}
 			break;
 		case '/contacts.html':
 			contactsNavLink.classList.add('active');
 			if (window.innerWidth < 802) {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
+			} else {
+				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts.png';
 			}
 			break;
 
@@ -228,7 +236,7 @@ function lockScreenOrientation() {
 window.addEventListener('load', lockScreenOrientation);
 
 
-function goBack(){
+function goBack() {
 	window.history.go(-1);
 }
 
