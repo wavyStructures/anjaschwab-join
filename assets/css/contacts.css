@@ -763,13 +763,8 @@ input {
 
 @media screen and (max-width: 850px) {
 
-  .contact-details-badge {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .contact-details-badge-initials {
-    font-size: 1.5rem;
+  .contact-details-badge-group {
+    display: none;
   }
 
   .contact-details-header {
