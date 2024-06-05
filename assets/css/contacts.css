@@ -694,3 +694,42 @@ input {
     top: 20%;
     z-index: 1000999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
 }
+
+@media screen and (max-width: 1199px) {
+  .contact-details-name {
+    font-size: 2.25rem;
+  }
+  
+}
+
+@media screen and (max-width: 1124px) {
+  
+  .contact-details-header {
+    gap: 2rem;
+  }
+  
+  .contact-details-name {
+    font-size: 1.5rem
+  }
+
+  .contact-details-badge {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .contact-details-badge-initials {
+    font-size: 1.75rem;
+  }
+
+  .contact-information {
+    font-size: 1rem;
+  }
+
+  .contact-email-container {
+    font-size: 0.875rem
+  }
+
+  .contact-phone-container {
+    font-size: 0.875rem
+  }
+}
