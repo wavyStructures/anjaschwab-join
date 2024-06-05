@@ -17,7 +17,8 @@ let newUser = {
 /**
  * init-function run at on loading the body
  */
-async function signUpInit() {
+function signUpInit() {
+    showUserMessage('LOADING successfully!');
 }
 
 
@@ -56,7 +57,9 @@ async function addNewUser() {
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
         showUserMessage('You Signed Up successfully!');
-        switchPage('index.html')
+        setTimeout(() => {
+            switchPage('index.html');
+        }, 3000);
     }
 }
 
@@ -161,29 +164,33 @@ function setNewUsersToLocalStorage() {
 
 function showUserMessage(message) {
 
-    const overlay = document.createElement("div");
-    overlay.className = "signUp-succ-created-overlay";
-    overlay.innerHTML = `
-<div class="signUp-succesfully-created-wrapper">
-<div class="signUp-succesfully-created">${message}
-</div></div>
-`;
-    document.body.appendChild(overlay);
+    // const overlay = document.createElement("div");
+    let overlay = document.getElementById('userMessageOverlay');
+    overlay.classList.add("signUp-succ-created-overlay");
+    //     overlay.innerHTML = `
+    // <div class="signUp-succesfully-created-wrapper">
+    // <div class="signUp-succesfully-created">    // </div></div>
+
+
+    let overlayInner = document.getElementById('userMessage');
+    overlayInner.innerHTML = `${message}`;
+    // document.body.appendChild(overlay);
 
     setTimeout(() => {
         overlay.classList.add('slide-in');
 
         setTimeout(() => {
+            overlay.classList.remove('slide-in');
             overlay.classList.add('slide-out');
 
             setTimeout(() => {
-                overlay.remove;
-            }, 500); // 100 second
+                overlay.classList.remove('slide-out');
+            }, 500); // Wait for the slide-out animation to complete
 
-        }, 3000); // 100 second
+        }, 3000); // Duration the message stays visible
 
 
-    }, 10); // 100 second
+    }, 10); // Delay before starting the slide-in animation
 
 
     // var overlay = document.getElementById("userMessageOverlay");
@@ -212,7 +219,7 @@ function checkPasswordsEqual() {
 
 function showMessage() {
     let messageBox = document.getElementById('userMessage');
-    messageBox.classList.add('successIn');
+    messageBox.classList.add('slide-in');
 
     setTimeout(() => {
         hideMessage();
@@ -224,8 +231,8 @@ function showMessage() {
 
 function hideMessage() {
     let messageBox = document.getElementById('userMessage');
-    messageBox.classList.add('successOut');
-    messageBox.classList.remove('successIn');
+    //     messageBox.classList.add('slide-out');
+    //     messageBox.classList.remove('slide-in');
 }
 
 

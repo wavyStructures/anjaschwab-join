@@ -229,46 +229,6 @@ a {
   background-color: #a8a8a8;
 }
 
-.userMessage {
-  display: flex;
-  height: 70px;
-  width: 330px;
-  padding: 20px;
-  z-index: 500;
-  position: fixed;
-  bottom: 0;
-  border-radius: 20px;
-  cursor: default;
-}
-
-/* Animations success message */
-@keyframes successIn {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    bottom: 50%;
-    transform: translateY(50%);
-  }
-}
-
-@keyframes successOut {
-  from {
-    transform: translate(0);
-  }
-  to {
-    transform: translateX(-500px);
-  }
-}
-
-.successIn {
-  animation: successIn 0.5s ease forwards;
-}
-
-.successOut {
-  animation: successOut 0.5s ease forwards;
-}
-
 .signUp-succesfully-created {
   position: relative;
   line-height: 1.75rem;
@@ -285,6 +245,22 @@ a {
   text-align: center;
   white-space: nowrap;
   font-family: var(--version-2-body);
+}
+
+#userMessage {
+  /* display: flex; */
+  height: 70px;
+  width: 330px;
+  padding: 20px;
+  z-index: 500;
+  position: fixed;
+  bottom: 0;
+  border-radius: 20px;
+  cursor: default;
+  z-index: 999;
+  position: absolute;
+  bottom: 50%;
+  left: 30%;
 }
 
 .signUp-succ-created-overlay,
@@ -306,9 +282,9 @@ a {
 }
 
 .signUp-succ-created-overlay {
-  position: absolute;
+  position: fixed;
   box-shadow: var(--nuevo);
-  width: 100%;
+  /* width: 100%; */
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
@@ -317,7 +293,7 @@ a {
   font-family: var(--version-2-body);
   bottom: -100%; /* Startposition unterhalb des Bildschirms */
   left: 40%;
-  transition: bottom 0.5s ease-in-out; /* CSS-Übergang für die Bewegung */
+  transition: bottom 0.5s ease-in-out;
 }
 
 .slide-in {
@@ -382,9 +358,6 @@ a {
 
   .signUpPasswordBox {
     width: 364px;
-  }
-
-  .registerBtn {
   }
 
   .signUp-box {
