@@ -218,6 +218,11 @@ a {
   color: #fff;
 }
 
+.privacyPolicySignUp:hover,
+.legalNoticeSignUp:hover {
+  color: var(--clr-text-medium-blue);
+}
+
 *::-webkit-scrollbar-thumb {
   border: 0.5rem solid var(--clr-main);
   height: 3.3125rem;
