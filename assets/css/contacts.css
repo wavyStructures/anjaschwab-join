@@ -741,7 +741,7 @@ input {
   }
 
   .contact-card {
-    width: 20rem;
+    width: 18rem;
   }
 
   .button-add-contact-card {
@@ -753,6 +753,30 @@ input {
   }
   
   .contact-list {
-    padding: 1.5rem 1rem 1.5rem 1rem;
+    padding: 1.25rem 0.75rem 1.25rem 0.75rem;
+  }
+
+  .contact-details-header {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+
+  .contact-details-badge {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .contact-details-badge-initials {
+    font-size: 1.5rem;
+  }
+
+  .contact-details-header {
+    gap: 1rem;
+  }  
+
+  .contacts-container {
+    padding-left: 0.5rem;
   }
 }
