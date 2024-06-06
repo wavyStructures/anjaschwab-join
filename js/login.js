@@ -8,8 +8,8 @@ async function loginInit() {
 }
 
 
-function checkIfUserWasPreviouslyRegistered(){
-    if (localStorage.getItem('newMail')){
+function checkIfUserWasPreviouslyRegistered() {
+    if (localStorage.getItem('newMail')) {
         document.getElementById('loginEmailInput').value = localStorage.getItem('newMail');
         localStorage.removeItem('newMail');
     }
@@ -82,13 +82,14 @@ async function loginUser() {
         switchPage('summary.html');
     } else {
         alert("Invalid email or password. Please try again.");
+        showUserMessage('Invalid email or password. Please try again.');
     }
     return false;
 }
 
 function setRememberMe(name) {
-    if (document.getElementById('loginCheckbox').hasAttribute('checked')){
-        localStorage.setItem('rememberedUser', JSON.stringify({username: name}));
+    if (document.getElementById('loginCheckbox').hasAttribute('checked')) {
+        localStorage.setItem('rememberedUser', JSON.stringify({ username: name }));
     }
 }
 
@@ -105,7 +106,7 @@ function toggleRememberMeCheckbox() {
         loginCheckbox.removeAttribute('checked');
     } else {
         loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
-        loginCheckbox.setAttribute('checked','');
+        loginCheckbox.setAttribute('checked', '');
     };
 }
 

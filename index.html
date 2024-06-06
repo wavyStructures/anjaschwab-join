@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/png">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/css/signUp.css">
     <link rel="stylesheet" href="./assets/css/login.css">
     <!-- <link rel="stylesheet" href="./assets/css/login_mobile.css"> -->
 
@@ -17,6 +18,7 @@
 
 
     <script src="./js/summary.js"></script>
+    <script src="./js/signUp.js"></script>
     <script src="./js/login.js"></script>
 
     <!-- <meta http-equiv=“refresh“ content=“0; URL=“summary.html“ /> -->
@@ -48,24 +50,25 @@
                             <div class="horizontalH1Underline"></div>
                         </div>
                         <form id="loginForm" onsubmit="loginUser(); return false;">
-                                <div class="innerLoginBox">
-                                    <div class="loginInputField">
-                                        <input type="email" id="loginEmailInput" placeholder="Email" required="">
-                                        <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
-                                        </div>
-                                    </div>
-
-                                    <div class="loginInputField">
-                                        <input type="password" id="loginPasswordInput" placeholder="Password" required="">
-                                        <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
-                                        </div>
-                                    </div>
-                                    <div id="loginCheckbox" class="checkboxBox"  onclick="toggleRememberMeCheckbox()">
-                                        <img id="loginCheckboxImg" src="./assets/img/icon-check_button_unchecked.png" alt="checkbox image">
-                                        <div for="rememberMe" class="custom-checkbox">Remember me</div>
+                            <div class="innerLoginBox">
+                                <div class="loginInputField">
+                                    <input type="email" id="loginEmailInput" placeholder="Email" required="">
+                                    <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
                                     </div>
                                 </div>
-                            </form>
+
+                                <div class="loginInputField">
+                                    <input type="password" id="loginPasswordInput" placeholder="Password" required="">
+                                    <div class="mailIcon"><img src="./assets/img/icon-lock.png" alt="lock">
+                                    </div>
+                                </div>
+                                <div id="loginCheckbox" class="checkboxBox" onclick="toggleRememberMeCheckbox()">
+                                    <img id="loginCheckboxImg" src="./assets/img/icon-check_button_unchecked.png"
+                                        alt="checkbox image">
+                                    <div for="rememberMe" class="custom-checkbox">Remember me</div>
+                                </div>
+                            </div>
+                        </form>
                         <div class="loginButtonsBox">
                             <button class="loginButtons loginButtonUser" form="loginForm">Login</button>
                             <button class="loginButtons loginButtonGuest" onclick="loginAsGuest()">Guest Login</button>
@@ -73,7 +76,8 @@
                     </div>
                     <div class="signUpField-mobile d-none">
                         <span>Not a join user?</span>
-                        <button class="loginButtons signUpButton signUpButton-mobile" onclick="gotoSignUp()">Sign up</button>
+                        <button class="loginButtons signUpButton signUpButton-mobile" onclick="gotoSignUp()">Sign
+                            up</button>
                     </div>
                 </div>
                 <div class="loginFooter">
