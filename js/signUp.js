@@ -161,15 +161,13 @@ function setNewUsersToLocalStorage() {
     localStorage.setItem('newUsers', JSON.stringify(newUsers));
 }
 
-
 function showUserMessage(message) {
+    // Create the overlay element
     let overlay = document.createElement("div");
     overlay.id = "userMessageOverlay";
-    overlay.classList.add("signUp-succ-created-overlay");
 
     // Create the inner message element
     let overlayInner = document.createElement("div");
-    overlayInner.id = "userMessage";
     overlayInner.classList.add("signUp-successfully-created");
     overlayInner.innerHTML = message;
 
@@ -180,7 +178,7 @@ function showUserMessage(message) {
     document.body.appendChild(overlay);
 
     // Set up the animation sequence
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         overlay.classList.add('slide-in');
 
         setTimeout(() => {
@@ -188,15 +186,15 @@ function showUserMessage(message) {
             overlay.classList.add('slide-out');
 
             setTimeout(() => {
-                overlay.classList.remove('slide-out');
-                // Optionally remove the overlay after animation completes
                 document.body.removeChild(overlay);
             }, 500); // Wait for the slide-out animation to complete
 
         }, 3000); // Duration the message stays visible
-
-    }, 10); // Delay before starting the slide-in animation
+    });
 }
+
+// Example usage:
+// showUserMessage("Sign up successfully created!");
 
 
 function checkPasswordsEqual() {

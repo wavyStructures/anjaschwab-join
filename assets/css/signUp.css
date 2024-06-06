@@ -243,7 +243,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Ensure it's on top */
+  z-index: 9999;
   bottom: -100%;
   transition: bottom 0.5s ease-in-out;
 }
@@ -267,13 +267,11 @@ a {
 }
 
 .slide-in {
-  bottom: 50%;
-  transition: bottom 0.5s ease-in-out;
+  bottom: 50%; /* Position when sliding in */
 }
 
 .slide-out {
-  bottom: -100%;
-  transition: bottom 0.5s ease-in-out;
+  bottom: -100%; /* Position when sliding out */
 }
 
 /* .signUp-succ-created-overlay {
