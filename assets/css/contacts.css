@@ -784,3 +784,21 @@ input {
     padding-left: 0.5rem;
   }
 }
+
+@media screen and (max-width: 801px) {
+  .right-side {
+    display: none;
+  }
+
+  .contacts-container-outer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contacts-container {
+    width: 100%;
+    justify-content: center;
+  }
+  
+}
