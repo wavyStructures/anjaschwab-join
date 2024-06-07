@@ -797,8 +797,19 @@ input {
   }
 
   .contacts-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
   }
+
+  .contact-list {
+    height: 80%;
   
+}
+
+@media screen and (max-width: 350px) {
+  .contacts-container {
+    padding-left: 24px;
+  }
 }
