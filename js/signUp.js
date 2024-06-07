@@ -15,10 +15,10 @@ let newUser = {
 
 /**
  * init-function run at on loading the body
- */
-function signUpInit() {
-    showUserMessage('LOADING successfully!');
-}
+//  */
+// function signUpInit() {
+//     showUserMessage('LOADING successfully!');
+// }
 
 
 /**

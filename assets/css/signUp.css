@@ -294,91 +294,6 @@ a {
 .slide-out {
   animation: slide-out 3s ease-in-out forwards;
 }
-/* 
-#userMessageOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  bottom: 0; */
-/* bottom: -100%;
-  transition: bottom 0.5s ease-in-out; */
-/* }
-
-.signUp-successfully-created {
-  position: relative;
-  line-height: 1.75rem;
-  border: 0.063rem solid;
-  border-color: #4589ff;
-  color: white;
-  background-color: #4589ff;
-  border-radius: 0.625rem;
-  padding: 0.625rem 1.25rem;
-  box-sizing: border-box;
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: 0.063rem;
-  text-align: center;
-  white-space: nowrap;
-  font-family: var(--version-2-body);
-  opacity: 0;
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-out {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-.slide-in {
-  animation: slide-in 1s ease-in-out forwards;
-}
-
-.slide-out {
-  animation: slide-out 1s ease-in-out forwards;
-} */
-
-/* .signUp-succ-created-overlay {
-  position: fixed;
-  box-shadow: var(--nuevo);
-  width: 100%;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  font-size: 1.438rem;
-  color: var(--white);
-  font-family: var(--version-2-body);
-  bottom: -100%; 
-  left: 40%;
-  transition: bottom 0.5s ease-in-out;
-} */
-/* 
-.slide-in {
-  bottom: 50%; 
-
-.slide-out {
-  bottom: -100%;  */
 
 .add-signUp-container {
   position: fixed;
@@ -389,7 +304,6 @@ a {
   background-color: rgba(0, 0, 0, 0.5); /* Hintergrundfarbe fĆ¼r das Overlay */
   z-index: 999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
 }
-
 /*/ //////////////////////////////////////////////media 970 ///////////////////////*/
 @media (max-width: 970px) {
   .joinLogoSignUpWhite {
@@ -404,7 +318,6 @@ a {
     height: 72px;
   }
 }
-
 /*/ //////////////////////////////////////////////media  520 to 680///////////////////////*/
 @media (max-width: 680px) {
   .signUp-box {
@@ -440,7 +353,6 @@ a {
     width: 482px;
   }
 }
-
 /*///////////////////////////////////////////////media 550///////////////////////*/
 @media (max-width: 550px) {
   .signUp-box {
