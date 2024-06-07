@@ -54,22 +54,6 @@ function getNextId(contactsArray) {
 }
 
 
-/**
- * Initializes the contacts by including the HTML, loading the contacts, and checking the version index.
- */
-/*
-async function contactsInit() {
-  includeHTML();
-
-  // Load contacts from storage
-  await loadContactsStorage();
-
-  // Check the version index in online storage
-  await ckeckOnlineVersionIndex();
-
-  // Load contacts after ensuring the version index is up to date
-  loadContacts();
-}*/
 
 /**
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
@@ -115,32 +99,13 @@ function getFirstNameForDefaultPassword(name) {
   return name.split(' ')[0];
 }
 
-
 /**
- * Displays the success message container when a contact is successfully created.
+ * Displays a success message overlay with the given message content.
  *
- * @returns {void}
+ * @param {string} message - The message to be displayed in the success overlay.
+ * @return {void} This function does not return a value.
  */
-/*function displaySuccessMessage() {
-  const overlay = document.querySelector('.contact-succ-created-overlay');
-  if (overlay) {
-    overlay.classList.add('slide-in'); // Container einblenden
-
-    // Timeout, um den Container nach 3 Sekunden wieder auszublenden
-    setTimeout(() => {
-      overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
-      setTimeout(() => {
-        overlay.classList.remove('slide-in', 'slide-out'); // Animation beenden
-      }, 500); // Timeout für die Dauer der Ausblendanimation
-    }, 1000); // Timeout für 3 Sekunden Anzeigedauer
-  } else {
-    console.error("Error: Overlay element not found.");
-  }
-}*/ 
-
-// Funktion zum Anzeigen und Entfernen der Erfolgsmeldung
 function displaySuccessMessage(message) {
-  // Erstellen des Overlays
   const overlay = document.createElement('div');
   overlay.className = 'contact-succ-created-overlay';
   overlay.innerHTML = `
@@ -586,13 +551,22 @@ function renderEditContactHTML(id, name, contactColor) {
 }
 
 
-// Funktion zum Anzeigen des Containers
+/**
+ * Shows the add contact container by removing the "hidden" class from the element with the id "addContactContainer".
+ *
+ * @return {void} This function does not return anything.
+ */
 function showAddContactContainer() {
   const addContactContainer = document.getElementById("addContactContainer");
   addContactContainer.classList.remove("hidden");
 }
 
-// Funktion zum Ausblenden des Containers
+/**
+ * Removes a container element from the DOM based on the provided id.
+ *
+ * @param {string} id - The ID of the container element to remove.
+ * @return {void} This function does not return anything.
+ */
 function removeContainer(id) {
   document.getElementById(id).remove();
 }
@@ -940,8 +914,6 @@ async function saveEditedContact(id) {
 
     console.log(users.findIndex((users) => users.id === id));
 
-    // debugger
-    // Update contact in Firebase
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
     users = [];
     console.log("Contact saved:", user);
