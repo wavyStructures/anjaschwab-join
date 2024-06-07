@@ -244,9 +244,71 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  bottom: -100%;
-  transition: bottom 0.5s ease-in-out;
 }
+
+.signUp-successfully-created {
+  line-height: 1.75rem;
+  border: 0.063rem solid;
+  border-color: #4589ff;
+  color: white;
+  background-color: #4589ff;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1.25rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.063rem;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--version-2-body);
+  opacity: 0;
+  /* transform: translateY(100%); */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(3000%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(3000%);
+    opacity: 0;
+  }
+}
+
+.slide-in {
+  animation: slide-in 3s ease-in-out forwards;
+}
+
+.slide-out {
+  animation: slide-out 3s ease-in-out forwards;
+}
+/* 
+#userMessageOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  bottom: 0; */
+/* bottom: -100%;
+  transition: bottom 0.5s ease-in-out; */
+/* }
 
 .signUp-successfully-created {
   position: relative;
@@ -264,15 +326,38 @@ a {
   text-align: center;
   white-space: nowrap;
   font-family: var(--version-2-body);
+  opacity: 0;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 
 .slide-in {
-  bottom: 50%; /* Position when sliding in */
+  animation: slide-in 1s ease-in-out forwards;
 }
 
 .slide-out {
-  bottom: -100%; /* Position when sliding out */
-}
+  animation: slide-out 1s ease-in-out forwards;
+} */
 
 /* .signUp-succ-created-overlay {
   position: fixed;

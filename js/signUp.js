@@ -13,7 +13,6 @@ let newUser = {
 };
 
 
-
 /**
  * init-function run at on loading the body
  */
@@ -22,12 +21,19 @@ function signUpInit() {
 }
 
 
+/**
+ * Asynchronously saves a new user to the Firebase database.
+ * @return {Promise<void>} A promise that resolves when the user is successfully saved.
+ */
 async function saveNewUser() {
     users = await firebaseGetItem(FIREBASE_USERS_ID);
     users.push(newUser);
 }
 
 
+/**
+ * Retrieves the values of the input fields and assigns them to the corresponding variables.
+ */
 function getInputValues() {
     newUsername = document.getElementById('signUpNameInput').value;
     newMail = document.getElementById('signUpEmailInput').value;
@@ -35,6 +41,10 @@ function getInputValues() {
     newPasswordConfirm = document.getElementById('signUpPasswordInputConfirm').value;
 }
 
+
+/**
+ * Sets the values of the newUser object based on the input values.
+ */
 function setNewUserValues() {
     newUser.name = newUsername;
     newUser.mail = newMail;
@@ -43,6 +53,11 @@ function setNewUserValues() {
     newUser.contactColor = generateRandomColor();
 }
 
+
+/**
+ * Adds a new user to the system.
+ * @return {Promise<void>} A promise that resolves when the user is added.
+ */
 async function addNewUser() {
     users = await firebaseGetItem(FIREBASE_USERS_ID);
     getInputValues();
@@ -64,7 +79,11 @@ async function addNewUser() {
 }
 
 
-
+/**
+ * Checks if a given email exists in the list of users.
+ * @param {string} mailToCheck - The email to check for existence.
+ * @return {boolean} Returns true if the email exists, false otherwise.
+ */
 function checkMailExist(mailToCheck) {
     for (let i = 0; i < users.length; i++) {
         if (users[i].mail === mailToCheck) {
@@ -74,6 +93,11 @@ function checkMailExist(mailToCheck) {
     return false;
 }
 
+
+/**
+ * Checks if the form is valid by verifying the form's validity and the confirmation of the privacy policy.
+  * @return {boolean} Returns true if the form is valid and the privacy policy is confirmed, otherwise false.
+ */
 function checkIfFormIsValid() {
     let form = document.getElementById('login-form')
     let btn = document.getElementById('registerBtn');
@@ -84,27 +108,12 @@ function checkIfFormIsValid() {
         btn.disabled = true;
         return false;
     }
-
 }
 
+
 /**
- * reseting the signUp form
+ * Toggles the appearance of the privacy policy checkbox.
  */
-// function resetForm() {
-//     let inputFields = document.querySelectorAll('input');
-//     for (let i = 0; i < inputFields.length; i++) {
-//         inputFields[i].value = '';
-//     }
-//     newUsername = '';
-//     newMail = '';
-//     newPassword = '';
-//     newPasswordConfirm = '';
-//     togglePrivacyPolicyCheckbox();
-//     checkIfFormIsValid();
-// }
-
-
-
 function togglePrivacyPolicyCheckbox() {
     let privacyCheckbox = document.getElementById('privacyCheckbox');
     let checkBoxImage = document.getElementById('checkboxImage');
@@ -116,23 +125,6 @@ function togglePrivacyPolicyCheckbox() {
     }
     checkIfFormIsValid();
 }
-
-/**
- * Toggles the privacy policy confirmation checkbox checked to unchecked and vice versa 
- */
-// function togglePrivacyPolicyCheckbox() {
-//     let privacyCheckbox = document.getElementById('privacyCheckbox');
-//     let checkBoxImage = document.querySelector('.checkboxBox img');
-
-//     if (privacyCheckbox.hasAttribute('checked')) {
-//         checkBoxImage.src = '../../assets/img/icon-check_button_unchecked.png';
-//         privacyCheckbox.removeAttribute('checked');
-//     } else {
-//         privacyCheckbox.setAttribute('checked', '');
-//         checkBoxImage.src = '../../assets/img/icon-check_button_checked.png';
-//     }
-//     checkIfFormIsValid();
-// }
 
 
 /**
@@ -161,42 +153,41 @@ function setNewUsersToLocalStorage() {
     localStorage.setItem('newUsers', JSON.stringify(newUsers));
 }
 
+
+/**
+ * Displays a user message overlay with a slide-in animation and a slide-out animation after a specified duration.
+ * @param {string} message - The message to be displayed in the overlay.
+ */
 function showUserMessage(message) {
-    // Create the overlay element
     let overlay = document.createElement("div");
     overlay.id = "userMessageOverlay";
 
-    // Create the inner message element
     let overlayInner = document.createElement("div");
     overlayInner.classList.add("signUp-successfully-created");
     overlayInner.innerHTML = message;
 
-    // Append the inner message element to the overlay
     overlay.appendChild(overlayInner);
-
-    // Append the overlay to the body
     document.body.appendChild(overlay);
 
-    // Set up the animation sequence
     requestAnimationFrame(() => {
-        overlay.classList.add('slide-in');
+        overlayInner.classList.add('slide-in');
 
         setTimeout(() => {
-            overlay.classList.remove('slide-in');
-            overlay.classList.add('slide-out');
+            overlayInner.classList.remove('slide-in');
+            overlayInner.classList.add('slide-out');
 
             setTimeout(() => {
                 document.body.removeChild(overlay);
-            }, 500); // Wait for the slide-out animation to complete
-
-        }, 3000); // Duration the message stays visible
+            }, 2000);
+        }, 5000);
     });
 }
 
-// Example usage:
-// showUserMessage("Sign up successfully created!");
 
-
+/**
+ * Checks if the new password and the new password confirmation are equal.
+ * @return {boolean} Returns true if the passwords are equal, false otherwise.
+ */
 function checkPasswordsEqual() {
     if (newPassword !== newPasswordConfirm) {
         // showUserMessage("Passwords do not match");
@@ -205,32 +196,3 @@ function checkPasswordsEqual() {
         return true;
     }
 }
-
-
-
-
-
-function hideMessage() {
-    let messageBox = document.getElementById('userMessage');
-    //     messageBox.classList.add('slide-out');
-    //     messageBox.classList.remove('slide-in');
-}
-
-
-
-// // Attach the privacy policy toggle functionality on page load
-// window.onload = function () {
-//     togglePrivacyPolicyCheckbox();
-//     let registerBtn = document.getElementById("registerBtn");
-//     registerBtn.addEventListener('click', addNewUser);
-// };
-
-
-// /**
-//  * deleting all users - local and remote
-//  */
-// async function delAllUsers() {
-//     users = [];
-//     await remoteStorageSetItem('users', JSON.stringify(users));
-//     console.log("USERS: ", users)
-// }
