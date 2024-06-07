@@ -34,7 +34,6 @@ async function loadUsers() {
  */
 function showOverlay() {
     if (!getCurrentUser()) {
-        console.log("no user");
         document.getElementById('main').classList.add('hide-scroll');
         document.getElementById("blueOverlay").style.display = "flex";
         startAnimation();
