@@ -788,7 +788,8 @@ input {
 @media screen and (max-width: 801px) {
   .right-side {
     display: none;
-  }
+  } 
+
 
   .contacts-container-outer {
     display: flex;
@@ -805,7 +806,7 @@ input {
 
   .contact-list {
     height: 80%;
-  
+  }
 }
 
 @media screen and (max-width: 350px) {
