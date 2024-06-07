@@ -809,8 +809,12 @@ input {
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 380px) {
   .contacts-container {
     padding-left: 24px;
+  }
+
+  .contact-list {
+    padding-left: 58px;
   }
 }
