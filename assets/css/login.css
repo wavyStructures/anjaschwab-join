@@ -12,7 +12,7 @@
 .loginHeader {
   position: fixed;
   top: 67px;
-  right: 86px; 
+  right: 86px;
   display: flex;
   justify-content: end;
   width: 100vw;
@@ -58,7 +58,7 @@
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
-.login-box input::placeholder{
+.login-box input::placeholder {
   color: #d1d1d1;
 }
 
@@ -70,13 +70,10 @@
 .loginH1 {
   font-size: 48px;
   font-weight: 700;
-  padding-bottom: 16px;;
-  /* margin-top: 0;
-  margin-bottom: 16px; */
-  /* border-bottom: 3px solid var(--clr-main) */
+  padding-bottom: 16px;
 }
 
-.innerLoginBox{
+.innerLoginBox {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -90,7 +87,6 @@
   z-index: -1;
   /* left: 50%; */
 }
-
 
 .loginInputField {
   display: flex;
@@ -117,22 +113,13 @@ input[type="password"]:focus {
   outline: none;
 }
 
-.checkboxBox{
+.checkboxBox {
   padding-top: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   width: min-content;
-}
-
-.rememberMeBox{
-  display: flex;
-  align-items: center;
-  
-  background-color: red;
-  width: min-content;
-  cursor: pointer;
 }
 
 .custom-checkbox {
@@ -145,20 +132,17 @@ input[type="password"]:focus {
   height: 24px;
   font-size: 16px;
   font-weight: 400;
-;
 }
 
 .custom-checkbox > img:hover {
   cursor: pointer;
   filter: drop-shadow(0px 0px 6px rgba(69, 137, 255, 0.6));
-  /* filter: drop-shadow(0px 0px 4px #333); */
 }
 
 .loginButtonsBox {
   display: flex;
   gap: 35px;
   justify-content: center;
-  /* margin-bottom: 48px; */
 }
 
 .loginButtons {
@@ -175,10 +159,6 @@ input[type="password"]:focus {
   background-color: var(--clr-main);
   gap: 10px;
 }
-
-/* .loginButtonUser {
-   margin-left: 27.5px; 
-} */
 
 .loginButtonUser:hover,
 .signUpButton:hover {
@@ -241,22 +221,21 @@ input[type="password"]:focus {
   transition: all 1s ease-out;
 }
 
-.goal{
-  transform: translate(0,0);
-  transition: all 1s ease-out
+.goal {
+  transform: translate(0, 0);
+  transition: all 1s ease-out;
 }
 
-#logo.goal{
+#logo.goal {
   top: 37px;
   left: 38px;
 }
 
-.goal img{
+.goal img {
   height: 78px;
   width: 64px;
-  transition: all 3s ease-out
+  transition: all 3s ease-out;
 }
-
 
 .blue-overlay {
   position: fixed;
@@ -267,41 +246,10 @@ input[type="password"]:focus {
   background-color: var(--clr-main);
   color: #fff;
   opacity: 1;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   overflow: hidden;
   animation: fadingOverlay 5s ease-in-out;
+  z-index: 1;
 }
-
-/* .logo-animation { */
-/* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-/* animation: move-logo 2s ease-in-out; */
-/* } */
-
-/* @keyframes move-logo {
-  from {
-    transform: translate(0px, 0px);
-    width: 250px;
-    height: 250px;
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-160px, -415px);
-    width: 150px;
-    height: 150px;
-    opacity: 0.5;
-  }
-  to {
-    transform: translate(-235px, 77px);
-    width: 50px;
-    height: 50px;
-    opacity: 0;
-  }
-} */
 
 .logo-animation {
   animation: move-logo 2s forwards;
@@ -316,69 +264,8 @@ input[type="password"]:focus {
   }
 }
 
-/*
-•	320px — 480px: Mobile devices
-•	481px — 768px: iPads, Tablets
-•	769px — 1024px: document.getElementById('') screens, laptops
-•	1025px — 1200px: Desktops, large screens
-•	1201px and more —  Extra large screens, TV
-*/
-
-.msgBox {
-  display: none;
-  color: red;
-  width: 100px;
-  height: 100px;
-
-  /* confirmation of reset password process */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  position: relative;
-  width: 326px;
-  height: 74px;
-
-  /* nuevo */
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.1));
-
-  /* Frame 73 */
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-
-  width: 326px;
-  height: 74px;
-
-  /* Version 2/main color */
-  background: #4589ff;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-
-  /* You Signed Up successfully */
-
-  width: 289px;
-  height: 28px;
-
-  /* Version 2/t5 */
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: 120%;
-  /* identical to box height, or 28px */
-
-  color: #ffffff;
-}
-
 /*/////////////////////////MOBILE///////////////////////////*/
-
-@media (max-width: 970px){
+@media (max-width: 970px) {
   .joinLogoBlue img {
     width: 64px;
     height: 78px;
@@ -405,18 +292,17 @@ input[type="password"]:focus {
     width: auto;
   }
 
-.loginButtonsBox {
-  flex-direction: column;
-  white-space: nowrap;
-  justify-content: center;
-  align-items: center;
-  button {
-    width: 180px;
-    height: 48px;
-    gap: 10px;
-    padding: 10px 10px;
-    /* margin: 0 0 21px 0; */
-    text-align: center;
+  .loginButtonsBox {
+    flex-direction: column;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    button {
+      width: 180px;
+      height: 48px;
+      gap: 10px;
+      padding: 10px 10px;
+      text-align: center;
     }
   }
   .joinLogoBlue {
@@ -457,15 +343,12 @@ input[type="password"]:focus {
   .login-box {
     padding: 32px 16px;
   }
-
 }
 
 @media (max-width: 480px) {
-
   .signUpField {
     display: none;
   }
-
 
   .joinLogoBlue img {
     width: 64px;
@@ -495,7 +378,7 @@ input[type="password"]:focus {
     min-width: 66px;
     white-space: nowrap;
   }
-  .loginInputField{
+  .loginInputField {
     width: 250px;
   }
   .loginButtonsBox {
@@ -539,7 +422,6 @@ input[type="password"]:focus {
 
   .loginH1 {
     font-size: 48px;
-    /* margin-bottom: 8px; */
   }
 
   .loginButtons {

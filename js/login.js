@@ -8,12 +8,18 @@ async function loginInit() {
 }
 
 
+/**
+ * Checks if a user was previously registered by retrieving the 'newMail' item from localStorage.
+ * If the item exists, it sets the value of the 'loginEmailInput' element to the retrieved email and removes the 'newMail' item from localStorage.
+ */
 function checkIfUserWasPreviouslyRegistered() {
     if (localStorage.getItem('newMail')) {
         document.getElementById('loginEmailInput').value = localStorage.getItem('newMail');
         localStorage.removeItem('newMail');
     }
 }
+
+
 /**
  * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
  * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
@@ -23,6 +29,9 @@ async function loadUsers() {
 }
 
 
+/**
+ * Shows the overlay if the user is not logged in.
+ */
 function showOverlay() {
     if (!getCurrentUser()) {
         console.log("no user");
@@ -35,6 +44,7 @@ function showOverlay() {
     }
 }
 
+
 /**
  * Executes an animation by displaying a blue overlay and adding a logo animation class to the logo element after a delay of 3 seconds.
  */
@@ -46,12 +56,15 @@ async function startAnimation() {
             setTimeout(() => {
                 resolve();
                 hideOverlay();
-            }, 1000); // Wait for the logo animation to finish (2 seconds)
-        }, 1000); // Wait for 3 seconds before starting the animation
-
+            }, 1000);
+        }, 9000);
     });
 }
 
+
+/**
+ * Hiding the blue overlay
+ */
 function hideOverlay() {
     // document.getElementById('loginMainContainer').style.overflow = 'auto';
     document.getElementById("blueOverlay").style.display = "none";
@@ -87,6 +100,11 @@ async function loginUser() {
     return false;
 }
 
+
+/**
+ * Sets the value of the 'rememberedUser' key in the localStorage if the 'loginCheckbox' element has the 'checked' attribute.
+ * @param {string} name - The username to be stored in the 'rememberedUser' object.
+ */
 function setRememberMe(name) {
     if (document.getElementById('loginCheckbox').hasAttribute('checked')) {
         localStorage.setItem('rememberedUser', JSON.stringify({ username: name }));
@@ -127,38 +145,4 @@ function gotoSignUp() {
     switchPage('signUp.html');
 }
 
-// let users = [
-//     {
-//         id: 1,
-//         name: "anton mayer",
-//         mail: "antom@gmail.com",
-//         password: 'anton',
-//         phone: "+49 1111 111 11 1",
-//         contactColor: "",
-//     },
-//     {
-//         id: 2,
-//         name: "anja schulz",
-//         mail: "schulz@hotmail.com",
-//         password: 'anja',
-//         phone: "+49 1111 111 11 2",
-//         contactColor: "#c2e59c",
-//     },
-//     {
-//         id: 3,
-//         name: "benedikt ziegler",
-//         mail: "benedikt@gmail.com",
-//         password: 'benedikt',
-//         phone: "+49 1111 111 11 3",
-//         contactColor: "#ffcc80",
-//     }];
 
-
-
-
-// function setDefaultInputs() {
-//     let email = document.getElementById('loginEmailInput');
-//     let password = document.getElementById('loginPasswordInput');
-//     email.value = "benedikt@gmail.com";
-//     password.value = "benedikt";
-// }
