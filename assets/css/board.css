@@ -761,7 +761,14 @@ progress{
     .openCardContainer[editing] {
         
         .addTaskBodyLeft {
-            padding-inline: 18px;
+            /* padding-inline: 18px; */
+            width: 100%;
+            padding:0;
+            padding-inline: 0;
+        }
+
+        ::-webkit-scrollbar{
+            display: none;
         }
     }
 
@@ -769,7 +776,6 @@ progress{
         width: 396px;
         padding: 32px 14px 32px 24px;
 
-        
         .openCardInnerContainer *{
             font-size: 1rem;        
         }
@@ -781,10 +787,10 @@ progress{
         .clearBtn{
             display: none;
         }
-    
+
         .addTaskBody{
             font-size: medium;
-    
+
             ::-webkit-scrollbar{
                 display: none;
             }
@@ -796,15 +802,15 @@ progress{
         .addTask-custom-select{
             font-size: medium;
         }
-    
+
         .addTaskPriorityButtonContainer{
             gap: 5px;
         }
-    
+
         .addTaskPriorityButton{
             width: 100px;
             font-size: medium;
-    
+
              img{
                 width: 16px;
              };
@@ -813,7 +819,8 @@ progress{
 }
 
 @media (max-width: 450px) {
-
+    
+    .openCardContainer,
     .openCardContainer[editing] {
 
         width: clamp(290px, 100%, 400px);
@@ -835,19 +842,23 @@ progress{
             top: 12px;
             right: 12px;
         }
-        .openCardContainer{
-            width: clamp(290px, 100%, 400px);
-        }
+
     }
 }
 
-@media (max-width: 400px) {
-    .openCardContainer[editing] {
-        padding-inline: 16px;        
-    }
-}
-@media (max-width: 320px) {
+
+@media (max-width: 330px) {
     .cardTitle{
         font-size: 2rem !important;
+    }
+
+    .openCardContainer[editing] {
+        padding:5px;
+        
+        .boardEditTaskHeader,
+        .addTaskBodyRight{
+            padding: 10px
+        }
+
     }
 }
