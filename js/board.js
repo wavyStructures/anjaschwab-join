@@ -370,7 +370,7 @@ function renderSubtask(task) {
     if (countSubtasks != 0) {
         return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
     }else{
-        // console.log("parent element have to be d-none");
+        return ""// console.log("parent element have to be d-none");
     }
 }
 
