@@ -451,9 +451,9 @@ function renderOpenCardHTML(task){
                 <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
             </div>
         </div>
-        <div id="openCardAssignedToContainer" class="openCardAssignedToContainer">
+        <div id="openCardAssignedToContainer">
         </div>
-        <div id="openCardSubtasksContainer" class="openCardSubtasksContainer">
+        <div id="openCardSubtasksContainer">
         </div>
         <div class="openCardDeleteEditContainer">
             <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
@@ -479,6 +479,7 @@ function renderOpenCardHTML(task){
 function renderContactsToOpenCard(task) {
     let container = document.getElementById('openCardAssignedToContainer');
     container.innerHTML = `<span class="openCardText">Assigned To:</span><div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>`;
+    container.classList.add("openCardAssignedToContainer");
 	let content = document.getElementById("openCardAssignedToContactsContainer");
 	content.innerHTML = "";
 
@@ -499,8 +500,8 @@ function renderContactsToOpenCard(task) {
  */
 function renderSubtasksToOpenCard(task){
     let container = document.getElementById('openCardSubtasksContainer');
-    console.log(container);
     container.innerHTML = `<span class="openCardText">Subtasks:</span><div id="openCardSubtasks"></div>`
+    container.classList.add("openCardSubtasksContainer");
     let content = document.getElementById('openCardSubtasks');
 
     content.innerHTML = '';
