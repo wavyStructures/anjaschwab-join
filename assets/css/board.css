@@ -451,9 +451,11 @@ progress{
 .openCardContainer{
     position: absolute;
     top: 30px;
-    left:calc(50% - 250px);
+    left: 50%;
+    transform: translateX(-50%);
     width: 528px;
-    height: calc(100% - 50px);
+    height: min-content;
+    max-height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -636,7 +638,7 @@ progress{
 }
 
 .openCardContainer[editing]{
-    background-color: lightgray;
+    /* background-color: lightgray; */
 
     .boardEditTaskHeader{
         display: flex;
@@ -735,12 +737,10 @@ progress{
         left: 20px;
         height: 95%;
         border-radius: 30px;
-        
         display: flex;
         flex-direction: column;
         align-items: center;
-        
-        
+
         .createBtn {
             right: 0;
         }
@@ -756,12 +756,23 @@ progress{
         justify-content: flex-start;
         padding: 10px;
     }
+
+    .openCardContainer{
+        width: 396px;
+
+        .openCardInnerContainer *{
+            font-size: 1rem;        
+        }
+
+        .cardTitle{
+            font-size: 2.25rem;
+        }
+    }
 }
 
 @media (max-width: 450px) {
 
     .addTaskHoverContainer{
-
         .boardAddTaskHeader{
             padding: 20px;
             justify-content: center;
@@ -784,5 +795,15 @@ progress{
         right:0;
         height: 100%;
         border-radius: 0;
+    }
+
+    .openCardContainer{
+        width: clamp(290px, 100%, 400px);
+    }
+}
+
+@media (max-width: 320px) {
+    .cardTitle{
+        font-size: 2rem !important;
     }
 }
