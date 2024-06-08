@@ -433,39 +433,41 @@ async function closeCard(){
  */
 function renderOpenCardHTML(task){
     return /*html*/`
-    <div class="cardTypeAndCloseBtn">
-        <div class="cardType">${task['type']}</div>
+    <div class="boardAddTaskCloseHoverOuterContainer">
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
-    <div class="cardTitle">${task['title']}</div>
-    <div class="openCardDescription">${task['description']}</div>
-    <div class="openCardTextBox">
-        <span class="openCardText">Due Date:</span>
-        <span class="openCardValue">${task['dueDate']}</span>
-    </div>
-    <div class="openCardTextBox">
-        <span class="openCardText">Priority:</span>
-        <div class="openCardPriority">
-            <span class="openCardValue">${task['priority']}</span>
-            <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
+    <div class="openCardInnerContainer">
+        <div class="cardType">${task['type']}</div>
+        <div class="cardTitle">${task['title']}</div>
+        <div class="openCardDescription">${task['description']}</div>
+        <div class="openCardTextBox">
+            <span class="openCardText">Due Date:</span>
+            <span class="openCardValue">${task['dueDate']}</span>
         </div>
-    </div>
-    <div class="openCardAssignedToContainer"><span class="openCardText">Assigned To:</span>
-        <div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>
-    </div>
-    <div class="openCardSubtasksContainer">
-        <span class="openCardText">Subtasks:</span>
-        <div id="openCardSubtasks"></div>
-    </div>
-    <div class="openCardDeleteEditContainer">
-        <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
-            <div class="openCardImgDiv pointer" id="openCardImgDelete"> </div>
-            <span>Delete</span>
+        <div class="openCardTextBox">
+            <span class="openCardText">Priority:</span>
+            <div class="openCardPriority">
+                <span class="openCardValue">${task['priority']}</span>
+                <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
+            </div>
         </div>
-        <div class="vLine"></div>
-        <div class="openCardEditContainer"  onclick='openCardEdit(${task.id})'>
-            <div class="openCardImgDiv pointer" id="openCardImgEdit"> </div>
-            <span>Edit</span>
+        <div class="openCardAssignedToContainer"><span class="openCardText">Assigned To:</span>
+            <div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>
+        </div>
+        <div class="openCardSubtasksContainer">
+            <span class="openCardText">Subtasks:</span>
+            <div id="openCardSubtasks"></div>
+        </div>
+        <div class="openCardDeleteEditContainer">
+            <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
+                <div class="openCardImgDiv pointer" id="openCardImgDelete"> </div>
+                <span>Delete</span>
+            </div>
+            <div class="vLine"></div>
+            <div class="openCardEditContainer"  onclick='openCardEdit(${task.id})'>
+                <div class="openCardImgDiv pointer" id="openCardImgEdit"> </div>
+                <span>Edit</span>
+            </div>
         </div>
     </div>
         `

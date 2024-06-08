@@ -64,7 +64,6 @@
 
 }
 
-
 .boardAddTaskHeader{
     display: flex;
     flex-direction: row;
@@ -76,20 +75,25 @@
 }
 
 .boardAddTaskCloseHoverContainer{
-    position: fixed;
-    right:24px;
-    top: 24px;
+    display: flex;
+    justify-self:right;
+    position: relative;
     background-image: url('../img/icon-close.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 32px;
     aspect-ratio: 1;
     cursor: pointer;
-
     &:hover{
         background-image: url('../img/icon-close_hover.png');
 
     }
+}
+
+.boardAddTaskCloseHoverOuterContainer{
+    display: flex;
+    width: 100%;
+    justify-content: right;
 }
 
 .boardTopContainer{
@@ -452,24 +456,16 @@ progress{
     height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 5px;
     border-radius: 30px;
-    padding: 48px 40px 48px 40px;
+    padding: 48px 30px 48px 40px;
     background-color: lightblue;
     background-color: white;
     font-size: 1.188rem;
     z-index: 1000;
     cursor: default;
-
-    .boardAddTaskCloseHoverContainer{
-        position: inherit;
-    }
-
-    .cardTypeAndCloseBtn{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    display: flex;
+    flex-direction: column;
 
     .cardTitle{
         color: black;
@@ -481,6 +477,14 @@ progress{
         font-size: 1.313rem;
         font-weight: 400;
     }
+}
+
+.openCardInnerContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .openCardTextBox{
