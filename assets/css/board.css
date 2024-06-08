@@ -758,9 +758,18 @@ progress{
         padding: 10px;
     }
 
+    .openCardContainer[editing] {
+        
+        .addTaskBodyLeft {
+            padding-inline: 18px;
+        }
+    }
+
     .openCardContainer{
         width: 396px;
+        padding: 32px 14px 32px 24px;
 
+        
         .openCardInnerContainer *{
             font-size: 1rem;        
         }
@@ -805,6 +814,10 @@ progress{
 
 @media (max-width: 450px) {
 
+    .openCardContainer[editing] {
+
+        width: clamp(290px, 100%, 400px);
+    }
     .addTaskHoverContainer{
         .boardAddTaskHeader{
             padding: 20px;
@@ -816,7 +829,7 @@ progress{
             border-radius: 0;
         }
         .addTaskBodyLeft{
-            padding-inline: 10px;
+            padding-inline: 20px;
         }
         .boardAddTaskCloseHoverContainer{
             top: 12px;
@@ -828,6 +841,11 @@ progress{
     }
 }
 
+@media (max-width: 400px) {
+    .openCardContainer[editing] {
+        padding-inline: 16px;        
+    }
+}
 @media (max-width: 320px) {
     .cardTitle{
         font-size: 2rem !important;
