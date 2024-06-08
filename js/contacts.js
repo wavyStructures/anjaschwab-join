@@ -406,6 +406,9 @@ function generateContactsContainerHTML() {
       <div class="contact-list" id="contactList">
       </div>
   </div>
+  <div class="openEditDeleteResponsive">
+    <img src="./assets/img/Menu Contact options.png" alt="">
+  </div>
 </div>
 <section class="right-side d-none" id="rightSide">
 

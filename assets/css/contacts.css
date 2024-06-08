@@ -703,6 +703,10 @@ input {
     z-index: 1000999; /* Stellen Sie sicher, dass das Overlay Ć¼ber anderen Elementen liegt */
 }
 
+.openEditDeleteResponsive {
+  display: none;
+}
+
 @media screen and (max-width: 1199px) {
   .contact-details-name {
     font-size: 2.25rem;
@@ -789,6 +793,27 @@ input {
   .right-side {
     display: none;
   } 
+
+  .button-add-contact-card {
+    display: none;
+  }
+
+  .openEditDeleteResponsive {
+    display: block;
+    position: absolute;
+    bottom: 4vh;
+    right: 3.5vw;
+    height: 10vh;
+    width: 10vh;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .openEditDeleteResponsive img{
+
+  }
 
 
   .contacts-container-outer {
