@@ -671,6 +671,10 @@ input {
   cursor: pointer;
 }
 
+.editDelete {
+  display: none;
+}
+
 @media screen and (max-width: 1199px) {
   .contact-details-name {
     font-size: 2.25rem;
@@ -751,7 +755,17 @@ input {
 
 @media screen and (max-width: 801px) {
   .right-side {
-    display: none;
+    position: absolute;
+    width: 100vw;
+    top: 10svh;
+    z-index: 9;
+    height: 80svh;
+    padding-left: unset;
+    max-width: unset;
+    align-items: center;
+    justify-content: flex-start;
+    left: 0;
+    background-color: #005dff;
   }
 
   .button-add-contact-card {
