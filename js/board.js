@@ -390,8 +390,8 @@ function openCard(taskId){
     let task = getTaskOutOfId(taskId)
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
-    renderContactsToOpenCard(task);
-    renderSubtasksToOpenCard(task);
+    if (task.assignedTo.length != 0) renderContactsToOpenCard(task);
+    if(task.subtasks.length != 0) renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
 
     printValueFromSpecificCard('Task open', taskId);
@@ -451,12 +451,9 @@ function renderOpenCardHTML(task){
                 <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
             </div>
         </div>
-        <div class="openCardAssignedToContainer"><span class="openCardText">Assigned To:</span>
-            <div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>
+        <div id="openCardAssignedToContainer" class="openCardAssignedToContainer">
         </div>
-        <div class="openCardSubtasksContainer">
-            <span class="openCardText">Subtasks:</span>
-            <div id="openCardSubtasks"></div>
+        <div id="openCardSubtasksContainer" class="openCardSubtasksContainer">
         </div>
         <div class="openCardDeleteEditContainer">
             <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
@@ -480,6 +477,8 @@ function renderOpenCardHTML(task){
  * @param {Object} task - The task object containing the assigned contacts.
  */
 function renderContactsToOpenCard(task) {
+    let container = document.getElementById('openCardAssignedToContainer');
+    container.innerHTML = `<span class="openCardText">Assigned To:</span><div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>`;
 	let content = document.getElementById("openCardAssignedToContactsContainer");
 	content.innerHTML = "";
 
@@ -499,9 +498,12 @@ function renderContactsToOpenCard(task) {
  * @param {object} task - The task object containing subtasks to render.
  */
 function renderSubtasksToOpenCard(task){
+    let container = document.getElementById('openCardSubtasksContainer');
+    console.log(container);
+    container.innerHTML = `<span class="openCardText">Subtasks:</span><div id="openCardSubtasks"></div>`
     let content = document.getElementById('openCardSubtasks');
+
     content.innerHTML = '';
-    
     task['subtasks'].forEach((subtask, index) => {
         let completed = subtask['completed'] ? 'completed' : '';
 
