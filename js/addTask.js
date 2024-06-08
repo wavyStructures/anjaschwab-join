@@ -377,13 +377,15 @@ function addTaskDueDateOpenCalendear(){
 * @param {number} id - The id of the task to assign the contact to.
 */
 function assignContactToTask(id){
-    let dropdownContact = document.getElementById('assignedToContact' + id);
-    let dropdownCheckboxImage = dropdownContact.lastElementChild;
+    if (contacts.find(contact => contact.id == id)){
+        let dropdownContact = document.getElementById('assignedToContact' + id);
+        let dropdownCheckboxImage = dropdownContact.lastElementChild;
 
-    setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
-    toggleAssignedContactsContainer();
-    pushContactToTempAssignedContacts(id);
-    renderAssignedContactsContainer();
+        setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
+        toggleAssignedContactsContainer();
+        pushContactToTempAssignedContacts(id);
+        renderAssignedContactsContainer();
+    }
 }
 
 

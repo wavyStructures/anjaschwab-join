@@ -725,6 +725,7 @@ progress{
     .addTaskBodyTop,
     .addTaskBodyBottom{
         max-width: 400px;
+        font-size: medium;
     }
 
     .addTaskBtnContainer{
@@ -767,6 +768,38 @@ progress{
         .cardTitle{
             font-size: 2.25rem;
         }
+
+        .clearBtn{
+            display: none;
+        }
+    
+        .addTaskBody{
+            font-size: medium;
+    
+            ::-webkit-scrollbar{
+                display: none;
+            }
+        }
+        .addTaskBodyTop,
+        .addTaskBodyBottom{
+            width: 300px;
+        }
+        .addTask-custom-select{
+            font-size: medium;
+        }
+    
+        .addTaskPriorityButtonContainer{
+            gap: 5px;
+        }
+    
+        .addTaskPriorityButton{
+            width: 100px;
+            font-size: medium;
+    
+             img{
+                width: 16px;
+             };
+        }
     }
 }
 
@@ -776,6 +809,11 @@ progress{
         .boardAddTaskHeader{
             padding: 20px;
             justify-content: center;
+            top:0;
+            left:0;
+            right:0;
+            height: 100%;
+            border-radius: 0;
         }
         .addTaskBodyLeft{
             padding-inline: 10px;
@@ -784,21 +822,9 @@ progress{
             top: 12px;
             right: 12px;
         }
-    }
-}
-
-
-@media (max-width: 450px) {
-    .addTaskHoverContainer{
-        top:0;
-        left:0;
-        right:0;
-        height: 100%;
-        border-radius: 0;
-    }
-
-    .openCardContainer{
-        width: clamp(290px, 100%, 400px);
+        .openCardContainer{
+            width: clamp(290px, 100%, 400px);
+        }
     }
 }
 
