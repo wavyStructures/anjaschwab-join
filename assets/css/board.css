@@ -452,7 +452,7 @@ progress{
     position: absolute;
     top: 30px;
     left:calc(50% - 250px);
-    min-width: 525px;
+    width: 528px;
     height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
