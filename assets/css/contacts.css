@@ -759,19 +759,12 @@ input {
   }
 
   .openEditDeleteResponsive {
-    display: block;
-    position: absolute;
-    bottom: 4vh;
-    right: 3.5vw;
-    height: 10vh;
-    width: 10vh;
-    z-index: 1;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    display: flex;
   }
 
   .openEditDeleteResponsive img {
+    max-width: 78px;
+    max-height: 78px;
   }
 
   .contacts-container-outer {
@@ -789,6 +782,45 @@ input {
 
   .contact-list {
     height: 80%;
+  }
+
+  .editDelete {
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    position: absolute;
+    bottom: 4vh;
+    right: 3.5vw;
+    height: 10vh;
+    width: 12vw;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 20px 20px 0 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    padding-top: 0;
+    padding-left: 18px;
+  }
+
+  .editDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .deleteDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    cursor: pointer;
   }
 }
 

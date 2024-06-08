@@ -409,6 +409,17 @@ function generateContactsContainerHTML() {
   <div class="openEditDeleteResponsive">
     <img src="./assets/img/Menu Contact options.png" alt="">
   </div>
+  <div class="editDelete" id="editDelete">
+    <div class="editDiv">
+      <img src="./assets/img/icon-edit.png" alt="">
+      <span>Edit</span>
+    </div>
+    <div class="deleteDiv">
+      <img src="./assets/img/icon-delete.png" alt="">
+      <span>Delete</span>
+    </div>
+
+  </div>
 </div>
 <section class="right-side d-none" id="rightSide">
 
