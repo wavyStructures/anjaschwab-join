@@ -209,7 +209,6 @@ input[type="password"]:focus {
 .legalNotice:hover {
   color: var(--clr-text-medium-blue);
   cursor: pointer;
-  /* transform: scaleX(1.2); */
   font-size: 1rem;
 }
 
@@ -218,23 +217,25 @@ input[type="password"]:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
 }
 
 .goal {
   transform: translate(0, 0);
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
 }
 
 #logo.goal {
-  top: 37px;
-  left: 38px;
+  top: 77px;
+  left: 80px;
+  filter: invert(20%);
+  transform: translate(0, 0);
 }
 
 .goal img {
   height: 78px;
   width: 64px;
-  transition: all 3s ease-out;
+  transition: all 3s ease-in-out;
 }
 
 .blue-overlay {
@@ -247,21 +248,7 @@ input[type="password"]:focus {
   color: #fff;
   opacity: 1;
   overflow: hidden;
-  animation: fadingOverlay 5s ease-in-out;
   z-index: 1;
-}
-
-.logo-animation {
-  animation: move-logo 2s forwards;
-}
-
-@keyframes fadingOverlay {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
 
 /*/////////////////////////MOBILE///////////////////////////*/

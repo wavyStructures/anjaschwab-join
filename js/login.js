@@ -33,9 +33,10 @@ async function loadUsers() {
  * Shows the overlay if the user is not logged in.
  */
 function showOverlay() {
+    // document.getElementById("blueOverlay").style.display = "flex";
     if (!getCurrentUser()) {
         document.getElementById('main').classList.add('hide-scroll');
-        document.getElementById("blueOverlay").style.display = "flex";
+
         startAnimation();
     } else {
         console.log("user already logged in");
@@ -55,8 +56,8 @@ async function startAnimation() {
             setTimeout(() => {
                 resolve();
                 hideOverlay();
-            }, 1000);
-        }, 9000);
+            }, 1500);
+        }, 2000);
     });
 }
 
@@ -66,6 +67,7 @@ async function startAnimation() {
  */
 function hideOverlay() {
     // document.getElementById('loginMainContainer').style.overflow = 'auto';
+    document.getElementById('main').classList.remove('hide-scroll');
     document.getElementById("blueOverlay").style.display = "none";
 }
 
