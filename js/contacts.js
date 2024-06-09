@@ -14,28 +14,25 @@ async function getContactsFromRemoteStorage() {
   }
 }
 
-
 /**
  * Retrieves contacts from the users array and sorts them by name.
  *
  * @return {Array} An array of contacts sorted by name.
  */
-function getContactsOutOfUsers(){
+function getContactsOutOfUsers() {
   temp_contacts = [];
-  users.forEach(user => {
-    temp_contacts.push(
-      {
-      "contactColor": user.contactColor,
-      "id": user.id,
-      "mail": user.mail,
-      "name": user.name,
-      "phone": user.phone
+  users.forEach((user) => {
+    temp_contacts.push({
+      contactColor: user.contactColor,
+      id: user.id,
+      mail: user.mail,
+      name: user.name,
+      phone: user.phone,
     });
   });
   users = [];
   contacts = sortContactsByName(temp_contacts);
 }
-
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -53,41 +50,38 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
-
 /**
  * Saves a contact by pushing it to the contacts array and storing it in local storage.
  */
 async function saveContact() {
-	await getContactsFromRemoteStorage();
-	if (checkMailExist(document.getElementById("contactMail").value)) {
-		console.warn("MAIL EXISTIERT!!!!!");
-	} else {
-		try {
-			createBtn.disabled = true;
-			const newId = getNextId(users);
-			users.push({
-				id: newId,
-				name: contactName.value,
-				mail: contactMail.value,
-				phone: contactPhone.value,
-				contactColor: generateRandomColor(),
-				password: getFirstNameForDefaultPassword(contactName.value),
-			});
+  await getContactsFromRemoteStorage();
+  if (checkMailExist(document.getElementById("contactMail").value)) {
+    console.warn("MAIL EXISTIERT!!!!!");
+  } else {
+    try {
+      createBtn.disabled = true;
+      const newId = getNextId(users);
+      users.push({
+        id: newId,
+        name: contactName.value,
+        mail: contactMail.value,
+        phone: contactPhone.value,
+        contactColor: generateRandomColor(),
+        password: getFirstNameForDefaultPassword(contactName.value),
+      });
 
-			await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-			getContactsOutOfUsers();
+      await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+      getContactsOutOfUsers();
       users = [];
-			resetContactForm();
-			closeOverlay("addContact");
-		} catch (error) {
+      resetContactForm();
+      closeOverlay("addContact");
+    } catch (error) {
       console.error("Error saving contact:", error);
-		}
-		displaySuccessMessage("Contact successfully created");
+    }
+    displaySuccessMessage("Contact successfully created");
     loadContacts();
-	}
+  }
 }
-
 
 /**
  * Returns the first name from a given full name string for use as a default password.
@@ -96,7 +90,7 @@ async function saveContact() {
  * @return {string} The first name extracted from the full name string.
  */
 function getFirstNameForDefaultPassword(name) {
-  return name.split(' ')[0];
+  return name.split(" ")[0];
 }
 
 /**
@@ -106,8 +100,8 @@ function getFirstNameForDefaultPassword(name) {
  * @return {void} This function does not return a value.
  */
 function displaySuccessMessage(message) {
-  const overlay = document.createElement('div');
-  overlay.className = 'contact-succ-created-overlay';
+  const overlay = document.createElement("div");
+  overlay.className = "contact-succ-created-overlay";
   overlay.innerHTML = `
     <div class="contact-succesfully-created-wrapper">
       <div class="contact-succesfully-created">
@@ -119,18 +113,17 @@ function displaySuccessMessage(message) {
 
   // Trigger slide-in
   setTimeout(() => {
-    overlay.classList.add('slide-in'); // Overlay einblenden
+    overlay.classList.add("slide-in"); // Overlay einblenden
 
     // Timeout, um den Container nach 3 Sekunden wieder auszublenden
     setTimeout(() => {
-      overlay.classList.add('slide-out'); // Animation zum Ausblenden hinzufügen
+      overlay.classList.add("slide-out"); // Animation zum Ausblenden hinzufügen
       setTimeout(() => {
         overlay.remove(); // Overlay aus dem DOM entfernen
       }, 500); // Timeout für die Dauer der Ausblendanimation
     }, 2000); // Timeout für 3 Sekunden Anzeigedauer
   }, 10); // Minimaler Timeout, um das Hinzufügen der Klasse zu triggern
 }
-
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -145,7 +138,6 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
 /**
  * Resets the contact form by clearing the input fields and enabling the create button.
  *
@@ -159,7 +151,6 @@ function resetContactForm() {
   createBtn.disabled = false;
 }
 
-
 /**
  * Initializes the contacts by including the HTML and loading the contacts.
  *
@@ -171,7 +162,6 @@ async function contactsInit() {
   getContactsOutOfUsers();
   loadContacts();
 }
-
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -185,7 +175,6 @@ function loadContacts() {
   createContactsContainer(main);
   renderSortedContacts(main, contacts);
 }
-
 
 /**
  * Sorts an array of contacts by their last name.
@@ -202,7 +191,6 @@ function sortContactsByName(contacts) {
   return sortedContacts;
 }
 
-
 /**
  * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
  *
@@ -217,7 +205,6 @@ function getSecondOrFullName(contact) {
     return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
   }
 }
-
 
 /**
  * Renders the sorted contacts into the main element.
@@ -247,7 +234,6 @@ function renderSortedContacts(main, contacts) {
   });
 }
 
-
 /**
  * Displays the add contact card by removing the d-none class from the corresponding container.
  *
@@ -255,14 +241,12 @@ function renderSortedContacts(main, contacts) {
  * @returns {void}
  */
 function addContactCard() {
-
-  if (!document.getElementById("addContact")){
+  if (!document.getElementById("addContact")) {
     renderAddContacts();
   }
   document.getElementById("addContact").innerHTML = renderAddContactsHTML();
   addOverlay("closeOverlay('addContact')");
 }
-
 
 /**
  * Creates an overlay element and appends it to the document body. The overlay element
@@ -273,17 +257,16 @@ function addContactCard() {
  * @param {string} functionToAdd - The function to be called when the overlay is clicked.
  * @return {void} This function does not return a value.
  */
-function addOverlay(functionToAdd){
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
+function addOverlay(functionToAdd) {
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
 
-    const bodyContent = document.getElementById("bodyContent");
-    overlay.setAttribute("onclick", functionToAdd);
+  const bodyContent = document.getElementById("bodyContent");
+  overlay.setAttribute("onclick", functionToAdd);
 
-    document.body.appendChild(overlay);
-    document.body.style.overflow = "hidden";
+  document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
 }
-
 
 /**
  * Closes an overlay by adding the "move-out-right" class to the container element, removing the class after a delay, and removing the overlay element if it exists. Also enables scrolling on the body element and removes the container element.
@@ -292,19 +275,18 @@ function addOverlay(functionToAdd){
  * @return {void}
  */
 function closeOverlay(id) {
-	const container = document.getElementById(id);
-	container.classList.add("move-out-right");
-	setTimeout(() => {
-		addContactContainer.classList.remove("move-out-right");
-	}, 125);
-	const overlay = document.querySelector(".overlay");
-	if (overlay) overlay.remove(); 
-  
-	document.body.style.overflow = "auto";
+  const container = document.getElementById(id);
+  container.classList.add("move-out-right");
+  setTimeout(() => {
+    addContactContainer.classList.remove("move-out-right");
+  }, 125);
+  const overlay = document.querySelector(".overlay");
+  if (overlay) overlay.remove();
 
-	removeContainer(id);
+  document.body.style.overflow = "auto";
+
+  removeContainer(id);
 }
-
 
 /**
  * Generates initials from a full name.
@@ -325,7 +307,6 @@ function getInitials(name) {
   return returnName;
 }
 
-
 /**
  * Creates a letter element representing the first letter of a group of contacts.
  *
@@ -343,7 +324,6 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
-
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
@@ -355,7 +335,6 @@ function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
-
 
 /**
  * Creates a parting line element and appends it to the contact list within the main element.
@@ -376,7 +355,6 @@ function createPartingLine(main) {
   partingLineContainer.appendChild(partingLine);
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
-
 
 /**
  * Generates HTML code for the contacts container.
@@ -406,51 +384,67 @@ function generateContactsContainerHTML() {
       <div class="contact-list" id="contactList">
       </div>
   </div>
-  <div class="openEditDeleteResponsive">
-    <img src="./assets/img/Menu Contact options.png" alt="">
-  </div>
-  <div class="editDelete" id="editDelete">
-    <div class="editDiv">
-      <img src="./assets/img/icon-edit.png" alt="">
-      <span>Edit</span>
-    </div>
-    <div class="deleteDiv">
-      <img src="./assets/img/icon-delete.png" alt="">
-      <span>Delete</span>
-    </div>
-
-  </div>
 </div>
+<div class="mobileContactDetails">
+  <div class="contact-details">
+    <div class="contact-details-header">
+      <div class="contact-details-badge-group">
+        <div class="contact-details-badge">
+          <div class="contact-details-badge-initials"></div>
+        </div>
+        <div class="contact-details-badge-name"></div>
+      </div>
+      <div class="openEditDelete">
+        <img src="./assets/img/Menu Contact options.png" alt="">
+    	</div>
+    </div>
+    <div class="contact-information">
+      <div class="contact-email-container"></div>
+      <div class="contact-phone-container"></div>
+    </div>
+  </div>
+      <div class="openEditDeleteResponsive">
+      <img src="./assets/img/Menu Contact options.png" alt="">
+    </div>
+    <div class="editDelete" id="editDelete">
+      <div class="editDiv">
+        <img src="./assets/img/icon-edit.png" alt="">
+        <span>Edit</span>
+      </div>
+      <div class="deleteDiv">
+        <img src="./assets/img/icon-delete.png" alt="">
+        <span>Delete</span>
+      </div>
+    </div>
+  </div>
 <section class="right-side d-none" id="rightSide">
 
 </section>
     `;
 }
 
-
 /**
  * Renders the "Add Contact" button by creating a new div element and appending it to the "addContactContainer" element.
  *
  * @return {void} This function does not return a value.
  */
-function renderAddContacts(){
-  let newDiv = document.createElement('div');
-  newDiv.id = 'addContact';
+function renderAddContacts() {
+  let newDiv = document.createElement("div");
+  newDiv.id = "addContact";
   setAttributes(newDiv, {
-    'class':'add-contact',
-    'onclick':'doNotClose(event)'
-  })
-  document.getElementById('addContactContainer').appendChild(newDiv);
+    class: "add-contact",
+    onclick: "doNotClose(event)",
+  });
+  document.getElementById("addContactContainer").appendChild(newDiv);
 }
-
 
 /**
  * Renders the HTML code for the add contact form.
  *
  * @return {string} The HTML code for the add contact form.
  */
-function renderAddContactsHTML(){
-  return /*html*/`
+function renderAddContactsHTML() {
+  return /*html*/ `
         <div class="add-contact-header">
             <div class="add-contact-header-close">
                 <img onclick="closeOverlay('addContact')" src="./assets/img/icon-close_white.png" alt="closeAddContact">
@@ -490,9 +484,8 @@ function renderAddContactsHTML(){
                     </button>
                 </div>
             </form>
-</div>`
+</div>`;
 }
-
 
 /**
  * Creates a new `<div>` element with the id 'editContact' and adds it as a child to the element with the id 'contactMainEdit'.
@@ -500,15 +493,14 @@ function renderAddContactsHTML(){
  *
  * @return {void} This function does not return anything.
  */
-function renderEditContact(){
-  let newDiv = document.createElement('div');
-  newDiv.id = 'editContact';
+function renderEditContact() {
+  let newDiv = document.createElement("div");
+  newDiv.id = "editContact";
   setAttributes(newDiv, {
-    'class':'edit-contact'
-  })
-  document.getElementById('contactMainEdit').appendChild(newDiv);
+    class: "edit-contact",
+  });
+  document.getElementById("contactMainEdit").appendChild(newDiv);
 }
-
 
 /**
  * Renders the HTML code for the edit contact form with the given ID.
@@ -534,7 +526,9 @@ function renderEditContactHTML(id, name, contactColor) {
             <div class="profile-badge-group-add-contact">
                 <div class="profile-badge-add-contact"> 
                 <div class="contact-details-badge" style="background-color: ${contactColor}">
-            <div class="contact-details-badge-initials">${getInitials(name)}</div>
+            <div class="contact-details-badge-initials">${getInitials(
+              name
+            )}</div>
           </div>
                 </div>
             </div>
@@ -561,9 +555,8 @@ function renderEditContactHTML(id, name, contactColor) {
                     </button>
                 </div>
             </form>
-        </div>`
+        </div>`;
 }
-
 
 /**
  * Shows the add contact container by removing the "hidden" class from the element with the id "addContactContainer".
@@ -584,7 +577,6 @@ function showAddContactContainer() {
 function removeContainer(id) {
   document.getElementById(id).remove();
 }
-
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -613,7 +605,6 @@ function createContactCard(main, id, color, initials, name, mail) {
     .querySelector(".contact-list")
     .insertAdjacentHTML("beforeend", cardHTML);
 }
-
 
 /**
  * Generates the HTML code for a contact card.
@@ -647,7 +638,6 @@ function generateContactCardHTML(
   `;
 }
 
-
 /**
  * Capitalizes the first letter of each word in a given name.
  *
@@ -668,7 +658,6 @@ function getNameWithCapitalizedFirstLetter(name) {
   }
 }
 
-
 /**
  * Displays details of the contact with the given ID.
  * @param {number} id - The unique identifier of the contact.
@@ -676,13 +665,18 @@ function getNameWithCapitalizedFirstLetter(name) {
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
+  const contactDetailsHTML = generateContactDetailsHTML(
+    name,
+    mail,
+    phone,
+    id,
+    contactColor
+  );
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
   highlightSelectedContact(id);
 }
-
 
 /**
  * Resets contact card styles to their default values.
@@ -702,7 +696,6 @@ function resetContactCard(card) {
   }
 }
 
-
 /**
  * Resets the styles of all contact cards to their default values.
  *
@@ -711,12 +704,11 @@ function resetContactCard(card) {
  */
 function resetAllContactCards() {
   const allContactCards = document.querySelectorAll(".contact-card");
-  allContactCards.forEach(card => {
+  allContactCards.forEach((card) => {
     resetContactCard(card);
-    card.classList.remove('highlighted');
+    card.classList.remove("highlighted");
   });
 }
-
 
 /**
  * Highlights a contact card by applying specific styles.
@@ -738,7 +730,6 @@ function highlightContactCard(card) {
   }
 }
 
-
 /**
  * Highlights the selected contact card and shows the right side element.
  *
@@ -747,18 +738,17 @@ function highlightContactCard(card) {
 function highlightSelectedContact(id) {
   const selectedContactCard = document.getElementById(`contact-card-${id}`);
   const rightSideElement = document.getElementById("rightSide");
-  
-  if (selectedContactCard.classList.contains('highlighted')){
+
+  if (selectedContactCard.classList.contains("highlighted")) {
     resetAllContactCards();
-    rightSideElement.classList.add('d-none');
+    rightSideElement.classList.add("d-none");
     return;
   }
 
   resetAllContactCards();
-  selectedContactCard.classList.add('highlighted');
+  selectedContactCard.classList.add("highlighted");
   applyHighlight();
 }
-
 
 /**
  * Applies highlighting to the selected contact card and shows the right side element.
@@ -769,16 +759,14 @@ function highlightSelectedContact(id) {
  * @returns {void}
  */
 function applyHighlight() {
-  let allContactCards = document.getElementsByClassName('contact-card');
+  let allContactCards = document.getElementsByClassName("contact-card");
   for (card of allContactCards)
-    if (card.classList.contains('highlighted')) {
+    if (card.classList.contains("highlighted")) {
       highlightContactCard(card);
-    }else{
+    } else {
       resetContactCard(card);
     }
-
 }
-
 
 /**
  * Generates HTML code for displaying contact details.
@@ -795,7 +783,9 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
       <div class="contact-details-header" id="contactDetailsHeader">
         <div class="contact-details-badge-group">
           <div class="contact-details-badge" style="background-color: ${color}">
-            <div class="contact-details-badge-initials">${getInitials(name)}</div>
+            <div class="contact-details-badge-initials">${getInitials(
+              name
+            )}</div>
           </div>
         </div>
         <div class="contact-details-name-group">
@@ -827,7 +817,6 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
   `;
 }
 
-
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -839,7 +828,6 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
-
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -850,7 +838,6 @@ function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
 
-
 /**
  * Updates the color of each contact in the contacts_old array by mapping the colors array to the newColors array.
  *
@@ -858,12 +845,12 @@ function restoreCancelIcon() {
  */
 function changeColor() {
   contacts_old.forEach((contact) => {
-    for(let i = 0; i < colors.length; i++) {
-      if(contact.contactColor == colors[i]) {
+    for (let i = 0; i < colors.length; i++) {
+      if (contact.contactColor == colors[i]) {
         contact.contactColor = newColors[i];
       }
     }
-  })
+  });
 }
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
@@ -874,7 +861,6 @@ async function delAllContacts() {
   contacts = [];
   await remoteStorageSetItem("contacts", JSON.stringify(contacts));
 }
-
 
 let currentContactId = null;
 
@@ -896,9 +882,9 @@ function editContact(id) {
     contact.name = capitalizeWords(contact.name);
 
     editContactCard(contact);
-    document.getElementById('contactName').value = contact.name;
-    document.getElementById('contactMail').value = contact.mail;
-    document.getElementById('contactPhone').value = contact.phone;
+    document.getElementById("contactName").value = contact.name;
+    document.getElementById("contactMail").value = contact.mail;
+    document.getElementById("contactPhone").value = contact.phone;
 
     currentContactId = id; // Setze die aktuelle Kontakt-ID
 
@@ -922,9 +908,9 @@ async function saveEditedContact(id) {
   if (userIndex !== -1) {
     const user = users[userIndex];
 
-    user.name = document.getElementById('contactName').value;
-    user.mail = document.getElementById('contactMail').value;
-    user.phone = document.getElementById('contactPhone').value;
+    user.name = document.getElementById("contactName").value;
+    user.mail = document.getElementById("contactMail").value;
+    user.phone = document.getElementById("contactPhone").value;
 
     console.log(users.findIndex((users) => users.id === id));
 
@@ -935,7 +921,7 @@ async function saveEditedContact(id) {
     await displaySuccessMessage("Contact successfully edited");
     setTimeout(() => {
       window.location.reload();
-    }, 2500); 
+    }, 2500);
   } else {
     console.error("Contact not found with ID:", id);
   }
@@ -947,11 +933,15 @@ async function saveEditedContact(id) {
  * @return {void} This function does not return a value.
  */
 function editContactCard(contact) {
-     if (!document.getElementById('editContact')){
+  if (!document.getElementById("editContact")) {
     renderEditContact();
-   }
-   document.getElementById("editContact").innerHTML = renderEditContactHTML(contact.id, contact.name, contact.contactColor);
-   addOverlay("closeOverlay('editContact')");
+  }
+  document.getElementById("editContact").innerHTML = renderEditContactHTML(
+    contact.id,
+    contact.name,
+    contact.contactColor
+  );
+  addOverlay("closeOverlay('editContact')");
 }
 
 /**
@@ -989,7 +979,7 @@ async function deleteContact(id) {
     await displaySuccessMessage("Contact successfully deleted");
     setTimeout(() => {
       window.location.reload();
-    }, 3000); 
+    }, 3000);
   } else {
     console.error("Contact not found with ID:", id);
   }
