@@ -1,5 +1,6 @@
 let users = [];
 let contacts = [];
+let isMobileView = window.innerWidth <= 801;
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.
@@ -637,10 +638,10 @@ function openContactDetails(id) {
   const { name, mail, phone, contactColor } = contact;
   let contactDetailsHTML;
 
-  if (window.innerWidth > 801) {
-    contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
-  } else {
+  if (isMobileView) {
     contactDetailsHTML = generateContactDetailsMobileHTML(name, mail, phone, id, contactColor);
+  } else {
+    contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
   }
 
   const rightSide = document.getElementById("rightSide");
@@ -653,13 +654,23 @@ function openContactDetails(id) {
  * Updates the content of the rightSide container based on the current window width.
  */
 function updateContactDetails() {
-  if (currentContactId !== null) {
-    openContactDetails(currentContactId); // Aktualisiere den Inhalt basierend auf der aktuellen Kontakt-ID
+  const newIsMobileView = window.innerWidth <= 801;
+  if (newIsMobileView !== isMobileView) {
+    isMobileView = newIsMobileView;
+    if (currentContactId !== null) {
+      openContactDetails(currentContactId); // Aktualisiere den Inhalt basierend auf der aktuellen Kontakt-ID
+    }
   }
 }
 
+
 // Initiale Überprüfung bei Seitenladung
-document.addEventListener("DOMContentLoaded", updateContactDetails);
+document.addEventListener("DOMContentLoaded", () => {
+  isMobileView = window.innerWidth <= 801;
+  if (currentContactId !== null) {
+    openContactDetails(currentContactId);
+  }
+});
 
 // Überprüfung bei Fenstergrößenänderung
 window.addEventListener('resize', updateContactDetails);
