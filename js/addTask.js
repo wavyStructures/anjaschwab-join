@@ -33,7 +33,6 @@ let newTask =
         'title': '',
         'description': '',
         'subtasks': [],
-        'completedSubtasks': [],
         'assignedTo': [],
         'category': 'category-0',
         'priority': '',
@@ -474,7 +473,7 @@ function setCategory(chosenCategory){
 
 
 /**
- * Fetches information for a new card by setting values for id, type, title, description, completed subtasks, assignedTo, category, priority, and due date of a new task.
+ * Fetches information for a new card by setting values for id, type, title, description, assignedTo, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard(){
 
@@ -484,7 +483,6 @@ function collectInformationsForNewCard(){
     }
     newTask.title = getNewTaskTitle();
     newTask.description = getNewTaskDescription();
-    newTask.completedSubtasks = getNewTaskCompletedSubtasks();
     newTask.assignedTo = getNewTaskAssignedTo();
     newTask.dueDate = getNewTaskDueDate();
 }
@@ -547,34 +545,12 @@ function getNewTaskSubtasks(){
 
 
 /**
- * Retrieves the completed subtasks of the new task.
- *
- * @return {Array} An empty array representing the completed subtasks of the new task.
- */
-
-function getNewTaskCompletedSubtasks(){
-    return [];
-}
-
-
-/**
  * Retrieves the assigned contacts for the new task.
  *
  * @return {Array} The assigned contacts for the new task.
  */
 function getNewTaskAssignedTo(){
     return tempAssignedContacts;
-}
-
-
-/**
- * Retrieves the category of the new task.
- *
- * @return {string} The category of the new task.
- */
-function getNewTaskCategory(){
-    //TODO: return the right value
-    return 'todo';
 }
 
 
@@ -586,6 +562,7 @@ function getNewTaskCategory(){
 function getNewTaskDueDate(){
     return document.getElementById('addTaskDueDateInput').value
 }
+
 
 /**
  * Sets the minimum value of the "addTaskDueDateInput" element to the current date.
