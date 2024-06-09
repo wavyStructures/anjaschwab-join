@@ -26,8 +26,9 @@ async function summaryInit() {
  */
 function getLoggedUser() {
     currentUser = getCurrentUser();
-    loggedUser = currentUser.username
-
+    if (currentUser) {
+        loggedUser = currentUser.username
+    }
 }
 
 /**

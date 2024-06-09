@@ -27,11 +27,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-height: 100%; */
-  /* margin: 0 auto auto 0; */
 }
 
-.header{
+.header {
   box-shadow: 0 2px 5.5px rgba(0, 0, 0, 0.2);
   width: 100%;
   z-index: 1;
@@ -121,8 +119,7 @@ a {
 }
 
 @media screen and (max-width: 801px) {
-  .main-wrapper{
-
-    height: calc(100vh - 180px)
+  .main-wrapper {
+    height: calc(100vh - 180px);
   }
 }
