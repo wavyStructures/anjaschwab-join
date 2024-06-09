@@ -385,39 +385,65 @@ function generateContactsContainerHTML() {
       </div>
   </div>
 </div>
-<div class="mobileContactDetails">
-  <div class="contact-details">
-    <div class="contact-details-header">
-      <div class="contact-details-badge-group">
-        <div class="contact-details-badge">
-          <div class="contact-details-badge-initials"></div>
-        </div>
-        <div class="contact-details-badge-name"></div>
-      </div>
-    </div>
-    <div class="contact-information">
-      <div class="contact-email-container"></div>
-      <div class="contact-phone-container"></div>
-    </div>
-  </div>
-      <div class="openEditDeleteResponsive">
-      <img src="./assets/img/Menu Contact options.png" alt="">
-    </div>
-    <div class="editDelete" id="editDelete">
-      <div class="editDiv">
-        <img src="./assets/img/icon-edit.png" alt="">
-        <span>Edit</span>
-      </div>
-      <div class="deleteDiv">
-        <img src="./assets/img/icon-delete.png" alt="">
-        <span>Delete</span>
-      </div>
-    </div>
-  </div>
 <section class="right-side d-none" id="rightSide">
 
 </section>
     `;
+}
+
+function generateContactsContainerMobileHTML() {
+  return /*html*/ `
+  <div id="contactMainEdit" class="contact-main-edit" onclick="doNotClose(event)">
+    
+    </div>
+    <div class="contact-list-container">
+        <div class="add-contact-overlay"></div>
+        <div id="addContactContainer" class="hidden">
+            
+        </div>
+    </div>
+    <div class="contacts-container-outer">
+      <div class="contacts-container" id="contacts-container">
+          <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
+              <div onclick="addContactCard()" class="button-add-contact">
+                  <div class="add-new-contact">Add new contact</div>
+                  <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
+              </div>
+          </div>
+          <div class="contact-list" id="contactList">
+          </div>
+      </div>
+    </div>
+    <div class="mobileContactDetails">
+      <div class="contact-details">
+        <div class="contact-details-header">
+          <div class="contact-details-badge-group">
+            <div class="contact-details-badge">
+              <div class="contact-details-badge-initials"></div>
+            </div>
+            <div class="contact-details-badge-name"></div>
+          </div>
+        </div>
+        <div class="contact-information">
+          <div class="contact-email-container"></div>
+          <div class="contact-phone-container"></div>
+        </div>
+      </div>
+          <div class="openEditDeleteResponsive">
+          <img src="./assets/img/Menu Contact options.png" alt="">
+        </div>
+        <div class="editDelete" id="editDelete">
+          <div class="editDiv">
+            <img src="./assets/img/icon-edit.png" alt="">
+            <span>Edit</span>
+          </div>
+          <div class="deleteDiv">
+            <img src="./assets/img/icon-delete.png" alt="">
+            <span>Delete</span>
+          </div>
+        </div>
+      </div>
+      `;
 }
 
 /**
