@@ -660,6 +660,7 @@ window.addEventListener('resize', () => {
   }
 });
 
+
 /**
  * Resets contact card styles to their default values.
  *
