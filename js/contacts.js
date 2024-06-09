@@ -632,6 +632,7 @@ function getNameWithCapitalizedFirstLetter(name) {
  * @param {number} id - The unique identifier of the contact.
  */
 function openContactDetails(id) {
+  currentContactId = id; // Setze die aktuelle Kontakt-ID
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
   let contactDetailsHTML;
@@ -647,6 +648,21 @@ function openContactDetails(id) {
   rightSide.innerHTML = contactDetailsHTML;
   highlightSelectedContact(id);
 }
+
+/**
+ * Updates the content of the rightSide container based on the current window width.
+ */
+function updateContactDetails() {
+  if (currentContactId !== null) {
+    openContactDetails(currentContactId); // Aktualisiere den Inhalt basierend auf der aktuellen Kontakt-ID
+  }
+}
+
+// Initiale Überprüfung bei Seitenladung
+document.addEventListener("DOMContentLoaded", updateContactDetails);
+
+// Überprüfung bei Fenstergrößenänderung
+window.addEventListener('resize', updateContactDetails);
 
 /**
  * Resets contact card styles to their default values.

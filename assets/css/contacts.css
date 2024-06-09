@@ -759,8 +759,18 @@ input {
 
 @media screen and (max-width: 801px) {
   .right-side {
-   display: none; 
+    display: none;
   }
+
+  .right-side.show {
+    display: block; /* Zeige das Element, wenn die Klasse show hinzugefügt wird */
+  }
+
+  
+  .right-side:not(.d-none) {
+    display: block; /* Stelle sicher, dass das Element angezeigt wird, wenn es nicht die Klasse d-none hat */
+  }
+}
 
   .mobileContactDetails {
     display: flex;
