@@ -7,9 +7,9 @@ async function addTaskInit(){
     checkValidity();
 }
 
-let tempAssignedContacts = [];
+let tempAssignedContacts;
 let tempPriority = '';
-let tempSubtasks = [];
+let tempSubtasks;
 let isValid = false;
 let requiredInputFields = [
     {
@@ -664,26 +664,23 @@ function deactivateButton(id){
 }
 
 
-//FIXME: Doesn't work due the fact that firebase doesn't save empty arrays as values
+// FIREBASE
 
-// REMOTE STORAGE
 async function saveTasksToRemoteStorage(){
    deactivateButton('createBtn');
-   await remoteStorageSetItem('tasks', JSON.stringify(tasks))
-   // await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
+   await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
    activateButton('createBtn', 'createTask()');
 }
 
 async function restoreTasksOnRemoteStorage(){
-    // REMOTE STORAGE
-    await remoteStorageSetItem('tasks', JSON.stringify(_tasksBackup));
-    
-    // FIREBASE
-    // await remoteStorageSetItem(_tasksBackup, FIREBASE_TASKS_ID);
+    await firebaseUpdateItem(_tasksBackup, FIREBASE_TASKS_ID);
 }
 
 async function loadTasksFromRemoteStorage(){
-    tasks = JSON.parse(await remoteStorageGetItem('tasks')) //REMOTE STORAGE
-    // tasks = await firebaseGetItem(FIREBASE_TASKS_ID); //FIREBASE
+    tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
     console.info('Tasks loaded from Remote Storage');
+    tasks.forEach(task => {
+        if(!task.hasOwnProperty('subtasks')) task.subtasks = []; console.log('added subtasks');
+        if(!task.hasOwnProperty('assignedTo')) task.assignedTo = []; console.log('added assignedTo');
+    })
 }

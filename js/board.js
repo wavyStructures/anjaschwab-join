@@ -18,7 +18,6 @@ let _tasksBackup = [
             'subtaskText': 'Kochen',
             'completed': true
         }],
-        'completedSubtasks': [],
         'assignedTo': [21],
         'category': 'category-0',
         'priority': 'low',
@@ -34,7 +33,6 @@ let _tasksBackup = [
             'subtaskText': 'Bügeln',
             'completed': false
         }],
-        'completedSubtasks': [],
         'assignedTo': [21, 2, 5],
         'category': 'category-2',
         'priority': 'medium',
@@ -55,7 +53,6 @@ let _tasksBackup = [
             'subtaskText': 'insert to main-project',
             'completed': true
         }],
-        'completedSubtasks': [],
         'assignedTo': [17],
         'category': 'category-3',
         'priority': 'urgent',
@@ -76,7 +73,6 @@ let _tasksBackup = [
             'subtaskText': 'rebuild Kevins code',
             'completed': false
         }],
-        'completedSubtasks': [],
         'assignedTo': [9, 18],
         'category': 'category-0',
         'priority': 'urgent',
@@ -97,7 +93,6 @@ let _tasksBackup = [
             'subtaskText': 'Making Sauce',
             'completed': false
         }],
-        'completedSubtasks': [],
         'assignedTo': [9],
         'category': 'category-1',
         'priority': 'low',
@@ -125,7 +120,6 @@ let _tasksBackup = [
                 "completed": false
             }
         ],
-        "completedSubtasks": [],
         "assignedTo": [],
         "category": "category-0",
         "priority": "urgent",
