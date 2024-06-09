@@ -633,12 +633,12 @@ function getNameWithCapitalizedFirstLetter(name) {
  * @param {number} id - The unique identifier of the contact.
  */
 function openContactDetails(id) {
-  currentContactId = id; 
+  currentContactId = id; // Setze die aktuelle Kontakt-ID
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
   let contactDetailsHTML;
 
-  if (isMobileView) {
+  if (window.innerWidth <= 801) {
     contactDetailsHTML = generateContactDetailsMobileHTML(name, mail, phone, id, contactColor);
   } else {
     contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
@@ -650,29 +650,15 @@ function openContactDetails(id) {
   highlightSelectedContact(id);
 }
 
-
-/**
- * Updates the content of the rightSide container based on the current window width.
- */
-function updateContactDetails() {
-  const newIsMobileView = window.innerWidth <= 801;
-  if (newIsMobileView !== isMobileView) {
-    isMobileView = newIsMobileView;
-    if (currentContactId !== null) {
+window.addEventListener('resize', () => {
+  if (currentContactId !== null) {
+    if (window.innerWidth <= 801) {
+      openContactDetails(currentContactId); 
+    } else {
       openContactDetails(currentContactId); 
     }
   }
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  isMobileView = window.innerWidth <= 801;
-  if (currentContactId !== null) {
-    openContactDetails(currentContactId);
-  }
 });
-
-window.addEventListener('resize', updateContactDetails);
 
 /**
  * Resets contact card styles to their default values.
