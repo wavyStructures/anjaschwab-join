@@ -26,9 +26,11 @@ async function summaryInit() {
  */
 function getLoggedUser() {
     currentUser = getCurrentUser();
-    loggedUser = currentUser.username
-
+    if (currentUser) {
+        loggedUser = currentUser.username
+    }
 }
+
 
 /**
  * Generates a greeting based on the current time.
@@ -107,7 +109,6 @@ function getDate() {
 
 /**
  * Loads the amounts of tasks in each category and calls function to display them.
- *
  * @param {array} categories - An array of category names.
  * @param {array} categoriesAmounts - An array of category amounts.                                 
  */
@@ -127,7 +128,7 @@ function loadAmounts() {
 
 /**
  * Updates the HTML elements with the amounts from the categoriesAmounts array.
- * * @param {array} categoriesAmounts - An array of category amounts to be displayed.
+ * @param {array} categoriesAmounts - An array of category amounts to be displayed.
  */
 function showAmounts(categoriesAmounts) {
     let amountTodo = document.getElementById("amountTodo");
@@ -145,7 +146,7 @@ function showAmounts(categoriesAmounts) {
 }
 
 
-/* Retrieves the tasks with priority "urgent" from the tasks array.
+/** Retrieves the tasks with priority "urgent" from the tasks array.
 * @return {Array} The array of tasks with priority "urgent".
 */
 function getUrgentTasks() {

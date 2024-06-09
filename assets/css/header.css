@@ -3,9 +3,8 @@
   --clr-text: #ffffff;
 }
 
-
-
 .header-content {
+  width: 100vw;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -140,7 +139,6 @@
     margin-right: 0;
     font-size: 14px;
   }
-
 
   .header-mobile {
     height: 80px;
