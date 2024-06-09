@@ -634,13 +634,14 @@ function getNameWithCapitalizedFirstLetter(name) {
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(
-    name,
-    mail,
-    phone,
-    id,
-    contactColor
-  );
+  let contactDetailsHTML;
+
+  if (window.innerWidth > 801) {
+    contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
+  } else {
+    contactDetailsHTML = generateContactDetailsMobileHTML(name, mail, phone, id, contactColor);
+  }
+
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
@@ -792,10 +793,8 @@ function generateContactDetailsMobileHTML(name, email, phone, id, color) {
       <div class="contact-details">
         <div class="contact-details-header">
           <div class="contact-details-badge-group">
-            <div class="contact-details-badge" style="background-color: ${color}>
-              <div class="contact-details-badge-initials">${getInitials(
-              name
-            )}</div>
+            <div class="contact-details-badge" style="background-color: ${color}">
+              <div class="contact-details-badge-initials">${getInitials(name)}</div>
             </div>
             <div class="contact-details-badge-name">${name}</div>
           </div>
@@ -805,20 +804,20 @@ function generateContactDetailsMobileHTML(name, email, phone, id, color) {
           <div class="contact-phone-container">${phone}</div>
         </div>
       </div>
-          <div class="openEditDeleteResponsive">
-          <img src="./assets/img/Menu Contact options.png" alt="">
+      <div class="openEditDeleteResponsive">
+        <img src="./assets/img/Menu Contact options.png" alt="">
+      </div>
+      <div class="editDelete" id="editDelete">
+        <div class="editDiv">
+          <img src="./assets/img/icon-edit.png" onclick="editContact(${id})">
+          <span>Edit</span>
         </div>
-        <div class="editDelete" id="editDelete">
-          <div class="editDiv">
-            <img src="./assets/img/icon-edit.png" onclick="editContact(${id})">
-            <span>Edit</span>
-          </div>
-          <div class="deleteDiv">
-            <img src="./assets/img/icon-delete.png" onclick="removeContact(${id})">
-            <span>Delete</span>
-          </div>
+        <div class="deleteDiv">
+          <img src="./assets/img/icon-delete.png" onclick="removeContact(${id})">
+          <span>Delete</span>
         </div>
       </div>
+    </div>
   `;
 }
 
