@@ -394,9 +394,6 @@ function generateContactsContainerHTML() {
         </div>
         <div class="contact-details-badge-name"></div>
       </div>
-      <div class="openEditDelete">
-        <img src="./assets/img/Menu Contact options.png" alt="">
-    	</div>
     </div>
     <div class="contact-information">
       <div class="contact-email-container"></div>
