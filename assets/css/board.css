@@ -258,7 +258,6 @@ button:focus {
 .emptyCard{
     border-radius: 24px;
     border: 2px dashed #D3D3D3;
-
 }
 
 .emptyCard.vertical{
@@ -698,6 +697,10 @@ progress{
         height: 273px;
     }
 
+    .empty-category{
+        border-radius: 24px;
+    }
+
 }
 
 @media (max-width: 800px){
@@ -849,9 +852,9 @@ progress{
 }
 
 
-@media (max-width: 330px) {
+@media (max-width: 350px) {
     .cardTitle{
-        font-size: 2rem !important;
+        font-size: 1rem !important;
     }
 
     .openCardContainer[editing] {

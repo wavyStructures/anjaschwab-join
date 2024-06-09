@@ -7,9 +7,9 @@ async function addTaskInit(){
     checkValidity();
 }
 
-let tempAssignedContacts;
+let tempAssignedContacts = [];
 let tempPriority = '';
-let tempSubtasks;
+let tempSubtasks = [];
 let isValid = false;
 let requiredInputFields = [
     {
