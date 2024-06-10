@@ -784,15 +784,15 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
           <div class="contact-phone-container-phone">${phone}</div>
         </div>
       </div>
-      <div class="openEditDeleteResponsive">
+      <div class="openEditDeleteResponsive" id="openEditDeleteResponsive" onclick="openEditDelete()">
         <img src="./assets/img/Menu Contact options.png" alt="">
       </div>
-      <div class="editDelete">
-        <div class="editDiv">
+      <div class="editDelete d-none" id="editDelete">
+        <div class="editDiv" onclick="editContact(${id})">
           <img src="./assets/img/icon-edit.png" alt="">
           <span>Edit</span>
           </div>
-        <div class="deleteDiv">
+        <div class="deleteDiv" onclick="removeContact(${id})">
             <img src="./assets/img/icon-delete.png" alt="">
             <span>Delete</span>
           </div>
@@ -802,6 +802,11 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
   `;
 }
 
+
+function openEditDelete() {
+  document.getElementById("openEditDeleteResponsive").classList.add("d-none");
+  document.getElementById("editDelete").classList.remove("d-none");
+}
 
 /**
  * Changes the cancel icon to its hover state by updating its source.

@@ -850,8 +850,26 @@ input {
     height: 80%;
   }
 
-  .editDelete {
+  .icon-edit {
     display: none;
+  }
+
+  .icon-delete {
+    display: none;
+  }
+
+  .openEditDeleteResponsive {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .openEditDeleteResponsive :hover {
+    transform: scale(1.2);
+  }
+
+
+  .editDelete {
+    display: flex;
     flex-direction: column;
     z-index: 2;
     position: absolute;
