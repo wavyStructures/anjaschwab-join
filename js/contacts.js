@@ -634,44 +634,14 @@ function getNameWithCapitalizedFirstLetter(name) {
  * @param {number} id - The unique identifier of the contact.
  */
 function openContactDetails(id) {
-  currentContactId = id; // Setze die aktuelle Kontakt-ID
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
-  let contactDetailsHTML;
-
-  if (window.innerWidth <= 801) {
-    contactDetailsHTML = generateContactDetailsMobileHTML(name, mail, phone, id, contactColor);
-  } else {
-    contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
-  }
-
+  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = contactDetailsHTML;
   highlightSelectedContact(id);
 }
-
-window.addEventListener('resize', () => {
-  if (currentContactId !== null) {
-    if (window.innerWidth <= 801) {
-      openContactDetails(currentContactId); 
-    } else {
-      openContactDetails(currentContactId); 
-    }
-  }
-});
-
-// window.addEventListener('resize', () => {
-//   if (window.innerWidth <= 801) {
-//     isMobileView = true;
-//   } else {
-//     isMobileViewOld = false;
-//   }
-// if (isMobileView !== isMobileViewOld){
-//   isMobileViewOld = isMobileView;
-//   openContactDetails(currentContactId); 
-// }
-// });
 
 
 /**
@@ -776,6 +746,12 @@ function applyHighlight() {
 function generateContactDetailsHTML(name, email, phone, id, color) {
   return /*html*/ `
     <div class="contact-Details">
+      <div class="contact-details-header-and-button">
+        <div class="contact-details-header-responsive">Contact Information</div>
+        <div class="contact-details-back-button">
+          <img src="./assets/img/icon-arrow_left.png">
+        </div>
+      </div>
       <div class="contact-details-header" id="contactDetailsHeader">
         <div class="contact-details-badge-group">
           <div class="contact-details-badge" style="background-color: ${color}">
@@ -813,39 +789,6 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
   `;
 }
 
-function generateContactDetailsMobileHTML(name, email, phone, id, color) {
-  return /*html*/ `
-  <div class="mobileContactDetails">
-      <div class="contact-details">
-        <div class="contact-details-header">
-          <div class="contact-details-badge-group">
-            <div class="contact-details-badge" style="background-color: ${color}">
-              <div class="contact-details-badge-initials">${getInitials(name)}</div>
-            </div>
-            <div class="contact-details-badge-name">${name}</div>
-          </div>
-        </div>
-        <div class="contact-information">
-          <div class="contact-email-container">${email}</div>
-          <div class="contact-phone-container">${phone}</div>
-        </div>
-      </div>
-      <div class="openEditDeleteResponsive">
-        <img src="./assets/img/Menu Contact options.png" alt="">
-      </div>
-      <div class="editDelete" id="editDelete">
-        <div class="editDiv">
-          <img src="./assets/img/icon-edit.png" onclick="editContact(${id})">
-          <span>Edit</span>
-        </div>
-        <div class="deleteDiv">
-          <img src="./assets/img/icon-delete.png" onclick="removeContact(${id})">
-          <span>Delete</span>
-        </div>
-      </div>
-    </div>
-  `;
-}
 
 /**
  * Changes the cancel icon to its hover state by updating its source.

@@ -757,36 +757,68 @@ input {
   }
 }
 
+@media screen and (min-width: 802px) {
+
+  .contact-details-header-responsive {
+    display: none;
+  }
+  
+  .contact-details-back-button {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 801px) {
+  
   .right-side {
+    display: flex;
+    left: 0;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: left 0.5s ease-in-out;
+  }
+
+  .contact-Details {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .contact-details-header-and-button {
+    display: flex;
+    justify-content: space-between;
+    gap: 21px;
+  }
+
+  .contact-details-header-responsive {
+    display: flex;
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 700;
+  }
+
+  .contact-details-back-button {
+    display: flex;
+  }
+
+  .contact-information {
     display: none;
   }
 
-  .right-side.show {
-    display: block; /* Zeige das Element, wenn die Klasse show hinzugefügt wird */
-  }
-
-  
-  .right-side:not(.d-none) {
-    display: block; /* Stelle sicher, dass das Element angezeigt wird, wenn es nicht die Klasse d-none hat */
-  }
-
-
-  .mobileContactDetails {
+  .contact-details-badge-group {
     display: flex;
-    position: absolute;
-    width: 100vw;
-    top: 10svh;
-    z-index: 9;
-    height: 80svh;
-    padding-left: 36px;
-    max-width: unset;
-    align-items: center;
-    justify-content: flex-start;
-    left: 0;
-    background-color: #005dff;
   }
 
+  .contact-details-name-group {
+    
+  }
+
+  .contact-email-container {
+    display: flex;
+  }
   .button-add-contact-card {
     display: none;
   }
