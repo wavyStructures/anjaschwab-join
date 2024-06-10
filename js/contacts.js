@@ -773,12 +773,11 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
         </div>
       </div>
       <div></div>
-      <div class="contact-information">Contact Information
+      <div class="contact-information">Contact Information</div>
         <div class="contact-email-container" id="contactEmailContainer">
           <div class="contact-information-mail-header" >Email</div>
           <a class="contact-information-mail" href="mailto:${email}">${email}</a>
         </div>
-      </div>
       <div>
         <div class="contact-phone-container">
           <div class="contact-phone-container-header">Phone</div>
