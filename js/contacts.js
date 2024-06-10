@@ -748,7 +748,7 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
     <div class="contact-Details">
       <div class="contact-details-header-and-button">
         <div class="contact-details-header-responsive">Contact Information</div>
-        <div class="contact-details-back-button">
+        <div class="contact-details-back-button" onclick="openContactDetails(${id})">
           <img src="./assets/img/icon-arrow_left.png">
         </div>
       </div>
@@ -783,6 +783,20 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
           <div class="contact-phone-container-header">Phone</div>
           <div class="contact-phone-container-phone">${phone}</div>
         </div>
+      </div>
+      <div class="openEditDeleteResponsive">
+        <img src="./assets/img/Menu Contact options.png" alt="">
+      </div>
+      <div class="editDelete">
+        <div class="editDiv">
+          <img src="./assets/img/icon-edit.png" alt="">
+          <span>Edit</span>
+          </div>
+        <div class="deleteDiv">
+            <img src="./assets/img/icon-delete.png" alt="">
+            <span>Delete</span>
+          </div>
+        
       </div>
     </div>
   `;
