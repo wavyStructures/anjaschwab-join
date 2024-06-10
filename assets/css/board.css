@@ -40,24 +40,33 @@
     }
     .addTaskBodyLeft{
         height: 85%;
+        padding:11px 10px 0 24px;
+    }
+
+    .addTaskBodyRight{
+        position: static;
+        width: 100%;
     }
     .createBtn{
         position: relative;
-        right: 50px;
         height: 51px;
-        /* bottom: 20px; */
     }
 
     .addTaskEmptyDiv{
         display: none;
     }
 
-.addTaskBtnContainer{
-    display: flex;
-    width:100%;
-    align-items: end;
-    margin: 0;
-}
+    .addTaskBtnContainer{
+        display: flex;
+        width:100%;
+        align-items: end;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative;
+        bottom: 20px;
+        right: 20px;
+    }
+
     .clearBtn{
         display: none;
     }
@@ -723,22 +732,26 @@ progress{
 
 @media (max-width: 560px) {
 
-    .addTaskBody{
+    .addTaskBody {
         padding: 24px 24px 0 24px;
 
     }
+
     .addTaskBodyTop,
-    .addTaskBodyBottom{
+    .addTaskBodyBottom {
         max-width: 400px;
         font-size: medium;
     }
 
-    .addTaskBtnContainer{
+    .addTaskBtnContainer {
         justify-content: center;
+        right: 0;
+        bottom: 0;
     }
-    .addTaskHoverContainer{
+
+    .addTaskHoverContainer {
         position: fixed;
-        top:20px;
+        top: 20px;
         right: 20px;
         left: 20px;
         height: 95%;
@@ -751,12 +764,10 @@ progress{
             right: 0;
         }
 
-        ::-webkit-scrollbar{
-            display: none;
-        }
+
     }
 
-    .addTaskBodyLeft{
+    .addTaskBodyLeft {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
@@ -764,90 +775,97 @@ progress{
     }
 
     .openCardContainer[editing] {
-        
+
         .addTaskBodyLeft {
             /* padding-inline: 18px; */
             width: 100%;
-            padding:0;
-            padding-inline: 0;
         }
 
-        ::-webkit-scrollbar{
-            display: none;
-        }
     }
 
-    .openCardContainer{
+    .openCardContainer {
         width: 396px;
         padding: 32px 14px 32px 24px;
 
-        .openCardInnerContainer *{
-            font-size: 1rem;        
+        .openCardInnerContainer * {
+            font-size: 1rem;
         }
 
-        .cardTitle{
+        .cardTitle {
             font-size: 2.25rem;
         }
 
-        .clearBtn{
+        .clearBtn {
             display: none;
         }
 
-        .addTaskBody{
+        .addTaskBody {
             font-size: medium;
 
-            ::-webkit-scrollbar{
+            ::-webkit-scrollbar {
                 display: none;
             }
         }
+
         .addTaskBodyTop,
-        .addTaskBodyBottom{
-            width: 300px;
+        .addTaskBodyBottom {
+            width: 100%;
         }
-        .addTask-custom-select{
+
+        .addTask-custom-select {
             font-size: medium;
         }
 
-        .addTaskPriorityButtonContainer{
+        .addTaskPriorityButtonContainer {
             gap: 5px;
         }
 
-        .addTaskPriorityButton{
+        .addTaskPriorityButton {
             width: 100px;
             font-size: medium;
 
-             img{
+            img {
                 width: 16px;
-             };
+            }
+
+            ;
         }
     }
-}
 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+    
 @media (max-width: 450px) {
     
     .openCardContainer,
     .openCardContainer[editing] {
-
-        width: clamp(290px, 100%, 400px);
-    }
-    .addTaskHoverContainer{
-        .boardAddTaskHeader{
-            padding: 20px;
-            justify-content: center;
-            top:0;
+        
+        /* width: clamp(290px, 100%, 400px); */
+        width: 100%;
+        padding: 24px 30px 24px 30px;
+        }
+        .addTaskHoverContainer{
+            
             left:0;
             right:0;
-            height: 100%;
+            
+            .boardAddTaskHeader{
+            padding: 30px;
+            justify-content: space-between;
             border-radius: 0;
-        }
+            align-items: center;
+            }
         .addTaskBodyLeft{
             padding-inline: 20px;
-        }
-        .boardAddTaskCloseHoverContainer{
-            top: 12px;
-            right: 12px;
+            padding: 5px;
         }
 
+        .addTaskBtnContainer{
+            bottom:0;
+            right:0;
+        }
     }
 }
 
@@ -856,13 +874,18 @@ progress{
     .cardTitle{
         font-size: 1rem !important;
     }
+    .openCardContainer{
+        padding: 15px;
+    }
+
 
     .openCardContainer[editing] {
         padding:5px;
         
         .boardEditTaskHeader,
         .addTaskBodyRight{
-            padding: 10px
+            padding: 10px;
+            bottom: 10px
         }
 
     }
