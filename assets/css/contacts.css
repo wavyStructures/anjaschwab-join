@@ -802,6 +802,7 @@ input {
 
   .contact-details-back-button {
     display: flex;
+    cursor: pointer;
   }
 
   .contact-information {
@@ -850,7 +851,7 @@ input {
   }
 
   .editDelete {
-    display: flex;
+    display: none;
     flex-direction: column;
     z-index: 2;
     position: absolute;
