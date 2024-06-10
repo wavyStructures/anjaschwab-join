@@ -1,6 +1,7 @@
 let users = [];
 let contacts = [];
-let isMobileView = window.innerWidth <= 801;
+let isMobileView = false;
+let isMobileViewOld = false;
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.
@@ -659,6 +660,18 @@ window.addEventListener('resize', () => {
     }
   }
 });
+
+// window.addEventListener('resize', () => {
+//   if (window.innerWidth <= 801) {
+//     isMobileView = true;
+//   } else {
+//     isMobileViewOld = false;
+//   }
+// if (isMobileView !== isMobileViewOld){
+//   isMobileViewOld = isMobileView;
+//   openContactDetails(currentContactId); 
+// }
+// });
 
 
 /**
