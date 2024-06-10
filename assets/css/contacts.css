@@ -770,7 +770,7 @@ input {
   .right-side:not(.d-none) {
     display: block; /* Stelle sicher, dass das Element angezeigt wird, wenn es nicht die Klasse d-none hat */
   }
-}
+
 
   .mobileContactDetails {
     display: flex;
