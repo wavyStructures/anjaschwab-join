@@ -121,10 +121,10 @@ function toggleRememberMeCheckbox() {
     let loginCheckboxImg = document.getElementById('loginCheckboxImg');
 
     if (loginCheckbox.hasAttribute('checked')) {
-        loginCheckboxImg.src = '../../assets/img/icon-check_button_unchecked.png';
+        loginCheckboxImg.src = './assets/img/icon-check_button_unchecked.png';
         loginCheckbox.removeAttribute('checked');
     } else {
-        loginCheckboxImg.src = '../../assets/img/icon-check_button_checked.png';
+        loginCheckboxImg.src = './assets/img/icon-check_button_checked.png';
         loginCheckbox.setAttribute('checked', '');
     };
 }
