@@ -911,8 +911,9 @@ input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.1);
     min-width: 120px;
-    padding-top: 0;
-    padding-left: 18px;
+    /* padding-top: 0; */
+    /* padding-left: 18px; */
+    padding: 10px;
   }
 
   .editDiv {
@@ -922,15 +923,17 @@ input {
     gap: 8px;
     font-size: 16px;
     cursor: pointer;
-  }
+    padding: 8px;
+    }
 
-  .deleteDiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 16px;
-    cursor: pointer;
+    .deleteDiv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 8px;
   }
 }
 
