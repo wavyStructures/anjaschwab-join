@@ -457,19 +457,8 @@ function chooseCategory(chosenCategory){
     let categoryContainer = document.getElementById('dropdown-category-title');
     categoryContainer.innerHTML = chosenCategory;
     dropdownContentContainer.classList.add('d-none');
-    setCategory(chosenCategory);
-}
-
-
-/**
- * Sets the value of the global variable "category" to the provided "chosenCategory".
- *
- * @param {string} chosenCategory - The category to set the global variable "category" to..
- */
-function setCategory(chosenCategory){
     newTask['type'] = chosenCategory;
 }
-
 
 
 /**
@@ -481,10 +470,10 @@ function collectInformationsForNewCard(){
     if (!checkIfCardIsEditing()){
         newTask.id = getNewTaskId(); 
     }
-    newTask.title = getNewTaskTitle();
-    newTask.description = getNewTaskDescription();
-    newTask.assignedTo = getNewTaskAssignedTo();
-    newTask.dueDate = getNewTaskDueDate();
+    newTask.title = document.getElementById('addTaskEnterTitleInput').value;
+    newTask.description = document.getElementById('addTaskDescriptionInput').value;
+    newTask.assignedTo = tempAssignedContacts;
+    newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
 }
 
 /**
@@ -512,59 +501,6 @@ function checkIfCardIsEditing(){
 
 
 /**
- * Retrieves the value of the input field with the id 'addTaskEnterTitleInput'
- * and returns it as the title of the new task.
- *
- * @return {string} The title of the new task.
- */
-function getNewTaskTitle(){
-    return document.getElementById('addTaskEnterTitleInput').value
-}
-
-
-
-
-/**
- * Retrieves the description of the new task from the 'addTaskDescriptionInput' element.
- *
- * @return {string} The description of the new task.
- */
-function getNewTaskDescription(){
-    return document.getElementById('addTaskDescriptionInput').value
-}
-
-
-/**
- * Retrieves the new task subtasks from the temporary subtasks array.
- *
- * @return {Array} The subtasks of the new task.
- */
-function getNewTaskSubtasks(){
-    return tempSubtasks;
-}
-
-
-/**
- * Retrieves the assigned contacts for the new task.
- *
- * @return {Array} The assigned contacts for the new task.
- */
-function getNewTaskAssignedTo(){
-    return tempAssignedContacts;
-}
-
-
-/**
- * Retrieves the value of the 'addTaskDueDateInput' element and returns it as the due date of the new task.
- *
- * @return {string} The due date of the new task.
- */
-function getNewTaskDueDate(){
-    return document.getElementById('addTaskDueDateInput').value
-}
-
-
-/**
  * Sets the minimum value of the "addTaskDueDateInput" element to the current date.
  */
 function setTodayDateAsMin(){
@@ -588,6 +524,7 @@ async function createTask(){
     await saveTasksToRemoteStorage();
     showSuccessMessage();
 }
+
 
 function checkValidity(){
     requiredInputFields.forEach(requiredInputField => {
