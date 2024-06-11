@@ -679,6 +679,10 @@ input {
   display: none;
 }
 
+.add-contact-button {
+  display: none;
+}
+
 @media screen and (max-width: 1199px) {
   .contact-details-name {
     font-size: 2.25rem;
@@ -867,6 +871,23 @@ input {
     transform: scale(1.2);
   }
 
+  .add-contact-button {
+    display: flex;
+    z-index: 2;
+    position: absolute;
+    bottom: 4vh;
+    right: 3.5vw;
+    height: 10vh;
+    width: 12vw;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .add-contact-button :hover {
+    transform: scale(1.1);
+  }
 
   .editDelete {
     display: flex;
