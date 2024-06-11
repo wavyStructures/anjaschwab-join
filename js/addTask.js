@@ -314,7 +314,7 @@ function renderArrow(arrowContainer, contentContainer){
     ? arrowImg.dataset.direction = "up"
     : arrowImg.dataset.direction = "down"
 
-    arrowImg.src = `../../assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
+    arrowImg.src = `./assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
     document.getElementById(contentContainer).classList.toggle('d-none')
 
     // setOnclickOnBody(arrowContainer, contentContainer);
