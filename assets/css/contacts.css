@@ -679,6 +679,10 @@ input {
   display: none;
 }
 
+.add-contact-button {
+  display: none;
+}
+
 @media screen and (max-width: 1199px) {
   .contact-details-name {
     font-size: 2.25rem;
@@ -743,7 +747,7 @@ input {
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 875px) {
   .contact-details-badge-group {
     display: none;
   }
@@ -776,7 +780,7 @@ input {
     position: absolute;
     background-color: white;
     width: 100%;
-    height: 100%;
+    height: 90%;
     z-index: 2;
     transition: left 0.5s ease-in-out;
   }
@@ -867,6 +871,28 @@ input {
     transform: scale(1.2);
   }
 
+  .add-contact-button {
+    display: flex;
+    z-index: 2;
+    position: absolute;
+    bottom: 4vh;
+    right: 3.5vw;
+    height: 10vh;
+    width: 12vw;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .add-contact {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .add-contact-button :hover {
+    transform: scale(1.1);
+  }
 
   .editDelete {
     display: flex;

@@ -375,6 +375,9 @@ function generateContactsContainerHTML() {
         
     </div>
 </div>
+<div class="add-contact-button" onclick="addContactCard()">
+  <img src="./assets/img/Secondary mobile contact V1.png" alt="">
+</div>
 <div class="contacts-container-outer">
   <div class="contacts-container" id="contacts-container">
       <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
