@@ -412,10 +412,10 @@ function pushContactToTempAssignedContacts(id){
 function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
     if (dropdownContact.getAttribute('marked') == 'false'){
         dropdownContact.setAttribute('marked', 'true');
-        dropdownCheckboxImage.src = '../../assets/img/icon-check_button_checked_white.png';
+        dropdownCheckboxImage.src = './assets/img/icon-check_button_checked_white.png';
     }else{
         dropdownContact.setAttribute('marked', 'false');
-        dropdownCheckboxImage.src = '../assets/img/icon-check_button_unchecked.png';
+        dropdownCheckboxImage.src = './assets/img/icon-check_button_unchecked.png';
     }
 }
 
