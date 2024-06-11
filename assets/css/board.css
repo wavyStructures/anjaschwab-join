@@ -848,10 +848,10 @@ progress{
         padding: 24px 30px 24px 30px;
         }
         .addTaskHoverContainer{
-            
+
             left:0;
             right:0;
-            
+
             .boardAddTaskHeader{
                 padding: 30px;
                 justify-content: space-between;
@@ -862,7 +862,6 @@ progress{
                     padding-inline: 20px;
                     padding: 5px;
                     }
-                    
         .addTaskBtnContainer{
             bottom:0;
             right:0;

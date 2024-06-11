@@ -69,6 +69,7 @@ async function addNewUser() {
         showUserMessage('The mail already exists!');
     } else {
         localStorage.setItem('newMail', newUser.mail)
+        localStorage.setItem('hasJustSignedUp','');
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
         showUserMessage('You Signed Up successfully!');

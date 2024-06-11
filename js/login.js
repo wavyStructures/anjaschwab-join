@@ -2,9 +2,26 @@
  * Initializes the login process by including HTML, setting default inputs, and starting an animation.
  */
 async function loginInit() {
-    showOverlay()
     checkIfUserIsRemembered();
-    checkIfUserWasPreviouslyRegistered();
+
+    if (!checkIfUserWasPreviouslyRegistered()) {
+        addBlueOverlay()
+        showOverlay();
+    };
+}
+
+
+function addBlueOverlay(){
+    let overlay = document.getElementById('blueOverlay');
+    overlay.classList.add('blue-overlay');
+    overlay.innerHTML = addBlueOverlayHTML();
+}
+
+
+function addBlueOverlayHTML(){
+    return /*html*/`<div id="logo">
+        <img src="./assets/img/logo-big_white.png" alt="logo" class="joinLogoWhite logo-animation">
+    </div>`
 }
 
 
@@ -14,8 +31,10 @@ async function loginInit() {
  */
 function checkIfUserWasPreviouslyRegistered() {
     if (localStorage.getItem('newMail')) {
+        console.log(typeof localStorage.getItem('newMail'));
         document.getElementById('loginEmailInput').value = localStorage.getItem('newMail');
         localStorage.removeItem('newMail');
+        return true;
     }
 }
 
