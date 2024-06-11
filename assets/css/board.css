@@ -817,7 +817,8 @@ progress{
         }
 
         .addTaskPriorityButtonContainer {
-            gap: 5px;
+            justify-content: center;
+            gap: 16px;
         }
 
         .addTaskPriorityButton {
@@ -852,23 +853,32 @@ progress{
             right:0;
             
             .boardAddTaskHeader{
-            padding: 30px;
-            justify-content: space-between;
-            border-radius: 0;
-            align-items: center;
-            }
-        .addTaskBodyLeft{
-            padding-inline: 20px;
-            padding: 5px;
-        }
-
+                padding: 30px;
+                justify-content: space-between;
+                border-radius: 0;
+                align-items: center;
+                }
+                .addTaskBodyLeft{
+                    padding-inline: 20px;
+                    padding: 5px;
+                    }
+                    
         .addTaskBtnContainer{
             bottom:0;
             right:0;
         }
     }
-}
+    }
 
+@media (max-width: 400px){
+    .openCardContainer[editing]{
+        padding: 24px 16px 24px 16px;
+
+        .addTaskPriorityButtonContainer{
+            gap: 5px;
+            }
+    }
+}
 
 @media (max-width: 350px) {
     .cardTitle{
