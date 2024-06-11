@@ -727,15 +727,11 @@ input {
   }
 
   .contact-card {
-    width: 18rem;
+    width: 21rem;
   }
 
   .button-add-contact-card {
     width: 20rem;
-  }
-
-  .contact-card-name {
-    font-size: 1rem;
   }
 
   .contact-list {
@@ -877,8 +873,8 @@ input {
     position: absolute;
     bottom: 4vh;
     right: 3.5vw;
-    height: 10vh;
-    width: 12vw;
+    height: 64px;
+    width: 64px;
     justify-content: center;
     align-items: flex-start;
     box-sizing: border-box;

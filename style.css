@@ -120,6 +120,6 @@ a {
 
 @media screen and (max-width: 801px) {
   .main-wrapper {
-    height: calc(100vh - 180px);
+    height: calc(100vh - 145px);
   }
 }
