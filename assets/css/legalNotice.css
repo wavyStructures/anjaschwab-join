@@ -13,14 +13,12 @@ h2 {
   font-size: 33px;
   font-weight: 700;
   color: var(--clr-main);
-  /* text-align: left; */
   margin-bottom: 16px;
 }
 
 h3 {
   font-size: 19px;
   font-weight: 700;
-  /* text-align: left; */
   color: var(--clr-text-medium-blue);
   margin-top: 24px;
 }
@@ -44,7 +42,7 @@ h3 {
 a {
   color: var(--clr-text-menu);
   text-decoration: none;
-  font-family: Open Sans;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
   border-radius: 10px;

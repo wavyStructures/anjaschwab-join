@@ -237,7 +237,12 @@ window.addEventListener('load', lockScreenOrientation);
 
 
 function goBack() {
-	window.history.go(-1);
+	const previousURL = document.referrer;
+	if (previousURL.includes('index')){
+		window.close()
+	}else{
+		window.history.go(-1);
+	}
 }
 
 
