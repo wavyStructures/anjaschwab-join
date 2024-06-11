@@ -743,7 +743,7 @@ input {
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 875px) {
   .contact-details-badge-group {
     display: none;
   }
@@ -776,7 +776,7 @@ input {
     position: absolute;
     background-color: white;
     width: 100%;
-    height: 100%;
+    height: 90%;
     z-index: 2;
     transition: left 0.5s ease-in-out;
   }
