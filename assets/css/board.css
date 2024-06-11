@@ -785,7 +785,7 @@ progress{
 
     .openCardContainer {
         width: 396px;
-        padding: 32px 14px 32px 24px;
+        padding: 32px 24px 32px 24px;
 
         .openCardInnerContainer * {
             font-size: 1rem;
@@ -830,11 +830,11 @@ progress{
 
             ;
         }
+        ::-webkit-scrollbar {
+            display: none;
+        }
     }
 
-    ::-webkit-scrollbar {
-        display: none;
-    }
 }
     
 @media (max-width: 450px) {
