@@ -1,7 +1,5 @@
 let users = [];
 let contacts = [];
-let isMobileView = false;
-let isMobileViewOld = false;
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.
