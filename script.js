@@ -1,3 +1,7 @@
+let isSmallerThan802 = false;
+let isSmallerThan802Old = false;
+
+
 /**
  * the init-function in body onload
  */
@@ -24,9 +28,33 @@ async function includeHTML() {
 	}
 	showInitials();
 	setActiveNavButton();
-
-	window.addEventListener('resize', setActiveNavButton);
+	addResizeEventListener();
 }
+
+/**
+ * Adds an event listener to the window's resize event. When the window is resized,
+ * it checks if the window's inner width is less than or equal to 802. If it is,
+ * it sets the isSmallerThan802 variable to true. Otherwise, it sets it to false.
+ * If the value of isSmallerThan802 has changed since the last resize event,
+ * it updates isSmallerThan802Old with the new value and calls the setActiveNavButton
+ * function.
+ *
+ * @return {void} This function does not return anything.
+ */
+function addResizeEventListener(){
+	window.addEventListener('resize', () => {
+		if (window.innerWidth <= 802) {
+			isSmallerThan802 = true;
+		} else {
+			isSmallerThan802 = false;
+		}
+		if (isSmallerThan802 !== isSmallerThan802Old){
+			isSmallerThan802Old = isSmallerThan802;
+			setActiveNavButton(); 
+		}
+	});
+}
+
 
 /**
  *
@@ -156,7 +184,7 @@ function switchPageNewTab(newUrl) {
 }
 
 
-/**
+/**	
  * Sets the active navigation button based on the current location pathname.
  */
 function setActiveNavButton() {
@@ -177,7 +205,7 @@ function setActiveNavButton() {
 	switch (location.pathname) {
 		case '/summary.html':
 			summaryNavLink.classList.add('active');
-			if (window.innerWidth < 802) {
+			if (isSmallerThan802) {
 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
 			} else {
 				summaryNavLink.querySelector('img').src = './assets/img/icon-summary.png';
@@ -185,7 +213,7 @@ function setActiveNavButton() {
 			break;
 		case '/addTask.html':
 			addTaskNavLink.classList.add('active');
-			if (window.innerWidth < 802) {
+			if (isSmallerThan802) {
 				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
 			} else {
 				addTaskNavLink.querySelector("img").src = './assets/img/icon-addTask.png';
@@ -193,7 +221,7 @@ function setActiveNavButton() {
 			break;
 		case '/board.html':
 			boardNavLink.classList.add('active');
-			if (window.innerWidth < 802) {
+			if (isSmallerThan802) {
 				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
 			} else {
 				boardNavLink.querySelector('img').src = './assets/img/icon-board.png';
@@ -201,7 +229,7 @@ function setActiveNavButton() {
 			break;
 		case '/contacts.html':
 			contactsNavLink.classList.add('active');
-			if (window.innerWidth < 802) {
+			if (isSmallerThan802) {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
 			} else {
 				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts.png';
