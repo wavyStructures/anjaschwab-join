@@ -390,7 +390,7 @@ function generateContactsContainerHTML() {
       </div>
   </div>
 </div>
-<section class="right-side d-none" id="rightSide">
+<section class="right-side d-none" id="rightSide" onclick="closeEditDelete()">
 
 </section>
     `;
@@ -646,10 +646,9 @@ function getNameWithCapitalizedFirstLetter(name) {
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
   const { name, mail, phone, contactColor } = contact;
-  const contactDetailsHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
-  rightSide.innerHTML = contactDetailsHTML;
+  rightSide.innerHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);;
   highlightSelectedContact(id);
 }
 
@@ -799,7 +798,7 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
           <div class="contact-phone-container-phone">${phone}</div>
         </div>
       </div>
-      <div class="openEditDeleteResponsive" id="openEditDeleteResponsive" onclick="openEditDelete()">
+      <div class="openEditDeleteResponsive" id="openEditDeleteResponsive" onclick="openEditDelete(); doNotClose(event)">
         <img src="./assets/img/Menu Contact options.png" alt="">
       </div>
       <div class="editDelete d-none" id="editDelete" onclick="doNotClose(event)">
@@ -811,7 +810,6 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
             <img src="./assets/img/icon-delete.png" alt="">
             <span>Delete</span>
           </div>
-        
       </div>
     </div>
   `;
@@ -825,6 +823,11 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
 function openEditDelete() {
   document.getElementById("openEditDeleteResponsive").classList.add("d-none");
   document.getElementById("editDelete").classList.remove("d-none");
+}
+  
+function closeEditDelete(){
+    document.getElementById("openEditDeleteResponsive").classList.remove("d-none");
+    document.getElementById("editDelete").classList.add("d-none");
 }
 
 
