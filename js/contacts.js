@@ -803,7 +803,7 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
       <div class="openEditDeleteResponsive" id="openEditDeleteResponsive" onclick="openEditDelete()">
         <img src="./assets/img/Menu Contact options.png" alt="">
       </div>
-      <div class="editDelete d-none" id="editDelete">
+      <div class="editDelete d-none" id="editDelete" onclick="doNotClose(event)">
         <div class="editDiv" onclick="editContact(${id})">
           <img src="./assets/img/icon-edit.png" alt="">
           <span>Edit</span>
