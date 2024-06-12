@@ -183,6 +183,10 @@ function showAddTaskContainer(category='category-0') {
 }
 
 
+/**
+ * Hides the add task container by removing classes, toggling overlay, and then removing the container after a delay.
+ *
+ */
 function hideAddTaskContainer(){
     if(document.getElementById('addTaskHoverContainer')){
         let container = document.getElementById('addTaskHoverContainer');
@@ -196,6 +200,11 @@ function hideAddTaskContainer(){
 }
 
 
+/**
+ * Toggles the board overlay visibility based on the provided function to call.
+ *
+ * @param {string} functionToCall - The function to be called on overlay click.
+ */
 function toggleBoardOverlay(functionToCall){
     let overlay = document.getElementById('boardOverlay')
     if (overlay.classList.contains('d-none')){
@@ -208,6 +217,9 @@ function toggleBoardOverlay(functionToCall){
 }
 
 
+/**
+ * Function to show a success message on the webpage.
+ */
 function showSuccessMessage(){
     if (!document.getElementById('success-message-container')) createSuccessMessageContainer();
     let container = document.getElementById('success-message-container');
@@ -225,6 +237,10 @@ function showSuccessMessage(){
     }, 1000);
 }
 
+
+/**
+ * A function to hide the success message container.
+ */
 function hideSuccesMessage(){
     let container = document.getElementById('success-message-container');
     container.classList.add('successOut');
@@ -234,6 +250,11 @@ function hideSuccesMessage(){
 }
 
 
+/**
+ * Creates a success message container with a button and an image for task addition.
+ *
+ * @return {void} This function does not return a value.
+ */
 function createSuccessMessageContainer(){
     let div = document.createElement("div");
 

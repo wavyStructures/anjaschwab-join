@@ -1,3 +1,9 @@
+/**
+ * Initializes the task creation process by including HTML, fetching contacts from remote storage, 
+ * loading tasks from remote storage, rendering the add task HTML, and checking the validity of the task.
+ *
+ * @return {Promise<void>} Promise that resolves when the initialization is complete.
+ */
 async function addTaskInit(){
     includeHTML();
     await getContactsFromRemoteStorage();
@@ -39,6 +45,11 @@ let newTask =
         'dueDate': ''
 };
 
+
+/**
+ * Renders the HTML for adding a task.
+ *
+ */
 function renderAddTaskHTML() {
     let container = document.getElementById('addTaskBody');
     container.innerHTML = '';
@@ -49,6 +60,7 @@ function renderAddTaskHTML() {
     renderContactsToDropdown();
     renderSubtasks();
   }
+
 
 /**
  * Updates the priority styling for the task buttons based on the selected priority.
@@ -321,6 +333,12 @@ function renderArrow(arrowContainer, contentContainer){
 }
 
 
+/**
+ * Toggles the onclick attribute on the body element based on the visibility of the content container.
+ *
+ * @param {string} arrowContainer - The id of the arrow container element
+ * @param {string} contentContainer - The id of the content container element
+ */
 function setOnclickOnBody(arrowContainer, contentContainer){
     console.log(contentContainer);
     let customArrow = document.getElementById(arrowContainer)
@@ -333,6 +351,11 @@ function setOnclickOnBody(arrowContainer, contentContainer){
 }
 
 
+/**
+ * Finds elements with the 'onclick' attribute containing 'renderArrow' and extracts the second value after splitting by ';'.
+ *
+ * @return {string} The concatenated 'onclick' values that match the criteria.
+ */
 function findElementsWithArrow(){
     let onclicks = Array.from(document.getElementsByTagName('div')).filter(el => el.hasAttribute('onclick'))
     let onclickValues = "";
@@ -366,9 +389,15 @@ function renderContactsToDropdown(){
     })
 }
 
+
+/**
+ * Opens the calendar picker for the due date input field.
+ *
+ */
 function addTaskDueDateOpenCalendear(){
     document.getElementById('addTaskDueDateInput').showPicker();
 }
+
 
 /**
  * Assigns a contact to a task based on the provided id.
@@ -419,6 +448,7 @@ function setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage){
     }
 }
 
+
 /**
  * Toggles the visibility of the assigned contacts container based on the marked attribute of the contact cards.
  */
@@ -452,6 +482,12 @@ function renderAssignedContactsContainer(){
 }
 
 
+/**
+ * Updates the category elements with the chosen category and hides the dropdown content.
+ *
+ * @param {string} chosenCategory - The selected category.
+ * @return {void} 
+ */
 function chooseCategory(chosenCategory){
     let dropdownContentContainer = document.getElementById('dropdown-content-category')
     let categoryContainer = document.getElementById('dropdown-category-title');
@@ -476,6 +512,7 @@ function collectInformationsForNewCard(){
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
 }
 
+
 /**
  * Retrieves the new task ID based on the length of the tasks array.
  *
@@ -489,6 +526,11 @@ function getNewTaskId(){
 }
 
 
+/**
+ * Checks if any card is currently being edited.
+ *
+ * @return {boolean} Returns true if a card is being edited, false otherwise.
+ */
 function checkIfCardIsEditing(){
     let editing = document.getElementsByTagName('*');
     for (let element of editing){
@@ -518,6 +560,11 @@ function setTodayDateAsMin(){
 }
 
 
+/**
+ * Function to create a new task.
+ *
+ * @return {Promise<void>} A Promise that resolves once the task is created.
+ */
 async function createTask(){
     collectInformationsForNewCard();
     tasks.push(newTask);
@@ -526,6 +573,10 @@ async function createTask(){
 }
 
 
+/**
+ * Check the validity of required input fields and toggle the required message accordingly.
+ *
+ */
 function checkValidity(){
     requiredInputFields.forEach(requiredInputField => {
         document.getElementById(requiredInputField.id).addEventListener('input', () => {
@@ -535,6 +586,12 @@ function checkValidity(){
     })
 }
 
+
+/**
+ * Toggles the required message based on the state of the required input field.
+ *
+ * @param {Object} requiredInputField - The required input field object containing necessary ids and state.
+ */
 function toggleRequiredMessage(requiredInputField){
     let requiredMessageField = document.getElementById(requiredInputField.requiredFieldId);
     let toUnderline = document.getElementById(requiredInputField.idForRedUnderline);
@@ -552,6 +609,12 @@ function toggleRequiredMessage(requiredInputField){
 }
 
 
+/**
+ * A function to get the state of a required field.
+ *
+ * @param {Object} requiredInputField - The required input field object to check.
+ * @return {boolean} Returns true if the field is not empty, false otherwise.
+ */
 function getStateOfRequriredField(requiredInputField){
     let inputField = document.getElementById(requiredInputField.id);
     if (inputField.value == ''){
@@ -563,6 +626,9 @@ function getStateOfRequriredField(requiredInputField){
 }
 
 
+/**
+ * Sets the state of the create button based on the state of required input fields.
+ */
 function setCreateBtnState() {
 	if (requiredInputFields.every((r) => r.state == true)) {
         activateButton('createBtn', 'createTask()');
@@ -602,17 +668,30 @@ function deactivateButton(id){
 
 
 // FIREBASE
-
+/**
+ * Saves tasks to the remote storage.
+ *
+ */
 async function saveTasksToRemoteStorage(){
    deactivateButton('createBtn');
    await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
    activateButton('createBtn', 'createTask()');
 }
 
+
+/**
+ * Restores tasks on remote storage.
+ *
+ */
 async function restoreTasksOnRemoteStorage(){
     await firebaseUpdateItem(_tasksBackup, FIREBASE_TASKS_ID);
 }
 
+
+/**
+ * Loads tasks from remote storage and updates task properties if necessary.
+ *
+ */
 async function loadTasksFromRemoteStorage(){
     tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
     console.info('Tasks loaded from Remote Storage');

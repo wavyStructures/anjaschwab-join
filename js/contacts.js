@@ -1,5 +1,6 @@
 let users = [];
 let contacts = [];
+let currentContactId = null;
 
 /**
  * Retrieves the contacts from the remote storage asynchronously.
@@ -356,6 +357,7 @@ function createPartingLine(main) {
   main.querySelector(".contact-list").appendChild(partingLineContainer);
 }
 
+
 /**
  * Generates HTML code for the contacts container.
  *
@@ -459,6 +461,7 @@ function renderAddContactsHTML() {
 </div>`;
 }
 
+
 /**
  * Creates a new `<div>` element with the id 'editContact' and adds it as a child to the element with the id 'contactMainEdit'.
  * The new `<div>` element has a class attribute set to 'edit-contact'.
@@ -473,6 +476,7 @@ function renderEditContact() {
   });
   document.getElementById("contactMainEdit").appendChild(newDiv);
 }
+
 
 /**
  * Renders the HTML code for the edit contact form with the given ID.
@@ -530,6 +534,7 @@ function renderEditContactHTML(id, name, contactColor) {
         </div>`;
 }
 
+
 /**
  * Shows the add contact container by removing the "hidden" class from the element with the id "addContactContainer".
  *
@@ -540,6 +545,7 @@ function showAddContactContainer() {
   addContactContainer.classList.remove("hidden");
 }
 
+
 /**
  * Removes a container element from the DOM based on the provided id.
  *
@@ -549,6 +555,7 @@ function showAddContactContainer() {
 function removeContainer(id) {
   document.getElementById(id).remove();
 }
+
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -577,6 +584,7 @@ function createContactCard(main, id, color, initials, name, mail) {
     .querySelector(".contact-list")
     .insertAdjacentHTML("beforeend", cardHTML);
 }
+
 
 /**
  * Generates the HTML code for a contact card.
@@ -610,6 +618,7 @@ function generateContactCardHTML(
   `;
 }
 
+
 /**
  * Capitalizes the first letter of each word in a given name.
  *
@@ -629,6 +638,7 @@ function getNameWithCapitalizedFirstLetter(name) {
     return firstname + (lastname ? " " + lastname : "");
   }
 }
+
 
 /**
  * Displays details of the contact with the given ID.
@@ -663,6 +673,7 @@ function resetContactCard(card) {
   }
 }
 
+
 /**
  * Resets the styles of all contact cards to their default values.
  *
@@ -676,6 +687,7 @@ function resetAllContactCards() {
     card.classList.remove("highlighted");
   });
 }
+
 
 /**
  * Highlights a contact card by applying specific styles.
@@ -697,6 +709,7 @@ function highlightContactCard(card) {
   }
 }
 
+
 /**
  * Highlights the selected contact card and shows the right side element.
  *
@@ -717,6 +730,7 @@ function highlightSelectedContact(id) {
   applyHighlight();
 }
 
+
 /**
  * Applies highlighting to the selected contact card and shows the right side element.
  *
@@ -734,6 +748,7 @@ function applyHighlight() {
       resetContactCard(card);
     }
 }
+
 
 /**
  * Generates HTML code for displaying contact details.
@@ -804,10 +819,15 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
 }
 
 
+/**
+ * A function that hides the openEditDeleteResponsive element and shows the editDelete element.
+ *
+ */
 function openEditDelete() {
   document.getElementById("openEditDeleteResponsive").classList.add("d-none");
   document.getElementById("editDelete").classList.remove("d-none");
 }
+
 
 /**
  * Changes the cancel icon to its hover state by updating its source.
@@ -820,6 +840,7 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
+
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -829,6 +850,7 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
+
 
 /**
  * Updates the color of each contact in the contacts_old array by mapping the colors array to the newColors array.
@@ -844,6 +866,8 @@ function changeColor() {
     }
   });
 }
+
+
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
  *
@@ -854,7 +878,6 @@ async function delAllContacts() {
   await remoteStorageSetItem("contacts", JSON.stringify(contacts));
 }
 
-let currentContactId = null;
 
 /**
  * Edits the contact with the specified ID.
@@ -885,6 +908,7 @@ function editContact(id) {
     console.error("Contact not found with ID:", id);
   }
 }
+
 
 /**
  * Saves the edited contact by updating the contact object with the values from the input fields.
@@ -919,6 +943,7 @@ async function saveEditedContact(id) {
   }
 }
 
+
 /**
  * Removes the "d-none" class from the "editContact" element, making it visible.
  *
@@ -936,6 +961,7 @@ function editContactCard(contact) {
   addOverlay("closeOverlay('editContact')");
 }
 
+
 /**
  * Deletes a contact from the local storage.
  *
@@ -952,6 +978,7 @@ function deleteContactFromLocalStorage(contactId) {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 }
+
 
 /**
  * Deletes a contact from the Firebase database and local storage.
@@ -976,6 +1003,7 @@ async function deleteContact(id) {
     console.error("Contact not found with ID:", id);
   }
 }
+
 
 /**
  * Removes a contact from the local storage and reinitializes the contacts list.
