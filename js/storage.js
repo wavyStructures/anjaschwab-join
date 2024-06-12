@@ -89,11 +89,6 @@ async function remoteStorageGetItem(key) {
 
 
 /*
-TODO:
-- setItem und getItem für Kontakte (contacts[])
-- setItem und getItem für cards (cards[])
-*/
-/*
 /**
  * Sets the currently logged in user in the local storage.
  *
@@ -104,6 +99,7 @@ function setCurrentUser(name) {
     sessionStorage.setItem('currentUser', JSON.stringify({ username: name}));
     console.log('setCurrent has run and saved: ', loggedUser);
 }
+
 
 /**
  * Retrieves the currently logged in user from the local storage.

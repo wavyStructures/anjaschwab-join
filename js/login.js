@@ -11,6 +11,11 @@ async function loginInit() {
 }
 
 
+/**
+ * Adds a blue overlay to the 'blueOverlay' element by setting its inner HTML to the result of addBlueOverlayHTML and adding a 'blue-overlay' class to it.
+ *
+ * @return {void} 
+ */
 function addBlueOverlay(){
     let overlay = document.getElementById('blueOverlay');
     overlay.classList.add('blue-overlay');
@@ -18,6 +23,11 @@ function addBlueOverlay(){
 }
 
 
+/**
+ * Generates HTML code for adding a blue overlay element with a logo image.
+ *
+ * @return {string} The HTML code for the blue overlay element.
+ */
 function addBlueOverlayHTML(){
     return /*html*/`<div id="logo">
         <img src="./assets/img/logo-big_white.png" alt="logo" class="joinLogoWhite logo-animation">

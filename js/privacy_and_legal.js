@@ -26,7 +26,11 @@ async function includeHTML() {
 }
 
 
-
+/**
+ * Function to highlight the privacy or legal navigation link based on the current URL.
+ *
+ * @return {void} This function does not return anything.
+ */
 function highlightPrivacyLegalNavLink() {
 	const currentURL = window.location.href;
 	const searchStringPrivacy = "privacy.html";
@@ -43,6 +47,12 @@ function highlightPrivacyLegalNavLink() {
 	}
 }
 
+
+/**
+ * Updates the links for privacy and legal navigation based on the current URL if it includes "external".
+ *
+ * @return {void} This function does not return anything.
+ */
 function changeLinks(){
 	const currentUrl = window.location.href;
 	if (currentUrl.includes("external")) {
