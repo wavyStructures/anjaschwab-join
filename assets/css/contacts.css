@@ -523,6 +523,10 @@ input {
   cursor: pointer;
 }
 
+.icon-edit:hover {
+  scale: 1.1;
+}
+
 .icon-edit img {
   height: 1.5rem;
   width: 1.5rem;
@@ -537,6 +541,10 @@ input {
   align-items: center;
   color: #2a3647;
   cursor: pointer;
+}
+
+.icon-delete:hover {
+  scale: 1.1;
 }
 
 .icon-delete img {
@@ -927,6 +935,10 @@ input {
     padding: 8px;
     }
 
+    .editDiv:hover {
+      scale: 1.1;
+    }
+
     .deleteDiv {
       display: flex;
       align-items: center;
@@ -936,6 +948,10 @@ input {
       cursor: pointer;
       padding: 8px;
   }
+}
+
+.deleteDiv:hover {
+  scale: 1.1;
 }
 
 @media screen and (max-width: 380px) {
