@@ -27,9 +27,11 @@ async function includeHTML() {
 		}
 	}
 	showInitials();
-	setActiveNavButton();
 	addResizeEventListener();
+	setIsSmallerThan802()
+	setActiveNavButton();
 }
+
 
 /**
  * Adds an event listener to the window's resize event. When the window is resized,
@@ -43,16 +45,27 @@ async function includeHTML() {
  */
 function addResizeEventListener(){
 	window.addEventListener('resize', () => {
-		if (window.innerWidth <= 802) {
-			isSmallerThan802 = true;
-		} else {
-			isSmallerThan802 = false;
-		}
+		setIsSmallerThan802();
+	
 		if (isSmallerThan802 !== isSmallerThan802Old){
 			isSmallerThan802Old = isSmallerThan802;
 			setActiveNavButton(); 
 		}
 	});
+}
+
+
+/**
+ * Sets the value of the isSmallerThan802 variable based on the window's inner width.
+ *
+ * @return {void} This function does not return anything.
+ */
+function setIsSmallerThan802(){
+	if (window.innerWidth <= 802) {
+		isSmallerThan802 = true;
+	} else {
+		isSmallerThan802 = false;
+	}
 }
 
 
@@ -119,7 +132,7 @@ function logout() {
  * Displays the initials of the current user in the 'userInitials' element. If no user is logged in, displays 'G' for guest instead.
  */
 function showInitials() {
-	checkIfUserIsRemembered()
+	checkIfUserIsRemembered();
 	try {
 		let userAsString = sessionStorage.getItem('currentUser');
 		let userInitialsElement = document.getElementById('userInitials');
@@ -188,57 +201,21 @@ function switchPageNewTab(newUrl) {
  * Sets the active navigation button based on the current location pathname.
  */
 function setActiveNavButton() {
-	const summaryNavLink = document.getElementById('summary');
-	const addTaskNavLink = document.getElementById('addTask');
-	const boardNavLink = document.getElementById('board');
-	const contactsNavLink = document.getElementById('contacts');
-	const activeNavLink = document.querySelector('.nav-btn.active');
-
-
-	const privacyNavLink = document.getElementById('privacyNav');
+	const navLinks = ["summary", "addTask", "board", "contacts"];
+	const activeNavLink = document.querySelector(".nav-btn.active");
 
 	// Remove active class from any previously active nav link
 	if (activeNavLink) {
-		activeNavLink.classList.remove('active');
+		activeNavLink.classList.remove("active");
 	}
 
-	switch (location.pathname) {
-		case '/summary.html':
-			summaryNavLink.classList.add('active');
-			if (isSmallerThan802) {
-				summaryNavLink.querySelector('img').src = './assets/img/icon-summary-marked.png';
-			} else {
-				summaryNavLink.querySelector('img').src = './assets/img/icon-summary.png';
-			}
-			break;
-		case '/addTask.html':
-			addTaskNavLink.classList.add('active');
-			if (isSmallerThan802) {
-				addTaskNavLink.querySelector('img').src = './assets/img/icon-addTask-marked.png';
-			} else {
-				addTaskNavLink.querySelector("img").src = './assets/img/icon-addTask.png';
-			}
-			break;
-		case '/board.html':
-			boardNavLink.classList.add('active');
-			if (isSmallerThan802) {
-				boardNavLink.querySelector('img').src = './assets/img/icon-board-marked.png';
-			} else {
-				boardNavLink.querySelector('img').src = './assets/img/icon-board.png';
-			}
-			break;
-		case '/contacts.html':
-			contactsNavLink.classList.add('active');
-			if (isSmallerThan802) {
-				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts-marked.png';
-			} else {
-				contactsNavLink.querySelector('img').src = './assets/img/icon-contacts.png';
-			}
-			break;
-
-		default:
-			break;
-	}
+	navLinks.forEach((link) => {
+		if (location.pathname.includes(link)) {
+			document.getElementById(link).classList.add("active");
+			if (isSmallerThan802) document.getElementById(link).querySelector("img").src = `./assets/img/icon-${link}-marked.png`;
+			else document.getElementById(link).querySelector("img").src = `./assets/img/icon-${link}.png`;
+		}
+	});
 }
 
 
@@ -264,6 +241,9 @@ function lockScreenOrientation() {
 window.addEventListener('load', lockScreenOrientation);
 
 
+/**
+ * Closes the current window if the previous URL includes 'index', otherwise navigates back to the previous page.
+ */
 function goBack() {
 	const previousURL = document.referrer;
 	if (previousURL.includes('index')){
@@ -272,31 +252,3 @@ function goBack() {
 		window.history.go(-1);
 	}
 }
-
-
-//  *
-//  * @param {String} folderPath
-//  */
-// function dynamicallyLoadScriptsFromFolder(folderPath) {
-//   var scripts = [
-//     'allTasks.js',
-//     'board.js',
-//     'contacts.js',
-//     'contact_list.js',
-//     'contact_popups.js',
-//     'login.js',
-//     'navigation.js',
-//     'register.js',
-//     'storage.js',
-//     'summary.js'
-//   ];
-
-//   scripts.forEach(function(script) {
-//       var scriptElement = document.createElement("script");
-//       scriptElement.src = folderPath + "/" + script;
-//       scriptElement.setAttribute("defer","");
-//       document.head.appendChild(scriptElement);
-//   });
-//   console.log("JS imported")
-// }
-

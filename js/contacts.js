@@ -485,7 +485,6 @@ function renderEditContact() {
  * @return {string} The HTML code for the edit contact form.
  */
 function renderEditContactHTML(id, name, contactColor) {
-  console.log("COLOR: ", contactColor);
   return /*html*/ `
         <div class="edit-contact-header">
             <div class="edit-contact-header-close">

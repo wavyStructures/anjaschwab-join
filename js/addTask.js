@@ -205,7 +205,7 @@ function renderSubtaskHTML(outputContainer, subtask){
     outputContainer.innerHTML +=
     /*html*/`
         <div class="subTaskOutputDiv" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
-        <div class="subtaskText">&#8226; ${subtask.subtaskText}</div>
+        <div class="subtaskText">${subtask.subtaskText}</div>
             <div class="subtaskCheckboxes">
                 <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>
                 <div class="vLine"></div>
@@ -340,12 +340,10 @@ function renderArrow(arrowContainer, contentContainer){
  * @param {string} contentContainer - The id of the content container element
  */
 function setOnclickOnBody(arrowContainer, contentContainer){
-    console.log(contentContainer);
     let customArrow = document.getElementById(arrowContainer)
     if (document.getElementById(contentContainer).classList.contains('d-none')){
         document.body.removeAttribute('onclick');
     }else{
- 
         document.body.setAttribute('onclick', findElementsWithArrow());
     }
 }
@@ -363,9 +361,7 @@ function findElementsWithArrow(){
         let nodeValueAsString = element.attributes.onclick.nodeValue;
             if (nodeValueAsString.includes("renderArrow")){
                 let val = element.getAttribute('onclick').split(";")[1];
-                console.log(val);
                 if (onclickValues == ""){
-                    console.log("if");
                     onclickValues = val;
                 } else {
                     onclickValues = onclickValues + ";" + val
@@ -696,7 +692,7 @@ async function loadTasksFromRemoteStorage(){
     tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
     console.info('Tasks loaded from Remote Storage');
     tasks.forEach(task => {
-        if(!task.hasOwnProperty('subtasks')) task.subtasks = []; console.log('added subtasks');
-        if(!task.hasOwnProperty('assignedTo')) task.assignedTo = []; console.log('added assignedTo');
+        if(!task.hasOwnProperty('subtasks')) task.subtasks = []; 
+        if(!task.hasOwnProperty('assignedTo')) task.assignedTo = [];
     })
 }
