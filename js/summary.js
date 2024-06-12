@@ -87,7 +87,6 @@ function greet(capitalizedName) {
 function adjustGreeting() {
     let daytimeGreeting = document.getElementById("daytimeGreeting");
     daytimeGreeting.innerHTML = '';
-    daytimeGreeting.innerHTML = '';
     daytimeGreeting.classList.remove("daytimeGreeting");
     daytimeGreeting.classList.add("userGreeting");
 }
@@ -192,7 +191,8 @@ function buttonEventListener() {
  * Displays a mobile greeting overlay if the window width is less than 801 pixels.
  */
 function greetUserMobile() {
-    if (window.innerWidth < 951) {
+
+    if (window.innerWidth < 951 && document.referrer.includes('index')) {
         let greetingContainer = document.getElementById('greetingContainer');
         let subMainSummary = document.getElementById('subMainSummary');
         let bitGreeting = document.getElementById('h1GreetingUser');
