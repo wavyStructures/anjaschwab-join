@@ -354,6 +354,11 @@ input {
   font-size: 1.438rem;
 }
 
+.button-add-contact-card :hover {
+  background-color: #005dff;
+  scale: 1.1 ;
+}
+
 .contact-list {
   padding: 2rem 1.5rem 2rem 1.5rem;
 }
