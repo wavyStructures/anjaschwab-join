@@ -328,10 +328,17 @@ function renderArrow(arrowContainer, contentContainer){
 
     arrowImg.src = `./assets/img/icon-arrow_dropdown_${arrowImg.dataset.direction}.png`
     document.getElementById(contentContainer).classList.toggle('d-none')
+    document.getElementById(contentContainer).classList.toggle('dropdown-opened')
 
     // setOnclickOnBody(arrowContainer, contentContainer);
 }
 
+function closeDropdownContainer(){
+    let openendDropdowns = document.getElementsByClassName('dropdown-opened');
+    for (let i=0; i<openendDropdowns.length; i++){
+        console.log(document.getElementById(openendDropdowns[i].id))
+    }
+}
 
 /**
  * Toggles the onclick attribute on the body element based on the visibility of the content container.
