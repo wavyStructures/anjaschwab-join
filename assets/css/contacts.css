@@ -781,6 +781,7 @@ input {
   }
 }
 
+
 @media screen and (max-width: 801px) {
   
   .right-side {
@@ -818,6 +819,10 @@ input {
     cursor: pointer;
   }
 
+  .contact-details-back-button :hover {
+    scale: 1.1;
+  }
+  
   .contact-information {
     display: none;
   }
