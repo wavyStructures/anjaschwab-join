@@ -742,6 +742,10 @@ input {
     width: 20rem;
   }
 
+  .contact-card {
+    gap: 1rem
+  }
+
   .contact-list {
     padding: 1.25rem 0.75rem 1.25rem 0.75rem;
   }
