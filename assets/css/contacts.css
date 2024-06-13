@@ -822,17 +822,13 @@ input {
   .contact-details-back-button :hover {
     scale: 1.1;
   }
-  
+
   .contact-information {
     display: none;
   }
 
   .contact-details-badge-group {
     display: flex;
-  }
-
-  .contact-details-name-group {
-    
   }
 
   .contact-email-container {
