@@ -387,7 +387,6 @@ input {
 
 .contact-card {
   display: flex;
-  width: 22rem;
   border-radius: 0.625rem;
   padding: 0.938rem 1.5rem 0.938rem 1.5rem;
   gap: 2.188rem;
@@ -737,10 +736,6 @@ input {
   .contacts-container {
     width: 22rem;
     padding-left: 0.5rem;
-  }
-
-  .contact-card {
-    width: 21rem;
   }
 
   .button-add-contact-card {
