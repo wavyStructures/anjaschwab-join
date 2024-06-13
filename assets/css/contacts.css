@@ -263,6 +263,10 @@ input {
   padding: 16px;
 }
 
+input::placeholder {
+  color: #d1d1d1;
+}
+
 .addContactButton {
   display: flex;
   justify-content: center;
@@ -911,6 +915,17 @@ input {
     transform: scale(1.1);
   }
 
+  .add-contact-input-group,
+  .profile-badge-group-add-contact {
+    padding: 0;
+    transform: translateY(-60px);
+  }
+
+  .add-contact-input-group{
+    gap: 15px;
+  }
+
+
   .editDelete {
     display: flex;
     flex-direction: column;
@@ -928,8 +943,6 @@ input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.1);
     min-width: 120px;
-    /* padding-top: 0; */
-    /* padding-left: 18px; */
     padding: 10px;
   }
 
