@@ -210,12 +210,8 @@ function editContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
-
-    // Funktion zum Großschreiben des ersten Buchstabens jedes Wortes im Namen
-    const capitalizeWords = (str) => {
-      return str.replace(/\b\w/g, (char) => char.toUpperCase());
-    };
-    contact.name = capitalizeWords(contact.name);
+  
+    contact.name = getNameWithCapitalizedFirstLetter(contact.name);
 
     editContactCard(contact);
     document.getElementById("contactName").value = contact.name;
@@ -229,6 +225,7 @@ function editContact(id) {
     console.error("Contact not found with ID:", id);
   }
 }
+
 
 
 /**
