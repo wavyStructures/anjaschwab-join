@@ -544,8 +544,6 @@ function chooseCategory(chosenCategory){
  * Fetches information for a new card by setting values for id, type, title, description, assignedTo, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard(){
-
-    // wenn KEINE Karte editiert wird
     if (!checkIfCardIsEditing()){
         newTask.id = getNewTaskId(); 
     }
@@ -553,6 +551,7 @@ function collectInformationsForNewCard(){
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
     newTask.assignedTo = tempAssignedContacts;
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
+    if (newTask.type === '') newTask.type = 'User Story';
 }
 
 function clearFormular(){

@@ -491,12 +491,9 @@ function setCardType(task){
 
     if (task.type == "User Story") {
         cardType.classList.add("cardTypeUserStory");
-    }
-
-    if (task.type == "Technical Task") {
+    }else if (task.type == "Technical Task") {
         cardType.classList.add('cardTypeTechnicalTask')
     }
-
 }
 
 

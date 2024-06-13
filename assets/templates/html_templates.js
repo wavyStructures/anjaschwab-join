@@ -355,7 +355,6 @@ function renderAddTaskMainContentHTML(){
             </div>
             <div id="subtasksOutputContainer"></div>
         </div>
-        <div class="addTaskEmptyDiv"></div>
         </div>
         <div id="addTaskBodyRight" class="addTaskBodyRight"></div>
     </div>`
