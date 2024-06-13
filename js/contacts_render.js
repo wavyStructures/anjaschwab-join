@@ -19,13 +19,11 @@ function generateContactsContainerHTML() {
     <img src="./assets/img/Secondary mobile contact V1.png" alt="">
   </div>
   <div class="contacts-container-outer">
-    <div class="contacts-container" id="contacts-container">
-        <div class="button-add-contact-card" id="button-add-contact-card" onclick="doNotClose(event)">
-            <div onclick="addContactCard()" class="button-add-contact">
+    <div class="contacts-container" id="contacts-container"> 
+            <div onclick="addContactCard()" id="button-add-contact-card" class="button-add-contact"  onclick="doNotClose(event)">
                 <div class="add-new-contact">Add new contact</div>
                 <img src="./assets/img/icon-person_add.png" alt="icon-person_add.png">
             </div>
-        </div>
         <div class="contact-list" id="contactList">
         </div>
     </div>
