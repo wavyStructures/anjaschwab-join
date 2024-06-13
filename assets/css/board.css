@@ -20,7 +20,6 @@
 .showBoard{
     transform: translateX(100%);
     animation: moveInRight 0.125s ease-out forwards;
-    
 }
 
 .addTaskHoverContainer{
@@ -503,8 +502,8 @@ progress{
     display: flex;
     align-items: center;
     gap: 25px;
-    
 }
+
 .openCardText{
     color: #42526E;
     font-size: 1.313rem;
@@ -522,7 +521,6 @@ progress{
     border-radius: 10px;
     gap: 10px;
     align-items: center;
-    
 }
 
 .openCardPriorityImage{
@@ -592,14 +590,12 @@ progress{
     background-image: url('../img/icon-check_button_unchecked.png');
 }
 
-
 .openCardImgDiv {
     width: 24px;
     aspect-ratio: 1;
     cursor: pointer;
     transition: all 0.1s ease;
 }
-
 
 .openCardDeleteEditContainer{
     display: flex;
@@ -648,8 +644,6 @@ progress{
 }
 
 .openCardContainer[editing]{
-    /* background-color: lightgray; */
-
     .boardEditTaskHeader{
         display: flex;
         justify-content: end;
@@ -661,6 +655,10 @@ progress{
     .addTaskBodyRight{
         display: flex;
         justify-content: end;
+        position: relative;
+        width: 100%;
+        bottom: 0;
+        right: 0;
     }
 
     .addTaskBtn{
@@ -670,7 +668,6 @@ progress{
     .addTaskEmptyDiv{
         display: none;
     }
-
 }
 
 @media (max-width: 1370px){
@@ -731,7 +728,6 @@ progress{
 }
 
 @media (max-width: 560px) {
-
     .addTaskBody {
         padding: 24px 24px 0 24px;
 
@@ -763,8 +759,6 @@ progress{
         .createBtn {
             right: 0;
         }
-
-
     }
 
     .addTaskBodyLeft {
@@ -839,10 +833,8 @@ progress{
 }
     
 @media (max-width: 450px) {
-    
     .openCardContainer,
     .openCardContainer[editing] {
-        
         /* width: clamp(290px, 100%, 400px); */
         width: 100%;
         padding: 24px 30px 24px 30px;
@@ -867,7 +859,7 @@ progress{
             right:0;
         }
     }
-    }
+}
 
 @media (max-width: 400px){
     .openCardContainer[editing]{
@@ -890,7 +882,6 @@ progress{
 
     .openCardContainer[editing] {
         padding:5px;
-        
         .boardEditTaskHeader,
         .addTaskBodyRight{
             padding: 10px;
