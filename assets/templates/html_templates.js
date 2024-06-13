@@ -365,7 +365,7 @@ function renderAddTaskMainContentHTML(){
 function renderAddTaskFooterHTML(){
     return /*html*/ `
             <div class="addTaskBtnContainer">
-                <div class="clearBtn addTaskBtn">
+                <div class="clearBtn addTaskBtn" onclick="clearFormular()">
                     <span class="addTaskBtnText">Clear</span>
                     <div class="clearBtnImg"></div>
                 </div>

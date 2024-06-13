@@ -515,6 +515,12 @@ function collectInformationsForNewCard(){
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
 }
 
+function clearFormular(){
+    newTask.subtasks = [];
+    tempAssignedContacts = [];
+    renderAddTaskHTML();
+}
+
 
 /**
  * Retrieves the new task ID based on the length of the tasks array.
