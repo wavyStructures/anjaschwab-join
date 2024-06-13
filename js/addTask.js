@@ -320,7 +320,6 @@ function getButtonColor(priority) {
  * Toggles the visibility of the dropdown content and updates the arrow image based on its current direction.
  */
 function renderArrow(arrowContainer, contentContainer){
-    console.log("arrow: ", arrowContainer, " content: ", contentContainer);
     let customArrow = document.getElementById(arrowContainer)
     let arrowImg = customArrow.childNodes[1];
     arrowImg.dataset.direction == "down"
@@ -545,7 +544,7 @@ function chooseCategory(chosenCategory){
  */
 function collectInformationsForNewCard(){
     if (!checkIfCardIsEditing()){
-        newTask.id = getNewTaskId(); 
+        newTask.id = getNewTaskId();
     }
     newTask.title = document.getElementById('addTaskEnterTitleInput').value;
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
@@ -555,6 +554,7 @@ function collectInformationsForNewCard(){
 }
 
 function clearFormular(){
+    newTask.id = 999;
     newTask.subtasks = [];
     tempAssignedContacts = [];
     renderAddTaskHTML();
@@ -567,10 +567,8 @@ function clearFormular(){
  * @return {number} The new task ID.
  */
 function getNewTaskId(){
-    if (!checkIfCardIsEditing()){
         let freeId = findFreeId(tasks);
         return freeId;
-    }
 }
 
 
@@ -614,6 +612,7 @@ function setTodayDateAsMin(){
  * @return {Promise<void>} A Promise that resolves once the task is created.
  */
 async function createTask(){
+    await loadTasksFromRemoteStorage();
     collectInformationsForNewCard();
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
