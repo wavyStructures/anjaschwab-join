@@ -39,7 +39,7 @@
     }
     .addTaskBodyLeft{
         height: 85%;
-        padding:11px 10px 0 24px;
+        padding: 11px 42px 0 36px;
     }
 
     .addTaskBodyRight{
@@ -304,13 +304,19 @@ button:focus {
 .cardType{
     display: flex;
     max-width: fit-content;
-    background-color: #FF7A00;
     color: white;
     border-radius: 8px;
     font-weight: 400;
     font-size: 16px;
     padding: 4px 16px 4px 16px;
+}
 
+.cardTypeUserStory{
+    background-color: #FF7A00;
+}
+
+.cardTypeTechnicalTask{
+    background-color: #0038FF;
 }
 
 .cardTitle{
@@ -760,14 +766,20 @@ progress{
         .createBtn {
             right: 0;
         }
+
+        .addTaskBodyLeft {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            height: 80%;
+        }
+
+        ::-webkit-scrollbar{
+            display: none;
+        }
     }
 
-    .addTaskBodyLeft {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 10px;
-    }
 
     .openCardContainer[editing] {
 
@@ -855,6 +867,7 @@ progress{
                     padding-inline: 20px;
                     padding: 5px;
                     }
+
         .addTaskBtnContainer{
             bottom:0;
             right:0;

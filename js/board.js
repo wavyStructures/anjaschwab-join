@@ -282,8 +282,6 @@ function createSuccessMessageContainer(){
  * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
 function renderCategories(arrayToSearchIn) {
-    
-    
     categories.forEach(category => {
         let categoryContainer = document.getElementById(Object.keys(category)[0]);
         categoryContainer.innerHTML = "";
@@ -292,6 +290,7 @@ function renderCategories(arrayToSearchIn) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
                 categoryContainer.innerHTML += renderTasksHTML(task);
+                setCardType(task);
                 renderAssignedToButtons(task);
             }
         } else {
@@ -405,6 +404,7 @@ function openCard(taskId){
     let task = getTaskOutOfId(taskId)
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
+    setCardType(task);
     if (task.assignedTo.length != 0) renderContactsToOpenCard(task);
     if(task.subtasks.length != 0) renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
@@ -452,7 +452,7 @@ function renderOpenCardHTML(task){
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
     <div class="openCardInnerContainer">
-        <div class="cardType">${task['type']}</div>
+        <div id="cardType${task['id']}" class="cardType">${task['type']}</div>
         <div class="cardTitle">${task['title']}</div>
         <div class="openCardDescription">${task['description']}</div>
         <div class="openCardTextBox">
@@ -483,6 +483,20 @@ function renderOpenCardHTML(task){
         </div>
     </div>
         `
+}
+
+
+function setCardType(task){
+    let cardType = document.getElementById(`cardType${task['id']}`);
+
+    if (task.type == "User Story") {
+        cardType.classList.add("cardTypeUserStory");
+    }
+
+    if (task.type == "Technical Task") {
+        cardType.classList.add('cardTypeTechnicalTask')
+    }
+
 }
 
 

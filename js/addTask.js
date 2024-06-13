@@ -320,6 +320,7 @@ function getButtonColor(priority) {
  * Toggles the visibility of the dropdown content and updates the arrow image based on its current direction.
  */
 function renderArrow(arrowContainer, contentContainer){
+    console.log("arrow: ", arrowContainer, " content: ", contentContainer);
     let customArrow = document.getElementById(arrowContainer)
     let arrowImg = customArrow.childNodes[1];
     arrowImg.dataset.direction == "down"
@@ -330,15 +331,54 @@ function renderArrow(arrowContainer, contentContainer){
     document.getElementById(contentContainer).classList.toggle('d-none')
     document.getElementById(contentContainer).classList.toggle('dropdown-opened')
 
-    // setOnclickOnBody(arrowContainer, contentContainer);
+    setCloseDropdownContainer();
 }
 
-function closeDropdownContainer(){
+
+/**
+ * Sets the onclick event handler for the container element based on the open dropdowns.
+ * If there are open dropdowns, the onclick event handler is set to render the arrow based on the dropdown id.
+ * If there are no open dropdowns, the onclick event handler is removed from the container element.
+ *
+ * @return {void}
+ */
+function setCloseDropdownContainer(){
     let openendDropdowns = document.getElementsByClassName('dropdown-opened');
-    for (let i=0; i<openendDropdowns.length; i++){
-        console.log(document.getElementById(openendDropdowns[i].id))
+    let container = getContainerToSetOnclick();
+
+    if (!openendDropdowns.length == 0){
+        for (let i=0; i<openendDropdowns.length; i++){
+            if (openendDropdowns[i].id == 'dropdown-content-assignedTo'){
+                container.setAttribute('onclick', 'renderArrow("custom-arrow-assignedTo", "dropdown-content-assignedTo")');
+            }
+            if (openendDropdowns[i].id == 'dropdown-content-category'){
+                container.setAttribute('onclick', 'renderArrow("custom-arrow-category", "dropdown-content-category")');
+            }
+        }
+    }
+    else{
+        container.removeAttribute('onclick')
     }
 }
+
+
+/**
+ * Returns the container element to set the onclick attribute on based on the current page location.
+ *
+ * @return {HTMLElement} The container element to set the onclick attribute on. Returns the 'bodyContent' element if the current page location includes 'addTask', the 'openCardContainer' element if it exists, or the 'addTaskHoverContainer' element if it exists.
+ */
+function getContainerToSetOnclick(){
+    if (window.location.href.includes('addTask')){
+        return document.getElementById('bodyContent')
+    } else {
+        if (document.getElementById('openCardContainer')){
+            return document.getElementById('openCardContainer')
+        }else{
+            return document.getElementById('addTaskHoverContainer')
+        }
+    }
+}
+
 
 /**
  * Toggles the onclick attribute on the body element based on the visibility of the content container.

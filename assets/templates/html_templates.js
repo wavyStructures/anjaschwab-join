@@ -117,7 +117,7 @@ function renderSummaryHTML() {
 function renderTasksHTML(task) {
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging(${task.id})" ondragend="stopDragging()" id="${task.id}" class="card" onclick="openCard(${task.id})">
-        <div class="cardType">${task.type}</div>
+        <div id="cardType${task.id}" class="cardType">${task.type}</div>
         <div class="cardTitle">${task.title}</div>
         <div class="cardText">${task.description}</div>
         <div class="cardSubtasks">${renderSubtask(task)}</div>
