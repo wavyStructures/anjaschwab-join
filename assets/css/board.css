@@ -410,13 +410,15 @@ progress{
 #success-message-container{
     display: flex;
     height:70px;
-    width: 330px;
     padding: 20px;
     z-index: 500;
     position: fixed;
     bottom: 0;
     border-radius: 20px;
     cursor: default;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
+    text-wrap: nowrap;
+    gap: 20px;
 
     /* position: fixed; */
     bottom: -100px;
