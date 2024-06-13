@@ -16,6 +16,36 @@ async function getContactsFromRemoteStorage() {
 }
 
 /**
+ * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
+ *
+ * @param {Object} contact - The contact object containing the name to extract from.
+ * @return {string} The extracted last name or single name from the contact.
+ */
+function getSecondOrFullName(contact) {
+  const names = contact.name.split(" ");
+  if (names.length === 1) {
+    return names[0]; // Wenn nur ein Name vorhanden ist, diesen zurückgeben
+  } else {
+    return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
+  }
+}
+
+/**
+ * Sorts an array of contacts by their last name.
+ *
+ * @param {Array} contacts - The array of contacts to be sorted.
+ * @return {Array} - The sorted array of contacts.
+ */
+function sortContactsByName(contacts) {
+  let sortedContacts = contacts.slice().sort((a, b) => {
+    const lastNameA = getSecondOrFullName(a).toLowerCase();
+    const lastNameB = getSecondOrFullName(b).toLowerCase();
+    return lastNameA.localeCompare(lastNameB);
+  });
+  return sortedContacts;
+}
+
+/**
  * Retrieves contacts from the users array and sorts them by name.
  *
  * @return {Array} An array of contacts sorted by name.
@@ -51,7 +81,6 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
 /**
  * Returns the first name from a given full name string for use as a default password.
  *
@@ -61,7 +90,6 @@ function getNextId(contactsArray) {
 function getFirstNameForDefaultPassword(name) {
   return name.split(" ")[0];
 }
-
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -76,7 +104,6 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
-
 /**
  * Initializes the contacts by including the HTML and loading the contacts.
  *
@@ -88,7 +115,6 @@ async function contactsInit() {
   getContactsOutOfUsers();
   loadContacts();
 }
-
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -102,65 +128,6 @@ function loadContacts() {
   createContactsContainer(main);
   renderSortedContacts(main, contacts);
 }
-
-/**
- * Sorts an array of contacts by their last name.
- *
- * @param {Array} contacts - The array of contacts to be sorted.
- * @return {Array} - The sorted array of contacts.
- */
-function sortContactsByName(contacts) {
-  let sortedContacts = contacts.slice().sort((a, b) => {
-    const lastNameA = getSecondOrFullName(a).toLowerCase();
-    const lastNameB = getSecondOrFullName(b).toLowerCase();
-    return lastNameA.localeCompare(lastNameB);
-  });
-  return sortedContacts;
-}
-
-/**
- * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
- *
- * @param {Object} contact - The contact object containing the name to extract from.
- * @return {string} The extracted last name or single name from the contact.
- */
-function getSecondOrFullName(contact) {
-  const names = contact.name.split(" ");
-  if (names.length === 1) {
-    return names[0]; // Wenn nur ein Name vorhanden ist, diesen zurückgeben
-  } else {
-    return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
-  }
-}
-
-/**
- * Renders the sorted contacts into the main element.
- *
- * @function renderSortedContacts
- * @param {HTMLElement} main - The main element to render contacts into.
- * @param {Array} sortedContacts - The sorted array of contacts.
- * @returns {void}
- */
-function renderSortedContacts(main, contacts) {
-  const currentFirstLetters = [];
-
-  contacts.forEach((contact) => {
-    const { id, name, mail, phone, contactColor } = contact;
-    const initials = getInitials(name);
-    const firstLetter = name
-      .split(" ")
-      [name.split(" ").length - 1].charAt(0)
-      .toUpperCase();
-
-    if (!currentFirstLetters.includes(firstLetter)) {
-      createFirstLetter(main, firstLetter);
-      currentFirstLetters.push(firstLetter);
-    }
-
-    createContactCard(main, id, contactColor, initials, name, mail);
-  });
-}
-
 
 /**
  * Generates initials from a full name.
@@ -181,7 +148,6 @@ function getInitials(name) {
   return returnName;
 }
 
-
 /**
  * Creates a letter element representing the first letter of a group of contacts.
  *
@@ -199,41 +165,6 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
-
-/**
- * Creates a container for displaying contacts and appends it to the main element.
- *
- * @function createContactsContainer
- * @param {HTMLElement} main - The main element where the container will be appended.
- * @returns {void}
- */
-function createContactsContainer(main) {
-  const containerHTML = generateContactsContainerHTML();
-  main.innerHTML += containerHTML;
-}
-
-
-/**
- * Creates a parting line element and appends it to the contact list within the main element.
- *
- * @function createPartingLine
- * @param {HTMLElement} main - The main element containing the contact list.
- * @returns {void}
- */
-function createPartingLine(main) {
-  const partingLineContainer = document.createElement("div");
-  partingLineContainer.classList.add("parting-line-container");
-  partingLineContainer.id = "parting-line-container";
-
-  const partingLine = document.createElement("div");
-  partingLine.classList.add("parting-line");
-  partingLine.id = "parting-line";
-
-  partingLineContainer.appendChild(partingLine);
-  main.querySelector(".contact-list").appendChild(partingLineContainer);
-}
-
-
 /**
  * Removes a container element from the DOM based on the provided id.
  *
@@ -243,7 +174,6 @@ function createPartingLine(main) {
 function removeContainer(id) {
   document.getElementById(id).remove();
 }
-
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -273,7 +203,6 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
-
 /**
  * Capitalizes the first letter of each word in a given name.
  *
@@ -294,7 +223,6 @@ function getNameWithCapitalizedFirstLetter(name) {
   }
 }
 
-
 /**
  * Displays details of the contact with the given ID.
  * @param {number} id - The unique identifier of the contact.
@@ -304,10 +232,15 @@ function openContactDetails(id) {
   const { name, mail, phone, contactColor } = contact;
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
-  rightSide.innerHTML = generateContactDetailsHTML(name, mail, phone, id, contactColor);;
+  rightSide.innerHTML = generateContactDetailsHTML(
+    name,
+    mail,
+    phone,
+    id,
+    contactColor
+  );
   highlightSelectedContact(id);
 }
-
 
 /**
  * Resets contact card styles to their default values.
@@ -327,7 +260,6 @@ function resetContactCard(card) {
   }
 }
 
-
 /**
  * Resets the styles of all contact cards to their default values.
  *
@@ -341,7 +273,6 @@ function resetAllContactCards() {
     card.classList.remove("highlighted");
   });
 }
-
 
 /**
  * Highlights a contact card by applying specific styles.
@@ -363,7 +294,6 @@ function highlightContactCard(card) {
   }
 }
 
-
 /**
  * Highlights the selected contact card and shows the right side element.
  *
@@ -384,7 +314,6 @@ function highlightSelectedContact(id) {
   applyHighlight();
 }
 
-
 /**
  * Applies highlighting to the selected contact card and shows the right side element.
  *
@@ -403,7 +332,6 @@ function applyHighlight() {
     }
 }
 
-
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -415,7 +343,6 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
-
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -425,7 +352,6 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
-
 
 /**
  * Updates the color of each contact in the contacts_old array by mapping the colors array to the newColors array.
@@ -441,7 +367,6 @@ function changeColor() {
     }
   });
 }
-
 
 /**
  * Deletes all contacts by clearing the contacts array and updating the storage.
