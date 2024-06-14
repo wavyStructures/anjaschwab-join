@@ -128,8 +128,9 @@ function closeOverlay(id) {
   if (overlay) overlay.remove();
 
   document.body.style.overflow = "auto";
-
-  removeContainer(id);
+  setTimeout(() => {
+    removeContainer(id);
+  },100);
 }
 
 
