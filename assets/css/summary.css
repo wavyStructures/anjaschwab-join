@@ -188,9 +188,6 @@ div.square-button.toDo {
 }
 
 .summary-box {
-  /* background-color: rgba(39, 134, 22, 0.4); */
-  /* width: 912px; */
-  /* height: 591px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -492,7 +489,6 @@ button {
     background-color: #fff;
     grid-column: 1 / 2;
     grid-row: 3 / 4;
-    /* padding-bottom: 26px; */
   }
 
   .inProgress {
@@ -510,7 +506,6 @@ button {
     background-color: #fff;
     grid-column: 2 /2;
     grid-row: 4 / 5;
-    padding-bottom: 26px;
   }
 
   #toDoButton {
