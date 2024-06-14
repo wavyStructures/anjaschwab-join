@@ -7,6 +7,7 @@ function renderNavigationHTML() {
 </div>`;
 }
 
+
 function renderHeaderHTML() {
   return `<div class="header-content">
         <img src="/assets/img/logo-small_white.png" alt="join-logo">
@@ -22,6 +23,7 @@ function renderHeaderHTML() {
         </div>
     </div>`;
 }
+
 
 function renderSummaryHTML() {
   return /*html*/ `
@@ -99,15 +101,9 @@ function renderSummaryHTML() {
             </div>
         </div>
     </div>
-</div>
-
-`;
+</div>`;
 }
 
-
-// function renderContactsHTML() {
-//   return /*html*/ `<div class="contacts-content">Content Of Contacts</div>`;
-// }
 
 /**
  *
@@ -132,15 +128,18 @@ function renderTasksHTML(task) {
     </div>`;
 }
 
+
 function renderEmptyCategoryHTML(name) {
   return /*html*/ `<div class="empty-category">No tasks ${name}</div>`;
 }
+
 
 function renderAssignedToButtonsHTML(contact) {
   return /*html*/ `<div class="profile-badge-group" style="background-color: ${
     contact.contactColor
   }">${getInitials(contact.name)}</div>`;
 }
+
 
 function renderLoginPageHTML() {
   return /*html*/ `
@@ -201,13 +200,10 @@ function renderLoginPageHTML() {
             <div class="privacyPolicy" onclick=""><span>Privacy policy</span></div>
             <div class="legalNotice" onclick=""><span>Legal notice</span></div>
         </div>
-
-
     </div>
-</div>
-
-    `;
+</div>`;
 }
+
 
 function renderSignUpPageHTML() {
   return /*html*/ `
@@ -258,8 +254,7 @@ function renderSignUpPageHTML() {
 
 
         </div>
-    </div>
-    `;
+    </div>`;
 }
 
 
@@ -372,6 +367,50 @@ function renderAddTaskFooterHTML(){
                     <span class="addTaskBtnText">Create Task</span>
                     <div class="createBtnImg"></div>
                 </div>
+        </div>`
+}
+
+
+/**
+ * Renders the HTML for the open card based on the given task object.
+ *
+ * @param {Object} task - The task object containing the details to render.
+ * @return {string} The HTML string for the open card.
+ */
+function renderOpenCardHTML(task){
+    return /*html*/`
+    <div class="boardAddTaskCloseHoverOuterContainer">
+        <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
+    </div>
+    <div class="openCardInnerContainer">
+        <div id="openCardType${task['id']}" class="cardType">${task['type']}</div>
+        <div class="cardTitle">${task['title']}</div>
+        <div class="openCardDescription">${task['description']}</div>
+        <div class="openCardTextBox">
+            <span class="openCardText">Due Date:</span>
+            <span class="openCardValue">${task['dueDate']}</span>
         </div>
-    `
+        <div class="openCardTextBox">
+            <span class="openCardText">Priority:</span>
+            <div class="openCardPriority">
+                <span class="openCardValue">${task['priority']}</span>
+                <div class="openCardPriorityImage">${setPriorityImage(task['priority'])}</div>
+            </div>
+        </div>
+        <div id="openCardAssignedToContainer">
+        </div>
+        <div id="openCardSubtasksContainer">
+        </div>
+        <div class="openCardDeleteEditContainer">
+            <div class="openCardDeleteContainer" onclick='openCardDelete(${task.id})'>
+                <div class="openCardImgDiv pointer" id="openCardImgDelete"> </div>
+                <span>Delete</span>
+            </div>
+            <div class="vLine"></div>
+            <div class="openCardEditContainer"  onclick='openCardEdit(${task.id})'>
+                <div class="openCardImgDiv pointer" id="openCardImgEdit"> </div>
+                <span>Edit</span>
+            </div>
+        </div>
+    </div>`
 }
