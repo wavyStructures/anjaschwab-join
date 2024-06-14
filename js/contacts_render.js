@@ -126,11 +126,11 @@ function renderEditContactHTML(id, name, contactColor) {
                       <img src="./assets/img/icon-call.png" alt="">
                   </div>
                   <div id="addContactButton" class="addContactButton">
-                      <button class="cancelButton" onclick="closeOverlay('editContact')" onmouseover="changeCancelIcon()"
+                      <button class="cancelButton" onclick="closeOverlay('editContact')" onmouseover="changeCancelIcon()" onclick="doNotClose(event)"
                           onmouseout="restoreCancelIcon()">Cancel
                           <img id="cancelIcon" onclick="closeOverlay('editContact')" src="./assets/img/icon-cancel.png" alt="">
                       </button>
-                      <button class="createButton">Save
+                      <button class="createButton" onclick="doNotClose(event)">Save
                           <img id="createIcon" onclick="saveEditedContact(${id})" src="./assets/img/icon-check.png" alt="">
                       </button>
                   </div>
