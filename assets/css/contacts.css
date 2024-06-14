@@ -932,7 +932,7 @@ input::placeholder {
     gap: 15px;
   }
 
-  .edit-contact, .profile-badge-group-add-contact {
+  .edit-contact .profile-badge-group-add-contact {
     transform: translateY(-45px);
     padding-bottom: 24px;
   } 
