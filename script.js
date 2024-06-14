@@ -91,9 +91,8 @@ function renderBoard() {
 }
 
 
-/***************************************ab hier für Header-Elemente und Navigation********************************* */
 /**
- * open help page
+ * Opens the help page by switching to the 'help.html' page.
  */
 function openHelp() {
 	switchPage('help.html');
@@ -118,14 +117,6 @@ function logout() {
 	sessionStorage.removeItem('currentUser');
 	switchPage('index.html');
 }
-
-// document.addEventListener('DOMContentLoaded', function () {
-// 	let user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
-// 	if (user) {
-// 		switchPage('summary.html');
-// 	}
-
-// });
 
 
 /**
@@ -167,12 +158,10 @@ function openSmallMenu() {
 
 	if (screenWidth <= 801) {
 		smallMenu.classList.remove("d-none");
-		// smallMenu.classList.remove("visible");
 		smallMenuMobile.classList.toggle("d-none");
 	} else {
 		smallMenuMobile.classList.add("d-none");
 		smallMenu.classList.toggle("d-none");
-		// smallMenu.classList.toggle("visible");
 	}
 }
 
@@ -217,28 +206,6 @@ function setActiveNavButton() {
 		}
 	});
 }
-
-
-/**
- * Locks the screen orientation to portrait.
- */
-function lockScreenOrientation() {
-	// Check if screen.orientation and screen.orientation.lock are supported
-	if (screen.orientation && screen.orientation.lock) {
-		screen.orientation.lock('portrait')
-			.catch(error => {
-				// console.warn('Failed to lock screen orientation:', error);
-			});
-	} else {
-		// console.warn('Screen orientation lock is not supported on this device.');
-	}
-
-	// // Set the height of the body element to 100vH
-	// document.body.style.height = '100vH';
-}
-
-// Call the function to lock screen orientation and set body height when the page loads
-window.addEventListener('load', lockScreenOrientation);
 
 
 /**

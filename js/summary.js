@@ -154,7 +154,7 @@ function getUrgentTasks() {
     let urgentTasks = [];
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
-        if (task.priority === 'urgent' && (task.category === 'todo' || task.category === 'inProgress' || task.category === 'awaitFeedback')) {
+        if (task.priority === 'urgent' && (task.category === 'category-0' || task.category === 'category-1' || task.category === 'category-2')) {
             urgentTasks.push(task);
         }
     }
