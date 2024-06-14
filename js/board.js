@@ -318,7 +318,7 @@ function createEditHeader(){
 function createEditFooter(task){
     return /*html*/`
     <div class="addTaskBodyRight">
-        <div class="createBtn addTaskBtn" onclick="saveEditedTask(${task.id})">
+        <div class="createBtn addTaskBtn" onclick="saveEditedTask(${task.id}); doNotClose(event)">
             <span class="addTaskBtnText">Ok</span>
             <div class="createBtnImg"></div>
         </div>
