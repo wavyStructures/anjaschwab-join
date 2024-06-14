@@ -982,6 +982,12 @@ input::placeholder {
   scale: 1.1;
 }
 
+@media screen and (max-width: 580px) {
+  .edit-contact {
+    min-width: 100%;
+    width: auto;
+}
+
 @media screen and (max-width: 420px) {
   .cancelButton{
     display: none
