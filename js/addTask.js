@@ -612,6 +612,7 @@ async function createTask(){
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
+    clearFormular();
 }
 
 
