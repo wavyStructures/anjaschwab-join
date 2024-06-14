@@ -324,7 +324,7 @@ function renderOpenCardHTML(task){
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
     <div class="openCardInnerContainer">
-        <div id="cardType${task['id']}" class="cardType">${task['type']}</div>
+        <div id="openCardType${task['id']}" class="cardType">${task['type']}</div>
         <div class="cardTitle">${task['title']}</div>
         <div class="openCardDescription">${task['description']}</div>
         <div class="openCardTextBox">
@@ -360,11 +360,15 @@ function renderOpenCardHTML(task){
 
 function setCardType(task){
     let cardType = document.getElementById(`cardType${task['id']}`);
+    let openCardType = document.getElementById(`openCardType${task['id']}`)
+
 
     if (task.type == "User Story") {
         cardType.classList.add("cardTypeUserStory");
+        if (openCardType) openCardType.classList.add("cardTypeUserStory");
     }else if (task.type == "Technical Task") {
         cardType.classList.add('cardTypeTechnicalTask')
+        if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
     }
 }
 

@@ -29,7 +29,7 @@ function renderSummaryHTML() {
     <div class="summary-box box-shadow">
         <div id="h1GreetingUser" class="h1-box">
             <h1 id="daytimeGreeting" class="no-wrap">Good morning,</h1>
-            <h1 id="usernameForGreeting">Sofia XXX</h1>
+            <h1 id="usernameForGreeting"></h1>
         </div>
         <div id="h1GreetingGuest" class="h1-box" style="display: none;">
             <h1 class="no-wrap">Good morning</h1>
