@@ -217,12 +217,12 @@ input[type="password"]:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 100ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .goal {
   transform: translate(0, 0);
-  transition: all 100ms ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 #logo.goal {
@@ -235,7 +235,7 @@ input[type="password"]:focus {
 .goal img {
   height: 78px;
   width: 64px;
-  transition: all 100mss ease-in-out;
+  transition: all 500ms ease-in-out;
 }
 
 .blue-overlay {

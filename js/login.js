@@ -83,8 +83,8 @@ async function startAnimation() {
             setTimeout(() => {
                 resolve();
                 hideOverlay();
-            }, 300);
-        }, 100);
+            }, 500);
+        }, 500);
     });
 }
 
