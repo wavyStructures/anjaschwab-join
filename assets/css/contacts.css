@@ -621,6 +621,7 @@ input::placeholder {
 }
 
 .contact-succesfully-created-wrapper {
+  position: fixed;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   background-color: var(--version-2-main-color);
