@@ -237,7 +237,6 @@ function openCardEdit(taskId){
     renderAssignedContactsContainer();
     renderSubtasks()
     setTaskValuesToFields(newTask);
-    printValueFromSpecificCard('Task edit', taskId);
 }
 
 
@@ -293,8 +292,6 @@ function saveEditedTask(taskId){
     taskToSave = newTask;
     saveTasksToRemoteStorage();
     closeCard();
-    printValueFromSpecificCard('Task saved', taskId);
-    printValuesFromEachCard('category')
 }
 
 

@@ -13,38 +13,6 @@ async function addTaskInit(){
     checkValidity();
 }
 
-let tempAssignedContacts = [];
-let tempPriority = '';
-let tempSubtasks = [];
-let isValid = false;
-let requiredInputFields = [
-    {
-        'id': 'addTaskEnterTitleInput',
-        'requiredFieldId': 'requiredTitle',
-        'idForRedUnderline':  'addTaskEnterTitleInput',
-        'state': false
-    },
-    {
-        'id': 'addTaskDueDateInput',
-        'requiredFieldId': 'requiredDueDate',
-        'idForRedUnderline': 'addTaskDueDateInputContainer',
-        'state': false
-    }
-];
-
-let newTask = 
-    {
-        'id': 999,
-        'type': '',
-        'title': '',
-        'description': '',
-        'subtasks': [],
-        'assignedTo': [],
-        'category': 'category-0',
-        'priority': '',
-        'dueDate': ''
-};
-
 
 /**
  * Renders the HTML for adding a task.
@@ -85,22 +53,12 @@ function setPriorityAppearance(priority){
         button.querySelector('.priorityButtonText').style.color = 'black';
         button.querySelector('img').src = `./assets/img/icon-priority_${button.id.toLowerCase().slice(21)}.png`;
     });
-    
+
     const button = document.getElementById(`addTaskPriorityButton${priority}`);
     button.style.backgroundColor = getButtonColor(priority);
     button.classList.add('active');
     button.querySelector('.priorityButtonText').style.color = 'white';
     button.querySelector('img').src = `./assets/img/icon-priority_${priority.toLowerCase()}_white.png`;
-}
-
-
-/**
- * Sets the priority for a new card.
- *
- * @param {string} priority - The priority level of the new card.
- */
-function setPriorityForNewCard(priority){
-    newTask.priority = priority;
 }
 
 
@@ -112,22 +70,6 @@ function renderSubtaskInputField(){
     let subtaskBottom = document.getElementById('subtaskBottom');
     subtaskBottom.innerHTML = renderSubtaskInputFieldHTML();
     document.getElementById('subtaskInputField').focus();
-}
-
-
-/**
- * Renders the HTML code for a subtask input field with an "Add" button and a "Cancel" button.
- *
- * @return {string} The HTML code for the subtask input field.
- */
-function renderSubtaskInputFieldHTML(){
-   return /*html*/`
-    <input type="text" id="subtaskInputField" placeholder="Add new subtask" onclick="doNotClose(event)">
-    <div class="subtaskAddOrCancel">
-        <div id="subtaskImgAddCheck" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('add'); doNotClose(event)"></div>
-        <div class="vLine"></div>
-        <div id="subtaskImgAddCancel" class="subtaskImgDiv pointer" onclick="subtaskAddOrCancel('cancel'); doNotClose(event)"></div>
-    </div>`
 }
 
 
@@ -150,35 +92,6 @@ function subtaskAddOrCancel(option) {
 
 
 /**
- * Renders the default HTML for a subtask, including an input field and an image for adding a new subtask.
- *
- * @return {string} The default HTML for a subtask.
- */
-function renderSubtaskDefaultHTML(){
-    return /*html*/`<div id="subtaskInputFieldDiv">Add new subtask</div>
-    <div id="subtaskImgAddPlus" class="subtaskImgDiv pointer"></div>
-    `
-}
-
-
-/**
- * Adds a new subtask to the list of tasks.
- */
-function addSubtask(){
-    let subtaskInputField = document.getElementById('subtaskInputField');
-    if(subtaskInputField.value != ''){
-
-        newTask.subtasks.push({
-            'id': newTask.subtasks.length,
-            'subtaskText' : subtaskInputField.value,
-            'completed': false
-        })
-    }
-    renderSubtasks();
-}
-
-
-/**
  * Renders the subtasks by iterating through each subtask and calling the renderSubtaskHTML function.
  */
 function renderSubtasks(){
@@ -188,42 +101,6 @@ function renderSubtasks(){
         let subtask = newTask.subtasks[i];
         renderSubtaskHTML(outputContainer, subtask);
     }
-}
-
-
-/**
- * Renders the HTML code for a subtask and appends it to the output container.
- *
- * @param {HTMLElement} outputContainer - The container element where the subtask HTML will be appended.
- * @param {Object} subtask - The subtask object containing the subtask information.
- */
-function renderSubtaskHTML(outputContainer, subtask){
-    outputContainer.innerHTML +=
-    /*html*/`
-        <div class="subTaskOutputDiv" id="subtask${subtask.id}" ondblclick="editSubtask(${subtask.id})">
-        <div class="subtaskText">${subtask.subtaskText}</div>
-            <div class="subtaskCheckboxes">
-                <div class="subtaskImgDiv pointer" id="subtaskImgEdit" onclick="editSubtask(${subtask.id})"> </div>
-                <div class="vLine"></div>
-                <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div>
-            </div>
-        </div>`
-}
-
-
-/**
- * Updates the HTML content of a subtask container with the HTML code for editing the subtask.
- *
- * @param {number} id - The ID of the subtask to be edited.
- */
-function editSubtask(id){
-    if (checkIfAnySubtaskIsInEditingMode()) {
-        return;
-    }
-    let subtaskContainer = document.getElementById('subtask' + id);
-    let subtask = newTask.subtasks.find(subtask => subtask.id == id);
-    subtaskContainer.classList.add("editing")
-    subtaskContainer.innerHTML = editSubtaskHTML(subtask);
 }
 
 
@@ -242,53 +119,6 @@ function checkIfAnySubtaskIsInEditingMode(){
         }
     }
     return false;
-}
-
-
-/**
- * Generates the HTML code for editing a subtask.
- *
- * @param {Object} subtask - The subtask object to be edited.
- * @return {string} The HTML code for editing the subtask.
- */
-function editSubtaskHTML(subtask) {
-    return /*html*/`
-        <input type="text" id="subtaskEditInputField" value="${subtask.subtaskText}">
-        <div class="subtaskCheckboxes">
-        <div class="subtaskImgDiv pointer" id="subtaskImgDelete" onclick="deleteSubtask(${subtask.id})"> </div><div class="vLine"></div>
-            <div class="subtaskImgDiv pointer" id="subtaskImgAddCheck" onclick="saveEditSubtask(${subtask.id})"> </div>
-        </div>`
-}
-
-
-/**
- * Updates the subtask text based on the provided ID.
- *
- * @param {number} id - The ID of the subtask to be updated.
- */
-function saveEditSubtask(id){
-    let newText = document.getElementById('subtaskEditInputField');
-    newTask.subtasks.forEach(subtask => {
-        if (subtask.id == id){
-            subtask.subtaskText = newText.value;
-        }
-    })
-    renderSubtasks();
-}
-
-
-/**
- * Deletes a subtask from the `newTask.subtasks` array based on the provided `subtaskId`.
- *
- * @param {number} subtaskId - The ID of the subtask to be deleted.
- */
-function deleteSubtask(subtaskId){
-    newTask.subtasks.forEach((subtask, index) => {
-        if (subtask.id == subtaskId){
-            newTask.subtasks.splice(index, 1);
-        }
-    })
-    renderSubtasks();
 }
 
 
@@ -375,45 +205,6 @@ function getContainerToSetOnclick(){
 
 
 /**
- * Toggles the onclick attribute on the body element based on the visibility of the content container.
- *
- * @param {string} arrowContainer - The id of the arrow container element
- * @param {string} contentContainer - The id of the content container element
- */
-function setOnclickOnBody(arrowContainer, contentContainer){
-    let customArrow = document.getElementById(arrowContainer)
-    if (document.getElementById(contentContainer).classList.contains('d-none')){
-        document.body.removeAttribute('onclick');
-    }else{
-        document.body.setAttribute('onclick', findElementsWithArrow());
-    }
-}
-
-
-/**
- * Finds elements with the 'onclick' attribute containing 'renderArrow' and extracts the second value after splitting by ';'.
- *
- * @return {string} The concatenated 'onclick' values that match the criteria.
- */
-function findElementsWithArrow(){
-    let onclicks = Array.from(document.getElementsByTagName('div')).filter(el => el.hasAttribute('onclick'))
-    let onclickValues = "";
-    onclicks.forEach(element => {
-        let nodeValueAsString = element.attributes.onclick.nodeValue;
-            if (nodeValueAsString.includes("renderArrow")){
-                let val = element.getAttribute('onclick').split(";")[1];
-                if (onclickValues == ""){
-                    onclickValues = val;
-                } else {
-                    onclickValues = onclickValues + ";" + val
-                }
-            }
-        });
-    return onclickValues
-}
-
-
-/**
  * Renders the test contacts in the dropdown content.
  */
 function renderContactsToDropdown(){
@@ -434,40 +225,6 @@ function renderContactsToDropdown(){
 function addTaskDueDateOpenCalendear(){
     document.getElementById('addTaskDueDateInput').showPicker();
 }
-
-
-/**
- * Assigns a contact to a task based on the provided id.
-*
-* @param {number} id - The id of the task to assign the contact to.
-*/
-function assignContactToTask(id){
-    if (contacts.find(contact => contact.id == id)){
-        let dropdownContact = document.getElementById('assignedToContact' + id);
-        let dropdownCheckboxImage = dropdownContact.lastElementChild;
-
-        setDropdownContactAppearance(dropdownContact, dropdownCheckboxImage);
-        toggleAssignedContactsContainer();
-        pushContactToTempAssignedContacts(id);
-        renderAssignedContactsContainer();
-    }
-}
-
-
-/**
- * Pushes the given ID to the temporary assigned contacts array if it is not already present.
- * If the ID is already present, it removes it from the array.
- *
- * @param {number} id - The ID to be pushed or removed from the temporary assigned contacts array.
- */
-function pushContactToTempAssignedContacts(id){
-    if (tempAssignedContacts.indexOf(id) == -1){
-        tempAssignedContacts.push(id)
-    }else{
-        tempAssignedContacts.splice(tempAssignedContacts.indexOf(id), 1)
-    }
-}
-
 
 /**
  * Sets the appearance of the dropdown contact based on the 'marked' attribute.
@@ -535,39 +292,6 @@ function chooseCategory(chosenCategory){
 
 
 /**
- * Fetches information for a new card by setting values for id, type, title, description, assignedTo, category, priority, and due date of a new task.
- */
-function collectInformationsForNewCard(){
-    if (!checkIfCardIsEditing()){
-        newTask.id = getNewTaskId();
-    }
-    newTask.title = document.getElementById('addTaskEnterTitleInput').value;
-    newTask.description = document.getElementById('addTaskDescriptionInput').value;
-    newTask.assignedTo = tempAssignedContacts;
-    newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
-    if (newTask.type === '') newTask.type = 'User Story';
-}
-
-function clearFormular(){
-    newTask.id = 999;
-    newTask.subtasks = [];
-    tempAssignedContacts = [];
-    renderAddTaskHTML();
-}
-
-
-/**
- * Retrieves the new task ID based on the length of the tasks array.
- *
- * @return {number} The new task ID.
- */
-function getNewTaskId(){
-        let freeId = findFreeId(tasks);
-        return freeId;
-}
-
-
-/**
  * Checks if any card is currently being edited.
  *
  * @return {boolean} Returns true if a card is being edited, false otherwise.
@@ -602,38 +326,6 @@ function setTodayDateAsMin(){
 
 
 /**
- * Function to create a new task.
- *
- * @return {Promise<void>} A Promise that resolves once the task is created.
- */
-async function createTask(){
-    await loadTasksFromRemoteStorage();
-    collectInformationsForNewCard();
-    tasks.push(newTask);
-    await saveTasksToRemoteStorage();
-    showSuccessMessage();
-    resetNewTask();
-}
-
-
-function resetNewTask(){
-    newTask =
-    {
-        'id': 999,
-        'type': '',
-        'title': '',
-        'description': '',
-        'subtasks': [],
-        'assignedTo': [],
-        'category': 'category-0',
-        'priority': '',
-        'dueDate': ''
-    };
-    tempAssignedContacts = [];
-}
-
-
-/**
  * Check the validity of required input fields and toggle the required message accordingly.
  *
  */
@@ -644,28 +336,6 @@ function checkValidity(){
         })
         toggleRequiredMessage(requiredInputField);
     })
-}
-
-
-/**
- * Toggles the required message based on the state of the required input field.
- *
- * @param {Object} requiredInputField - The required input field object containing necessary ids and state.
- */
-function toggleRequiredMessage(requiredInputField){
-    let requiredMessageField = document.getElementById(requiredInputField.requiredFieldId);
-    let toUnderline = document.getElementById(requiredInputField.idForRedUnderline);
-
-    if (getStateOfRequriredField(requiredInputField)){
-        requiredInputField.state = true;
-        toUnderline.classList.remove('is-invalid');
-        requiredMessageField.innerHTML = "";
-    } else {
-        requiredInputField.state = false;
-        toUnderline.classList.add('is-invalid');
-        requiredMessageField.innerHTML = "This field is requried";
-    }
-    setCreateBtnState();
 }
 
 
@@ -724,38 +394,4 @@ function deactivateButton(id){
         btn.classList.add("disabled");
         btn.removeAttribute("onclick");
     }
-}
-
-
-// FIREBASE
-/**
- * Saves tasks to the remote storage.
- *
- */
-async function saveTasksToRemoteStorage(){
-   deactivateButton('createBtn');
-   await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
-   activateButton('createBtn', 'createTask()');
-}
-
-
-/**
- * Restores tasks on remote storage.
- *
- */
-async function restoreTasksOnRemoteStorage(){
-    await firebaseUpdateItem(_tasksBackup, FIREBASE_TASKS_ID);
-}
-
-
-/**
- * Loads tasks from remote storage and updates task properties if necessary.
- *
- */
-async function loadTasksFromRemoteStorage(){
-    tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
-    tasks.forEach(task => {
-        if(!task.hasOwnProperty('subtasks')) task.subtasks = []; 
-        if(!task.hasOwnProperty('assignedTo')) task.assignedTo = [];
-    })
 }
