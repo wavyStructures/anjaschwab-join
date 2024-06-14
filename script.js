@@ -30,7 +30,6 @@ async function includeHTML() {
 	setIsSmallerThan802()
 	addResizeEventListener();
 	runFunctionsOnBreakpoint();
-	// setActiveNavButton();
 }
 
 
@@ -39,23 +38,24 @@ async function includeHTML() {
  * it checks if the window's inner width is less than or equal to 802. If it is,
  * it sets the isSmallerThan802 variable to true. Otherwise, it sets it to false.
  * If the value of isSmallerThan802 has changed since the last resize event,
- * it updates isSmallerThan802Old with the new value and calls the setActiveNavButton
- * function.
+ * it updates isSmallerThan802Old with the new value and calls the runFunctionsOnBreakpoint function.
  *
  * @return {void} This function does not return anything.
  */
 function addResizeEventListener(){
 	window.addEventListener('resize', () => {
 		setIsSmallerThan802();
-	
 		if (isSmallerThan802 !== isSmallerThan802Old){
 			isSmallerThan802Old = isSmallerThan802;
-			
 			runFunctionsOnBreakpoint();
 		}
 	});
 }
 
+
+/**
+ * Runs specific functions based on the current breakpoint.
+ */
 function runFunctionsOnBreakpoint() {
 	if(isSmallerThan802){
 		renderMobileNavigation()
@@ -63,14 +63,16 @@ function runFunctionsOnBreakpoint() {
 	}
 	else{
 		renderStandardNavigation();
-
 	}
-	
 }
 
-function runFunctionsWhenGreater802(){
-}
 
+/**
+ * Renders the navigation for mobile devices by clearing the contents of the
+ * navigation containers and populating them with the navigation HTML.
+ *
+ * @return {void} This function does not return a value.
+ */
 function renderMobileNavigation(){
 	let container = document.getElementById('navigation-container');
 	let mobileContainer = document.getElementById('navigation-container-mobile');
@@ -78,45 +80,18 @@ function renderMobileNavigation(){
 	mobileContainer.innerHTML = renderNavigationHTML();
 }
 
+
+/**
+ * Renders the navigation for standard devices by populating the navigation container and mobile container with appropriate content.
+ *
+ * @return {void} This function does not return a value.
+ */
 function renderStandardNavigation(){
 	let container = document.getElementById('navigation-container');
 	let mobileContainer = document.getElementById('navigation-container-mobile');
 	container.innerHTML = renderNavigationHTML();
 	mobileContainer.innerHTML = "";
 
-}
-
-
-function renderNavigationHTML(){
-	return /* html */ `
-	<div class="navigation-content">
-	<div id="nav-wrapper" class="nav-wrapper">
-		<div class="nav-buttons-box">
-		<a href="./summary.html" id="summary" class="nav-btn">
-			<img class="navImg" src="./assets/img/icon-summary.png" alt="summary" />Summary
-		</a>
-		<a href="./addTask.html" id="addTask" class="nav-btn">
-			<img src="./assets/img/icon-addTask.png" alt="add task" />Add Task
-		</a>
-		<a href="./board.html" id="board" class="nav-btn">
-			<img src="./assets/img/icon-board.png" alt="board" />Board
-		</a>
-		<a href="./contacts.html" id="contacts" class="nav-btn">
-			<img src="./assets/img/icon-contacts.png" alt="contacts" />Contacts
-		</a>
-		</div>
-
-		<div class="privatePolicyAndLegalNoticeLinksNav">
-		<div id="privacyNav">
-			<a href=" ./privacy.html">Privacy Policy</a>
-		</div>
-		<div id="legalNav">
-			<a href="./legal_notice.html">Legal Notice</a>
-		</div>
-		</div>
-	</div>
-</div>
-	`;
 }
 
 

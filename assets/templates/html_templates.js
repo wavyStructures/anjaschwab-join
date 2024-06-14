@@ -1,17 +1,33 @@
-function renderHeaderHTML() {
-  return `<div class="header-content">
-        <img src="/assets/img/logo-small_white.png" alt="join-logo">
-        <div class="header-inner-right">
-            <span>Kanban Project Management Tool</span>
-            <img src="assets/img/icon-help.png" alt="help">
-            <svg id="username" width="56px" height="56px" viewBox="0 0 100 100">
-                <circle class="kreis" cx="50" cy="50" r="40" />
-                <text class="text" x="50" y="55">
-                    <tspan id="buchstabe">A</tspan>
-                </text>
-            </svg>
-        </div>
-    </div>`;
+
+function renderNavigationHTML(){
+	return /* html */ `
+	<div class="navigation-content">
+	<div id="nav-wrapper" class="nav-wrapper">
+		<div class="nav-buttons-box">
+		<a href="./summary.html" id="summary" class="nav-btn">
+			<img class="navImg" src="./assets/img/icon-summary.png" alt="summary" />Summary
+		</a>
+		<a href="./addTask.html" id="addTask" class="nav-btn">
+			<img src="./assets/img/icon-addTask.png" alt="add task" />Add Task
+		</a>
+		<a href="./board.html" id="board" class="nav-btn">
+			<img src="./assets/img/icon-board.png" alt="board" />Board
+		</a>
+		<a href="./contacts.html" id="contacts" class="nav-btn">
+			<img src="./assets/img/icon-contacts.png" alt="contacts" />Contacts
+		</a>
+		</div>
+
+		<div class="privatePolicyAndLegalNoticeLinksNav">
+		<div id="privacyNav">
+			<a href=" ./privacy.html">Privacy Policy</a>
+		</div>
+		<div id="legalNav">
+			<a href="./legal_notice.html">Legal Notice</a>
+		</div>
+		</div>
+	</div>
+</div>`;
 }
 
 
@@ -95,11 +111,6 @@ function renderSummaryHTML() {
 }
 
 
-/**
- *
- * @param {object} content the div the cards will be rendered in
- * @param {array} categoryCards JSON of cards (fitting to the category)
- */
 function renderTasksHTML(task) {
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging(${task.id})" ondragend="stopDragging()" id="${task.id}" class="card" onclick="openCard(${task.id})">
