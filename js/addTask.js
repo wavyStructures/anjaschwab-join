@@ -174,10 +174,6 @@ function addSubtask(){
             'completed': false
         })
     }
-        else{
-            // TODO:
-            console.log("Bitte eingeben!");
-        }
     renderSubtasks();
 }
 

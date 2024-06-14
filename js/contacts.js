@@ -2,6 +2,7 @@ let users = [];
 let contacts = [];
 let currentContactId = null;
 
+
 /**
  * Retrieves the contacts from the remote storage asynchronously.
  *
@@ -14,6 +15,7 @@ async function getContactsFromRemoteStorage() {
     console.error("Loading error:", error);
   }
 }
+
 
 /**
  * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
@@ -30,6 +32,7 @@ function getSecondOrFullName(contact) {
   }
 }
 
+
 /**
  * Sorts an array of contacts by their last name.
  *
@@ -44,6 +47,7 @@ function sortContactsByName(contacts) {
   });
   return sortedContacts;
 }
+
 
 /**
  * Retrieves contacts from the users array and sorts them by name.
@@ -65,6 +69,7 @@ function getContactsOutOfUsers() {
   contacts = sortContactsByName(temp_contacts);
 }
 
+
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
  *
@@ -81,6 +86,7 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
+
 /**
  * Returns the first name from a given full name string for use as a default password.
  *
@@ -90,6 +96,7 @@ function getNextId(contactsArray) {
 function getFirstNameForDefaultPassword(name) {
   return name.split(" ")[0];
 }
+
 
 /**
  * Finds the maximum id in the contactsArray and returns the next id.
@@ -104,6 +111,7 @@ function getNextId(contactsArray) {
   return maxId + 1;
 }
 
+
 /**
  * Initializes the contacts by including the HTML and loading the contacts.
  *
@@ -115,6 +123,7 @@ async function contactsInit() {
   getContactsOutOfUsers();
   loadContacts();
 }
+
 
 /**
  * Loads the contacts and renders them into the main element.
@@ -128,6 +137,7 @@ function loadContacts() {
   createContactsContainer(main);
   renderSortedContacts(main, contacts);
 }
+
 
 /**
  * Generates initials from a full name.
@@ -148,6 +158,7 @@ function getInitials(name) {
   return returnName;
 }
 
+
 /**
  * Creates a letter element representing the first letter of a group of contacts.
  *
@@ -165,6 +176,7 @@ function createFirstLetter(main, firstLetter) {
   createPartingLine(main);
 }
 
+
 /**
  * Removes a container element from the DOM based on the provided id.
  *
@@ -174,6 +186,7 @@ function createFirstLetter(main, firstLetter) {
 function removeContainer(id) {
   document.getElementById(id).remove();
 }
+
 
 /**
  * Creates a contact card element and appends it to the contact list within the main element.
@@ -203,6 +216,7 @@ function createContactCard(main, id, color, initials, name, mail) {
     .insertAdjacentHTML("beforeend", cardHTML);
 }
 
+
 /**
  * Capitalizes the first letter of each word in a given name.
  *
@@ -223,6 +237,7 @@ function getNameWithCapitalizedFirstLetter(name) {
   }
 }
 
+
 /**
  * Displays details of the contact with the given ID.
  * @param {number} id - The unique identifier of the contact.
@@ -242,6 +257,7 @@ function openContactDetails(id) {
   highlightSelectedContact(id);
 }
 
+
 /**
  * Resets contact card styles to their default values.
  *
@@ -260,6 +276,7 @@ function resetContactCard(card) {
   }
 }
 
+
 /**
  * Resets the styles of all contact cards to their default values.
  *
@@ -273,6 +290,7 @@ function resetAllContactCards() {
     card.classList.remove("highlighted");
   });
 }
+
 
 /**
  * Highlights a contact card by applying specific styles.
@@ -294,6 +312,7 @@ function highlightContactCard(card) {
   }
 }
 
+
 /**
  * Highlights the selected contact card and shows the right side element.
  *
@@ -314,6 +333,7 @@ function highlightSelectedContact(id) {
   applyHighlight();
 }
 
+
 /**
  * Applies highlighting to the selected contact card and shows the right side element.
  *
@@ -332,6 +352,7 @@ function applyHighlight() {
     }
 }
 
+
 /**
  * Changes the cancel icon to its hover state by updating its source.
  *
@@ -343,6 +364,7 @@ function changeCancelIcon() {
     "./assets/img/icon-cancel_hover.png";
 }
 
+
 /**
  * Restores the cancel icon to its default state by updating its source.
  *
@@ -352,6 +374,7 @@ function changeCancelIcon() {
 function restoreCancelIcon() {
   document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
 }
+
 
 /**
  * Updates the color of each contact in the contacts_old array by mapping the colors array to the newColors array.

@@ -2,6 +2,7 @@ let loggedUser;
 let globalCapitalizedName;
 let dayTime;
 
+
 /**
  * Initializes the summary by including the HTML and getting the current date.
  */

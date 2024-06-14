@@ -7,12 +7,11 @@
 function generateContactsContainerHTML() {
     return /*html*/ ` 
     <div id="contactMainEdit" class="contact-main-edit" onclick="doNotClose(event)">
-      
+
   </div>
   <div class="contact-list-container">
       <div class="add-contact-overlay"></div>
       <div id="addContactContainer" class="hidden">
-          
       </div>
   </div>
   <div class="add-contact-button" onclick="addContactCard()">
@@ -83,7 +82,8 @@ function renderAddContactsHTML() {
   </div>`;
   }
 
-  /**
+
+/**
  * Renders the HTML code for the edit contact form with the given ID.
  *
  * @param {number} id - The ID of the contact to be edited.
@@ -138,7 +138,8 @@ function renderEditContactHTML(id, name, contactColor) {
           </div>`;
   }
 
-  /**
+
+ /**
  * Generates the HTML code for a contact card.
  *
  * @param {number} contactId - The unique identifier for the contact.
@@ -158,7 +159,7 @@ function generateContactCardHTML(
     shorterMail
   ) {
     let formattedName = getNameWithCapitalizedFirstLetter(name);
-  
+
     return /*html*/ `
       <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
         <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
@@ -170,7 +171,8 @@ function generateContactCardHTML(
     `;
   }
 
-  /**
+  
+/**
  * Generates HTML code for displaying contact details.
  *
  * @function generateContactDetailsHTML

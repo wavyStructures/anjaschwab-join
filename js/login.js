@@ -41,7 +41,6 @@ function addBlueOverlayHTML(){
  */
 function checkIfUserWasPreviouslyRegistered() {
     if (localStorage.getItem('newMail')) {
-        console.log(typeof localStorage.getItem('newMail'));
         document.getElementById('loginEmailInput').value = localStorage.getItem('newMail');
         localStorage.removeItem('newMail');
         return true;
@@ -68,7 +67,6 @@ function showOverlay() {
 
         startAnimation();
     } else {
-        console.log("user already logged in");
         switchPage('summary.html');
     }
 }
@@ -100,10 +98,6 @@ function hideOverlay() {
     document.getElementById("blueOverlay").style.display = "none";
 }
 
-// // Delay the overlay display by 5 seconds (5000 milliseconds)
-// setTimeout(() => {
-//     showOverlay();
-// }, 50000);
 
 /**
  * Logs in a user by finding the user with matching email and password in the users array.
@@ -165,7 +159,6 @@ function toggleRememberMeCheckbox() {
 function loginAsGuest() {
     switchPage('summary.html');
 }
-
 
 
 /**

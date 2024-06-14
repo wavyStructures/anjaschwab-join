@@ -26,6 +26,7 @@ function renderSortedContacts(main, contacts) {
   });
 }
 
+
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
@@ -37,6 +38,7 @@ function createContactsContainer(main) {
   const containerHTML = generateContactsContainerHTML();
   main.innerHTML += containerHTML;
 }
+
 
 /**
  * Creates a parting line element and appends it to the contact list within the main element.

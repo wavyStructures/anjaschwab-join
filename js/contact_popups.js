@@ -4,7 +4,6 @@
 async function saveContact() {
   await getContactsFromRemoteStorage();
   if (checkMailExist(document.getElementById("contactMail").value)) {
-    console.warn("MAIL EXISTIERT!!!!!");
   } else {
     try {
       createBtn.disabled = true;
@@ -219,10 +218,6 @@ function editContact(id) {
     document.getElementById("contactPhone").value = contact.phone;
 
     currentContactId = id; // Setze die aktuelle Kontakt-ID
-
-    console.log("Editing contact:", contact);
-  } else {
-    console.error("Contact not found with ID:", id);
   }
 }
 
@@ -246,18 +241,14 @@ async function saveEditedContact(id) {
     user.mail = document.getElementById("contactMail").value;
     user.phone = document.getElementById("contactPhone").value;
 
-    console.log(users.findIndex((users) => users.id === id));
 
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
     users = [];
-    console.log("Contact saved:", user);
     closeOverlay("editContact");
-    await displaySuccessMessage("Contact successfully edited");
+    displaySuccessMessage("Contact successfully edited");
     setTimeout(() => {
       window.location.reload();
     }, 2500);
-  } else {
-    console.error("Contact not found with ID:", id);
   }
 }
 
@@ -306,19 +297,15 @@ function deleteContactFromLocalStorage(contactId) {
  */
 async function deleteContact(id) {
   let users = await firebaseGetItem(FIREBASE_USERS_ID);
-  console.log("delUser users: ", users);
   const userIndex = users.findIndex((user) => user.id === id);
-  console.log("USER TO DELETE: ", users[userIndex]);
   if (userIndex !== -1) {
     users.splice(userIndex, 1);
     await firebaseUpdateItem(users, FIREBASE_USERS_ID);
     users = [];
-    await displaySuccessMessage("Contact successfully deleted");
+    displaySuccessMessage("Contact successfully deleted");
     setTimeout(() => {
       window.location.reload();
     }, 3000);
-  } else {
-    console.error("Contact not found with ID:", id);
   }
 }
 

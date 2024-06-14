@@ -2,137 +2,13 @@ let tasks = [];
 
 let currentDraggedElement;
 
-let _tasksBackup = [
-    {
-        'id': 0,
-        'type': 'User Story',
-        'title': 'Kochwelt Page & Recipe Recommender',
-        'description': 'Build start page with recipe recommendation...',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'Bügeln',
-            'completed': false
-        },
-        {
-            'id': 1,
-            'subtaskText': 'Kochen',
-            'completed': true
-        }],
-        'assignedTo': [21],
-        'category': 'category-0',
-        'priority': 'low',
-        'dueDate': "2024-01-06"
-    },
-    {
-        'id': 1,
-        'type': 'Technical Task',
-        'title': 'HTML Base Template Creation',
-        'description': 'Create reusable HTML base templates...',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'Bügeln',
-            'completed': false
-        }],
-        'assignedTo': [21, 2, 5],
-        'category': 'category-2',
-        'priority': 'medium',
-        'dueDate': "2024-09-15"
-    },
-    {
-        'id': 2,
-        'type': 'User Story',
-        'title': 'Daily Kochwelt Recipe',
-        'description': 'Implement daily recipe and portion calculator...',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'building calculator',
-            'completed': true
-        },
-        {
-            'id': 1,
-            'subtaskText': 'insert to main-project',
-            'completed': true
-        }],
-        'assignedTo': [17],
-        'category': 'category-3',
-        'priority': 'urgent',
-        'dueDate': "2024-07-07"
-    },
-    {
-        'id': 3,
-        'type': 'Technical Task',
-        'title': 'CSS Architecture Planning',
-        'description': 'Define CSS naming conventions and structure...',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'watching Kevin Powells video',
-            'completed': true
-        },
-        {
-            'id': 1,
-            'subtaskText': 'rebuild Kevins code',
-            'completed': false
-        }],
-        'assignedTo': [9, 18],
-        'category': 'category-0',
-        'priority': 'urgent',
-        'dueDate': "2024-05-11"
-    },
-    {
-        'id': 4,
-        'type': 'Technical Task',
-        'title': 'Cooking lunch',
-        'description': 'Define CSS naming conventions and structure...',
-        'subtasks': [{
-            'id': 0,
-            'subtaskText': 'Making Noodles',
-            'completed': false
-        },
-        {
-            'id': 1,
-            'subtaskText': 'Making Sauce',
-            'completed': false
-        }],
-        'assignedTo': [9],
-        'category': 'category-1',
-        'priority': 'low',
-        'dueDate': "2024-10-17"
-    },
-    {
-        "id": 5,
-        "type": "Technical Task",
-        "title": "Birthday cake",
-        "description": "John got birthday on May 21th!\nWe have to bake a cake for him!",
-        "subtasks": [
-            {
-                "id": 0,
-                "subtaskText": "buy ingredients",
-                "completed": false
-            },
-            {
-                "id": 1,
-                "subtaskText": "bake the cake",
-                "completed": false
-            },
-            {
-                "id": 2,
-                "subtaskText": "meet what cake it'll be",
-                "completed": false
-            }
-        ],
-        "assignedTo": [],
-        "category": "category-0",
-        "priority": "urgent",
-        "dueDate": "2024-05-20"
-    }
-];
-
 let categories = [
     {'category-0': "To do"},
     {'category-1': "In progress"}, 
     {'category-2': "Await Feedback"}, 
     {'category-3': "Done"}
 ];
+
 
 /**
  * Initializes the board by including HTML, loading contacts and tasks from remote storage,
@@ -362,10 +238,8 @@ function setPriorityImage(taskPriority) {
  */
 function searchTask() {
     let searchInput = document.getElementById('findTask');
-    console.log("searchInput: ", searchInput.value);
     if(searchInput == null) return;
     let foundTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchInput.value) || task['description'].toLowerCase().includes(searchInput.value));
-    foundTasks.forEach(t => console.log(t))
     renderCategories(foundTasks);
 }
 
@@ -384,7 +258,7 @@ function renderSubtask(task) {
     if (countSubtasks != 0) {
         return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
     }else{
-        return ""// console.log("parent element have to be d-none");
+        return ""
     }
 }
 
@@ -778,17 +652,3 @@ function moveTo(category){
     renderCategories(tasks);
     saveTasksToRemoteStorage();
 }
-
-// DEBUGGING
-
-let toPrint = 'category';
-
-function printValuesFromEachCard(){
-    tasks.forEach(task => console.log("ID: " + task.id + " | " + toPrint + ": " + task[toPrint]))
-}
-
-function printValueFromSpecificCard(reason, id){
-    let task = getTaskOutOfId(id);
-    console.log(reason + " -> ID: " + id + " | " + toPrint + ": " + task[toPrint])
-}
-
