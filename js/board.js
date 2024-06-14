@@ -40,12 +40,38 @@ function renderCategories(arrayToSearchIn) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
                 categoryContainer.innerHTML += renderTasksHTML(task);
                 setCardType(task);
+                renderTaskDescription(task) 
+                renderSubtask(task);
                 renderAssignedToButtons(task);
             }
         } else {
             renderEmptyCategory(categoryContainer, Object.values(category)[0]);
         }});
     }
+
+
+/**
+ * Renders the task description on the page by splitting the description into words and adding them to the cardText variable.
+ * If the cardText length plus the length of the word exceeds 46 characters, the word is not added to cardText.
+ * The cardText is then appended with "..." and the result is set as the innerHTML of the descriptionContainer element.
+ *
+ * @param {Object} task - The task object containing the description to be rendered.
+ */
+function renderTaskDescription(task){
+    let descriptionContainer = document.getElementById('cardText' + task['id']);
+    let taskDescription = task.description;
+    let cardText = "";
+
+    let taskDescriptionSplitted = taskDescription.split(' ');
+
+    taskDescriptionSplitted.forEach((word) => {
+        if (cardText.length + word.length <= 46) {
+            cardText = cardText + " " + word;
+        }
+    })
+    cardText = cardText + " ...";
+    descriptionContainer.innerHTML = cardText;
+}
 
 
 /**
@@ -124,14 +150,15 @@ function searchTask() {
  * @return {string} The HTML code for the subtask progress bar and text.
  */
 function renderSubtask(task) {
+    let subtaskContainer = document.getElementById('cardSubtask' + task['id']);
     let countSubtasks = +Object.keys(task['subtasks']).length;
     let completedSubtasks = task['subtasks'].filter(subtask => subtask['completed'] == true).length;
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
     if (countSubtasks != 0) {
-        return /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
+        subtaskContainer.innerHTML = /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
     }else{
-        return ""
+        subtaskContainer.remove();
     }
 }
 
@@ -147,6 +174,12 @@ function getTaskOutOfId(taskId){
 }
 
 
+/**
+ * Sets the card type based on the task type.
+ *
+ * @param {Object} task - The task object containing the type and id.
+ * @return {void} This function does not return a value.
+ */
 function setCardType(task){
     let cardType = document.getElementById(`cardType${task['id']}`);
     let openCardType = document.getElementById(`openCardType${task['id']}`)

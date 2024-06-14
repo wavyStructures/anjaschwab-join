@@ -113,17 +113,17 @@ function renderSummaryHTML() {
 function renderTasksHTML(task) {
   return /*html*/ `
     <div draggable="true" ondragstart="startDragging(${task.id})" ondragend="stopDragging()" id="${task.id}" class="card" onclick="openCard(${task.id})">
-        <div id="cardType${task.id}" class="cardType">${task.type}</div>
-        <div class="cardTitle">${task.title}</div>
-        <div class="cardText">${task.description}</div>
-        <div class="cardSubtasks">${renderSubtask(task)}</div>
+        <div class="cardTopContainer">
+            <div id="cardType${task.id}" class="cardType">${task.type}</div>
+            <div class="cardTitle">${task.title}</div>
+            <div id="cardText${task.id}" class="cardText">${task.description}</div>
+        </div>
         <div class="cardBottomContainer">
-        <div id="cardAssignedToContainerId${
-          task["id"]
-        }" class="cardAssignedToContainer"></div>
-            <div class="cardPriority">${setPriorityImage(
-              task["priority"]
-            )}</div>
+            <div id="cardSubtask${task.id}" class="cardSubtasks"></div>
+            <div class="assignedToAndPriority">
+                <div id="cardAssignedToContainerId${task["id"]}" class="cardAssignedToContainer"></div>
+                <div class="cardPriority">${setPriorityImage(task["priority"])}</div>
+            </div>
         </div>
     </div>`;
 }

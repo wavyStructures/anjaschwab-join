@@ -326,6 +326,8 @@ button:focus {
     font-size: 16px;
     width: 100%;
     word-wrap: break-word;
+
+
 }
 
 .cardText{
@@ -336,8 +338,20 @@ button:focus {
 
 .cardBottomContainer{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 24px;
+}
+    
+    .assignedToAndPriority{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+}
+.cardTopContainer{
+    display: flex;
+    flex-direction: column;
+gap: 24px
 }
 
 .cardPriority{
@@ -444,7 +458,6 @@ progress{
         transform: translateY(50%)
     }
 }
-
 
 @keyframes successOut {
     from{
