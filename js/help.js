@@ -1,0 +1,4 @@
+function helpInit(){
+    includeHTML();
+
+}

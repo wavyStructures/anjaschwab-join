@@ -262,7 +262,6 @@ a {
   white-space: nowrap;
   font-family: var(--version-2-body);
   opacity: 0;
-  /* transform: translateY(100%); */
 }
 
 @keyframes slide-in {

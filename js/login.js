@@ -118,7 +118,6 @@ async function loginUser() {
         setRememberMe(loggedUser.name); // localStorage
         switchPage('summary.html');
     } else {
-        alert("Invalid email or password. Please try again.");
         showUserMessage('Invalid email or password. Please try again.');
     }
     return false;
