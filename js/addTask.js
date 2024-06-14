@@ -754,7 +754,6 @@ async function restoreTasksOnRemoteStorage(){
  */
 async function loadTasksFromRemoteStorage(){
     tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
-    console.info('Tasks loaded from Remote Storage');
     tasks.forEach(task => {
         if(!task.hasOwnProperty('subtasks')) task.subtasks = []; 
         if(!task.hasOwnProperty('assignedTo')) task.assignedTo = [];

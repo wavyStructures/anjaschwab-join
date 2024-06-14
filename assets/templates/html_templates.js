@@ -337,7 +337,7 @@ function renderAddTaskMainContentHTML(){
                 <div class="addTask-custom-select">
                     <span id="dropdown-category-title">Select task category</span>
                         <div class="addTask-custom-arrow" id="custom-arrow-category">
-                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                        <img data-direction="down" src="./assets/img/icon-arrow_dropdown_down.png" alt="">
                     </div>
                 </div>
             </div>
