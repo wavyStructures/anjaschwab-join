@@ -1,13 +1,3 @@
-function renderNavigationHTML() {
-  return `<div class="navigation-content">
-    <div id="summary" class="nav-btn" onclick="renderSummary()"><img src="./assets/img/icon-summary.png" alt="summary">Summary</div>
-    <div id="addTask" class="nav-btn" onclick="renderAddTask()"><img src="./assets/img/icon-addTask.png" alt="add task">Add Task</div>
-    <div id="board" class="nav-btn" onclick="renderBoard()"><img src="./assets/img/icon-board.png" alt="board">Board</div>
-    <div id="contacts" class="nav-btn" onclick="renderContacts()"><img src="./assets/img/icon-contacts.png" alt="contacts">Contacts</div>
-</div>`;
-}
-
-
 function renderHeaderHTML() {
   return `<div class="header-content">
         <img src="/assets/img/logo-small_white.png" alt="join-logo">
