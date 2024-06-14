@@ -419,8 +419,7 @@ progress{
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
     text-wrap: nowrap;
     gap: 20px;
-
-    /* position: fixed; */
+    z-index: 2000;
     bottom: -100px;
 
     .addTaskBtnImg{
@@ -429,7 +428,6 @@ progress{
         width: 32px;
         filter: brightness(0) invert(1);
     }
-
 }
 
 .hoverTop{

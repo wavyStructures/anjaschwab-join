@@ -612,7 +612,24 @@ async function createTask(){
     tasks.push(newTask);
     await saveTasksToRemoteStorage();
     showSuccessMessage();
-    clearFormular();
+    resetNewTask();
+}
+
+
+function resetNewTask(){
+    newTask =
+    {
+        'id': 999,
+        'type': '',
+        'title': '',
+        'description': '',
+        'subtasks': [],
+        'assignedTo': [],
+        'category': 'category-0',
+        'priority': '',
+        'dueDate': ''
+    };
+    tempAssignedContacts = [];
 }
 
 

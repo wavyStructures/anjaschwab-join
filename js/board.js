@@ -282,8 +282,6 @@ function openCard(taskId){
     if (task.assignedTo.length != 0) renderContactsToOpenCard(task);
     if(task.subtasks.length != 0) renderSubtasksToOpenCard(task);
     toggleBoardOverlay('closeCard()');
-
-    printValueFromSpecificCard('Task open', taskId);
 }
 
 
