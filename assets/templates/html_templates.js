@@ -323,7 +323,7 @@ function renderAddTaskMainContentHTML(){
                 <div class="addTask-custom-select">
                     <span id="dropdown-assignedTo-title">Select contacts to assign</span>
                     <div class="addTask-custom-arrow" id="custom-arrow-assignedTo">
-                        <img data-direction="down" src="../../assets/img/icon-arrow_dropdown_down.png" alt="">
+                        <img data-direction="down" src="./assets/img/icon-arrow_dropdown_down.png" alt="">
                     </div>
                 </div>
             </div>
