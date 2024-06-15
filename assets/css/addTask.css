@@ -129,7 +129,7 @@ select {
     width: min-content;
     position:fixed;
     bottom:55px;
-    right: 42px;
+    left: 777px;
 
 }
 
@@ -665,7 +665,7 @@ select {
         justify-content: center;
         width: 100%;
         bottom:0;
-        right: 0;
+        left: 0;
     }
 
     .addTaskEmptyDiv{

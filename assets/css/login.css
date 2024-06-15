@@ -312,6 +312,7 @@ input[type="password"]:focus {
     align-items: center;
     width: max-content;
     gap: 32px;
+    padding: 5px;
   }
 
   .signUpField-mobile span,
