@@ -123,7 +123,6 @@ select {
 
 .addTaskBodyRight{
     display: flex;
-    background-color: white;
     align-items: flex-end;
     justify-content: right;
     width: min-content;
@@ -662,6 +661,7 @@ select {
 
     .addTaskBodyRight{
         position: relative;
+        background-color: white;
         justify-content: center;
         width: 100%;
         bottom:0;
