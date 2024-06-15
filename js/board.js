@@ -50,26 +50,26 @@ function renderCategories(arrayToSearchIn) {
     }
 
 
-/**
- * Renders the task description on the page by splitting the description into words and adding them to the cardText variable.
- * If the cardText length plus the length of the word exceeds 46 characters, the word is not added to cardText.
- * The cardText is then appended with "..." and the result is set as the innerHTML of the descriptionContainer element.
+ /**
+ * Renders the task description by splitting it into words and limiting the length of each word to 46 characters.
+ * If the description is longer than the limit, it adds an ellipsis at the end.
  *
  * @param {Object} task - The task object containing the description to be rendered.
+ * @return {void} This function does not return anything.
  */
-function renderTaskDescription(task){
+ function renderTaskDescription(task){
     let descriptionContainer = document.getElementById('cardText' + task['id']);
-    let taskDescription = task.description;
     let cardText = "";
-
-    let taskDescriptionSplitted = taskDescription.split(' ');
+    let taskDescriptionSplitted = task.description.split(' ');
 
     taskDescriptionSplitted.forEach((word) => {
-        if (cardText.length + word.length <= 46) {
-            cardText = cardText + " " + word;
-        }
+        if (cardText.length + word.length <= 46) cardText = cardText + " " + word;
     })
-    cardText = cardText + " ...";
+
+    cardText = cardText.substring(1);
+
+    if (cardText.length != task.description.length) cardText = cardText + " ..."; 
+
     descriptionContainer.innerHTML = cardText;
 }
 

@@ -212,6 +212,7 @@ button:focus {
     text-align: left;
     flex:1;
     gap:29px;
+    width: min-content;
 
     h2{
         padding-bottom: 5px;
