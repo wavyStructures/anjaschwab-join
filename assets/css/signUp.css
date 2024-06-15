@@ -266,7 +266,7 @@ a {
 
 @keyframes slide-in {
   from {
-    transform: translateY(3000%);
+    transform: translateY(1000%);
     opacity: 0;
   }
   to {
@@ -281,17 +281,17 @@ a {
     opacity: 1;
   }
   to {
-    transform: translateY(3000%);
+    transform: translateY(1000%);
     opacity: 0;
   }
 }
 
 .slide-in {
-  animation: slide-in 3s ease-in-out forwards;
+  animation: slide-in .250s ease-in-out forwards;
 }
 
 .slide-out {
-  animation: slide-out 3s ease-in-out forwards;
+  animation: slide-out .250s ease-in-out forwards;
 }
 
 .add-signUp-container {

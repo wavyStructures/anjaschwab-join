@@ -179,8 +179,8 @@ function showUserMessage(message) {
 
             setTimeout(() => {
                 document.body.removeChild(overlay);
-            }, 2000);
-        }, 5000);
+            }, 1000);
+        }, 2000);
     });
 }
 
