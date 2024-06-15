@@ -102,13 +102,26 @@ function checkMailExist(mailToCheck) {
 function checkIfFormIsValid() {
     let form = document.getElementById('login-form')
     let btn = document.getElementById('registerBtn');
-    if (form.checkValidity() && checkPrivacyPolicyConfirmation()) {
+    
+    if (form.checkValidity() && checkPrivacyPolicyConfirmation() && testMailinputWithRegex()) {
         btn.disabled = false;
         return true;
     } else {
         btn.disabled = true;
         return false;
     }
+}
+
+
+/**
+ * Returns a regular expression that can be used to validate an email address.
+ *
+ * @return {RegExp} A regular expression that matches a valid email address.
+ */
+function testMailinputWithRegex(){
+    let inputMail = document.getElementById('signUpEmailInput');
+    const regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")
+    return regex.test(inputMail.value);
 }
 
 

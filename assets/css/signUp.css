@@ -138,6 +138,7 @@ input:-webkit-autofill:active {
   border: none;
   font-size: 19px;
   font-weight: 400;
+  width: 100%;
 }
 
 #signUpNameInput:focus,
