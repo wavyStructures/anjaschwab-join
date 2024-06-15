@@ -193,6 +193,7 @@ div.square-button.toDo {
   align-items: center;
   justify-content: normal;
   gap: 70px;
+  padding: 15px
 }
 
 .usernameForGreeting {
