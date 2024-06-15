@@ -57,9 +57,7 @@ body {
   flex-direction: column;
   width: 100%;
   position: relative;
-  align-items: center;
   height: 100%;
-  /* overflow: hidden; */
 }
 
 a {
