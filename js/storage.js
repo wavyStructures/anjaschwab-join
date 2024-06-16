@@ -1,11 +1,8 @@
-/**
- * Token-Generator: https://remote-storage.developerakademie.org/token-generator
- */
+// const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const STORAGE_TOKEN = '441D59WVPL1TM4PQXPZBMD2DVHMTLLM72U8YTPTA';
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+const BASE_URL = "https://anjaschwab-join-8ab6d-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
+
 const FIREBASE_TASKS_ID = '-NyjPfIkvaXKtVoSc38U';
 const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
 
@@ -17,7 +14,7 @@ const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
  * @param {string} [path="_"] - The path to the Firebase location where the item will be created. Defaults to "_".
  * @return {Promise} A Promise that resolves with the response from the Firebase server.
  */
-async function firebaseCreateItem(jsonArray, path="_") {
+async function firebaseCreateItem(jsonArray, path = "_") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
@@ -35,7 +32,7 @@ async function firebaseCreateItem(jsonArray, path="_") {
  * @param {string} [path="_"] - The path to the item in Firebase. Defaults to "_".
  * @return {Promise<Response>} A Promise that resolves to the response from the PUT request.
  */
-async function firebaseUpdateItem(jsonArray, path="_") {
+async function firebaseUpdateItem(jsonArray, path = "_") {
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -52,7 +49,7 @@ async function firebaseUpdateItem(jsonArray, path="_") {
  * @param {string} [path="_"] - The path (the id) to the item in Firebase.
  * @return {Promise<Object>} A Promise that resolves to the retrieved item as a JSON object.
  */
-async function firebaseGetItem(path="_") {
+async function firebaseGetItem(path = "_") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseAsJSON = await response.json();
 
@@ -83,7 +80,7 @@ async function remoteStorageGetItem(key) {
  * @return {void} This function does not return anything.
  */
 function setCurrentUser(name) {
-    sessionStorage.setItem('currentUser', JSON.stringify({ username: name}));
+    sessionStorage.setItem('currentUser', JSON.stringify({ username: name }));
 }
 
 
@@ -101,7 +98,7 @@ function getCurrentUser() {
 }
 
 
-function restoreUsersOnFirebase(){
+function restoreUsersOnFirebase() {
     firebaseUpdateItem(users_backup, FIREBASE_USERS_ID);
 }
 
