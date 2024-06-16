@@ -14,14 +14,6 @@ let newUser = {
 
 
 /**
- * init-function run at on loading the body
-//  */
-// function signUpInit() {
-//     showUserMessage('LOADING successfully!');
-// }
-
-
-/**
  * Asynchronously saves a new user to the Firebase database.
  * @return {Promise<void>} A promise that resolves when the user is successfully saved.
  */
@@ -69,7 +61,7 @@ async function addNewUser() {
         showUserMessage('The mail already exists!');
     } else {
         localStorage.setItem('newMail', newUser.mail)
-        localStorage.setItem('hasJustSignedUp','');
+        localStorage.setItem('hasJustSignedUp', '');
         users.push(newUser);
         await firebaseUpdateItem(users, FIREBASE_USERS_ID);
         showUserMessage('You Signed Up successfully!');
@@ -102,7 +94,7 @@ function checkMailExist(mailToCheck) {
 function checkIfFormIsValid() {
     let form = document.getElementById('login-form')
     let btn = document.getElementById('registerBtn');
-    
+
     if (form.checkValidity() && checkPrivacyPolicyConfirmation() && testMailinputWithRegex()) {
         btn.disabled = false;
         return true;
@@ -118,10 +110,23 @@ function checkIfFormIsValid() {
  *
  * @return {RegExp} A regular expression that matches a valid email address.
  */
-function testMailinputWithRegex(){
+function testMailinputWithRegex() {
     let inputMail = document.getElementById('signUpEmailInput');
     const regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")
     return regex.test(inputMail.value);
+}
+
+
+function throwMsgErrorWrongMailaddress() {
+    let emailMessage = document.getElementById("msgBoxValidateEmail");
+
+    if (!testMailinputWithRegex()) {
+        emailMessage.innerHTML = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
+        emailMessage.style.color = "red"; // Added color for error message
+    } else {
+        emailMessage.innerHTML = "E-Mail-Adresse ist gültig.";
+        emailMessage.style.color = "green";
+    }
 }
 
 

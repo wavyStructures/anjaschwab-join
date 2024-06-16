@@ -122,6 +122,14 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+.msgError {
+  width: 90%;
+  font-size: 14px;
+  margin-top: -25px;
+  text-align: left;
+  font-size: 12px;
+}
+
 .signUpPasswordBox {
   display: flex;
   justify-content: space-between;
@@ -288,11 +296,11 @@ a {
 }
 
 .slide-in {
-  animation: slide-in .250s ease-in-out forwards;
+  animation: slide-in 0.25s ease-in-out forwards;
 }
 
 .slide-out {
-  animation: slide-out .250s ease-in-out forwards;
+  animation: slide-out 0.25s ease-in-out forwards;
 }
 
 .add-signUp-container {

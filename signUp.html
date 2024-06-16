@@ -43,10 +43,11 @@
                                 </div>
                                 <div class="signUpInputField">
                                     <input type="email" id="signUpEmailInput" placeholder="Email"
-                                        onkeyup="checkIfFormIsValid()" required>
+                                        onkeyup="    throwMsgErrorWrongMailaddress()" required>
                                     <div class="mailIcon"><img src="./assets/img/icon-mail.png" alt="letter">
                                     </div>
                                 </div>
+                                <div class="msgError" id="msgBoxValidateEmail"></div>
                                 <div class="signUpInputField">
                                     <input type="password" id="signUpPasswordInput" placeholder="Password"
                                         onkeyup="checkIfFormIsValid()" required>
