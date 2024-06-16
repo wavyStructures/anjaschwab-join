@@ -117,15 +117,23 @@ function testMailinputWithRegex() {
 }
 
 
+/**
+ * Updates the email validation message and its color based on the input value of the email field.
+ */
 function throwMsgErrorWrongMailaddress() {
     let emailMessage = document.getElementById("msgBoxValidateEmail");
+    let inputMail = document.getElementById('signUpEmailInput');
 
-    if (!testMailinputWithRegex()) {
-        emailMessage.innerHTML = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
-        emailMessage.style.color = "red"; // Added color for error message
-    } else {
-        emailMessage.innerHTML = "E-Mail-Adresse ist gültig.";
-        emailMessage.style.color = "green";
+    if (inputMail.value){
+        if (!testMailinputWithRegex()) {
+            emailMessage.innerHTML = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
+            emailMessage.style.color = "red"; // Added color for error message
+        } else {
+            emailMessage.innerHTML = "E-Mail-Adresse ist gültig.";
+            emailMessage.style.color = "green";
+        }
+    }else{
+        emailMessage.innerHTML = "";
     }
 }
 
