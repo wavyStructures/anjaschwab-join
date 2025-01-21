@@ -1,18 +1,14 @@
 // const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
+// const BASE_URL = "https://anjaschwab-join-8ab6d-default-rtdb.europe-west1.firebasedatabase.app/";
 
-const BASE_URL = "https://anjaschwab-join-8ab6d-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL = 'http://127.0.0.1:8000/';
 
-
-const FIREBASE_TASKS_ID = '-NyjPfIkvaXKtVoSc38U';
-const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
+// const FIREBASE_TASKS_ID = '-NyjPfIkvaXKtVoSc38U';
+// const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
 
 
 /**
- * Asynchronously creates an item in Firebase using the given JSON array and path.
- *
- * @param {Array} jsonArray - The JSON array to be posted.
- * @param {string} [path="_"] - The path to the Firebase location where the item will be created. Defaults to "_".
- * @return {Promise} A Promise that resolves with the response from the Firebase server.
+das wird REGISTER
  */
 async function firebaseCreateItem(jsonArray, path = "_") {
     let response = await fetch(BASE_URL + path + ".json", {
@@ -23,14 +19,8 @@ async function firebaseCreateItem(jsonArray, path = "_") {
         body: JSON.stringify(jsonArray)
     })
 }
-
-
 /**
- * Updates an item in Firebase using a PUT request.
- *
- * @param {Object} jsonArray - The JSON array to update.
- * @param {string} [path="_"] - The path to the item in Firebase. Defaults to "_".
- * @return {Promise<Response>} A Promise that resolves to the response from the PUT request.
+UPDATE PUT
  */
 async function firebaseUpdateItem(jsonArray, path = "_") {
     let response = await fetch(BASE_URL + path + ".json", {
@@ -41,20 +31,58 @@ async function firebaseUpdateItem(jsonArray, path = "_") {
         body: JSON.stringify(jsonArray)
     })
 }
-
-
 /**
- * Retrieves an item from Firebase using the provided path.
- *
- * @param {string} [path="_"] - The path (the id) to the item in Firebase.
- * @return {Promise<Object>} A Promise that resolves to the retrieved item as a JSON object.
+GET
  */
-async function firebaseGetItem(path = "_") {
-    let response = await fetch(BASE_URL + path + ".json");
-    let responseAsJSON = await response.json();
 
-    return responseAsJSON;
+
+async function backendGetItem(username, password) {
+    try {
+        const response = await postRequest(`${BASE_URL}api/token/`, { username, password });
+
+        if (response.ok) {
+            const data = await response.json();
+            handleSuccessfulLogin(data);
+            return data;
+        } else {
+            await handleLoginError(response);
+        }
+    } catch (error) {
+        handleError(error);
+    }
 }
+async function postRequest(url, body) {
+    return fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+    });
+}
+
+function handleSuccessfulLogin(data) {
+    localStorage.setItem('authToken', data.token);
+    localStorage.setItem('userId', data.user_id);
+    localStorage.setItem('username', data.username);
+    window.location.href = '/dashboard.html';
+}
+
+async function handleLoginError(response) {
+    const errorData = await response.json();
+    const errorMessage = errorData.non_field_errors || 'Login failed. Please try again.';
+    document.getElementById('errorMessage').textContent = errorMessage;
+}
+
+function handleError(error) {
+    console.error('Error:', error);
+    document.getElementById('errorMessage').textContent =
+        'Something went wrong. Please try again later.';
+}
+// async function firebaseGetItem(path = "_") {
+//     let response = await fetch(BASE_URL + path + ".json");
+//     let responseAsJSON = await response.json();
+
+//     return responseAsJSON;
+// }
 
 
 /**

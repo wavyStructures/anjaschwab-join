@@ -27,6 +27,8 @@ async function includeHTML() {
 		}
 	}
 	showInitials();
+	console.log('session currentUser:', sessionStorage.getItem('currentUser'));
+	console.log('loggedUser.name is :', localStorage.getItem('loggedUser'));
 	setIsSmallerThan802()
 	addResizeEventListener();
 	runFunctionsOnBreakpoint();
@@ -42,10 +44,10 @@ async function includeHTML() {
  *
  * @return {void} This function does not return anything.
  */
-function addResizeEventListener(){
+function addResizeEventListener() {
 	window.addEventListener('resize', () => {
 		setIsSmallerThan802();
-		if (isSmallerThan802 !== isSmallerThan802Old){
+		if (isSmallerThan802 !== isSmallerThan802Old) {
 			isSmallerThan802Old = isSmallerThan802;
 			runFunctionsOnBreakpoint();
 		}
@@ -57,11 +59,11 @@ function addResizeEventListener(){
  * Runs specific functions based on the current breakpoint.
  */
 function runFunctionsOnBreakpoint() {
-	if(isSmallerThan802){
+	if (isSmallerThan802) {
 		renderMobileNavigation()
 		setActiveNavButton();
 	}
-	else{
+	else {
 		renderStandardNavigation();
 	}
 }
@@ -73,7 +75,7 @@ function runFunctionsOnBreakpoint() {
  *
  * @return {void} This function does not return a value.
  */
-function renderMobileNavigation(){
+function renderMobileNavigation() {
 	let container = document.getElementById('navigation-container');
 	let mobileContainer = document.getElementById('navigation-container-mobile');
 	container.innerHTML = "";
@@ -86,7 +88,7 @@ function renderMobileNavigation(){
  *
  * @return {void} This function does not return a value.
  */
-function renderStandardNavigation(){
+function renderStandardNavigation() {
 	let container = document.getElementById('navigation-container');
 	let mobileContainer = document.getElementById('navigation-container-mobile');
 	container.innerHTML = renderNavigationHTML();
@@ -100,7 +102,7 @@ function renderStandardNavigation(){
  *
  * @return {void} This function does not return anything.
  */
-function setIsSmallerThan802(){
+function setIsSmallerThan802() {
 	if (window.innerWidth <= 801) {
 		isSmallerThan802 = true;
 	} else {
@@ -166,6 +168,7 @@ function showInitials() {
 	checkIfUserIsRemembered();
 	try {
 		let userAsString = sessionStorage.getItem('currentUser');
+		console.log('showIntials- function currentUser is', userAsString);
 		let userInitialsElement = document.getElementById('userInitials');
 
 		if (userInitialsElement) {
@@ -255,7 +258,7 @@ function goBack() {
 	const previousURL = document.referrer;
 	if (previousURL.includes('index') || previousURL.includes('signUp')) {
 		window.close()
-	}else{
+	} else {
 		window.history.go(-1);
 	}
 }

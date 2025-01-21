@@ -6,7 +6,7 @@ let requiredInputFields = [
     {
         'id': 'addTaskEnterTitleInput',
         'requiredFieldId': 'requiredTitle',
-        'idForRedUnderline':  'addTaskEnterTitleInput',
+        'idForRedUnderline': 'addTaskEnterTitleInput',
         'state': false
     },
     {
@@ -17,30 +17,30 @@ let requiredInputFields = [
     }
 ];
 
-let newTask = 
-    {
-        'id': 999,
-        'type': '',
-        'title': '',
-        'description': '',
-        'subtasks': [],
-        'assignedTo': [],
-        'category': 'category-0',
-        'priority': '',
-        'dueDate': ''
+let newTask =
+{
+    'id': 999,
+    'type': '',
+    'title': '',
+    'description': '',
+    'subtasks': [],
+    'assignedTo': [],
+    'category': 'category-0',
+    'priority': '',
+    'dueDate': ''
 };
 
 
 /**
  * Adds a new subtask to the list of tasks.
  */
-function addSubtask(){
+function addSubtask() {
     let subtaskInputField = document.getElementById('subtaskInputField');
-    if(subtaskInputField.value != ''){
+    if (subtaskInputField.value != '') {
 
         newTask.subtasks.push({
             'id': newTask.subtasks.length,
-            'subtaskText' : subtaskInputField.value,
+            'subtaskText': subtaskInputField.value,
             'completed': false
         })
     }
@@ -53,7 +53,7 @@ function addSubtask(){
  *
  * @param {number} id - The ID of the subtask to be edited.
  */
-function editSubtask(id){
+function editSubtask(id) {
     if (checkIfAnySubtaskIsInEditingMode()) {
         return;
     }
@@ -69,10 +69,10 @@ function editSubtask(id){
  *
  * @param {number} id - The ID of the subtask to be updated.
  */
-function saveEditSubtask(id){
+function saveEditSubtask(id) {
     let newText = document.getElementById('subtaskEditInputField');
     newTask.subtasks.forEach(subtask => {
-        if (subtask.id == id){
+        if (subtask.id == id) {
             subtask.subtaskText = newText.value;
         }
     })
@@ -85,9 +85,9 @@ function saveEditSubtask(id){
  *
  * @param {number} subtaskId - The ID of the subtask to be deleted.
  */
-function deleteSubtask(subtaskId){
+function deleteSubtask(subtaskId) {
     newTask.subtasks.forEach((subtask, index) => {
-        if (subtask.id == subtaskId){
+        if (subtask.id == subtaskId) {
             newTask.subtasks.splice(index, 1);
         }
     })
@@ -98,8 +98,8 @@ function deleteSubtask(subtaskId){
 /**
  * Fetches information for a new card by setting values for id, type, title, description, assignedTo, category, priority, and due date of a new task.
  */
-function collectInformationsForNewCard(){
-    if (!checkIfCardIsEditing()){
+function collectInformationsForNewCard() {
+    if (!checkIfCardIsEditing()) {
         newTask.id = getNewTaskId();
     }
     newTask.title = document.getElementById('addTaskEnterTitleInput').value;
@@ -114,7 +114,7 @@ function collectInformationsForNewCard(){
  * Clears the form by resetting the values of the `newTask` object, the `tempAssignedContacts` array,
  * and renders the add task form HTML.
  */
-function clearFormular(){
+function clearFormular() {
     newTask.id = 999;
     newTask.subtasks = [];
     tempAssignedContacts = [];
@@ -127,7 +127,7 @@ function clearFormular(){
  *
  * @return {Promise<void>} A Promise that resolves once the task is created.
  */
-async function createTask(){
+async function createTask() {
     await loadTasksFromRemoteStorage();
     collectInformationsForNewCard();
     tasks.push(newTask);
@@ -139,7 +139,7 @@ async function createTask(){
 /**
  * Resets the `newTask` object to its initial state and clears the `tempAssignedContacts` array.
  */
-function resetNewTask(){
+function resetNewTask() {
     newTask =
     {
         'id': 999,
@@ -160,10 +160,10 @@ function resetNewTask(){
 * Saves tasks to the remote storage.
 *
 */
-async function saveTasksToRemoteStorage(){
-  deactivateButton('createBtn');
-  await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
-  activateButton('createBtn', 'createTask()');
+async function saveTasksToRemoteStorage() {
+    deactivateButton('createBtn');
+    await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
+    activateButton('createBtn', 'createTask()');
 }
 
 
@@ -171,12 +171,12 @@ async function saveTasksToRemoteStorage(){
 * Loads tasks from remote storage and updates task properties if necessary.
 *
 */
-async function loadTasksFromRemoteStorage(){
-   tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
-   tasks.forEach(task => {
-       if(!task.hasOwnProperty('subtasks')) task.subtasks = []; 
-       if(!task.hasOwnProperty('assignedTo')) task.assignedTo = [];
-   })
+async function loadTasksFromRemoteStorage() {
+    //    tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
+    tasks.forEach(task => {
+        if (!task.hasOwnProperty('subtasks')) task.subtasks = [];
+        if (!task.hasOwnProperty('assignedTo')) task.assignedTo = [];
+    })
 }
 
 
@@ -185,8 +185,8 @@ async function loadTasksFromRemoteStorage(){
 *
 * @param {number} id - The id of the task to assign the contact to.
 */
-function assignContactToTask(id){
-    if (contacts.find(contact => contact.id == id)){
+function assignContactToTask(id) {
+    if (contacts.find(contact => contact.id == id)) {
         let dropdownContact = document.getElementById('assignedToContact' + id);
         let dropdownCheckboxImage = dropdownContact.lastElementChild;
 
@@ -204,10 +204,10 @@ function assignContactToTask(id){
  *
  * @param {number} id - The ID to be pushed or removed from the temporary assigned contacts array.
  */
-function pushContactToTempAssignedContacts(id){
-    if (tempAssignedContacts.indexOf(id) == -1){
+function pushContactToTempAssignedContacts(id) {
+    if (tempAssignedContacts.indexOf(id) == -1) {
         tempAssignedContacts.push(id)
-    }else{
+    } else {
         tempAssignedContacts.splice(tempAssignedContacts.indexOf(id), 1)
     }
 }
@@ -218,7 +218,7 @@ function pushContactToTempAssignedContacts(id){
  *
  * @return {number} The new task ID.
  */
-function getNewTaskId(){
+function getNewTaskId() {
     let freeId = findFreeId(tasks);
     return freeId;
 }
@@ -229,7 +229,7 @@ function getNewTaskId(){
  *
  * @param {string} priority - The priority level of the new card.
  */
-function setPriorityForNewCard(priority){
+function setPriorityForNewCard(priority) {
     newTask.priority = priority;
 }
 
@@ -239,11 +239,11 @@ function setPriorityForNewCard(priority){
  *
  * @param {Object} requiredInputField - The required input field object containing necessary ids and state.
  */
-function toggleRequiredMessage(requiredInputField){
+function toggleRequiredMessage(requiredInputField) {
     let requiredMessageField = document.getElementById(requiredInputField.requiredFieldId);
     let toUnderline = document.getElementById(requiredInputField.idForRedUnderline);
 
-    if (getStateOfRequriredField(requiredInputField)){
+    if (getStateOfRequriredField(requiredInputField)) {
         requiredInputField.state = true;
         toUnderline.classList.remove('is-invalid');
         requiredMessageField.innerHTML = "";

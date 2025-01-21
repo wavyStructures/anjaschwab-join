@@ -8,19 +8,28 @@
  */
 function renderSortedContacts(main, contacts) {
   const currentFirstLetters = [];
+  console.log("Rendered contacts:", contacts);
 
   contacts.forEach((contact) => {
-    const { id, name, mail, phone, contactColor } = contact;
+    const { id, username, additional_info, mail, phone, color } = contact;
+
+
     const initials = getInitials(name);
     const firstLetter = name
       .split(" ")
-      [name.split(" ").length - 1].charAt(0)
+    [name.split(" ").length - 1].charAt(0)
       .toUpperCase();
 
+    console.log(`Contact name: ${name}, First letter: ${firstLetter}`);
+
     if (!currentFirstLetters.includes(firstLetter)) {
+      console.log("Adding first letter section:", firstLetter);
+
       createFirstLetter(main, firstLetter);
       currentFirstLetters.push(firstLetter);
     }
+
+    console.log("Creating contact card for:", name);
 
     createContactCard(main, id, contactColor, initials, name, mail);
   });

@@ -8,11 +8,35 @@ let currentContactId = null;
  *
  * @return {Promise<Array>} A promise that resolves to an array of contacts.
  */
+
 async function getContactsFromRemoteStorage() {
   try {
-    users = await firebaseGetItem(FIREBASE_USERS_ID);
+    const response = await fetch(`${BASE_URL}contacts/`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('auth_token')}` // Assuming you're using JWT authentication
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    if (response.status === 401) {
+      alert('You are not authorized. Please log in.');
+      // Optionally, redirect the user to the login page
+      window.location.href = '/login';
+    }
+
+
+    const contacts = await response.json();
+    console.log("Fetched contacts:", contacts); // Debugging
+
+    // Return the users (contacts) from the backend
+    return contacts;
   } catch (error) {
     console.error("Loading error:", error);
+    return [];
   }
 }
 
@@ -26,9 +50,9 @@ async function getContactsFromRemoteStorage() {
 function getSecondOrFullName(contact) {
   const names = contact.name.split(" ");
   if (names.length === 1) {
-    return names[0]; // Wenn nur ein Name vorhanden ist, diesen zurückgeben
+    return names[0];
   } else {
-    return names[names.length - 1]; // Sonst den letzten Namen zurückgeben
+    return names[names.length - 1];
   }
 }
 
@@ -119,8 +143,10 @@ function getNextId(contactsArray) {
  */
 async function contactsInit() {
   includeHTML();
-  await getContactsFromRemoteStorage();
-  getContactsOutOfUsers();
+  contacts = await getContactsFromRemoteStorage();
+  console.log("Updated contacts after fetch:", contacts); // Check updated contacts
+
+  // getContactsOutOfUsers();
   loadContacts();
 }
 
@@ -135,6 +161,8 @@ function loadContacts() {
   const main = document.getElementById("main");
   main.innerHTML = ``;
   createContactsContainer(main);
+  console.log("Contacts before rendering:", contacts); // Check contacts before rendering
+
   renderSortedContacts(main, contacts);
 }
 
@@ -319,7 +347,7 @@ function highlightContactCard(card) {
  * @param {number} id - The ID of the contact card to be highlighted.
  */
 function highlightSelectedContact(id) {
-  const selectedContactCard = document.getElementById(`contact-card-${id}`);
+  const selectedContactCard = document.getElementById(`contact - card - ${id}`);
   const rightSideElement = document.getElementById("rightSide");
 
   if (selectedContactCard.classList.contains("highlighted")) {

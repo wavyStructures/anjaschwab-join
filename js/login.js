@@ -8,6 +8,12 @@ async function loginInit() {
         addBlueOverlay()
         showOverlay();
     };
+
+    loadUsers().then(users => {
+        console.log('Loaded users:', users);
+    }).catch(error => {
+        console.error('Failed to load users:', error);
+    });
 }
 
 
@@ -16,7 +22,7 @@ async function loginInit() {
  *
  * @return {void} 
  */
-function addBlueOverlay(){
+function addBlueOverlay() {
     let overlay = document.getElementById('blueOverlay');
     overlay.classList.add('blue-overlay');
     overlay.innerHTML = addBlueOverlayHTML();
@@ -28,7 +34,7 @@ function addBlueOverlay(){
  *
  * @return {string} The HTML code for the blue overlay element.
  */
-function addBlueOverlayHTML(){
+function addBlueOverlayHTML() {
     return /*html*/`<div id="logo">
         <img src="./assets/img/logo-big_white.png" alt="logo" class="joinLogoWhite logo-animation">
     </div>`
@@ -48,12 +54,27 @@ function checkIfUserWasPreviouslyRegistered() {
 }
 
 
-/**
- * Asynchronously loads the users from the 'contacts' item in local storage and parses it into a JavaScript object.
- * @return {Promise<void>} A promise that resolves when the users have been loaded and parsed.
- */
 async function loadUsers() {
-    users = await firebaseGetItem(FIREBASE_USERS_ID);
+
+    try {
+        const response = await fetch(`${BASE_URL}auth/users/`, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // Check if the response is OK (status 200)
+        if (!response.ok) {
+            throw new Error('Failed to fetch users. Status: ' + response.status);
+        }
+
+        users = await response.json();
+        return users;
+    } catch (error) {
+        console.error('Error fetching users from the backend:', error);
+    }
 }
 
 
@@ -109,18 +130,53 @@ async function loginUser() {
     let email = document.getElementById('loginEmailInput').value;
     let password = document.getElementById('loginPasswordInput').value;
 
-    await loadUsers();
-    let loggedUser = users.find(user => user.mail == email && user.password == password);
-    users = [];
+    try {
+        const response = await fetch(`${BASE_URL}auth/login/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-    if (loggedUser) {
-        setCurrentUser(loggedUser.name); // sessionStorage
-        setRememberMe(loggedUser.name); // localStorage
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+
+        const data = await response.json();
+
+        if (!data.token) {
+            throw new Error('No token received');
+        }
+        const token = data.token;
+        const loggedUser = data.user;
+
+
+        // Save the token in localStorage
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+
+        setCurrentUser(loggedUser.username); // sessionStorage
+        setRememberMe(loggedUser.username); // localStorage
+
         switchPage('summary.html');
-    } else {
+
+        return loggedUser;
+    } catch (error) {
         showUserMessage('Invalid email or password. Please try again.');
+        console.error('Error logging in:', error);
+        throw error;
     }
-    return false;
+    // await loadUsers();
+    // let loggedUser = users.find(user => user.mail == email && user.password == password);
+    // users = [];
+
+    // if (loggedUser) {
+    //     setCurrentUser(loggedUser.name); // sessionStorage
+    //     setRememberMe(loggedUser.name); // localStorage
+    //     switchPage('summary.html');
+    // } else {
+    //     showUserMessage('Invalid email or password. Please try again.');
+    // }
+    // return false;
 }
 
 

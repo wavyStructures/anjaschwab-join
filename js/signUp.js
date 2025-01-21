@@ -18,7 +18,9 @@ let newUser = {
  * @return {Promise<void>} A promise that resolves when the user is successfully saved.
  */
 async function saveNewUser() {
-    users = await firebaseGetItem(FIREBASE_USERS_ID);
+    // users = await firebaseGetItem(FIREBASE_USERS_ID);
+    users = await loadUsers();
+
     users.push(newUser);
 }
 
@@ -41,7 +43,7 @@ function setNewUserValues() {
     newUser.name = newUsername;
     newUser.mail = newMail;
     newUser.password = newPassword;
-    newUser.id = findFreeId(users)
+    // newUser.id = findFreeId(users)
     newUser.contactColor = generateRandomColor();
 }
 
@@ -51,23 +53,47 @@ function setNewUserValues() {
  * @return {Promise<void>} A promise that resolves when the user is added.
  */
 async function addNewUser() {
-    users = await firebaseGetItem(FIREBASE_USERS_ID);
+    // users = await firebaseGetItem(FIREBASE_USERS_ID);
+    // users = await loadUsers();
     getInputValues();
     setNewUserValues();
-    if (!checkPasswordsEqual()) {
-        showUserMessage('Passwords do not match!');
+    checkPasswordsEqual();
+    if (checkMailExist(newMail)) {
+        // localStorage.setItem('newMail', newUser.mail)
+        // localStorage.setItem('hasJustSignedUp', '');
+        // users.push(newUser);
+        // await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+        // showUserMessage('You Signed Up successfully!');
+        showUserMessage('The email already exists!');
+        return;
     }
-    else if (checkMailExist(newMail)) {
-        showUserMessage('The mail already exists!');
-    } else {
-        localStorage.setItem('newMail', newUser.mail)
-        localStorage.setItem('hasJustSignedUp', '');
-        users.push(newUser);
-        await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-        showUserMessage('You Signed Up successfully!');
-        setTimeout(() => {
-            switchPage('index.html');
-        }, 3000);
+    try {
+        const response = await fetch(`${BASE_URL}auth/signup/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    username: newUser.name,
+                    email: newUser.mail,
+                    password: newUser.password,
+                    phone: newUser.phone,
+                }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            showUserMessage('You signed up successfully!');
+            setTimeout(() => switchPage('index.html'), 3000);
+        } else {
+            const errorData = await response.json();
+            showUserMessage(errorData.error || 'Failed to sign up. Please try again.');
+        }
+    }
+    catch (error) {
+        console.error('Error during sign-up:', error);
+        showUserMessage('An error occurred. Please try again.');
     }
 }
 
@@ -77,13 +103,44 @@ async function addNewUser() {
  * @param {string} mailToCheck - The email to check for existence.
  * @return {boolean} Returns true if the email exists, false otherwise.
  */
-function checkMailExist(mailToCheck) {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].mail === mailToCheck) {
-            return true;
-        }
+// function checkMailExist(mailToCheck) {
+//     for (let i = 0; i < users.length; i++) {
+//         if (users[i].mail === mailToCheck) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+async function checkMailExist(mailToCheck) {
+    const authToken = localStorage.getItem('authToken');
+
+    if (!authToken) {
+        console.log('No token found');
+        return false;
     }
-    return false;
+
+    console.log('authToken:', authToken);
+
+    try {
+        const response = await fetch(`${BASE_URL}auth/check-email/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`,
+            },
+            body: JSON.stringify({ email: mailToCheck }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to check email');
+        }
+
+        const data = await response.json();
+        return data.exists;
+    } catch (error) {
+        console.error('Error checking email:', error);
+        return false;
+    }
 }
 
 
@@ -124,7 +181,7 @@ function throwMsgErrorWrongMailaddress() {
     let emailMessage = document.getElementById("msgBoxValidateEmail");
     let inputMail = document.getElementById('signUpEmailInput');
 
-    if (inputMail.value){
+    if (inputMail.value) {
         if (!testMailinputWithRegex()) {
             emailMessage.innerHTML = "Bitte geben Sie eine gültige E-Mail-Adresse ein.";
             emailMessage.style.color = "red"; // Added color for error message
@@ -132,7 +189,7 @@ function throwMsgErrorWrongMailaddress() {
             emailMessage.innerHTML = "E-Mail-Adresse ist gültig.";
             emailMessage.style.color = "green";
         }
-    }else{
+    } else {
         emailMessage.innerHTML = "";
     }
 }
@@ -217,7 +274,7 @@ function showUserMessage(message) {
  */
 function checkPasswordsEqual() {
     if (newPassword !== newPasswordConfirm) {
-        // showUserMessage("Passwords do not match");
+        showUserMessage("Passwords do not match");
         return false;
     } else {
         return true;

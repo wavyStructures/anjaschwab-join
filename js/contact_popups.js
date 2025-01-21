@@ -3,32 +3,78 @@
  */
 async function saveContact() {
   await getContactsFromRemoteStorage();
-  if (checkMailExist(document.getElementById("contactMail").value)) {
-  } else {
-    try {
-      createBtn.disabled = true;
-      const newId = getNextId(users);
-      users.push({
-        id: newId,
-        name: contactName.value,
-        mail: contactMail.value,
-        phone: contactPhone.value,
-        contactColor: generateRandomColor(),
-        password: getFirstNameForDefaultPassword(contactName.value),
-      });
 
-      await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-      getContactsOutOfUsers();
-      users = [];
-      resetContactForm();
-      closeOverlay("addContact");
-    } catch (error) {
-      console.error("Error saving contact:", error);
+  const contactEmail = document.getElementById("contactMail").value;
+
+  if (checkMailExist(contactEmail)) {
+    displayErrorMessage("Contact already exists");
+    return;
+  }
+
+  try {
+    createBtn.disabled = true;
+
+    const newContact = {
+      username: contactName.value,
+      phone_number: contactPhone.value,
+      additional_info: "",
+      // email: contactMail.value,
+      color: generateRandomColor(),
+    };
+
+    const response = await fetch(`${BASE_URL}contacts/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+      },
+      body: JSON.stringify(newContact),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save contact. Please try again.");
     }
+
+    const savedContact = await response.json();
+    console.log("Contact saved:", savedContact);
+
+    await getContactsFromRemoteStorage();
+    resetContactForm();
+    closeOverlay("addContact");
     displaySuccessMessage("Contact successfully created");
     loadContacts();
+  } catch (error) {
+    console.log("Error saving contact:", error);
+    displayErrorMessage("Failed to save contact. Please try again.");
+  } finally {
+    createBtn.disabled = false;
   }
 }
+
+
+
+// const newId = getNextId(users);
+// users.push({
+//   id: newId,
+//   name: contactName.value,
+//   mail: contactMail.value,
+//   phone: contactPhone.value,
+//   contactColor: generateRandomColor(),
+//   password: getFirstNameForDefaultPassword(contactName.value),
+// });
+
+// await firebaseUpdateItem(users, FIREBASE_USERS_ID);
+// getContactsOutOfUsers();
+// users = [];
+// resetContactForm();
+// closeOverlay("addContact");
+//   } catch (error) {
+//   console.error("Error saving contact:", error);
+// }
+// displaySuccessMessage("Contact successfully created");
+// loadContacts();
+// }
+// }
 
 
 /**
@@ -50,15 +96,15 @@ function displaySuccessMessage(message) {
   document.body.appendChild(overlay);
 
   setTimeout(() => {
-    overlay.classList.add("slide-in"); 
+    overlay.classList.add("slide-in");
 
     setTimeout(() => {
-      overlay.classList.add("slide-out"); 
+      overlay.classList.add("slide-out");
       setTimeout(() => {
-        overlay.remove(); 
-      }, 500); 
-    }, 2000); 
-  }, 10); 
+        overlay.remove();
+      }, 500);
+    }, 2000);
+  }, 10);
 }
 
 
@@ -130,7 +176,7 @@ function closeOverlay(id) {
   document.body.style.overflow = "auto";
   setTimeout(() => {
     removeContainer(id);
-  },100);
+  }, 100);
 }
 
 
@@ -210,7 +256,7 @@ function editContact(id) {
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
-  
+
     contact.name = getNameWithCapitalizedFirstLetter(contact.name);
 
     editContactCard(contact);
@@ -232,7 +278,8 @@ function editContact(id) {
  * @return {undefined} This function does not return a value.
  */
 async function saveEditedContact(id) {
-  let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  // let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  let users = await loadUsers();
   const userIndex = users.findIndex((contact) => contact.id === id);
 
   if (userIndex !== -1) {
@@ -297,7 +344,9 @@ function deleteContactFromLocalStorage(contactId) {
  * @return {Promise<void>} A promise that resolves when the contact is successfully deleted.
  */
 async function deleteContact(id) {
-  let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  // let users = await firebaseGetItem(FIREBASE_USERS_ID);
+  let users = await loadUsers();
+
   const userIndex = users.findIndex((user) => user.id === id);
   if (userIndex !== -1) {
     users.splice(userIndex, 1);
