@@ -3,11 +3,11 @@
  */
 async function saveContact() {
   await getContactsFromRemoteStorage();
-
   const contactEmail = document.getElementById("contactMail").value;
 
-  if (checkMailExist(contactEmail)) {
-    displayErrorMessage("Contact already exists");
+  if (checkMailExists(contactEmail)) {
+    // displayErrorMessage("Contact already exists");
+    alert("Contact already exists");
     return;
   }
 
@@ -16,17 +16,17 @@ async function saveContact() {
 
     const newContact = {
       username: contactName.value,
-      phone_number: contactPhone.value,
+      phone: contactPhone.value,
       additional_info: "",
-      // email: contactMail.value,
-      color: generateRandomColor(),
+      email: contactEmail,
+      contactColor: generateRandomColor(),
     };
 
     const response = await fetch(`${BASE_URL}contacts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        'Authorization': `Token ${localStorage.getItem('authToken')}`
       },
       body: JSON.stringify(newContact),
     });
@@ -38,19 +38,25 @@ async function saveContact() {
     const savedContact = await response.json();
     console.log("Contact saved:", savedContact);
 
-    await getContactsFromRemoteStorage();
-    resetContactForm();
-    closeOverlay("addContact");
-    displaySuccessMessage("Contact successfully created");
-    loadContacts();
+    resetCloseReload();
   } catch (error) {
     console.log("Error saving contact:", error);
-    displayErrorMessage("Failed to save contact. Please try again.");
+    alert("Failed to save contact. Please try again.");
+    // displayErrorMessage("Failed to save contact. Please try again.");
   } finally {
     createBtn.disabled = false;
   }
 }
 
+async function resetCloseReload() {
+  await getContactsFromRemoteStorage();
+  renderSortedContacts(main, contacts);
+
+  resetContactForm();
+  closeOverlay("addContact");
+  displaySuccessMessage("Contact successfully created");
+  contactsInit();
+}
 
 
 // const newId = getNextId(users);
@@ -62,19 +68,6 @@ async function saveContact() {
 //   contactColor: generateRandomColor(),
 //   password: getFirstNameForDefaultPassword(contactName.value),
 // });
-
-// await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-// getContactsOutOfUsers();
-// users = [];
-// resetContactForm();
-// closeOverlay("addContact");
-//   } catch (error) {
-//   console.error("Error saving contact:", error);
-// }
-// displaySuccessMessage("Contact successfully created");
-// loadContacts();
-// }
-// }
 
 
 /**
@@ -166,6 +159,7 @@ function addOverlay(functionToAdd) {
  */
 function closeOverlay(id) {
   const container = document.getElementById(id);
+  console.log("Container in closeOVerlay is:", container);
   container.classList.add("move-out-right");
   setTimeout(() => {
     addContactContainer.classList.remove("move-out-right");
@@ -253,15 +247,22 @@ function closeEditDelete() {
  * @returns {void}
  */
 function editContact(id) {
+  console.log('contacts in editContact:', contacts);
+
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
+  console.log("EDIT      Contact index is:", contactIndex);
+
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
 
-    contact.name = getNameWithCapitalizedFirstLetter(contact.name);
+    console.log("EDIT      Single   Contact is:", contact);
+
+    contact.username = getNameWithCapitalizedFirstLetter(contact.username);
 
     editContactCard(contact);
-    document.getElementById("contactName").value = contact.name;
-    document.getElementById("contactMail").value = contact.mail;
+
+    document.getElementById("contactName").value = contact.username;
+    document.getElementById("contactMail").value = contact.email;
     document.getElementById("contactPhone").value = contact.phone;
 
     currentContactId = id; // Setze die aktuelle Kontakt-ID
@@ -278,25 +279,45 @@ function editContact(id) {
  * @return {undefined} This function does not return a value.
  */
 async function saveEditedContact(id) {
-  // let users = await firebaseGetItem(FIREBASE_USERS_ID);
-  let users = await loadUsers();
-  const userIndex = users.findIndex((contact) => contact.id === id);
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    console.error("User is not authenticated!");
+    return;
+  }
 
-  if (userIndex !== -1) {
-    const user = users[userIndex];
+  const updatedContact = {
+    username: document.getElementById("contactName").value,
+    email: document.getElementById("contactMail").value,
+    phone: document.getElementById("contactPhone").value,
+  };
 
-    user.name = document.getElementById("contactName").value;
-    user.mail = document.getElementById("contactMail").value;
-    user.phone = document.getElementById("contactPhone").value;
+  try {
+    // Make the PATCH/PUT request to update the contact
+    const response = await fetch(`${BASE_URL}contacts/${id}/`, {
 
+      method: "PATCH", // Use PUT if you are sending all fields
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify(updatedContact),
+    });
 
-    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-    users = [];
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Failed to update contact:", errorData);
+      // displayErrorMessage("Failed to edit contact. Please try again.");
+      return;
+    }
+
     closeOverlay("editContact");
     displaySuccessMessage("Contact successfully edited");
     setTimeout(() => {
       window.location.reload();
     }, 2500);
+  } catch (error) {
+    console.error("Error while updating contact:", error);
+    // displayErrorMessage("An error occurred. Please try again.");
   }
 }
 
@@ -307,12 +328,14 @@ async function saveEditedContact(id) {
  * @return {void} This function does not return a value.
  */
 function editContactCard(contact) {
+  console.log("dit ContactCARD conatct  is:", contact);
+
   if (!document.getElementById("editContact")) {
     renderEditContact();
   }
   document.getElementById("editContact").innerHTML = renderEditContactHTML(
     contact.id,
-    contact.name,
+    contact.username,
     contact.contactColor
   );
   addOverlay("closeOverlay('editContact')");
@@ -320,45 +343,45 @@ function editContactCard(contact) {
 
 
 /**
- * Deletes a contact from the local storage.
- *
- * @param {number} contactId - The ID of the contact to be deleted.
- * @return {undefined} This function does not return a value.
- */
-function deleteContactFromLocalStorage(contactId) {
-  var contacts = JSON.parse(localStorage.getItem("contacts"));
-
-  if (contacts) {
-    contacts = contacts.filter(function (contact) {
-      return contact.id !== contactId;
-    });
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }
-}
-
-
-/**
- * Deletes a contact from the Firebase database and local storage.
+ * Deletes a contact 
  *
  * @param {number} id - The ID of the contact to be deleted.
  * @return {Promise<void>} A promise that resolves when the contact is successfully deleted.
  */
 async function deleteContact(id) {
-  // let users = await firebaseGetItem(FIREBASE_USERS_ID);
-  let users = await loadUsers();
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    console.error("User is not authenticated!");
+    return;
+  }
 
-  const userIndex = users.findIndex((user) => user.id === id);
-  if (userIndex !== -1) {
-    users.splice(userIndex, 1);
-    await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-    users = [];
+  try {
+    const response = await fetch(`${BASE_URL}contacts/${id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      }
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Failed to delete contact:", errorData);
+      // displayErrorMessage("Failed to delete contact. Please try again.");
+      return;
+    }
+
+    closeOverlay("editContact");
     displaySuccessMessage("Contact successfully deleted");
     setTimeout(() => {
       window.location.reload();
     }, 3000);
   }
+  catch (error) {
+    console.error("Error while deleting contact:", error);
+    // displayErrorMessage("An error occurred. Please try again.");
+  }
 }
-
 
 /**
  * Removes a contact from the local storage and reinitializes the contacts list.
@@ -367,7 +390,6 @@ async function deleteContact(id) {
  * @return {void} This function does not return anything.
  */
 function removeContact(id) {
-  deleteContactFromLocalStorage(id);
   deleteContact(id);
   contactsInit();
 }

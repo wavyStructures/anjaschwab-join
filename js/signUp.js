@@ -18,9 +18,7 @@ let newUser = {
  * @return {Promise<void>} A promise that resolves when the user is successfully saved.
  */
 async function saveNewUser() {
-    // users = await firebaseGetItem(FIREBASE_USERS_ID);
     users = await loadUsers();
-
     users.push(newUser);
 }
 
@@ -53,17 +51,10 @@ function setNewUserValues() {
  * @return {Promise<void>} A promise that resolves when the user is added.
  */
 async function addNewUser() {
-    // users = await firebaseGetItem(FIREBASE_USERS_ID);
-    // users = await loadUsers();
     getInputValues();
     setNewUserValues();
     checkPasswordsEqual();
-    if (checkMailExist(newMail)) {
-        // localStorage.setItem('newMail', newUser.mail)
-        // localStorage.setItem('hasJustSignedUp', '');
-        // users.push(newUser);
-        // await firebaseUpdateItem(users, FIREBASE_USERS_ID);
-        // showUserMessage('You Signed Up successfully!');
+    if (checkMailExists(newMail)) {
         showUserMessage('The email already exists!');
         return;
     }
@@ -103,46 +94,21 @@ async function addNewUser() {
  * @param {string} mailToCheck - The email to check for existence.
  * @return {boolean} Returns true if the email exists, false otherwise.
  */
-// function checkMailExist(mailToCheck) {
-//     for (let i = 0; i < users.length; i++) {
-//         if (users[i].mail === mailToCheck) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
-async function checkMailExist(mailToCheck) {
-    const authToken = localStorage.getItem('authToken');
 
-    if (!authToken) {
-        console.log('No token found');
-        return false;
-    }
+function checkMailExists(emailToCheck) {
 
-    console.log('authToken:', authToken);
+    contacts = getContactsFromRemoteStorage();
+    console.log('inside CHECK-Mailexist-function contacts:', contacts);
 
-    try {
-        const response = await fetch(`${BASE_URL}auth/check-email/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${authToken}`,
-            },
-            body: JSON.stringify({ email: mailToCheck }),
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to check email');
+    if (contacts) {
+        for (let i = 0; i < contacts.length; i++) {
+            if (contacts[i].mail === emailToCheck) {
+                console.log('inside CHECK-Mailexist-function contacts[i].mail:', contacts[i].mail);
+                return true;
+            }
         }
-
-        const data = await response.json();
-        return data.exists;
-    } catch (error) {
-        console.error('Error checking email:', error);
-        return false;
     }
 }
-
 
 /**
  * Checks if the form is valid by verifying the form's validity and the confirmation of the privacy policy.

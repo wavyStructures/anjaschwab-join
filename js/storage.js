@@ -1,10 +1,4 @@
-// const BASE_URL = "https://join-1ea34-default-rtdb.europe-west1.firebasedatabase.app/";
-// const BASE_URL = "https://anjaschwab-join-8ab6d-default-rtdb.europe-west1.firebasedatabase.app/";
-
 const BASE_URL = 'http://127.0.0.1:8000/';
-
-// const FIREBASE_TASKS_ID = '-NyjPfIkvaXKtVoSc38U';
-// const FIREBASE_USERS_ID = '-NyjPrly5jgHTGp4FS99';
 
 
 /**
@@ -34,8 +28,6 @@ async function firebaseUpdateItem(jsonArray, path = "_") {
 /**
 GET
  */
-
-
 async function backendGetItem(username, password) {
     try {
         const response = await postRequest(`${BASE_URL}api/token/`, { username, password });
@@ -77,12 +69,6 @@ function handleError(error) {
     document.getElementById('errorMessage').textContent =
         'Something went wrong. Please try again later.';
 }
-// async function firebaseGetItem(path = "_") {
-//     let response = await fetch(BASE_URL + path + ".json");
-//     let responseAsJSON = await response.json();
-
-//     return responseAsJSON;
-// }
 
 
 /**

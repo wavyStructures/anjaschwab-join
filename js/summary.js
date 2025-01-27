@@ -9,9 +9,8 @@ let dayTime;
 async function summaryInit() {
     includeHTML();
     await getContactsFromRemoteStorage();
-    // await firebaseGetItem(FIREBASE_USERS_ID);
     await loadUsers();
-    getContactsOutOfUsers();
+    // prepareSorting();
     await loadTasksFromRemoteStorage();
     getLoggedUser();
     getUserNameForGreeting();

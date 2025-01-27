@@ -14,7 +14,7 @@ async function getContactsFromRemoteStorage() {
     const response = await fetch(`${BASE_URL}contacts/`, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('auth_token')}` // Assuming you're using JWT authentication
+        'Authorization': `Token ${localStorage.getItem('authToken')}`
       }
     });
 
@@ -24,15 +24,11 @@ async function getContactsFromRemoteStorage() {
 
     if (response.status === 401) {
       alert('You are not authorized. Please log in.');
-      // Optionally, redirect the user to the login page
       window.location.href = '/login';
     }
 
-
     const contacts = await response.json();
-    console.log("Fetched contacts:", contacts); // Debugging
 
-    // Return the users (contacts) from the backend
     return contacts;
   } catch (error) {
     console.error("Loading error:", error);
@@ -42,20 +38,25 @@ async function getContactsFromRemoteStorage() {
 
 
 /**
- * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
+ * Retrieves contacts from the users array and sorts them by name.
  *
- * @param {Object} contact - The contact object containing the name to extract from.
- * @return {string} The extracted last name or single name from the contact.
+ * @return {Array} An array of contacts sorted by name.
  */
-function getSecondOrFullName(contact) {
-  const names = contact.name.split(" ");
-  if (names.length === 1) {
-    return names[0];
-  } else {
-    return names[names.length - 1];
-  }
+function prepareSorting(contacts) {
+  temp_contacts = [];
+  contacts.forEach((contact) => {
+    console.log('contacts.js 53 prepSortingContacts: ', contacts);
+    temp_contacts.push({
+      contactColor: contact.contactColor,
+      id: contact.id,
+      mail: contact.mail,
+      name: contact.name,
+      phone: contact.phone,
+    });
+  });
+  // users = [];
+  contacts = sortContactsByName(temp_contacts);
 }
-
 
 /**
  * Sorts an array of contacts by their last name.
@@ -64,6 +65,7 @@ function getSecondOrFullName(contact) {
  * @return {Array} - The sorted array of contacts.
  */
 function sortContactsByName(contacts) {
+  console.log('contacts.js703 sortContactsByName contacts: ', contacts);
   let sortedContacts = contacts.slice().sort((a, b) => {
     const lastNameA = getSecondOrFullName(a).toLowerCase();
     const lastNameB = getSecondOrFullName(b).toLowerCase();
@@ -72,26 +74,23 @@ function sortContactsByName(contacts) {
   return sortedContacts;
 }
 
-
 /**
- * Retrieves contacts from the users array and sorts them by name.
+ * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
  *
- * @return {Array} An array of contacts sorted by name.
+ * @param {Object} contact - The contact object containing the name to extract from.
+ * @return {string} The extracted last name or single name from the contact.
  */
-function getContactsOutOfUsers() {
-  temp_contacts = [];
-  users.forEach((user) => {
-    temp_contacts.push({
-      contactColor: user.contactColor,
-      id: user.id,
-      mail: user.mail,
-      name: user.name,
-      phone: user.phone,
-    });
-  });
-  users = [];
-  contacts = sortContactsByName(temp_contacts);
+function getSecondOrFullName(contact) {
+
+  console.log('getSecond contact: ', contact);
+  const names = contact.username.split(" ");
+  if (names.length === 1) {
+    return names[0];
+  } else {
+    return names[names.length - 1];
+  }
 }
+
 
 
 /**
@@ -144,9 +143,6 @@ function getNextId(contactsArray) {
 async function contactsInit() {
   includeHTML();
   contacts = await getContactsFromRemoteStorage();
-  console.log("Updated contacts after fetch:", contacts); // Check updated contacts
-
-  // getContactsOutOfUsers();
   loadContacts();
 }
 
@@ -161,8 +157,6 @@ function loadContacts() {
   const main = document.getElementById("main");
   main.innerHTML = ``;
   createContactsContainer(main);
-  console.log("Contacts before rendering:", contacts); // Check contacts before rendering
-
   renderSortedContacts(main, contacts);
 }
 
@@ -173,15 +167,15 @@ function loadContacts() {
  * @param {string} name - The full name from which to generate initials.
  * @returns {string} The initials generated from the provided full name.
  */
-function getInitials(name) {
+function getInitials(username) {
   let returnName = "";
-  if (name.includes(" ")) {
-    let [firstName, lastName] = name.split(" ");
+  if (username.includes(" ")) {
+    let [firstName, lastName] = username.split(" ");
     let firstInitial = firstName.charAt(0).toUpperCase();
     let lastInitial = lastName.charAt(0).toUpperCase();
     returnName = firstInitial + lastInitial;
   } else {
-    returnName = name.charAt(0).toUpperCase();
+    returnName = username.charAt(0).toUpperCase();
   }
   return returnName;
 }
@@ -222,22 +216,26 @@ function removeContainer(id) {
  * @function createContactCard
  * @param {HTMLElement} main - The main element containing the contacts container.
  * @param {number} id - The unique identifier for the contact.
- * @param {string} color - The color associated with the contact.
+ * @param {string} contactColor - The color associated with the contact.
  * @param {string} initials - The initials of the contact.
- * @param {string} name - The name of the contact.
+ * @param {string} username - The name of the contact.
  * @param {string} mail - The email address of the contact.
  * @returns {void}
  */
-function createContactCard(main, id, color, initials, name, mail) {
-  const shorterMail = mail.length > 20 ? mail.substring(0, 20) + "..." : mail;
+function createContactCard(main, id, contactColor, initials, username, phone, email) {
+  // const shorterAdditionalInfo =
+  //   additional_info.length > 20 ? additional_info.substring(0, 20) + "..." : additional_info;
+
+  contactColor = generateRandomColor();
   const cardHTML = generateContactCardHTML(
     id,
-    color,
+    contactColor,
     initials,
-    name,
-    mail,
-    shorterMail
+    username,
+    phone,
+    email
   );
+
   const container = main.querySelector(".contacts-container");
   container
     .querySelector(".contact-list")
@@ -251,8 +249,9 @@ function createContactCard(main, id, color, initials, name, mail) {
  * @param {string} name - The name to be capitalized.
  * @return {string} The capitalized name.
  */
-function getNameWithCapitalizedFirstLetter(name) {
-  let [firstname, lastname, surname] = name.split(" ");
+function getNameWithCapitalizedFirstLetter(contactname) {
+  console.log('contactname at start of getWithCapitlized 253: ', contactname);
+  let [firstname, lastname, surname] = contactname.split(" ");
   firstname = firstname[0].toUpperCase() + firstname.slice(1);
   if (lastname) {
     lastname = lastname[0].toUpperCase() + lastname.slice(1);
@@ -272,12 +271,13 @@ function getNameWithCapitalizedFirstLetter(name) {
  */
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
-  const { name, mail, phone, contactColor } = contact;
+  console.log('openContactDetails id: ', id);
+  const { username, email, phone, contactColor } = contact;
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");
   rightSide.innerHTML = generateContactDetailsHTML(
-    name,
-    mail,
+    username,
+    email,
     phone,
     id,
     contactColor
@@ -347,7 +347,7 @@ function highlightContactCard(card) {
  * @param {number} id - The ID of the contact card to be highlighted.
  */
 function highlightSelectedContact(id) {
-  const selectedContactCard = document.getElementById(`contact - card - ${id}`);
+  const selectedContactCard = document.getElementById(`contact-card-${id}`);
   const rightSideElement = document.getElementById("rightSide");
 
   if (selectedContactCard.classList.contains("highlighted")) {

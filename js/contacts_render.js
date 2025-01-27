@@ -5,7 +5,7 @@
  * @returns {string} The HTML code for the contacts container.
  */
 function generateContactsContainerHTML() {
-    return /*html*/ ` 
+  return /*html*/ ` 
     <div id="contactMainEdit" class="contact-main-edit" onclick="doNotClose(event)">
 
   </div>
@@ -31,15 +31,15 @@ function generateContactsContainerHTML() {
   
   </section>
       `;
-  }
+}
 
-  /**
- * Renders the HTML code for the add contact form.
- *
- * @return {string} The HTML code for the add contact form.
- */
+/**
+* Renders the HTML code for the add contact form.
+*
+* @return {string} The HTML code for the add contact form.
+*/
 function renderAddContactsHTML() {
-    return /*html*/ `
+  return /*html*/ `
           <div class="add-contact-header">
               <div class="add-contact-header-close">
                   <img onclick="closeOverlay('addContact')" src="./assets/img/icon-close_white.png" alt="closeAddContact">
@@ -80,7 +80,7 @@ function renderAddContactsHTML() {
                   </div>
               </form>
   </div>`;
-  }
+}
 
 
 /**
@@ -89,8 +89,10 @@ function renderAddContactsHTML() {
  * @param {number} id - The ID of the contact to be edited.
  * @return {string} The HTML code for the edit contact form.
  */
-function renderEditContactHTML(id, name, contactColor) {
-    return /*html*/ `
+function renderEditContactHTML(id, username, contactColor) {
+  console.log('this is WHAT renderEditContactHTML gets: id username and contactColor......:', id, username, contactColor);
+
+  return /*html*/ `
           <div class="edit-contact-header">
               <div class="edit-contact-header-close">
                   <img onclick="closeOverlay('editContact')" src="./assets/img/icon-close_white.png" alt="closeAddContact">
@@ -107,8 +109,8 @@ function renderEditContactHTML(id, name, contactColor) {
                   <div class="profile-badge-add-contact"> 
                   <div class="contact-details-badge" style="background-color: ${contactColor}">
               <div class="contact-details-badge-initials">${getInitials(
-                name
-              )}</div>
+    username
+  )}</div>
             </div>
                   </div>
               </div>
@@ -136,53 +138,82 @@ function renderEditContactHTML(id, name, contactColor) {
                   </div>
               </form>
           </div>`;
-  }
+}
 
 
- /**
- * Generates the HTML code for a contact card.
- *
- * @param {number} contactId - The unique identifier for the contact.
- * @param {string} profileColor - The color associated with the contact's profile.
- * @param {string} initials - The initials of the contact.
- * @param {string} name - The name of the contact.
- * @param {string} email - The email address of the contact.
- * @param {string} shortEmail - The shortened version of the email address.
- * @return {string} The HTML code for the contact card.
- */
+/**
+* Generates the HTML code for a contact card.
+*
+* @param {number} contactId - The unique identifier for the contact.
+* @param {string} profileColor - The color associated with the contact's profile.
+* @param {string} initials - The initials of the contact.
+* @param {string} name - The name of the contact.
+* @param {string} email - The email address of the contact.
+* @param {string} shortEmail - The shortened version of the email address.
+* @return {string} The HTML code for the contact card.
+*/
+
 function generateContactCardHTML(
-    contactId,
-    profileColor,
-    initials,
-    name,
-    email,
-    shorterMail
-  ) {
-    let formattedName = getNameWithCapitalizedFirstLetter(name);
+  contactId,
+  profileColor,
+  initials,
+  contactname,
+  additionalInfo,
+  phone
+) {
+  // Format the name with the first letter capitalized
+  let formattedName = getNameWithCapitalizedFirstLetter(contactname);
 
-    return /*html*/ `
-      <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
-        <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
-        <div>
-          <span class="contact-card-name">${formattedName}</span><br>
-          <a class="contact-card-email">${shorterMail}</a>
-        </div>
+  // Shorten additional info if too long
+  // const shorterAdditionalInfo =
+  //   additionalInfo.length > 20 ? additionalInfo.substring(0, 20) + "..." : additionalInfo;
+
+  return /*html*/ `
+    <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
+      <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
+      <div>
+        <span class="contact-card-name">${formattedName}</span><br>
+        <p class="contact-card-info">${additionalInfo}</p>
+        <p class="contact-card-phone">${phone}</p>
       </div>
-    `;
-  }
+    </div>
+  `;
+}
 
-  
+
+// function generateContactCardHTML(
+//     contactId,
+//     profileColor,
+//     initials,
+//     name,
+//     email,
+//     shorterMail
+//   ) {
+//     let formattedName = getNameWithCapitalizedFirstLetter(name);
+
+//     return /*html*/ `
+//       <div class="contact-card" id="contact-card-${contactId}" onclick="openContactDetails(${contactId})">
+//         <div class="profile-badge-group" style="background-color: ${profileColor}">${initials}</div>
+//         <div>
+//           <span class="contact-card-name">${formattedName}</span><br>
+//           <a class="contact-card-email">${shorterMail}</a>
+//         </div>
+//       </div>
+//     `;
+//   }
+
+
 /**
  * Generates HTML code for displaying contact details.
  *
  * @function generateContactDetailsHTML
- * @param {string} name - The name of the contact.
+ * @param {string} contactname - The name of the contact.
  * @param {string} email - The email address of the contact.
  * @param {string} phone - The phone number of the contact.
  * @returns {string} The HTML code for displaying contact details.
  */
-function generateContactDetailsHTML(name, email, phone, id, color) {
-    return /*html*/ `
+function generateContactDetailsHTML(contactname, email, phone, id, color) {
+  return /*html*/ `
       <div class="contact-Details">
         <div class="contact-details-header-and-button">
           <div class="contact-details-header-responsive">Contact Information</div>
@@ -193,13 +224,11 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
         <div class="contact-details-header" id="contactDetailsHeader">
           <div class="contact-details-badge-group">
             <div class="contact-details-badge" style="background-color: ${color}">
-              <div class="contact-details-badge-initials">${getInitials(
-                name
-              )}</div>
+              <div class="contact-details-badge-initials">${getInitials(contactname)}</div>
             </div>
           </div>
           <div class="contact-details-name-group">
-            <div class="contact-details-name">${name}</div>
+            <div class="contact-details-name">${contactname}</div>
             <div class="contact-details-icons">
               <div class="icon-edit" onclick="editContact(${id})">
                 <img src="./assets/img/icon-edit.png" alt="">Edit
@@ -237,4 +266,4 @@ function generateContactDetailsHTML(name, email, phone, id, color) {
         </div>
       </div>
     `;
-  }
+}

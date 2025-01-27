@@ -6,36 +6,44 @@
  * @param {Array} sortedContacts - The sorted array of contacts.
  * @returns {void}
  */
-function renderSortedContacts(main, contacts) {
+async function renderSortedContacts(main, contacts) {
+  contacts = await getContactsFromRemoteStorage();
   const currentFirstLetters = [];
-  console.log("Rendered contacts:", contacts);
+
+  contacts.sort((a, b) => {
+    const lastNameA = a.username.split(" ").slice(-1)[0].toLowerCase(); 
+    const lastNameB = b.username.split(" ").slice(-1)[0].toLowerCase();
+    const firstNameA = a.username.split(" ")[0].toLowerCase(); 
+    const firstNameB = b.username.split(" ")[0].toLowerCase();
+
+    if (lastNameA === lastNameB) {
+      return firstNameA.localeCompare(firstNameB);
+    }
+    return lastNameA.localeCompare(lastNameB); 
+  });
 
   contacts.forEach((contact) => {
-    const { id, username, additional_info, mail, phone, color } = contact;
+    const { id, username, phone, contactColor, email } = contact;
+    const initials = getInitials(username);
 
-
-    const initials = getInitials(name);
-    const firstLetter = name
-      .split(" ")
-    [name.split(" ").length - 1].charAt(0)
-      .toUpperCase();
-
-    console.log(`Contact name: ${name}, First letter: ${firstLetter}`);
+    const firstLetter = username.split(" ").slice(-1)[0].charAt(0).toUpperCase();
 
     if (!currentFirstLetters.includes(firstLetter)) {
-      console.log("Adding first letter section:", firstLetter);
-
       createFirstLetter(main, firstLetter);
       currentFirstLetters.push(firstLetter);
     }
 
-    console.log("Creating contact card for:", name);
-
-    createContactCard(main, id, contactColor, initials, name, mail);
+    createContactCard(main, id, contactColor, initials, username, phone, email);
   });
 }
 
-
+// contacts = contacts.filter(contact => {
+//   if (!contact.username || typeof contact.username !== "string") {
+//     console.warn("Invalid contact:", contact);
+//     return false; // Exclude invalid contacts
+//   }
+//   return true;
+// });
 /**
  * Creates a container for displaying contacts and appends it to the main element.
  *
