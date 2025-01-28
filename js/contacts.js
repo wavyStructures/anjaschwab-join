@@ -206,7 +206,13 @@ function createFirstLetter(main, firstLetter) {
  * @return {void} This function does not return anything.
  */
 function removeContainer(id) {
-  document.getElementById(id).remove();
+  console.log('removeContainer id: ', id);
+  const container = document.getElementById(id);
+  if (container) {
+    container.remove();
+  } else {
+    console.warn(`Element with id "${id}" does not exist in DOM.`);
+  }
 }
 
 

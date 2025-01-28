@@ -36,11 +36,9 @@ async function saveContact() {
     }
 
     const savedContact = await response.json();
-    console.log("Contact saved:", savedContact);
 
     resetCloseReload();
   } catch (error) {
-    console.log("Error saving contact:", error);
     alert("Failed to save contact. Please try again.");
     // displayErrorMessage("Failed to save contact. Please try again.");
   } finally {
@@ -159,17 +157,23 @@ function addOverlay(functionToAdd) {
  */
 function closeOverlay(id) {
   const container = document.getElementById(id);
-  console.log("Container in closeOVerlay is:", container);
-  container.classList.add("move-out-right");
-  setTimeout(() => {
-    addContactContainer.classList.remove("move-out-right");
-  }, 125);
+
+  if (container) {
+    container.classList.add("move-out-right");
+    setTimeout(() => {
+      container.classList.remove("move-out-right");
+    }, 125);
+  }
+
   const overlay = document.querySelector(".overlay");
   if (overlay) overlay.remove();
 
   document.body.style.overflow = "auto";
+
   setTimeout(() => {
-    removeContainer(id);
+    if (id && document.getElementById(id)) {
+      removeContainer(id);
+    }
   }, 100);
 }
 
@@ -247,18 +251,12 @@ function closeEditDelete() {
  * @returns {void}
  */
 function editContact(id) {
-  console.log('contacts in editContact:', contacts);
-
   const contactIndex = contacts.findIndex((contact) => contact.id === id);
-  console.log("EDIT      Contact index is:", contactIndex);
 
   if (contactIndex !== -1) {
     const contact = contacts[contactIndex];
 
-    console.log("EDIT      Single   Contact is:", contact);
-
     contact.username = getNameWithCapitalizedFirstLetter(contact.username);
-
     editContactCard(contact);
 
     document.getElementById("contactName").value = contact.username;
@@ -268,7 +266,6 @@ function editContact(id) {
     currentContactId = id; // Setze die aktuelle Kontakt-ID
   }
 }
-
 
 
 /**
@@ -292,10 +289,9 @@ async function saveEditedContact(id) {
   };
 
   try {
-    // Make the PATCH/PUT request to update the contact
     const response = await fetch(`${BASE_URL}contacts/${id}/`, {
 
-      method: "PATCH", // Use PUT if you are sending all fields
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
@@ -328,8 +324,6 @@ async function saveEditedContact(id) {
  * @return {void} This function does not return a value.
  */
 function editContactCard(contact) {
-  console.log("dit ContactCARD conatct  is:", contact);
-
   if (!document.getElementById("editContact")) {
     renderEditContact();
   }
@@ -376,8 +370,7 @@ async function deleteContact(id) {
     setTimeout(() => {
       window.location.reload();
     }, 3000);
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error while deleting contact:", error);
     // displayErrorMessage("An error occurred. Please try again.");
   }
