@@ -42,7 +42,7 @@ function setNewUserValues() {
     newUser.mail = newMail;
     newUser.password = newPassword;
     // newUser.id = findFreeId(users)
-    newUser.contactColor = generateRandomColor();
+    // newUser.contactColor = generateRandomColor();
 }
 
 

@@ -116,7 +116,9 @@ function renderTasksHTML(task) {
     task.id
   }" class="card" onclick="openCard(${task.id})">
         <div class="cardTopContainer">
-            <div id="cardType${task.id}" class="cardType">${task.type}</div>
+            <div id="cardType${task.id}" class="cardType">${formatTaskType(
+    task.task_type
+  )}</div>
             <div class="cardTitle">${task.title}</div>
             <div id="cardText${task.id}" class="cardText">${
     task.description
@@ -384,7 +386,7 @@ function renderOpenCardHTML(task) {
     </div>
     <div class="openCardInnerContainer">
         <div id="openCardType${task["id"]}" class="cardType">${
-    task["type"]
+    task["task_type"]
   }</div>
         <div class="cardTitle">${task["title"]}</div>
         <div class="openCardDescription">${task["description"]}</div>

@@ -214,13 +214,20 @@ function setCardType(task) {
     let openCardType = document.getElementById(`openCardType${task['id']}`)
 
 
-    if (task.type == "User Story") {
+    if (task.task_type.toLowerCase() === "user_story") {
         cardType.classList.add("cardTypeUserStory");
         if (openCardType) openCardType.classList.add("cardTypeUserStory");
-    } else if (task.type == "Technical Task") {
-        cardType.classList.add('cardTypeTechnicalTask')
+
+    } else if (task.task_type.toLowerCase() === "technical_task") {
+        cardType.classList.add('cardTypeTechnicalTask');
         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
     }
+}
+
+function formatTaskType(task_type) {
+    return task_type
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
 }
 
 

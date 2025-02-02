@@ -19,7 +19,7 @@ async function saveContact() {
       phone: contactPhone.value,
       additional_info: "",
       email: contactEmail,
-      contactColor: generateRandomColor(),
+      // contactColor: generateRandomColor(),
     };
 
     const response = await fetch(`${BASE_URL}contacts/`, {

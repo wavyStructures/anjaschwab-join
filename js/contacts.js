@@ -232,7 +232,7 @@ function createContactCard(main, id, contactColor, initials, username, phone, em
   // const shorterAdditionalInfo =
   //   additional_info.length > 20 ? additional_info.substring(0, 20) + "..." : additional_info;
 
-  contactColor = generateRandomColor();
+  // contactColor = generateRandomColor();
   const cardHTML = generateContactCardHTML(
     id,
     contactColor,

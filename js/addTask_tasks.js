@@ -106,7 +106,7 @@ function collectInformationsForNewCard() {
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
     newTask.assigned_to = tempAssignedContacts;
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
-    if (newTask.type === '') newTask.type = 'User Story';
+    if (newtask.task_type === '') newtask.task_type = 'User Story';
 }
 
 
