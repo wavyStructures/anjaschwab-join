@@ -3,11 +3,11 @@
  *
  * @param {string} taskId - The ID of the task element.
  */
-function setDroppableContainers(taskId){
+function setDroppableContainers(taskId) {
     let category = getTaskOutOfId(taskId)['category'].slice(-1)
-    for (let i=0; i<4; i++){
-        if (i != category){
-           displayEmptyTask(taskId, i);
+    for (let i = 0; i < 4; i++) {
+        if (i != category) {
+            displayEmptyTask(taskId, i);
         }
     }
 }
@@ -18,7 +18,7 @@ function setDroppableContainers(taskId){
  *
  * @param {string} taskId - The ID of the task element being dragged.
  */
-function startDragging(taskId){
+function startDragging(taskId) {
     currentDraggedElement = taskId;
     document.getElementById(taskId).classList.add('dragging');
     setDroppableContainers(taskId)
@@ -29,7 +29,7 @@ function startDragging(taskId){
  * Stops the dragging process by removing the 'drag-area-highlight' class from all categories
  * and the 'dragging' class from all tasks.
  */
-function stopDragging(){
+function stopDragging() {
     categories.forEach(category => {
         document.getElementById(Object.keys(category)[0]).classList.remove('drag-area-highlight');
     });
@@ -45,7 +45,7 @@ function stopDragging(){
  *
  * @param {Event} event - The event object representing the drag and drop event.
  */
-function allowDrop(event){
+function allowDrop(event) {
     event.preventDefault();
 }
 
@@ -55,9 +55,11 @@ function allowDrop(event){
  *
  * @param {string} category - The category to move the task to.
  */
-function moveTo(category){
+async function moveTo(category) {
     let task = getTaskOutOfId(currentDraggedElement);
     task['category'] = category;
+
     renderCategories(tasks);
-    saveTasksToRemoteStorage();
+
+    await saveTasksToRemoteStorage(task);
 }

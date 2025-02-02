@@ -3,10 +3,10 @@ let tasks = [];
 let currentDraggedElement;
 
 let categories = [
-    {'category-0': "To do"},
-    {'category-1': "In progress"}, 
-    {'category-2': "Await Feedback"}, 
-    {'category-3': "Done"}
+    { 'category-0': "To do" },
+    { 'category-1': "In progress" },
+    { 'category-2': "Await Feedback" },
+    { 'category-3': "Done" }
 ];
 
 
@@ -16,9 +16,9 @@ let categories = [
  */
 async function boardInit() {
     includeHTML();
-    await getContactsFromRemoteStorage();
-    getContactsOutOfUsers();
-    await loadTasksFromRemoteStorage();
+    contacts = await getContactsFromRemoteStorage();
+    tasks = await loadTasksFromRemoteStorage();
+    users = await loadUsers();
     renderCategories(tasks);
     // showAddTaskContainer();
     // openCard(2);
@@ -40,24 +40,25 @@ function renderCategories(arrayToSearchIn) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
                 categoryContainer.innerHTML += renderTasksHTML(task);
                 setCardType(task);
-                renderTaskDescription(task) 
+                renderTaskDescription(task)
                 renderSubtask(task);
                 renderAssignedToButtons(task);
             }
         } else {
             renderEmptyCategory(categoryContainer, Object.values(category)[0]);
-        }});
-    }
+        }
+    });
+}
 
 
- /**
- * Renders the task description by splitting it into words and limiting the length of each word to 46 characters.
- * If the description is longer than the limit, it adds an ellipsis at the end.
- *
- * @param {Object} task - The task object containing the description to be rendered.
- * @return {void} This function does not return anything.
- */
- function renderTaskDescription(task){
+/**
+* Renders the task description by splitting it into words and limiting the length of each word to 46 characters.
+* If the description is longer than the limit, it adds an ellipsis at the end.
+*
+* @param {Object} task - The task object containing the description to be rendered.
+* @return {void} This function does not return anything.
+*/
+function renderTaskDescription(task) {
     let descriptionContainer = document.getElementById('cardText' + task['id']);
     let cardText = "";
     let taskDescriptionSplitted = task.description.split(' ');
@@ -68,7 +69,7 @@ function renderCategories(arrayToSearchIn) {
 
     cardText = cardText.substring(1);
 
-    if (cardText.length != task.description.length) cardText = cardText + " ..."; 
+    if (cardText.length != task.description.length) cardText = cardText + " ...";
 
     descriptionContainer.innerHTML = cardText;
 }
@@ -88,6 +89,7 @@ function filterTasks(arrayToSearchIn, category) {
             filteredTasks.push(task);
         }
     });
+
     return filteredTasks;
 }
 
@@ -98,15 +100,42 @@ function filterTasks(arrayToSearchIn, category) {
  * @param {object} card - The card object containing information about the card
  */
 function renderAssignedToButtons(task) {
-    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
-    let assignedToContacts = task['assignedTo'];
+    console.log('Function called with task:', task);
 
-    for (let i = 0; i < assignedToContacts.length; i++) {
-        for (let j = 0; j < contacts.length; j++) {
-            if (contacts[j]['id'] == assignedToContacts[i])
-                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
+    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
+    console.log('assignedToContainer:', assignedToContainer);
+
+    if (!assignedToContainer) {
+        console.warn('Container not found for ID:', 'cardAssignedToContainerId' + task['id']);
+        return;
+    }
+
+    let assignedToUsers = task['assigned_to'];
+    console.log('assignedToUSERS:', assignedToUsers);
+
+    if (!Array.isArray(assignedToUsers) || assignedToUsers.length === 0) {
+        console.warn('No assigned users found.');
+        return;
+    }
+
+    for (let i = 0; i < assignedToUsers.length; i++) {
+        console.log('Checking assigned users:', assignedToUsers[i]);
+
+        for (let j = 0; j < users.length; j++) {
+            // console.log('Comparing:', users[j]['id'], 'with', assignedToUsers[i]);
+
+            if (String(users[j]['id']) === String(assignedToUsers[i])) {
+                console.log('Match found:', users[j]);
+
+                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(users[j]);
+            }
         }
     }
+}
+
+function renderAssignedToButtonsHTML(users) {
+    return /*html*/ `<div class="profile-badge-group" style="background-color: ${users.contactColor
+        }">${getInitials(users.username)}</div>`;
 }
 
 
@@ -137,7 +166,7 @@ function setPriorityImage(taskPriority) {
  */
 function searchTask() {
     let searchInput = document.getElementById('findTask');
-    if(searchInput == null) return;
+    if (searchInput == null) return;
     let foundTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchInput.value) || task['description'].toLowerCase().includes(searchInput.value));
     renderCategories(foundTasks);
 }
@@ -157,7 +186,7 @@ function renderSubtask(task) {
 
     if (countSubtasks != 0) {
         subtaskContainer.innerHTML = /*html*/`<progress id="progressTodo" value="${completedPercent}" max="100"></progress><div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks</div>`
-    }else{
+    } else {
         subtaskContainer.remove();
     }
 }
@@ -169,7 +198,7 @@ function renderSubtask(task) {
  * @param {number} taskId - The ID of the task to retrieve.
  * @return {Object|undefined} The task object with the specified taskId, or undefined if no task is found.
  */
-function getTaskOutOfId(taskId){
+function getTaskOutOfId(taskId) {
     return tasks.filter(task => task['id'] == taskId)[0]
 }
 
@@ -180,7 +209,7 @@ function getTaskOutOfId(taskId){
  * @param {Object} task - The task object containing the type and id.
  * @return {void} This function does not return a value.
  */
-function setCardType(task){
+function setCardType(task) {
     let cardType = document.getElementById(`cardType${task['id']}`);
     let openCardType = document.getElementById(`openCardType${task['id']}`)
 
@@ -188,7 +217,7 @@ function setCardType(task){
     if (task.type == "User Story") {
         cardType.classList.add("cardTypeUserStory");
         if (openCardType) openCardType.classList.add("cardTypeUserStory");
-    }else if (task.type == "Technical Task") {
+    } else if (task.type == "Technical Task") {
         cardType.classList.add('cardTypeTechnicalTask')
         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
     }
@@ -200,7 +229,7 @@ function setCardType(task){
  *
  * @param {object} task - The task object containing subtasks to render.
  */
-function renderSubtasksToOpenCard(task){
+function renderSubtasksToOpenCard(task) {
     let container = document.getElementById('openCardSubtasksContainer');
     container.innerHTML = /*html*/`<span class="openCardText">Subtasks:</span><div id="openCardSubtasks"></div>`
     container.classList.add("openCardSubtasksContainer");
@@ -226,16 +255,16 @@ function renderSubtasksToOpenCard(task){
  * @param {number} taskId - The ID of the task containing the subtask.
  * @param {number} subtaskIndex - The index of the subtask in the task's subtasks array.
  */
-function setSubtaskState(taskId, subtaskIndex){
+function setSubtaskState(taskId, subtaskIndex) {
     let task = getTaskOutOfId(taskId);
     task['subtasks'][subtaskIndex]['completed'] = !task['subtasks'][subtaskIndex]['completed'];
     let openCardSubtasks = document.getElementsByClassName('openCardSubtask');
 
     for (let i = 0; i < openCardSubtasks.length; i++) {
-        if(i == subtaskIndex) {
+        if (i == subtaskIndex) {
             openCardSubtasks[i].getAttribute('completed') == null
-            ? openCardSubtasks[i].setAttribute('completed', '') 
-            : openCardSubtasks[i].removeAttribute('completed')
+                ? openCardSubtasks[i].setAttribute('completed', '')
+                : openCardSubtasks[i].removeAttribute('completed')
         }
     }
 }
@@ -246,9 +275,9 @@ function setSubtaskState(taskId, subtaskIndex){
  *
  * @param {number} taskId - The ID of the task to be deleted.
  */
-function openCardDelete(taskId){
-    for(let i=0; i<tasks.length; i++){
-        if(tasks[i].id == taskId){
+function openCardDelete(taskId) {
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id == taskId) {
             tasks.splice(i, 1);
             break;
         }
@@ -263,7 +292,7 @@ function openCardDelete(taskId){
  *
  * @param {number} taskId - The ID of the task to edit.
  */
-function openCardEdit(taskId){
+function openCardEdit(taskId) {
     newTask = getTaskOutOfId(taskId);
     renderEditContainer();
     renderContactsToDropdown();
@@ -276,9 +305,9 @@ function openCardEdit(taskId){
 /**
  * Renders the edit container by setting the 'editing' attribute, updating the HTML content of the 'openCardContainer' element, and appending the HTML code for the edit header, main content, and footer.
  */
-function renderEditContainer(){
+function renderEditContainer() {
     let container = document.getElementById('openCardContainer');
-    container.setAttribute('editing','');
+    container.setAttribute('editing', '');
     container.innerHTML = createEditHeader();
     container.innerHTML += renderAddTaskMainContentHTML();
     container.innerHTML += createEditFooter(newTask);
@@ -288,7 +317,7 @@ function renderEditContainer(){
 /**
  * Sets the values of the task fields in the edit card container.
  */
-function setTaskValuesToFields(){
+function setTaskValuesToFields() {
     tempAssignedContacts = [];
     document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
     document.getElementById('addTaskDescriptionInput').value = newTask['description'];
@@ -302,11 +331,11 @@ function setTaskValuesToFields(){
 /**
  * Renders the assigned contacts in the edit card container.
  *
- * This function clears the contents of the 'assignedContactsContainer' element and then iterates over the 'assignedTo' array of the 'newTask' object. For each 'id' in the array, it calls the 'assignContactToTask' function to assign the corresponding contact to the task.
+ * This function clears the contents of the 'assignedContactsContainer' element and then iterates over the 'assigned_to' array of the 'newTask' object. For each 'id' in the array, it calls the 'assignContactToTask' function to assign the corresponding contact to the task.
  */
-function renderEditCardAssignedContacts(){
+function renderEditCardAssignedContacts() {
     document.getElementById('assignedContactsContainer').innerHTML = '';
-    newTask['assignedTo'].forEach(id => {
+    newTask['assigned_to'].forEach(id => {
         assignContactToTask(id);
     })
 }
@@ -319,11 +348,11 @@ function renderEditCardAssignedContacts(){
  *
  * @param {number} taskId - The ID of the task to be saved.
  */
-function saveEditedTask(taskId){
+function saveEditedTask(taskId) {
     collectInformationsForNewCard();
     let taskToSave = getTaskOutOfId(taskId);
     taskToSave = newTask;
-    saveTasksToRemoteStorage();
+    saveTasksToRemoteStorage(taskToSave);
     closeCard();
 }
 
@@ -333,7 +362,7 @@ function saveEditedTask(taskId){
  *
  * @return {string} The HTML code for the edit task header.
  */
-function createEditHeader(){
+function createEditHeader() {
     return /*html*/`
 <div class="boardEditTaskHeader">
     <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
@@ -348,7 +377,7 @@ function createEditHeader(){
  * @param {Object} task - The task object to be edited.
  * @return {string} The HTML code for the edit task footer.
  */
-function createEditFooter(task){
+function createEditFooter(task) {
     return /*html*/`
     <div class="addTaskBodyRight">
         <div class="createBtn addTaskBtn" onclick="saveEditedTask(${task.id}); doNotClose(event)">
@@ -365,15 +394,15 @@ function createEditFooter(task){
  * @param {string} taskId - The ID of the task element.
  * @param {Array<string>} categoryArr - An array of category IDs.
  */
-function displayEmptyTask(taskId, categoryId){
-    let cardHeight = "min-height: "+  document.getElementById(taskId).clientHeight + "px";
+function displayEmptyTask(taskId, categoryId) {
+    let cardHeight = "min-height: " + document.getElementById(taskId).clientHeight + "px";
     // let cardHeight = "min-height: 100%";
-    let cardWidth = "min-width: "+  document.getElementById(taskId).clientWidth + "px";
+    let cardWidth = "min-width: " + document.getElementById(taskId).clientWidth + "px";
     let cardStyle = cardHeight + "; " + cardWidth;
 
     let newDiv = document.createElement('div');
     newDiv.classList.add('emptyCard');
-    if(window.innerWidth < 1370){
+    if (window.innerWidth < 1370) {
         newDiv.classList.add('vertical')
     }
 

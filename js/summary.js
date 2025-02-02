@@ -8,10 +8,10 @@ let dayTime;
  */
 async function summaryInit() {
     includeHTML();
-    await getContactsFromRemoteStorage();
+    contacts = await getContactsFromRemoteStorage();
     await loadUsers();
     // prepareSorting();
-    await loadTasksFromRemoteStorage();
+    tasks = await loadTasksFromRemoteStorage();
     getLoggedUser();
     getUserNameForGreeting();
     getDate();
@@ -121,6 +121,10 @@ function loadAmounts() {
     for (let i = 0; i < categories.length; i++) {
         let category = categories[i];
         let filteredTasks = filterTasks(tasks, category);
+
+
+        console.log('FILTERED tasks in summary.js LOAD AMOUNTS:', filteredTasks);
+
         categoriesAmounts[i] = filteredTasks.length;
     }
     showAmounts(categoriesAmounts);

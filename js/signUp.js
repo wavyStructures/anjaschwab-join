@@ -96,9 +96,7 @@ async function addNewUser() {
  */
 
 function checkMailExists(emailToCheck) {
-
     contacts = getContactsFromRemoteStorage();
-    console.log('inside CHECK-Mailexist-function contacts:', contacts);
 
     if (contacts) {
         for (let i = 0; i < contacts.length; i++) {

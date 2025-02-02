@@ -24,7 +24,7 @@ let newTask =
     'title': '',
     'description': '',
     'subtasks': [],
-    'assignedTo': [],
+    'assigned_to': [],
     'category': 'category-0',
     'priority': '',
     'dueDate': ''
@@ -96,7 +96,7 @@ function deleteSubtask(subtaskId) {
 
 
 /**
- * Fetches information for a new card by setting values for id, type, title, description, assignedTo, category, priority, and due date of a new task.
+ * Fetches information for a new card by setting values for id, type, title, description, assigned_to, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard() {
     if (!checkIfCardIsEditing()) {
@@ -104,7 +104,7 @@ function collectInformationsForNewCard() {
     }
     newTask.title = document.getElementById('addTaskEnterTitleInput').value;
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
-    newTask.assignedTo = tempAssignedContacts;
+    newTask.assigned_to = tempAssignedContacts;
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
     if (newTask.type === '') newTask.type = 'User Story';
 }
@@ -130,11 +130,15 @@ function clearFormular() {
 async function createTask() {
     await loadTasksFromRemoteStorage();
     collectInformationsForNewCard();
-    tasks.push(newTask);
-    await saveTasksToRemoteStorage();
+
+    const response = await saveTasksToRemoteStorage(newTask);  // Capture response
+    console.log("Task Created Response:", response);
+
     showSuccessMessage();
     resetNewTask();
 }
+
+
 
 /**
  * Resets the `newTask` object to its initial state and clears the `tempAssignedContacts` array.
@@ -147,7 +151,7 @@ function resetNewTask() {
         'title': '',
         'description': '',
         'subtasks': [],
-        'assignedTo': [],
+        'assigned_to': [],
         'category': 'category-0',
         'priority': '',
         'dueDate': ''
@@ -160,10 +164,47 @@ function resetNewTask() {
 * Saves tasks to the remote storage.
 *
 */
-async function saveTasksToRemoteStorage() {
+async function saveTasksToRemoteStorage(task = null) {
     deactivateButton('createBtn');
-    await firebaseUpdateItem(tasks, FIREBASE_TASKS_ID);
-    activateButton('createBtn', 'createTask()');
+
+    try {
+        let method, url, body;
+
+        if (task && task.id) {
+            method = 'PUT';
+            url = `${BASE_URL}tasks/${task.id}/`;
+            // body = JSON.stringify(task);
+        } else {
+            method = 'POST';
+            url = `${BASE_URL}tasks/`;
+            // body = JSON.stringify({ task });
+        }
+
+        const taskData = { ...task, assigned_to: task.assigned_to.map(user => user.id) };
+
+        body = JSON.stringify(taskData);
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('authToken')}`,
+                'Content-Type': 'application/json'
+            },
+            body: body
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to ${method === 'POST' ? 'create' : 'update'} task`);
+        }
+
+        const data = await response.json();
+        console.log(`Task ${method === 'POST' ? 'created' : 'updated'}:`, data);
+
+    } catch (error) {
+        console.error('Error saving task:', error);
+    } finally {
+        activateButton('createBtn', 'createTask()');
+    }
 }
 
 
@@ -172,11 +213,39 @@ async function saveTasksToRemoteStorage() {
 *
 */
 async function loadTasksFromRemoteStorage() {
-    //    tasks = await firebaseGetItem(FIREBASE_TASKS_ID);
-    tasks.forEach(task => {
-        if (!task.hasOwnProperty('subtasks')) task.subtasks = [];
-        if (!task.hasOwnProperty('assignedTo')) task.assignedTo = [];
-    })
+    try {
+        const response = await fetch(`${BASE_URL}tasks/user`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('authToken')}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.status === 401) {
+            alert('You are not authorized. Please log in.');
+            window.location.href = '/login';
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const tasks = await response.json();
+
+        tasks.forEach(task => {
+            if (!task.hasOwnProperty('subtasks')) task.subtasks = [];
+            if (!task.hasOwnProperty('assigned_to')) task.assigned_to = [];
+        });
+
+        console.log('tasks from backend:', tasks);
+
+        return tasks;
+    } catch (error) {
+        console.error("Loading error:", error);
+        return [];
+    }
 }
 
 
@@ -187,6 +256,8 @@ async function loadTasksFromRemoteStorage() {
 */
 function assignContactToTask(id) {
     if (contacts.find(contact => contact.id == id)) {
+        console.log('contacts in addTask_tasks assignCONTATCT:', contacts);
+
         let dropdownContact = document.getElementById('assignedToContact' + id);
         let dropdownCheckboxImage = dropdownContact.lastElementChild;
 

@@ -8,7 +8,6 @@ let currentContactId = null;
  *
  * @return {Promise<Array>} A promise that resolves to an array of contacts.
  */
-
 async function getContactsFromRemoteStorage() {
   try {
     const response = await fetch(`${BASE_URL}contacts/`, {
@@ -28,6 +27,7 @@ async function getContactsFromRemoteStorage() {
     }
 
     const contacts = await response.json();
+    // console.log('contacts from getContactsfromRemoteSTorage:', contacts);
 
     return contacts;
   } catch (error) {
