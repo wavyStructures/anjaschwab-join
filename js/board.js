@@ -20,8 +20,6 @@ async function boardInit() {
     tasks = await loadTasksFromRemoteStorage();
     users = await loadUsers();
     renderCategories(tasks);
-    // showAddTaskContainer();
-    // openCard(2);
 }
 
 
@@ -100,18 +98,18 @@ function filterTasks(arrayToSearchIn, category) {
  * @param {object} card - The card object containing information about the card
  */
 function renderAssignedToButtons(task) {
-    console.log('Function called with task:', task);
+    // console.log('Function called with task:', task);
 
     let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
-    console.log('assignedToContainer:', assignedToContainer);
 
     if (!assignedToContainer) {
         console.warn('Container not found for ID:', 'cardAssignedToContainerId' + task['id']);
         return;
     }
 
+
     let assignedToUsers = task['assigned_to'];
-    console.log('assignedToUSERS:', assignedToUsers);
+    // console.log('assignedToUSERS:', assignedToUsers);
 
     if (!Array.isArray(assignedToUsers) || assignedToUsers.length === 0) {
         console.warn('No assigned users found.');
@@ -119,15 +117,15 @@ function renderAssignedToButtons(task) {
     }
 
     for (let i = 0; i < assignedToUsers.length; i++) {
-        console.log('Checking assigned users:', assignedToUsers[i]);
+        // console.log('Checking assigned users:', assignedToUsers[i]);
 
-        for (let j = 0; j < users.length; j++) {
-            // console.log('Comparing:', users[j]['id'], 'with', assignedToUsers[i]);
+        for (let j = 0; j < contacts.length; j++) {
+            // console.log('Comparing:', contacts[j]['id'], 'with', assignedToUsers[i]);
 
-            if (String(users[j]['id']) === String(assignedToUsers[i])) {
-                console.log('Match found:', users[j]);
+            if (String(contacts[j]['id']) === String(assignedToUsers[i])) {
+                // console.log('Match found:', contacts[j]);
 
-                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(users[j]);
+                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
             }
         }
     }
@@ -209,22 +207,41 @@ function getTaskOutOfId(taskId) {
  * @param {Object} task - The task object containing the type and id.
  * @return {void} This function does not return a value.
  */
+// function setCardType(task) {
+//     let cardType = document.getElementById(`cardType${task['id']}`);
+//     let openCardType = document.getElementById(`openCardType${task['id']}`)
+
+//     if (task.task_type.toLowerCase() === "user_story") {
+//         cardType.classList.add("cardTypeUserStory");
+//         if (openCardType) openCardType.classList.add("cardTypeUserStory");
+
+//     } else if (task.task_type.toLowerCase() === "technical_task") {
+//         cardType.classList.add('cardTypeTechnicalTask');
+//         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
+//     }
+// }
 function setCardType(task) {
+    if (!task || !task.task_type) return;
+
     let cardType = document.getElementById(`cardType${task['id']}`);
-    let openCardType = document.getElementById(`openCardType${task['id']}`)
+    let openCardType = document.getElementById(`openCardType${task['id']}`);
 
+    if (!cardType) return;
 
-    if (task.task_type.toLowerCase() === "user_story") {
+    let taskType = task.task_type.toLowerCase();
+
+    if (taskType === "user_story") {
         cardType.classList.add("cardTypeUserStory");
         if (openCardType) openCardType.classList.add("cardTypeUserStory");
 
-    } else if (task.task_type.toLowerCase() === "technical_task") {
+    } else if (taskType === "technical_task") {
         cardType.classList.add('cardTypeTechnicalTask');
         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
     }
 }
 
 function formatTaskType(task_type) {
+    if (!task_type) return "";
     return task_type
         .replace(/_/g, " ")
         .replace(/\b\w/g, c => c.toUpperCase());
@@ -279,18 +296,33 @@ function setSubtaskState(taskId, subtaskIndex) {
 
 /**
  * Deletes a task from the tasks array based on the provided taskId.
- *
+ *2
  * @param {number} taskId - The ID of the task to be deleted.
  */
-function openCardDelete(taskId) {
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].id == taskId) {
-            tasks.splice(i, 1);
-            break;
+async function openCardDelete(taskId) {
+
+    const response = await fetch(`${BASE_URL}tasks/${taskId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
         }
-    }
-    closeCard();
-    renderCategories(tasks);
+    })
+        .then(response => {
+            if (response.ok) {
+                tasks = tasks.filter(task => task.id != taskId);
+
+                closeCard();
+                renderCategories(tasks);
+            } else { console.log('failed to delete task') }
+        })
+        .catch(error => console.error('Error:', error));
+
+    // for (let i = 0; i < tasks.length; i++) {
+    //     if (tasks[i].id == taskId) {
+    //         tasks.splice(i, 1);
+    //         break;
+    //     }
 }
 
 

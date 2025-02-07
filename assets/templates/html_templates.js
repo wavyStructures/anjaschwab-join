@@ -385,9 +385,12 @@ function renderOpenCardHTML(task) {
         <div class="boardAddTaskCloseHoverContainer" onclick="closeCard()"></div>
     </div>
     <div class="openCardInnerContainer">
-        <div id="openCardType${task["id"]}" class="cardType">${
-    task["task_type"]
-  }</div>
+        <div id="openCardType${task["id"]}" class="cardType">
+            ${formatTaskType(task.task_type)}
+    </div>
+
+
+  
         <div class="cardTitle">${task["title"]}</div>
         <div class="openCardDescription">${task["description"]}</div>
         <div class="openCardTextBox">

@@ -14,9 +14,12 @@ function openCard(taskId) {
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
     setCardType(task);
-    if (task.assignedTo.length != 0) renderContactsToOpenCard(task);
-    if (task.subtasks.length != 0) renderSubtasksToOpenCard(task);
-    toggleBoardOverlay('closeCard()');
+
+    setTimeout(() => {
+        if (task.assigned_to.length != 0) renderContactsToOpenCard(task);
+        if (task.subtasks.length != 0) renderSubtasksToOpenCard(task);
+        toggleBoardOverlay('closeCard()');
+    }, 0);
 }
 
 
@@ -26,9 +29,15 @@ function openCard(taskId) {
  */
 async function closeCard() {
     let openCardContainer = document.getElementById('openCardContainer');
-    openCardContainer.remove();
-    openCardContainer.classList.add('d-none');
-    openCardContainer.removeAttribute('editing');
+    if (openCardContainer) { openCardContainer.remove(); }
+
+    let overlay = document.getElementById('boardOverlay');
+    if (overlay) {
+        overlay.classList.add('d-none');
+        overlay.removeAttribute('onclick');
+    }
+    // openCardContainer.classList.add('d-none');
+    // openCardContainer.removeAttribute('editing');
 
     let taskId = openCardContainer.getAttribute('data-task-id'); // Assuming you store task ID here
     if (taskId) {
@@ -37,7 +46,7 @@ async function closeCard() {
     }
 
     renderCategories(tasks);
-    toggleBoardOverlay('disable');
+    // toggleBoardOverlay('disable');
 }
 
 
@@ -49,15 +58,15 @@ async function closeCard() {
 function renderContactsToOpenCard(task) {
     let container = document.getElementById('openCardAssignedToContainer');
     container.innerHTML = `<span class="openCardText">Assigned To:</span><div class="openCardAssignedToContactsContainer" id="openCardAssignedToContactsContainer"></div>`;
-    container.classList.add("openCardassigned_toContainer");
-    let content = document.getElementById("openCardassigned_toContactsContainer");
+    container.classList.add("openCardassignedToContainer");
+    let content = document.getElementById("openCardAssignedToContactsContainer");
     content.innerHTML = "";
 
     task["assigned_to"].forEach((id) => {
         contacts.filter((contact) => {
             if (contact["id"] == id)
                 content.innerHTML += /*html*/ `
-                    <div class="openCardAssignedToContact">${renderAssignedToButtonsHTML(contact)}${contact.name}</div>`;
+                    <div class="openCardAssignedToContact">${renderAssignedToButtonsHTML(contact)}${contact.username}</div>`;
         });
     });
 }

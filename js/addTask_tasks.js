@@ -27,7 +27,8 @@ let newTask =
     'assigned_to': [],
     'category': 'category-0',
     'priority': '',
-    'dueDate': ''
+    'dueDate': '',
+    'task_type': ''
 };
 
 
@@ -102,11 +103,15 @@ function collectInformationsForNewCard() {
     if (!checkIfCardIsEditing()) {
         newTask.id = getNewTaskId();
     }
+    // console.log('newTask.id:', newTask);
+    // console.log('tempAssignedContacts:', tempAssignedContacts);
+
     newTask.title = document.getElementById('addTaskEnterTitleInput').value;
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
     newTask.assigned_to = tempAssignedContacts;
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
-    if (newtask.task_type === '') newtask.task_type = 'User Story';
+    // if (newtask.task_type === '') newtask.task_type = 'User Story';
+    if (!newTask.task_type) newTask.task_type = 'user_story';
 }
 
 
@@ -131,13 +136,16 @@ async function createTask() {
     await loadTasksFromRemoteStorage();
     collectInformationsForNewCard();
 
-    const response = await saveTasksToRemoteStorage(newTask);  // Capture response
+    const response = await saveTasksToRemoteStorage(newTask);
     console.log("Task Created Response:", response);
+    // tasks.push(newTask);
+
+    boardInit()
+    renderCategories(tasks);
 
     showSuccessMessage();
     resetNewTask();
 }
-
 
 
 /**
@@ -168,21 +176,29 @@ async function saveTasksToRemoteStorage(task = null) {
     deactivateButton('createBtn');
 
     try {
-        let method, url, body;
+        let method, url;
 
         if (task && task.id) {
             method = 'PUT';
             url = `${BASE_URL}tasks/${task.id}/`;
-            // body = JSON.stringify(task);
         } else {
             method = 'POST';
             url = `${BASE_URL}tasks/`;
-            // body = JSON.stringify({ task });
         }
 
-        const taskData = { ...task, assigned_to: task.assigned_to.map(user => user.id) };
+        const assignedToIds = Array.isArray(task.assigned_to) ? task.assigned_to : [];
 
-        body = JSON.stringify(taskData);
+        const taskData = {
+            ...task,
+            assigned_to: assignedToIds
+        };
+
+        // console.log("Sending task data:", taskData);
+
+        const body = taskData;
+
+        // console.log("Task data before sending:", body);
+        // console.log("Type of body:", typeof body);
 
         const response = await fetch(url, {
             method: method,
@@ -190,15 +206,17 @@ async function saveTasksToRemoteStorage(task = null) {
                 'Authorization': `Token ${localStorage.getItem('authToken')}`,
                 'Content-Type': 'application/json'
             },
-            body: body
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
-            throw new Error(`Failed to ${method === 'POST' ? 'create' : 'update'} task`);
+            const errorText = await response.text();
+            console.error(`Failed to ${method === 'POST' ? 'create' : 'update'} task. Response:`, errorText);
+            throw new Error(`Backend error: ${errorText}`);
         }
 
         const data = await response.json();
-        console.log(`Task ${method === 'POST' ? 'created' : 'updated'}:`, data);
+        console.log(`Task ${method === 'POST' ? 'created' : 'updated'} successfully:`, data);
 
     } catch (error) {
         console.error('Error saving task:', error);
@@ -214,7 +232,7 @@ async function saveTasksToRemoteStorage(task = null) {
 */
 async function loadTasksFromRemoteStorage() {
     try {
-        const response = await fetch(`${BASE_URL}tasks/user`, {
+        const response = await fetch(`${BASE_URL}tasks/user/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('authToken')}`,
@@ -255,6 +273,10 @@ async function loadTasksFromRemoteStorage() {
 * @param {number} id - The id of the task to assign the contact to.
 */
 function assignContactToTask(id) {
+    console.log("Available contacts:", contacts);
+    console.log("Trying to assign contact with ID:", id);
+
+
     if (contacts.find(contact => contact.id == id)) {
         console.log('contacts in addTask_tasks assignCONTATCT:', contacts);
 
@@ -277,6 +299,7 @@ function assignContactToTask(id) {
  */
 function pushContactToTempAssignedContacts(id) {
     if (tempAssignedContacts.indexOf(id) == -1) {
+        console.log('tempAssignedContacts in PUSH             :', tempAssignedContacts);
         tempAssignedContacts.push(id)
     } else {
         tempAssignedContacts.splice(tempAssignedContacts.indexOf(id), 1)
