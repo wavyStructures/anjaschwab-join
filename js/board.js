@@ -15,6 +15,7 @@ let categories = [
  * and rendering the categories.
  */
 async function boardInit() {
+    console.log(typeof loadUsers);
     includeHTML();
     contacts = await getContactsFromRemoteStorage();
     tasks = await loadTasksFromRemoteStorage();
@@ -30,7 +31,10 @@ async function boardInit() {
  */
 function renderCategories(arrayToSearchIn) {
     categories.forEach(category => {
+
         let categoryContainer = document.getElementById(Object.keys(category)[0]);
+        
+
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
         if (filteredTasks.length != 0) {

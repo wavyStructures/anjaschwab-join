@@ -137,14 +137,11 @@ async function createTask() {
     collectInformationsForNewCard();
 
     const response = await saveTasksToRemoteStorage(newTask);
-    console.log("Task Created Response:", response);
-    // tasks.push(newTask);
-
-    boardInit()
-    renderCategories(tasks);
+    // renderCategories(tasks);
 
     showSuccessMessage();
     resetNewTask();
+    switchPage('board.html');
 }
 
 

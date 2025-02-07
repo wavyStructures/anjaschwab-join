@@ -60,12 +60,10 @@ async function loadUsers() {
         const response = await fetch(`${BASE_URL}auth/users/`, {
             method: 'GET',
             headers: {
-                // 'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
                 'Content-Type': 'application/json',
             },
         });
 
-        // Check if the response is OK (status 200)
         if (!response.ok) {
             throw new Error('Failed to fetch users. Status: ' + response.status);
         }
