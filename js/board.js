@@ -21,6 +21,7 @@ async function boardInit() {
     tasks = await loadTasksFromRemoteStorage();
     users = await loadUsers();
     renderCategories(tasks);
+    console.log('tasks in board.js INIT:', tasks);
 }
 
 
@@ -30,10 +31,12 @@ async function boardInit() {
  * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
 function renderCategories(arrayToSearchIn) {
+    console.log('tasks in board.js renderCategories:', tasks);
+
     categories.forEach(category => {
 
         let categoryContainer = document.getElementById(Object.keys(category)[0]);
-        
+
 
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
@@ -182,8 +185,10 @@ function searchTask() {
  */
 function renderSubtask(task) {
     let subtaskContainer = document.getElementById('cardSubtask' + task['id']);
-    let countSubtasks = +Object.keys(task['subtasks']).length;
-    let completedSubtasks = task['subtasks'].filter(subtask => subtask['completed'] == true).length;
+
+    let subtasks = task['subtasks'] || [];  // Use an empty array if undefined or null
+    let countSubtasks = subtasks.length;
+    let completedSubtasks = subtasks.filter(subtask => subtask['completed'] == true).length;
     let completedPercent = completedSubtasks * 100 / countSubtasks;
 
     if (countSubtasks != 0) {

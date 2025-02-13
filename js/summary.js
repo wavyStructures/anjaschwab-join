@@ -12,6 +12,7 @@ async function summaryInit() {
     await loadUsers();
     // prepareSorting();
     tasks = await loadTasksFromRemoteStorage();
+    console.log('tasks in summary.js:', tasks);
     getLoggedUser();
     getUserNameForGreeting();
     getDate();

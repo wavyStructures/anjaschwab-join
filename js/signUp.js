@@ -1,17 +1,16 @@
-let newUsername = '';
-let newMail = '';
-let newPassword = '';
-let newPasswordConfirm = '';
-
 let newUser = {
     id: '',
-    name: '',
+    username: '',
     mail: '',
     password: '',
     contactColor: '',
     phone: '+49 0123 456789'
 };
 
+let newUsername = '';
+let newMail = '';
+let newPassword = '';
+let newPasswordConfirm = '';
 
 /**
  * Asynchronously saves a new user to the Firebase database.
@@ -29,6 +28,9 @@ async function saveNewUser() {
 function getInputValues() {
     newUsername = document.getElementById('signUpNameInput').value;
     newMail = document.getElementById('signUpEmailInput').value;
+    console.log('newMail:', newMail);
+    console.log('newUsername:', newUsername);
+
     newPassword = document.getElementById('signUpPasswordInput').value;
     newPasswordConfirm = document.getElementById('signUpPasswordInputConfirm').value;
 }
@@ -38,7 +40,7 @@ function getInputValues() {
  * Sets the values of the newUser object based on the input values.
  */
 function setNewUserValues() {
-    newUser.name = newUsername;
+    newUser.username = newUsername;
     newUser.mail = newMail;
     newUser.password = newPassword;
     // newUser.id = findFreeId(users)
@@ -54,37 +56,43 @@ async function addNewUser() {
     getInputValues();
     setNewUserValues();
     checkPasswordsEqual();
-    if (checkMailExists(newMail)) {
+
+    const emailExists = await checkMailExists(newMail);
+
+    if (emailExists) {
         showUserMessage('The email already exists!');
         return;
     }
-    try {
-        const response = await fetch(`${BASE_URL}auth/signup/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    username: newUser.name,
-                    email: newUser.mail,
-                    password: newUser.password,
-                    phone: newUser.phone,
-                }),
-        });
+    else {
+        try {
+            const response = await fetch(`${BASE_URL}auth/signup/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        username: newUser.username,
+                        email: newUser.mail,
+                        password: newUser.password,
+                        phone: newUser.phone,
+                    }),
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            showUserMessage('You signed up successfully!');
-            setTimeout(() => switchPage('index.html'), 3000);
-        } else {
-            const errorData = await response.json();
-            showUserMessage(errorData.error || 'Failed to sign up. Please try again.');
+            if (response.ok) {
+                const data = await response.json();
+                showUserMessage('You signed up successfully!');
+                setTimeout(() => switchPage('index.html'), 3000);
+            } else {
+                const errorData = await response.json();
+                console.log('Error during sign-up:', errorData);
+                showUserMessage(errorData.error || 'Failed to sign up. Please try again.');
+            }
         }
-    }
-    catch (error) {
-        console.error('Error during sign-up:', error);
-        showUserMessage('An error occurred. Please try again.');
+        catch (error) {
+            console.error('Error during sign-up:', error);
+            showUserMessage('An error occurred. Please try again.');
+        }
     }
 }
 
@@ -95,18 +103,40 @@ async function addNewUser() {
  * @return {boolean} Returns true if the email exists, false otherwise.
  */
 
-function checkMailExists(emailToCheck) {
-    contacts = getContactsFromRemoteStorage();
+async function checkMailExists(email) {
+    try {
+        const response = await fetch(`${BASE_URL}auth/check-email/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        });
 
-    if (contacts) {
-        for (let i = 0; i < contacts.length; i++) {
-            if (contacts[i].mail === emailToCheck) {
-                console.log('inside CHECK-Mailexist-function contacts[i].mail:', contacts[i].mail);
-                return true;
-            }
+        if (response.ok) {
+            const data = await response.json();
+            return data.exists;
         }
+        return false;
+    } catch (error) {
+        console.error('Error checking email:', error);
+        return false;
     }
 }
+
+//     contacts = await getContactsFromRemoteStorage();
+
+//     if (contacts) {
+//         for (let i = 0; i < contacts.length; i++) {
+//             if (contacts[i].email === emailToCheck) {
+//                 console.log('inside CHECK-Mailexist-function contacts[i].email:', contacts[i].email);
+//                 return true;
+//             } else {
+//                 return false;
+//             }
+//         }
+//     }
+// }
 
 /**
  * Checks if the form is valid by verifying the form's validity and the confirmation of the privacy policy.

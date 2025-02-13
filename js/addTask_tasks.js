@@ -135,10 +135,7 @@ function clearFormular() {
 async function createTask() {
     await loadTasksFromRemoteStorage();
     collectInformationsForNewCard();
-
     const response = await saveTasksToRemoteStorage(newTask);
-    // renderCategories(tasks);
-
     showSuccessMessage();
     resetNewTask();
     switchPage('board.html');
@@ -222,13 +219,15 @@ async function saveTasksToRemoteStorage(task = null) {
     }
 }
 
-
-/**
-* Loads tasks from remote storage and updates task properties if necessary.
-*
-*/
 async function loadTasksFromRemoteStorage() {
     try {
+        const token = localStorage.getItem('authToken');
+        console.log('token:', token);
+        console.log(`${BASE_URL}tasks/user/`);
+
+        if (!token) throw new Error("No authentication token found!");
+
+
         const response = await fetch(`${BASE_URL}tasks/user/`, {
             method: 'GET',
             headers: {
@@ -236,32 +235,78 @@ async function loadTasksFromRemoteStorage() {
                 'Content-Type': 'application/json'
             }
         });
-
-        if (response.status === 401) {
-            alert('You are not authorized. Please log in.');
-            window.location.href = '/login';
-            return;
-        }
-
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            const errorDetails = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status}, Details: ${errorDetails}`);
         }
-
         const tasks = await response.json();
+        console.log("Loaded tasks:", tasks); // Debugging
 
-        tasks.forEach(task => {
-            if (!task.hasOwnProperty('subtasks')) task.subtasks = [];
-            if (!task.hasOwnProperty('assigned_to')) task.assigned_to = [];
-        });
-
-        console.log('tasks from backend:', tasks);
+        if (!Array.isArray(tasks)) throw new Error("Tasks is not an array");
 
         return tasks;
     } catch (error) {
-        console.error("Loading error:", error);
-        return [];
+        console.error("Error loading tasks:", error);
+        return []; // Return an empty array to prevent crashes
     }
 }
+/**
+* Loads tasks from remote storage and updates task properties if necessary.
+*
+*/
+// async function loadTasksFromRemoteStorage() {
+//     try {
+//         const response = await fetch(`${BASE_URL}tasks/user/`, {
+//             method: 'GET',
+//             headers: {
+//                 'Authorization': `Token ${localStorage.getItem('authToken')}`,
+//                 'Content-Type': 'application/json'
+//             }
+//         });
+
+//         if (response.status === 401) {
+//             alert('You are not authorized. Please log in.');
+//             window.location.href = '/login';
+//             return [];
+//         }
+
+//         if (!response.ok) {
+//             if (response.status === 500) {
+//                 // console.warn('Server error (500): No tasks found or backend issue.');
+//                 return [];
+//             }
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+
+//         const tasks = await response.json();
+
+//         if (!Array.isArray(tasks)) {
+//             console.warn("Unexpected response format. Defaulting to empty array.");
+//             return [];
+//         }
+
+//         // // Ensure required properties exist
+//         // return Array.isArray(tasks) ? tasks.map(task => ({
+//         //     ...task,
+//         //     subtasks: task.subtasks || [], // ✅ Ensure subtasks is always an array
+//         //     assigned_to: task.assigned_to || [] // ✅ Ensure assigned_to is always an array
+//         // })) : [];
+//         tasks.forEach(task => {
+//             if (!task.hasOwnProperty('subtasks')) task.subtasks = [];
+//             if (!task.hasOwnProperty('assigned_to')) task.assigned_to = [];
+//         });
+
+//         // console.log('tasks from backend:', tasks);
+
+//         // return tasks;
+//     } catch (error) {
+//         if (error.message.includes('500')) {
+//             // console.error("Loading error:", error);
+//             return [];
+//         }
+//     }
+// }
 
 
 /**

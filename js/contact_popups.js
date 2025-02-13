@@ -6,7 +6,6 @@ async function saveContact() {
   const contactEmail = document.getElementById("contactMail").value;
 
   if (checkMailExists(contactEmail)) {
-    // displayErrorMessage("Contact already exists");
     alert("Contact already exists");
     return;
   }
@@ -19,7 +18,6 @@ async function saveContact() {
       phone: contactPhone.value,
       additional_info: "",
       email: contactEmail,
-      // contactColor: generateRandomColor(),
     };
 
     const response = await fetch(`${BASE_URL}contacts/`, {

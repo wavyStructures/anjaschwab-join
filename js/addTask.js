@@ -7,7 +7,12 @@
 async function addTaskInit() {
     includeHTML();
     contacts = await getContactsFromRemoteStorage();
-    tasks = await loadTasksFromRemoteStorage();
+    try {
+        tasks = await loadTasksFromRemoteStorage();
+    } catch (error) {
+        console.error("Failed to load tasks, defaulting to empty array.", error);
+        tasks = [];
+    }
     renderAddTaskHTML();
     checkValidity();
 }
@@ -209,6 +214,7 @@ function getContainerToSetOnclick() {
 function renderContactsToDropdown() {
     let content = document.getElementById('dropdown-content-assignedTo');
     content.innerHTML = '';
+    console.log('contacts INSIDE renderContactsToDropdown:', contacts);
     contacts.forEach(contact => {
         content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             <div class="dropdownContactBadgeAndName">${renderAssignedToButtonsHTML(contact)} ${contact.username}</div> <img src="./assets/img/icon-check_button_unchecked.png" alt="">

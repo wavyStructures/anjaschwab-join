@@ -10,14 +10,21 @@ function openCard(taskId) {
         document.body.appendChild(newDiv);
     }
     let openCardContainer = document.getElementById('openCardContainer');
-    let task = getTaskOutOfId(taskId)
+
+    let task = getTaskOutOfId(taskId) || {};
+    task.subtasks = task.subtasks || [];
+
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
     setCardType(task);
 
     setTimeout(() => {
-        if (task.assigned_to.length != 0) renderContactsToOpenCard(task);
-        if (task.subtasks.length != 0) renderSubtasksToOpenCard(task);
+        if (task.assigned_to && task.assigned_to.length != 0) {
+            renderContactsToOpenCard(task);
+        }
+        if (task.subtasks && task.subtasks.length != 0) {
+            renderSubtasksToOpenCard(task);
+        }
         toggleBoardOverlay('closeCard()');
     }, 0);
 }
