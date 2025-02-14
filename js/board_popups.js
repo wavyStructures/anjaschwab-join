@@ -17,7 +17,16 @@ function openCard(taskId) {
     openCardContainer.classList.remove('d-none');
     openCardContainer.innerHTML = renderOpenCardHTML(task);
     setCardType(task);
+    setTimeoutCardRendering(task);
+}
 
+
+/**
+ * Closes a card with the specified task.
+ *
+ * @param {number} taskId - The ID of the task to open.
+ */
+function setTimeoutCardRendering(task) {
     setTimeout(() => {
         if (task.assigned_to && task.assigned_to.length != 0) {
             renderContactsToOpenCard(task);

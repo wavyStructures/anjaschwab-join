@@ -141,6 +141,9 @@ function openHelp() {
 }
 
 
+/**
+ * Handling remembered status of user
+ */
 function checkIfUserIsRemembered() {
 	if (!sessionStorage.getItem('currentUser')) {
 		if (localStorage.getItem('rememberedUser') != null) {
@@ -155,6 +158,8 @@ function checkIfUserIsRemembered() {
  * Logs out the current user by removing the 'currentUser' item from the local storage and redirecting to the login page.
  */
 function logout() {
+	localStorage.removeItem('authToken');
+	localStorage.removeItem('loggedUser');
 	localStorage.removeItem('rememberedUser');
 	sessionStorage.removeItem('currentUser');
 	switchPage('index.html');

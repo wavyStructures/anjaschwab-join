@@ -54,8 +54,10 @@ function checkIfUserWasPreviouslyRegistered() {
 }
 
 
+/**
+ * Loading users from backend
+ */
 async function loadUsers() {
-
     try {
         const response = await fetch(`${BASE_URL}auth/users/`, {
             method: 'GET',
@@ -163,18 +165,6 @@ async function loginUser() {
         console.error('Error logging in:', error);
         throw error;
     }
-    // await loadUsers();
-    // let loggedUser = users.find(user => user.mail == email && user.password == password);
-    // users = [];
-
-    // if (loggedUser) {
-    //     setCurrentUser(loggedUser.name); // sessionStorage
-    //     setRememberMe(loggedUser.name); // localStorage
-    //     switchPage('summary.html');
-    // } else {
-    //     showUserMessage('Invalid email or password. Please try again.');
-    // }
-    // return false;
 }
 
 

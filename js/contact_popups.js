@@ -1,25 +1,29 @@
 /**
- * Saves a contact by pushing it to the contacts array and storing it in local storage.
+ * Creates a new contact object using the current values from the input fields.
+ * @return {Object} The newly created contact object containing username, phone, additional_info, and email.
+ */
+function getNewContact() {
+  const newContact = {
+    username: contactName.value,
+    phone: contactPhone.value,
+    additional_info: "",
+    email: contactMail.value,
+  };
+  console.log('newContact', newContact);
+  return newContact;
+}
+
+
+/**
+ * Saves a contact with POST-method to backend.
  */
 async function saveContact() {
   await getContactsFromRemoteStorage();
-  const contactEmail = document.getElementById("contactMail").value;
-
-  if (checkMailExists(contactEmail)) {
-    alert("Contact already exists");
-    return;
-  }
+  await checkEmail();
 
   try {
     createBtn.disabled = true;
-
-    const newContact = {
-      username: contactName.value,
-      phone: contactPhone.value,
-      additional_info: "",
-      email: contactEmail,
-    };
-
+    const newContact = getNewContact();
     const response = await fetch(`${BASE_URL}contacts/`, {
       method: "POST",
       headers: {
@@ -33,17 +37,33 @@ async function saveContact() {
       throw new Error("Failed to save contact. Please try again.");
     }
 
-    const savedContact = await response.json();
-
     resetCloseReload();
   } catch (error) {
     alert("Failed to save contact. Please try again.");
-    // displayErrorMessage("Failed to save contact. Please try again.");
   } finally {
     createBtn.disabled = false;
   }
 }
 
+
+/**
+ * Checks if the contact email already exists in the contacts list
+ * to prevent duplicate contacts.
+ */
+async function checkEmail() {
+  const contactEmail = document.getElementById("contactMail").value;
+  const emailExists = await checkMailExists(contactEmail);
+  if (emailExists) {
+    alert("Contact already exists");
+    return;
+  }
+}
+
+
+/** 
+ * Resets the contact form and closes the overlay while reloading and rendering the updated contacts list.
+ * @return {Promise<void>} A promise that resolves after reloading and updating the contacts.
+ */
 async function resetCloseReload() {
   await getContactsFromRemoteStorage();
   renderSortedContacts(main, contacts);
@@ -53,17 +73,6 @@ async function resetCloseReload() {
   displaySuccessMessage("Contact successfully created");
   contactsInit();
 }
-
-
-// const newId = getNextId(users);
-// users.push({
-//   id: newId,
-//   name: contactName.value,
-//   mail: contactMail.value,
-//   phone: contactPhone.value,
-//   contactColor: generateRandomColor(),
-//   password: getFirstNameForDefaultPassword(contactName.value),
-// });
 
 
 /**

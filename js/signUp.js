@@ -115,6 +115,9 @@ async function checkMailExists(email) {
 
         if (response.ok) {
             const data = await response.json();
+            console.log('Parsed response:', data);
+            alert('Email check result: ' + JSON.stringify(data)); // Display the result
+
             return data.exists;
         }
         return false;
@@ -124,19 +127,6 @@ async function checkMailExists(email) {
     }
 }
 
-//     contacts = await getContactsFromRemoteStorage();
-
-//     if (contacts) {
-//         for (let i = 0; i < contacts.length; i++) {
-//             if (contacts[i].email === emailToCheck) {
-//                 console.log('inside CHECK-Mailexist-function contacts[i].email:', contacts[i].email);
-//                 return true;
-//             } else {
-//                 return false;
-//             }
-//         }
-//     }
-// }
 
 /**
  * Checks if the form is valid by verifying the form's validity and the confirmation of the privacy policy.
