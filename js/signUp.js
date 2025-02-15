@@ -48,6 +48,13 @@ function setNewUserValues() {
 }
 
 
+/**
+ * Sends user data to a specified endpoint using a POST request.
+ * 
+ * @param {string} endpoint - The endpoint to which the user data should be sent.
+ * @param {Object} userData - The user data to be sent in the request body.
+ */
+
 async function sendUserData(endpoint, userData) {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
         method: 'POST',
@@ -60,6 +67,11 @@ async function sendUserData(endpoint, userData) {
 }
 
 
+/**
+ * Handles a response from a fetch request and displays a success message if response was successful.Otherwise, displays an error message.
+ * @param {Response} response - The response from the fetch request.
+ * @param {string} successMessage - The message to display if the response was successful.
+ */
 function handleResponse(response, successMessage) {
     if (response.ok) {
         showUserMessage(successMessage);
