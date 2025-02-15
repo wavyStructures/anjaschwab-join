@@ -15,13 +15,11 @@ let categories = [
  * and rendering the categories.
  */
 async function boardInit() {
-    console.log(typeof loadUsers);
     includeHTML();
     contacts = await getContactsFromRemoteStorage();
     tasks = await loadTasksFromRemoteStorage();
     users = await loadUsers();
     renderCategories(tasks);
-    console.log('tasks in board.js INIT:', tasks);
 }
 
 
@@ -31,12 +29,8 @@ async function boardInit() {
  * @param {Array} arrayToSearchIn - The array of tasks to search through.
  */
 function renderCategories(arrayToSearchIn) {
-    console.log('tasks in board.js renderCategories:', tasks);
-
     categories.forEach(category => {
-
         let categoryContainer = document.getElementById(Object.keys(category)[0]);
-
 
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
@@ -105,39 +99,34 @@ function filterTasks(arrayToSearchIn, category) {
  * @param {object} card - The card object containing information about the card
  */
 function renderAssignedToButtons(task) {
-    // console.log('Function called with task:', task);
-
     let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
-
     if (!assignedToContainer) {
         console.warn('Container not found for ID:', 'cardAssignedToContainerId' + task['id']);
         return;
     }
 
-
     let assignedToUsers = task['assigned_to'];
-    // console.log('assignedToUSERS:', assignedToUsers);
-
     if (!Array.isArray(assignedToUsers) || assignedToUsers.length === 0) {
         console.warn('No assigned users found.');
         return;
     }
 
     for (let i = 0; i < assignedToUsers.length; i++) {
-        // console.log('Checking assigned users:', assignedToUsers[i]);
-
         for (let j = 0; j < contacts.length; j++) {
-            // console.log('Comparing:', contacts[j]['id'], 'with', assignedToUsers[i]);
-
             if (String(contacts[j]['id']) === String(assignedToUsers[i])) {
-                // console.log('Match found:', contacts[j]);
-
                 assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
             }
         }
     }
 }
 
+
+/**
+ * Generates the HTML code for a contact's profile badge to be displayed in the assigned to section of a card.
+ *
+ * @param {object} users - The contact object containing information about the user, such as their color and username
+ * @return {string} The HTML code for the contact's profile badge
+ */
 function renderAssignedToButtonsHTML(users) {
     return /*html*/ `<div class="profile-badge-group" style="background-color: ${users.contactColor
         }">${getInitials(users.username)}</div>`;
@@ -145,8 +134,10 @@ function renderAssignedToButtonsHTML(users) {
 
 
 /**
- * 
- * @param {object} categoryContainer html-object from the (emtpy) category
+ * Renders the "No tasks X" message in the category container if there are no tasks in that category.
+ *
+ * @param {HTMLElement} categoryContainer - The container element of the category where the message should be rendered.
+ * @param {string} name - The name of the category where the message should be rendered.
  */
 function renderEmptyCategory(categoryContainer, name) {
     categoryContainer.innerHTML = renderEmptyCategoryHTML(name);
@@ -322,12 +313,6 @@ async function openCardDelete(taskId) {
             } else { console.log('failed to delete task') }
         })
         .catch(error => console.error('Error:', error));
-
-    // for (let i = 0; i < tasks.length; i++) {
-    //     if (tasks[i].id == taskId) {
-    //         tasks.splice(i, 1);
-    //         break;
-    //     }
 }
 
 
