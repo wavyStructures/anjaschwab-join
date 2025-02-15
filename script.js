@@ -27,8 +27,6 @@ async function includeHTML() {
 		}
 	}
 	showInitials();
-	console.log('session currentUser:', sessionStorage.getItem('currentUser'));
-	console.log('loggedUser.name is :', localStorage.getItem('loggedUser'));
 	setIsSmallerThan802()
 	addResizeEventListener();
 	runFunctionsOnBreakpoint();
@@ -173,7 +171,6 @@ function showInitials() {
 	checkIfUserIsRemembered();
 	try {
 		let userAsString = sessionStorage.getItem('currentUser');
-		console.log('showIntials- function currentUser is', userAsString);
 		let userInitialsElement = document.getElementById('userInitials');
 
 		if (userInitialsElement) {
