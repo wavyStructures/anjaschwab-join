@@ -214,7 +214,6 @@ function getContainerToSetOnclick() {
 function renderContactsToDropdown() {
     let content = document.getElementById('dropdown-content-assignedTo');
     content.innerHTML = '';
-    console.log('contacts INSIDE renderContactsToDropdown:', contacts);
     contacts.forEach(contact => {
         content.innerHTML += /*html*/`<div class="dropdownOption" id="assignedToContact${contact.id}" marked=false onclick="assignContactToTask(${contact.id})">
             <div class="dropdownContactBadgeAndName">${renderAssignedToButtonsHTML(contact)} ${contact.username}</div> <img src="./assets/img/icon-check_button_unchecked.png" alt="">
@@ -277,7 +276,6 @@ function renderAssignedContactsContainer() {
     tempAssignedContacts.forEach(id => {
         let contact = contacts.find(contact => contact.id == id);
         container.innerHTML += renderAssignedToButtonsHTML(contact)
-        console.log('renderAssignedContactsContainer -> container.innerHTML CONTACT is:', contact);
     })
 }
 
