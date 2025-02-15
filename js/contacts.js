@@ -17,18 +17,12 @@ async function getContactsFromRemoteStorage() {
       }
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
     if (response.status === 401) {
       alert('You are not authorized. Please log in.');
       window.location.href = '/login';
     }
 
     const contacts = await response.json();
-    // console.log('contacts from getContactsfromRemoteSTorage:', contacts);
-
     return contacts;
   } catch (error) {
     console.error("Loading error:", error);
@@ -58,6 +52,7 @@ function prepareSorting(contacts) {
   contacts = sortContactsByName(temp_contacts);
 }
 
+
 /**
  * Sorts an array of contacts by their last name.
  *
@@ -73,6 +68,7 @@ function sortContactsByName(contacts) {
   });
   return sortedContacts;
 }
+
 
 /**
  * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
@@ -90,7 +86,6 @@ function getSecondOrFullName(contact) {
     return names[names.length - 1];
   }
 }
-
 
 
 /**
@@ -256,7 +251,6 @@ function createContactCard(main, id, contactColor, initials, username, phone, em
  * @return {string} The capitalized name.
  */
 function getNameWithCapitalizedFirstLetter(contactname) {
-  console.log('contactname at start of getWithCapitlized 253: ', contactname);
   let [firstname, lastname, surname] = contactname.split(" ");
   firstname = firstname[0].toUpperCase() + firstname.slice(1);
   if (lastname) {
