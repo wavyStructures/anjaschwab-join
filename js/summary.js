@@ -12,7 +12,6 @@ async function summaryInit() {
     await loadUsers();
     // prepareSorting();
     tasks = await loadTasksFromRemoteStorage();
-    console.log('tasks in summary.js:', tasks);
     getLoggedUser();
     getUserNameForGreeting();
     getDate();
@@ -122,10 +121,6 @@ function loadAmounts() {
     for (let i = 0; i < categories.length; i++) {
         let category = categories[i];
         let filteredTasks = filterTasks(tasks, category);
-
-
-        console.log('FILTERED tasks in summary.js LOAD AMOUNTS:', filteredTasks);
-
         categoriesAmounts[i] = filteredTasks.length;
     }
     showAmounts(categoriesAmounts);
