@@ -48,6 +48,29 @@ function setNewUserValues() {
 }
 
 
+async function sendUserData(endpoint, userData) {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    });
+    console.log('Response status:', response.status);
+    console.log('Response body:', await response.text());
+    return response;
+}
+
+
+function handleResponse(response, successMessage) {
+    if (response.ok) {
+        showUserMessage(successMessage);
+        setTimeout(() => switchPage('index.html'), 3000);
+    } else {
+        showUserMessage('Failed to process the request. Please try again.')
+    }
+}
+
 /**
  * Adds a new user to the system.
  * @return {Promise<void>} A promise that resolves when the user is added.
@@ -58,43 +81,26 @@ async function addNewUser() {
     checkPasswordsEqual();
 
     const emailExists = await checkMailExists(newMail);
-
     if (emailExists) {
         showUserMessage('The email already exists!');
         return;
     }
-    else {
-        try {
-            const response = await fetch(`${BASE_URL}auth/signup/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        username: newUser.username,
-                        email: newUser.mail,
-                        password: newUser.password,
-                        phone: newUser.phone,
-                    }),
+    try {
+        const response = await sendUserData('auth/signup/',
+            {
+                username: newUser.username,
+                email: newUser.mail,
+                password: newUser.password,
+                phone: newUser.phone,
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                showUserMessage('You signed up successfully!');
-                setTimeout(() => switchPage('index.html'), 3000);
-            } else {
-                const errorData = await response.json();
-                console.log('Error during sign-up:', errorData);
-                showUserMessage(errorData.error || 'Failed to sign up. Please try again.');
-            }
-        }
-        catch (error) {
-            console.error('Error during sign-up:', error);
-            showUserMessage('An error occurred. Please try again.');
-        }
+        handleResponse(response, 'You signed up successfully!');
+    }
+    catch (error) {
+        console.error('Error during sign-up:', error);
+        showUserMessage('An error occurred. Please try again.');
     }
 }
+
 
 
 /**
