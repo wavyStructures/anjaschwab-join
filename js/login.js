@@ -10,7 +10,6 @@ async function loginInit() {
     };
 
     loadUsers().then(users => {
-        console.log('Loaded users:', users);
     }).catch(error => {
         console.error('Failed to load users:', error);
     });
