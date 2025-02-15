@@ -216,19 +216,6 @@ function getTaskOutOfId(taskId) {
  * @param {Object} task - The task object containing the type and id.
  * @return {void} This function does not return a value.
  */
-// function setCardType(task) {
-//     let cardType = document.getElementById(`cardType${task['id']}`);
-//     let openCardType = document.getElementById(`openCardType${task['id']}`)
-
-//     if (task.task_type.toLowerCase() === "user_story") {
-//         cardType.classList.add("cardTypeUserStory");
-//         if (openCardType) openCardType.classList.add("cardTypeUserStory");
-
-//     } else if (task.task_type.toLowerCase() === "technical_task") {
-//         cardType.classList.add('cardTypeTechnicalTask');
-//         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
-//     }
-// }
 function setCardType(task) {
     if (!task || !task.task_type) return;
 
@@ -248,6 +235,15 @@ function setCardType(task) {
         if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
     }
 }
+
+
+/**
+ * Formats the task type string by replacing underscores with spaces 
+ * and capitalizing the first letter of each word.
+ *
+ * @param {string} task_type - The task type string to format.
+ * @return {string} The formatted task type string.
+ */
 
 function formatTaskType(task_type) {
     if (!task_type) return "";
