@@ -43,8 +43,6 @@ function setNewUserValues() {
     newUser.username = newUsername;
     newUser.mail = newMail;
     newUser.password = newPassword;
-    // newUser.id = findFreeId(users)
-    // newUser.contactColor = generateRandomColor();
 }
 
 
@@ -101,7 +99,6 @@ async function addNewUser() {
                 username: newUser.username,
                 email: newUser.mail,
                 password: newUser.password,
-                phone: newUser.phone,
             });
         handleResponse(response, 'You signed up successfully!');
     }
@@ -131,9 +128,6 @@ async function checkMailExists(email) {
 
         if (response.ok) {
             const data = await response.json();
-            console.log('Parsed response:', data);
-            alert('Email check result: ' + JSON.stringify(data)); // Display the result
-
             return data.exists;
         }
         return false;

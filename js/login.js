@@ -113,7 +113,6 @@ async function startAnimation() {
  * Hiding the blue overlay
  */
 function hideOverlay() {
-    // document.getElementById('loginMainContainer').style.overflow = 'auto';
     document.getElementById('main').classList.remove('hide-scroll');
     document.getElementById("blueOverlay").style.display = "none";
 }
@@ -141,6 +140,7 @@ async function loginUser() {
         }
 
         const data = await response.json();
+        console.log('data in LOGIN:', data);
 
         if (!data.token) {
             throw new Error('No token received');
@@ -196,10 +196,42 @@ function toggleRememberMeCheckbox() {
 
 
 /**
- * Switches the page to the summary page for guest login.
+ * For guest login.
  */
-function loginAsGuest() {
-    switchPage('summary.html');
+async function loginAsGuest() {
+    console.log('loginAsGuest function triggered');
+
+    try {
+        const response = await fetch(`${BASE_URL}auth/login/`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: 'guest@example.com',
+                password: 'guest'
+            })
+        });
+
+        if (response.ok) {
+            console.log('response OK loginAsGuest');
+            const data = await response.json();
+            console.log('data in GUESTlogin:', data);
+            const token = data.token;
+            const loggedUser = data.user;
+
+            localStorage.setItem('authToken', token);
+            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+
+            setCurrentUser(loggedUser.username);
+            setRememberMe(loggedUser.username);
+            switchPage('summary.html');
+            return loggedUser;
+        } else {
+            console.log("Failed to log in. Response status:", response.status);
+            alert('Failed to log in as guest.');
+        }
+    } catch (error) {
+        console.error("Login error:", error);
+    }
 }
 
 

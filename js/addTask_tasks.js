@@ -222,15 +222,16 @@ async function loadTasksFromRemoteStorage() {
         const response = await fetch(`${BASE_URL}tasks/user/`, {
             method: 'GET',
             headers: {
-                'Authorization': `Token ${localStorage.getItem('authToken')}`,
+                'Authorization': `Token ${token}`,
                 'Content-Type': 'application/json'
             }
         });
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         if (!response.ok) {
-            const errorDetails = await response.text();
-            throw new Error(`HTTP error! Status: ${response.status}, Details: ${errorDetails}`);
+            const errorDetails = await response.text();  // For more detailed error info from the server
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        // throw new Error(`HTTP error! Status: ${response.status}`);
+
         const tasks = await response.json();
 
         if (!Array.isArray(tasks)) throw new Error("Tasks is not an array");

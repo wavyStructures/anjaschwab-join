@@ -10,13 +10,12 @@ async function summaryInit() {
     includeHTML();
     contacts = await getContactsFromRemoteStorage();
     await loadUsers();
-    // prepareSorting();
-    tasks = await loadTasksFromRemoteStorage();
     getLoggedUser();
     getUserNameForGreeting();
     getDate();
     greetAccordingToDayTime();
     greetUserMobile();
+    tasks = await loadTasksFromRemoteStorage();
     loadAmounts();
     getUrgentTasks();
     buttonEventListener();
