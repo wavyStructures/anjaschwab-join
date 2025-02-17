@@ -140,7 +140,6 @@ async function loginUser() {
         }
 
         const data = await response.json();
-        console.log('data in LOGIN:', data);
 
         if (!data.token) {
             throw new Error('No token received');
@@ -199,8 +198,6 @@ function toggleRememberMeCheckbox() {
  * For guest login.
  */
 async function loginAsGuest() {
-    console.log('loginAsGuest function triggered');
-
     try {
         const response = await fetch(`${BASE_URL}auth/login/`, {
             method: 'POST',
@@ -212,9 +209,7 @@ async function loginAsGuest() {
         });
 
         if (response.ok) {
-            console.log('response OK loginAsGuest');
             const data = await response.json();
-            console.log('data in GUESTlogin:', data);
             const token = data.token;
             const loggedUser = data.user;
 
@@ -226,7 +221,6 @@ async function loginAsGuest() {
             switchPage('summary.html');
             return loggedUser;
         } else {
-            console.log("Failed to log in. Response status:", response.status);
             alert('Failed to log in as guest.');
         }
     } catch (error) {
