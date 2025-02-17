@@ -23,11 +23,25 @@ async function getContactsFromRemoteStorage() {
     }
 
     const contacts = await response.json();
+
+    if (isGuest()) {
+      return contacts.filter(contact => contact.is_public);
+    }
     return contacts;
   } catch (error) {
     console.error("Loading error:", error);
     return [];
   }
+}
+
+
+/**
+ * Checks if the currently logged in user is a guest.
+ * @return {boolean} true if the user is a guest, false otherwise.
+ */
+function isGuest() {
+  const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+  return loggedUser && loggedUser.username === 'guest';
 }
 
 
@@ -46,9 +60,9 @@ function prepareSorting(contacts) {
       mail: contact.mail,
       name: contact.name,
       phone: contact.phone,
+      isPublic: contact.is_public,
     });
   });
-  // users = [];
   contacts = sortContactsByName(temp_contacts);
 }
 
