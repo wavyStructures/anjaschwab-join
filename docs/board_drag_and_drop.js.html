@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board_drag_and_drop.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board_drag_and_drop.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Sets the droppable containers for a given task ID based on its category.
+ *
+ * @param {string} taskId - The ID of the task element.
+ */
+function setDroppableContainers(taskId) {
+    let category = getTaskOutOfId(taskId)['category'].slice(-1)
+    for (let i = 0; i &lt; 4; i++) {
+        if (i != category) {
+            displayEmptyTask(taskId, i);
+        }
+    }
+}
+
+
+/**
+ * Starts the dragging process for a task.
+ *
+ * @param {string} taskId - The ID of the task element being dragged.
+ */
+function startDragging(taskId) {
+    currentDraggedElement = taskId;
+    document.getElementById(taskId).classList.add('dragging');
+    setDroppableContainers(taskId)
+}
+
+
+/**
+ * Stops the dragging process by removing the 'drag-area-highlight' class from all categories
+ * and the 'dragging' class from all tasks.
+ */
+function stopDragging() {
+    categories.forEach(category => {
+        document.getElementById(Object.keys(category)[0]).classList.remove('drag-area-highlight');
+    });
+
+    tasks.forEach(task => {
+        document.getElementById(task.id).classList.remove('dragging');
+    });
+}
+
+
+/**
+ * Prevents the default behavior of the event, which is to allow the browser to handle the drag and drop operation.
+ *
+ * @param {Event} event - The event object representing the drag and drop event.
+ */
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+
+/**
+ * Moves a task to a specified category.
+ *
+ * @param {string} category - The category to move the task to.
+ */
+async function moveTo(category) {
+    let task = getTaskOutOfId(currentDraggedElement);
+    task['category'] = category;
+
+    renderCategories(tasks);
+
+    await saveTasksToRemoteStorage(task);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateButton">activateButton</a></li><li><a href="global.html#addBlueOverlay">addBlueOverlay</a></li><li><a href="global.html#addBlueOverlayHTML">addBlueOverlayHTML</a></li><li><a href="global.html#addContactCard">addContactCard</a></li><li><a href="global.html#addNewUser">addNewUser</a></li><li><a href="global.html#addOverlay">addOverlay</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addTaskDueDateOpenCalendear">addTaskDueDateOpenCalendear</a></li><li><a href="global.html#addTaskInit">addTaskInit</a></li><li><a href="global.html#adjustGreeting">adjustGreeting</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#applyHighlight">applyHighlight</a></li><li><a href="global.html#assignContactToTask">assignContactToTask</a></li><li><a href="global.html#backendGetItem">backendGetItem</a></li><li><a href="global.html#boardInit">boardInit</a></li><li><a href="global.html#buttonEventListener">buttonEventListener</a></li><li><a href="global.html#changeCancelIcon">changeCancelIcon</a></li><li><a href="global.html#changeColor">changeColor</a></li><li><a href="global.html#changeLinks">changeLinks</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkIfAnySubtaskIsInEditingMode">checkIfAnySubtaskIsInEditingMode</a></li><li><a href="global.html#checkIfCardIsEditing">checkIfCardIsEditing</a></li><li><a href="global.html#checkIfFormIsValid">checkIfFormIsValid</a></li><li><a href="global.html#checkIfUserWasPreviouslyRegistered">checkIfUserWasPreviouslyRegistered</a></li><li><a href="global.html#checkMailExists">checkMailExists</a></li><li><a href="global.html#checkPasswordsEqual">checkPasswordsEqual</a></li><li><a href="global.html#checkPrivacyPolicyConfirmation">checkPrivacyPolicyConfirmation</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#chooseCategory">chooseCategory</a></li><li><a href="global.html#clearDiv">clearDiv</a></li><li><a href="global.html#clearFormular">clearFormular</a></li><li><a href="global.html#closeCard">closeCard</a></li><li><a href="global.html#closeEditDelete">closeEditDelete</a></li><li><a href="global.html#closeOverlay">closeOverlay</a></li><li><a href="global.html#collectInformationsForNewCard">collectInformationsForNewCard</a></li><li><a href="global.html#contactsInit">contactsInit</a></li><li><a href="global.html#createContactCard">createContactCard</a></li><li><a href="global.html#createContactsContainer">createContactsContainer</a></li><li><a href="global.html#createEditFooter">createEditFooter</a></li><li><a href="global.html#createEditHeader">createEditHeader</a></li><li><a href="global.html#createFirstLetter">createFirstLetter</a></li><li><a href="global.html#createPartingLine">createPartingLine</a></li><li><a href="global.html#createSuccessMessageContainer">createSuccessMessageContainer</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#deactivateButton">deactivateButton</a></li><li><a href="global.html#delAllContacts">delAllContacts</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#displayEmptyTask">displayEmptyTask</a></li><li><a href="global.html#displaySuccessMessage">displaySuccessMessage</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editContactCard">editContactCard</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#filterTasks">filterTasks</a></li><li><a href="global.html#findFreeId">findFreeId</a></li><li><a href="global.html#firebaseCreateItem">firebaseCreateItem</a></li><li><a href="global.html#firebaseUpdateItem">firebaseUpdateItem</a></li><li><a href="global.html#formatTaskType">formatTaskType</a></li><li><a href="global.html#generateContactCardHTML">generateContactCardHTML</a></li><li><a href="global.html#generateContactDetailsHTML">generateContactDetailsHTML</a></li><li><a href="global.html#generateContactsContainerHTML">generateContactsContainerHTML</a></li><li><a href="global.html#getButtonColor">getButtonColor</a></li><li><a href="global.html#getContactsFromRemoteStorage">getContactsFromRemoteStorage</a></li><li><a href="global.html#getContainerToSetOnclick">getContainerToSetOnclick</a></li><li><a href="global.html#getCurrentUser">getCurrentUser</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getFirstNameForDefaultPassword">getFirstNameForDefaultPassword</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInputValues">getInputValues</a></li><li><a href="global.html#getLoggedUser">getLoggedUser</a></li><li><a href="global.html#getNameWithCapitalizedFirstLetter">getNameWithCapitalizedFirstLetter</a></li><li><a href="global.html#getNewContact">getNewContact</a></li><li><a href="global.html#getNewTaskId">getNewTaskId</a></li><li><a href="global.html#getNextId">getNextId</a></li><li><a href="global.html#getSecondOrFullName">getSecondOrFullName</a></li><li><a href="global.html#getStateOfRequriredField">getStateOfRequriredField</a></li><li><a href="global.html#getTaskOutOfId">getTaskOutOfId</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#getUserNameForGreeting">getUserNameForGreeting</a></li><li><a href="global.html#gotoSignUp">gotoSignUp</a></li><li><a href="global.html#greet">greet</a></li><li><a href="global.html#greetAccordingToDayTime">greetAccordingToDayTime</a></li><li><a href="global.html#greetUserMobile">greetUserMobile</a></li><li><a href="global.html#handleResponse">handleResponse</a></li><li><a href="global.html#hideAddTaskContainer">hideAddTaskContainer</a></li><li><a href="global.html#hideMobileGreeting">hideMobileGreeting</a></li><li><a href="global.html#hideOverlay">hideOverlay</a></li><li><a href="global.html#hideSuccesMessage">hideSuccesMessage</a></li><li><a href="global.html#highlightContactCard">highlightContactCard</a></li><li><a href="global.html#highlightPrivacyLegalNavLink">highlightPrivacyLegalNavLink</a></li><li><a href="global.html#highlightSelectedContact">highlightSelectedContact</a></li><li><a href="global.html#isGuest">isGuest</a></li><li><a href="global.html#loadAmounts">loadAmounts</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadTasksFromRemoteStorage">loadTasksFromRemoteStorage</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#loginAsGuest">loginAsGuest</a></li><li><a href="global.html#loginInit">loginInit</a></li><li><a href="global.html#loginUser">loginUser</a></li><li><a href="global.html#mobileGreeting">mobileGreeting</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openCard">openCard</a></li><li><a href="global.html#openCardDelete">openCardDelete</a></li><li><a href="global.html#openCardEdit">openCardEdit</a></li><li><a href="global.html#openContactDetails">openContactDetails</a></li><li><a href="global.html#openEditDelete">openEditDelete</a></li><li><a href="global.html#prepareSorting">prepareSorting</a></li><li><a href="global.html#privacyInit">privacyInit</a></li><li><a href="global.html#pushContactToTempAssignedContacts">pushContactToTempAssignedContacts</a></li><li><a href="global.html#redirectToLogin">redirectToLogin</a></li><li><a href="global.html#remoteStorageGetItem">remoteStorageGetItem</a></li><li><a href="global.html#remoteStorageSetItem">remoteStorageSetItem</a></li><li><a href="global.html#removeContact">removeContact</a></li><li><a href="global.html#removeContainer">removeContainer</a></li><li><a href="global.html#renderAddContacts">renderAddContacts</a></li><li><a href="global.html#renderAddContactsHTML">renderAddContactsHTML</a></li><li><a href="global.html#renderAddTaskHTML">renderAddTaskHTML</a></li><li><a href="global.html#renderArrow">renderArrow</a></li><li><a href="global.html#renderAssignedContactsContainer">renderAssignedContactsContainer</a></li><li><a href="global.html#renderAssignedToButtons">renderAssignedToButtons</a></li><li><a href="global.html#renderAssignedToButtonsHTML">renderAssignedToButtonsHTML</a></li><li><a href="global.html#renderBoardAddTaskOverlay">renderBoardAddTaskOverlay</a></li><li><a href="global.html#renderCategories">renderCategories</a></li><li><a href="global.html#renderContactsToDropdown">renderContactsToDropdown</a></li><li><a href="global.html#renderContactsToOpenCard">renderContactsToOpenCard</a></li><li><a href="global.html#renderEditCardAssignedContacts">renderEditCardAssignedContacts</a></li><li><a href="global.html#renderEditContact">renderEditContact</a></li><li><a href="global.html#renderEditContactHTML">renderEditContactHTML</a></li><li><a href="global.html#renderEditContainer">renderEditContainer</a></li><li><a href="global.html#renderEmptyCategory">renderEmptyCategory</a></li><li><a href="global.html#renderSortedContacts">renderSortedContacts</a></li><li><a href="global.html#renderSubtask">renderSubtask</a></li><li><a href="global.html#renderSubtaskInputField">renderSubtaskInputField</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#renderSubtasksToOpenCard">renderSubtasksToOpenCard</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#resetAllContactCards">resetAllContactCards</a></li><li><a href="global.html#resetCloseReload">resetCloseReload</a></li><li><a href="global.html#resetContactCard">resetContactCard</a></li><li><a href="global.html#resetContactForm">resetContactForm</a></li><li><a href="global.html#resetNewTask">resetNewTask</a></li><li><a href="global.html#restoreCancelIcon">restoreCancelIcon</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveEditSubtask">saveEditSubtask</a></li><li><a href="global.html#saveEditedContact">saveEditedContact</a></li><li><a href="global.html#saveEditedTask">saveEditedTask</a></li><li><a href="global.html#saveNewUser">saveNewUser</a></li><li><a href="global.html#saveTasksToRemoteStorage">saveTasksToRemoteStorage</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#sendUserData">sendUserData</a></li><li><a href="global.html#setAttributes">setAttributes</a></li><li><a href="global.html#setCardType">setCardType</a></li><li><a href="global.html#setCloseDropdownContainer">setCloseDropdownContainer</a></li><li><a href="global.html#setCreateBtnState">setCreateBtnState</a></li><li><a href="global.html#setDropdownContactAppearance">setDropdownContactAppearance</a></li><li><a href="global.html#setDroppableContainers">setDroppableContainers</a></li><li><a href="global.html#setNewUserValues">setNewUserValues</a></li><li><a href="global.html#setNewUsersToLocalStorage">setNewUsersToLocalStorage</a></li><li><a href="global.html#setPriority">setPriority</a></li><li><a href="global.html#setPriorityAppearance">setPriorityAppearance</a></li><li><a href="global.html#setPriorityForNewCard">setPriorityForNewCard</a></li><li><a href="global.html#setPriorityImage">setPriorityImage</a></li><li><a href="global.html#setRememberMe">setRememberMe</a></li><li><a href="global.html#setSubtaskState">setSubtaskState</a></li><li><a href="global.html#setTaskValuesToFields">setTaskValuesToFields</a></li><li><a href="global.html#setTimeoutCardRendering">setTimeoutCardRendering</a></li><li><a href="global.html#setTodayDateAsMin">setTodayDateAsMin</a></li><li><a href="global.html#showAddContactContainer">showAddContactContainer</a></li><li><a href="global.html#showAddTaskContainer">showAddTaskContainer</a></li><li><a href="global.html#showAmounts">showAmounts</a></li><li><a href="global.html#showOverlay">showOverlay</a></li><li><a href="global.html#showSuccessMessage">showSuccessMessage</a></li><li><a href="global.html#showUrgentTasks">showUrgentTasks</a></li><li><a href="global.html#showUserMessage">showUserMessage</a></li><li><a href="global.html#sortContactsByName">sortContactsByName</a></li><li><a href="global.html#startAnimation">startAnimation</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#stopDragging">stopDragging</a></li><li><a href="global.html#subtaskAddOrCancel">subtaskAddOrCancel</a></li><li><a href="global.html#summaryInit">summaryInit</a></li><li><a href="global.html#testMailinputWithRegex">testMailinputWithRegex</a></li><li><a href="global.html#throwMsgErrorWrongMailaddress">throwMsgErrorWrongMailaddress</a></li><li><a href="global.html#toggleAssignedContactsContainer">toggleAssignedContactsContainer</a></li><li><a href="global.html#toggleBoardOverlay">toggleBoardOverlay</a></li><li><a href="global.html#togglePrivacyPolicyCheckbox">togglePrivacyPolicyCheckbox</a></li><li><a href="global.html#toggleRememberMeCheckbox">toggleRememberMeCheckbox</a></li><li><a href="global.html#toggleRequiredMessage">toggleRequiredMessage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 18 2025 16:52:19 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

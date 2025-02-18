@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contacts.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: contacts.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let users = [];
+let contacts = [];
+let currentContactId = null;
+
+
+/**
+ * Retrieves the contacts from the remote storage asynchronously.
+ *
+ * @return {Promise&lt;Array>} A promise that resolves to an array of contacts.
+ */
+async function getContactsFromRemoteStorage() {
+  try {
+    const response = await fetch(`${BASE_URL}contacts/`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Token ${localStorage.getItem('authToken')}`
+      }
+    });
+
+    if (response.status === 401) {
+      alert('You are not authorized. Please log in.');
+      window.location.href = '/login';
+    }
+
+    const contacts = await response.json();
+
+    if (isGuest()) {
+      return contacts.filter(contact => contact.is_public);
+    }
+    return contacts;
+  } catch (error) {
+    console.error("Loading error:", error);
+    return [];
+  }
+}
+
+
+/**
+ * Checks if the currently logged in user is a guest.
+ * @return {boolean} true if the user is a guest, false otherwise.
+ */
+function isGuest() {
+  const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+  return loggedUser &amp;&amp; loggedUser.username === 'guest';
+}
+
+
+/**
+ * Retrieves contacts from the users array and sorts them by name.
+ *
+ * @return {Array} An array of contacts sorted by name.
+ */
+function prepareSorting(contacts) {
+  temp_contacts = [];
+  contacts.forEach((contact) => {
+    console.log('contacts.js 53 prepSortingContacts: ', contacts);
+    temp_contacts.push({
+      contactColor: contact.contactColor,
+      id: contact.id,
+      mail: contact.mail,
+      name: contact.name,
+      phone: contact.phone,
+      isPublic: contact.is_public,
+    });
+  });
+  contacts = sortContactsByName(temp_contacts);
+}
+
+
+/**
+ * Sorts an array of contacts by their last name.
+ *
+ * @param {Array} contacts - The array of contacts to be sorted.
+ * @return {Array} - The sorted array of contacts.
+ */
+function sortContactsByName(contacts) {
+  console.log('contacts.js703 sortContactsByName contacts: ', contacts);
+  let sortedContacts = contacts.slice().sort((a, b) => {
+    const lastNameA = getSecondOrFullName(a).toLowerCase();
+    const lastNameB = getSecondOrFullName(b).toLowerCase();
+    return lastNameA.localeCompare(lastNameB);
+  });
+  return sortedContacts;
+}
+
+
+/**
+ * A function that extracts and returns the last name if multiple names are provided, otherwise returns the single name.
+ *
+ * @param {Object} contact - The contact object containing the name to extract from.
+ * @return {string} The extracted last name or single name from the contact.
+ */
+function getSecondOrFullName(contact) {
+
+  console.log('getSecond contact: ', contact);
+  const names = contact.username.split(" ");
+  if (names.length === 1) {
+    return names[0];
+  } else {
+    return names[names.length - 1];
+  }
+}
+
+
+/**
+ * Finds the maximum id in the contactsArray and returns the next id.
+ *
+ * @param {Array} contactsArray - An array of contacts with ids.
+ * @return {number} The next id after the maximum id in the contactsArray.
+ */
+function getNextId(contactsArray) {
+  let maxId = 0;
+  contactsArray.forEach((contact) => {
+    if (contact.id > maxId) {
+      maxId = contact.id;
+    }
+  });
+  return maxId + 1;
+}
+
+
+/**
+ * Returns the first name from a given full name string for use as a default password.
+ *
+ * @param {string} name - The full name string.
+ * @return {string} The first name extracted from the full name string.
+ */
+function getFirstNameForDefaultPassword(name) {
+  return name.split(" ")[0];
+}
+
+
+/**
+ * Initializes the contacts by including the HTML and loading the contacts.
+ *
+ * @return {void} This function does not return anything.
+ */
+async function contactsInit() {
+  includeHTML();
+  contacts = await getContactsFromRemoteStorage();
+  loadContacts();
+}
+
+
+/**
+ * Loads the contacts and renders them into the main element.
+ *
+ * @function loadContacts
+ * @returns {void}
+ */
+function loadContacts() {
+  const main = document.getElementById("main");
+  main.innerHTML = ``;
+  createContactsContainer(main);
+  renderSortedContacts(main, contacts);
+}
+
+
+/**
+ * Generates initials from a full name.
+ *
+ * @param {string} name - The full name from which to generate initials.
+ * @returns {string} The initials generated from the provided full name.
+ */
+function getInitials(username) {
+  let returnName = "";
+  if (username.includes(" ")) {
+    let [firstName, lastName] = username.split(" ");
+    let firstInitial = firstName.charAt(0).toUpperCase();
+    let lastInitial = lastName.charAt(0).toUpperCase();
+    returnName = firstInitial + lastInitial;
+  } else {
+    returnName = username.charAt(0).toUpperCase();
+  }
+  return returnName;
+}
+
+
+/**
+ * Creates a letter element representing the first letter of a group of contacts.
+ *
+ * @function createFirstLetter
+ * @param {HTMLElement} main - The main element where the letter element will be appended.
+ * @param {string} firstLetter - The first letter to be displayed.
+ * @returns {void}
+ */
+function createFirstLetter(main, firstLetter) {
+  const letterDiv = document.createElement("div");
+  letterDiv.classList.add("contact-list-letter");
+  letterDiv.textContent = firstLetter;
+  main.querySelector(".contact-list").appendChild(letterDiv);
+
+  createPartingLine(main);
+}
+
+
+/**
+ * Removes a container element from the DOM based on the provided id.
+ *
+ * @param {string} id - The ID of the container element to remove.
+ * @return {void} This function does not return anything.
+ */
+function removeContainer(id) {
+  console.log('removeContainer id: ', id);
+  const container = document.getElementById(id);
+  if (container) {
+    container.remove();
+  } else {
+    console.warn(`Element with id "${id}" does not exist in DOM.`);
+  }
+}
+
+
+/**
+ * Creates a contact card element and appends it to the contact list within the main element.
+ *
+ * @function createContactCard
+ * @param {HTMLElement} main - The main element containing the contacts container.
+ * @param {number} id - The unique identifier for the contact.
+ * @param {string} contactColor - The color associated with the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} username - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @returns {void}
+ */
+function createContactCard(main, id, contactColor, initials, username, phone, email) {
+  // const shorterAdditionalInfo =
+  //   additional_info.length > 20 ? additional_info.substring(0, 20) + "..." : additional_info;
+
+  // contactColor = generateRandomColor();
+  const cardHTML = generateContactCardHTML(
+    id,
+    contactColor,
+    initials,
+    username,
+    phone,
+    email
+  );
+
+  const container = main.querySelector(".contacts-container");
+  container
+    .querySelector(".contact-list")
+    .insertAdjacentHTML("beforeend", cardHTML);
+}
+
+
+/**
+ * Capitalizes the first letter of each word in a given name.
+ *
+ * @param {string} name - The name to be capitalized.
+ * @return {string} The capitalized name.
+ */
+function getNameWithCapitalizedFirstLetter(contactname) {
+  let [firstname, lastname, surname] = contactname.split(" ");
+  firstname = firstname[0].toUpperCase() + firstname.slice(1);
+  if (lastname) {
+    lastname = lastname[0].toUpperCase() + lastname.slice(1);
+  }
+  if (surname) {
+    surname = surname[0].toUpperCase() + surname.slice(1);
+    return firstname + " " + (lastname ? lastname + " " : "") + surname;
+  } else {
+    return firstname + (lastname ? " " + lastname : "");
+  }
+}
+
+
+/**
+ * Displays details of the contact with the given ID.
+ * @param {number} id - The unique identifier of the contact.
+ */
+function openContactDetails(id) {
+  const contact = contacts.find(({ id: contactId }) => contactId === id);
+  console.log('openContactDetails id: ', id);
+  const { username, email, phone, contactColor } = contact;
+  const rightSide = document.getElementById("rightSide");
+  rightSide.classList.remove("d-none");
+  rightSide.innerHTML = generateContactDetailsHTML(
+    username,
+    email,
+    phone,
+    id,
+    contactColor
+  );
+  highlightSelectedContact(id);
+}
+
+
+/**
+ * Resets contact card styles to their default values.
+ *
+ * @param {HTMLElement} card The contact card element.
+ */
+function resetContactCard(card) {
+  card.style.backgroundColor = "";
+  card.style.color = "";
+  const badgeGroup = card.querySelector(".profile-badge-group");
+  if (badgeGroup) {
+    badgeGroup.classList.remove("profileBadgeChoosen");
+  }
+  const emailEl = card.querySelector(".contact-card-email");
+  if (emailEl) {
+    emailEl.style.color = "";
+  }
+}
+
+
+/**
+ * Resets the styles of all contact cards to their default values.
+ *
+ * @function resetAllContactCards
+ * @returns {void}
+ */
+function resetAllContactCards() {
+  const allContactCards = document.querySelectorAll(".contact-card");
+  allContactCards.forEach((card) => {
+    resetContactCard(card);
+    card.classList.remove("highlighted");
+  });
+}
+
+
+/**
+ * Highlights a contact card by applying specific styles.
+ *
+ * @function highlightContactCard
+ * @param {HTMLElement} card - The contact card element to be highlighted.
+ * @returns {void}
+ */
+function highlightContactCard(card) {
+  card.style.backgroundColor = "#4589ff";
+  card.style.color = "white";
+  const badgeGroup = card.querySelector(".profile-badge-group");
+  if (badgeGroup) {
+    badgeGroup.classList.add("profileBadgeChoosen");
+  }
+  const emailElement = card.querySelector(".contact-card-email");
+  if (emailElement) {
+    emailElement.style.color = "white";
+  }
+}
+
+
+/**
+ * Highlights the selected contact card and shows the right side element.
+ *
+ * @param {number} id - The ID of the contact card to be highlighted.
+ */
+function highlightSelectedContact(id) {
+  const selectedContactCard = document.getElementById(`contact-card-${id}`);
+  const rightSideElement = document.getElementById("rightSide");
+
+  if (selectedContactCard.classList.contains("highlighted")) {
+    resetAllContactCards();
+    rightSideElement.classList.add("d-none");
+    return;
+  }
+
+  resetAllContactCards();
+  selectedContactCard.classList.add("highlighted");
+  applyHighlight();
+}
+
+
+/**
+ * Applies highlighting to the selected contact card and shows the right side element.
+ *
+ * @function applyHighlight
+ * @param {HTMLElement} selectedContactCard - The selected contact card element.
+ * @param {HTMLElement} rightSideElement - The right side element to be shown.
+ * @returns {void}
+ */
+function applyHighlight() {
+  let allContactCards = document.getElementsByClassName("contact-card");
+  for (card of allContactCards)
+    if (card.classList.contains("highlighted")) {
+      highlightContactCard(card);
+    } else {
+      resetContactCard(card);
+    }
+}
+
+
+/**
+ * Changes the cancel icon to its hover state by updating its source.
+ *
+ * @function changeCancelIcon
+ * @returns {void}
+ */
+function changeCancelIcon() {
+  document.getElementById("cancelIcon").src =
+    "./assets/img/icon-cancel_hover.png";
+}
+
+
+/**
+ * Restores the cancel icon to its default state by updating its source.
+ *
+ * @function restoreCancelIcon
+ * @returns {void}
+ */
+function restoreCancelIcon() {
+  document.getElementById("cancelIcon").src = "./assets/img/icon-cancel.png";
+}
+
+
+/**
+ * Updates the color of each contact in the contacts_old array by mapping the colors array to the newColors array.
+ *
+ * @return {void} This function does not return a value.
+ */
+function changeColor() {
+  contacts_old.forEach((contact) => {
+    for (let i = 0; i &lt; colors.length; i++) {
+      if (contact.contactColor == colors[i]) {
+        contact.contactColor = newColors[i];
+      }
+    }
+  });
+}
+
+/**
+ * Deletes all contacts by clearing the contacts array and updating the storage.
+ *
+ * @return {Promise&lt;void>} Promise that resolves once contacts are deleted.
+ */
+async function delAllContacts() {
+  contacts = [];
+  await remoteStorageSetItem("contacts", JSON.stringify(contacts));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateButton">activateButton</a></li><li><a href="global.html#addBlueOverlay">addBlueOverlay</a></li><li><a href="global.html#addBlueOverlayHTML">addBlueOverlayHTML</a></li><li><a href="global.html#addContactCard">addContactCard</a></li><li><a href="global.html#addNewUser">addNewUser</a></li><li><a href="global.html#addOverlay">addOverlay</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addTaskDueDateOpenCalendear">addTaskDueDateOpenCalendear</a></li><li><a href="global.html#addTaskInit">addTaskInit</a></li><li><a href="global.html#adjustGreeting">adjustGreeting</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#applyHighlight">applyHighlight</a></li><li><a href="global.html#assignContactToTask">assignContactToTask</a></li><li><a href="global.html#backendGetItem">backendGetItem</a></li><li><a href="global.html#boardInit">boardInit</a></li><li><a href="global.html#buttonEventListener">buttonEventListener</a></li><li><a href="global.html#changeCancelIcon">changeCancelIcon</a></li><li><a href="global.html#changeColor">changeColor</a></li><li><a href="global.html#changeLinks">changeLinks</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkIfAnySubtaskIsInEditingMode">checkIfAnySubtaskIsInEditingMode</a></li><li><a href="global.html#checkIfCardIsEditing">checkIfCardIsEditing</a></li><li><a href="global.html#checkIfFormIsValid">checkIfFormIsValid</a></li><li><a href="global.html#checkIfUserWasPreviouslyRegistered">checkIfUserWasPreviouslyRegistered</a></li><li><a href="global.html#checkMailExists">checkMailExists</a></li><li><a href="global.html#checkPasswordsEqual">checkPasswordsEqual</a></li><li><a href="global.html#checkPrivacyPolicyConfirmation">checkPrivacyPolicyConfirmation</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#chooseCategory">chooseCategory</a></li><li><a href="global.html#clearDiv">clearDiv</a></li><li><a href="global.html#clearFormular">clearFormular</a></li><li><a href="global.html#closeCard">closeCard</a></li><li><a href="global.html#closeEditDelete">closeEditDelete</a></li><li><a href="global.html#closeOverlay">closeOverlay</a></li><li><a href="global.html#collectInformationsForNewCard">collectInformationsForNewCard</a></li><li><a href="global.html#contactsInit">contactsInit</a></li><li><a href="global.html#createContactCard">createContactCard</a></li><li><a href="global.html#createContactsContainer">createContactsContainer</a></li><li><a href="global.html#createEditFooter">createEditFooter</a></li><li><a href="global.html#createEditHeader">createEditHeader</a></li><li><a href="global.html#createFirstLetter">createFirstLetter</a></li><li><a href="global.html#createPartingLine">createPartingLine</a></li><li><a href="global.html#createSuccessMessageContainer">createSuccessMessageContainer</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#deactivateButton">deactivateButton</a></li><li><a href="global.html#delAllContacts">delAllContacts</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#displayEmptyTask">displayEmptyTask</a></li><li><a href="global.html#displaySuccessMessage">displaySuccessMessage</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editContactCard">editContactCard</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#filterTasks">filterTasks</a></li><li><a href="global.html#findFreeId">findFreeId</a></li><li><a href="global.html#firebaseCreateItem">firebaseCreateItem</a></li><li><a href="global.html#firebaseUpdateItem">firebaseUpdateItem</a></li><li><a href="global.html#formatTaskType">formatTaskType</a></li><li><a href="global.html#generateContactCardHTML">generateContactCardHTML</a></li><li><a href="global.html#generateContactDetailsHTML">generateContactDetailsHTML</a></li><li><a href="global.html#generateContactsContainerHTML">generateContactsContainerHTML</a></li><li><a href="global.html#getButtonColor">getButtonColor</a></li><li><a href="global.html#getContactsFromRemoteStorage">getContactsFromRemoteStorage</a></li><li><a href="global.html#getContainerToSetOnclick">getContainerToSetOnclick</a></li><li><a href="global.html#getCurrentUser">getCurrentUser</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getFirstNameForDefaultPassword">getFirstNameForDefaultPassword</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInputValues">getInputValues</a></li><li><a href="global.html#getLoggedUser">getLoggedUser</a></li><li><a href="global.html#getNameWithCapitalizedFirstLetter">getNameWithCapitalizedFirstLetter</a></li><li><a href="global.html#getNewContact">getNewContact</a></li><li><a href="global.html#getNewTaskId">getNewTaskId</a></li><li><a href="global.html#getNextId">getNextId</a></li><li><a href="global.html#getSecondOrFullName">getSecondOrFullName</a></li><li><a href="global.html#getStateOfRequriredField">getStateOfRequriredField</a></li><li><a href="global.html#getTaskOutOfId">getTaskOutOfId</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#getUserNameForGreeting">getUserNameForGreeting</a></li><li><a href="global.html#gotoSignUp">gotoSignUp</a></li><li><a href="global.html#greet">greet</a></li><li><a href="global.html#greetAccordingToDayTime">greetAccordingToDayTime</a></li><li><a href="global.html#greetUserMobile">greetUserMobile</a></li><li><a href="global.html#handleResponse">handleResponse</a></li><li><a href="global.html#hideAddTaskContainer">hideAddTaskContainer</a></li><li><a href="global.html#hideMobileGreeting">hideMobileGreeting</a></li><li><a href="global.html#hideOverlay">hideOverlay</a></li><li><a href="global.html#hideSuccesMessage">hideSuccesMessage</a></li><li><a href="global.html#highlightContactCard">highlightContactCard</a></li><li><a href="global.html#highlightPrivacyLegalNavLink">highlightPrivacyLegalNavLink</a></li><li><a href="global.html#highlightSelectedContact">highlightSelectedContact</a></li><li><a href="global.html#isGuest">isGuest</a></li><li><a href="global.html#loadAmounts">loadAmounts</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadTasksFromRemoteStorage">loadTasksFromRemoteStorage</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#loginAsGuest">loginAsGuest</a></li><li><a href="global.html#loginInit">loginInit</a></li><li><a href="global.html#loginUser">loginUser</a></li><li><a href="global.html#mobileGreeting">mobileGreeting</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openCard">openCard</a></li><li><a href="global.html#openCardDelete">openCardDelete</a></li><li><a href="global.html#openCardEdit">openCardEdit</a></li><li><a href="global.html#openContactDetails">openContactDetails</a></li><li><a href="global.html#openEditDelete">openEditDelete</a></li><li><a href="global.html#prepareSorting">prepareSorting</a></li><li><a href="global.html#privacyInit">privacyInit</a></li><li><a href="global.html#pushContactToTempAssignedContacts">pushContactToTempAssignedContacts</a></li><li><a href="global.html#redirectToLogin">redirectToLogin</a></li><li><a href="global.html#remoteStorageGetItem">remoteStorageGetItem</a></li><li><a href="global.html#remoteStorageSetItem">remoteStorageSetItem</a></li><li><a href="global.html#removeContact">removeContact</a></li><li><a href="global.html#removeContainer">removeContainer</a></li><li><a href="global.html#renderAddContacts">renderAddContacts</a></li><li><a href="global.html#renderAddContactsHTML">renderAddContactsHTML</a></li><li><a href="global.html#renderAddTaskHTML">renderAddTaskHTML</a></li><li><a href="global.html#renderArrow">renderArrow</a></li><li><a href="global.html#renderAssignedContactsContainer">renderAssignedContactsContainer</a></li><li><a href="global.html#renderAssignedToButtons">renderAssignedToButtons</a></li><li><a href="global.html#renderAssignedToButtonsHTML">renderAssignedToButtonsHTML</a></li><li><a href="global.html#renderBoardAddTaskOverlay">renderBoardAddTaskOverlay</a></li><li><a href="global.html#renderCategories">renderCategories</a></li><li><a href="global.html#renderContactsToDropdown">renderContactsToDropdown</a></li><li><a href="global.html#renderContactsToOpenCard">renderContactsToOpenCard</a></li><li><a href="global.html#renderEditCardAssignedContacts">renderEditCardAssignedContacts</a></li><li><a href="global.html#renderEditContact">renderEditContact</a></li><li><a href="global.html#renderEditContactHTML">renderEditContactHTML</a></li><li><a href="global.html#renderEditContainer">renderEditContainer</a></li><li><a href="global.html#renderEmptyCategory">renderEmptyCategory</a></li><li><a href="global.html#renderSortedContacts">renderSortedContacts</a></li><li><a href="global.html#renderSubtask">renderSubtask</a></li><li><a href="global.html#renderSubtaskInputField">renderSubtaskInputField</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#renderSubtasksToOpenCard">renderSubtasksToOpenCard</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#resetAllContactCards">resetAllContactCards</a></li><li><a href="global.html#resetCloseReload">resetCloseReload</a></li><li><a href="global.html#resetContactCard">resetContactCard</a></li><li><a href="global.html#resetContactForm">resetContactForm</a></li><li><a href="global.html#resetNewTask">resetNewTask</a></li><li><a href="global.html#restoreCancelIcon">restoreCancelIcon</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveEditSubtask">saveEditSubtask</a></li><li><a href="global.html#saveEditedContact">saveEditedContact</a></li><li><a href="global.html#saveEditedTask">saveEditedTask</a></li><li><a href="global.html#saveNewUser">saveNewUser</a></li><li><a href="global.html#saveTasksToRemoteStorage">saveTasksToRemoteStorage</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#sendUserData">sendUserData</a></li><li><a href="global.html#setAttributes">setAttributes</a></li><li><a href="global.html#setCardType">setCardType</a></li><li><a href="global.html#setCloseDropdownContainer">setCloseDropdownContainer</a></li><li><a href="global.html#setCreateBtnState">setCreateBtnState</a></li><li><a href="global.html#setDropdownContactAppearance">setDropdownContactAppearance</a></li><li><a href="global.html#setDroppableContainers">setDroppableContainers</a></li><li><a href="global.html#setNewUserValues">setNewUserValues</a></li><li><a href="global.html#setNewUsersToLocalStorage">setNewUsersToLocalStorage</a></li><li><a href="global.html#setPriority">setPriority</a></li><li><a href="global.html#setPriorityAppearance">setPriorityAppearance</a></li><li><a href="global.html#setPriorityForNewCard">setPriorityForNewCard</a></li><li><a href="global.html#setPriorityImage">setPriorityImage</a></li><li><a href="global.html#setRememberMe">setRememberMe</a></li><li><a href="global.html#setSubtaskState">setSubtaskState</a></li><li><a href="global.html#setTaskValuesToFields">setTaskValuesToFields</a></li><li><a href="global.html#setTimeoutCardRendering">setTimeoutCardRendering</a></li><li><a href="global.html#setTodayDateAsMin">setTodayDateAsMin</a></li><li><a href="global.html#showAddContactContainer">showAddContactContainer</a></li><li><a href="global.html#showAddTaskContainer">showAddTaskContainer</a></li><li><a href="global.html#showAmounts">showAmounts</a></li><li><a href="global.html#showOverlay">showOverlay</a></li><li><a href="global.html#showSuccessMessage">showSuccessMessage</a></li><li><a href="global.html#showUrgentTasks">showUrgentTasks</a></li><li><a href="global.html#showUserMessage">showUserMessage</a></li><li><a href="global.html#sortContactsByName">sortContactsByName</a></li><li><a href="global.html#startAnimation">startAnimation</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#stopDragging">stopDragging</a></li><li><a href="global.html#subtaskAddOrCancel">subtaskAddOrCancel</a></li><li><a href="global.html#summaryInit">summaryInit</a></li><li><a href="global.html#testMailinputWithRegex">testMailinputWithRegex</a></li><li><a href="global.html#throwMsgErrorWrongMailaddress">throwMsgErrorWrongMailaddress</a></li><li><a href="global.html#toggleAssignedContactsContainer">toggleAssignedContactsContainer</a></li><li><a href="global.html#toggleBoardOverlay">toggleBoardOverlay</a></li><li><a href="global.html#togglePrivacyPolicyCheckbox">togglePrivacyPolicyCheckbox</a></li><li><a href="global.html#toggleRememberMeCheckbox">toggleRememberMeCheckbox</a></li><li><a href="global.html#toggleRequiredMessage">toggleRequiredMessage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 18 2025 16:52:19 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

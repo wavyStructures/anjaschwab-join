@@ -121,7 +121,6 @@ function restoreUsersOnFirebase() {
  * 
  * @param {string} key - the key the value can be found
  * @param {string} value - the value for the key
- * @returns 
  */
 async function remoteStorageSetItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };

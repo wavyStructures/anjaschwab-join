@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let tasks = [];
+
+let currentDraggedElement;
+
+let categories = [
+    { 'category-0': "To do" },
+    { 'category-1': "In progress" },
+    { 'category-2': "Await Feedback" },
+    { 'category-3': "Done" }
+];
+
+
+/**
+ * Initializes the board by including HTML, loading contacts and tasks from remote storage,
+ * and rendering the categories.
+ */
+async function boardInit() {
+    includeHTML();
+    contacts = await getContactsFromRemoteStorage();
+    tasks = await loadTasksFromRemoteStorage();
+    users = await loadUsers();
+    renderCategories(tasks);
+}
+
+
+/**
+ * Renders the cards inside each category based on the tasks provided.
+ *
+ * @param {Array} arrayToSearchIn - The array of tasks to search through.
+ */
+function renderCategories(arrayToSearchIn) {
+    categories.forEach(category => {
+        let categoryContainer = document.getElementById(Object.keys(category)[0]);
+
+        categoryContainer.innerHTML = "";
+        let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
+        if (filteredTasks.length != 0) {
+            for (let j = 0; j &lt; filteredTasks.length; j++) {
+                let task = getTaskOutOfId(filteredTasks[j].id);
+                categoryContainer.innerHTML += renderTasksHTML(task);
+                setCardType(task);
+                renderTaskDescription(task)
+                renderSubtask(task);
+                renderAssignedToButtons(task);
+            }
+        } else {
+            renderEmptyCategory(categoryContainer, Object.values(category)[0]);
+        }
+    });
+}
+
+
+/**
+* Renders the task description by splitting it into words and limiting the length of each word to 46 characters.
+* If the description is longer than the limit, it adds an ellipsis at the end.
+*
+* @param {Object} task - The task object containing the description to be rendered.
+* @return {void} This function does not return anything.
+*/
+function renderTaskDescription(task) {
+    let descriptionContainer = document.getElementById('cardText' + task['id']);
+    let cardText = "";
+    let taskDescriptionSplitted = task.description.split(' ');
+
+    taskDescriptionSplitted.forEach((word) => {
+        if (cardText.length + word.length &lt;= 46) cardText = cardText + " " + word;
+    })
+
+    cardText = cardText.substring(1);
+
+    if (cardText.length != task.description.length) cardText = cardText + " ...";
+
+    descriptionContainer.innerHTML = cardText;
+}
+
+
+/**
+ * Filters an array of tasks based on a specified category.
+ *
+ * @param {Array} arrayToSearchIn - The array of tasks to search through.
+ * @param {string} category - The category to filter the tasks by.
+ * @return {Array} An array of tasks that match the specified category.
+ */
+function filterTasks(arrayToSearchIn, category) {
+    let filteredTasks = [];
+    arrayToSearchIn.forEach((task) => {
+        if (task['category'] == category) {
+            filteredTasks.push(task);
+        }
+    });
+
+    return filteredTasks;
+}
+
+
+/**
+ * Renders the icons with the initials of the user's name on each card.
+ *
+ * @param {object} card - The card object containing information about the card
+ */
+function renderAssignedToButtons(task) {
+    let assignedToContainer = document.getElementById('cardAssignedToContainerId' + task['id']);
+    if (!assignedToContainer) {
+        console.warn('Container not found for ID:', 'cardAssignedToContainerId' + task['id']);
+        return;
+    }
+
+    let assignedToUsers = task['assigned_to'];
+    if (!Array.isArray(assignedToUsers) || assignedToUsers.length === 0) {
+        console.warn('No assigned users found.');
+        return;
+    }
+
+    for (let i = 0; i &lt; assignedToUsers.length; i++) {
+        for (let j = 0; j &lt; contacts.length; j++) {
+            if (String(contacts[j]['id']) === String(assignedToUsers[i])) {
+                assignedToContainer.innerHTML += renderAssignedToButtonsHTML(contacts[j]);
+            }
+        }
+    }
+}
+
+
+/**
+ * Generates the HTML code for a contact's profile badge to be displayed in the assigned to section of a card.
+ *
+ * @param {object} users - The contact object containing information about the user, such as their color and username
+ * @return {string} The HTML code for the contact's profile badge
+ */
+function renderAssignedToButtonsHTML(users) {
+    return /*html*/ `&lt;div class="profile-badge-group" style="background-color: ${users.contactColor
+        }">${getInitials(users.username)}&lt;/div>`;
+}
+
+
+/**
+ * Renders the "No tasks X" message in the category container if there are no tasks in that category.
+ *
+ * @param {HTMLElement} categoryContainer - The container element of the category where the message should be rendered.
+ * @param {string} name - The name of the category where the message should be rendered.
+ */
+function renderEmptyCategory(categoryContainer, name) {
+    categoryContainer.innerHTML = renderEmptyCategoryHTML(name);
+}
+
+
+/**
+ * 
+ * @param {string} taskPriority 
+ * @returns html-image-tag
+ */
+function setPriorityImage(taskPriority) {
+    if (taskPriority == 'low') return `&lt;img src="assets/img/icon-priority_low.png">`
+    else if (taskPriority == 'medium') return `&lt;img src="assets/img/icon-priority_medium.png">`
+    else return `&lt;img src="assets/img/icon-priority_urgent.png">`
+}
+
+
+/**
+ * Searches for tasks based on the value of the search input.
+ *
+ */
+function searchTask() {
+    let searchInput = document.getElementById('findTask');
+    if (searchInput == null) return;
+    let foundTasks = tasks.filter(task => task['title'].toLowerCase().includes(searchInput.value) || task['description'].toLowerCase().includes(searchInput.value));
+    renderCategories(foundTasks);
+}
+
+
+/**
+ * Renders a subtask progress bar and text based on the number of completed subtasks in a task.
+ *
+ * @param {object} task - The task object containing subtasks.
+ * @return {string} The HTML code for the subtask progress bar and text.
+ */
+function renderSubtask(task) {
+    let subtaskContainer = document.getElementById('cardSubtask' + task['id']);
+
+    let subtasks = task['subtasks'] || [];  // Use an empty array if undefined or null
+    let countSubtasks = subtasks.length;
+    let completedSubtasks = subtasks.filter(subtask => subtask['completed'] == true).length;
+    let completedPercent = completedSubtasks * 100 / countSubtasks;
+
+    if (countSubtasks != 0) {
+        subtaskContainer.innerHTML = /*html*/`&lt;progress id="progressTodo" value="${completedPercent}" max="100">&lt;/progress>&lt;div class="cardSubtasksText">${completedSubtasks}/${countSubtasks} Subtasks&lt;/div>`
+    } else {
+        subtaskContainer.remove();
+    }
+}
+
+
+/**
+ * Returns the task object with the specified taskId from the tasks array.
+ *
+ * @param {number} taskId - The ID of the task to retrieve.
+ * @return {Object|undefined} The task object with the specified taskId, or undefined if no task is found.
+ */
+function getTaskOutOfId(taskId) {
+    return tasks.filter(task => task['id'] == taskId)[0]
+}
+
+
+/**
+ * Sets the card type based on the task type.
+ *
+ * @param {Object} task - The task object containing the type and id.
+ * @return {void} This function does not return a value.
+ */
+function setCardType(task) {
+    if (!task || !task.task_type) return;
+
+    let cardType = document.getElementById(`cardType${task['id']}`);
+    let openCardType = document.getElementById(`openCardType${task['id']}`);
+
+    if (!cardType) return;
+
+    let taskType = task.task_type.toLowerCase();
+
+    if (taskType === "user_story") {
+        cardType.classList.add("cardTypeUserStory");
+        if (openCardType) openCardType.classList.add("cardTypeUserStory");
+
+    } else if (taskType === "technical_task") {
+        cardType.classList.add('cardTypeTechnicalTask');
+        if (openCardType) openCardType.classList.add("cardTypeTechnicalTask");
+    }
+}
+
+
+/**
+ * Formats the task type string by replacing underscores with spaces 
+ * and capitalizing the first letter of each word.
+ *
+ * @param {string} task_type - The task type string to format.
+ * @return {string} The formatted task type string.
+ */
+
+function formatTaskType(task_type) {
+    if (!task_type) return "";
+    return task_type
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+
+/**
+ * Renders subtasks to the open card based on the task object.
+ *
+ * @param {object} task - The task object containing subtasks to render.
+ */
+function renderSubtasksToOpenCard(task) {
+    let container = document.getElementById('openCardSubtasksContainer');
+    container.innerHTML = /*html*/`&lt;span class="openCardText">Subtasks:&lt;/span>&lt;div id="openCardSubtasks">&lt;/div>`
+    container.classList.add("openCardSubtasksContainer");
+    let content = document.getElementById('openCardSubtasks');
+
+    content.innerHTML = '';
+    task['subtasks'].forEach((subtask, index) => {
+        let completed = subtask['completed'] ? 'completed' : '';
+
+        content.innerHTML += /*html*/`
+        &lt;div class="openCardSubtask" ${completed}>
+            &lt;div class="openCardSubtaskImgContainer" onclick="setSubtaskState(${task.id}, ${index})">&lt;/div>
+            ${subtask['subtaskText']}
+        &lt;/div>`
+    })
+}
+
+
+/**
+ * Toggles the completion state of a subtask in a task.
+ * Also setting the attribute "completed" on the subtask element so the css can handle the image.
+ *
+ * @param {number} taskId - The ID of the task containing the subtask.
+ * @param {number} subtaskIndex - The index of the subtask in the task's subtasks array.
+ */
+function setSubtaskState(taskId, subtaskIndex) {
+    let task = getTaskOutOfId(taskId);
+    task['subtasks'][subtaskIndex]['completed'] = !task['subtasks'][subtaskIndex]['completed'];
+    let openCardSubtasks = document.getElementsByClassName('openCardSubtask');
+
+    for (let i = 0; i &lt; openCardSubtasks.length; i++) {
+        if (i == subtaskIndex) {
+            openCardSubtasks[i].getAttribute('completed') == null
+                ? openCardSubtasks[i].setAttribute('completed', '')
+                : openCardSubtasks[i].removeAttribute('completed')
+        }
+    }
+}
+
+
+/**
+ * Deletes a task from the tasks array based on the provided taskId.
+ *2
+ * @param {number} taskId - The ID of the task to be deleted.
+ */
+async function openCardDelete(taskId) {
+
+    const response = await fetch(`${BASE_URL}tasks/${taskId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                tasks = tasks.filter(task => task.id != taskId);
+
+                closeCard();
+                renderCategories(tasks);
+            } else { console.log('failed to delete task') }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
+/**
+ * Opens the edit card for the task with the specified ID.
+ *
+ * @param {number} taskId - The ID of the task to edit.
+ */
+function openCardEdit(taskId) {
+    newTask = getTaskOutOfId(taskId);
+    renderEditContainer();
+    renderContactsToDropdown();
+    renderAssignedContactsContainer();
+    renderSubtasks()
+    setTaskValuesToFields(newTask);
+}
+
+
+/**
+ * Renders the edit container by setting the 'editing' attribute, updating the HTML content of the 'openCardContainer' element, and appending the HTML code for the edit header, main content, and footer.
+ */
+function renderEditContainer() {
+    let container = document.getElementById('openCardContainer');
+    container.setAttribute('editing', '');
+    container.innerHTML = createEditHeader();
+    container.innerHTML += renderAddTaskMainContentHTML();
+    container.innerHTML += createEditFooter(newTask);
+}
+
+
+/**
+ * Sets the values of the task fields in the edit card container.
+ */
+function setTaskValuesToFields() {
+    tempAssignedContacts = [];
+    document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
+    document.getElementById('addTaskDescriptionInput').value = newTask['description'];
+    document.getElementById('addTaskDueDateInput').value = newTask['dueDate'];
+    document.getElementById('dropdown-category-title').innerHTML = newTask['type'];
+    setPriorityAppearance(newTask['priority']);
+    renderEditCardAssignedContacts();
+}
+
+
+/**
+ * Renders the assigned contacts in the edit card container.
+ *
+ * This function clears the contents of the 'assignedContactsContainer' element and then iterates over the 'assigned_to' array of the 'newTask' object. For each 'id' in the array, it calls the 'assignContactToTask' function to assign the corresponding contact to the task.
+ */
+function renderEditCardAssignedContacts() {
+    document.getElementById('assignedContactsContainer').innerHTML = '';
+    newTask['assigned_to'].forEach(id => {
+        assignContactToTask(id);
+    })
+}
+
+
+/**
+ * Saves the edited task by collecting the necessary information, updating the task object,
+ * saving the tasks to remote storage, closing the card, printing a confirmation message,
+ * and printing the category values from each card.
+ *
+ * @param {number} taskId - The ID of the task to be saved.
+ */
+function saveEditedTask(taskId) {
+    collectInformationsForNewCard();
+    let taskToSave = getTaskOutOfId(taskId);
+    taskToSave = newTask;
+    saveTasksToRemoteStorage(taskToSave);
+    closeCard();
+}
+
+
+/**
+ * Generates the HTML code for the header of the edit task section.
+ *
+ * @return {string} The HTML code for the edit task header.
+ */
+function createEditHeader() {
+    return /*html*/`
+&lt;div class="boardEditTaskHeader">
+    &lt;div class="boardAddTaskCloseHoverContainer" onclick="closeCard()">&lt;/div>
+ &lt;/div>
+    `
+}
+
+
+/**
+ * Generates the HTML code for the footer of the edit task section.
+ *
+ * @param {Object} task - The task object to be edited.
+ * @return {string} The HTML code for the edit task footer.
+ */
+function createEditFooter(task) {
+    return /*html*/`
+    &lt;div class="addTaskBodyRight">
+        &lt;div class="createBtn addTaskBtn" onclick="saveEditedTask(${task.id}); doNotClose(event)">
+            &lt;span class="addTaskBtnText">Ok&lt;/span>
+            &lt;div class="createBtnImg">&lt;/div>
+        &lt;/div>
+    &lt;/div>`
+}
+
+
+/**
+ * Creates empty cards and appends them to the specified categories.
+ *
+ * @param {string} taskId - The ID of the task element.
+ * @param {Array&lt;string>} categoryArr - An array of category IDs.
+ */
+function displayEmptyTask(taskId, categoryId) {
+    let cardHeight = "min-height: " + document.getElementById(taskId).clientHeight + "px";
+    // let cardHeight = "min-height: 100%";
+    let cardWidth = "min-width: " + document.getElementById(taskId).clientWidth + "px";
+    let cardStyle = cardHeight + "; " + cardWidth;
+
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('emptyCard');
+    if (window.innerWidth &lt; 1370) {
+        newDiv.classList.add('vertical')
+    }
+
+    newDiv.style = cardStyle;
+    document.getElementById('category-' + categoryId).appendChild(newDiv);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateButton">activateButton</a></li><li><a href="global.html#addBlueOverlay">addBlueOverlay</a></li><li><a href="global.html#addBlueOverlayHTML">addBlueOverlayHTML</a></li><li><a href="global.html#addContactCard">addContactCard</a></li><li><a href="global.html#addNewUser">addNewUser</a></li><li><a href="global.html#addOverlay">addOverlay</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addTaskDueDateOpenCalendear">addTaskDueDateOpenCalendear</a></li><li><a href="global.html#addTaskInit">addTaskInit</a></li><li><a href="global.html#adjustGreeting">adjustGreeting</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#applyHighlight">applyHighlight</a></li><li><a href="global.html#assignContactToTask">assignContactToTask</a></li><li><a href="global.html#backendGetItem">backendGetItem</a></li><li><a href="global.html#boardInit">boardInit</a></li><li><a href="global.html#buttonEventListener">buttonEventListener</a></li><li><a href="global.html#changeCancelIcon">changeCancelIcon</a></li><li><a href="global.html#changeColor">changeColor</a></li><li><a href="global.html#changeLinks">changeLinks</a></li><li><a href="global.html#checkEmail">checkEmail</a></li><li><a href="global.html#checkIfAnySubtaskIsInEditingMode">checkIfAnySubtaskIsInEditingMode</a></li><li><a href="global.html#checkIfCardIsEditing">checkIfCardIsEditing</a></li><li><a href="global.html#checkIfFormIsValid">checkIfFormIsValid</a></li><li><a href="global.html#checkIfUserWasPreviouslyRegistered">checkIfUserWasPreviouslyRegistered</a></li><li><a href="global.html#checkMailExists">checkMailExists</a></li><li><a href="global.html#checkPasswordsEqual">checkPasswordsEqual</a></li><li><a href="global.html#checkPrivacyPolicyConfirmation">checkPrivacyPolicyConfirmation</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#chooseCategory">chooseCategory</a></li><li><a href="global.html#clearDiv">clearDiv</a></li><li><a href="global.html#clearFormular">clearFormular</a></li><li><a href="global.html#closeCard">closeCard</a></li><li><a href="global.html#closeEditDelete">closeEditDelete</a></li><li><a href="global.html#closeOverlay">closeOverlay</a></li><li><a href="global.html#collectInformationsForNewCard">collectInformationsForNewCard</a></li><li><a href="global.html#contactsInit">contactsInit</a></li><li><a href="global.html#createContactCard">createContactCard</a></li><li><a href="global.html#createContactsContainer">createContactsContainer</a></li><li><a href="global.html#createEditFooter">createEditFooter</a></li><li><a href="global.html#createEditHeader">createEditHeader</a></li><li><a href="global.html#createFirstLetter">createFirstLetter</a></li><li><a href="global.html#createPartingLine">createPartingLine</a></li><li><a href="global.html#createSuccessMessageContainer">createSuccessMessageContainer</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#deactivateButton">deactivateButton</a></li><li><a href="global.html#delAllContacts">delAllContacts</a></li><li><a href="global.html#deleteContact">deleteContact</a></li><li><a href="global.html#deleteSubtask">deleteSubtask</a></li><li><a href="global.html#displayEmptyTask">displayEmptyTask</a></li><li><a href="global.html#displaySuccessMessage">displaySuccessMessage</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#editContact">editContact</a></li><li><a href="global.html#editContactCard">editContactCard</a></li><li><a href="global.html#editSubtask">editSubtask</a></li><li><a href="global.html#filterTasks">filterTasks</a></li><li><a href="global.html#findFreeId">findFreeId</a></li><li><a href="global.html#firebaseCreateItem">firebaseCreateItem</a></li><li><a href="global.html#firebaseUpdateItem">firebaseUpdateItem</a></li><li><a href="global.html#formatTaskType">formatTaskType</a></li><li><a href="global.html#generateContactCardHTML">generateContactCardHTML</a></li><li><a href="global.html#generateContactDetailsHTML">generateContactDetailsHTML</a></li><li><a href="global.html#generateContactsContainerHTML">generateContactsContainerHTML</a></li><li><a href="global.html#getButtonColor">getButtonColor</a></li><li><a href="global.html#getContactsFromRemoteStorage">getContactsFromRemoteStorage</a></li><li><a href="global.html#getContainerToSetOnclick">getContainerToSetOnclick</a></li><li><a href="global.html#getCurrentUser">getCurrentUser</a></li><li><a href="global.html#getDate">getDate</a></li><li><a href="global.html#getFirstNameForDefaultPassword">getFirstNameForDefaultPassword</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getInputValues">getInputValues</a></li><li><a href="global.html#getLoggedUser">getLoggedUser</a></li><li><a href="global.html#getNameWithCapitalizedFirstLetter">getNameWithCapitalizedFirstLetter</a></li><li><a href="global.html#getNewContact">getNewContact</a></li><li><a href="global.html#getNewTaskId">getNewTaskId</a></li><li><a href="global.html#getNextId">getNextId</a></li><li><a href="global.html#getSecondOrFullName">getSecondOrFullName</a></li><li><a href="global.html#getStateOfRequriredField">getStateOfRequriredField</a></li><li><a href="global.html#getTaskOutOfId">getTaskOutOfId</a></li><li><a href="global.html#getUrgentTasks">getUrgentTasks</a></li><li><a href="global.html#getUserNameForGreeting">getUserNameForGreeting</a></li><li><a href="global.html#gotoSignUp">gotoSignUp</a></li><li><a href="global.html#greet">greet</a></li><li><a href="global.html#greetAccordingToDayTime">greetAccordingToDayTime</a></li><li><a href="global.html#greetUserMobile">greetUserMobile</a></li><li><a href="global.html#handleResponse">handleResponse</a></li><li><a href="global.html#hideAddTaskContainer">hideAddTaskContainer</a></li><li><a href="global.html#hideMobileGreeting">hideMobileGreeting</a></li><li><a href="global.html#hideOverlay">hideOverlay</a></li><li><a href="global.html#hideSuccesMessage">hideSuccesMessage</a></li><li><a href="global.html#highlightContactCard">highlightContactCard</a></li><li><a href="global.html#highlightPrivacyLegalNavLink">highlightPrivacyLegalNavLink</a></li><li><a href="global.html#highlightSelectedContact">highlightSelectedContact</a></li><li><a href="global.html#isGuest">isGuest</a></li><li><a href="global.html#loadAmounts">loadAmounts</a></li><li><a href="global.html#loadContacts">loadContacts</a></li><li><a href="global.html#loadTasksFromRemoteStorage">loadTasksFromRemoteStorage</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#loginAsGuest">loginAsGuest</a></li><li><a href="global.html#loginInit">loginInit</a></li><li><a href="global.html#loginUser">loginUser</a></li><li><a href="global.html#mobileGreeting">mobileGreeting</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openCard">openCard</a></li><li><a href="global.html#openCardDelete">openCardDelete</a></li><li><a href="global.html#openCardEdit">openCardEdit</a></li><li><a href="global.html#openContactDetails">openContactDetails</a></li><li><a href="global.html#openEditDelete">openEditDelete</a></li><li><a href="global.html#prepareSorting">prepareSorting</a></li><li><a href="global.html#privacyInit">privacyInit</a></li><li><a href="global.html#pushContactToTempAssignedContacts">pushContactToTempAssignedContacts</a></li><li><a href="global.html#redirectToLogin">redirectToLogin</a></li><li><a href="global.html#remoteStorageGetItem">remoteStorageGetItem</a></li><li><a href="global.html#remoteStorageSetItem">remoteStorageSetItem</a></li><li><a href="global.html#removeContact">removeContact</a></li><li><a href="global.html#removeContainer">removeContainer</a></li><li><a href="global.html#renderAddContacts">renderAddContacts</a></li><li><a href="global.html#renderAddContactsHTML">renderAddContactsHTML</a></li><li><a href="global.html#renderAddTaskHTML">renderAddTaskHTML</a></li><li><a href="global.html#renderArrow">renderArrow</a></li><li><a href="global.html#renderAssignedContactsContainer">renderAssignedContactsContainer</a></li><li><a href="global.html#renderAssignedToButtons">renderAssignedToButtons</a></li><li><a href="global.html#renderAssignedToButtonsHTML">renderAssignedToButtonsHTML</a></li><li><a href="global.html#renderBoardAddTaskOverlay">renderBoardAddTaskOverlay</a></li><li><a href="global.html#renderCategories">renderCategories</a></li><li><a href="global.html#renderContactsToDropdown">renderContactsToDropdown</a></li><li><a href="global.html#renderContactsToOpenCard">renderContactsToOpenCard</a></li><li><a href="global.html#renderEditCardAssignedContacts">renderEditCardAssignedContacts</a></li><li><a href="global.html#renderEditContact">renderEditContact</a></li><li><a href="global.html#renderEditContactHTML">renderEditContactHTML</a></li><li><a href="global.html#renderEditContainer">renderEditContainer</a></li><li><a href="global.html#renderEmptyCategory">renderEmptyCategory</a></li><li><a href="global.html#renderSortedContacts">renderSortedContacts</a></li><li><a href="global.html#renderSubtask">renderSubtask</a></li><li><a href="global.html#renderSubtaskInputField">renderSubtaskInputField</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#renderSubtasksToOpenCard">renderSubtasksToOpenCard</a></li><li><a href="global.html#renderTaskDescription">renderTaskDescription</a></li><li><a href="global.html#resetAllContactCards">resetAllContactCards</a></li><li><a href="global.html#resetCloseReload">resetCloseReload</a></li><li><a href="global.html#resetContactCard">resetContactCard</a></li><li><a href="global.html#resetContactForm">resetContactForm</a></li><li><a href="global.html#resetNewTask">resetNewTask</a></li><li><a href="global.html#restoreCancelIcon">restoreCancelIcon</a></li><li><a href="global.html#saveContact">saveContact</a></li><li><a href="global.html#saveEditSubtask">saveEditSubtask</a></li><li><a href="global.html#saveEditedContact">saveEditedContact</a></li><li><a href="global.html#saveEditedTask">saveEditedTask</a></li><li><a href="global.html#saveNewUser">saveNewUser</a></li><li><a href="global.html#saveTasksToRemoteStorage">saveTasksToRemoteStorage</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#sendUserData">sendUserData</a></li><li><a href="global.html#setAttributes">setAttributes</a></li><li><a href="global.html#setCardType">setCardType</a></li><li><a href="global.html#setCloseDropdownContainer">setCloseDropdownContainer</a></li><li><a href="global.html#setCreateBtnState">setCreateBtnState</a></li><li><a href="global.html#setDropdownContactAppearance">setDropdownContactAppearance</a></li><li><a href="global.html#setDroppableContainers">setDroppableContainers</a></li><li><a href="global.html#setNewUserValues">setNewUserValues</a></li><li><a href="global.html#setNewUsersToLocalStorage">setNewUsersToLocalStorage</a></li><li><a href="global.html#setPriority">setPriority</a></li><li><a href="global.html#setPriorityAppearance">setPriorityAppearance</a></li><li><a href="global.html#setPriorityForNewCard">setPriorityForNewCard</a></li><li><a href="global.html#setPriorityImage">setPriorityImage</a></li><li><a href="global.html#setRememberMe">setRememberMe</a></li><li><a href="global.html#setSubtaskState">setSubtaskState</a></li><li><a href="global.html#setTaskValuesToFields">setTaskValuesToFields</a></li><li><a href="global.html#setTimeoutCardRendering">setTimeoutCardRendering</a></li><li><a href="global.html#setTodayDateAsMin">setTodayDateAsMin</a></li><li><a href="global.html#showAddContactContainer">showAddContactContainer</a></li><li><a href="global.html#showAddTaskContainer">showAddTaskContainer</a></li><li><a href="global.html#showAmounts">showAmounts</a></li><li><a href="global.html#showOverlay">showOverlay</a></li><li><a href="global.html#showSuccessMessage">showSuccessMessage</a></li><li><a href="global.html#showUrgentTasks">showUrgentTasks</a></li><li><a href="global.html#showUserMessage">showUserMessage</a></li><li><a href="global.html#sortContactsByName">sortContactsByName</a></li><li><a href="global.html#startAnimation">startAnimation</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#stopDragging">stopDragging</a></li><li><a href="global.html#subtaskAddOrCancel">subtaskAddOrCancel</a></li><li><a href="global.html#summaryInit">summaryInit</a></li><li><a href="global.html#testMailinputWithRegex">testMailinputWithRegex</a></li><li><a href="global.html#throwMsgErrorWrongMailaddress">throwMsgErrorWrongMailaddress</a></li><li><a href="global.html#toggleAssignedContactsContainer">toggleAssignedContactsContainer</a></li><li><a href="global.html#toggleBoardOverlay">toggleBoardOverlay</a></li><li><a href="global.html#togglePrivacyPolicyCheckbox">togglePrivacyPolicyCheckbox</a></li><li><a href="global.html#toggleRememberMeCheckbox">toggleRememberMeCheckbox</a></li><li><a href="global.html#toggleRequiredMessage">toggleRequiredMessage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 18 2025 16:52:19 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
