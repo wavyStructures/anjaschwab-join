@@ -100,6 +100,8 @@ function deleteSubtask(subtaskId) {
  * Fetches information for a new card by setting values for id, type, title, description, assigned_to, category, priority, and due date of a new task.
  */
 function collectInformationsForNewCard() {
+    let newTask = {};
+
     if (!checkIfCardIsEditing()) {
         newTask.id = getNewTaskId();
     }
@@ -108,6 +110,8 @@ function collectInformationsForNewCard() {
     newTask.assigned_to = tempAssignedContacts;
     newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
     if (!newTask.task_type) newTask.task_type = 'user_story';
+
+    return newTask;
 }
 
 
@@ -130,10 +134,17 @@ function clearFormular() {
  */
 async function createTask() {
     await loadTasksFromRemoteStorage();
-    collectInformationsForNewCard();
-    const response = await saveTasksToRemoteStorage(newTask);
+    const newTask = collectInformationsForNewCard();
+    if (!newTask) { console.error("no new task"); return; }
+
+    const createdTask = await saveTasksToRemoteStorage(newTask);
+    if (createdTask) {
+        tasks.push(newTask);
+    }
+
     showSuccessMessage();
     resetNewTask();
+    await loadTasksFromRemoteStorage();
     switchPage('board.html');
 }
 
@@ -168,12 +179,13 @@ async function saveTasksToRemoteStorage(task = null) {
     try {
         let method, url;
 
-        if (task && task.id) {
+        if (task && task.id !== 0) {
             method = 'PUT';
             url = `${BASE_URL}tasks/${task.id}/`;
         } else {
             method = 'POST';
             url = `${BASE_URL}tasks/`;
+            delete task.id;
         }
 
         const assignedToIds = Array.isArray(task.assigned_to) ? task.assigned_to : [];
@@ -230,7 +242,6 @@ async function loadTasksFromRemoteStorage() {
             const errorDetails = await response.text();  // For more detailed error info from the server
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        // throw new Error(`HTTP error! Status: ${response.status}`);
 
         const tasks = await response.json();
 

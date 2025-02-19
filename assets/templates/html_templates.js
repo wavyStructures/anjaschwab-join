@@ -317,7 +317,7 @@ function renderAddTaskMainContentHTML() {
             </div>
         </div>
         <div class="addTaskContainer">
-            <div class="addTaskTitle"><span class="bold">Assigned to</span> (optional)</div>
+            <div class="addTaskTitle"><span class="bold">Assigned to</span></div>
             <div class="addTask-dropdown-contact pointer border-bottom" onclick="doNotClose(event); renderArrow('custom-arrow-assignedTo', 'dropdown-content-assignedTo')">
                 <div class="addTask-custom-select">
                     <span id="dropdown-assignedTo-title">Select contacts to assign</span>

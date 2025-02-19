@@ -8,11 +8,6 @@ async function loginInit() {
         addBlueOverlay()
         showOverlay();
     };
-
-    loadUsers().then(users => {
-    }).catch(error => {
-        console.error('Failed to load users:', error);
-    });
 }
 
 
@@ -61,6 +56,7 @@ async function loadUsers() {
         const response = await fetch(`${BASE_URL}auth/users/`, {
             method: 'GET',
             headers: {
+                'Authorization': `Token ${localStorage.getItem('authToken')}`,  // Token is required for authentication
                 'Content-Type': 'application/json',
             },
         });
@@ -128,6 +124,15 @@ async function loginUser() {
     let email = document.getElementById('loginEmailInput').value;
     let password = document.getElementById('loginPasswordInput').value;
 
+    login(email, password).then(() => {
+        return false;
+    }).catch(error => {
+        console.error('Error logging in:', error);
+    });
+}
+
+
+async function login(email, password) {
     try {
         const response = await fetch(`${BASE_URL}auth/login/`, {
             method: 'POST',
@@ -146,15 +151,13 @@ async function loginUser() {
         }
         const token = data.token;
         const loggedUser = data.user;
-
-
-        // Save the token in localStorage
         localStorage.setItem('authToken', token);
         localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
 
-        setCurrentUser(loggedUser.username); // sessionStorage
-        setRememberMe(loggedUser.username); // localStorage
+        setCurrentUser(loggedUser.username);
+        setRememberMe(loggedUser.username);
 
+        loadUsers();
         switchPage('summary.html');
 
         return loggedUser;
