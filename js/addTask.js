@@ -1,3 +1,5 @@
+let selectedTaskType = "user_story";
+
 /**
  * Initializes the task creation process by including HTML, fetching contacts from remote storage, 
  * loading tasks from remote storage, rendering the add task HTML, and checking the validity of the task.
@@ -30,7 +32,7 @@ function renderAddTaskHTML() {
     setTodayDateAsMin();
     setPriority('medium');
     renderContactsToDropdown();
-    renderSubtasks();
+    renderSubtasksList();
 }
 
 
@@ -86,8 +88,9 @@ function subtaskAddOrCancel(option) {
     let subtaskBottom = document.getElementById('subtaskBottom');
     let subtaskInputField = document.getElementById('subtaskInputField');
     if (option == 'add') {
-        if (subtaskInputField.value != '') {
-            addSubtask();
+        let subtaskInput = subtaskInputField.value;
+        if (subtaskInput != '') {
+            addSubtask(subtaskInput);
         }
     }
     subtaskBottom.innerHTML = renderSubtaskDefaultHTML();
@@ -98,7 +101,7 @@ function subtaskAddOrCancel(option) {
 /**
  * Renders the subtasks by iterating through each subtask and calling the renderSubtaskHTML function.
  */
-function renderSubtasks() {
+function renderSubtasksList() {
     let outputContainer = document.getElementById('subtasksOutputContainer');
     outputContainer.innerHTML = '';
     for (let i = 0; i < newTask.subtasks.length; i++) {
@@ -289,9 +292,12 @@ function renderAssignedContactsContainer() {
 function chooseCategory(chosenCategory) {
     let dropdownContentContainer = document.getElementById('dropdown-content-category')
     let categoryContainer = document.getElementById('dropdown-category-title');
+
     categoryContainer.innerHTML = chosenCategory;
     dropdownContentContainer.classList.add('d-none');
-    newTask['type'] = chosenCategory;
+
+    selectedTaskType = chosenCategory.toLowerCase().replace(" ", "_");
+    return selectedTaskType;
 }
 
 

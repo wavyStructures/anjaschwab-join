@@ -53,7 +53,6 @@ function isGuest() {
 function prepareSorting(contacts) {
   temp_contacts = [];
   contacts.forEach((contact) => {
-    console.log('contacts.js 53 prepSortingContacts: ', contacts);
     temp_contacts.push({
       contactColor: contact.contactColor,
       id: contact.id,
@@ -74,7 +73,6 @@ function prepareSorting(contacts) {
  * @return {Array} - The sorted array of contacts.
  */
 function sortContactsByName(contacts) {
-  console.log('contacts.js703 sortContactsByName contacts: ', contacts);
   let sortedContacts = contacts.slice().sort((a, b) => {
     const lastNameA = getSecondOrFullName(a).toLowerCase();
     const lastNameB = getSecondOrFullName(b).toLowerCase();
@@ -92,7 +90,6 @@ function sortContactsByName(contacts) {
  */
 function getSecondOrFullName(contact) {
 
-  console.log('getSecond contact: ', contact);
   const names = contact.username.split(" ");
   if (names.length === 1) {
     return names[0];
@@ -201,7 +198,6 @@ function createFirstLetter(main, firstLetter) {
  * @return {void} This function does not return anything.
  */
 function removeContainer(id) {
-  console.log('removeContainer id: ', id);
   const container = document.getElementById(id);
   if (container) {
     container.remove();
@@ -271,7 +267,6 @@ function getNameWithCapitalizedFirstLetter(contactname) {
  */
 function openContactDetails(id) {
   const contact = contacts.find(({ id: contactId }) => contactId === id);
-  console.log('openContactDetails id: ', id);
   const { username, email, phone, contactColor } = contact;
   const rightSide = document.getElementById("rightSide");
   rightSide.classList.remove("d-none");

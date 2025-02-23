@@ -32,7 +32,7 @@ function setTimeoutCardRendering(task) {
             renderContactsToOpenCard(task);
         }
         if (task.subtasks && task.subtasks.length != 0) {
-            renderSubtasksToOpenCard(task);
+            renderSubtasksListToOpenCard(task);
         }
         toggleBoardOverlay('closeCard()');
     }, 0);

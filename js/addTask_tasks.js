@@ -1,6 +1,6 @@
 let tempAssignedContacts = [];
 let tempPriority = '';
-let tempSubtasks = [];
+// let tempSubtasks = [];
 let isValid = false;
 let requiredInputFields = [
     {
@@ -27,7 +27,7 @@ let newTask =
     'assigned_to': [],
     'category': 'category-0',
     'priority': '',
-    'dueDate': '',
+    'due_date': '',
     'task_type': ''
 };
 
@@ -35,17 +35,17 @@ let newTask =
 /**
  * Adds a new subtask to the list of tasks.
  */
-function addSubtask() {
-    let subtaskInputField = document.getElementById('subtaskInputField');
-    if (subtaskInputField.value != '') {
+function addSubtask(subtaskInput) {
+    if (subtaskInput != '') {
 
         newTask.subtasks.push({
             'id': newTask.subtasks.length,
-            'subtaskText': subtaskInputField.value,
+            'subtaskText': subtaskInput,
             'completed': false
         })
     }
-    renderSubtasks();
+
+    renderSubtasksList(newTask);
 }
 
 
@@ -72,12 +72,13 @@ function editSubtask(id) {
  */
 function saveEditSubtask(id) {
     let newText = document.getElementById('subtaskEditInputField');
+
     newTask.subtasks.forEach(subtask => {
         if (subtask.id == id) {
             subtask.subtaskText = newText.value;
         }
     })
-    renderSubtasks();
+    renderSubtasksList();
 }
 
 
@@ -92,15 +93,15 @@ function deleteSubtask(subtaskId) {
             newTask.subtasks.splice(index, 1);
         }
     })
-    renderSubtasks();
+    renderSubtasksList();
 }
 
 
 /**
  * Fetches information for a new card by setting values for id, type, title, description, assigned_to, category, priority, and due date of a new task.
  */
-function collectInformationsForNewCard() {
-    let newTask = {};
+async function collectInformationsForNewCard() {
+    // let newTask = {};
 
     if (!checkIfCardIsEditing()) {
         newTask.id = getNewTaskId();
@@ -108,10 +109,15 @@ function collectInformationsForNewCard() {
     newTask.title = document.getElementById('addTaskEnterTitleInput').value;
     newTask.description = document.getElementById('addTaskDescriptionInput').value;
     newTask.assigned_to = tempAssignedContacts;
-    newTask.dueDate = document.getElementById('addTaskDueDateInput').value;
-    if (!newTask.task_type) newTask.task_type = 'user_story';
 
-    return newTask;
+    let dateInput = document.getElementById('addTaskDueDateInput').value;
+    if (dateInput) {
+        let dateObj = new Date(dateInput);
+        newTask.due_date = dateObj.toISOString().split('T')[0];
+    }
+
+    newTask.task_type = selectedTaskType || 'user_story';
+    return Promise.resolve(newTask);
 }
 
 
@@ -133,13 +139,14 @@ function clearFormular() {
  * @return {Promise<void>} A Promise that resolves once the task is created.
  */
 async function createTask() {
-    await loadTasksFromRemoteStorage();
-    const newTask = collectInformationsForNewCard();
-    if (!newTask) { console.error("no new task"); return; }
+    let tasks = await loadTasksFromRemoteStorage();
+    const newTaskData = await collectInformationsForNewCard();
 
-    const createdTask = await saveTasksToRemoteStorage(newTask);
+    if (!newTaskData) { console.error("no new task"); return; }
+
+    const createdTask = await saveTasksToRemoteStorage(newTaskData);
     if (createdTask) {
-        tasks.push(newTask);
+        tasks.push(newTaskData);
     }
 
     showSuccessMessage();
@@ -177,33 +184,48 @@ async function saveTasksToRemoteStorage(task = null) {
     deactivateButton('createBtn');
 
     try {
-        let method, url;
-
-        if (task && task.id !== 0) {
-            method = 'PUT';
-            url = `${BASE_URL}tasks/${task.id}/`;
-        } else {
-            method = 'POST';
-            url = `${BASE_URL}tasks/`;
-            delete task.id;
+        const resolvedTask = task || newTask; // If task is provided, use it; otherwise, use newTask
+        if (resolvedTask.id === 0) {
+            resolvedTask.id = undefined; // If id is 0, treat it as a new task
         }
+        // Check if required fields are filled (like title)
+        if (!resolvedTask.title || resolvedTask.title.trim() === '') {
+            console.error('Title is required!');
+            alert('Title is required!');
+            return; // Exit early if title is missing
+        }
+        const url = resolvedTask.id ? `http://127.0.0.1:8000/tasks/${newTask.id}/` : 'http://127.0.0.1:8000/tasks/';
+        const method = resolvedTask.id ? 'PUT' : 'POST';
 
-        const assignedToIds = Array.isArray(task.assigned_to) ? task.assigned_to : [];
+        // let method, url;
+
+        // if (task && task.id !== 0) {
+        //     method = 'PUT';
+        //     url = `${BASE_URL}tasks/${task.id}/`;
+        // } else {
+        //     method = 'POST';
+        //     url = `${BASE_URL}tasks/`;
+        //     delete task.id;
+        // }
+
+        // const assignedToIds = Array.isArray(task.assigned_to) ? task.assigned_to : [];
 
         const taskData = {
-            ...task,
-            assigned_to: assignedToIds
+            ...resolvedTask,
+            // assigned_to: assignedToIds,
+            assigned_to: Array.isArray(resolvedTask.assigned_to) ? resolvedTask.assigned_to : [],
+            subtasks: resolvedTask.subtasks || [],
+            due_date: resolvedTask.due_date || null
+
         };
 
-
-        const body = taskData;
         const response = await fetch(url, {
             method: method,
             headers: {
                 'Authorization': `Token ${localStorage.getItem('authToken')}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(taskData)
         });
 
         if (!response.ok) {
@@ -213,6 +235,7 @@ async function saveTasksToRemoteStorage(task = null) {
         }
 
         const data = await response.json();
+        return data;
 
     } catch (error) {
         console.error('Error saving task:', error);

@@ -9,7 +9,6 @@ function getNewContact() {
     additional_info: "",
     email: contactMail.value,
   };
-  console.log('newContact', newContact);
   return newContact;
 }
 

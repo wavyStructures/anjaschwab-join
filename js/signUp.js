@@ -28,8 +28,6 @@ async function saveNewUser() {
 function getInputValues() {
     newUsername = document.getElementById('signUpNameInput').value;
     newMail = document.getElementById('signUpEmailInput').value;
-    console.log('newMail:', newMail);
-    console.log('newUsername:', newUsername);
 
     newPassword = document.getElementById('signUpPasswordInput').value;
     newPasswordConfirm = document.getElementById('signUpPasswordInputConfirm').value;

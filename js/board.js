@@ -177,7 +177,7 @@ function searchTask() {
 function renderSubtask(task) {
     let subtaskContainer = document.getElementById('cardSubtask' + task['id']);
 
-    let subtasks = task['subtasks'] || [];  // Use an empty array if undefined or null
+    let subtasks = task['subtasks'] || [];
     let countSubtasks = subtasks.length;
     let completedSubtasks = subtasks.filter(subtask => subtask['completed'] == true).length;
     let completedPercent = completedSubtasks * 100 / countSubtasks;
@@ -249,7 +249,7 @@ function formatTaskType(task_type) {
  *
  * @param {object} task - The task object containing subtasks to render.
  */
-function renderSubtasksToOpenCard(task) {
+function renderSubtasksListToOpenCard(task) {
     let container = document.getElementById('openCardSubtasksContainer');
     container.innerHTML = /*html*/`<span class="openCardText">Subtasks:</span><div id="openCardSubtasks"></div>`
     container.classList.add("openCardSubtasksContainer");
@@ -326,7 +326,7 @@ function openCardEdit(taskId) {
     renderEditContainer();
     renderContactsToDropdown();
     renderAssignedContactsContainer();
-    renderSubtasks()
+    renderSubtasksList();
     setTaskValuesToFields(newTask);
 }
 
@@ -346,12 +346,15 @@ function renderEditContainer() {
 /**
  * Sets the values of the task fields in the edit card container.
  */
-function setTaskValuesToFields() {
+function setTaskValuesToFields(newTask) {
     tempAssignedContacts = [];
     document.getElementById('addTaskEnterTitleInput').value = newTask['title'];
     document.getElementById('addTaskDescriptionInput').value = newTask['description'];
-    document.getElementById('addTaskDueDateInput').value = newTask['dueDate'];
-    document.getElementById('dropdown-category-title').innerHTML = newTask['type'];
+    document.getElementById('addTaskDueDateInput').value = newTask['due_date'];
+
+    const taskType = newTask['task_type'] || 'Select task category';
+    document.getElementById('dropdown-category-title').innerHTML = taskType;
+
     setPriorityAppearance(newTask['priority']);
     renderEditCardAssignedContacts();
 }

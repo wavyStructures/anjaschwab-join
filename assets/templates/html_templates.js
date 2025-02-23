@@ -395,7 +395,7 @@ function renderOpenCardHTML(task) {
         <div class="openCardDescription">${task["description"]}</div>
         <div class="openCardTextBox">
             <span class="openCardText">Due Date:</span>
-            <span class="openCardValue">${task["dueDate"]}</span>
+            <span class="openCardValue">${task["due_date"]}</span>
         </div>
         <div class="openCardTextBox">
             <span class="openCardText">Priority:</span>

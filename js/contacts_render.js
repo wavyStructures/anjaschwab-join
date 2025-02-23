@@ -90,7 +90,6 @@ function renderAddContactsHTML() {
  * @return {string} The HTML code for the edit contact form.
  */
 function renderEditContactHTML(id, username, contactColor) {
-  console.log('this is WHAT renderEditContactHTML gets: id username and contactColor......:', id, username, contactColor);
 
   return /*html*/ `
           <div class="edit-contact-header">
