@@ -109,8 +109,6 @@ function renderBoardAddTaskOverlay() {
  * If the container does not exist, it will be created and rendered.
  */
 function showAddTaskContainer(category = 'category-0') {
-    console.log("inside showAddTaskContainer the newTask is: ", newTask);
-    console.log("inside showAddTaskContainer the resolved is: ", newTask);
     newTask.category = category;
     if (!document.getElementById('addTaskHoverContainer')) {
         renderBoardAddTaskOverlay();

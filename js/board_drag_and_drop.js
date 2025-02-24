@@ -19,8 +19,6 @@ function setDroppableContainers(taskId) {
  * @param {string} taskId - The ID of the task element being dragged.
  */
 function startDragging(taskId) {
-    console.log("Dragging started for task ID:", taskId);
-
     currentDraggedElement = taskId;
     document.getElementById(taskId).classList.add('dragging');
     setDroppableContainers(taskId)
@@ -46,7 +44,6 @@ function stopDragging() {
     if (currentDraggedElement) {
         let taskElement = document.getElementById(currentDraggedElement);
         if (taskElement) {
-            console.log(`Removing dragging class from task with ID: ${currentDraggedElement}`);
             taskElement.classList.remove('dragging');
         } else {
             console.warn("Task element not found:", currentDraggedElement);
@@ -73,11 +70,8 @@ function allowDrop(event) {
 async function moveTo(category) {
     let task = getTaskOutOfId(currentDraggedElement);
 
-    // Update the task's category
     task['category'] = category;
-    console.log("AFTER    Rendering task with ID:", task.id, "to category:", category);
-    console.log("task is:", task);
-    console.log("ALL TASKS ARE:", tasks);
-
     renderCategories(tasks);
+
+    saveTasksToRemoteStorage(task);
 }

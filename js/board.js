@@ -36,7 +36,7 @@ function renderCategories(arrayToSearchIn) {
 
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
-       
+
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
@@ -208,7 +208,6 @@ function renderSubtask(task) {
  * @return {Object|undefined} The task object with the specified taskId, or undefined if no task is found.
  */
 function getTaskOutOfId(taskId) {
-    console.log("getTaskOutOfId TAKES THIS ID:", taskId);
     return tasks.filter(task => task['id'] == taskId)[0]
 }
 

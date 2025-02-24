@@ -181,7 +181,6 @@ function resetNewTask() {
 *
 */
 async function saveTasksToRemoteStorage(task = null) {
-    console.log('Saving task at START of saveTaskToRemoteSotrage:', task);
     deactivateButton('createBtn');
 
     try {
@@ -204,9 +203,6 @@ async function saveTasksToRemoteStorage(task = null) {
             subtasks: newTask.subtasks || [],
             due_date: newTask.due_date || null
         };
-
-        console.log("BEFOE REQUEST      Resolved task ID:", newTask.id);
-        console.log("BEFOE REQUEST      Request URL:", url);
 
         const response = await fetch(url, {
             method: method,
