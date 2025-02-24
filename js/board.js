@@ -18,6 +18,8 @@ async function boardInit() {
     includeHTML();
     contacts = await getContactsFromRemoteStorage();
     tasks = await loadTasksFromRemoteStorage();
+    if (!tasks.length) console.warn("No tasks loaded.");
+
     users = await loadUsers();
     renderCategories(tasks);
 }
@@ -34,6 +36,7 @@ function renderCategories(arrayToSearchIn) {
 
         categoryContainer.innerHTML = "";
         let filteredTasks = filterTasks(arrayToSearchIn, Object.keys(category)[0]);
+       
         if (filteredTasks.length != 0) {
             for (let j = 0; j < filteredTasks.length; j++) {
                 let task = getTaskOutOfId(filteredTasks[j].id);
@@ -83,11 +86,19 @@ function renderTaskDescription(task) {
  */
 function filterTasks(arrayToSearchIn, category) {
     let filteredTasks = [];
-    arrayToSearchIn.forEach((task) => {
-        if (task['category'] == category) {
-            filteredTasks.push(task);
-        }
-    });
+
+    if (Array.isArray(arrayToSearchIn)) {
+
+
+
+        arrayToSearchIn.forEach((task) => {
+            if (task['category'] == category) {
+                filteredTasks.push(task);
+            }
+        });
+    } else {
+        console.error('Expected an array, but got:', arrayToSearchIn);
+    }
 
     return filteredTasks;
 }
@@ -197,6 +208,7 @@ function renderSubtask(task) {
  * @return {Object|undefined} The task object with the specified taskId, or undefined if no task is found.
  */
 function getTaskOutOfId(taskId) {
+    console.log("getTaskOutOfId TAKES THIS ID:", taskId);
     return tasks.filter(task => task['id'] == taskId)[0]
 }
 

@@ -19,6 +19,8 @@ function setDroppableContainers(taskId) {
  * @param {string} taskId - The ID of the task element being dragged.
  */
 function startDragging(taskId) {
+    console.log("Dragging started for task ID:", taskId);
+
     currentDraggedElement = taskId;
     document.getElementById(taskId).classList.add('dragging');
     setDroppableContainers(taskId)
@@ -31,12 +33,25 @@ function startDragging(taskId) {
  */
 function stopDragging() {
     categories.forEach(category => {
-        document.getElementById(Object.keys(category)[0]).classList.remove('drag-area-highlight');
+        let categoryElement = document.getElementById(Object.keys(category)[0]);
+        // document.getElementById(Object.keys(category)[0]).classList.remove('drag-area-highlight');
+        if (!categoryElement) {
+            console.warn('Category element not found, this is Object.keys(category)[0]:', Object.keys(category)[0]);
+            return;
+        }
+        categoryElement.classList.remove('drag-area-highlight');
+
     });
 
-    tasks.forEach(task => {
-        document.getElementById(task.id).classList.remove('dragging');
-    });
+    if (currentDraggedElement) {
+        let taskElement = document.getElementById(currentDraggedElement);
+        if (taskElement) {
+            console.log(`Removing dragging class from task with ID: ${currentDraggedElement}`);
+            taskElement.classList.remove('dragging');
+        } else {
+            console.warn("Task element not found:", currentDraggedElement);
+        }
+    }
 }
 
 
@@ -57,9 +72,12 @@ function allowDrop(event) {
  */
 async function moveTo(category) {
     let task = getTaskOutOfId(currentDraggedElement);
+
+    // Update the task's category
     task['category'] = category;
+    console.log("AFTER    Rendering task with ID:", task.id, "to category:", category);
+    console.log("task is:", task);
+    console.log("ALL TASKS ARE:", tasks);
 
     renderCategories(tasks);
-
-    await saveTasksToRemoteStorage(task);
 }

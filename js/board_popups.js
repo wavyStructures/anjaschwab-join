@@ -52,17 +52,14 @@ async function closeCard() {
         overlay.classList.add('d-none');
         overlay.removeAttribute('onclick');
     }
-    // openCardContainer.classList.add('d-none');
-    // openCardContainer.removeAttribute('editing');
 
-    let taskId = openCardContainer.getAttribute('data-task-id'); // Assuming you store task ID here
+    let taskId = openCardContainer.getAttribute('data-task-id');
     if (taskId) {
-        let taskToSave = getTaskOutOfId(taskId); // Function to find the task object by ID
+        let taskToSave = getTaskOutOfId(taskId);
         await saveTasksToRemoteStorage(taskToSave);
     }
 
     renderCategories(tasks);
-    // toggleBoardOverlay('disable');
 }
 
 
@@ -112,6 +109,8 @@ function renderBoardAddTaskOverlay() {
  * If the container does not exist, it will be created and rendered.
  */
 function showAddTaskContainer(category = 'category-0') {
+    console.log("inside showAddTaskContainer the newTask is: ", newTask);
+    console.log("inside showAddTaskContainer the resolved is: ", newTask);
     newTask.category = category;
     if (!document.getElementById('addTaskHoverContainer')) {
         renderBoardAddTaskOverlay();

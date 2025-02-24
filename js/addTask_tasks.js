@@ -19,7 +19,7 @@ let requiredInputFields = [
 
 let newTask =
 {
-    'id': 999,
+    'id': undefined,
     'type': '',
     'title': '',
     'description': '',
@@ -126,7 +126,7 @@ async function collectInformationsForNewCard() {
  * and renders the add task form HTML.
  */
 function clearFormular() {
-    newTask.id = 999;
+    newTask.id = undefined;
     newTask.subtasks = [];
     tempAssignedContacts = [];
     renderAddTaskHTML();
@@ -162,7 +162,7 @@ async function createTask() {
 function resetNewTask() {
     newTask =
     {
-        'id': 999,
+        'id': '',
         'type': '',
         'title': '',
         'description': '',
@@ -181,43 +181,32 @@ function resetNewTask() {
 *
 */
 async function saveTasksToRemoteStorage(task = null) {
+    console.log('Saving task at START of saveTaskToRemoteSotrage:', task);
     deactivateButton('createBtn');
 
     try {
-        const resolvedTask = task || newTask; // If task is provided, use it; otherwise, use newTask
-        if (resolvedTask.id === 0) {
-            resolvedTask.id = undefined; // If id is 0, treat it as a new task
+        const newTask = task || newTask;
+        if (newTask.id === 0) {
+            newTask.id = undefined;
         }
-        // Check if required fields are filled (like title)
-        if (!resolvedTask.title || resolvedTask.title.trim() === '') {
+        if (!newTask.title || newTask.title.trim() === '') {
             console.error('Title is required!');
             alert('Title is required!');
-            return; // Exit early if title is missing
+            return;
         }
-        const url = resolvedTask.id ? `http://127.0.0.1:8000/tasks/${newTask.id}/` : 'http://127.0.0.1:8000/tasks/';
-        const method = resolvedTask.id ? 'PUT' : 'POST';
 
-        // let method, url;
-
-        // if (task && task.id !== 0) {
-        //     method = 'PUT';
-        //     url = `${BASE_URL}tasks/${task.id}/`;
-        // } else {
-        //     method = 'POST';
-        //     url = `${BASE_URL}tasks/`;
-        //     delete task.id;
-        // }
-
-        // const assignedToIds = Array.isArray(task.assigned_to) ? task.assigned_to : [];
+        const url = newTask.id ? `http://127.0.0.1:8000/tasks/${newTask.id}/` : 'http://127.0.0.1:8000/tasks/';
+        const method = newTask.id ? 'PUT' : 'POST';
 
         const taskData = {
-            ...resolvedTask,
-            // assigned_to: assignedToIds,
-            assigned_to: Array.isArray(resolvedTask.assigned_to) ? resolvedTask.assigned_to : [],
-            subtasks: resolvedTask.subtasks || [],
-            due_date: resolvedTask.due_date || null
-
+            ...newTask,
+            assigned_to: Array.isArray(newTask.assigned_to) ? newTask.assigned_to : [],
+            subtasks: newTask.subtasks || [],
+            due_date: newTask.due_date || null
         };
+
+        console.log("BEFOE REQUEST      Resolved task ID:", newTask.id);
+        console.log("BEFOE REQUEST      Request URL:", url);
 
         const response = await fetch(url, {
             method: method,
