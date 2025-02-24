@@ -17,11 +17,19 @@ function getNewContact() {
  * Saves a contact with POST-method to backend.
  */
 async function saveContact() {
+  await waitForElement("createBtn");
+  const createBtn = document.getElementById("createBtn");
+
+  if (!createBtn) {
+    console.error("createBtn not found in the DOM!");
+    return;
+  }
+
+  createBtn.disabled = true;
   await getContactsFromRemoteStorage();
   await checkEmail();
 
   try {
-    createBtn.disabled = true;
     const newContact = getNewContact();
     const response = await fetch(`${BASE_URL}contacts/`, {
       method: "POST",
@@ -50,6 +58,12 @@ async function saveContact() {
  * to prevent duplicate contacts.
  */
 async function checkEmail() {
+  const contactMailInput = document.getElementById("contactMail");
+  if (!contactMailInput) {
+    console.error("contactMailInput not found in the DOM!");
+    return;
+  }
+
   const contactEmail = document.getElementById("contactMail").value;
   const emailExists = await checkMailExists(contactEmail);
   if (emailExists) {
@@ -391,4 +405,19 @@ async function deleteContact(id) {
 function removeContact(id) {
   deleteContact(id);
   contactsInit();
+}
+
+
+function waitForElement(id) {
+  return new Promise((resolve) => {
+    const checkElement = () => {
+      const element = document.getElementById(id);
+      if (element) {
+        resolve(element);
+      } else {
+        setTimeout(checkElement, 100); // Check every 100ms
+      }
+    };
+    checkElement();
+  });
 }

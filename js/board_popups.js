@@ -9,6 +9,7 @@ function openCard(taskId) {
         setAttributes(newDiv, { 'id': 'openCardContainer', 'class': 'openCardContainer', 'onclick': 'doNotClose(event)' });
         document.body.appendChild(newDiv);
     }
+
     let openCardContainer = document.getElementById('openCardContainer');
 
     let task = getTaskOutOfId(taskId) || {};
